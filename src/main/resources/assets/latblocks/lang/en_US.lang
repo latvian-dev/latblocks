@@ -1,0 +1,13 @@
+itemGroup.latblocks:tab=LatBlocks
+
+### Blocks ###
+
+latblocks:tile.paintable.name=Paintable Block
+latblocks:tile.paintableRS.name=Dual Paintable Block
+latblocks:tile.facade.name=Paintable Facade
+
+### Items ###
+
+latblocks:item.linkCard.name=Linking Card
+latblocks:item.blockPainter.name=Block Painter
+latblocks:item.blockPainterDmd.name=Diamond Block Painter
