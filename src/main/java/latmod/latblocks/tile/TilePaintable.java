@@ -1,10 +1,8 @@
 package latmod.latblocks.tile;
 
 import latmod.core.client.RenderBlocksCustom;
-import latmod.core.mod.tile.*;
-import latmod.core.mod.tile.PainterHelper.IPaintable;
-import latmod.core.mod.tile.PainterHelper.Paint;
-import latmod.core.mod.tile.PainterHelper.PaintData;
+import latmod.core.game.TileLM;
+import latmod.core.tile.*;
 import mcp.mobius.waila.api.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

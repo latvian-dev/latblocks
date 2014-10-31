@@ -1,8 +1,7 @@
 package latmod.latblocks.block;
-import cpw.mods.fml.relauncher.*;
 import latmod.core.ODItems;
+import latmod.core.game.TileLM;
 import latmod.core.mod.LC;
-import latmod.core.mod.tile.*;
 import latmod.latblocks.tile.TilePaintable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.relauncher.*;
 
 public class BlockPaintable extends BlockLB
 {

@@ -1,6 +1,5 @@
 package latmod.latblocks.tile;
 
-import latmod.core.mod.tile.PainterHelper.Paint;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileRSPaintable extends TilePaintable

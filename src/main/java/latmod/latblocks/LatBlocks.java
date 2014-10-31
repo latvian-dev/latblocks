@@ -1,10 +1,14 @@
 package latmod.latblocks;
+import java.util.List;
+
+import latmod.core.LatCoreMC;
 import latmod.core.mod.LMMod;
 import latmod.core.mod.recipes.LMRecipes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 
 @Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:LatCoreMC")
 public class LatBlocks
@@ -44,5 +48,23 @@ public class LatBlocks
 	{
 		mod.loadRecipes();
 		proxy.postInit();
+	}
+	
+	@Mod.EventHandler
+	public void missingMapping(FMLMissingMappingsEvent e)
+	{
+		List<MissingMapping> l = e.getAll();
+		
+		for(int i = 0; i < l.size(); i++)
+		{
+			MissingMapping m = l.get(i);
+			
+			LatCoreMC.remap(m, "LatCoreMC:blockPainter", LatBlocksItems.i_painter);
+			LatCoreMC.remap(m, "LatCoreMC:blockPainterDmd", LatBlocksItems.i_painter_dmd);
+			
+			LatCoreMC.remap(m, "LatCoreMC:paintable", LatBlocksItems.b_paintable);
+			LatCoreMC.remap(m, "LatCoreMC:facade", LatBlocksItems.b_facade);
+			LatCoreMC.remap(m, "LatCoreMC:paintableRS", LatBlocksItems.b_rs_paintable);
+		}
 	}
 }
