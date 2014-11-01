@@ -18,7 +18,7 @@ public class LatBlocks
 	public static LatBlocks inst;
 	
 	@SidedProxy(clientSide = "latmod.latblocks.LatBlocksClient", serverSide = "latmod.latblocks.LatBlocksCommon")
-	public static LatBlocksCommon proxy;
+	public static LMProxy proxy;
 	
 	public static LMMod<LatBlocksConfig, LMRecipes> mod;
 	public static CreativeTabs tab;
@@ -33,20 +33,20 @@ public class LatBlocks
 		
 		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.i_painter_dmd));
 		
-		proxy.preInit();
+		proxy.preInit(e);
 	}
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e)
 	{
-		proxy.init();
+		proxy.init(e);
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
+		proxy.postInit(e);
 		mod.loadRecipes();
-		proxy.postInit();
 	}
 	
 	@Mod.EventHandler

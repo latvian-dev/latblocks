@@ -3,7 +3,6 @@ package latmod.latblocks.item;
 import latmod.core.LMMod;
 import latmod.core.item.ItemLM;
 import latmod.latblocks.LatBlocks;
-import latmod.latcore.*;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.relauncher.*;
 
@@ -13,7 +12,7 @@ public class ItemLB extends ItemLM
 	{ super(s); }
 	
 	public LMMod<?, ?> getMod()
-	{ return LC.mod; }
+	{ return LatBlocks.mod; }
 	
 	@SideOnly(Side.CLIENT)
 	public CreativeTabs getCreativeTab()

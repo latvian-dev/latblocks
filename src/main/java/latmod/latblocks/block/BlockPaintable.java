@@ -1,5 +1,5 @@
 package latmod.latblocks.block;
-import latmod.core.ODItems;
+import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.tile.TilePaintable;
 import latmod.latcore.LC;
@@ -30,7 +30,7 @@ public class BlockPaintable extends BlockLB
 	public void loadRecipes()
 	{
 		LC.mod.recipes().addRecipe(new ItemStack(this, 16), "WWW", "WPW", "WWW",
-				'W', new ItemStack(Blocks.wool, 1, 0),
+				'W', new ItemStack(Blocks.wool, 1, LatCoreMC.ANY),
 				'P', ODItems.PLANKS);
 	}
 	

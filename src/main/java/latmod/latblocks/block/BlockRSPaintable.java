@@ -12,6 +12,7 @@ public class BlockRSPaintable extends BlockPaintable
 	public BlockRSPaintable(String s)
 	{
 		super(s);
+		setBlockTextureName("paintableRS");
 	}
 	
 	public void loadRecipes()
