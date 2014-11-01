@@ -1,5 +1,5 @@
 package latmod.latblocks;
-import latmod.core.mod.LMConfig;
+import latmod.core.LMConfig;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class LatBlocksConfig extends LMConfig

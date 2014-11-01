@@ -1,8 +1,8 @@
 package latmod.latblocks.block;
 import latmod.core.ODItems;
-import latmod.core.game.TileLM;
-import latmod.core.mod.LC;
+import latmod.core.tile.TileLM;
 import latmod.latblocks.tile.TilePaintable;
+import latmod.latcore.LC;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

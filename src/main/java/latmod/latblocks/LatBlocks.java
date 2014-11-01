@@ -1,9 +1,8 @@
 package latmod.latblocks;
 import java.util.List;
 
-import latmod.core.LatCoreMC;
-import latmod.core.mod.LMMod;
-import latmod.core.mod.recipes.LMRecipes;
+import latmod.core.*;
+import latmod.core.recipes.LMRecipes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;

@@ -1,7 +1,9 @@
 package latmod.latblocks.item;
 
-import latmod.core.mod.*;
+import latmod.core.LMMod;
+import latmod.core.item.ItemLM;
 import latmod.latblocks.LatBlocks;
+import latmod.latcore.*;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.relauncher.*;
 

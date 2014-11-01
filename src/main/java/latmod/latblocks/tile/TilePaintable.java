@@ -1,7 +1,6 @@
 package latmod.latblocks.tile;
 
 import latmod.core.client.RenderBlocksCustom;
-import latmod.core.game.TileLM;
 import latmod.core.tile.*;
 import mcp.mobius.waila.api.*;
 import net.minecraft.init.Blocks;
