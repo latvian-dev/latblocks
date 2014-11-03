@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latcore.LC;
@@ -29,12 +30,17 @@ public class BlockFacade extends BlockLB
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	public void onPostLoaded()
+	{ LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE, new ItemStack(this)); }
+	
 	public void loadRecipes()
 	{
-		LC.mod.recipes().addRecipe(new ItemStack(this, 8), "W",
-				'W', LatBlocksItems.b_paintable);
+		LC.mod.recipes().addRecipe(new ItemStack(this), "WW", "WW",
+				'W', ODItems.FACADE_PAINTABLE);
 		
-		LC.mod.recipes().addRecipe(new ItemStack(LatBlocksItems.b_paintable), "WWW", "W W", "WWW",
+		LC.mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.FACADE_PAINTABLE);
+		
+		LC.mod.recipes().addRecipe(new ItemStack(LatBlocksItems.b_paintable, 16), "WW", "WW",
 				'W', this);
 	}
 	

@@ -4,7 +4,9 @@ itemGroup.latblocks:tab=LatBlocks
 
 latblocks:tile.paintable.name=Paintable Block
 latblocks:tile.paintableRS.name=Dual Paintable Block
+latblocks:tile.paintableGS.name=Glowing Paintable Block
 latblocks:tile.facade.name=Paintable Facade
+latblocks:tile.facadeGS.name=Glowing Paintable Facade
 
 ### Items ###
 

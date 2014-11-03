@@ -1,11 +1,11 @@
 package latmod.latblocks.block;
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.TileRSPaintable;
 import latmod.latcore.LC;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 public class BlockRSPaintable extends BlockPaintable
 {
@@ -17,14 +17,14 @@ public class BlockRSPaintable extends BlockPaintable
 	
 	public void loadRecipes()
 	{
-		LC.mod.recipes().addRecipe(new ItemStack(this, 8), "PPP", "PRP", "PPP",
-				'P', LatBlocksItems.b_paintable,
-				'R', ODItems.REDSTONE);
-		
-		LC.mod.recipes().addRecipe(new ItemStack(LatBlocksItems.b_paintable), "F",
-				'F', LatBlocksItems.b_rs_paintable);
+		LC.mod.recipes().addRecipe(new ItemStack(this), " P ", "PRP", " P ",
+				'P', ODItems.FACADE_PAINTABLE,
+				'R', Blocks.redstone_block);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
 	{ return new TileRSPaintable(); }
+	
+	public boolean canConnectRedstone(IBlockAccess iba, int x, int y, int z, int side)
+	{ return true; }
 }

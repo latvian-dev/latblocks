@@ -7,9 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.*;
-import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
+import net.minecraft.world.World;
 
 public class BlockPaintable extends BlockLB
 {
@@ -27,11 +25,16 @@ public class BlockPaintable extends BlockLB
 	public boolean canHarvestBlock(EntityPlayer ep, int meta)
 	{ return true; }
 	
+	public void onPostLoaded()
+	{ LatCoreMC.addOreDictionary(ODItems.BLOCK_PAINTABLE, new ItemStack(this)); }
+	
 	public void loadRecipes()
 	{
 		LC.mod.recipes().addRecipe(new ItemStack(this, 16), "WWW", "WPW", "WWW",
 				'W', new ItemStack(Blocks.wool, 1, LatCoreMC.ANY),
 				'P', ODItems.PLANKS);
+		
+		LC.mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.BLOCK_PAINTABLE);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -40,6 +43,7 @@ public class BlockPaintable extends BlockLB
 	public int getRenderType()
 	{ return renderID; }
 	
+	/*
 	public boolean isOpaqueCube()
 	{ return false; }
 	
@@ -49,10 +53,9 @@ public class BlockPaintable extends BlockLB
 	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
 	{ return true; }
 	
-	public boolean canConnectRedstone(IBlockAccess iba, int x, int y, int z, int side)
-	{ return true; }
-	
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
 	{ return 0; }
+	
+	*/
 }

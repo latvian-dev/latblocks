@@ -1,5 +1,5 @@
 package latmod.latblocks.item;
-import latmod.core.ODItems;
+import latmod.core.*;
 import latmod.core.tile.IPaintable;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +15,9 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 		setMaxDamage(128);
 		setFull3D();
 	}
+	
+	public void onPostLoaded()
+	{ LatCoreMC.addOreDictionary(ODItems.ITEM_PAINTER, new ItemStack(this, 1, LatCoreMC.ANY)); }
 	
 	public void loadRecipes()
 	{

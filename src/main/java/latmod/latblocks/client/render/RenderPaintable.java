@@ -3,9 +3,11 @@ import latmod.core.client.RenderBlocksCustom;
 import latmod.latblocks.block.BlockPaintable;
 import latmod.latblocks.tile.TilePaintable;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.relauncher.*;
 
@@ -16,6 +18,26 @@ public class RenderPaintable implements ISimpleBlockRenderingHandler
 	
 	public int getRenderId()
 	{ return BlockPaintable.renderID; }
+	
+	public static class RenderBlock extends Block
+	{
+		public static RenderBlock instance = new RenderBlock();
+		
+		public RenderBlock()
+		{ super(Material.wood); }
+		
+		public boolean isOpaqueCube()
+		{ return false; }
+		
+		public boolean renderAsNormalBlock()
+		{ return false; }
+		
+		public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
+		{ return true; }
+		
+		public int getRenderBlockPass()
+		{ return 0; }
+	};
 	
 	public void renderInventoryBlock(Block b, int paramInt1, int paramInt2, RenderBlocks renderer)
 	{
