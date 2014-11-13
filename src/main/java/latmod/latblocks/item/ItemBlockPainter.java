@@ -17,13 +17,18 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 	}
 	
 	public void onPostLoaded()
-	{ LatCoreMC.addOreDictionary(ODItems.ITEM_PAINTER, new ItemStack(this, 1, LatCoreMC.ANY)); }
+	{
+		LatCoreMC.addOreDictionary(ODItems.TOOL_PAINTER_ANY, new ItemStack(this, 1, LatCoreMC.ANY));
+		
+		if(this == LatBlocksItems.i_painter)
+			LatCoreMC.addOreDictionary(ODItems.TOOL_PAINTER, new ItemStack(this, 1, LatCoreMC.ANY));
+	}
 	
 	public void loadRecipes()
 	{
 		addRecipe(new ItemStack(this), "SCS", "SPS", " P ",
 				'S', ODItems.STICK,
-				'C', LatBlocksItems.b_paintable,
+				'C', ODItems.BLOCK_PAINTABLE,
 				'P', ODItems.IRON);
 	}
 	

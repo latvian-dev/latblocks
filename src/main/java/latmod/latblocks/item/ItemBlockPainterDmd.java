@@ -1,6 +1,5 @@
 package latmod.latblocks.item;
 import latmod.core.ODItems;
-import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -15,7 +14,7 @@ public class ItemBlockPainterDmd extends ItemBlockPainter
 	public void loadRecipes()
 	{
 		addRecipe(new ItemStack(this), "DDD", "DPD", "DDD",
-				'P', LatBlocksItems.i_painter,
+				'P', ODItems.TOOL_PAINTER,
 				'D', ODItems.DIAMOND);
 	}
 	

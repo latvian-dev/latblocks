@@ -49,22 +49,22 @@ public class RenderPaintable extends BlockRendererLM
 		IIcon defIcon = b.getIcon(0, 0);
 		Paint[] p = t.currentPaint();
 		
-		rb.setRenderBounds(0D, d0, 0D, 1D, d0, 1D);
+		renderBlocks.setRenderBounds(0D, d0, 0D, 1D, d0, 1D);
 		renderFace(ForgeDirection.DOWN, p, defIcon, x, y, z);
 		
-		rb.setRenderBounds(0D, d1, 0D, 1D, d1, 1D);
+		renderBlocks.setRenderBounds(0D, d1, 0D, 1D, d1, 1D);
 		renderFace(ForgeDirection.UP, p, defIcon, x, y, z);
 		
-		rb.setRenderBounds(0D, 0D, d0, 1D, 1D, d0);
+		renderBlocks.setRenderBounds(0D, 0D, d0, 1D, 1D, d0);
 		renderFace(ForgeDirection.NORTH, p, defIcon, x, y, z);
 		
-		rb.setRenderBounds(0D, 0D, d1, 1D, 1D, d1);
+		renderBlocks.setRenderBounds(0D, 0D, d1, 1D, 1D, d1);
 		renderFace(ForgeDirection.SOUTH, p, defIcon, x, y, z);
 		
-		rb.setRenderBounds(d0, 0D, 0D, d0, 1D, 1D);
+		renderBlocks.setRenderBounds(d0, 0D, 0D, d0, 1D, 1D);
 		renderFace(ForgeDirection.WEST, p, defIcon, x, y, z);
 		
-		rb.setRenderBounds(d1, 0D, 0D, d1, 1D, 1D);
+		renderBlocks.setRenderBounds(d1, 0D, 0D, d1, 1D, 1D);
 		renderFace(ForgeDirection.EAST, p, defIcon, x, y, z);
 		
 		return true;
@@ -79,17 +79,16 @@ public class RenderPaintable extends BlockRendererLM
 		
 		if(p[id] != null)
 		{
+			//renderBlocks.setOverrideBlockTexture(p[id].block.getIcon(renderBlocks.blockAccess, x, y, z, id));
 			renderBlocks.setOverrideBlockTexture(p[id].block.getIcon(id, p[id].meta));
 			renderBlocks.setCustomColor(p[id].block.getRenderColor(p[id].meta));
+			renderBlocks.customMetadata = p[id].meta;
 		}
 		else
 		{
 			renderBlocks.setCustomColor(null);
-			
-			//if(worldObj.getBlock(xCoord + face.offsetX, yCoord + face.offsetY, zCoord + face.offsetZ) == getBlockType())
-			//	renderBlocks.setOverrideBlockTexture(LatCoreMCClient.blockNullIcon); else
-			
 			renderBlocks.setOverrideBlockTexture(defIcon);
+			renderBlocks.customMetadata = null;
 		}
 		
 		renderBlocks.renderStandardBlock(Blocks.stained_glass, x, y, z);

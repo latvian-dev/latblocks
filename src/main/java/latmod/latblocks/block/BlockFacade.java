@@ -1,8 +1,7 @@
 package latmod.latblocks.block;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocksItems;
-import latmod.latcore.LC;
+import latmod.latblocks.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -31,14 +30,19 @@ public class BlockFacade extends BlockLB
 	{ return false; }
 	
 	public void onPostLoaded()
-	{ LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE, new ItemStack(this)); }
+	{
+		LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE_ANY, new ItemStack(this));
+		
+		if(this == LatBlocksItems.b_facade)
+			LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE, new ItemStack(this));
+	}
 	
 	public void loadRecipes()
 	{
-		LC.mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.FACADE_PAINTABLE);
+		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.FACADE_PAINTABLE_ANY);
 		
-		LC.mod.recipes().addRecipe(new ItemStack(this, 16), "WW", "WW",
-				'W', LatBlocksItems.b_paintable);
+		mod.recipes().addRecipe(new ItemStack(this, 16), "PP", "PP",
+				'P', ODItems.BLOCK_PAINTABLE);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
