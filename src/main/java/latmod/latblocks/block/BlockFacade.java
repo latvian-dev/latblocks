@@ -31,6 +31,8 @@ public class BlockFacade extends BlockLB
 	
 	public void onPostLoaded()
 	{
+		super.onPostLoaded();
+		
 		LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE_ANY, new ItemStack(this));
 		
 		if(this == LatBlocksItems.b_facade)

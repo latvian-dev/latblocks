@@ -33,6 +33,8 @@ public class BlockPaintable extends BlockLB
 	
 	public void onPostLoaded()
 	{
+		super.onPostLoaded();
+		
 		LatCoreMC.addOreDictionary(ODItems.BLOCK_PAINTABLE_ANY, new ItemStack(this));
 		
 		if(this == LatBlocksItems.b_paintable)

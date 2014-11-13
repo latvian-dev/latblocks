@@ -18,6 +18,8 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 	
 	public void onPostLoaded()
 	{
+		super.onPostLoaded();
+		
 		LatCoreMC.addOreDictionary(ODItems.TOOL_PAINTER_ANY, new ItemStack(this, 1, LatCoreMC.ANY));
 		
 		if(this == LatBlocksItems.i_painter)
