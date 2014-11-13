@@ -17,14 +17,14 @@ public class LatBlocksItems
 	
 	public static void init()
 	{
-		LatBlocks.mod.addBlock(b_paintable = new BlockPaintable("paintable"));
-		LatBlocks.mod.addBlock(b_rs_paintable = new BlockRSPaintable("paintableRS"));
-		LatBlocks.mod.addBlock(b_gs_paintable = new BlockGSPaintable("paintableGS"));
-		LatBlocks.mod.addBlock(b_facade = new BlockFacade("facade"));
-		LatBlocks.mod.addBlock(b_fountain = new BlockFountain("fountain"));
-		LatBlocks.mod.addBlock(b_carpet = new BlockCarpet("carpet"));
+		b_paintable = new BlockPaintable("paintable").register();
+		b_rs_paintable = new BlockRSPaintable("paintableRS").register();
+		b_gs_paintable = new BlockGSPaintable("paintableGS").register();
+		b_facade = new BlockFacade("facade").register();
+		b_fountain = new BlockFountain("fountain").register();
+		b_carpet = new BlockCarpet("carpet").register();
 		
-		LatBlocks.mod.addItem(i_painter = new ItemBlockPainter("blockPainter"));
-		LatBlocks.mod.addItem(i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd"));
+		i_painter = new ItemBlockPainter("blockPainter").register();
+		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();
 	}
 }

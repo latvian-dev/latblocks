@@ -1,7 +1,6 @@
 package latmod.latblocks.block;
-import latmod.core.ODItems;
+import latmod.core.*;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.RenderCarpet;
 import latmod.latblocks.tile.TileCarpet;
 import net.minecraft.block.material.Material;
@@ -27,12 +26,16 @@ public class BlockCarpet extends BlockLB
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE_ANY, new ItemStack(this));
+	}
+	
 	public void loadRecipes()
 	{
 		mod.recipes().addRecipe(new ItemStack(this, 3), "PPP",
 				'P', ODItems.FACADE_PAINTABLE);
-		
-		mod.recipes().addShapelessRecipe(new ItemStack(LatBlocksItems.b_facade), this);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
