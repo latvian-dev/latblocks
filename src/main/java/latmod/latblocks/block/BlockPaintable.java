@@ -1,23 +1,25 @@
 package latmod.latblocks.block;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
+import latmod.latblocks.client.render.RenderPaintable;
 import latmod.latblocks.tile.TilePaintable;
 import latmod.latcore.LC;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
+import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.relauncher.*;
 
 public class BlockPaintable extends BlockLB
 {
-	public static int renderID = -1;
-	
 	public BlockPaintable(String s)
 	{
 		super(s, Material.rock);
 		setHardness(0.3F);
 		setBlockTextureName("paintable");
+		setLightOpacity(Blocks.glass.getLightOpacity());
 		isBlockContainer = true;
 		LC.mod.addTile(createNewTileEntity(null, 0).getClass(), s);
 	}
@@ -30,6 +32,9 @@ public class BlockPaintable extends BlockLB
 	
 	public void loadRecipes()
 	{
+		LC.mod.recipes().addRecipe(new ItemStack(this), "WW", "WW",
+				'W', ODItems.FACADE_PAINTABLE);
+		
 		LC.mod.recipes().addRecipe(new ItemStack(this, 16), "WWW", "WPW", "WWW",
 				'W', new ItemStack(Blocks.wool, 1, LatCoreMC.ANY),
 				'P', ODItems.PLANKS);
@@ -40,10 +45,10 @@ public class BlockPaintable extends BlockLB
 	public TileLM createNewTileEntity(World w, int m)
 	{ return new TilePaintable(); }
 	
+	@SideOnly(Side.CLIENT)
 	public int getRenderType()
-	{ return renderID; }
+	{ return RenderPaintable.instance.getRenderId(); }
 	
-	/*
 	public boolean isOpaqueCube()
 	{ return false; }
 	
@@ -53,9 +58,6 @@ public class BlockPaintable extends BlockLB
 	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
 	{ return true; }
 	
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass()
-	{ return 0; }
-	
-	*/
+	public boolean isNormalCube(IBlockAccess world, int x, int y, int z)
+	{ return true; }
 }

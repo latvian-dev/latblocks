@@ -35,13 +35,10 @@ public class BlockFacade extends BlockLB
 	
 	public void loadRecipes()
 	{
-		LC.mod.recipes().addRecipe(new ItemStack(this), "WW", "WW",
-				'W', ODItems.FACADE_PAINTABLE);
-		
 		LC.mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.FACADE_PAINTABLE);
 		
-		LC.mod.recipes().addRecipe(new ItemStack(LatBlocksItems.b_paintable, 16), "WW", "WW",
-				'W', this);
+		LC.mod.recipes().addRecipe(new ItemStack(this, 16), "WW", "WW",
+				'W', LatBlocksItems.b_paintable);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
