@@ -1,7 +1,10 @@
 package latmod.latblocks.block;
 import latmod.core.ODItems;
+import latmod.core.tile.TileLM;
+import latmod.latblocks.tile.TileGSPaintable;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class BlockGSPaintable extends BlockPaintable
 {
@@ -18,4 +21,7 @@ public class BlockGSPaintable extends BlockPaintable
 				'P', ODItems.FACADE_PAINTABLE,
 				'G', Blocks.glowstone);
 	}
+	
+	public TileLM createNewTileEntity(World w, int m)
+	{ return new TileGSPaintable(); }
 }

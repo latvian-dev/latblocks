@@ -29,10 +29,16 @@ public class TileRSPaintable extends TilePaintable
 	
 	public void onNeighborBlockChange()
 	{
-		redstonePowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
-		markDirty();
+		if(isServer())
+		{
+			redstonePowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+			markDirty();
+		}
 	}
 	
 	public Paint[] currentPaint()
 	{ return redstonePowered ? paint_on : paint; }
+	
+	public int iconMeta()
+	{ return redstonePowered ? 1 : 0; }
 }

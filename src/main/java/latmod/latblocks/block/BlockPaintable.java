@@ -3,7 +3,7 @@ import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.RenderPaintable;
-import latmod.latblocks.tile.TilePaintable;
+import latmod.latblocks.tile.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,12 +22,11 @@ public class BlockPaintable extends BlockLB
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
 		
-		if(this == LatBlocksItems.b_paintable)
-			mod.addTile(TilePaintable.class, "paintable");
+		mod.addTile(createNewTileEntity(null, 0).getClass(), s);
 	}
 	
 	public int getLightOpacity()
-	{ return 15; }
+	{ return 0; }
 	
 	public boolean canHarvestBlock(EntityPlayer ep, int meta)
 	{ return true; }
@@ -53,7 +52,7 @@ public class BlockPaintable extends BlockLB
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
-	{ return new TilePaintable(); }
+	{ return new TileDefPaintable(); }
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()

@@ -5,7 +5,7 @@ import mcp.mobius.waila.api.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TilePaintable extends TileLM implements IPaintable, IWailaTile.Stack
+public abstract class TilePaintable extends TileLM implements IPaintable, IWailaTile.Stack
 {
 	public final Paint[] paint = new Paint[6];
 	
@@ -44,6 +44,9 @@ public class TilePaintable extends TileLM implements IPaintable, IWailaTile.Stac
 	
 	public Paint[] currentPaint()
 	{ return paint; }
+	
+	public int iconMeta()
+	{ return 0; }
 	
 	public ItemStack getWailaStack(IWailaDataAccessor data, IWailaConfigHandler config)
 	{

@@ -2,12 +2,22 @@ itemGroup.latblocks:tab=LatBlocks
 
 ### Blocks ###
 
+latblocks:tile.filterHopper.name=Filter Hopper
+latblocks:tile.buffer.name=Buffer
+
 latblocks:tile.paintable.name=Paintable Block
 latblocks:tile.paintableRS.name=Dual Paintable Block
 latblocks:tile.paintableGS.name=Glowing Paintable Block
 latblocks:tile.facade.name=Paintable Facade
 latblocks:tile.facadeGS.name=Glowing Paintable Facade
-latblocks:tile.fountain.name=Paintable Fountain
+latblocks:tile.fountain.name=[WIP] Paintable Fountain
+latblocks:tile.carpet.name=Paintable Carpet
+latblocks:tile.slab.name=Paintable Slab
+latblocks:tile.stairs.name=Paintable Stairs
+latblocks:tile.fence.name=Paintable Fence
+latblocks:tile.fenceGate.name=Paintable Fence Gate
+latblocks:tile.smoker.name=Paintable Smoker
+latblocks:tile.door.name=Paintable Door Block
 
 ### Items ###
 

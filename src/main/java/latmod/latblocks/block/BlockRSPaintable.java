@@ -18,8 +18,6 @@ public class BlockRSPaintable extends BlockPaintable
 	{
 		super(s);
 		setBlockTextureName("paintableRS");
-		
-		mod.addTile(TileRSPaintable.class, "paintableRS");
 	}
 	
 	public void loadRecipes()
@@ -43,9 +41,6 @@ public class BlockRSPaintable extends BlockPaintable
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
-	{
-		TileRSPaintable t = (TileRSPaintable) iba.getTileEntity(x, y, z);
-		return (t != null && t.isValid() && t.redstonePowered) ? icon_on : blockIcon;
-	}
+	public IIcon getIcon(int s, int m)
+	{ return m == 1 ? icon_on : blockIcon; }
 }

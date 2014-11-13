@@ -43,6 +43,8 @@ public class BlockFacade extends BlockLB
 		
 		mod.recipes().addRecipe(new ItemStack(this, 16), "PP", "PP",
 				'P', ODItems.BLOCK_PAINTABLE);
+		
+		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.BLOCK_PAINTABLE, ODItems.TOOL_SAW);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
