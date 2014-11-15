@@ -2,22 +2,22 @@ package latmod.latblocks.block;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.client.render.RenderCarpet;
-import latmod.latblocks.tile.TileCarpet;
+import latmod.latblocks.tile.TilePCarpet;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockCarpet extends BlockLB
+public class BlockPCarpet extends BlockLB
 {
-	public BlockCarpet(String s)
+	public BlockPCarpet(String s)
 	{
 		super(s, Material.cloth);
 		setHardness(0.3F);
 		isBlockContainer = true;
 		setBlockTextureName("paintable");
 		setBlockBounds(0F, 0F, 0F, 1F, 0.0625F, 1F);
-		mod.addTile(TileCarpet.class, s);
+		mod.addTile(TilePCarpet.class, s);
 	}
 	
 	public boolean isOpaqueCube()
@@ -39,7 +39,7 @@ public class BlockCarpet extends BlockLB
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
-	{ return new TileCarpet(); }
+	{ return new TilePCarpet(); }
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()

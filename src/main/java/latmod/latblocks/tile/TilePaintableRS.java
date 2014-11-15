@@ -2,7 +2,7 @@ package latmod.latblocks.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileRSPaintable extends TilePaintable
+public class TilePaintableRS extends TilePaintable
 {
 	public final Paint[] paint_on = new Paint[6];
 	

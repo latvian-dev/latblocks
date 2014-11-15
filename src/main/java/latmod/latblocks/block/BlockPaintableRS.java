@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.tile.TileRSPaintable;
+import latmod.latblocks.tile.TilePaintableRS;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -9,12 +9,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockRSPaintable extends BlockPaintable
+public class BlockPaintableRS extends BlockPaintable
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon icon_on;
 	
-	public BlockRSPaintable(String s)
+	public BlockPaintableRS(String s)
 	{
 		super(s);
 		setBlockTextureName("paintableRS");
@@ -28,7 +28,7 @@ public class BlockRSPaintable extends BlockPaintable
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
-	{ return new TileRSPaintable(); }
+	{ return new TilePaintableRS(); }
 	
 	public boolean canConnectRedstone(IBlockAccess iba, int x, int y, int z, int side)
 	{ return true; }

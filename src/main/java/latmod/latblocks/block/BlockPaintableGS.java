@@ -1,14 +1,14 @@
 package latmod.latblocks.block;
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.tile.TileGSPaintable;
+import latmod.latblocks.tile.TilePaintableGS;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class BlockGSPaintable extends BlockPaintable
+public class BlockPaintableGS extends BlockPaintable
 {
-	public BlockGSPaintable(String s)
+	public BlockPaintableGS(String s)
 	{
 		super(s);
 		setBlockTextureName("paintableGS");
@@ -23,5 +23,5 @@ public class BlockGSPaintable extends BlockPaintable
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
-	{ return new TileGSPaintable(); }
+	{ return new TilePaintableGS(); }
 }
