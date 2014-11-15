@@ -29,13 +29,13 @@ public class BlockPCarpet extends BlockLB
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
-		LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE_ANY, new ItemStack(this));
+		LatCoreMC.addOreDictionary(ODItems.PAINTABLE_COVER_ANY, new ItemStack(this));
 	}
 	
 	public void loadRecipes()
 	{
 		mod.recipes().addRecipe(new ItemStack(this, 3), "PPP",
-				'P', ODItems.FACADE_PAINTABLE);
+				'P', ODItems.PAINTABLE_COVER);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

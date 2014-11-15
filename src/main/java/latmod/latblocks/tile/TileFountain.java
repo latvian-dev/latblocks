@@ -22,7 +22,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 		tank = new Tank("Tank", 4D)
 		{
 			public boolean canFill(ForgeDirection from, Fluid fluid)
-			{ return fluid == FluidRegistry.WATER; }
+			{ return true; }
 		};
 		
 		items = new ItemStack[1];

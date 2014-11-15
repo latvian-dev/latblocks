@@ -18,7 +18,7 @@ public class BlockPaintableGS extends BlockPaintable
 	public void loadRecipes()
 	{
 		mod.recipes().addRecipe(new ItemStack(this), " P ", "PGP", " P ",
-				'P', ODItems.FACADE_PAINTABLE,
+				'P', ODItems.PAINTABLE_COVER,
 				'G', Blocks.glowstone);
 	}
 	

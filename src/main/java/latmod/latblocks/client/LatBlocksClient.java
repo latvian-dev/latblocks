@@ -1,7 +1,6 @@
-package latmod.latblocks;
+package latmod.latblocks.client;
 import net.minecraftforge.common.MinecraftForge;
 import latmod.core.LMProxy;
-import latmod.latblocks.client.LatBlockClientEventHandler;
 import latmod.latblocks.client.render.*;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.*;

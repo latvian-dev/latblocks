@@ -17,7 +17,7 @@ public class LatBlocks
 	@Mod.Instance(LatBlocks.MOD_ID)
 	public static LatBlocks inst;
 	
-	@SidedProxy(clientSide = "latmod.latblocks.LatBlocksClient", serverSide = "latmod.core.LMProxy")
+	@SidedProxy(clientSide = "latmod.latblocks.client.LatBlocksClient", serverSide = "latmod.core.LMProxy")
 	public static LMProxy proxy;
 	
 	public static LMMod<LatBlocksConfig, LMRecipes> mod;
@@ -62,8 +62,9 @@ public class LatBlocks
 			LatCoreMC.remap(m, "LatCoreMC:blockPainterDmd", LatBlocksItems.i_painter_dmd);
 			
 			LatCoreMC.remap(m, "LatCoreMC:paintable", LatBlocksItems.b_paintable);
-			LatCoreMC.remap(m, "LatCoreMC:facade", LatBlocksItems.b_facade);
-			LatCoreMC.remap(m, "LatCoreMC:paintableRS", LatBlocksItems.b_rs_paintable);
+			LatCoreMC.remap(m, "LatCoreMC:facade", LatBlocksItems.b_cover);
+			LatCoreMC.remap(m, "LatCoreMC:paintableRS", LatBlocksItems.b_paintable_rs);
+			LatCoreMC.remap(m, "LatBlocks:facade", LatBlocksItems.b_cover);
 		}
 	}
 }

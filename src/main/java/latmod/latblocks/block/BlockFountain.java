@@ -23,11 +23,11 @@ public class BlockFountain extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this), " H ", "PGP", "SSS",
+		mod.recipes().addRecipe(new ItemStack(this), " G ", "PGP", "SHS",
 				'H', Blocks.hopper,
 				'G', ODItems.GLASS,
 				'S', ODItems.STONE,
-				'P', ODItems.BLOCK_PAINTABLE);
+				'P', ODItems.PAINTABLE_BLOCK);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -36,6 +36,10 @@ public class BlockFountain extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderFountain.instance.getRenderId(); }
+	
+	@SideOnly(Side.CLIENT)
+	public int getRenderBlockPass()
+	{ return 0; }
 	
 	public boolean isOpaqueCube()
 	{ return false; }

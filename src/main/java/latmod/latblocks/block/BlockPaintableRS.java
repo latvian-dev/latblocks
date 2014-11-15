@@ -23,7 +23,7 @@ public class BlockPaintableRS extends BlockPaintable
 	public void loadRecipes()
 	{
 		mod.recipes().addRecipe(new ItemStack(this), " P ", "PRP", " P ",
-				'P', ODItems.FACADE_PAINTABLE,
+				'P', ODItems.PAINTABLE_COVER,
 				'R', Blocks.redstone_block);
 	}
 	

@@ -6,9 +6,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class BlockFacade extends BlockLB
+public class BlockCover extends BlockLB
 {
-	public BlockFacade(String s)
+	public BlockCover(String s)
 	{
 		super(s, Material.rock);
 		setHardness(0.3F);
@@ -33,20 +33,20 @@ public class BlockFacade extends BlockLB
 	{
 		super.onPostLoaded();
 		
-		LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE_ANY, new ItemStack(this));
+		LatCoreMC.addOreDictionary(ODItems.PAINTABLE_COVER_ANY, new ItemStack(this));
 		
-		if(this == LatBlocksItems.b_facade)
-			LatCoreMC.addOreDictionary(ODItems.FACADE_PAINTABLE, new ItemStack(this));
+		if(this == LatBlocksItems.b_cover)
+			LatCoreMC.addOreDictionary(ODItems.PAINTABLE_COVER, new ItemStack(this));
 	}
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.FACADE_PAINTABLE_ANY);
+		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.PAINTABLE_COVER_ANY);
 		
 		mod.recipes().addRecipe(new ItemStack(this, 16), "PP", "PP",
-				'P', ODItems.BLOCK_PAINTABLE);
+				'P', ODItems.PAINTABLE_BLOCK);
 		
-		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.BLOCK_PAINTABLE, ODItems.TOOL_SAW);
+		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.PAINTABLE_BLOCK, ODItems.TOOL_SAW);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

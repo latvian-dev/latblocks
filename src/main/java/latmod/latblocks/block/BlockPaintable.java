@@ -35,22 +35,22 @@ public class BlockPaintable extends BlockLB
 	{
 		super.onPostLoaded();
 		
-		LatCoreMC.addOreDictionary(ODItems.BLOCK_PAINTABLE_ANY, new ItemStack(this));
+		LatCoreMC.addOreDictionary(ODItems.PAINTABLE_BLOCK_ANY, new ItemStack(this));
 		
 		if(this == LatBlocksItems.b_paintable)
-			LatCoreMC.addOreDictionary(ODItems.BLOCK_PAINTABLE, new ItemStack(this));
+			LatCoreMC.addOreDictionary(ODItems.PAINTABLE_BLOCK, new ItemStack(this));
 	}
 	
 	public void loadRecipes()
 	{
 		mod.recipes().addRecipe(new ItemStack(this), "PP", "PP",
-				'P', ODItems.FACADE_PAINTABLE);
+				'P', ODItems.PAINTABLE_COVER);
 		
 		mod.recipes().addRecipe(new ItemStack(this, 16), "WWW", "WPW", "WWW",
 				'W', new ItemStack(Blocks.wool, 1, LatCoreMC.ANY),
 				'P', ODItems.PLANKS);
 		
-		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.BLOCK_PAINTABLE_ANY);
+		mod.recipes().addShapelessRecipe(new ItemStack(this), ODItems.PAINTABLE_BLOCK_ANY);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

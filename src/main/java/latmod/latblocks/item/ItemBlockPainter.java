@@ -30,7 +30,7 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 	{
 		addRecipe(new ItemStack(this), "SCS", "SPS", " P ",
 				'S', ODItems.STICK,
-				'C', ODItems.BLOCK_PAINTABLE,
+				'C', ODItems.PAINTABLE_BLOCK,
 				'P', ODItems.IRON);
 	}
 	
