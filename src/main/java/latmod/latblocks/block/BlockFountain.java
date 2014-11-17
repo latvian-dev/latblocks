@@ -7,14 +7,15 @@ import latmod.latblocks.tile.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockFountain extends BlockLB
 {
 	public BlockFountain(String s)
 	{
-		super(s, Material.rock);
+		super(s, Material.water);
 		setHardness(1F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
@@ -45,5 +46,14 @@ public class BlockFountain extends BlockLB
 	{ return false; }
 	
 	public boolean renderAsNormalBlock()
+	{ return false; }
+	
+	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
+	{ return true; }
+	
+	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
+	{ return true; }
+	
+	public boolean isReplaceable(IBlockAccess iba, int x, int y, int z)
 	{ return false; }
 }

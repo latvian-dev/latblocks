@@ -1,7 +1,8 @@
-package latmod.latblocks.block;
-import latmod.core.ODItems;
+package latmod.latblocks.block.blocks;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.tile.TilePaintableRS;
+import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.block.BlockPaintableSided;
+import latmod.latblocks.tile.blocks.TilePaintableRS;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -9,7 +10,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockPaintableRS extends BlockPaintable
+public class BlockPaintableRS extends BlockPaintableSided
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon icon_on;
@@ -23,8 +24,10 @@ public class BlockPaintableRS extends BlockPaintable
 	public void loadRecipes()
 	{
 		mod.recipes().addRecipe(new ItemStack(this), " P ", "PRP", " P ",
-				'P', ODItems.PAINTABLE_COVER,
+				'P', LatBlocksItems.b_cover,
 				'R', Blocks.redstone_block);
+		
+		mod.recipes().addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

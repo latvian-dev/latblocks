@@ -2,17 +2,20 @@ package latmod.latblocks.tile;
 
 import latmod.core.*;
 import latmod.core.tile.*;
+import latmod.core.util.MathHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
 public class TileFountain extends TileLM implements IPaintable, IFluidHandler, ISidedInventory
 {
-	public final Paint[] paint = new Paint[2];
+	private static final int[] ALL_SLOTS = new int[] { 0 };
+	
+	public final Paint[] paint = new Paint[1];
 	public final Tank tank;
 	
 	private Integer prevFluidAmmount = null;
@@ -36,6 +39,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 		super.readTileData(tag);
 		tank.readFromNBT(tag);
 		Paint.readFromNBT(tag, "Texture", paint);
+		redstonePowered = tag.getBoolean("RSIn");
 	}
 	
 	public void writeTileData(NBTTagCompound tag)
@@ -43,6 +47,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 		super.writeTileData(tag);
 		tank.writeToNBT(tag);
 		Paint.writeToNBT(tag, "Texture", paint);
+		tag.setBoolean("RSIn", redstonePowered);
 	}
 	
 	public boolean setPaint(PaintData p)
@@ -55,6 +60,15 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 		}
 		
 		return false;
+	}
+	
+	public void onNeighborBlockChange()
+	{
+		if(isServer())
+		{
+			redstonePowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+			markDirty();
+		}
 	}
 	
 	public void onUpdate()
@@ -71,10 +85,30 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 			{
 			}
 		}
+		
+		if(redstonePowered && tank.hasFluid() && tank.getFluid().getBlock() != null)
+		{
+			double mxz = 0.15D;
+			double my = 0.4D;
+			String s = "blockdust_" + Item.getIdFromItem(Item.getItemFromBlock(tank.getFluid().getBlock())) + "_" + 0;
+			
+			int c = 12;
+			double t = tick * 3D;
+			
+			for(int i = 0; i < c * 4; i++)
+			{
+				double mx = MathHelper.sinFromDeg(i * 360D / (double)c + t) * mxz;
+				double mz = MathHelper.cosFromDeg(i * 360D / (double)c + t) * mxz;
+				
+				worldObj.spawnParticle(s, xCoord + 0.5D, yCoord + 0.7D + MathHelper.rand.nextFloat() * 0.3D, zCoord + 0.5D, mx, my, mz);
+			}
+		}
 	}
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
+		if(is != null && is.getItem() instanceof IPaintable.IPainterItem) return false;
+		
 		if(is != null && tank.getAmount() >= 1000 && LatCoreMC.isBucket(is))
 		{
 			is.stackSize--;
@@ -107,11 +141,11 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	{ return 1; }
 
 	public int[] getAccessibleSlotsFromSide(int i)
-	{ return new int[] { 0, 1 }; }
+	{ return ALL_SLOTS; }
 	
 	public boolean canInsertItem(int i, ItemStack is, int s)
-	{ return i == 0 && LatCoreMC.isBucket(is); }
+	{ return LatCoreMC.isBucket(is); }
 	
 	public boolean canExtractItem(int i, ItemStack is, int s)
-	{ return i == 1; }
+	{ return !LatCoreMC.isBucket(is); }
 }

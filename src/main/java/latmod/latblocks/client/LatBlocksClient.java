@@ -12,8 +12,7 @@ public class LatBlocksClient extends LMProxy
 	{
 		MinecraftForge.EVENT_BUS.register(new LatBlockClientEventHandler());
 		
-		RenderPaintable.instance.register();
 		RenderFountain.instance.register();
-		RenderCarpet.instance.register();
+		RenderPaintable.instance.register();
 	}
 }

@@ -1,12 +1,13 @@
-package latmod.latblocks.block;
-import latmod.core.ODItems;
+package latmod.latblocks.block.blocks;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.tile.TilePaintableGS;
+import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.block.BlockPaintableSided;
+import latmod.latblocks.tile.blocks.TilePaintableGS;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class BlockPaintableGS extends BlockPaintable
+public class BlockPaintableGS extends BlockPaintableSided
 {
 	public BlockPaintableGS(String s)
 	{
@@ -18,8 +19,10 @@ public class BlockPaintableGS extends BlockPaintable
 	public void loadRecipes()
 	{
 		mod.recipes().addRecipe(new ItemStack(this), " P ", "PGP", " P ",
-				'P', ODItems.PAINTABLE_COVER,
+				'P', LatBlocksItems.b_cover,
 				'G', Blocks.glowstone);
+		
+		mod.recipes().addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

@@ -1,16 +1,12 @@
 package latmod.latblocks.tile;
 
-import latmod.core.tile.*;
 import mcp.mobius.waila.api.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public abstract class TilePaintable extends TileLM implements IPaintable, IWailaTile.Stack
+public abstract class TileSidedPaintable extends TilePaintableLB
 {
 	public final Paint[] paint = new Paint[6];
-	
-	public boolean rerenderBlock()
-	{ return true; }
 	
 	public void readTileData(NBTTagCompound tag)
 	{
@@ -27,14 +23,14 @@ public abstract class TilePaintable extends TileLM implements IPaintable, IWaila
 		if(p.player.isSneaking())
 		{
 			for(int i = 0; i < 6; i++)
-				currentPaint()[i] = p.paint;
+				getPaint()[i] = p.paint;
 			markDirty();
 			return true;
 		}
 		
-		if(p.canReplace(currentPaint()[p.side]))
+		if(p.canReplace(getPaint()[p.side]))
 		{
-			currentPaint()[p.side] = p.paint;
+			getPaint()[p.side] = p.paint;
 			markDirty();
 			return true;
 		}
@@ -42,15 +38,12 @@ public abstract class TilePaintable extends TileLM implements IPaintable, IWaila
 		return false;
 	}
 	
-	public Paint[] currentPaint()
+	public Paint[] getPaint()
 	{ return paint; }
-	
-	public int iconMeta()
-	{ return 0; }
 	
 	public ItemStack getWailaStack(IWailaDataAccessor data, IWailaConfigHandler config)
 	{
-		Paint p = currentPaint()[data.getSide().ordinal()];
+		Paint p = getPaint()[data.getSide().ordinal()];
 		return (p == null) ? null : new ItemStack(p.block, 1, p.meta);
 	}
 }

@@ -1,8 +1,9 @@
-package latmod.latblocks.tile;
+package latmod.latblocks.tile.blocks;
 
+import latmod.latblocks.tile.TileSidedPaintable;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TilePaintableRS extends TilePaintable
+public class TilePaintableRS extends TileSidedPaintable
 {
 	public final Paint[] paint_on = new Paint[6];
 	
@@ -36,7 +37,7 @@ public class TilePaintableRS extends TilePaintable
 		}
 	}
 	
-	public Paint[] currentPaint()
+	public Paint[] getPaint()
 	{ return redstonePowered ? paint_on : paint; }
 	
 	public int iconMeta()

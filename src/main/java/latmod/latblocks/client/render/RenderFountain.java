@@ -1,5 +1,6 @@
 package latmod.latblocks.client.render;
 import latmod.core.client.BlockRendererLM;
+import latmod.core.tile.IPaintable.Paint;
 import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.TileFountain;
@@ -29,54 +30,71 @@ public class RenderFountain extends BlockRendererLM
 		double b2 = b * 2D;
 		
 		double p = b * 3D;
-		boxes.add(cb(0D, b, 0D, p, b * 13D, p));
-		boxes.add(cb(0D, 0D, 0D, b * 14D, b, b * 14D));
+		boxes.add(cb(0D, b, 0D, p, b * 14D, p));
 		
-		fluid_boxes.add(cb(0D, b * 13D, 0D, p, b * 16D, p));
+		double te = b / 8D;
+		
+		for(int i = 0; i < 3; i++)
+		{
+			boxes.add(cb(0D, b * i, 0D, b * (14D - i * 3D), b * (i + 1), b * (14D - i * 3D)));
+		}
 		
 		{
 			double r = b * 16D;
-			double sh = b * 3D;
+			double sh = b * 4D;
 			double h = b * 4D;
+			double rb2 = (r - b) / 2D;
 			
 			fluid_boxes.add(cb(0D, sh + h - b2, 0D, r - b2, sh + h - b, r - b2));
 			
 			boxes.add(cb(0D, sh, 0D, r - b2, sh + b, r - b2));
 			
-			boxes.add(cb(0D, sh + b, (r - b) / 2D, r - b2, sh + h, b));
-			boxes.add(cb(0D, sh + b, -(r - b) / 2D, r - b2, sh + h, b));
-			boxes.add(cb((r - b) / 2D, sh + b, 0D, b, sh + h, r - b2));
-			boxes.add(cb(-(r - b) / 2D, sh + b, 0D, b, sh + h, r - b2));
+			boxes.add(cb(0D, sh + b, rb2, r - b2, sh + h, b));
+			boxes.add(cb(0D, sh + b, -rb2, r - b2, sh + h, b));
+			boxes.add(cb(rb2, sh + b, 0D, b, sh + h, r - b2));
+			boxes.add(cb(-rb2, sh + b, 0D, b, sh + h, r - b2));
 		}
 		
 		{
 			double r = b * 12D;
-			double sh = b * 8D;
+			double sh = b * 9D;
 			double h = b * 3D;
+			double rb2 = (r - b) / 2D;
 			
-			fluid_boxes.add(cb(0D, sh + h - b2, 0D, r - b2, sh + h - b, r - b2));
+			fluid_boxes.add(cb(0D, sh + h - b2, 0D, r - b2, sh + h, r - b2));
 			
 			boxes.add(cb(0D, sh, 0D, r - b2, sh + b, r - b2));
 			
-			boxes.add(cb(0D, sh + b, (r - b) / 2D, r - b2, sh + h, b));
-			boxes.add(cb(0D, sh + b, -(r - b) / 2D, r - b2, sh + h, b));
-			boxes.add(cb((r - b) / 2D, sh + b, 0D, b, sh + h, r - b2));
-			boxes.add(cb(-(r - b) / 2D, sh + b, 0D, b, sh + h, r - b2));
+			boxes.add(cb(0D, sh + b, rb2, r - b2, sh + h, b));
+			boxes.add(cb(0D, sh + b, -rb2, r - b2, sh + h, b));
+			boxes.add(cb(rb2, sh + b, 0D, b, sh + h, r - b2));
+			boxes.add(cb(-rb2, sh + b, 0D, b, sh + h, r - b2));
+			
+			fluid_boxes.add(cb(0D, sh - b * 2D, rb2, b + te, sh + h + te, b + te));
+			fluid_boxes.add(cb(0D, sh - b * 2D, -rb2, b + te, sh + h + te, b + te));
+			fluid_boxes.add(cb(rb2, sh - b * 2D, 0D, b + te, sh + h + te, b + te));
+			fluid_boxes.add(cb(-rb2, sh - b * 2D, 0D, b + te, sh + h + te, b + te));
 		}
 		
 		{
 			double r = b * 8D;
-			double sh = b * 12D;
+			double sh = b * 13D;
 			double h = b * 3D;
+			double rb2 = (r - b) / 2D;
 			
-			fluid_boxes.add(cb(0D, sh + h - b2, 0D, r - b2, sh + h - b, r - b2));
+			fluid_boxes.add(cb(0D, sh + h - b2, 0D, r - b2, sh + h, r - b2));
 			
 			boxes.add(cb(0D, sh, 0D, r - b2, sh + b, r - b2));
 			
-			boxes.add(cb(0D, sh + b, (r - b) / 2D, r - b2, sh + h, b));
-			boxes.add(cb(0D, sh + b, -(r - b) / 2D, r - b2, sh + h, b));
-			boxes.add(cb((r - b) / 2D, sh + b, 0D, b, sh + h, r - b2));
-			boxes.add(cb(-(r - b) / 2D, sh + b, 0D, b, sh + h, r - b2));
+			boxes.add(cb(0D, sh + b, rb2, r - b2, sh + h, b));
+			boxes.add(cb(0D, sh + b, -rb2, r - b2, sh + h, b));
+			boxes.add(cb(rb2, sh + b, 0D, b, sh + h, r - b2));
+			boxes.add(cb(-rb2, sh + b, 0D, b, sh + h, r - b2));
+			
+			fluid_boxes.add(cb(0D, sh - b, rb2, b + te, sh + h + te, b + te));
+			fluid_boxes.add(cb(0D, sh - b, -rb2, b + te, sh + h + te, b + te));
+			fluid_boxes.add(cb(rb2, sh - b, 0D, b + te, sh + h + te, b + te));
+			fluid_boxes.add(cb(-rb2, sh - b, 0D, b + te, sh + h + te, b + te));
 		}
 		
 		double s = -0.0005D;
@@ -103,27 +121,29 @@ public class RenderFountain extends BlockRendererLM
 			renderBlocks.renderBlockAsItem(LatBlocksItems.b_paintable, 0, 1F);
 		}
 		
-		for(int i = 0; i < fluid_boxes.size(); i++)
+		/*for(int i = 0; i < fluid_boxes.size(); i++)
 		{
 			renderBlocks.setRenderBounds(fluid_boxes.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.flowing_water, 0, 1F);
-		}
+		}*/
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
+		refreshBoxes();
+		
 		renderBlocks.renderAllFaces = true;
 		renderBlocks.blockAccess = iba;
 		
 		TileFountain t = (TileFountain)iba.getTileEntity(x, y, z);
 		if(t == null || t.isInvalid()) return false;
 		
-		refreshBoxes();
-		
 		for(int i = 0; i < boxes.size(); i++)
 		{
-			renderBlocks.setRenderBounds(boxes.get(i));
-			renderBlock(t);
+			Paint[] p = { t.paint[0], t.paint[0], t.paint[0], t.paint[0], t.paint[0], t.paint[0] };
+			IIcon defIcon = LatBlocksItems.b_paintable.getBlockIcon();
+			
+			RenderPaintable.renderCube(renderBlocks, p, defIcon, t.xCoord, t.yCoord, t.zCoord, boxes.get(i));
 		}
 		
 		if(t.tank.hasFluid())
@@ -143,18 +163,6 @@ public class RenderFountain extends BlockRendererLM
 	
 	public void renderBlock(TileFountain t)
 	{
-		if(t.paint[0] != null)
-		{
-			renderBlocks.setCustomColor(t.paint[0].block.colorMultiplier(t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord));
-			renderBlocks.clearOverrideBlockTexture();
-			renderBlocks.renderStandardBlock(t.paint[0].block, t.xCoord, t.yCoord, t.zCoord);
-		}
-		else
-		{
-			renderBlocks.setCustomColor(null);
-			renderBlocks.clearOverrideBlockTexture();
-			renderBlocks.renderStandardBlock(t.getBlockType(), t.xCoord, t.yCoord, t.zCoord);
-		}
 	}
 	
 	public void renderFluidBlock(TileFountain t)
