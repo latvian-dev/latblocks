@@ -1,8 +1,8 @@
-package latmod.latblocks.block.blocks;
+package latmod.latblocks.block.paintable;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
-import latmod.latblocks.tile.blocks.TilePaintableGS;
+import latmod.latblocks.tile.paintable.TilePaintableGS;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

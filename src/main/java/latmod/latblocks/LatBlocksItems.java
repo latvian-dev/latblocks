@@ -2,7 +2,7 @@ package latmod.latblocks;
 
 import latmod.core.*;
 import latmod.latblocks.block.*;
-import latmod.latblocks.block.blocks.*;
+import latmod.latblocks.block.paintable.*;
 import latmod.latblocks.item.*;
 import net.minecraft.item.ItemStack;
 
@@ -16,9 +16,11 @@ public class LatBlocksItems
 	public static BlockPCarpet b_carpet;
 	public static BlockPSlab b_slab;
 	public static BlockPStairs b_stairs;
+	public static BlockNoteBoard b_note_board;
 	
 	public static ItemBlockPainter i_painter;
 	public static ItemBlockPainterDmd i_painter_dmd;
+	public static ItemNote i_note;
 	
 	public static void init()
 	{
@@ -30,9 +32,11 @@ public class LatBlocksItems
 		b_carpet = new BlockPCarpet("carpet").register();
 		b_slab = new BlockPSlab("slab").register();
 		b_stairs = new BlockPStairs("stairs").register();
+		b_note_board = new BlockNoteBoard("noteBoard").register();
 		
 		i_painter = new ItemBlockPainter("blockPainter").register();
 		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();
+		i_note = new ItemNote("note").register();
 		
 		ODItems.paintableBlock = new ItemStack(b_paintable, 1, 0);
 	}

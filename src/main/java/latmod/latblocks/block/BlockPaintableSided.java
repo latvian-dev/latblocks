@@ -2,7 +2,7 @@ package latmod.latblocks.block;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.client.render.RenderPaintable;
 import latmod.latblocks.tile.TileSidedPaintable;
-import latmod.latblocks.tile.blocks.TilePaintableDef;
+import latmod.latblocks.tile.paintable.TilePaintableDef;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.*;

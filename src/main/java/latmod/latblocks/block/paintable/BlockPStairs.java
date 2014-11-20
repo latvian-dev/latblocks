@@ -1,11 +1,13 @@
-package latmod.latblocks.block.blocks;
+package latmod.latblocks.block.paintable;
 
 import latmod.core.tile.TileLM;
 import latmod.core.util.FastList;
+import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
-import latmod.latblocks.tile.blocks.TilePStairs;
+import latmod.latblocks.tile.paintable.TilePStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
@@ -20,6 +22,12 @@ public class BlockPStairs extends BlockPaintableSingle
 	
 	public TileLM createNewTileEntity(World w, int m)
 	{ return new TilePStairs(); }
+	
+	public void loadRecipes()
+	{
+		mod.recipes().addRecipe(new ItemStack(this, 4), "P  ", "PP ", "PPP",
+				'P', LatBlocksItems.b_paintable);
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)

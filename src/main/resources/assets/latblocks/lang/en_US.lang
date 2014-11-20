@@ -20,8 +20,10 @@ latblocks:tile.fenceGate.name=Paintable Fence Gate
 latblocks:tile.smoker.name=Paintable Smoker
 latblocks:tile.door.name=Paintable Door Block
 latblocks:tile.paintableQuartzFurnace.name=Paintable Quartz Furnace
+latblocks:tile.noteBoard.name=Note Board
 
 ### Items ###
 
 latblocks:item.blockPainter.name=Block Painter
 latblocks:item.blockPainterDmd.name=Diamond Block Painter
+latblocks:item.note.name=Note

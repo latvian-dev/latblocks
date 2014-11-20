@@ -1,4 +1,4 @@
-package latmod.latblocks.block.blocks;
+package latmod.latblocks.block.paintable;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
@@ -7,7 +7,7 @@ import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
-import latmod.latblocks.tile.blocks.TilePSlab;
+import latmod.latblocks.tile.paintable.TilePSlab;
 
 public class BlockPSlab extends BlockPaintableSingle
 {

@@ -13,7 +13,7 @@ public class ItemBlockPainterDmd extends ItemBlockPainter
 	
 	public void loadRecipes()
 	{
-		addRecipe(new ItemStack(this), "DDD", "DPD", "DDD",
+		mod.recipes().addRecipe(new ItemStack(this), "DDD", "DPD", "DDD",
 				'P', ODItems.TOOL_PAINTER,
 				'D', ODItems.DIAMOND);
 	}

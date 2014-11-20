@@ -98,7 +98,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
-		addBoxes(boxes, event.player.worldObj.getBlockMetadata(event.target.blockX, event.target.blockY, event.target.blockZ));
+		addBoxes(boxes, onBlockPlaced(event.player.worldObj, event.player, event.target, -1));
 	}
 	
 	@SideOnly(Side.CLIENT)
