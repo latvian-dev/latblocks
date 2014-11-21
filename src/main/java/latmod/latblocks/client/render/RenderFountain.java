@@ -121,18 +121,18 @@ public class RenderFountain extends BlockRendererLM
 			renderBlocks.renderBlockAsItem(LatBlocksItems.b_paintable, 0, 1F);
 		}
 		
-		/*for(int i = 0; i < fluid_boxes.size(); i++)
+		for(int i = 0; i < fluid_boxes.size(); i++)
 		{
 			renderBlocks.setRenderBounds(fluid_boxes.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.flowing_water, 0, 1F);
-		}*/
+		}
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
-		refreshBoxes();
+		//refreshBoxes();
 		
-		renderBlocks.renderAllFaces = true;
+		renderBlocks.renderAllFaces = false;
 		renderBlocks.blockAccess = iba;
 		
 		TileFountain t = (TileFountain)iba.getTileEntity(x, y, z);
@@ -160,10 +160,6 @@ public class RenderFountain extends BlockRendererLM
 	
 	public boolean shouldRender3DInInventory(int renderID)
 	{ return true; }
-	
-	public void renderBlock(TileFountain t)
-	{
-	}
 	
 	public void renderFluidBlock(TileFountain t)
 	{

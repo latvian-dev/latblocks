@@ -25,4 +25,7 @@ public class BlockNoteBoard extends BlockPaintableSingle
 	
 	public TileLM createNewTileEntity(World w, int m)
 	{ return new TileNoteBoard(); }
+	
+	public void setBlockBoundsForItemRender()
+	{ setBlockBounds(0.5F - height, 0F, 0F, 0.5F + height, 1F, 1F); }
 }

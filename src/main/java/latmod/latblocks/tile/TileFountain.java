@@ -1,10 +1,9 @@
 package latmod.latblocks.tile;
 
-import latmod.core.*;
+import latmod.core.LatCoreMC;
 import latmod.core.tile.*;
 import latmod.core.util.MathHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
@@ -81,9 +80,11 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 				markDirty();
 			}
 			
+			/*
 			if(tank.getAmount() >= 1000 && items[0] != null && LatCoreMC.isBucket(items[0]))
 			{
 			}
+			*/
 		}
 		
 		if(redstonePowered && tank.hasFluid() && tank.getFluid().getBlock() != null)
@@ -107,6 +108,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
+		/*
 		if(is != null && is.getItem() instanceof IPaintable.IPainterItem) return false;
 		
 		if(is != null && tank.getAmount() >= 1000 && LatCoreMC.isBucket(is))
@@ -114,7 +116,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 			is.stackSize--;
 			tank.drain(ForgeDirection.UNKNOWN, 1000, true);
 			InvUtils.giveItem(ep, new ItemStack(Blocks.dirt), ep.inventory.currentItem);
-		}
+		}*/
 		
 		return true;
 	}

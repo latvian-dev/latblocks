@@ -11,7 +11,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockFountain extends BlockLB
+public class BlockFountain extends BlockLB // BlockHopper
 {
 	public BlockFountain(String s)
 	{
@@ -56,4 +56,12 @@ public class BlockFountain extends BlockLB
 	
 	public boolean isReplaceable(IBlockAccess iba, int x, int y, int z)
 	{ return false; }
+	
+	@SideOnly(Side.CLIENT)
+    public String getItemIconName()
+    { return mod.assets + "fountain"; }
+	
+	@SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+    { return true; }
 }
