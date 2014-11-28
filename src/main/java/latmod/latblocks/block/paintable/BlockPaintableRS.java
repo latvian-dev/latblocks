@@ -23,11 +23,11 @@ public class BlockPaintableRS extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this), " P ", "PRP", " P ",
+		mod.recipes.addRecipe(new ItemStack(this), " P ", "PRP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'R', Blocks.redstone_block);
 		
-		mod.recipes().addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
+		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

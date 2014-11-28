@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render;
 import latmod.core.client.BlockRendererLM;
-import latmod.core.tile.IPaintable.Paint;
+import latmod.core.tile.IPaintable;
 import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.TileFountain;
@@ -140,10 +140,9 @@ public class RenderFountain extends BlockRendererLM
 		
 		for(int i = 0; i < boxes.size(); i++)
 		{
-			Paint[] p = { t.paint[0], t.paint[0], t.paint[0], t.paint[0], t.paint[0], t.paint[0] };
 			IIcon defIcon = LatBlocksItems.b_paintable.getBlockIcon();
 			
-			RenderPaintable.renderCube(renderBlocks, p, defIcon, t.xCoord, t.yCoord, t.zCoord, boxes.get(i));
+			IPaintable.Renderer.renderCube(renderBlocks, IPaintable.Renderer.to6(t.paint[0]), IPaintable.Renderer.to6(defIcon), t.xCoord, t.yCoord, t.zCoord, boxes.get(i));
 		}
 		
 		if(t.tank.hasFluid())

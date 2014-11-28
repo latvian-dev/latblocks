@@ -18,11 +18,11 @@ public class BlockPaintableGS extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this), " P ", "PGP", " P ",
+		mod.recipes.addRecipe(new ItemStack(this), " P ", "PGP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'G', Blocks.glowstone);
 		
-		mod.recipes().addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
+		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

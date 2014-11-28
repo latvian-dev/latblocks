@@ -15,10 +15,11 @@ public class ItemNote extends ItemLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addShapelessRecipe(new ItemStack(this),
-				Items.paper,
-				ODItems.SLIMEBALL,
-				EnumDyeColor.BLACK.dyeName);
+		mod.recipes.addRecipe(new ItemStack(this, 4), "SPS", "PBP", "IPI",
+				'P', Items.paper,
+				'S', ODItems.SLIMEBALL,
+				'I', EnumDyeColor.BLACK.dyeName,
+				'B', ODItems.PAINTABLE_COVER);
 	}
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)

@@ -20,20 +20,20 @@ public abstract class BlockPaintableLB extends BlockLB
 	public BlockPaintableLB(String s, Material m)
 	{
 		super(s, m);
-		isBlockContainer = true;
 		setBlockTextureName("paintable");
+		isBlockContainer = true;
 		registerTiles();
-	}
-	
-	public void registerTiles()
-	{
-		mod.addTile(createNewTileEntity(null, 0).getClass(), blockName);
 	}
 	
 	public abstract TileLM createNewTileEntity(World w, int m);
 	
 	public int damageDropped(int i)
 	{ return 0; }
+	
+	public void registerTiles()
+	{
+		mod.addTile(createNewTileEntity(null, 0).getClass(), blockName);
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
@@ -115,34 +115,6 @@ public abstract class BlockPaintableLB extends BlockLB
 		MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
 		if(mop.subHit >= 0 && mop.subHit < boxes.size()) return boxes.get(mop.subHit).getOffsetBoundingBox(x, y, z);
 		return AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D);
-		
-		//return super.getSelectedBoundingBoxFromPool(w, x, y, z);
-		
-		/*
-		TileEntity te = w.getTileEntity(x, y, z);
-		
-		if(te != null && te instanceof TileCBCable)
-		{
-			if(((TileCBCable)te).hasCover)
-			{
-				return AxisAlignedBB.getBoundingBox(x, y, z, x + 1D, y + 1D, z + 1D);
-			}
-			
-			updateBoxes();
-			
-			MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
-			
-			if(mop != null && mop.subHit >= 0 && mop.subHit < boxes.size())
-			{
-				AxisAlignedBB aabb = boxes.get(mop.subHit).copy();
-				aabb.minX += x; aabb.maxX += x;
-				aabb.minY += y; aabb.maxY += y;
-				aabb.minZ += z; aabb.maxZ += z;
-				return aabb;
-			}
-		}
-		
-		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1D, y + 1D, z + 1D);*/
 	}
 	
 	public MovingObjectPosition collisionRayTrace(World w, int x, int y, int z, Vec3 start, Vec3 end)
@@ -151,4 +123,12 @@ public abstract class BlockPaintableLB extends BlockLB
 		addBoxes(boxes, w.getBlockMetadata(x, y, z));
 		return LatCoreMC.collisionRayTrace(w, x, y, z, start, end, boxes);
 	}
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getDefaultWorldIcon(IBlockAccess iba, int x, int y, int z, int s)
+	{ return blockIcon; }
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getDefaultItemIcon()
+	{ return blockIcon; }
 }

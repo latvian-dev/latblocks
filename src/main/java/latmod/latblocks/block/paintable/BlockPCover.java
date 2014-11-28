@@ -18,10 +18,10 @@ public class BlockPCover extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this, 16), "PP", "PP",
+		mod.recipes.addRecipe(new ItemStack(this, 16), "PP", "PP",
 				'P', LatBlocksItems.b_paintable);
 		
-		mod.recipes().addRecipe(new ItemStack(LatBlocksItems.b_paintable), "PP", "PP",
+		mod.recipes.addRecipe(new ItemStack(LatBlocksItems.b_paintable), "PP", "PP",
 				'P', this);
 	}
 	

@@ -18,7 +18,7 @@ public class BlockNoteBoard extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this), " C ", "CIC", " C ",
+		mod.recipes.addRecipe(new ItemStack(this), " C ", "CIC", " C ",
 				'C', LatBlocksItems.b_carpet,
 				'I', Items.item_frame);
 	}

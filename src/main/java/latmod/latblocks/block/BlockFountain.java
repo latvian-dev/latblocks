@@ -24,7 +24,7 @@ public class BlockFountain extends BlockLB // BlockHopper
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this), " G ", "PGP", "SHS",
+		mod.recipes.addRecipe(new ItemStack(this), " G ", "PGP", "SHS",
 				'H', Blocks.hopper,
 				'G', ODItems.GLASS,
 				'S', ODItems.STONE,

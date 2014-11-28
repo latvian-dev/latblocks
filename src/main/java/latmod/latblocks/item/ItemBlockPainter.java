@@ -28,7 +28,7 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this), "SCS", "SPS", " P ",
+		mod.recipes.addRecipe(new ItemStack(this), "SCS", "SPS", " P ",
 				'S', ODItems.STICK,
 				'C', ODItems.PAINTABLE_BLOCK,
 				'P', ODItems.IRON);

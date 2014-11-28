@@ -25,7 +25,7 @@ public class BlockPStairs extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes().addRecipe(new ItemStack(this, 4), "P  ", "PP ", "PPP",
+		mod.recipes.addRecipe(new ItemStack(this, 4), "P  ", "PP ", "PPP",
 				'P', LatBlocksItems.b_paintable);
 	}
 	
