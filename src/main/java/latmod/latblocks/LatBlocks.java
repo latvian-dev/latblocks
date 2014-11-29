@@ -9,7 +9,7 @@ import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 
-@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:LatCoreMC;required-after:ForgeMultipart")
+@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:LatCoreMC")
 public class LatBlocks
 {
 	protected static final String MOD_ID = "LatBlocks";

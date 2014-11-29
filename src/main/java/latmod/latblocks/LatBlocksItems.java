@@ -20,6 +20,8 @@ public class LatBlocksItems
 	public static BlockQFurnace b_qfurnace;
 	public static BlockWaterTank b_tank_water;
 	public static BlockVoidTank b_tank_void;
+	public static BlockGelLamp b_gel_lamp;
+	public static BlockInvGelLamp b_gel_lamp_inv;
 	
 	public static ItemBlockPainter i_painter;
 	public static ItemBlockPainterDmd i_painter_dmd;
@@ -39,6 +41,8 @@ public class LatBlocksItems
 		b_qfurnace = new BlockQFurnace("quartzFurnace").register();
 		b_tank_water = new BlockWaterTank("tankWater").register();
 		b_tank_void = new BlockVoidTank("tankVoid").register();
+		b_gel_lamp = new BlockGelLamp("gelLamp").register();
+		b_gel_lamp_inv = new BlockInvGelLamp("gelLampInv").register();
 		
 		i_painter = new ItemBlockPainter("blockPainter").register();
 		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();

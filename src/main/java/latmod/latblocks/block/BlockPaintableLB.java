@@ -68,6 +68,9 @@ public abstract class BlockPaintableLB extends BlockLB
 		}
 	}
 	
+	public final AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
+	{ return null; }
+	
 	public boolean canHarvestBlock(EntityPlayer ep, int meta)
 	{ return true; }
 	

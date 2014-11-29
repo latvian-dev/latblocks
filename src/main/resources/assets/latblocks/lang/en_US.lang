@@ -11,11 +11,14 @@ latblocks:tile.carpet.name=Paintable Carpet
 latblocks:tile.slab.name=Paintable Slab
 latblocks:tile.stairs.name=Paintable Stairs
 latblocks:tile.noteBoard.name=[WIP] Note Board
-latblocks:tile.quartzFurnace.name=Quartz Furnace
+latblocks:tile.quartzFurnace.name=[WIP] Quartz Furnace
+latblocks:tile.waterTank.name=Water Tank
+latblocks:tile.voidTank.name=Void Tank
+latblocks:tile.gelLamp.name=Paintable Gel Lamp
+latblocks:tile.gelLampInv.name=Invisible Gel Lamp
 
 # To be implemented #
 
-latblocks:tile.lamp.name=Paintable Lamp
 latblocks:tile.fence.name=Paintable Fence
 latblocks:tile.fenceGate.name=Paintable Fence Gate
 latblocks:tile.smoker.name=Paintable Smoker

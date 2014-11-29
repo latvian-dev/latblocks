@@ -1,6 +1,7 @@
 package latmod.latblocks.client;
 
 import latmod.core.util.FastList;
+import latmod.latblocks.LatBlocks;
 import latmod.latblocks.block.BlockPaintableLB;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -23,6 +24,8 @@ public class LatBlockClientEventHandler
 	@SubscribeEvent
 	public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent event)
 	{
+		if(!LatBlocks.mod.config().client.renderBoxes) return;
+		
 		if (event.currentItem != null && event.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && event.currentItem.getItem() instanceof ItemBlock)
 		{
 			Block worldBlock = event.player.worldObj.getBlock(event.target.blockX, event.target.blockY, event.target.blockZ);
