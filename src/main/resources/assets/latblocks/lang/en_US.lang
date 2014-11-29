@@ -11,6 +11,7 @@ latblocks:tile.carpet.name=Paintable Carpet
 latblocks:tile.slab.name=Paintable Slab
 latblocks:tile.stairs.name=Paintable Stairs
 latblocks:tile.noteBoard.name=[WIP] Note Board
+latblocks:tile.quartzFurnace.name=Quartz Furnace
 
 # To be implemented #
 
@@ -19,7 +20,6 @@ latblocks:tile.fence.name=Paintable Fence
 latblocks:tile.fenceGate.name=Paintable Fence Gate
 latblocks:tile.smoker.name=Paintable Smoker
 latblocks:tile.door.name=Paintable Door Block
-latblocks:tile.quartzFurnace.name=Quartz Furnace
 latblocks:tile.paintableQuartzFurnace.name=Paintable Quartz Furnace
 latblocks:tile.filterHopper.name=Filter Hopper
 latblocks:tile.buffer.name=Buffer

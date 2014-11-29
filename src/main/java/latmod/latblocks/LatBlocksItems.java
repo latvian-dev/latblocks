@@ -1,6 +1,6 @@
 package latmod.latblocks;
 
-import latmod.core.*;
+import latmod.core.ODItems;
 import latmod.latblocks.block.*;
 import latmod.latblocks.block.paintable.*;
 import latmod.latblocks.item.*;
@@ -17,6 +17,9 @@ public class LatBlocksItems
 	public static BlockPSlab b_slab;
 	public static BlockPStairs b_stairs;
 	public static BlockNoteBoard b_note_board;
+	public static BlockQFurnace b_qfurnace;
+	public static BlockWaterTank b_tank_water;
+	public static BlockVoidTank b_tank_void;
 	
 	public static ItemBlockPainter i_painter;
 	public static ItemBlockPainterDmd i_painter_dmd;
@@ -33,6 +36,9 @@ public class LatBlocksItems
 		b_slab = new BlockPSlab("slab").register();
 		b_stairs = new BlockPStairs("stairs").register();
 		b_note_board = new BlockNoteBoard("noteBoard").register();
+		b_qfurnace = new BlockQFurnace("quartzFurnace").register();
+		b_tank_water = new BlockWaterTank("tankWater").register();
+		b_tank_void = new BlockVoidTank("tankVoid").register();
 		
 		i_painter = new ItemBlockPainter("blockPainter").register();
 		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();

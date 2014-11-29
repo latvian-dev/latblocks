@@ -1,13 +1,13 @@
 package latmod.latblocks.block.paintable;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.block.*;
+import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.paintable.TilePSlab;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class BlockPSlab extends BlockPaintableSingle
 {

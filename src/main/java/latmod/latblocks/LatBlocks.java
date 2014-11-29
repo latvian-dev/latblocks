@@ -63,8 +63,11 @@ public class LatBlocks
 			
 			LatCoreMC.remap(m, "LatCoreMC:paintable", LatBlocksItems.b_paintable);
 			LatCoreMC.remap(m, "LatCoreMC:facade", LatBlocksItems.b_cover);
-			LatCoreMC.remap(m, "LatCoreMC:paintableRS", LatBlocksItems.b_paintable_rs);
 			LatCoreMC.remap(m, "LatBlocks:facade", LatBlocksItems.b_cover);
+			LatCoreMC.remap(m, "LatCoreMC:paintableRS", LatBlocksItems.b_paintable_rs);
+			
+			LatCoreMC.remap(m, "Elemite:waterTank", LatBlocksItems.b_tank_water);
+			LatCoreMC.remap(m, "Elemite:voidTank", LatBlocksItems.b_tank_void);
 		}
 	}
 }

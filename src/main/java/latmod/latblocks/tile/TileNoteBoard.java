@@ -1,6 +1,6 @@
 package latmod.latblocks.tile;
 
-import latmod.core.util.*;
+import latmod.core.util.FastList;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileNoteBoard extends TileSinglePaintable

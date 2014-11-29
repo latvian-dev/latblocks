@@ -1,9 +1,9 @@
 package latmod.latblocks.block;
-import latmod.core.*;
+import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocks;
-import latmod.latblocks.client.render.*;
-import latmod.latblocks.tile.*;
+import latmod.latblocks.client.render.RenderFountain;
+import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -11,7 +11,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockFountain extends BlockLB // BlockHopper
+public class BlockFountain extends BlockLB
 {
 	public BlockFountain(String s)
 	{
