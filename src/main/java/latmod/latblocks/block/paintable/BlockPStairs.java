@@ -64,10 +64,10 @@ public class BlockPStairs extends BlockPaintableSingle
 		
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 1D - h1, 0D, 1D, 1D - h, 1D));
 		
-		if(addUp) boxes.add(AxisAlignedBB.getBoundingBox(0D, h, 0.5D, 1D, h1, 1D));
-		if(addRight) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0D, 1D, h1, 1D));
-		if(addDown) boxes.add(AxisAlignedBB.getBoundingBox(0D, h, 0D, 1D, h1, 0.5D));
-		if(addLeft) boxes.add(AxisAlignedBB.getBoundingBox(0D, h, 0D, 0.5D, h1, 1D));
+		if((addUp || addLeft))	boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.5D, 0.5D, h1, 1.0D));
+		if((addUp || addRight))	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
+		if((addDown || addLeft))	boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.0D, 0.5D, h1, 0.5D));
+		if((addDown || addRight))	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.0D, 1.0D, h1, 0.5D));
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -85,6 +85,9 @@ public class BlockPStairs extends BlockPaintableSingle
 	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, int m)
 	{
 		if(m == -1) return;
+		
+		addBoxes(boxes, m);
+		/*
 		
 		boolean isUp = (m / 8) == 0;
 		
@@ -104,5 +107,6 @@ public class BlockPStairs extends BlockPaintableSingle
 		if(addUp || addRight)	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
 		if(addDown || addLeft)	boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.0D, 0.5D, h1, 0.5D));
 		if(addDown || addRight)	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.0D, 1.0D, h1, 0.5D));
+		*/
 	}
 }
