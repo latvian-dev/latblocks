@@ -9,8 +9,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockPStairs extends BlockPaintableSingle
@@ -47,47 +48,35 @@ public class BlockPStairs extends BlockPaintableSingle
 		return (hitY >= 0.5D) ? (8 + l) : l;
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, int m)
-	{
-		if(m == -1) return;
-		
-		boolean isUp = (m / 8) == 0;
-		
-		double h = isUp ? 0D : 0.5D;
-		double h1 = isUp ? 0.5D : 1D;
-		
-		int s = m % 8;
-		boolean addUp = s == 7 || s == 0 || s == 1;
-		boolean addLeft = s == 1 || s == 2 || s == 3;
-		boolean addDown = s == 3 || s == 4 || s == 5;
-		boolean addRight = s == 5 || s == 6 || s == 7;
-		
-		boxes.add(AxisAlignedBB.getBoundingBox(0D, 1D - h1, 0D, 1D, 1D - h, 1D));
-		
-		if((addUp || addLeft))	boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.5D, 0.5D, h1, 1.0D));
-		if((addUp || addRight))	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
-		if((addDown || addLeft))	boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.0D, 0.5D, h1, 0.5D));
-		if((addDown || addRight))	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.0D, 1.0D, h1, 0.5D));
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
-	{
-		addBoxes(boxes, onBlockPlaced(event.player.worldObj, event.player, event.target, 0));
-	}
-	
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, int m)
+	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
 	{
-		if(m == -1) return;
+		getStairBoxes(boxes, iba, x, y, z, -1);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	{
+		int m = onBlockPlaced(event.player.worldObj, event.player, event.target, -1);
+		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[event.target.sideHit];
+		getStairBoxes(boxes, event.player.worldObj, event.target.blockX + fd.offsetX, event.target.blockY + fd.offsetY, event.target.blockZ + fd.offsetZ, m);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
+	{
+		super.addRenderBoxes(boxes, iba, x, y, z);
+	}
+	
+	public void getStairBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	{
+		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		
-		addBoxes(boxes, m);
-		/*
+		if(m == -1) return;
 		
 		boolean isUp = (m / 8) == 0;
 		
@@ -95,18 +84,31 @@ public class BlockPStairs extends BlockPaintableSingle
 		double h1 = isUp ? 0.5D : 1D;
 		
 		int s = m % 8;
-		
-		boolean addUp = s == 7 || s == 0 || s == 1;
-		boolean addLeft = s == 1 || s == 2 || s == 3;
-		boolean addDown = s == 3 || s == 4 || s == 5;
-		boolean addRight = s == 5 || s == 6 || s == 7;
+		boolean addS = s == 7 || s == 0 || s == 1;
+		boolean addE = s == 1 || s == 2 || s == 3;
+		boolean addN = s == 3 || s == 4 || s == 5;
+		boolean addW = s == 5 || s == 6 || s == 7;
 		
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 1D - h1, 0D, 1D, 1D - h, 1D));
 		
-		if(addUp || addLeft)	boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.5D, 0.5D, h1, 1.0D));
-		if(addUp || addRight)	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
-		if(addDown || addLeft)	boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.0D, 0.5D, h1, 0.5D));
-		if(addDown || addRight)	boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.0D, 1.0D, h1, 0.5D));
-		*/
+		boolean addNW = (addN || addE);
+		boolean addNE = (addN || addW);
+		boolean addSW = (addS || addE);
+		boolean addSE = (addS || addW);
+		
+		boolean hasN = iba.getBlock(x, y, z - 1) == this;
+		boolean hasW = iba.getBlock(x - 1, y, z) == this;
+		boolean hasS = iba.getBlock(x, y, z + 1) == this;
+		boolean hasE = iba.getBlock(x + 1, y, z) == this;
+		
+		if(s == 3 && hasN && hasW) addNE = addSW = false;
+		if(s == 5 && hasN && hasE) addNW = addSE = false;
+		if(s == 1 && hasS && hasW) addSE = addNW = false;
+		if(s == 7 && hasS && hasE) addSW = addNE = false;
+		
+		if(addNW) boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.0D, 0.5D, h1, 0.5D));
+		if(addNE) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.0D, 1.0D, h1, 0.5D));
+		if(addSW) boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.5D, 0.5D, h1, 1.0D));
+		if(addSE) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
 	}
 }

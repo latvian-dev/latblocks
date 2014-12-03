@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public abstract class BlockPaintableLB extends BlockLB
@@ -46,7 +47,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	{
 		setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, iba.getBlockMetadata(x, y, z));
+		addBoxes(boxes, iba, x, y, z);
 		
 		if(boxes.size() >= 1) 
 		{
@@ -59,7 +60,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w.getBlockMetadata(x, y, z));
+		addBoxes(boxes, w, x, y, z);
 		
 		for(int i = 0; i < boxes.size(); i++)
 		{
@@ -80,10 +81,10 @@ public abstract class BlockPaintableLB extends BlockLB
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, int m)
-	{ addBoxes(boxes, m); }
+	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
+	{ addBoxes(boxes, iba, x, y, z); }
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, int m)
+	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
 	{
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));
 	}
@@ -101,7 +102,8 @@ public abstract class BlockPaintableLB extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
-		addBoxes(boxes, onBlockPlaced(event.player.worldObj, event.player, event.target, -1));
+		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[event.target.sideHit];
+		addBoxes(boxes, event.player.worldObj, event.target.blockX + fd.offsetX, event.target.blockY + fd.offsetY, event.target.blockZ + fd.offsetZ);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -113,7 +115,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z)
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w.getBlockMetadata(x, y, z));
+		addBoxes(boxes, w, x, y, z);
 		
 		MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
 		if(mop.subHit >= 0 && mop.subHit < boxes.size()) return boxes.get(mop.subHit).getOffsetBoundingBox(x, y, z);
@@ -123,7 +125,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public MovingObjectPosition collisionRayTrace(World w, int x, int y, int z, Vec3 start, Vec3 end)
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w.getBlockMetadata(x, y, z));
+		addBoxes(boxes, w, x, y, z);
 		return LatCoreMC.collisionRayTrace(w, x, y, z, start, end, boxes);
 	}
 	

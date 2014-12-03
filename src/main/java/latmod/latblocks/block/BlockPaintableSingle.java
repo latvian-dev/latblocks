@@ -3,7 +3,7 @@ import latmod.core.util.FastList;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import cpw.mods.fml.relauncher.*;
 
@@ -95,8 +95,10 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		return -1;
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, int m)
+	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
 	{
+		int m = iba.getBlockMetadata(x, y, z);
+		
 		if(m == Placement.D_DOWN) boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, height, 1D));
 		else if(m == Placement.D_UP) boxes.add(AxisAlignedBB.getBoundingBox(0D, 1D - height, 0D, 1D, 1D, 1D));
 		else if(m == Placement.D_NORTH) boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, height));

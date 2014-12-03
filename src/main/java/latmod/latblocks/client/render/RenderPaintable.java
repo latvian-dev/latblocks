@@ -54,7 +54,7 @@ public class RenderPaintable extends BlockRendererLM
 			defIcon[i] = ((BlockPaintableLB)b).getDefaultWorldIcon(iba, x, y, z, i);
 		
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		((BlockPaintableLB)b).addRenderBoxes(boxes, iba.getBlockMetadata(x, y, z));
+		((BlockPaintableLB)b).addRenderBoxes(boxes, iba, x, y, z);
 		
 		for(int i = 0; i < boxes.size(); i++)
 			IPaintable.Renderer.renderCube(renderBlocks, p, defIcon, x, y, z, boxes.get(i));

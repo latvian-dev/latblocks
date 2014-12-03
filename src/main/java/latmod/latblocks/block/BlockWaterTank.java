@@ -24,9 +24,10 @@ public class BlockWaterTank extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "WWW", "WGW", "WWW",
+		mod.recipes.addRecipe(new ItemStack(this), "IWI", "WGW", "IWI",
 				'W', Items.water_bucket,
-				'G', ODItems.GLASS);
+				'G', ODItems.GLASS,
+				'I', ODItems.IRON);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
