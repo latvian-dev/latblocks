@@ -2,6 +2,7 @@ package latmod.latblocks.block.paintable;
 
 import latmod.core.tile.TileLM;
 import latmod.core.util.FastList;
+import latmod.core.util.MathHelper;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
 import latmod.latblocks.tile.paintable.TilePStairs;
@@ -11,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockPStairs extends BlockPaintableSingle
@@ -44,7 +44,7 @@ public class BlockPStairs extends BlockPaintableSingle
 		if(!(mop.sideHit == Placement.D_DOWN || mop.sideHit == Placement.D_UP))
 			hitY = 1D - hitY;
 		
-		int l = MathHelper.floor_double((double)(ep.rotationYaw * 8F / 360F) + 0.5D) & 7;
+		int l = MathHelper.floor((double)(ep.rotationYaw * 8F / 360F) + 0.5D) & 7;
 		return (hitY >= 0.5D) ? (8 + l) : l;
 	}
 	
@@ -53,26 +53,7 @@ public class BlockPStairs extends BlockPaintableSingle
 	{
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
-	{
-		getStairBoxes(boxes, iba, x, y, z, -1);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
-	{
-		int m = onBlockPlaced(event.player.worldObj, event.player, event.target, -1);
-		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[event.target.sideHit];
-		getStairBoxes(boxes, event.player.worldObj, event.target.blockX + fd.offsetX, event.target.blockY + fd.offsetY, event.target.blockZ + fd.offsetZ, m);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
-	{
-		super.addRenderBoxes(boxes, iba, x, y, z);
-	}
-	
-	public void getStairBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		

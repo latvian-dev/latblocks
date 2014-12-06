@@ -47,7 +47,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	{
 		setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, iba, x, y, z);
+		addBoxes(boxes, iba, x, y, z, -1);
 		
 		if(boxes.size() >= 1) 
 		{
@@ -60,7 +60,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w, x, y, z);
+		addBoxes(boxes, w, x, y, z, -1);
 		
 		for(int i = 0; i < boxes.size(); i++)
 		{
@@ -82,9 +82,9 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
-	{ addBoxes(boxes, iba, x, y, z); }
+	{ addBoxes(boxes, iba, x, y, z, -1); }
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
+	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));
 	}
@@ -102,8 +102,10 @@ public abstract class BlockPaintableLB extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
+		int m = onBlockPlaced(event.player.worldObj, event.player, event.target, -1);
+		if(m == -1) return;
 		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[event.target.sideHit];
-		addBoxes(boxes, event.player.worldObj, event.target.blockX + fd.offsetX, event.target.blockY + fd.offsetY, event.target.blockZ + fd.offsetZ);
+		addBoxes(boxes, event.player.worldObj, event.target.blockX + fd.offsetX, event.target.blockY + fd.offsetY, event.target.blockZ + fd.offsetZ, m);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -115,7 +117,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z)
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w, x, y, z);
+		addBoxes(boxes, w, x, y, z, -1);
 		
 		MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
 		if(mop.subHit >= 0 && mop.subHit < boxes.size()) return boxes.get(mop.subHit).getOffsetBoundingBox(x, y, z);
@@ -125,7 +127,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public MovingObjectPosition collisionRayTrace(World w, int x, int y, int z, Vec3 start, Vec3 end)
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w, x, y, z);
+		addBoxes(boxes, w, x, y, z, -1);
 		return LatCoreMC.collisionRayTrace(w, x, y, z, start, end, boxes);
 	}
 	
