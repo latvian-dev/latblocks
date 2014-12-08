@@ -2,7 +2,6 @@ package latmod.latblocks;
 import java.util.List;
 
 import latmod.core.*;
-import latmod.core.recipes.LMRecipes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
@@ -20,13 +19,13 @@ public class LatBlocks
 	@SidedProxy(clientSide = "latmod.latblocks.client.LatBlocksClient", serverSide = "latmod.core.LMProxy")
 	public static LMProxy proxy;
 	
-	public static LMMod<LatBlocksConfig, LMRecipes> mod;
+	public static LMMod mod;
 	public static CreativeTabs tab;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		mod = new LMMod<LatBlocksConfig, LMRecipes>(MOD_ID, new LatBlocksConfig(e), new LMRecipes(false));
+		mod = new LMMod(MOD_ID, new LatBlocksConfig(e), null);
 		
 		LatBlocksItems.init();
 		mod.onPostLoaded();

@@ -81,7 +81,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z)
+	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{ addBoxes(boxes, iba, x, y, z, -1); }
 	
 	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
@@ -105,7 +105,7 @@ public abstract class BlockPaintableLB extends BlockLB
 		int m = onBlockPlaced(event.player.worldObj, event.player, event.target, -1);
 		if(m == -1) return;
 		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[event.target.sideHit];
-		addBoxes(boxes, event.player.worldObj, event.target.blockX + fd.offsetX, event.target.blockY + fd.offsetY, event.target.blockZ + fd.offsetZ, m);
+		addRenderBoxes(boxes, event.player.worldObj, event.target.blockX + fd.offsetX, event.target.blockY + fd.offsetY, event.target.blockZ + fd.offsetZ, m);
 	}
 	
 	@SideOnly(Side.CLIENT)

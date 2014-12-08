@@ -38,62 +38,24 @@ public class BlockPFence extends BlockPaintableSingle
 	@SuppressWarnings("all")
 	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
 	{
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
+		double p = 1D / 8D * 4D;
+		double pn = 0.5D - p / 2D;
+		double pp = 0.5D + p / 2D;
 		
-		boolean flag = canConnect(w, x, y, z - 1);
-        boolean flag1 = canConnect(w, x, y, z + 1);
-        boolean flag2 = canConnect(w, x - 1, y, z);
-        boolean flag3 = canConnect(w, x + 1, y, z);
-        
-        float f = 0.375F;
-        float f1 = 0.625F;
-        float f2 = 0.375F;
-        float f3 = 0.625F;
-        
-        if (flag) f2 = 0.0F;
-        if (flag1) f3 = 1.0F;
-
-        if (flag || flag1)
-        {
-            boxes.add(AxisAlignedBB.getBoundingBox(f, 0.0F, f2, f1, 1.5F, f3));
-        }
-
-        f2 = 0.375F;
-        f3 = 0.625F;
-
-        if (flag2)
-        {
-            f = 0.0F;
-        }
-
-        if (flag3)
-        {
-            f1 = 1.0F;
-        }
-
-        if (flag2 || flag3 || !flag && !flag1)
-        {
-        	boxes.add(AxisAlignedBB.getBoundingBox(f, 0.0F, f2, f1, 1.5F, f3));
-        }
-
-        if (flag)
-        {
-            f2 = 0.0F;
-        }
-
-        if (flag1)
-        {
-            f3 = 1.0F;
-        }
-
-        boxes.add(AxisAlignedBB.getBoundingBox(f, 0.0F, f2, f1, 1.0F, f3));
+		double x0 = pn;
+		double x1 = pp;
+		double z0 = pn;
+		double z1 = pp;
 		
-		for(int i = 0; i < boxes.size(); i++)
-		{
-			AxisAlignedBB bb1 = boxes.get(i).getOffsetBoundingBox(x, y, z);
-			bb1.maxY += 0.5D;
-			if(bb.intersectsWith(bb1)) l.add(bb1);
-		}
+		double d = 0.01D;
+		
+		if(canConnect(w, x - 1, y, z)) x0 = -d;
+		if(canConnect(w, x + 1, y, z)) x1 = 1D + d;
+		if(canConnect(w, x, y, z - 1)) z0 = -d;
+		if(canConnect(w, x, y, z + 1)) z1 = 1D + d;
+		
+		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1.5D, z1).getOffsetBoundingBox(x, y, z);
+		if(bb.intersectsWith(bb1)) l.add(bb1);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -112,7 +74,8 @@ public class BlockPFence extends BlockPaintableSingle
 	{
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	@SideOnly(Side.CLIENT)
+	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		double p = 1F / 4D;
 		
@@ -146,6 +109,27 @@ public class BlockPFence extends BlockPaintableSingle
 			boxes.add(MathHelper.getBox(0.75D, h1n, 0.5D, 0.5D, h1p, 0.125D));
 			boxes.add(MathHelper.getBox(0.75D, h2n, 0.5D, 0.5D, h2p, 0.125D));
 		}
+	}
+	
+	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	{
+		double p = 1D / 8D * 4D;
+		double pn = 0.5D - p / 2D;
+		double pp = 0.5D + p / 2D;
+		
+		double x0 = pn;
+		double x1 = pp;
+		double z0 = pn;
+		double z1 = pp;
+		
+		double d = 0.01D;
+		
+		if(canConnect(iba, x - 1, y, z)) x0 = -d;
+		if(canConnect(iba, x + 1, y, z)) x1 = 1D + d;
+		if(canConnect(iba, x, y, z - 1)) z0 = -d;
+		if(canConnect(iba, x, y, z + 1)) z1 = 1D + d;
+		
+		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1D, z1));
 	}
 	
 	public boolean canConnect(IBlockAccess iba, int x, int y, int z)

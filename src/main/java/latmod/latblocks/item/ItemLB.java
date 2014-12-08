@@ -11,7 +11,7 @@ public class ItemLB extends ItemLM
 	public ItemLB(String s)
 	{ super(s); }
 	
-	public LMMod<?, ?> getMod()
+	public LMMod getMod()
 	{ return LatBlocks.mod; }
 	
 	@SideOnly(Side.CLIENT)

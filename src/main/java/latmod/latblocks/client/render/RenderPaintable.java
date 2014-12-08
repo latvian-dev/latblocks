@@ -1,11 +1,15 @@
 package latmod.latblocks.client.render;
+import org.lwjgl.opengl.GL11;
+
 import latmod.core.client.BlockRendererLM;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.core.util.FastList;
+import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
@@ -32,9 +36,18 @@ public class RenderPaintable extends BlockRendererLM
 		
 		for(int i = 0; i < boxes.size(); i++)
 		{
+			GL11.glPushMatrix();
+			rotateBlocks();
 			renderBlocks.setRenderBounds(boxes.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
+			GL11.glPopMatrix();
 		}
+	}
+	
+	public static void rotateBlocks()
+	{
+		if(LatBlocksConfig.Client.rotateInvBlocks)
+			GL11.glRotated(Minecraft.getSystemTime() * 0.053D, 0D, 1D, 0D);
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
@@ -48,13 +61,15 @@ public class RenderPaintable extends BlockRendererLM
 		
 		if(t == null || t.isInvalid()) return false;
 		
+		BlockPaintableLB blockP = (BlockPaintableLB)b;
+		
 		Paint[] p = t.getPaint();
 		IIcon[] defIcon = new IIcon[6];
 		for(int i = 0; i < 6; i++)
-			defIcon[i] = ((BlockPaintableLB)b).getDefaultWorldIcon(iba, x, y, z, i);
+			defIcon[i] = blockP.getDefaultWorldIcon(iba, x, y, z, i);
 		
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		((BlockPaintableLB)b).addRenderBoxes(boxes, iba, x, y, z);
+		blockP.addRenderBoxes(boxes, iba, x, y, z, -1);
 		
 		for(int i = 0; i < boxes.size(); i++)
 			IPaintable.Renderer.renderCube(renderBlocks, p, defIcon, x, y, z, boxes.get(i));

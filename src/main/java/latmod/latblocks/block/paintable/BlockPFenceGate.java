@@ -2,7 +2,6 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
-import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
 import latmod.core.util.*;
 import latmod.core.util.MathHelper;
@@ -32,46 +31,77 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	{
 		mod.recipes.addRecipe(new ItemStack(this), "PSP", "PSP",
 				'P', LatBlocksItems.b_paintable,
-				'S', ODItems.STICK);
+				'S', LatBlocksItems.b_cover);
 	}
 	
 	@SuppressWarnings("all")
 	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
 	{
-		if(w.getBlockMetadata(x, y, z) > 1) return;
+		int m = w.getBlockMetadata(x, y, z);
 		
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w, x, y, z, -1);
+		if(m > 1) return;
 		
-		for(int i = 0; i < boxes.size(); i++)
-		{
-			AxisAlignedBB bb1 = boxes.get(i).getOffsetBoundingBox(x, y, z);
-			bb1.maxY += 0.5D;
-			if(bb.intersectsWith(bb1)) l.add(bb1);
-		}
+		double p = 1D / 8D * 4D;
+		double pn = 0.5D - p / 2D;
+		double pp = 0.5D + p / 2D;
+		
+		double x0 = pn;
+		double x1 = pp;
+		double z0 = pn;
+		double z1 = pp;
+		
+		double d = 0.01D;
+		
+		if(m % 2 == 0) { x0 = -d; x1 = 1D + d; }
+		else { z0 = -d; z1 = 1D + d; }
+		
+		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1.5D, z1).getOffsetBoundingBox(x, y, z);
+		if(bb1 != null && bb.intersectsWith(bb1)) l.add(bb1);
 	}
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{
-		w.setBlockMetadataWithNotify(x, y, z, (w.getBlockMetadata(x, y, z) + 2) % 4, 3);
+		int m0 = w.getBlockMetadata(x, y, z);
+		w.setBlockMetadataWithNotify(x, y, z, (m0 + 2) % 4, 3);
+		
+		for(int i = -2; i <= 2; i++)
+		{
+			if(i != 0)
+			{
+				int m = w.getBlockMetadata(x, y + i, z);
+				if(m == m0) w.setBlockMetadataWithNotify(x, y + i, z, (m + 2) % 4, 3);
+			}
+		}
+		
+		w.playAuxSFXAtEntity(ep, 1003, x, y, z, 0);
 		return true;
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
 	{
-		double p = 1F / 4D;
+		double p = 1D / 16D * 3D;
 		double pn = 0.5D - p / 2D;
 		double pp = 0.5D + p / 2D;
 		
-		boxes.add(AxisAlignedBB.getBoundingBox(pn, 0D, pn, pp, 1D, pp));
-		//boxes.add(AxisAlignedBB.getBoundingBox(pn, 0D, pn + 0.5D, pp, 1D, pp));
+		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, pn, p, 1D, pp));
+		boxes.add(AxisAlignedBB.getBoundingBox(1D - p, 0D, pn, 1D, 1D, pp));
+		
+		double hn = 1D / 8D * 1D;
+		double hp = 1D / 8D * 7D;
+		
+		double dd = 1D / 8D;
+		
+		double x0 = p;
+		double z0 = 0.5D - dd / 2D;
+		double x1 = 1D - p;
+		double z1 = 0.5D + dd / 2D;
+		
+		boxes.add(AxisAlignedBB.getBoundingBox(x0, hn, z0, x1, hp, z1));
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{
-		return MathHelper.floor((double)(ep.rotationYaw * 2D / 360D) + 0.5D) & 1;
-	}
+	{ return (MathHelper.floor(ep.rotationYaw * 4D / 360D + 0.5D) & 3) % 2; }
 	
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
@@ -82,17 +112,67 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		
-		double p = 1F / 4D;
+		double p = 1D / 8D * 4D;
 		double pn = 0.5D - p / 2D;
 		double pp = 0.5D + p / 2D;
 		
-		/*
-		double h1n = 1D / 8D * 2D;
-		double h1p = 1D / 8D * 3D;
-		double h2n = 1D / 8D * 5D;
-		double h2p = 1D / 8D * 6D;
-		*/
+		double x0 = pn;
+		double x1 = pp;
+		double z0 = pn;
+		double z1 = pp;
 		
-		boxes.add(AxisAlignedBB.getBoundingBox(pn, 0D, pn, pp, 1D, pp));
+		double d = 0.01D;
+		
+		if(m % 2 == 0) { x0 = -d; x1 = 1D + d; }
+		else { z0 = -d; z1 = 1D + d; }
+		
+		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1D, z1));
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	{
+		if(m == -1) m = iba.getBlockMetadata(x, y, z);
+		
+		double p = 1D / 16D * 3D;
+		double pn = 0.5D - p / 2D;
+		double pp = 0.5D + p / 2D;
+		
+		if(m % 2 == 0)
+		{
+			boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, pn, p, 1D, pp));
+			boxes.add(AxisAlignedBB.getBoundingBox(1D - p, 0D, pn, 1D, 1D, pp));
+		}
+		else
+		{
+			boxes.add(AxisAlignedBB.getBoundingBox(pn, 0D, 0D, pp, 1D, p));
+			boxes.add(AxisAlignedBB.getBoundingBox(pn, 0D, 1D - p, pp, 1D, 1D));
+		}
+		
+		if(m <= 1)
+		{
+			double hn = 1D / 8D * 1D;
+			double hp = 1D / 8D * 7D;
+			
+			if(iba.getBlock(x, y - 1, z) == this) hn = 0D;
+			if(iba.getBlock(x, y + 1, z) == this) hp = 1D;
+			
+			double dd = 1D / 8D;
+			
+			double x0 = p;
+			double z0 = 0.5D - dd / 2D;
+			double x1 = 1D - p;
+			double z1 = 0.5D + dd / 2D;
+			
+			if(m == 1)
+			{
+				z0 = p;
+				x0 = 0.5D - dd / 2D;
+				z1 = 1D - p;
+				x1 = 0.5D + dd / 2D;
+			}
+			
+			boxes.add(AxisAlignedBB.getBoundingBox(x0, hn, z0, x1, hp, z1));
+		}
 	}
 }

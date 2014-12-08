@@ -59,7 +59,7 @@ public class BlockFountain extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
     public String getItemIconName()
-    { return mod.assets + "fountain"; }
+    { return null; }//mod.assets + "fountain"; }
 	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)

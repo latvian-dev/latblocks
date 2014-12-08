@@ -4,34 +4,33 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class LatBlocksConfig extends LMConfig
 {
-	public General general;
-	public Client client;
-	
 	public LatBlocksConfig(FMLPreInitializationEvent e)
 	{
 		super(e, "/LatMod/LatBlocks.cfg");
-		general = new General();
-		client = new Client();
+		General.load(get("general"));
+		Client.load(get("client"));
 		save();
 	}
 	
-	public class General extends Category
+	public static class General
 	{
-		public General()
+		public static boolean fencesIgnorePlayers;
+		
+		public static void load(Category c)
 		{
-			super("general");
+			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
 		}
 	}
 	
-	public class Client extends Category
+	public static class Client
 	{
-		public boolean renderBoxes;
+		public static boolean renderBoxes;
+		public static boolean rotateInvBlocks;
 		
-		public Client()
+		public static void load(Category c)
 		{
-			super("client");
-			
-			renderBoxes = getBool("renderBoxes", true);
+			renderBoxes = c.getBool("renderBoxes", true);
+			rotateInvBlocks = c.getBool("rotateInvBlocks", true);
 		}
 	}
 }

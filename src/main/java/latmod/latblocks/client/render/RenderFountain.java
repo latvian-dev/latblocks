@@ -9,6 +9,9 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
@@ -117,14 +120,20 @@ public class RenderFountain extends BlockRendererLM
 		
 		for(int i = 0; i < boxes.size(); i++)
 		{
+			GL11.glPushMatrix();
+			RenderPaintable.rotateBlocks();
 			renderBlocks.setRenderBounds(boxes.get(i));
 			renderBlocks.renderBlockAsItem(LatBlocksItems.b_paintable, 0, 1F);
+			GL11.glPopMatrix();
 		}
 		
 		for(int i = 0; i < fluid_boxes.size(); i++)
 		{
+			GL11.glPushMatrix();
+			RenderPaintable.rotateBlocks();
 			renderBlocks.setRenderBounds(fluid_boxes.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.flowing_water, 0, 1F);
+			GL11.glPopMatrix();
 		}
 	}
 	

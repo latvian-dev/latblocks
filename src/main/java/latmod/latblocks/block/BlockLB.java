@@ -12,7 +12,7 @@ public abstract class BlockLB extends BlockLM
 	public BlockLB(String s, Material m)
 	{ super(s, m); }
 	
-	public LMMod<?, ?> getMod()
+	public LMMod getMod()
 	{ return LatBlocks.mod; }
 	
 	@SideOnly(Side.CLIENT)
