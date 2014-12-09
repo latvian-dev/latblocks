@@ -1,13 +1,10 @@
 package latmod.latblocks.client;
 
 import latmod.core.util.FastList;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksConfig;
 import latmod.latblocks.block.BlockPaintableLB;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
@@ -28,31 +25,13 @@ public class LatBlockClientEventHandler
 		
 		if (event.currentItem != null && event.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && event.currentItem.getItem() instanceof ItemBlock)
 		{
-			Block worldBlock = event.player.worldObj.getBlock(event.target.blockX, event.target.blockY, event.target.blockZ);
-			
-			int s = event.target.sideHit;
-			int wx = event.target.blockX;
-			int wy = event.target.blockY;
-			int wz = event.target.blockZ;
-			
-	        if (worldBlock == Blocks.snow_layer) s = 1;
-	        else if (worldBlock != Blocks.vine && worldBlock != Blocks.tallgrass && worldBlock != Blocks.deadbush && !worldBlock.isReplaceable(event.player.worldObj, wx, wy, wz))
-	        {
-	            if (s == 0) --wy;
-	            if (s == 1) ++wy;
-	            if (s == 2) --wz;
-	            if (s == 3) ++wz;
-	            if (s == 4) --wx;
-	            if (s == 5) ++wx;
-	        }
-
-			if(worldBlock.getMaterial() != Material.air &&  event.player.worldObj.canPlaceEntityOnSide(worldBlock, wx, wy, wz, false, s, (Entity)null, event.currentItem.copy()))
-			{
 				Block itemBlock = Block.getBlockFromItem(event.currentItem.getItem());
 				
 				if(itemBlock instanceof BlockPaintableLB)
 				{
 					BlockPaintableLB block = (BlockPaintableLB)itemBlock;
+					
+					if(!block.canPlace(event.player.worldObj, event.target.blockX, event.target.blockY, event.target.blockZ, event.target.sideHit, event.currentItem)) return;
 					
 					FastList<AxisAlignedBB> placementBoxes = new FastList<AxisAlignedBB>();
 					block.getPlacementBoxes(placementBoxes, event);
@@ -114,7 +93,6 @@ public class LatBlockClientEventHandler
 						
 						if(!highlightBoxes.isEmpty()) event.setCanceled(true);
 					}
-				}
 			}
 		}
 	}

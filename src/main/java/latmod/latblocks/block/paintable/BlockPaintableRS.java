@@ -44,6 +44,9 @@ public class BlockPaintableRS extends BlockPaintableSided
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int s, int m)
-	{ return m == 1 ? icon_on : blockIcon; }
+	public IIcon getDefaultWorldIcon(IBlockAccess iba, int x, int y, int z, int s)
+	{
+		TilePaintableRS t = (TilePaintableRS)iba.getTileEntity(x, y, z);
+		return (t.redstonePowered ? icon_on : blockIcon);
+	}
 }

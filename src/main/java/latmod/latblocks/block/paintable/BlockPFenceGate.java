@@ -41,7 +41,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		
 		if(m > 1) return;
 		
-		double p = 1D / 8D * 4D;
+		double p = 1D / 4D;
 		double pn = 0.5D - p / 2D;
 		double pp = 0.5D + p / 2D;
 		
@@ -112,7 +112,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		
-		double p = 1D / 8D * 4D;
+		double p = 1D / 4D;
 		double pn = 0.5D - p / 2D;
 		double pp = 0.5D + p / 2D;
 		

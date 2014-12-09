@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
@@ -51,32 +51,6 @@ public class BlockGelLamp extends BlockPaintableLB
 		return (b != null && (b == Blocks.fence || b.isSideSolid(w, x, y, z, f.getOpposite())));
 	}
 	
-	/*
-	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
-	{
-		float f = 1F / 16F * 5F;
-		float h = 1F / 16F * 3F;
-		
-		ForgeDirection dir = ForgeDirection.VALID_DIRECTIONS[iba.getBlockMetadata(x, y, z)];
-		
-		if(dir == ForgeDirection.UP) // y+
-			setBlockBounds(f, 1F - h, f, 1F - f, 1F, 1F - f);
-		else if(dir == ForgeDirection.DOWN) //y-
-			setBlockBounds(f, 0F, f, 1F - f, h, 1F - f);
-		
-		else if(dir == ForgeDirection.EAST) //x
-			setBlockBounds(1F - h, f, f, 1F, 1F - f, 1F - f);
-		else if(dir == ForgeDirection.WEST) //x
-			setBlockBounds(0F, f, f, h, 1F - f, 1F - f);
-		
-		else if(dir == ForgeDirection.NORTH) // z-
-			setBlockBounds(f, f, 0F, 1F - f, 1F - f, h);
-		else if(dir == ForgeDirection.SOUTH) // z+
-			setBlockBounds(f, f, 1F - h, 1F - f, 1F - f, 1F);
-	}
-	
-	*/
-	
 	public boolean isOpaqueCube()
 	{ return false; }
 	
@@ -96,8 +70,10 @@ public class BlockGelLamp extends BlockPaintableLB
 		setBlockBounds(f, 0F, f, 1F - f, h, 1F - f);
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, int m)
+	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
+		if(m == -1) m = iba.getBlockMetadata(x, y, z);
+		
 		double f = 1D / 16D * 5D;
 		double h = 1D / 16D * 3D;
 		

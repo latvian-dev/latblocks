@@ -43,18 +43,29 @@ public abstract class BlockPaintableLB extends BlockLB
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return m; }
 	
-	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
+	public final void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
-		setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
 		addBoxes(boxes, iba, x, y, z, -1);
 		
-		if(boxes.size() >= 1) 
+		minX = minY = minZ = 1D;
+		maxX = maxY = maxZ = 0D;
+		
+		for(int i = 0; i < boxes.size(); i++)
 		{
-			AxisAlignedBB bb = boxes.get(0);
-			setBlockBounds((float)bb.minX, (float)bb.minY, (float)bb.minZ, (float)bb.maxX, (float)bb.maxY, (float)bb.maxZ);
+			AxisAlignedBB bb = boxes.get(i);
+			
+			if(bb.minX < minX) minX = bb.minX;
+			if(bb.minY < minY) minY = bb.minY;
+			if(bb.minZ < minZ) minZ = bb.minZ;
+			if(bb.maxX > maxX) maxX = bb.maxX;
+			if(bb.maxY > maxY) maxY = bb.maxY;
+			if(bb.maxZ > maxZ) maxZ = bb.maxZ;
 		}
 	}
+	
+	public final AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
+	{ return super.getCollisionBoundingBoxFromPool(w, x, y, z); }
 	
 	@SuppressWarnings("all")
 	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
@@ -69,9 +80,6 @@ public abstract class BlockPaintableLB extends BlockLB
 		}
 	}
 	
-	public final AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
-	{ return null; }
-	
 	public boolean canHarvestBlock(EntityPlayer ep, int meta)
 	{ return true; }
 	
@@ -82,7 +90,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
-	{ addBoxes(boxes, iba, x, y, z, -1); }
+	{ addBoxes(boxes, iba, x, y, z, m); }
 	
 	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{

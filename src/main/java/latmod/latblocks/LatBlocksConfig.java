@@ -5,11 +5,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class LatBlocksConfig extends LMConfig
 {
 	public LatBlocksConfig(FMLPreInitializationEvent e)
+	{ super(e, "/LatMod/LatBlocks.cfg"); }
+	
+	public void load()
 	{
-		super(e, "/LatMod/LatBlocks.cfg");
 		General.load(get("general"));
 		Client.load(get("client"));
-		save();
 	}
 	
 	public static class General

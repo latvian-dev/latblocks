@@ -38,7 +38,7 @@ public class BlockPFence extends BlockPaintableSingle
 	@SuppressWarnings("all")
 	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
 	{
-		double p = 1D / 8D * 4D;
+		double p = 1D / 4D;
 		double pn = 0.5D - p / 2D;
 		double pp = 0.5D + p / 2D;
 		
@@ -64,9 +64,22 @@ public class BlockPFence extends BlockPaintableSingle
 		double p = 1F / 4D;
 		double pn = 0.5D - p / 2D;
 		double pp = 0.5D + p / 2D;
+		double ds = 1D / 16D;
 		
-		boxes.add(AxisAlignedBB.getBoundingBox(pn, 0D, pn, pp, 1D, pp));
-		//boxes.add(AxisAlignedBB.getBoundingBox(pn, 0D, pn + 0.5D, pp, 1D, pp));
+		boxes.add(AxisAlignedBB.getBoundingBox(ds, 0D, pn, ds + p, 1D, pp));
+		boxes.add(AxisAlignedBB.getBoundingBox(1D - (ds + p), 0D, pn, 1D - ds, 1D, pp));
+		
+		double h1n = 1D / 8D * 2D;
+		double h1p = 1D / 8D * 3D;
+		double h2n = 1D / 8D * 5D;
+		double h2p = 1D / 8D * 6D;
+		
+		double dd = 1D / 8D;
+		double z0 = 0.5D - dd / 2D;
+		double z1 = 0.5D + dd / 2D;
+		
+		boxes.add(AxisAlignedBB.getBoundingBox(0D, h1n, z0, 1D, h1p, z1));
+		boxes.add(AxisAlignedBB.getBoundingBox(0D, h2n, z0, 1D, h2p, z1));
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -113,7 +126,7 @@ public class BlockPFence extends BlockPaintableSingle
 	
 	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
-		double p = 1D / 8D * 4D;
+		double p = 1D / 4D;
 		double pn = 0.5D - p / 2D;
 		double pp = 0.5D + p / 2D;
 		
