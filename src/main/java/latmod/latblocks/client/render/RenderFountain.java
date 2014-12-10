@@ -171,7 +171,8 @@ public class RenderFountain extends BlockRendererLM
 	
 	public void renderFluidBlock(TileFountain t)
 	{
-		renderBlocks.setCustomColor(Blocks.flowing_water.colorMultiplier(t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord));
+		renderBlocks.setCustomColor(null);
+		
 		IIcon icon = t.tank.getFluid().getStillIcon();
 		if(icon == null && t.tank.getFluid().getBlock() != null)
 			icon = t.tank.getFluid().getBlock().getBlockTextureFromSide(2);

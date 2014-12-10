@@ -1,6 +1,6 @@
 package latmod.latblocks.tile;
 
-import latmod.core.LatCoreMC;
+import latmod.core.*;
 import latmod.core.tile.*;
 import latmod.core.util.MathHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +24,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 		tank = new Tank("Tank", 4D)
 		{
 			public boolean canFill(ForgeDirection from, Fluid fluid)
-			{ return true; }
+			{ return fluid != null && fluid.getBlock() != null; }
 		};
 		
 		items = new ItemStack[1];
@@ -80,11 +80,16 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 				markDirty();
 			}
 			
-			/*
-			if(tank.getAmount() >= 1000 && items[0] != null && LatCoreMC.isBucket(items[0]))
+			if(items[0] != null && items[0].stackSize == 1)
 			{
+				ItemStack is1 = getFilled(items[0]);
+				
+				if(is1 != null)
+				{
+					items[0] = is1;
+					tank.drain(ForgeDirection.UNKNOWN, 1000, true);
+				}
 			}
-			*/
 		}
 		
 		if(redstonePowered && tank.hasFluid() && tank.getFluid().getBlock() != null)
@@ -106,17 +111,35 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 		}
 	}
 	
+	public ItemStack getFilled(ItemStack is)
+	{
+		if(tank.getAmount() < 1000) return null;
+		if(is == null || is.getItem() == null) return null;
+		ItemStack is1 = InvUtils.singleCopy(is);
+		FluidStack fs = new FluidStack(tank.getFluid(), 1000);
+		
+		if(is1.getItem() instanceof IFluidContainerItem)
+		{
+			IFluidContainerItem i = (IFluidContainerItem)is1.getItem();
+			int f = i.fill(is1, fs, true);
+			if(f == 1000) return is1;
+		}
+		
+		return FluidContainerRegistry.fillFluidContainer(fs, is1);
+	}
+	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		/*
 		if(is != null && is.getItem() instanceof IPaintable.IPainterItem) return false;
 		
-		if(is != null && tank.getAmount() >= 1000 && LatCoreMC.isBucket(is))
+		ItemStack is1 = getFilled(is);
+		
+		if(is1 != null)
 		{
 			is.stackSize--;
 			tank.drain(ForgeDirection.UNKNOWN, 1000, true);
-			InvUtils.giveItem(ep, new ItemStack(Blocks.dirt), ep.inventory.currentItem);
-		}*/
+			InvUtils.giveItem(ep, is1, ep.inventory.currentItem);
+		}
 		
 		return true;
 	}

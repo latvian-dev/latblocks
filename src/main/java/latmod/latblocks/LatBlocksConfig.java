@@ -10,7 +10,6 @@ public class LatBlocksConfig extends LMConfig
 	public void load()
 	{
 		General.load(get("general"));
-		Client.load(get("client"));
 	}
 	
 	public static class General
@@ -20,18 +19,6 @@ public class LatBlocksConfig extends LMConfig
 		public static void load(Category c)
 		{
 			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
-		}
-	}
-	
-	public static class Client
-	{
-		public static boolean renderBoxes;
-		public static boolean rotateInvBlocks;
-		
-		public static void load(Category c)
-		{
-			renderBoxes = c.getBool("renderBoxes", true);
-			rotateInvBlocks = c.getBool("rotateInvBlocks", true);
 		}
 	}
 }

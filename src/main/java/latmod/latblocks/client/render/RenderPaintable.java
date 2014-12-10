@@ -1,19 +1,20 @@
 package latmod.latblocks.client.render;
-import org.lwjgl.opengl.GL11;
-
 import latmod.core.client.BlockRendererLM;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.core.util.FastList;
-import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.latblocks.tile.TilePaintableLB;
+import latmod.latcore.LCConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
@@ -46,7 +47,7 @@ public class RenderPaintable extends BlockRendererLM
 	
 	public static void rotateBlocks()
 	{
-		if(LatBlocksConfig.Client.rotateInvBlocks)
+		if(LCConfig.Client.rotateBlocks)
 			GL11.glRotated(Minecraft.getSystemTime() * 0.053D, 0D, 1D, 0D);
 	}
 	

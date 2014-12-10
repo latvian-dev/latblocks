@@ -1,8 +1,8 @@
 package latmod.latblocks.client;
 
 import latmod.core.util.FastList;
-import latmod.latblocks.LatBlocksConfig;
 import latmod.latblocks.block.BlockPaintableLB;
+import latmod.latcore.LCConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.*;
 import net.minecraft.item.ItemBlock;
@@ -21,7 +21,7 @@ public class LatBlockClientEventHandler
 	@SubscribeEvent
 	public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent event)
 	{
-		if(!LatBlocksConfig.Client.renderBoxes) return;
+		if(!LCConfig.Client.renderHighlights) return;
 		
 		if (event.currentItem != null && event.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && event.currentItem.getItem() instanceof ItemBlock)
 		{

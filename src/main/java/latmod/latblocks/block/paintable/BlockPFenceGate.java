@@ -5,7 +5,7 @@ import java.util.List;
 import latmod.core.tile.TileLM;
 import latmod.core.util.*;
 import latmod.core.util.MathHelper;
-import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.paintable.TilePFence;
 import net.minecraft.block.material.Material;
@@ -55,7 +55,9 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		if(m % 2 == 0) { x0 = -d; x1 = 1D + d; }
 		else { z0 = -d; z1 = 1D + d; }
 		
-		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1.5D, z1).getOffsetBoundingBox(x, y, z);
+		double h = 1.5D;
+		if(LatBlocksConfig.General.fencesIgnorePlayers && e instanceof EntityPlayer) h = 1D;
+		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1).getOffsetBoundingBox(x, y, z);
 		if(bb1 != null && bb.intersectsWith(bb1)) l.add(bb1);
 	}
 	

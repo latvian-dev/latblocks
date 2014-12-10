@@ -5,12 +5,13 @@ import java.util.List;
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
 import latmod.core.util.*;
-import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.paintable.TilePFence;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -54,7 +55,9 @@ public class BlockPFence extends BlockPaintableSingle
 		if(canConnect(w, x, y, z - 1)) z0 = -d;
 		if(canConnect(w, x, y, z + 1)) z1 = 1D + d;
 		
-		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1.5D, z1).getOffsetBoundingBox(x, y, z);
+		double h = 1.5D;
+		if(LatBlocksConfig.General.fencesIgnorePlayers && e instanceof EntityPlayer) h = 1D;
+		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1).getOffsetBoundingBox(x, y, z);
 		if(bb.intersectsWith(bb1)) l.add(bb1);
 	}
 	
