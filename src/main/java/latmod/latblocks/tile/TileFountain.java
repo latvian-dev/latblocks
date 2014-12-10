@@ -169,8 +169,8 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	{ return ALL_SLOTS; }
 	
 	public boolean canInsertItem(int i, ItemStack is, int s)
-	{ return LatCoreMC.isBucket(is); }
+	{ return getFilled(is) != null; }
 	
 	public boolean canExtractItem(int i, ItemStack is, int s)
-	{ return !LatCoreMC.isBucket(is); }
+	{ return getFilled(is) == null; }
 }
