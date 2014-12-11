@@ -18,7 +18,7 @@ public class LatBlocksConfig extends LMConfig
 		
 		public static void load(Category c)
 		{
-			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
+			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true, "Fences Ignore Players");
 		}
 	}
 }
