@@ -2,9 +2,9 @@ package latmod.latblocks.block;
 
 import java.util.List;
 
-import latmod.core.LatCoreMC;
+import latmod.core.*;
+import latmod.core.MathHelper;
 import latmod.core.tile.TileLM;
-import latmod.core.util.FastList;
 import latmod.latblocks.client.render.RenderPaintable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -21,6 +21,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public BlockPaintableLB(String s, Material m)
 	{
 		super(s, m);
+		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
 		registerTiles();
@@ -136,7 +137,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
 		addBoxes(boxes, w, x, y, z, -1);
-		return LatCoreMC.collisionRayTrace(w, x, y, z, start, end, boxes);
+		return MathHelper.collisionRayTrace(w, x, y, z, start, end, boxes);
 	}
 	
 	@SideOnly(Side.CLIENT)

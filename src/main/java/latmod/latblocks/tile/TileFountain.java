@@ -2,7 +2,6 @@ package latmod.latblocks.tile;
 
 import latmod.core.*;
 import latmod.core.tile.*;
-import latmod.core.util.MathHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.*;

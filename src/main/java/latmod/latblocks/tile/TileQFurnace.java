@@ -1,6 +1,6 @@
 package latmod.latblocks.tile;
 
-import latmod.core.LatCoreMC;
+import latmod.core.MathHelper;
 import latmod.core.tile.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,7 +56,7 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory
 		if(is.hasDisplayName())
 			customName = is.getDisplayName();
 		
-		setMeta(LatCoreMC.get2DRotation(ep).ordinal());
+		setMeta(MathHelper.get2DRotation(ep).ordinal());
 	}
 	
 	public void onBroken()

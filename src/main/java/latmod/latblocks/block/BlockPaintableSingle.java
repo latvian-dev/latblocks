@@ -1,5 +1,5 @@
 package latmod.latblocks.block;
-import latmod.core.util.FastList;
+import latmod.core.FastList;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
@@ -15,7 +15,6 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 	{
 		super(s, m);
 		height = h;
-		setHardness(0.3F);
 	}
 	
 	public boolean isOpaqueCube()

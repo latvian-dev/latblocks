@@ -1,9 +1,8 @@
 package latmod.latblocks.block;
 import java.util.List;
 
-import latmod.core.ODItems;
+import latmod.core.*;
 import latmod.core.tile.TileLM;
-import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.paintable.TileGelLamp;
 import net.minecraft.block.Block;

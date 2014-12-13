@@ -1,8 +1,8 @@
 package latmod.latblocks.block.paintable;
 
+import latmod.core.*;
+import latmod.core.MathHelper;
 import latmod.core.tile.TileLM;
-import latmod.core.util.FastList;
-import latmod.core.util.MathHelper;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
 import latmod.latblocks.tile.paintable.TilePStairs;

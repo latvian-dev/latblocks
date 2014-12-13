@@ -1,7 +1,7 @@
 package latmod.latblocks.client.render;
+import latmod.core.FastList;
 import latmod.core.client.BlockRendererLM;
 import latmod.core.tile.IPaintable;
-import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;

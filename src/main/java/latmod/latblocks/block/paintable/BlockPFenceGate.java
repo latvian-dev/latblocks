@@ -2,9 +2,9 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
+import latmod.core.*;
+import latmod.core.MathHelper;
 import latmod.core.tile.TileLM;
-import latmod.core.util.*;
-import latmod.core.util.MathHelper;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.paintable.TilePFence;

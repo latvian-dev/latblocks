@@ -16,7 +16,7 @@ public class BlockFountain extends BlockLB
 	public BlockFountain(String s)
 	{
 		super(s, Material.water);
-		setHardness(1F);
+		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
 		LatBlocks.mod.addTile(TileFountain.class, s);

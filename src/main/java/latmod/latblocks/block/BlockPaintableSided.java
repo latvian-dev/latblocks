@@ -14,7 +14,6 @@ public abstract class BlockPaintableSided extends BlockPaintableLB
 	public BlockPaintableSided(String s)
 	{
 		super(s, Material.rock);
-		setHardness(0.3F);
 	}
 	
 	public void registerTiles()

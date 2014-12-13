@@ -14,6 +14,7 @@ public class BlockPSlab extends BlockPaintableSingle
 	public BlockPSlab(String s)
 	{
 		super(s, Material.rock, 1F / 2F);
+		setHardness(1.5F);
 	}
 	
 	public void loadRecipes()
