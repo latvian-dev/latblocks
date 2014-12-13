@@ -10,7 +10,7 @@ public class ItemNote extends ItemLB
 	public ItemNote(String s)
 	{
 		super(s);
-		setMaxStackSize(1);
+		setMaxStackSize(16);
 	}
 	
 	public void loadRecipes()
