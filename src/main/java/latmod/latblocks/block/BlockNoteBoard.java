@@ -12,15 +12,17 @@ public class BlockNoteBoard extends BlockPaintableSingle
 {
 	public BlockNoteBoard(String s)
 	{
-		super(s, Material.wood, 1F / 32F);
+		super(s, Material.wood, 1F / 16F);
 		setBlockTextureName("noteBoard");
 	}
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), " C ", "CIC", " C ",
-				'C', LatBlocksItems.b_carpet,
-				'I', Items.item_frame);
+		mod.recipes.addShapelessRecipe(new ItemStack(this),
+				LatBlocksItems.b_cover,
+				Items.item_frame);
+		
+		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_cover), this);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

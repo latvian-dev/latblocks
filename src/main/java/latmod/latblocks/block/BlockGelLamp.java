@@ -47,7 +47,7 @@ public class BlockGelLamp extends BlockPaintableLB
 	{
 		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[s].getOpposite();
 		Block b = w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ);
-		return (b != null && (b == Blocks.fence || b.isSideSolid(w, x, y, z, f.getOpposite())));
+		return b == Blocks.fence || b == LatBlocksItems.b_fence || b.isSideSolid(w, x, y, z, f.getOpposite());
 	}
 	
 	public boolean isOpaqueCube()
@@ -95,18 +95,19 @@ public class BlockGelLamp extends BlockPaintableLB
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{ return ForgeDirection.VALID_DIRECTIONS[mop.sideHit].getOpposite().ordinal(); }
+	{
+		if(!canPlaceBlockOnSide(w, mop.blockX, mop.blockY, mop.blockZ, mop.sideHit)) return -1;
+		return ForgeDirection.VALID_DIRECTIONS[mop.sideHit].getOpposite().ordinal();
+	}
 	
 	public int damageDropped(int i)
 	{ return 0; }
 	
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
-		int m = w.getBlockMetadata(x, y, z);
-		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[m];
+		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[w.getBlockMetadata(x, y, z)];
 		
-		Block b1 = w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ);
-		if(b1 == null || b1 == Blocks.air)
+		if(w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ) == Blocks.air)
 		{
 			dropBlockAsItem(w, x, y, z, new ItemStack(this));
 			w.setBlockToAir(x, y, z);

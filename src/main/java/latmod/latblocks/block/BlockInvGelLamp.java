@@ -45,11 +45,7 @@ public class BlockInvGelLamp extends BlockLB
 	{ return false; }
 	
 	public boolean canPlaceBlockOnSide(World w, int x, int y, int z, int s)
-	{
-		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[s].getOpposite();
-		Block b = w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ);
-		return (b != null && (b == Blocks.fence || b.isSideSolid(w, x, y, z, f.getOpposite())));
-	}
+	{ return LatBlocksItems.b_gel_lamp.canPlaceBlockOnSide(w, x, y, z, s); }
 	
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
@@ -83,22 +79,13 @@ public class BlockInvGelLamp extends BlockLB
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{ return ForgeDirection.VALID_DIRECTIONS[mop.sideHit].getOpposite().ordinal(); }
+	{ return LatBlocksItems.b_gel_lamp.onBlockPlaced(w, ep, mop, m); }
 	
 	public int damageDropped(int i)
 	{ return 0; }
 	
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
-	{
-		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[w.getBlockMetadata(x, y, z)];
-		
-		Block b1 = w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ);
-		if(b1 == null || b1 == Blocks.air)
-		{
-			dropBlockAsItem(w, x, y, z, new ItemStack(this));
-			w.setBlockToAir(x, y, z);
-		}
-	}
+	{ LatBlocksItems.b_gel_lamp.onNeighborBlockChange(w, x, y, z, b); }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
