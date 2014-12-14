@@ -1,11 +1,11 @@
 package latmod.latblocks.client.render;
 import latmod.core.FastList;
 import latmod.core.client.BlockRendererLM;
+import latmod.core.mod.LCConfig;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.latblocks.tile.TilePaintableLB;
-import latmod.latcore.LCConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;

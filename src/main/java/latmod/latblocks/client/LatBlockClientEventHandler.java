@@ -1,8 +1,8 @@
 package latmod.latblocks.client;
 
 import latmod.core.FastList;
+import latmod.core.mod.LCConfig;
 import latmod.latblocks.block.BlockPaintableLB;
-import latmod.latcore.LCConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.*;
 import net.minecraft.item.ItemBlock;
