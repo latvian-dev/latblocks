@@ -30,7 +30,7 @@ public class LatBlocks
 		LatBlocksItems.init();
 		mod.onPostLoaded();
 		
-		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.i_painter_dmd));
+		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.b_fountain));
 		
 		proxy.preInit(e);
 	}
