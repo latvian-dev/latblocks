@@ -8,6 +8,7 @@ import latmod.core.tile.TileLM;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.paintable.TilePFence;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,24 +60,6 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		if(LatBlocksConfig.General.fencesIgnorePlayers && e instanceof EntityPlayer) h = 1D;
 		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1).getOffsetBoundingBox(x, y, z);
 		if(bb1 != null && bb.intersectsWith(bb1)) l.add(bb1);
-	}
-	
-	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
-	{
-		int m0 = w.getBlockMetadata(x, y, z);
-		w.setBlockMetadataWithNotify(x, y, z, (m0 + 2) % 4, 3);
-		
-		for(int i = -2; i <= 2; i++)
-		{
-			if(i != 0)
-			{
-				int m = w.getBlockMetadata(x, y + i, z);
-				if(m == m0) w.setBlockMetadataWithNotify(x, y + i, z, (m + 2) % 4, 3);
-			}
-		}
-		
-		w.playAuxSFXAtEntity(ep, 1003, x, y, z, 0);
-		return true;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -175,6 +158,41 @@ public class BlockPFenceGate extends BlockPaintableSingle
 			}
 			
 			boxes.add(AxisAlignedBB.getBoundingBox(x0, hn, z0, x1, hp, z1));
+		}
+	}
+	
+	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
+	{ setOpen(w, x, y, z, !isOpen(w.getBlockMetadata(x, y, z))); return true; }
+	
+	public boolean isOpen(int meta)
+	{ return meta > 1; }
+	
+	public void setOpen(World w, int x, int y, int z, boolean open)
+	{
+		int m0 = w.getBlockMetadata(x, y, z);
+		
+		if(open == isOpen(m0)) return;
+		
+		w.setBlockMetadataWithNotify(x, y, z, (m0 + 2) % 4, 3);
+		
+		for(int i = -2; i <= 2; i++)
+		{
+			if(i != 0)
+			{
+				int m = w.getBlockMetadata(x, y + i, z);
+				if(m == m0) w.setBlockMetadataWithNotify(x, y + i, z, (m + 2) % 4, 3);
+			}
+		}
+		
+		w.playAuxSFXAtEntity(null, 1003, x, y, z, 0);
+	}
+	
+	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
+	{
+		if (!w.isRemote)
+		{
+			boolean flag = w.isBlockIndirectlyGettingPowered(x, y, z);
+			if(flag || b.canProvidePower()) setOpen(w, x, y, z, flag);
 		}
 	}
 }

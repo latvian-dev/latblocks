@@ -4,8 +4,9 @@ import java.util.List;
 
 import latmod.core.*;
 import latmod.core.MathHelper;
-import latmod.core.tile.TileLM;
+import latmod.core.tile.*;
 import latmod.latblocks.client.render.RenderPaintable;
+import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -147,4 +148,13 @@ public abstract class BlockPaintableLB extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public IIcon getDefaultItemIcon()
 	{ return blockIcon; }
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
+	{
+		TilePaintableLB t = (TilePaintableLB)iba.getTileEntity(x, y, z);
+		if(t != null && t.isValid())
+			return IPaintable.Paint.getIcon(t.getPaint()[s], s, blockIcon);
+		return blockIcon;
+	}
 }

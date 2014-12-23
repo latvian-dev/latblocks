@@ -1,7 +1,6 @@
 package latmod.latblocks.client;
-import latmod.core.LMProxy;
+import latmod.core.*;
 import latmod.latblocks.client.render.*;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.*;
 
@@ -10,8 +9,7 @@ public class LatBlocksClient extends LMProxy
 {
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		MinecraftForge.EVENT_BUS.register(new LatBlockClientEventHandler());
-		
+		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, true, false, false);
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
 	}
