@@ -177,7 +177,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		
 		for(int i = -2; i <= 2; i++)
 		{
-			if(i != 0)
+			if(i != 0 && w.getBlock(x, y + i, z) == this)
 			{
 				int m = w.getBlockMetadata(x, y + i, z);
 				if(m == m0) w.setBlockMetadataWithNotify(x, y + i, z, (m + 2) % 4, 3);

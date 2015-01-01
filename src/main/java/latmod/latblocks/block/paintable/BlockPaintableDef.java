@@ -17,7 +17,7 @@ public class BlockPaintableDef extends BlockPaintableSided
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
-		LatCoreMC.addOreDictionary(ODItems.PAINTABLE_BLOCK, new ItemStack(this));
+		LatCoreMC.addOreDictionary("blockPaintable", new ItemStack(this));
 	}
 	
 	public void loadRecipes()

@@ -1,14 +1,12 @@
 package latmod.latblocks;
 
-import latmod.core.ODItems;
 import latmod.latblocks.block.*;
 import latmod.latblocks.block.paintable.*;
 import latmod.latblocks.item.*;
-import net.minecraft.item.ItemStack;
 
 public class LatBlocksItems
 {
-	public static BlockPaintableSided b_paintable;
+	public static BlockPaintableDef b_paintable;
 	public static BlockPaintableRS b_paintable_rs;
 	public static BlockPaintableGS b_paintable_gs;
 	public static BlockFountain b_fountain;
@@ -25,6 +23,8 @@ public class LatBlocksItems
 	public static BlockPFence b_fence;
 	public static BlockPFenceGate b_fence_gate;
 	
+	public static ItemMaterialsLB i_mat;
+	public static ItemPainterParts i_parts;
 	public static ItemBlockPainter i_painter;
 	public static ItemBlockPainterDmd i_painter_dmd;
 	public static ItemNote i_note;
@@ -48,10 +48,10 @@ public class LatBlocksItems
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
 		
+		i_mat = new ItemMaterialsLB("materials").register();
+		i_parts = new ItemPainterParts("painterParts").register();
 		i_painter = new ItemBlockPainter("blockPainter").register();
 		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();
 		i_note = new ItemNote("note").register();
-		
-		ODItems.paintableBlock = new ItemStack(b_paintable, 1, 0);
 	}
 }

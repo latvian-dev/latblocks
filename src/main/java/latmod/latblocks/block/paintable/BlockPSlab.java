@@ -20,7 +20,7 @@ public class BlockPSlab extends BlockPaintableSingle
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 6), "PPP",
-				'P', ODItems.PAINTABLE_BLOCK);
+				'P', LatBlocksItems.b_paintable);
 		
 		mod.recipes.addShapelessRecipe(new ItemStack(this, 2), LatBlocksItems.b_paintable, ODItems.TOOL_SAW);
 		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this, this);

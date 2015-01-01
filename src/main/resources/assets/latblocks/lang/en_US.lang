@@ -14,13 +14,13 @@ latblocks:tile.tankWater.name=Water Tank
 latblocks:tile.tankVoid.name=Void Tank
 latblocks:tile.gelLamp.name=Paintable Gel Lamp
 latblocks:tile.gelLampInv.name=Invisible Gel Lamp
+latblocks:tile.fence.name=Paintable Fence
+latblocks:tile.fenceGate.name=Paintable Fence Gate
 
 # To be implemented #
 
 latblocks:tile.noteBoard.name=[WIP] Note Board
 latblocks:tile.quartzFurnace.name=[WIP] Quartz Furnace
-latblocks:tile.fence.name=Paintable Fence
-latblocks:tile.fenceGate.name=Paintable Fence Gate
 latblocks:tile.smoker.name=Paintable Smoker
 latblocks:tile.door.name=Paintable Door Block
 latblocks:tile.paintableQuartzFurnace.name=Paintable Quartz Furnace
@@ -29,6 +29,16 @@ latblocks:tile.buffer.name=Buffer
 
 ### Items ###
 
+latblocks:item.gemGlowium.name=Glowium
+latblocks:item.dustGlowium.name=Glowium Dust
+latblocks:item.paintRoller.rod.name=Block Painter Rod
+latblocks:item.paintRoller.basic.name=Paint Roller
+latblocks:item.paintRoller.dmd.name=Diamond Paint Roller
+latblocks:item.paintRoller.color.name=Color Roller
+latblocks:item.paintRoller.multi.name=Multi-Paint Roller
+
 latblocks:item.blockPainter.name=Block Painter
 latblocks:item.blockPainterDmd.name=Diamond Block Painter
+latblocks:item.colorPainter.name=Color Painter
+latblocks:item.blockPainterMulti.name=Multi-Block Painter
 latblocks:item.note.name=[WIP] Sticky Note

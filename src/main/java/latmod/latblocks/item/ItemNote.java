@@ -1,5 +1,6 @@
 package latmod.latblocks.item;
 import latmod.core.*;
+import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -19,7 +20,7 @@ public class ItemNote extends ItemLB
 				'P', Items.paper,
 				'S', ODItems.SLIMEBALL,
 				'I', EnumDyeColor.BLACK.dyeName,
-				'B', ODItems.PAINTABLE_COVER);
+				'B', LatBlocksItems.b_paintable);
 	}
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)

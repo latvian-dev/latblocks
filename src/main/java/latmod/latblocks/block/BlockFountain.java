@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.*;
 import latmod.latblocks.client.render.RenderFountain;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.material.Material;
@@ -28,7 +28,7 @@ public class BlockFountain extends BlockLB
 				'H', Blocks.hopper,
 				'G', ODItems.GLASS,
 				'S', ODItems.STONE,
-				'P', ODItems.PAINTABLE_BLOCK);
+				'P', LatBlocksItems.b_paintable);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

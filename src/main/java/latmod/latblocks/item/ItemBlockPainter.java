@@ -1,7 +1,5 @@
 package latmod.latblocks.item;
-import latmod.core.*;
 import latmod.core.tile.IPaintable;
-import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -16,22 +14,9 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 		setFull3D();
 	}
 	
-	public void onPostLoaded()
-	{
-		super.onPostLoaded();
-		
-		LatCoreMC.addOreDictionary(ODItems.TOOL_PAINTER_ANY, new ItemStack(this, 1, LatCoreMC.ANY));
-		
-		if(this == LatBlocksItems.i_painter)
-			LatCoreMC.addOreDictionary(ODItems.TOOL_PAINTER, new ItemStack(this, 1, LatCoreMC.ANY));
-	}
-	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "SCS", "SPS", " P ",
-				'S', ODItems.STICK,
-				'C', ODItems.PAINTABLE_BLOCK,
-				'P', ODItems.IRON);
+		mod.recipes.addShapelessRecipe(new ItemStack(this), ItemPainterParts.PAINT_ROLLER_ROD, ItemPainterParts.PAINT_ROLLER);
 	}
 	
 	public ItemStack getPaintItem(ItemStack is)

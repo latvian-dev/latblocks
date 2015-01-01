@@ -28,7 +28,7 @@ public class BlockPCover extends BlockPaintableSingle
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
-		LatCoreMC.addOreDictionary(ODItems.PAINTABLE_COVER, new ItemStack(this));
+		LatCoreMC.addOreDictionary("paintableCover", new ItemStack(this));
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
