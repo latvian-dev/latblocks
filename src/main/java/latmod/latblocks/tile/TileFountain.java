@@ -1,7 +1,10 @@
 package latmod.latblocks.tile;
 
+import java.util.List;
+
 import latmod.core.*;
 import latmod.core.tile.*;
+import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.*;
@@ -9,7 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-public class TileFountain extends TileLM implements IPaintable, IFluidHandler, ISidedInventory
+public class TileFountain extends TileLM implements IPaintable, IFluidHandler, ISidedInventory, IWailaTile.Body
 {
 	private static final int[] ALL_SLOTS = new int[] { 0 };
 	
@@ -175,4 +178,10 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return getFilled(is) == null; }
+
+	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
+	{
+		if(tank.isEmpty()) info.add("Tank: Empty");
+		else info.add("Tank: " + tank.getAmount() + " mB of " + tank.getFluidStack().getLocalizedName());
+	}
 }

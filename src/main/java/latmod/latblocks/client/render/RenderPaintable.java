@@ -32,7 +32,6 @@ public class RenderPaintable extends BlockRendererLM
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
 		((BlockPaintableLB)b).addItemRenderBoxes(boxes);
 		renderBlocks.setCustomColor(null);
-		renderBlocks.customMetadata = 0;
 		renderBlocks.setOverrideBlockTexture(((BlockPaintableLB)b).getDefaultItemIcon());
 		
 		for(int i = 0; i < boxes.size(); i++)
@@ -73,7 +72,7 @@ public class RenderPaintable extends BlockRendererLM
 		blockP.addRenderBoxes(boxes, iba, x, y, z, -1);
 		
 		for(int i = 0; i < boxes.size(); i++)
-			IPaintable.Renderer.renderCube(renderBlocks, p, defIcon, x, y, z, boxes.get(i));
+			IPaintable.Renderer.renderCube(iba, renderBlocks, p, defIcon, x, y, z, boxes.get(i));
 		
 		return true;
 	}

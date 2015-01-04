@@ -114,7 +114,6 @@ public class RenderFountain extends BlockRendererLM
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.renderAllFaces = true;
-		renderBlocks.customMetadata = 0;
 		renderBlocks.setCustomColor(null);
 		renderBlocks.clearOverrideBlockTexture();
 		
@@ -151,7 +150,7 @@ public class RenderFountain extends BlockRendererLM
 		{
 			IIcon defIcon = LatBlocksItems.b_paintable.getBlockIcon();
 			
-			IPaintable.Renderer.renderCube(renderBlocks, IPaintable.Renderer.to6(t.paint[0]), IPaintable.Renderer.to6(defIcon), t.xCoord, t.yCoord, t.zCoord, boxes.get(i));
+			IPaintable.Renderer.renderCube(iba, renderBlocks, IPaintable.Renderer.to6(t.paint[0]), IPaintable.Renderer.to6(defIcon), t.xCoord, t.yCoord, t.zCoord, boxes.get(i));
 		}
 		
 		if(t.tank.hasFluid())

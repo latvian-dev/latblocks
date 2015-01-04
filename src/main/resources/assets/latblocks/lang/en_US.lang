@@ -21,6 +21,7 @@ latblocks:tile.gelLamp.name=Paintable Gel Lamp
 latblocks:tile.gelLampInv.name=Invisible Gel Lamp
 latblocks:tile.fence.name=Paintable Fence
 latblocks:tile.fenceGate.name=Paintable Fence Gate
+latblocks:tile.rsCable.name=Red Glowium Cable
 
 # To be implemented #
 
@@ -36,6 +37,8 @@ latblocks:tile.buffer.name=Buffer
 
 latblocks:item.gemGlowium.name=Glowium
 latblocks:item.dustGlowium.name=Glowium Dust
+latblocks:item.gemRedGlowium.name=Red Glowium
+
 latblocks:item.paintRoller.rod.name=Block Painter Rod
 latblocks:item.paintRoller.basic.name=Paint Roller
 latblocks:item.paintRoller.dmd.name=Diamond Paint Roller

@@ -23,6 +23,7 @@ public class LatBlocksItems
 	public static BlockInvGelLamp b_gel_lamp_inv;
 	public static BlockPFence b_fence;
 	public static BlockPFenceGate b_fence_gate;
+	public static BlockRSCable b_rs_cable;
 	
 	public static ItemMaterialsLB i_mat;
 	public static ItemPainterParts i_parts;
@@ -49,6 +50,7 @@ public class LatBlocksItems
 		b_gel_lamp_inv = new BlockInvGelLamp("gelLampInv").register();
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
+		b_rs_cable = new BlockRSCable("rsCable").register();
 		
 		i_mat = new ItemMaterialsLB("materials").register();
 		i_parts = new ItemPainterParts("painterParts").register();
