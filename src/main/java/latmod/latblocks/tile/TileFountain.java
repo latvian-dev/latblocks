@@ -20,13 +20,13 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	
 	public TileFountain()
 	{
-		tank = new Tank("Tank", 4D)
+		tank = new Tank("Tank", 1D)
 		{
 			public boolean canFill(ForgeDirection from, Fluid fluid)
 			{ return fluid != null && fluid.getBlock() != null; }
 		};
 		
-		items = new ItemStack[1];
+		items = new ItemStack[ALL_SLOTS.length];
 	}
 	
 	public boolean rerenderBlock()
@@ -91,7 +91,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 			}
 		}
 		
-		if(redstonePowered && tank.hasFluid() && tank.getFluid().getBlock() != null)
+		if(!isServer() && redstonePowered && tank.hasFluid() && tank.getFluid().getBlock() != null)
 		{
 			double mxz = 0.15D;
 			double my = 0.4D;
@@ -129,7 +129,7 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(is != null && is.getItem() instanceof IPaintable.IPainterItem) return false;
+		if(is == null || is.getItem() instanceof IPaintable.IPainterItem) return false;
 		
 		ItemStack is1 = getFilled(is);
 		
@@ -138,6 +138,9 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 			is.stackSize--;
 			tank.drain(ForgeDirection.UNKNOWN, 1000, true);
 			InvUtils.giveItem(ep, is1, ep.inventory.currentItem);
+		}
+		else if(tank.isEmpty())
+		{
 		}
 		
 		return true;

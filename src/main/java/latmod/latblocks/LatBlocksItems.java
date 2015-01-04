@@ -6,6 +6,7 @@ import latmod.latblocks.item.*;
 
 public class LatBlocksItems
 {
+	public static BlockLBBlocks b_blocks;
 	public static BlockPaintableDef b_paintable;
 	public static BlockPaintableRS b_paintable_rs;
 	public static BlockPaintableGS b_paintable_gs;
@@ -31,6 +32,7 @@ public class LatBlocksItems
 	
 	public static void init()
 	{
+		b_blocks = new BlockLBBlocks("blocks").register();
 		b_paintable = new BlockPaintableDef("paintable").register();
 		b_paintable_rs = new BlockPaintableRS("paintableRS").register();
 		b_paintable_gs = new BlockPaintableGS("paintableGS").register();

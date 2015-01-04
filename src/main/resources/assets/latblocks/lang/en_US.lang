@@ -2,6 +2,11 @@ itemGroup.latblocks:tab=LatBlocks
 
 ### Blocks ###
 
+latblocks:tile.glowiumBlock.name=Glowium Block
+latblocks:tile.glowiumTile.name=Glowium Tile
+latblocks:tile.glowiumBrick.name=Glowium Brick
+latblocks:tile.glowiumBrickSmall.name=Small Glowium Brick
+latblocks:tile.glowiumBrickChiseled.name=Chiseled Glowium Brick
 latblocks:tile.paintable.name=Paintable Block
 latblocks:tile.paintableRS.name=Dual Paintable Block
 latblocks:tile.paintableGS.name=Glowing Paintable Block

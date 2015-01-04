@@ -1,4 +1,6 @@
 package latmod.latblocks.block;
+import java.util.ArrayList;
+
 import latmod.core.ODItems;
 import latmod.core.client.LatCoreMCClient;
 import latmod.core.tile.TileLM;
@@ -70,5 +72,10 @@ public class BlockQFurnace extends BlockLB
 			return iconOff;
 		}
 		return blockIcon;
+	}
+	
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+	{
+		return new ArrayList<ItemStack>();
 	}
 }
