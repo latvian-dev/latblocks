@@ -1,11 +1,14 @@
-package latmod.latblocks.tile;
+package latmod.latblocks.tile.tank;
+import cpw.mods.fml.relauncher.*;
 import latmod.core.tile.TileLM;
+import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-public class TileVoidTank extends TileLM implements IFluidHandler
+public class TileVoidTank extends TileLM implements ITankTile
 {
 	public FluidTank tank;
 	
@@ -40,4 +43,16 @@ public class TileVoidTank extends TileLM implements IFluidHandler
 	
 	public FluidTankInfo[] getTankInfo(ForgeDirection from)
 	{ return new FluidTankInfo[] { tank.getInfo() }; }
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getTankBorderIcon()
+	{ return LatBlocksItems.b_tank_void.getBlockIcon(); }
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getTankFluidIcon()
+	{ return null; }
+	
+	@SideOnly(Side.CLIENT)
+	public double getTankFluidHeight()
+	{ return 0D; }
 }

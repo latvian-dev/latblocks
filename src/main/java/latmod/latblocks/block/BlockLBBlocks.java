@@ -5,9 +5,10 @@ import latmod.core.tile.TileLM;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockLBBlocks extends BlockLB
@@ -90,5 +91,21 @@ public class BlockLBBlocks extends BlockLB
 		icons = new IIcon[names.length];
 		for(int i = 0; i < icons.length; i++)
 			icons[i] = ir.registerIcon(mod.assets + names[i]);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
+	{
+		//if(iba.getBlockMetadata(x, y, z) <= 4)
+			return 15 << 20 | 15 << 4;
+		
+		//return super.getMixedBrightnessForBlock(iba, x, y, z);
+	}
+	
+	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess iba, int x, int y, int z)
+	{
+		//if(iba.getBlockMetadata(x, y, z) <= 4)
+		//	return false;
+		return type != EnumCreatureType.monster;
 	}
 }

@@ -1,7 +1,7 @@
 package latmod.latblocks.client.render;
 import latmod.core.FastList;
 import latmod.core.client.BlockRendererLM;
-import latmod.core.tile.IPaintable;
+import latmod.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;
@@ -117,10 +117,12 @@ public class RenderFountain extends BlockRendererLM
 		renderBlocks.setCustomColor(null);
 		renderBlocks.clearOverrideBlockTexture();
 		
+		GL11.glPushMatrix();
+		rotateBlocks();
+		
 		for(int i = 0; i < boxes.size(); i++)
 		{
 			GL11.glPushMatrix();
-			RenderPaintable.rotateBlocks();
 			renderBlocks.setRenderBounds(boxes.get(i));
 			renderBlocks.renderBlockAsItem(LatBlocksItems.b_paintable, 0, 1F);
 			GL11.glPopMatrix();
@@ -129,11 +131,12 @@ public class RenderFountain extends BlockRendererLM
 		for(int i = 0; i < fluid_boxes.size(); i++)
 		{
 			GL11.glPushMatrix();
-			RenderPaintable.rotateBlocks();
 			renderBlocks.setRenderBounds(fluid_boxes.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.flowing_water, 0, 1F);
 			GL11.glPopMatrix();
 		}
+		
+		GL11.glPopMatrix();
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
@@ -146,12 +149,12 @@ public class RenderFountain extends BlockRendererLM
 		TileFountain t = (TileFountain)iba.getTileEntity(x, y, z);
 		if(t == null || t.isInvalid()) return false;
 		
+		IIcon defIcon = LatBlocksItems.b_paintable.getBlockIcon();
+		IPaintable.Paint[] paint = IPaintable.Renderer.to6(t.paint[0]);
+		IIcon[] icons = IPaintable.Renderer.to6(defIcon);
+		
 		for(int i = 0; i < boxes.size(); i++)
-		{
-			IIcon defIcon = LatBlocksItems.b_paintable.getBlockIcon();
-			
-			IPaintable.Renderer.renderCube(iba, renderBlocks, IPaintable.Renderer.to6(t.paint[0]), IPaintable.Renderer.to6(defIcon), t.xCoord, t.yCoord, t.zCoord, boxes.get(i));
-		}
+			IPaintable.Renderer.renderCube(iba, renderBlocks, paint, icons, t.xCoord, t.yCoord, t.zCoord, boxes.get(i));
 		
 		if(t.tank.hasFluid())
 		{

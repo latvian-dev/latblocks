@@ -1,4 +1,6 @@
 package latmod.latblocks.client.render;
+import org.lwjgl.opengl.GL11;
+
 import latmod.core.client.BlockRendererLM;
 import latmod.core.tile.IPaintable;
 import latmod.latblocks.LatBlocksItems;
@@ -45,9 +47,12 @@ public class RenderRSCable extends BlockRendererLM
 	{
 		renderBlocks.setOverrideBlockTexture(LatBlocksItems.b_rs_cable.icon_on);
 		
+		GL11.glPushMatrix();
+		rotateBlocks();
 		double s = BlockRSCable.pipeBorder;
 		renderBlocks.setRenderBounds(s, s, 0D, 1D - s, 1D - s, 1D);
 		renderBlocks.renderBlockAsItem(block, metadata, 1F);
+		GL11.glPopMatrix();
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block block, int modelId, RenderBlocks renderer0)

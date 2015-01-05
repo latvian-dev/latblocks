@@ -1,13 +1,11 @@
 package latmod.latblocks.client.render;
 import latmod.core.FastList;
 import latmod.core.client.BlockRendererLM;
-import latmod.core.mod.LCConfig;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
@@ -34,20 +32,18 @@ public class RenderPaintable extends BlockRendererLM
 		renderBlocks.setCustomColor(null);
 		renderBlocks.setOverrideBlockTexture(((BlockPaintableLB)b).getDefaultItemIcon());
 		
+		GL11.glPushMatrix();
+		rotateBlocks();
+		
 		for(int i = 0; i < boxes.size(); i++)
 		{
 			GL11.glPushMatrix();
-			rotateBlocks();
 			renderBlocks.setRenderBounds(boxes.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
 			GL11.glPopMatrix();
 		}
-	}
-	
-	public static void rotateBlocks()
-	{
-		if(LCConfig.Client.rotateBlocks)
-			GL11.glRotated(Minecraft.getSystemTime() * 0.053D, 0D, 1D, 0D);
+		
+		GL11.glPopMatrix();
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)

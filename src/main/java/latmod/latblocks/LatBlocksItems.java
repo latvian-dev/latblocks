@@ -2,6 +2,7 @@ package latmod.latblocks;
 
 import latmod.latblocks.block.*;
 import latmod.latblocks.block.paintable.*;
+import latmod.latblocks.block.tank.*;
 import latmod.latblocks.item.*;
 
 public class LatBlocksItems
@@ -24,6 +25,7 @@ public class LatBlocksItems
 	public static BlockPFence b_fence;
 	public static BlockPFenceGate b_fence_gate;
 	public static BlockRSCable b_rs_cable;
+	public static BlockTank b_tank;
 	
 	public static ItemMaterialsLB i_mat;
 	public static ItemPainterParts i_parts;
@@ -51,6 +53,7 @@ public class LatBlocksItems
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
 		b_rs_cable = new BlockRSCable("rsCable").register();
+		b_tank = new BlockTank("tank").register();
 		
 		i_mat = new ItemMaterialsLB("materials").register();
 		i_parts = new ItemPainterParts("painterParts").register();

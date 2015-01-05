@@ -22,6 +22,7 @@ latblocks:tile.gelLampInv.name=Invisible Gel Lamp
 latblocks:tile.fence.name=Paintable Fence
 latblocks:tile.fenceGate.name=Paintable Fence Gate
 latblocks:tile.rsCable.name=Red Glowium Cable
+latblocks:tile.tank.name=LatTank
 
 # To be implemented #
 

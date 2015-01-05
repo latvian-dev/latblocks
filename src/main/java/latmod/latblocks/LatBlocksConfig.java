@@ -15,10 +15,12 @@ public class LatBlocksConfig extends LMConfig
 	public static class General
 	{
 		public static boolean fencesIgnorePlayers;
+		public static int redGlowiumCableDist;
 		
 		public static void load(Category c)
 		{
 			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
+			redGlowiumCableDist = c.getInt("redGlowiumCableDist", 32, 8, 256);
 		}
 	}
 }

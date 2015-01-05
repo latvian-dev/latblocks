@@ -24,9 +24,9 @@ public class BlockFountain extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), " G ", "PGP", "SHS",
+		mod.recipes.addRecipe(new ItemStack(this), " P ", "PGP", "SHS",
 				'H', Blocks.hopper,
-				'G', ODItems.GLASS,
+				'G', new ItemStack(LatBlocksItems.b_tank, 1, 0),
 				'S', ODItems.STONE,
 				'P', LatBlocksItems.b_paintable);
 	}
@@ -37,10 +37,6 @@ public class BlockFountain extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderFountain.instance.getRenderId(); }
-	
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass()
-	{ return 0; }
 	
 	public boolean isOpaqueCube()
 	{ return false; }
@@ -56,10 +52,6 @@ public class BlockFountain extends BlockLB
 	
 	public boolean isReplaceable(IBlockAccess iba, int x, int y, int z)
 	{ return false; }
-	
-	@SideOnly(Side.CLIENT)
-    public String getItemIconName()
-    { return null; }//mod.assets + "fountain"; }
 	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)

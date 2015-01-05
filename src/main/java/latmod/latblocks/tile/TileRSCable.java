@@ -1,11 +1,8 @@
 package latmod.latblocks.tile;
-import java.util.List;
-
 import latmod.core.*;
 import latmod.core.mod.LC;
 import latmod.core.tile.*;
-import latmod.latblocks.LatBlocksItems;
-import mcp.mobius.waila.api.*;
+import latmod.latblocks.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -14,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileRSCable extends TileLM implements IPaintable, IWailaTile.Body
+public class TileRSCable extends TileLM implements IPaintable
 {
 	public final Paint[] paint = new Paint[6];
 	public boolean hasCover;
@@ -57,8 +54,13 @@ public class TileRSCable extends TileLM implements IPaintable, IWailaTile.Body
 			
 			for(int i = 0; i < l.size(); i++)
 			{
-				if(l.get(i).isRSPowered())
-				{ power = true; break; }
+				TileRSCable t = l.get(i);
+				
+				if((Math.abs(xCoord - t.xCoord) + Math.abs(yCoord - t.yCoord) + Math.abs(zCoord - t.zCoord)) < LatBlocksConfig.General.redGlowiumCableDist && t.isRSPowered())
+				{
+					power = true;
+					break;
+				}
 			}
 			
 			if(pP != power)
@@ -174,8 +176,6 @@ public class TileRSCable extends TileLM implements IPaintable, IWailaTile.Body
 	{
 		if(i == 0) return true;
 		
-		//int id1 = (i - 1) / 2;
-		
 		ForgeDirection fd = MathHelper.getDir(i - 1);
 		if(fd == ForgeDirection.UNKNOWN) return true;
 		
@@ -190,10 +190,5 @@ public class TileRSCable extends TileLM implements IPaintable, IWailaTile.Body
 		}
 		
 		return false;
-	}
-	
-	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
-	{
-		info.add("Power: " + power);
 	}
 }
