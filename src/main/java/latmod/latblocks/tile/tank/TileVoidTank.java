@@ -1,20 +1,34 @@
 package latmod.latblocks.tile.tank;
-import cpw.mods.fml.relauncher.*;
-import latmod.core.tile.TileLM;
+import latmod.core.tile.Tank;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import cpw.mods.fml.relauncher.*;
 
-public class TileVoidTank extends TileLM implements ITankTile
+public class TileVoidTank extends TileTankBase
 {
-	public FluidTank tank;
-	
 	public TileVoidTank()
 	{
-		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
+		tank = new Tank("Tank", 1D)
+		{
+			public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
+			{ return (resource == null) ? 0 : resource.amount; }
+			
+			public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
+			{ return null; }
+			
+			public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+			{ return null; }
+			
+			public boolean canFill(ForgeDirection from, Fluid fluid)
+			{ return true; }
+			
+			public boolean canDrain(ForgeDirection from, Fluid fluid)
+			{ return false; }
+		};
 	}
 	
 	public void onUpdate()
@@ -23,26 +37,8 @@ public class TileVoidTank extends TileLM implements ITankTile
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		return false;
+		return true;
 	}
-	
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
-	{ return (resource == null) ? 0 : resource.amount; }
-	
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
-	{ return null; }
-	
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
-	{ return null; }
-	
-	public boolean canFill(ForgeDirection from, Fluid fluid)
-	{ return true; }
-	
-	public boolean canDrain(ForgeDirection from, Fluid fluid)
-	{ return false; }
-	
-	public FluidTankInfo[] getTankInfo(ForgeDirection from)
-	{ return new FluidTankInfo[] { tank.getInfo() }; }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankBorderIcon()

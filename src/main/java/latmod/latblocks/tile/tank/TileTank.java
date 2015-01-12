@@ -4,9 +4,9 @@ import java.util.List;
 
 import latmod.core.InvUtils;
 import latmod.core.tile.*;
-import latmod.latblocks.LatBlocksItems;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -14,10 +14,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import cpw.mods.fml.relauncher.*;
 
-public class TileTank extends TileLM implements ITankTile, IWailaTile.Body
+public class TileTank extends TileTankBase implements IWailaTile.Body
 {
-	public final Tank tank;
-	
 	private Integer prevFluidAmmount = null;
 	
 	public TileTank()
@@ -41,13 +39,13 @@ public class TileTank extends TileLM implements ITankTile, IWailaTile.Body
 	
 	public void readTileData(NBTTagCompound tag)
 	{
-		super.readTileData(tag);
+		tick = tag.getLong("Tick");
 		tank.readFromNBT(tag);
 	}
 	
 	public void writeTileData(NBTTagCompound tag)
 	{
-		super.writeTileData(tag);
+		tag.setLong("Tick", tick);
 		tank.writeToNBT(tag);
 	}
 	
@@ -144,24 +142,6 @@ public class TileTank extends TileLM implements ITankTile, IWailaTile.Body
 		return false;
 	}
 	
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
-	{ return tank.fill(from, resource, doFill); }
-	
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
-	{ return tank.drain(from, resource, doDrain); }
-	
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
-	{ return tank.drain(from, maxDrain, doDrain); }
-	
-	public boolean canFill(ForgeDirection from, Fluid fluid)
-	{ return tank.canFill(from, fluid); }
-	
-	public boolean canDrain(ForgeDirection from, Fluid fluid)
-	{ return tank.canDrain(from, fluid); }
-	
-	public FluidTankInfo[] getTankInfo(ForgeDirection from)
-	{ return tank.getTankInfo(from); }
-	
 	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
 	{
 		if(tank.isEmpty()) info.add("Tank: Empty");
@@ -170,7 +150,10 @@ public class TileTank extends TileLM implements ITankTile, IWailaTile.Body
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankBorderIcon()
-	{ return LatBlocksItems.b_tank.icons[blockMetadata]; }
+	{
+		return Blocks.gold_block.getBlockTextureFromSide(0);
+		//return LatBlocksItems.b_tank.icons[blockMetadata];
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankFluidIcon()

@@ -24,7 +24,7 @@ public class BlockWaterTank extends BlockTankBase
 	{
 		mod.recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
 				'W', Items.water_bucket,
-				'T', new ItemStack(LatBlocksItems.b_tank, 1, 1),
+				'T', LatBlocksItems.basicTank,
 				'E', Items.ender_pearl);
 	}
 	

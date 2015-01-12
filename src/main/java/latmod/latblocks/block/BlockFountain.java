@@ -15,18 +15,18 @@ public class BlockFountain extends BlockLB
 {
 	public BlockFountain(String s)
 	{
-		super(s, Material.water);
+		super(s, Material.iron);
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
-		LatBlocks.mod.addTile(TileFountain.class, s);
+		mod.addTile(TileFountain.class, s);
 	}
 	
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this), " P ", "PGP", "SHS",
 				'H', Blocks.hopper,
-				'G', new ItemStack(LatBlocksItems.b_tank, 1, 0),
+				'G', LatBlocksItems.basicTank,
 				'S', ODItems.STONE,
 				'P', LatBlocksItems.b_paintable);
 	}
@@ -49,9 +49,6 @@ public class BlockFountain extends BlockLB
 	
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }
-	
-	public boolean isReplaceable(IBlockAccess iba, int x, int y, int z)
-	{ return false; }
 	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)

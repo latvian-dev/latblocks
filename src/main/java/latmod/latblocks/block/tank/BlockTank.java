@@ -1,15 +1,14 @@
 package latmod.latblocks.block.tank;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.*;
 import latmod.latblocks.tile.tank.TileTank;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.*;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockTank extends BlockTankBase
@@ -90,9 +89,12 @@ public class BlockTank extends BlockTankBase
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankItemFluidIcon(int m)
+	{ return null; }
+	
+	@SideOnly(Side.CLIENT)
+	public static IIcon getInsideIcon()
 	{
-		Fluid[] fluids = FluidRegistry.getRegisteredFluids().values().toArray(new Fluid[0]);
-		int id = (m + (int)(Minecraft.getSystemTime() / 1000L)) % fluids.length;
-		return fluids[id].getStillIcon();
+		//return LatBlocksItems.b_tank.icon_inside;
+		return Blocks.glass.getBlockTextureFromSide(0);
 	}
 }

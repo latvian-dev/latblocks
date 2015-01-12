@@ -20,7 +20,7 @@ public class ItemMaterialsLB extends ItemMaterials
 		{
 			"gemGlowium",
 			"dustGlowium",
-			"gemRedGlowium",
+			//"gemRedGlowium",
 		};
 	}
 	
@@ -39,7 +39,7 @@ public class ItemMaterialsLB extends ItemMaterials
 		
 		LatCoreMC.addOreDictionary("gemGlowium", GEM_GLOWIUM = new ItemStack(this, 1, 0));
 		LatCoreMC.addOreDictionary("dustGlowium", DUST_GLOWIUM = new ItemStack(this, 1, 1));
-		LatCoreMC.addOreDictionary("gemRedGlowium", GEM_RED_GLOWIUM = new ItemStack(this, 1, 2));
+		//LatCoreMC.addOreDictionary("gemRedGlowium", GEM_RED_GLOWIUM = new ItemStack(this, 1, 2));
 	}
 	
 	public void loadRecipes()
@@ -50,8 +50,8 @@ public class ItemMaterialsLB extends ItemMaterials
 		
 		mod.recipes.addShapelessRecipe(DUST_GLOWIUM, GEM_GLOWIUM);
 		
-		mod.recipes.addRecipe(GEM_RED_GLOWIUM, " R ", "RGR", " R ",
-				'G', GEM_GLOWIUM,
-				'R', ODItems.REDSTONE);
+		//mod.recipes.addRecipe(GEM_RED_GLOWIUM, " R ", "RGR", " R ",
+		//		'G', GEM_GLOWIUM,
+		//		'R', ODItems.REDSTONE);
 	}
 }

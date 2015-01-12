@@ -2,9 +2,8 @@ package latmod.latblocks.client.render;
 import latmod.core.*;
 import latmod.core.MathHelper;
 import latmod.core.client.BlockRendererLM;
-import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.block.tank.BlockTankBase;
-import latmod.latblocks.tile.tank.ITankTile;
+import latmod.latblocks.block.tank.*;
+import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
@@ -71,7 +70,7 @@ public class RenderTank extends BlockRendererLM
 		
 		GL11.glPushMatrix();
 		renderBlocks.setRenderBounds(p, p, p, 1D - p, 1D - p, 1D - p);
-		renderBlocks.setOverrideBlockTexture(LatBlocksItems.b_tank.icon_inside);
+		renderBlocks.setOverrideBlockTexture(BlockTank.getInsideIcon());
 		renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
 		GL11.glPopMatrix();
 		
@@ -97,8 +96,8 @@ public class RenderTank extends BlockRendererLM
 		renderBlocks.blockAccess = iba;
 		renderBlocks.setCustomColor(null);
 		
-		ITankTile t = (ITankTile)iba.getTileEntity(x, y, z);
-		if(t == null || t.getTile().isInvalid()) return false;
+		TileTankBase t = (TileTankBase)iba.getTileEntity(x, y, z);
+		if(t == null || t.isInvalid()) return false;
 		
 		renderBlocks.setOverrideBlockTexture(t.getTankBorderIcon());
 		
@@ -111,7 +110,7 @@ public class RenderTank extends BlockRendererLM
 		double p = 1D / 16D;
 		
 		renderBlocks.setRenderBounds(p, p, p, 1D - p, 1D - p, 1D - p);
-		renderBlocks.setOverrideBlockTexture(LatBlocksItems.b_tank.icon_inside);
+		renderBlocks.setOverrideBlockTexture(BlockTank.getInsideIcon());
 		renderBlocks.renderStandardBlock(Blocks.stone, x, y, z);
 		
 		double fluid_height = t.getTankFluidHeight();

@@ -4,6 +4,8 @@ import latmod.latblocks.block.*;
 import latmod.latblocks.block.paintable.*;
 import latmod.latblocks.block.tank.*;
 import latmod.latblocks.item.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 
 public class LatBlocksItems
 {
@@ -26,6 +28,7 @@ public class LatBlocksItems
 	public static BlockPFenceGate b_fence_gate;
 	public static BlockRSCable b_rs_cable;
 	public static BlockTank b_tank;
+	public static ItemStack basicTank;
 	
 	public static ItemMaterialsLB i_mat;
 	public static ItemPainterParts i_parts;
@@ -35,7 +38,7 @@ public class LatBlocksItems
 	
 	public static void init()
 	{
-		b_blocks = new BlockLBBlocks("blocks").register();
+		//b_blocks = new BlockLBBlocks("blocks").register();
 		b_paintable = new BlockPaintableDef("paintable").register();
 		b_paintable_rs = new BlockPaintableRS("paintableRS").register();
 		b_paintable_gs = new BlockPaintableGS("paintableGS").register();
@@ -52,8 +55,11 @@ public class LatBlocksItems
 		b_gel_lamp_inv = new BlockInvGelLamp("gelLampInv").register();
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
-		b_rs_cable = new BlockRSCable("rsCable").register();
-		b_tank = new BlockTank("tank").register();
+		//b_rs_cable = new BlockRSCable("rsCable").register();
+		//b_tank = new BlockTank("tank").register();
+		
+		//basicTank = new ItemStack(b_tank, 1, 0);
+		basicTank = new ItemStack(Blocks.glass, 1, 0);
 		
 		i_mat = new ItemMaterialsLB("materials").register();
 		i_parts = new ItemPainterParts("painterParts").register();

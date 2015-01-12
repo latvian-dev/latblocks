@@ -11,14 +11,29 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-public class TileWaterTank extends TileLM implements ITankTile
+public class TileWaterTank extends TileTankBase
 {
-	public FluidTank tank;
-	
 	public TileWaterTank()
 	{
-		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME);
-		tank.setFluid(new FluidStack(FluidRegistry.WATER, tank.getCapacity()));
+		tank = new Tank("Tank", 1D)
+		{
+			public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
+			{ return 0; }
+			
+			public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
+			{ return resource.copy(); }
+			
+			public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
+			{ return new FluidStack(FluidRegistry.WATER, maxDrain); }
+			
+			public boolean canFill(ForgeDirection from, Fluid fluid)
+			{ return false; }
+			
+			public boolean canDrain(ForgeDirection from, Fluid fluid)
+			{ return true; }
+		};
+		
+		tank.fluidTank.setFluid(new FluidStack(FluidRegistry.WATER, tank.getCapacity()));
 	}
 	
 	public void onUpdate()
@@ -99,24 +114,6 @@ public class TileWaterTank extends TileLM implements ITankTile
 		
 		return false;
 	}
-	
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
-	{ return 0; }
-	
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
-	{ return resource.copy(); }
-	
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
-	{ return new FluidStack(FluidRegistry.WATER, maxDrain); }
-	
-	public boolean canFill(ForgeDirection from, Fluid fluid)
-	{ return false; }
-	
-	public boolean canDrain(ForgeDirection from, Fluid fluid)
-	{ return true; }
-	
-	public FluidTankInfo[] getTankInfo(ForgeDirection from)
-	{ return new FluidTankInfo[] { tank.getInfo() }; }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankBorderIcon()

@@ -78,7 +78,7 @@ public class TileRSCable extends TileLM implements IPaintable
 		for(int i = 0; i < 6; i++)
 		{
 			ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[i];
-			if(worldObj.getBlock(xCoord + f.offsetX, yCoord + f.offsetY, zCoord + f.offsetZ) != LatBlocksItems.b_rs_cable && worldObj.isBlockProvidingPowerTo(xCoord + f.offsetX, yCoord + f.offsetY, zCoord + f.offsetZ, f.ordinal()) > 0)
+			if(worldObj.getBlock(xCoord + f.offsetX, yCoord + f.offsetY, zCoord + f.offsetZ) != getBlockType() && worldObj.isBlockProvidingPowerTo(xCoord + f.offsetX, yCoord + f.offsetY, zCoord + f.offsetZ, f.ordinal()) > 0)
 			return true;
 		}
 		
@@ -126,7 +126,7 @@ public class TileRSCable extends TileLM implements IPaintable
 	{
 		Block b = c.worldObj.getBlock(c.xCoord + f.offsetX, c.yCoord + f.offsetY, c.zCoord + f.offsetZ);
 		return b != Blocks.air &&
-		(b == LatBlocksItems.b_rs_cable
+		(b == c.getBlockType()
 		|| b instanceof BlockRedstoneLight
 		|| b.canConnectRedstone(c.worldObj, c.xCoord + f.offsetX, c.yCoord + f.offsetY, c.zCoord + f.offsetZ, f.getOpposite().ordinal()));
 	}
