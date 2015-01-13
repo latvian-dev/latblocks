@@ -99,30 +99,30 @@ public class BlockPFence extends BlockPaintableSingle
 		double h2n = 1D / 8D * 5D;
 		double h2p = 1D / 8D * 6D;
 		
-		boxes.add(MathHelper.getBox(0.5D, 0D, 0.5D, p, 1D, p));
+		boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.5D, p, 1D, p));
 		
 		if(canConnect(iba, x, y, z - 1))
 		{
-			boxes.add(MathHelper.getBox(0.5D, h1n, 0.25D, 0.125D, h1p, 0.5D));
-			boxes.add(MathHelper.getBox(0.5D, h2n, 0.25D, 0.125D, h2p, 0.5D));
+			boxes.add(MathHelperLM.getBox(0.5D, h1n, 0.25D, 0.125D, h1p, 0.5D));
+			boxes.add(MathHelperLM.getBox(0.5D, h2n, 0.25D, 0.125D, h2p, 0.5D));
 		}
 		
 		if(canConnect(iba, x - 1, y, z))
 		{
-			boxes.add(MathHelper.getBox(0.25D, h1n, 0.5D, 0.5D, h1p, 0.125D));
-			boxes.add(MathHelper.getBox(0.25D, h2n, 0.5D, 0.5D, h2p, 0.125D));
+			boxes.add(MathHelperLM.getBox(0.25D, h1n, 0.5D, 0.5D, h1p, 0.125D));
+			boxes.add(MathHelperLM.getBox(0.25D, h2n, 0.5D, 0.5D, h2p, 0.125D));
 		}
 		
 		if(canConnect(iba, x, y, z + 1))
 		{
-			boxes.add(MathHelper.getBox(0.5D, h1n, 0.75D, 0.125D, h1p, 0.5D));
-			boxes.add(MathHelper.getBox(0.5D, h2n, 0.75D, 0.125D, h2p, 0.5D));
+			boxes.add(MathHelperLM.getBox(0.5D, h1n, 0.75D, 0.125D, h1p, 0.5D));
+			boxes.add(MathHelperLM.getBox(0.5D, h2n, 0.75D, 0.125D, h2p, 0.5D));
 		}
 		
 		if(canConnect(iba, x + 1, y, z))
 		{
-			boxes.add(MathHelper.getBox(0.75D, h1n, 0.5D, 0.5D, h1p, 0.125D));
-			boxes.add(MathHelper.getBox(0.75D, h2n, 0.5D, 0.5D, h2p, 0.125D));
+			boxes.add(MathHelperLM.getBox(0.75D, h1n, 0.5D, 0.5D, h1p, 0.125D));
+			boxes.add(MathHelperLM.getBox(0.75D, h2n, 0.5D, 0.5D, h2p, 0.125D));
 		}
 	}
 	

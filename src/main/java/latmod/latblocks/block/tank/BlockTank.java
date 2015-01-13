@@ -80,7 +80,7 @@ public class BlockTank extends BlockTankBase
 		else if(meta == 3) c = 512;
 		else if(meta == 4) c = 4096;
 		
-		l.add("Capacity: " + c + MathHelper.getPluralWord(c, " bucket", " buckets"));
+		l.add("Capacity: " + c + MathHelperLM.getPluralWord(c, " bucket", " buckets"));
 	}
 	
 	@SideOnly(Side.CLIENT)

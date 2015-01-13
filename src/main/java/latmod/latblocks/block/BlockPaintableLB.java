@@ -3,7 +3,7 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import latmod.core.*;
-import latmod.core.MathHelper;
+import latmod.core.MathHelperLM;
 import latmod.core.tile.*;
 import latmod.latblocks.client.render.RenderPaintable;
 import latmod.latblocks.tile.TilePaintableLB;
@@ -138,7 +138,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
 		addBoxes(boxes, w, x, y, z, -1);
-		return MathHelper.collisionRayTrace(w, x, y, z, start, end, boxes);
+		return MathHelperLM.collisionRayTrace(w, x, y, z, start, end, boxes);
 	}
 	
 	@SideOnly(Side.CLIENT)

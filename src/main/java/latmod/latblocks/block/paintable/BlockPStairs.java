@@ -1,7 +1,7 @@
 package latmod.latblocks.block.paintable;
 
 import latmod.core.*;
-import latmod.core.MathHelper;
+import latmod.core.MathHelperLM;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
@@ -44,7 +44,7 @@ public class BlockPStairs extends BlockPaintableSingle
 		if(!(mop.sideHit == Placement.D_DOWN || mop.sideHit == Placement.D_UP))
 			hitY = 1D - hitY;
 		
-		int l = MathHelper.floor((double)(ep.rotationYaw * 8F / 360F) + 0.5D) & 7;
+		int l = MathHelperLM.floor((double)(ep.rotationYaw * 8F / 360F) + 0.5D) & 7;
 		return (hitY >= 0.5D) ? (8 + l) : l;
 	}
 	

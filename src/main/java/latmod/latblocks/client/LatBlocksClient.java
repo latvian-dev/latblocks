@@ -12,7 +12,6 @@ public class LatBlocksClient extends LMProxy
 		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, true, false, false);
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
-		RenderRSCable.instance.register();
 		RenderTank.instance.register();
 	}
 }

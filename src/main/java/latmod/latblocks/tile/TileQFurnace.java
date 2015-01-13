@@ -81,7 +81,7 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 		if(is.hasDisplayName())
 			customName = is.getDisplayName();
 		
-		setMeta(MathHelper.get2DRotation(ep).ordinal());
+		setMeta(MathHelperLM.get2DRotation(ep).ordinal());
 	}
 	
 	public void onBroken()

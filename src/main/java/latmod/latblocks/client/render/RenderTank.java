@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render;
 import latmod.core.*;
-import latmod.core.MathHelper;
+import latmod.core.MathHelperLM;
 import latmod.core.client.BlockRendererLM;
 import latmod.latblocks.block.tank.*;
 import latmod.latblocks.tile.tank.TileTankBase;
@@ -119,7 +119,7 @@ public class RenderTank extends BlockRendererLM
 		if(fluid_height > 0D && (icon_fluid = t.getTankFluidIcon()) != null)
 		{
 			double op = p + 0.001D;
-			double h1 = MathHelper.map(fluid_height, 0D, 1D, op, 1D - op);
+			double h1 = MathHelperLM.map(fluid_height, 0D, 1D, op, 1D - op);
 			
 			renderBlocks.setRenderBounds(op, op, op, 1D - op, h1, 1D - op);
 			renderBlocks.setOverrideBlockTexture(icon_fluid);

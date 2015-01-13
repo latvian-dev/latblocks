@@ -26,7 +26,6 @@ public class LatBlocksItems
 	public static BlockInvGelLamp b_gel_lamp_inv;
 	public static BlockPFence b_fence;
 	public static BlockPFenceGate b_fence_gate;
-	public static BlockRSCable b_rs_cable;
 	public static BlockTank b_tank;
 	public static ItemStack basicTank;
 	
@@ -55,7 +54,6 @@ public class LatBlocksItems
 		b_gel_lamp_inv = new BlockInvGelLamp("gelLampInv").register();
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
-		//b_rs_cable = new BlockRSCable("rsCable").register();
 		//b_tank = new BlockTank("tank").register();
 		
 		//basicTank = new ItemStack(b_tank, 1, 0);

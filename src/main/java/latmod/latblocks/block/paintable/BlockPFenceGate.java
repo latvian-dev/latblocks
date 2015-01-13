@@ -3,7 +3,7 @@ package latmod.latblocks.block.paintable;
 import java.util.List;
 
 import latmod.core.*;
-import latmod.core.MathHelper;
+import latmod.core.MathHelperLM;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
@@ -86,7 +86,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{ return (MathHelper.floor(ep.rotationYaw * 4D / 360D + 0.5D) & 3) % 2; }
+	{ return (MathHelperLM.floor(ep.rotationYaw * 4D / 360D + 0.5D) & 3) % 2; }
 	
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)

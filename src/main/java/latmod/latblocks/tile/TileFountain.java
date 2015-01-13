@@ -105,10 +105,10 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 			
 			for(int i = 0; i < c * 4; i++)
 			{
-				double mx = MathHelper.sinFromDeg(i * 360D / (double)c + t) * mxz;
-				double mz = MathHelper.cosFromDeg(i * 360D / (double)c + t) * mxz;
+				double mx = MathHelperLM.sinFromDeg(i * 360D / (double)c + t) * mxz;
+				double mz = MathHelperLM.cosFromDeg(i * 360D / (double)c + t) * mxz;
 				
-				worldObj.spawnParticle(s, xCoord + 0.5D, yCoord + 0.7D + MathHelper.rand.nextFloat() * 0.3D, zCoord + 0.5D, mx, my, mz);
+				worldObj.spawnParticle(s, xCoord + 0.5D, yCoord + 0.7D + MathHelperLM.rand.nextFloat() * 0.3D, zCoord + 0.5D, mx, my, mz);
 			}
 		}
 	}
