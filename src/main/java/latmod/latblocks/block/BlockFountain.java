@@ -1,14 +1,14 @@
 package latmod.latblocks.block;
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.block.tank.BlockTank;
 import latmod.latblocks.client.render.RenderFountain;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.*;
-import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockFountain extends BlockLB
@@ -26,7 +26,7 @@ public class BlockFountain extends BlockLB
 	{
 		mod.recipes.addRecipe(new ItemStack(this), " P ", "PGP", "SHS",
 				'H', Blocks.hopper,
-				'G', LatBlocksItems.basicTank,
+				'G', BlockTank.TANK_BASIC,
 				'S', ODItems.STONE,
 				'P', LatBlocksItems.b_paintable);
 	}
@@ -43,9 +43,6 @@ public class BlockFountain extends BlockLB
 	
 	public boolean renderAsNormalBlock()
 	{ return false; }
-	
-	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
-	{ return true; }
 	
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }

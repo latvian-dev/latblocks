@@ -1,6 +1,5 @@
 package latmod.latblocks.block.tank;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.tank.TileWaterTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.*;
@@ -24,7 +23,7 @@ public class BlockWaterTank extends BlockTankBase
 	{
 		mod.recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
 				'W', Items.water_bucket,
-				'T', LatBlocksItems.basicTank,
+				'T', BlockTank.TANK_BASIC,
 				'E', Items.ender_pearl);
 	}
 	

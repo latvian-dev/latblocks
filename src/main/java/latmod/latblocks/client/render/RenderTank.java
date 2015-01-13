@@ -1,6 +1,5 @@
 package latmod.latblocks.client.render;
 import latmod.core.*;
-import latmod.core.MathHelperLM;
 import latmod.core.client.BlockRendererLM;
 import latmod.latblocks.block.tank.*;
 import latmod.latblocks.tile.tank.TileTankBase;
@@ -19,30 +18,32 @@ public class RenderTank extends BlockRendererLM
 {
 	public static final RenderTank instance = new RenderTank();
 	
-	private static final FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
+	private static AxisAlignedBB[] boxes = new AxisAlignedBB[0];
+	
+	public static IIcon icon_inside = null;
 	
 	static { refreshBoxes(); }
 	
 	private static void refreshBoxes()
 	{
-		boxes.clear();
+		boxes = new AxisAlignedBB[12];
 		
 		double p = 1D / 16D - 0.001D;
 		
-		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, p, 1D, p));
-		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 1D - p, p, 1D, 1D));
-		boxes.add(AxisAlignedBB.getBoundingBox(1D - p, 0D, 0D, 1D, 1D, p));
-		boxes.add(AxisAlignedBB.getBoundingBox(1D - p, 0D, 1D - p, 1D, 1D, 1D));
+		boxes[0] = AxisAlignedBB.getBoundingBox(0D, 0D, 0D, p, 1D, p);
+		boxes[1] = AxisAlignedBB.getBoundingBox(0D, 0D, 1D - p, p, 1D, 1D);
+		boxes[2] = AxisAlignedBB.getBoundingBox(1D - p, 0D, 0D, 1D, 1D, p);
+		boxes[3] = AxisAlignedBB.getBoundingBox(1D - p, 0D, 1D - p, 1D, 1D, 1D);
 		
-		boxes.add(AxisAlignedBB.getBoundingBox(p, 0D, 0D, 1D - p, p, p));
-		boxes.add(AxisAlignedBB.getBoundingBox(p, 0D, 1D - p, 1D - p, p, 1D));
-		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, p, p, p, 1D - p));
-		boxes.add(AxisAlignedBB.getBoundingBox(1D - p, 0D, p, 1D, p, 1D - p));
+		boxes[4] = AxisAlignedBB.getBoundingBox(p, 0D, 0D, 1D - p, p, p);
+		boxes[5] = AxisAlignedBB.getBoundingBox(p, 0D, 1D - p, 1D - p, p, 1D);
+		boxes[6] = AxisAlignedBB.getBoundingBox(0D, 0D, p, p, p, 1D - p);
+		boxes[7] = AxisAlignedBB.getBoundingBox(1D - p, 0D, p, 1D, p, 1D - p);
 		
-		boxes.add(AxisAlignedBB.getBoundingBox(p, 1D - p, 0D, 1D - p, 1D, p));
-		boxes.add(AxisAlignedBB.getBoundingBox(p, 1D - p, 1D - p, 1D - p, 1D, 1D));
-		boxes.add(AxisAlignedBB.getBoundingBox(0D, 1D - p, p, p, 1D, 1D - p));
-		boxes.add(AxisAlignedBB.getBoundingBox(1D - p, 1D - p, p, 1D, 1D, 1D - p));
+		boxes[8] = AxisAlignedBB.getBoundingBox(p, 1D - p, 0D, 1D - p, 1D, p);
+		boxes[9] = AxisAlignedBB.getBoundingBox(p, 1D - p, 1D - p, 1D - p, 1D, 1D);
+		boxes[10] = AxisAlignedBB.getBoundingBox(0D, 1D - p, p, p, 1D, 1D - p);
+		boxes[11] = AxisAlignedBB.getBoundingBox(1D - p, 1D - p, p, 1D, 1D, 1D - p);
 	}
 	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
@@ -60,17 +61,17 @@ public class RenderTank extends BlockRendererLM
 		
 		renderBlocks.setOverrideBlockTexture(tb.getTankItemBorderIcon(meta));
 		
-		for(int i = 0; i < boxes.size(); i++)
+		for(int i = 0; i < boxes.length; i++)
 		{
 			GL11.glPushMatrix();
-			renderBlocks.setRenderBounds(boxes.get(i));
+			renderBlocks.setRenderBounds(boxes[i]);
 			renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
 			GL11.glPopMatrix();
 		}
 		
 		GL11.glPushMatrix();
 		renderBlocks.setRenderBounds(p, p, p, 1D - p, 1D - p, 1D - p);
-		renderBlocks.setOverrideBlockTexture(BlockTank.getInsideIcon());
+		renderBlocks.setOverrideBlockTexture(icon_inside);
 		renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
 		GL11.glPopMatrix();
 		
@@ -101,16 +102,16 @@ public class RenderTank extends BlockRendererLM
 		
 		renderBlocks.setOverrideBlockTexture(t.getTankBorderIcon());
 		
-		for(int i = 0; i < boxes.size(); i++)
+		for(int i = 0; i < boxes.length; i++)
 		{
-			renderBlocks.setRenderBounds(boxes.get(i));
+			renderBlocks.setRenderBounds(boxes[i]);
 			renderBlocks.renderStandardBlock(Blocks.stone, x, y, z);
 		}
 		
 		double p = 1D / 16D;
 		
 		renderBlocks.setRenderBounds(p, p, p, 1D - p, 1D - p, 1D - p);
-		renderBlocks.setOverrideBlockTexture(BlockTank.getInsideIcon());
+		renderBlocks.setOverrideBlockTexture(icon_inside);
 		renderBlocks.renderStandardBlock(Blocks.stone, x, y, z);
 		
 		double fluid_height = t.getTankFluidHeight();

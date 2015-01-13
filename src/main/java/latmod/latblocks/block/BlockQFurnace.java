@@ -1,5 +1,5 @@
 package latmod.latblocks.block;
-import java.util.ArrayList;
+import java.util.Random;
 
 import latmod.core.ODItems;
 import latmod.core.client.LatCoreMCClient;
@@ -74,8 +74,6 @@ public class BlockQFurnace extends BlockLB
 		return blockIcon;
 	}
 	
-	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
-	{
-		return new ArrayList<ItemStack>();
-	}
+	public int quantityDropped(Random r)
+	{ return 0; }
 }

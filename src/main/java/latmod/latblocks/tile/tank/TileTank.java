@@ -4,9 +4,9 @@ import java.util.List;
 
 import latmod.core.InvUtils;
 import latmod.core.tile.*;
+import latmod.latblocks.LatBlocksItems;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -150,10 +150,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankBorderIcon()
-	{
-		return Blocks.gold_block.getBlockTextureFromSide(0);
-		//return LatBlocksItems.b_tank.icons[blockMetadata];
-	}
+	{ getMeta(); return LatBlocksItems.b_tank.icons[blockMetadata]; }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankFluidIcon()

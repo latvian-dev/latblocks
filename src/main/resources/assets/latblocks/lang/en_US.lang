@@ -2,11 +2,11 @@ itemGroup.latblocks:tab=LatBlocks
 
 ### Blocks ###
 
-latblocks:tile.glowiumBlock.name=Glowium Block
-latblocks:tile.glowiumTile.name=Glowium Tile
-latblocks:tile.glowiumBrick.name=Glowium Brick
-latblocks:tile.glowiumBrickSmall.name=Small Glowium Brick
-latblocks:tile.glowiumBrickChiseled.name=Chiseled Glowium Brick
+latblocks:tile.glowium.block.name=Glowium Block
+latblocks:tile.glowium.tile.name=Glowium Tile
+latblocks:tile.glowium.brick.name=Glowium Brick
+latblocks:tile.glowium.small.name=Small Glowium Brick
+latblocks:tile.glowium.chiseled.name=Chiseled Glowium Brick
 latblocks:tile.paintable.name=Paintable Block
 latblocks:tile.paintableRS.name=Dual Paintable Block
 latblocks:tile.paintableGS.name=Glowing Paintable Block
@@ -21,7 +21,6 @@ latblocks:tile.gelLamp.name=Paintable Gel Lamp
 latblocks:tile.gelLampInv.name=Invisible Gel Lamp
 latblocks:tile.fence.name=Paintable Fence
 latblocks:tile.fenceGate.name=Paintable Fence Gate
-latblocks:tile.rsCable.name=Red Glowium Cable
 latblocks:tile.tank.name=LatTank
 
 # To be implemented #
@@ -38,7 +37,6 @@ latblocks:tile.buffer.name=Buffer
 
 latblocks:item.gemGlowium.name=Glowium
 latblocks:item.dustGlowium.name=Glowium Dust
-latblocks:item.gemRedGlowium.name=Red Glowium
 
 latblocks:item.paintRoller.rod.name=Block Painter Rod
 latblocks:item.paintRoller.basic.name=Paint Roller

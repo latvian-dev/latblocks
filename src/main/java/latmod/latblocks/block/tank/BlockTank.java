@@ -1,7 +1,8 @@
 package latmod.latblocks.block.tank;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocks;
+import latmod.latblocks.client.render.RenderTank;
 import latmod.latblocks.tile.tank.TileTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,8 +14,7 @@ import cpw.mods.fml.relauncher.*;
 
 public class BlockTank extends BlockTankBase
 {
-	@SideOnly(Side.CLIENT)
-	public IIcon icon_inside;
+	public static ItemStack TANK_BASIC = new ItemStack(Blocks.glass, 1, 0);
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon[] icons;
@@ -28,6 +28,7 @@ public class BlockTank extends BlockTankBase
 	public void onPostLoaded()
 	{
 		addAllDamages(5);
+		TANK_BASIC = new ItemStack(this, 1, 0);
 	}
 	
 	public void loadRecipes()
@@ -62,7 +63,7 @@ public class BlockTank extends BlockTankBase
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		icon_inside = ir.registerIcon(mod.assets + "tank/inside");
+		RenderTank.icon_inside = ir.registerIcon(mod.assets + "tank/inside");
 		icons = new IIcon[5];
 		for(int i = 0; i < icons.length; i++)
 			icons[i] = ir.registerIcon(mod.assets + "tank/outside_" + i);
@@ -90,11 +91,4 @@ public class BlockTank extends BlockTankBase
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankItemFluidIcon(int m)
 	{ return null; }
-	
-	@SideOnly(Side.CLIENT)
-	public static IIcon getInsideIcon()
-	{
-		//return LatBlocksItems.b_tank.icon_inside;
-		return Blocks.glass.getBlockTextureFromSide(0);
-	}
 }

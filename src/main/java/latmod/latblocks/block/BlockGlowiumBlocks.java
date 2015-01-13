@@ -2,6 +2,7 @@ package latmod.latblocks.block;
 
 import latmod.core.recipes.LMRecipes;
 import latmod.core.tile.TileLM;
+import latmod.latblocks.client.render.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -11,27 +12,27 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockLBBlocks extends BlockLB
+public class BlockGlowiumBlocks extends BlockLB
 {
 	public static final String[] names =
 	{
-		"glowiumBlock",
-		"glowiumTile",
-		"glowiumBrick",
-		"glowiumBrickSmall",
-		"glowiumBrickChiseled",
+		"block",
+		"tile",
+		"brick",
+		"small",
+		"chiseled",
 	};
 	
 	public static ItemStack BLOCK;
 	public static ItemStack TILE;
 	public static ItemStack BRICK;
-	public static ItemStack BRICK_SMALL;
-	public static ItemStack BRICK_CHISELED;
+	public static ItemStack SMALL;
+	public static ItemStack CHISELED;
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon icons[];
+	public IIcon icons[], icons_glow[];
 	
-	public BlockLBBlocks(String s)
+	public BlockGlowiumBlocks(String s)
 	{
 		super(s, Material.rock);
 		isBlockContainer = false;
@@ -40,7 +41,7 @@ public class BlockLBBlocks extends BlockLB
 	}
 	
 	public String getUnlocalizedName(int m)
-	{ return mod.getBlockName(names[m]); }
+	{ return mod.getBlockName("glowium." + names[m]); }
 	
 	public void onPostLoaded()
 	{
@@ -49,8 +50,8 @@ public class BlockLBBlocks extends BlockLB
 		BLOCK = new ItemStack(this, 1, 0);
 		TILE = new ItemStack(this, 1, 1);
 		BRICK = new ItemStack(this, 1, 2);
-		BRICK_SMALL = new ItemStack(this, 1, 3);
-		BRICK_CHISELED = new ItemStack(this, 1, 4);
+		SMALL = new ItemStack(this, 1, 3);
+		CHISELED = new ItemStack(this, 1, 4);
 	}
 	
 	public void loadRecipes()
@@ -61,21 +62,9 @@ public class BlockLBBlocks extends BlockLB
 		mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEM_GLOWIUM, 4), "G",
 				'G', BLOCK);
 		
-		mod.recipes.addRecipe(LMRecipes.size(TILE, 4), "GG", "GG",
-				'G', BLOCK);
-		
-		mod.recipes.addRecipe(LMRecipes.size(BRICK, 4), "GG", "GG",
-				'G', TILE);
-		
-		mod.recipes.addRecipe(LMRecipes.size(BRICK_SMALL, 4), "GG", "GG",
-				'G', BRICK);
-		
-		mod.recipes.addRecipe(LMRecipes.size(BLOCK, 4), "GG", "GG",
-				'G', BRICK_SMALL);
-		
-		mod.recipes.addRecipe(LMRecipes.size(BRICK_CHISELED, 8), "GGG", "G G", "GGG",
-				'G', TILE);
-		
+		for(int i = 0; i < names.length; i++)
+			mod.recipes.addRecipe(new ItemStack(this, 4, (i + 1) % names.length), "GG", "GG",
+					'G', new ItemStack(this, 1, i));
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -89,23 +78,32 @@ public class BlockLBBlocks extends BlockLB
 	public void registerBlockIcons(IIconRegister ir)
 	{
 		icons = new IIcon[names.length];
-		for(int i = 0; i < icons.length; i++)
-			icons[i] = ir.registerIcon(mod.assets + names[i]);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
-	{
-		//if(iba.getBlockMetadata(x, y, z) <= 4)
-			return 15 << 20 | 15 << 4;
+		icons_glow = new IIcon[names.length];
 		
-		//return super.getMixedBrightnessForBlock(iba, x, y, z);
+		for(int i = 0; i < icons.length; i++)
+		{
+			icons[i] = ir.registerIcon(mod.assets + "glowium/" + names[i]);
+			icons_glow[i] = ir.registerIcon(mod.assets + "glowium/" + names[i] + "_glow");
+		}
 	}
 	
 	public boolean canCreatureSpawn(EnumCreatureType type, IBlockAccess iba, int x, int y, int z)
-	{
-		//if(iba.getBlockMetadata(x, y, z) <= 4)
-		//	return false;
-		return type != EnumCreatureType.monster;
-	}
+	{ return type != EnumCreatureType.monster; }
+	
+	@SideOnly(Side.CLIENT)
+	public int getRenderType()
+	{ return RenderGlowiumBlocks.instance.getRenderId(); }
+	
+	public boolean isOpaqueCube()
+	{ return false; }
+	
+	public boolean renderAsNormalBlock()
+	{ return false; }
+	
+	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
+	{ return true; }
+	
+	@SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+    { return true; }
 }

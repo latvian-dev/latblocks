@@ -13,5 +13,6 @@ public class LatBlocksClient extends LMProxy
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
 		RenderTank.instance.register();
+		RenderGlowiumBlocks.instance.register();
 	}
 }
