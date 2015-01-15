@@ -20,7 +20,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	
 	public TileTank()
 	{
-		tank = new Tank("Tank", 0D);
+		tank = new Tank("Tank", Integer.MAX_VALUE / 1000D);
 	}
 	
 	public TileTank(int meta)
@@ -41,12 +41,14 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	public void readTileData(NBTTagCompound tag)
 	{
 		tick = tag.getLong("Tick");
+		tank.fluidTank.setCapacity(tag.getInteger("TankCap"));
 		tank.readFromNBT(tag);
 	}
 	
 	public void writeTileData(NBTTagCompound tag)
 	{
 		tag.setLong("Tick", tick);
+		tag.setInteger("TankCap", tank.getCapacity());
 		tank.writeToNBT(tag);
 	}
 	
