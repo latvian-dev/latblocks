@@ -17,13 +17,13 @@ public class BlockPaintableDef extends BlockPaintableSided
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
-		LatCoreMC.addOreDictionary("blockPaintable", new ItemStack(this));
+		ODItems.add("blockPaintable", new ItemStack(this));
 	}
 	
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 16), "WWW", "WPW", "WWW",
-				'W', new ItemStack(Blocks.wool, 1, LatCoreMC.ANY),
+				'W', new ItemStack(Blocks.wool, 1, ODItems.ANY),
 				'P', Blocks.quartz_block);
 	}
 	

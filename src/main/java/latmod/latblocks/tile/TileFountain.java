@@ -96,14 +96,16 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 		
 		if(!isServer() && redstonePowered && tank.hasFluid() && tank.getFluid().getBlock() != null)
 		{
-			double mxz = 0.15D;
-			double my = 0.4D;
+			double mv = MathHelperLM.sin(tick * 0.1D);
+			
+			double mxz = MathHelperLM.map(mv, -1D, 1D, 0.15D, 0.1D);
+			double my = MathHelperLM.map(mv, -1D, 1D, 0.4D, 0.5D);
 			String s = "blockdust_" + Item.getIdFromItem(Item.getItemFromBlock(tank.getFluid().getBlock())) + "_" + 0;
 			
 			int c = 12;
 			double t = tick * 3D;
 			
-			for(int i = 0; i < c * 4; i++)
+			for(int i = 0; i < c * 3; i++)
 			{
 				double mx = MathHelperLM.sinFromDeg(i * 360D / (double)c + t) * mxz;
 				double mz = MathHelperLM.cosFromDeg(i * 360D / (double)c + t) * mxz;

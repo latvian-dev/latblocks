@@ -6,7 +6,7 @@ import latmod.latblocks.client.render.RenderTank;
 import latmod.latblocks.tile.tank.TileTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -27,7 +27,7 @@ public class BlockTank extends BlockTankBase
 	
 	public void onPostLoaded()
 	{
-		addAllDamages(5);
+		addAllDamages(6);
 		TANK_BASIC = new ItemStack(this, 1, 0);
 	}
 	
@@ -52,6 +52,12 @@ public class BlockTank extends BlockTankBase
 		mod.recipes.addRecipe(new ItemStack(this, 1, 4), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 3),
 				'I', ODItems.DIAMOND);
+		
+		mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TET", "NGN", "TET",
+				'T', new ItemStack(this, 1, 4),
+				'N', Items.nether_star,
+				'E', Items.ender_pearl,
+				'G', ODItems.GLASS);
 	}
 	
 	public int damageDropped(int i)
@@ -64,7 +70,7 @@ public class BlockTank extends BlockTankBase
 	public void registerBlockIcons(IIconRegister ir)
 	{
 		RenderTank.icon_inside = ir.registerIcon(mod.assets + "tank/inside");
-		icons = new IIcon[5];
+		icons = new IIcon[6];
 		for(int i = 0; i < icons.length; i++)
 			icons[i] = ir.registerIcon(mod.assets + "tank/outside_" + i);
 	}
@@ -73,10 +79,15 @@ public class BlockTank extends BlockTankBase
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
 	{
 		int meta = is.getItemDamage();
-		int c = 0;
 		
-		if(meta == 0) c = 1;
-		else if(meta == 1) c = 8;
+		if(meta == 5)
+		{
+			l.add("Capacity: Endless");
+			return;
+		}
+		
+		int c = 1;
+		if(meta == 1) c = 8;
 		else if(meta == 2) c = 64;
 		else if(meta == 3) c = 512;
 		else if(meta == 4) c = 4096;

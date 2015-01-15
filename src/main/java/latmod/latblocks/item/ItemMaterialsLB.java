@@ -1,7 +1,7 @@
 package latmod.latblocks.item;
 import latmod.core.*;
 import latmod.core.item.ItemMaterials;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -35,8 +35,8 @@ public class ItemMaterialsLB extends ItemMaterials
 	{
 		super.onPostLoaded();
 		
-		LatCoreMC.addOreDictionary("gemGlowium", GEM_GLOWIUM = new ItemStack(this, 1, 0));
-		LatCoreMC.addOreDictionary("dustGlowium", DUST_GLOWIUM = new ItemStack(this, 1, 1));
+		ODItems.add("gemGlowium", GEM_GLOWIUM = new ItemStack(this, 1, 0));
+		ODItems.add("dustGlowium", DUST_GLOWIUM = new ItemStack(this, 1, 1));
 	}
 	
 	public void loadRecipes()
@@ -45,6 +45,9 @@ public class ItemMaterialsLB extends ItemMaterials
 				'G', ODItems.GLOWSTONE,
 				'Q', ODItems.QUARTZ);
 		
-		mod.recipes.addShapelessRecipe(DUST_GLOWIUM, GEM_GLOWIUM);
+		if(LatBlocksItems.i_hammer != null)
+			mod.recipes.addShapelessRecipe(DUST_GLOWIUM, LatBlocksItems.i_hammer, GEM_GLOWIUM);
+		else
+			mod.recipes.addShapelessRecipe(DUST_GLOWIUM, GEM_GLOWIUM);
 	}
 }

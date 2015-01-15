@@ -7,7 +7,6 @@ import latmod.latblocks.item.*;
 
 public class LatBlocksItems
 {
-	public static BlockGlowiumBlocks b_glowium_blocks;
 	public static BlockPaintableDef b_paintable;
 	public static BlockPaintableRS b_paintable_rs;
 	public static BlockPaintableGS b_paintable_gs;
@@ -31,10 +30,11 @@ public class LatBlocksItems
 	public static ItemBlockPainter i_painter;
 	public static ItemBlockPainterDmd i_painter_dmd;
 	public static ItemNote i_note;
+	public static ItemHammer i_hammer;
 	
 	public static void init()
 	{
-		b_glowium_blocks = new BlockGlowiumBlocks("glowiumBlocks").register();
+		BlockGlowium.init();
 		b_paintable = new BlockPaintableDef("paintable").register();
 		b_paintable_rs = new BlockPaintableRS("paintableRS").register();
 		b_paintable_gs = new BlockPaintableGS("paintableGS").register();
@@ -58,5 +58,6 @@ public class LatBlocksItems
 		i_painter = new ItemBlockPainter("blockPainter").register();
 		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();
 		i_note = new ItemNote("note").register();
+		i_hammer = new ItemHammer("hammer").register();
 	}
 }

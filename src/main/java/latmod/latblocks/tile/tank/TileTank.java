@@ -31,6 +31,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 		else if(meta == 2) tank.setCapacity(64D);
 		else if(meta == 3) tank.setCapacity(512D);
 		else if(meta == 4) tank.setCapacity(4096D);
+		else if(meta == 5) tank.setCapacity(Integer.MAX_VALUE / 1000D);
 		blockMetadata = meta;
 	}
 	
@@ -145,7 +146,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
 	{
 		if(tank.isEmpty()) info.add("Tank: Empty");
-		else info.add("Tank: " + tank.getAmount() + " mB of " + tank.getFluidStack().getLocalizedName() + " [ " + ((int)(tank.getAmountD() * 100D)) + "% ]");
+		else info.add("Tank: " + tank.getAmount() + " mB of " + tank.getFluidStack().getLocalizedName() + (blockMetadata == 5 ? "" : (" [ " + ((int)(tank.getAmountD() * 100D)) + "% ]")));
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -158,5 +159,8 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	
 	@SideOnly(Side.CLIENT)
 	public double getTankFluidHeight()
-	{ return tank.getAmountD(); }
+	{
+		if(blockMetadata == 5 && tank.hasFluid()) return 1D;
+		return tank.getAmountD();
+	}
 }

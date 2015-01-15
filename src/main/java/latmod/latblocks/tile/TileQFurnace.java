@@ -8,6 +8,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import cpw.mods.fml.relauncher.*;
@@ -38,7 +39,7 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 	{
 		super.writeTileData(tag);
 		tag.setInteger("Fuel", fuel);
-		tag.setShort("Progress", (byte)progress);
+		tag.setShort("Progress", (short)progress);
 	}
 	
 	public void onUpdate()
@@ -56,15 +57,35 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 				}
 			}
 			
-			if(progress >= 175)
+			ItemStack out = (items[SLOT_INPUT] == null) ? null : FurnaceRecipes.smelting().getSmeltingResult(items[SLOT_INPUT]);
+			
+			if(out != null)
 			{
-				progress = 0;
+				if(progress >= 175)
+				{
+					progress = 175;
+					
+					if(items[SLOT_OUTPUT] == null || items[SLOT_OUTPUT].stackSize + out.stackSize <= items[SLOT_OUTPUT].getMaxStackSize())
+					{
+						if(items[SLOT_OUTPUT] == null)
+						{
+							items[SLOT_OUTPUT] = out.copy();
+						}
+						else items[SLOT_OUTPUT].stackSize += out.stackSize;
+						
+						items[SLOT_INPUT] = InvUtils.reduceItem(items[SLOT_INPUT]);
+						progress = 0;
+						markDirty();
+					}
+				}
+				else if(fuel > 0)
+				{
+					progress++;
+					fuel--;
+					markDirty();
+				}
 			}
-			else progress++;
-			
-			if(fuel > 0) fuel--;
-			
-			markDirty();
+			else progress = 0;
 		}
 	}
 	

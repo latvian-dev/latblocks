@@ -16,11 +16,13 @@ public class LatBlocksConfig extends LMConfig
 	{
 		public static boolean fencesIgnorePlayers;
 		public static int redGlowiumCableDist;
+		public static boolean addAllColorBlocks;
 		
 		public static void load(Category c)
 		{
 			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
 			redGlowiumCableDist = c.getInt("redGlowiumCableDist", 32, 8, 256);
+			addAllColorBlocks = c.getBool("addAllColorBlocks", false);
 		}
 	}
 }

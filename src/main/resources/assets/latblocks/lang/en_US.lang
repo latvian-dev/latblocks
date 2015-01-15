@@ -41,11 +41,12 @@ latblocks:item.dustGlowium.name=Glowium Dust
 latblocks:item.paintRoller.rod.name=Block Painter Rod
 latblocks:item.paintRoller.basic.name=Paint Roller
 latblocks:item.paintRoller.dmd.name=Diamond Paint Roller
-latblocks:item.paintRoller.color.name=Color Roller
-latblocks:item.paintRoller.multi.name=Multi-Paint Roller
+latblocks:item.paintRoller.color.name=[WIP] Color Roller
+latblocks:item.paintRoller.multi.name=[WIP] Multi-Paint Roller
 
 latblocks:item.blockPainter.name=Block Painter
 latblocks:item.blockPainterDmd.name=Diamond Block Painter
-latblocks:item.colorPainter.name=Color Painter
-latblocks:item.blockPainterMulti.name=Multi-Block Painter
+latblocks:item.colorPainter.name=[WIP] Color Painter
+latblocks:item.blockPainterMulti.name=[WIP] Multi-Block Painter
 latblocks:item.note.name=[WIP] Sticky Note
+latblocks:item.hammer.name=[WIP] LatBlocks Hammer
