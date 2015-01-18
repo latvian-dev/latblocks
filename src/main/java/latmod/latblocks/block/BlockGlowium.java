@@ -3,7 +3,7 @@ package latmod.latblocks.block;
 import latmod.core.*;
 import latmod.core.recipes.LMRecipes;
 import latmod.core.tile.*;
-import latmod.latblocks.LatBlocksConfig;
+import latmod.latblocks.*;
 import latmod.latblocks.client.render.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;
@@ -15,7 +15,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockGlowium extends BlockLB implements IPaintable.INoPaint
+public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPaint
 {
 	public static int[] colors =
 	{
@@ -39,79 +39,85 @@ public class BlockGlowium extends BlockLB implements IPaintable.INoPaint
 	
 	public static final String BLOCK = "blockGlowium";
 	
-	public static BlockGlowium b_block;
-	public static BlockGlowium b_tile;
-	public static BlockGlowium b_brick;
-	public static BlockGlowium b_small;
-	public static BlockGlowium b_chiseled;
-	
 	public static final int DEF_DMG = EnumDyeColor.YELLOW.ID;
 	
-	public static void init()
+	public static class BGBlock extends BlockGlowium
 	{
-		b_block = new BlockGlowium("glowiumBlock", "block")
-		{
-			public void loadRecipes()
-			{
-				super.loadRecipes();
-				
-				mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "G",
-						'G', BLOCK);
-				
-				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-						'G', ItemMaterialsLB.GEM_GLOWIUM);
-				
-				mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEM_GLOWIUM, 4), "G",
-						'G', new ItemStack(this, 1, EnumDyeColor.YELLOW.ID));
-				
-				mod.recipes.addRecipe(new ItemStack(this, 4), "GG", "GG",
-						'G', b_chiseled);
-			}
-		}.register();
+		public BGBlock()
+		{ super("glowiumBlock", "block"); }
 		
-		b_tile = new BlockGlowium("glowiumTile", "tile")
+		public void loadRecipes()
 		{
-			public void loadRecipes()
-			{
-				super.loadRecipes();
-				
-				mod.recipes.addRecipe(new ItemStack(this, 4), "GG", "GG",
-						'G', b_block);
-			}
-		}.register();
+			super.loadRecipes();
+			
+			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "G",
+					'G', BLOCK);
+			
+			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
+					'G', ItemMaterialsLB.GEM_GLOWIUM);
+			
+			mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEM_GLOWIUM, 4), "G",
+					'G', new ItemStack(this, 1, DEF_DMG));
+			
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+					'G', new ItemStack(LatBlocksItems.b_chiseled, 4, DEF_DMG));
+		}
+	}
+	
+	public static class BGTile extends BlockGlowium
+	{
+		public BGTile()
+		{ super("glowiumTile", "tile"); }
 		
-		b_brick = new BlockGlowium("glowiumBrick", "brick")
+		public void loadRecipes()
 		{
-			public void loadRecipes()
-			{
-				super.loadRecipes();
-				
-				mod.recipes.addRecipe(new ItemStack(this, 4), "GG", "GG",
-						'G', b_tile);
-			}
-		}.register();
+			super.loadRecipes();
+			
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+					'G', new ItemStack(LatBlocksItems.b_block, 4, DEF_DMG));
+		}
+	}
+	
+	public static class BGBrick extends BlockGlowium
+	{
+		public BGBrick()
+		{ super("glowiumBrick", "brick"); }
 		
-		b_small = new BlockGlowium("glowiumSmallBrick", "small")
+		public void loadRecipes()
 		{
-			public void loadRecipes()
-			{
-				super.loadRecipes();
-				
-				mod.recipes.addRecipe(new ItemStack(this, 4), "GG", "GG",
-						'G', b_brick);
-			}
-		}.register();
+			super.loadRecipes();
+			
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+					'G', new ItemStack(LatBlocksItems.b_tile, 4, DEF_DMG));
+		}
+	}
+	
+	public static class BGBrickSmall extends BlockGlowium
+	{
+		public BGBrickSmall()
+		{ super("glowiumSmallBrick", "small"); }
 		
-		b_chiseled = new BlockGlowium("glowiumChiseledBrick", "chiseled")
+		public void loadRecipes()
 		{
-			public void loadRecipes()
-			{
-				super.loadRecipes();
-				
-				mod.recipes.addRecipe(new ItemStack(this, 4), "GG", "GG",
-						'G', b_small);
-			}
-		}.register();
+			super.loadRecipes();
+			
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+					'G', new ItemStack(LatBlocksItems.b_brick, 4, DEF_DMG));
+		}
+	}
+	
+	public static class BGBrickChiseled extends BlockGlowium
+	{
+		public BGBrickChiseled()
+		{ super("glowiumChiseledBrick", "chiseled"); }
+		
+		public void loadRecipes()
+		{
+			super.loadRecipes();
+			
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+					'G', new ItemStack(LatBlocksItems.b_small, 4, DEF_DMG));
+		}
 	}
 	
 	public final String name;
