@@ -1,8 +1,7 @@
 package latmod.latblocks.block.tank;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocks;
-import latmod.latblocks.client.render.RenderTank;
+import latmod.latblocks.*;
 import latmod.latblocks.tile.tank.TileTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,7 +56,7 @@ public class BlockTank extends BlockTankBase
 				'T', new ItemStack(this, 1, 4),
 				'N', Items.nether_star,
 				'E', Items.ender_pearl,
-				'G', ODItems.GLASS);
+				'G', LatBlocksItems.b_tank_void);
 	}
 	
 	public int damageDropped(int i)
@@ -69,7 +68,6 @@ public class BlockTank extends BlockTankBase
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		RenderTank.icon_inside = ir.registerIcon(mod.assets + "tank/inside");
 		icons = new IIcon[6];
 		for(int i = 0; i < icons.length; i++)
 			icons[i] = ir.registerIcon(mod.assets + "tank/outside_" + i);

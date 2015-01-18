@@ -17,6 +17,26 @@ import cpw.mods.fml.relauncher.*;
 
 public class BlockGlowium extends BlockLB implements IPaintable.INoPaint
 {
+	public static int[] colors =
+	{
+		0xFF262626, // Black
+		0xFFE01414, // Red
+		0xFF00980E, // Green
+		0xFF934E23, // Brown
+		0xFF004CC4, // Blue
+		0xFF9A41E2, // Purple
+		0xFF00AEFF, // Cyan
+		0xFFC0C0C0, // LightGray
+		0xFF636363, // Gray
+		0xFFFF7F7F, // Pink
+		0xFF2BE541, // Lime
+		0xFFFFD500, // Yellow
+		0xFF63BEFF, // LightBlue
+		0xFFFF00DC, // Magenta
+		0xFFFF952B, // Orange
+		0xFFEFEFEF, // White
+	};
+	
 	public static final String BLOCK = "blockGlowium";
 	
 	public static BlockGlowium b_block;
@@ -171,7 +191,7 @@ public class BlockGlowium extends BlockLB implements IPaintable.INoPaint
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(int m)
-	{ return EnumDyeColor.VALUES[m].color; }
+	{ return colors[m]; }
 	
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess iba, int x, int y, int z)

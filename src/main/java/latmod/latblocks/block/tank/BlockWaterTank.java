@@ -1,5 +1,6 @@
 package latmod.latblocks.block.tank;
 import latmod.core.tile.TileLM;
+import latmod.latblocks.client.render.RenderTank;
 import latmod.latblocks.tile.tank.TileWaterTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.*;
@@ -35,6 +36,7 @@ public class BlockWaterTank extends BlockTankBase
 	{
 		blockIcon = ir.registerIcon(mod.assets + "tank/outside_water_off");
 		icon_on = ir.registerIcon(mod.assets + "tank/outside_water_on");
+		RenderTank.icon_inside = ir.registerIcon(mod.assets + "tank/inside");
 	}
 	
 	public int damageDropped(int i)

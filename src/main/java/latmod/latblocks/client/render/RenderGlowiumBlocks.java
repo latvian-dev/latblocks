@@ -1,7 +1,5 @@
 package latmod.latblocks.client.render;
 
-import java.awt.Color;
-
 import latmod.core.EnumDyeColor;
 import latmod.core.client.BlockRendererLM;
 import latmod.latblocks.block.BlockGlowium;
@@ -21,11 +19,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 	public Block glow = new BlockCustom()
 	{
 		public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
-		{
-			//int meta = iba.getBlockMetadata(x, y, z); if(meta < 8)
-			return BlockGlowing.MAX;
-			//return super.getMixedBrightnessForBlock(iba, x, y, z);
-		}
+		{ return BlockGlowing.MAX; }
 	};
 	
 	public Block empty = new BlockCustom()
@@ -37,19 +31,13 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
 		BlockGlowium bg = (BlockGlowium)b;
 		
-		Color col1c = new Color(EnumDyeColor.VALUES[meta].color);
-		int red = Math.min(col1c.getRed() + 50, 255);
-		int green = Math.min(col1c.getGreen() + 50, 255);
-		int blue = Math.min(col1c.getBlue() + 50, 255);
-		renderBlocks.setCustomColor(new Color(red, green, blue, 255).getRGB());
+		renderBlocks.setCustomColor(BlockGlowium.colors[meta]);
 		
 		GL11.glPushMatrix();
 		rotateBlocks();
 		renderBlocks.setOverrideBlockTexture(bg.getBlockIcon());
 		renderBlocks.renderBlockAsItem(b, meta, 1F);
 		GL11.glPopMatrix();
-		
-		renderBlocks.setCustomColor(EnumDyeColor.VALUES[meta].color);
 		
 		GL11.glPushMatrix();
 		rotateBlocks();
