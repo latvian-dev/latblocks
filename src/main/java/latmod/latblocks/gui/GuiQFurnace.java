@@ -26,7 +26,15 @@ public class GuiQFurnace extends GuiLM
 		super(c, texLoc);
 		furnace = (TileQFurnace)c.inv;
 		
-		widgets.add(barFuel = new WidgetLM(this, 57, 36, 14, 14));
+		widgets.add(barFuel = new WidgetLM(this, 57, 36, 14, 14)
+		{
+			public void addMouseOverText(FastList<String> l)
+			{
+				double d = (furnace.fuel / 175D);
+				d = ((int)(d * 10D)) / 10D;
+				l.add(d + " seconds");
+			}
+		});
 		widgets.add(barProgress = new WidgetLM(this, 80, 35, 22, 15));
 	}
 	
@@ -41,17 +49,5 @@ public class GuiQFurnace extends GuiLM
 		barProgress.render(texProgress, furnace.progress / 175D, 1D);
 		
 		if(b) GL11.glEnable(GL11.GL_LIGHTING);
-	}
-	
-	public void drawScreen(int mx, int my, float f)
-	{
-		super.drawScreen(mx, my, f);
-		
-		FastList<String> al = new FastList<String>();
-		
-		if(barFuel.mouseOver(mx, my))
-			al.add((furnace.fuel / 200D) + " seconds");
-		
-		if(!al.isEmpty()) drawHoveringText(al, mx, my, fontRendererObj);
 	}
 }

@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import cpw.mods.fml.relauncher.*;
 
-public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory // TileEntityFurnace
+public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory // TileEntityFurnace
 {
 	public static final int SLOT_INPUT = 0;
 	public static final int SLOT_FUEL = 1;
@@ -24,15 +24,14 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 	public ItemStack result = null;
 	
 	public TileQFurnace()
-	{
-		items = new ItemStack[3];
-	}
+	{ super(3); }
 	
 	public void readTileData(NBTTagCompound tag)
 	{
 		super.readTileData(tag);
 		fuel = tag.getInteger("Fuel");
 		progress = tag.getShort("Progress");
+		result = InvUtils.loadStack(tag, "Result");
 	}
 	
 	public void writeTileData(NBTTagCompound tag)
@@ -40,52 +39,65 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 		super.writeTileData(tag);
 		tag.setInteger("Fuel", fuel);
 		tag.setShort("Progress", (short)progress);
+		InvUtils.saveStack(tag, "Result", result);
 	}
 	
 	public void onUpdate()
 	{
-		if(isServer())
+		if(fuel == 0 && isServer() && items[SLOT_FUEL] != null)
 		{
-			if(fuel == 0 && items[SLOT_FUEL] != null)
+			fuel = TileEntityFurnace.getItemBurnTime(items[SLOT_FUEL]);
+			
+			if(fuel > 0)
 			{
-				fuel = TileEntityFurnace.getItemBurnTime(items[SLOT_FUEL]);
+				items[SLOT_FUEL] = InvUtils.reduceItem(items[SLOT_FUEL]);
+				markDirty();
+			}
+		}
+		
+		if(progress == 0)
+		{
+			if(isServer())
+			{
+				ItemStack out = (items[SLOT_INPUT] == null) ? null : FurnaceRecipes.smelting().getSmeltingResult(items[SLOT_INPUT]);
 				
-				if(fuel > 0)
+				if(out != null && fuel > 0)
 				{
-					items[SLOT_FUEL] = InvUtils.reduceItem(items[SLOT_FUEL]);
+					items[SLOT_INPUT] = InvUtils.reduceItem(items[SLOT_INPUT]);
+					result = out.copy();
+					progress = 1;
 					markDirty();
 				}
 			}
-			
-			ItemStack out = (items[SLOT_INPUT] == null) ? null : FurnaceRecipes.smelting().getSmeltingResult(items[SLOT_INPUT]);
-			
-			if(out != null)
+		}
+		else
+		{
+			if(progress >= 175)
 			{
-				if(progress >= 175)
+				if(result != null && isServer())
 				{
-					progress = 175;
+					progress = 0;
+					markDirty();
 					
-					if(items[SLOT_OUTPUT] == null || items[SLOT_OUTPUT].stackSize + out.stackSize <= items[SLOT_OUTPUT].getMaxStackSize())
+					if(items[SLOT_OUTPUT] == null || items[SLOT_OUTPUT].stackSize + result.stackSize <= items[SLOT_OUTPUT].getMaxStackSize())
 					{
 						if(items[SLOT_OUTPUT] == null)
-						{
-							items[SLOT_OUTPUT] = out.copy();
-						}
-						else items[SLOT_OUTPUT].stackSize += out.stackSize;
+							items[SLOT_OUTPUT] = result.copy();
+						else items[SLOT_OUTPUT].stackSize += result.stackSize;
 						
-						items[SLOT_INPUT] = InvUtils.reduceItem(items[SLOT_INPUT]);
-						progress = 0;
+						result = null;
 						markDirty();
 					}
 				}
-				else if(fuel > 0)
+			}
+			else
+			{
+				if(fuel > 0)
 				{
 					progress++;
 					fuel--;
-					markDirty();
 				}
 			}
-			else progress = 0;
 		}
 	}
 	
@@ -108,7 +120,6 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 	public void onBroken()
 	{
 		dropItems = false;
-		super.onBroken();
 		
 		ItemStack is = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
 		NBTTagCompound tag = new NBTTagCompound();
@@ -117,6 +128,8 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 		is.stackTagCompound.setTag("Furnace", tag);
 		if(customName != null) is.setStackDisplayName(customName);
 		InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, is, 10);
+		
+		super.onBroken();
 	}
 	
 	public boolean isLit()
@@ -128,6 +141,9 @@ public class TileQFurnace extends TileLM implements IGuiTile, ISidedInventory //
 	@SideOnly(Side.CLIENT)
 	public GuiScreen getGui(EntityPlayer ep, int ID)
 	{ return new GuiQFurnace(new ContainerQFurnace(ep, this)); }
+	
+	public boolean isItemValidForSlot(int i, ItemStack is)
+	{ return true; }
 	
 	public int[] getAccessibleSlotsFromSide(int s)
 	{

@@ -6,16 +6,14 @@ import latmod.core.*;
 import latmod.core.tile.*;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-public class TileFountain extends TileLM implements IPaintable, IFluidHandler, ISidedInventory, IWailaTile.Body
+public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler, ISidedInventory, IWailaTile.Body
 {
-	private static final int[] ALL_SLOTS = new int[] { 0 };
-	
 	public final Paint[] paint = new Paint[1];
 	public final Tank tank;
 	
@@ -23,13 +21,13 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	
 	public TileFountain()
 	{
+		super(1);
+		
 		tank = new Tank("Tank", 1D)
 		{
 			public boolean canFill(ForgeDirection from, Fluid fluid)
 			{ return fluid != null && fluid.getBlock() != null; }
 		};
-		
-		items = new ItemStack[ALL_SLOTS.length];
 	}
 	
 	public boolean rerenderBlock()
@@ -213,9 +211,15 @@ public class TileFountain extends TileLM implements IPaintable, IFluidHandler, I
 	public FluidTankInfo[] getTankInfo(ForgeDirection from)
 	{ return tank.getTankInfo(from); }
 	
-	public int getInventoryStackLimit()
-	{ return 1; }
-
+	public String getInventoryName()
+	{ return "Fountain"; }
+	
+	public boolean hasCustomInventoryName()
+	{ return false; }
+	
+	public boolean isItemValidForSlot(int i, ItemStack is)
+	{ return true; }
+	
 	public int[] getAccessibleSlotsFromSide(int i)
 	{ return ALL_SLOTS; }
 	

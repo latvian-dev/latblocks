@@ -1,6 +1,9 @@
 package latmod.latblocks.block;
 
+import java.util.List;
+
 import latmod.core.*;
+import latmod.core.mod.LCConfig;
 import latmod.core.recipes.LMRecipes;
 import latmod.core.tile.*;
 import latmod.latblocks.*;
@@ -8,8 +11,9 @@ import latmod.latblocks.client.render.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -139,12 +143,21 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public void onPostLoaded()
 	{
-		if(LatBlocksConfig.General.addAllColorBlocks)
-			addAllDamages(16);
-		else
-			blocksAdded.add(new ItemStack(this, 1, DEF_DMG));
+		blocksAdded.add(new ItemStack(this, 1, DEF_DMG));
 		
 		ODItems.add(BLOCK, new ItemStack(this, 1, ODItems.ANY));
+	}
+	
+	@SuppressWarnings("all")
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item j, CreativeTabs c, List l)
+	{
+		if(LCConfig.Client.addAllColorBlocks)
+		{
+			for(int i = 0; i < 16; i++)
+				l.add(new ItemStack(this, 1, i));
+		}
+		else l.add(new ItemStack(this, 1, DEF_DMG));
 	}
 	
 	public void loadRecipes()
