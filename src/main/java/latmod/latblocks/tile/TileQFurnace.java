@@ -2,6 +2,7 @@ package latmod.latblocks.tile;
 
 import latmod.core.*;
 import latmod.core.tile.*;
+import latmod.core.tile.IPaintable.Paint;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
@@ -22,6 +23,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public int fuel = 0;
 	public int progress = 0;
 	public ItemStack result = null;
+	public final Paint[] paint = new Paint[1];
 	
 	public TileQFurnace()
 	{ super(3); }
@@ -32,6 +34,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		fuel = tag.getInteger("Fuel");
 		progress = tag.getShort("Progress");
 		result = InvUtils.loadStack(tag, "Result");
+		Paint.readFromNBT(tag, "Texture", paint);
 	}
 	
 	public void writeTileData(NBTTagCompound tag)
@@ -40,7 +43,11 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		tag.setInteger("Fuel", fuel);
 		tag.setShort("Progress", (short)progress);
 		InvUtils.saveStack(tag, "Result", result);
+		Paint.writeToNBT(tag, "Texture", paint);
 	}
+	
+	public boolean rerenderBlock()
+	{ return true; }
 	
 	public void onUpdate()
 	{
@@ -96,6 +103,9 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 				{
 					progress++;
 					fuel--;
+					
+					if(fuel == 0 && isServer())
+						markDirty();
 				}
 			}
 		}
@@ -124,6 +134,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		ItemStack is = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
 		NBTTagCompound tag = new NBTTagCompound();
 		writeTileData(tag);
+		tag.removeTag("CustomName");
 		is.setTagCompound(new NBTTagCompound());
 		is.stackTagCompound.setTag("Furnace", tag);
 		if(customName != null) is.setStackDisplayName(customName);

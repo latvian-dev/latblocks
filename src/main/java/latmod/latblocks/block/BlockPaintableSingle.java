@@ -1,7 +1,10 @@
 package latmod.latblocks.block;
 import latmod.core.FastList;
+import latmod.latblocks.tile.TileSinglePaintable;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
@@ -104,5 +107,22 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		else if(m == Placement.D_SOUTH) boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 1D - height, 1D, 1D, 1D));
 		else if(m == Placement.D_WEST) boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, height, 1D, 1D));
 		else if(m == Placement.D_EAST) boxes.add(AxisAlignedBB.getBoundingBox(1D - height, 0D, 0D, 1D, 1D, 1D));
+	}
+	
+	public float getBlockHardness(World w, int x, int y, int z)
+	{
+		float h = 1F;
+		
+		TileSinglePaintable t = (TileSinglePaintable)w.getTileEntity(x, y, z);
+		
+		if(t != null && t.paint[0] != null)
+		{
+			Block b = t.paint[0].block;
+			if(b != null && b != Blocks.air && !b.hasTileEntity(t.paint[0].meta))
+				h = b.getBlockHardness(w, x, y, z);
+			if(h < 0F) h = 1F;
+		}
+		
+		return h;
 	}
 }

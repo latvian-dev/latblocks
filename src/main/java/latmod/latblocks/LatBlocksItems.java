@@ -7,11 +7,11 @@ import latmod.latblocks.item.*;
 
 public class LatBlocksItems
 {
-	public static BlockGlowium.BGBlock b_block;
-	public static BlockGlowium.BGTile b_tile;
-	public static BlockGlowium.BGBrick b_brick;
-	public static BlockGlowium.BGBrickSmall b_small;
-	public static BlockGlowium.BGBrickChiseled b_chiseled;
+	public static BlockGlowium.BGBlock b_glowium_block;
+	public static BlockGlowium.BGTile b_glowium_tile;
+	public static BlockGlowium.BGBrick b_glowium_brick;
+	public static BlockGlowium.BGBrickSmall b_glowium_small;
+	public static BlockGlowium.BGBrickChiseled b_glowium_chiseled;
 	
 	public static BlockPaintableDef b_paintable;
 	public static BlockPaintableRS b_paintable_rs;
@@ -40,11 +40,11 @@ public class LatBlocksItems
 	
 	public static void init()
 	{
-		b_block = new BlockGlowium.BGBlock().register();
-		b_tile = new BlockGlowium.BGTile().register();
-		b_brick = new BlockGlowium.BGBrick().register();
-		b_small = new BlockGlowium.BGBrickSmall().register();
-		b_chiseled = new BlockGlowium.BGBrickChiseled().register();
+		b_glowium_block = new BlockGlowium.BGBlock().register();
+		b_glowium_tile = new BlockGlowium.BGTile().register();
+		b_glowium_brick = new BlockGlowium.BGBrick().register();
+		b_glowium_small = new BlockGlowium.BGBrickSmall().register();
+		b_glowium_chiseled = new BlockGlowium.BGBrickChiseled().register();
 		
 		b_paintable = new BlockPaintableDef("paintable").register();
 		b_paintable_rs = new BlockPaintableRS("paintableRS").register();

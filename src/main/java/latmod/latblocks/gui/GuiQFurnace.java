@@ -32,10 +32,15 @@ public class GuiQFurnace extends GuiLM
 			{
 				double d = (furnace.fuel / 175D);
 				d = ((int)(d * 10D)) / 10D;
-				l.add(d + " seconds");
+				l.add(d + " items");
 			}
 		});
-		widgets.add(barProgress = new WidgetLM(this, 80, 35, 22, 15));
+		widgets.add(barProgress = new WidgetLM(this, 80, 35, 22, 15)
+		{
+			public void addMouseOverText(FastList<String> l)
+			{
+			}
+		});
 	}
 	
 	public void drawGuiContainerBackgroundLayer(float f, int mx, int my)

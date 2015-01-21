@@ -1,1 +1,20 @@
-[{}]
+[
+{
+  "modid": "LatBlocks",
+  "name": "LatBlocks",
+  "description": "This mod adds random, paintable blocks",
+  "version": "${version}",
+  "url": "http://minecraft.curseforge.com/mc-mods/225733-latblocks",
+  "updateUrl": "",
+  "authorList": [
+    "LatvianModder"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

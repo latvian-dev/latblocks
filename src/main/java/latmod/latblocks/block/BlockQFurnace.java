@@ -4,7 +4,6 @@ import java.util.Random;
 import latmod.core.ODItems;
 import latmod.core.client.LatCoreMCClient;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,7 +24,7 @@ public class BlockQFurnace extends BlockLB
 		setHardness(1.2F);
 		setBlockTextureName("furnSide");
 		isBlockContainer = true;
-		LatBlocks.mod.addTile(TileQFurnace.class, s);
+		mod.addTile(TileQFurnace.class, s);
 	}
 	
 	public void loadRecipes()

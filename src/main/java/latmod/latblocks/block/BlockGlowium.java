@@ -6,7 +6,7 @@ import latmod.core.*;
 import latmod.core.mod.LCConfig;
 import latmod.core.recipes.LMRecipes;
 import latmod.core.tile.*;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;
@@ -64,7 +64,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 					'G', new ItemStack(this, 1, DEF_DMG));
 			
 			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_chiseled, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium_chiseled, 4, DEF_DMG));
 		}
 	}
 	
@@ -78,7 +78,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			super.loadRecipes();
 			
 			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_block, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium_block, 4, DEF_DMG));
 		}
 	}
 	
@@ -92,7 +92,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			super.loadRecipes();
 			
 			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_tile, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium_tile, 4, DEF_DMG));
 		}
 	}
 	
@@ -106,7 +106,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			super.loadRecipes();
 			
 			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_brick, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium_brick, 4, DEF_DMG));
 		}
 	}
 	
@@ -120,7 +120,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			super.loadRecipes();
 			
 			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_small, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium_small, 4, DEF_DMG));
 		}
 	}
 	
@@ -202,6 +202,30 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		if(w.getBlockMetadata(x, y, z) != meta)
 		{
 			w.setBlockMetadataWithNotify(x, y, z, meta, 3);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
+	{
+		if(LatCoreMC.isWrench(ep.getHeldItem()))
+		{
+			if(!w.isRemote)
+			{
+				BlockGlowium b = null;
+				int meta = w.getBlockMetadata(x, y, z);
+				
+				if(this == LatBlocksItems.b_glowium_block) b = LatBlocksItems.b_glowium_tile;
+				if(this == LatBlocksItems.b_glowium_tile) b = LatBlocksItems.b_glowium_brick;
+				if(this == LatBlocksItems.b_glowium_brick) b = LatBlocksItems.b_glowium_small;
+				if(this == LatBlocksItems.b_glowium_small) b = LatBlocksItems.b_glowium_chiseled;
+				if(this == LatBlocksItems.b_glowium_chiseled) b = LatBlocksItems.b_glowium_block;
+				
+				w.setBlock(x, y, z, b, meta, 3);
+			}
+			
 			return true;
 		}
 		

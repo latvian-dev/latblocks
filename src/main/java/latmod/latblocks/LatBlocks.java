@@ -26,10 +26,6 @@ public class LatBlocks
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		mod = new LMMod(MOD_ID, new LatBlocksConfig(e), null);
-		ModMetadata m = e.getModMetadata();
-		m.description = "This mod adds random, paintable blocks";
-		m.url = "http://minecraft.curseforge.com/mc-mods/225733-latblocks";
-		m.authorList.add("LatvianModder");
 		
 		LatBlocksItems.init();
 		mod.onPostLoaded();
