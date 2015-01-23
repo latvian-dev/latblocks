@@ -1,5 +1,5 @@
 package latmod.latblocks.block;
-import java.util.Random;
+import java.util.*;
 
 import latmod.core.ODItems;
 import latmod.core.client.LatCoreMCClient;
@@ -73,6 +73,12 @@ public class BlockQFurnace extends BlockLB
 		return blockIcon;
 	}
 	
-	public int quantityDropped(Random r)
-	{ return 0; }
+	public ArrayList<ItemStack> getDrops(World w, int x, int y, int z, int m, int f)
+	{
+		TileQFurnace t = (TileQFurnace)w.getTileEntity(x, y, z);
+		if(t != null && t.isValid() && t.specialDrop())
+			return new ArrayList<ItemStack>();
+		
+		return super.getDrops(w, x, y, z, m, f);
+	}
 }
