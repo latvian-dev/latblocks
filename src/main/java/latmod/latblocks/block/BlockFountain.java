@@ -15,7 +15,7 @@ public class BlockFountain extends BlockLB
 {
 	public BlockFountain(String s)
 	{
-		super(s, Material.iron);
+		super(s, Material.rock);
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;

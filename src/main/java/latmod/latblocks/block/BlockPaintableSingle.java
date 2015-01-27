@@ -1,10 +1,6 @@
 package latmod.latblocks.block;
 import latmod.core.FastList;
-import latmod.latblocks.tile.TileSinglePaintable;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
@@ -14,9 +10,9 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 {
 	public final float height;
 	
-	public BlockPaintableSingle(String s, Material m, float h)
+	public BlockPaintableSingle(String s, float h)
 	{
-		super(s, m);
+		super(s);
 		height = h;
 	}
 	
@@ -109,6 +105,7 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		else if(m == Placement.D_EAST) boxes.add(AxisAlignedBB.getBoundingBox(1D - height, 0D, 0D, 1D, 1D, 1D));
 	}
 	
+	/* WIP
 	public float getBlockHardness(World w, int x, int y, int z)
 	{
 		float h = 1F;
@@ -124,5 +121,5 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		}
 		
 		return h;
-	}
+	}*/
 }

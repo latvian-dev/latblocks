@@ -1,7 +1,10 @@
 package latmod.latblocks.block;
+import java.util.Random;
+
 import latmod.core.client.LatCoreMCClient;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,13 +26,20 @@ public class BlockInvGelLamp extends BlockLB
 		setBlockTextureName("lamp");
 	}
 	
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(World w, int x, int y, int z, Random r)
+	{
+		ForgeDirection dir = ForgeDirection.VALID_DIRECTIONS[w.getBlockMetadata(x, y, z)];
+		ItemGlasses.spawnInvParticles(w, x + 0.5D + dir.offsetX * 0.3D, y + 0.5D + dir.offsetY * 0.3D, z + 0.5D + dir.offsetZ * 0.3D, 10);
+	}
+	
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 8), "LLL", "LPL", "LLL",
 			'L', LatBlocksItems.b_gel_lamp,
 			'P', new ItemStack(Items.potionitem, 1, 8206));
 		
-		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_gel_lamp), this);
+		LatBlocksItems.i_hammer.addRecipe(new ItemStack(LatBlocksItems.b_gel_lamp), this);
 	}
 	
 	public TileLM createNewTileEntity(World w, int i)

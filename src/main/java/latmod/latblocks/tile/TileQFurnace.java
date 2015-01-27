@@ -15,6 +15,10 @@ import cpw.mods.fml.relauncher.*;
 
 public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory // TileEntityFurnace
 {
+	public static final String ITEM_TAG = "Furnace";
+	public static final int MAX_ITEMS = 3;
+	public static final double MAX_PROGRESS = 175D;
+	
 	public static final int SLOT_INPUT = 0;
 	public static final int SLOT_FUEL = 1;
 	public static final int SLOT_OUTPUT = 2;
@@ -24,7 +28,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public ItemStack result = null;
 	
 	public TileQFurnace()
-	{ super(3); }
+	{ super(MAX_ITEMS); }
 	
 	public void readTileData(NBTTagCompound tag)
 	{
@@ -75,7 +79,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		}
 		else
 		{
-			if(progress >= 175)
+			if(progress >= MAX_PROGRESS)
 			{
 				if(result != null && isServer())
 				{
@@ -114,33 +118,33 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	{
 		super.onPlacedBy(ep, is);
 		
-		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Furnace"))
-			readTileData(is.stackTagCompound.getCompoundTag("Furnace"));
+		if(is.hasTagCompound() && is.stackTagCompound.hasKey(ITEM_TAG))
+			readTileData(is.stackTagCompound.getCompoundTag(ITEM_TAG));
 		
 		if(is.hasDisplayName())
 			customName = is.getDisplayName();
+		else
+			customName = null;
 		
 		setMeta(MathHelperLM.get2DRotation(ep).ordinal());
 	}
 	
-	public boolean specialDrop()
-	{ return fuel > 0 || result != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1; }
-	
 	public void onBroken()
 	{
-		if(specialDrop())
+		dropItems = false;
+		ItemStack is = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
+		
+		if(fuel > 0 || result != null || customName != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1)
 		{
-			dropItems = false;
-			
-			ItemStack is = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
 			NBTTagCompound tag = new NBTTagCompound();
 			writeTileData(tag);
 			tag.removeTag("CustomName");
 			is.setTagCompound(new NBTTagCompound());
-			is.stackTagCompound.setTag("Furnace", tag);
+			is.stackTagCompound.setTag(ITEM_TAG, tag);
 			if(customName != null) is.setStackDisplayName(customName);
-			InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, is, 10);
 		}
+		
+		InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, is, 10);
 		
 		super.onBroken();
 	}

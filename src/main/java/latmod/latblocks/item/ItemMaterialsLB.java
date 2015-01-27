@@ -9,6 +9,7 @@ public class ItemMaterialsLB extends ItemMaterials
 {
 	public static ItemStack GEM_GLOWIUM;
 	public static ItemStack DUST_GLOWIUM;
+	public static ItemStack LENS;
 	
 	public ItemMaterialsLB(String s)
 	{ super(s); }
@@ -19,6 +20,7 @@ public class ItemMaterialsLB extends ItemMaterials
 		{
 			"gemGlowium",
 			"dustGlowium",
+			"lens",
 		};
 	}
 	
@@ -37,6 +39,7 @@ public class ItemMaterialsLB extends ItemMaterials
 		
 		ODItems.add("gemGlowium", GEM_GLOWIUM = new ItemStack(this, 1, 0));
 		ODItems.add("dustGlowium", DUST_GLOWIUM = new ItemStack(this, 1, 1));
+		LENS = new ItemStack(this, 1, 2);
 	}
 	
 	public void loadRecipes()
@@ -45,9 +48,7 @@ public class ItemMaterialsLB extends ItemMaterials
 				'G', ODItems.GLOWSTONE,
 				'Q', ODItems.QUARTZ);
 		
-		if(LatBlocksItems.i_hammer != null)
-			mod.recipes.addShapelessRecipe(DUST_GLOWIUM, LatBlocksItems.i_hammer, GEM_GLOWIUM);
-		else
-			mod.recipes.addShapelessRecipe(DUST_GLOWIUM, GEM_GLOWIUM);
+		LatBlocksItems.i_hammer.addRecipe(DUST_GLOWIUM, GEM_GLOWIUM);
+		LatBlocksItems.i_hammer.addRecipe(LENS, ODItems.GLASS);
 	}
 }

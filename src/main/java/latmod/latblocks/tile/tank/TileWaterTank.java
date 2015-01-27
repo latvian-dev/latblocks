@@ -1,15 +1,15 @@
 package latmod.latblocks.tile.tank;
-import cpw.mods.fml.relauncher.*;
 import latmod.core.InvUtils;
-import latmod.core.tile.*;
+import latmod.core.tile.Tank;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import cpw.mods.fml.relauncher.*;
 
 public class TileWaterTank extends TileTankBase
 {

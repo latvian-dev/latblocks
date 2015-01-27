@@ -64,7 +64,7 @@ public class ItemPainterParts extends ItemMaterials
 				'R', PAINT_ROLLER);
 		
 		mod.recipes.addRecipe(PAINT_ROLLER_COLOR, "123", "8R4", "765",
-				'R', PAINT_ROLLER,
+				'R', PAINT_ROLLER_DMD,
 				'1', EnumDyeColor.BLUE.dyeName,
 				'2', EnumDyeColor.CYAN.dyeName,
 				'3', EnumDyeColor.GREEN.dyeName,
@@ -74,6 +74,6 @@ public class ItemPainterParts extends ItemMaterials
 				'7', EnumDyeColor.RED.dyeName,
 				'8', EnumDyeColor.PURPLE.dyeName);
 		
-		mod.recipes.addShapelessRecipe(PAINT_ROLLER_MULTI, PAINT_ROLLER_DMD, PAINT_ROLLER_COLOR);
+		//mod.recipes.addShapelessRecipe(PAINT_ROLLER_MULTI, PAINT_ROLLER_DMD, PAINT_ROLLER_COLOR);
 	}
 }

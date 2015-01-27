@@ -1,9 +1,7 @@
 package latmod.latblocks.block;
-import latmod.core.tile.TileLM;
+import latmod.latblocks.block.paintable.BlockPaintableDef;
 import latmod.latblocks.client.render.RenderPaintable;
-import latmod.latblocks.tile.TileSidedPaintable;
-import latmod.latblocks.tile.paintable.TilePaintableDef;
-import net.minecraft.block.material.Material;
+import latmod.latblocks.tile.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -12,9 +10,7 @@ import cpw.mods.fml.relauncher.*;
 public abstract class BlockPaintableSided extends BlockPaintableLB
 {
 	public BlockPaintableSided(String s)
-	{
-		super(s, Material.rock);
-	}
+	{ super(s); }
 	
 	public void registerTiles()
 	{
@@ -24,8 +20,8 @@ public abstract class BlockPaintableSided extends BlockPaintableLB
 	public int getLightOpacity()
 	{ return 0; }
 	
-	public TileLM createNewTileEntity(World w, int m)
-	{ return new TilePaintableDef(); }
+	public TilePaintableLB createNewTileEntity(World w, int m)
+	{ return new BlockPaintableDef.TilePaintableDef(); }
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()

@@ -1,12 +1,9 @@
 package latmod.latblocks.block.paintable;
 
 import latmod.core.*;
-import latmod.core.MathHelperLM;
-import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
-import latmod.latblocks.tile.paintable.TilePStairs;
-import net.minecraft.block.material.Material;
+import latmod.latblocks.tile.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
@@ -18,10 +15,10 @@ public class BlockPStairs extends BlockPaintableSingle
 {
 	public BlockPStairs(String s)
 	{
-		super(s, Material.wood, 1F / 2F);
+		super(s, 1F / 2F);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePStairs(); }
 	
 	public void loadRecipes()
@@ -132,5 +129,9 @@ public class BlockPStairs extends BlockPaintableSingle
 		if(addNE) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.0D, 1.0D, h1, 0.5D));
 		if(addSW) boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.5D, 0.5D, h1, 1.0D));
 		if(addSE) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
+	}
+	
+	public static class TilePStairs extends TileSinglePaintable
+	{
 	}
 }

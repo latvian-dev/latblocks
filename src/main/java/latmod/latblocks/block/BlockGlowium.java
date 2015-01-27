@@ -54,8 +54,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		{
 			super.loadRecipes();
 			
-			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "G",
-					'G', BLOCK);
+			LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), BLOCK);
 			
 			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
 					'G', ItemMaterialsLB.GEM_GLOWIUM);
@@ -152,7 +151,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item j, CreativeTabs c, List l)
 	{
-		if(LCConfig.Client.addAllColorBlocks)
+		if(LCConfig.Client.addAllColorItems)
 		{
 			for(int i = 0; i < 16; i++)
 				l.add(new ItemStack(this, 1, i));

@@ -11,6 +11,7 @@ public class ItemHammer extends ItemLB
 		super(s);
 		setMaxStackSize(1);
 		setFull3D();
+		setMaxDamage(512);
 		setHarvestLevel("wrench", 0);
 	}
 	
@@ -22,8 +23,24 @@ public class ItemHammer extends ItemLB
 				'S', ODItems.STICK);
 	}
 	
+	public ItemStack getContainerItem(ItemStack is)
+	{
+		if(is.getItemDamage() > getMaxDamage())
+			return null;
+		return new ItemStack(this, 1, is.getItemDamage() + 1);
+	}
+	
+	public boolean hasContainerItem(ItemStack is)
+	{ return true; }
+	
+	public boolean doesContainerItemLeaveCraftingGrid(ItemStack is)
+	{ return false; }
+	
+	public void addRecipe(ItemStack out, Object in)
+	{ mod.recipes.addShapelessRecipe(out, new ItemStack(this, 1, ODItems.ANY), in); }
+	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{
-		return true;
+		return false;
 	}
 }

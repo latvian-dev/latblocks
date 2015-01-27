@@ -2,11 +2,10 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import latmod.core.*;
-import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.tile.paintable.TileGelLamp;
+import latmod.latblocks.item.ItemMaterialsLB;
+import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,7 +20,7 @@ public class BlockGelLamp extends BlockPaintableLB
 {
 	public BlockGelLamp(String s)
 	{
-		super(s, Material.wood);
+		super(s);
 		setLightLevel(1F);
 		setHardness(0.1F);
 		setBlockTextureName("lamp");
@@ -30,14 +29,12 @@ public class BlockGelLamp extends BlockPaintableLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 8), "GGG", "GSG", "LPL",
-				'P', LatBlocksItems.b_cover,
-				'L', ODItems.GLOWSTONE,
-				'S', ODItems.SLIMEBALL,
-				'G', ODItems.GLASS);
+		mod.recipes.addRecipe(new ItemStack(this, 8), "GS", "SG",
+				'G', ItemMaterialsLB.DUST_GLOWIUM,
+				'S', ODItems.SLIMEBALL);
 	}
 	
-	public TileLM createNewTileEntity(World w, int i)
+	public TilePaintableLB createNewTileEntity(World w, int i)
 	{ return new TileGelLamp(); }
 	
 	@SuppressWarnings("all")
@@ -117,4 +114,8 @@ public class BlockGelLamp extends BlockPaintableLB
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
 	{ return 1; }
+	
+	public static class TileGelLamp extends TileSinglePaintable
+	{
+	}
 }

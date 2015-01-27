@@ -1,8 +1,7 @@
 package latmod.latblocks.block.paintable;
-import latmod.core.*;
-import latmod.core.tile.TileLM;
+import latmod.core.ODItems;
 import latmod.latblocks.block.BlockPaintableSided;
-import latmod.latblocks.tile.paintable.TilePaintableDef;
+import latmod.latblocks.tile.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -27,6 +26,10 @@ public class BlockPaintableDef extends BlockPaintableSided
 				'P', Blocks.quartz_block);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePaintableDef(); }
+	
+	public static class TilePaintableDef extends TileSidedPaintable
+	{
+	}
 }

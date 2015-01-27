@@ -6,7 +6,7 @@ import latmod.core.*;
 import latmod.core.tile.*;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;

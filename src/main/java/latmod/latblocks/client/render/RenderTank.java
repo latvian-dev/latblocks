@@ -1,7 +1,7 @@
 package latmod.latblocks.client.render;
-import latmod.core.*;
+import latmod.core.MathHelperLM;
 import latmod.core.client.BlockRendererLM;
-import latmod.latblocks.block.tank.*;
+import latmod.latblocks.block.tank.BlockTankBase;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

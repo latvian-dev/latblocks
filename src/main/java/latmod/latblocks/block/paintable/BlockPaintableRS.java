@@ -1,8 +1,7 @@
 package latmod.latblocks.block.paintable;
-import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
-import latmod.latblocks.tile.paintable.TilePaintableRS;
+import latmod.latblocks.tile.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -30,7 +29,7 @@ public class BlockPaintableRS extends BlockPaintableSided
 		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePaintableRS(); }
 	
 	public boolean canConnectRedstone(IBlockAccess iba, int x, int y, int z, int side)

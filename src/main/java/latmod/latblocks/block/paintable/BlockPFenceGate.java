@@ -3,13 +3,10 @@ package latmod.latblocks.block.paintable;
 import java.util.List;
 
 import latmod.core.*;
-import latmod.core.MathHelperLM;
-import latmod.core.tile.TileLM;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
-import latmod.latblocks.tile.paintable.TilePFence;
+import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,11 +19,11 @@ public class BlockPFenceGate extends BlockPaintableSingle
 {
 	public BlockPFenceGate(String s)
 	{
-		super(s, Material.wood, 1F);
+		super(s, 1F);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
-	{ return new TilePFence(); }
+	public TilePaintableLB createNewTileEntity(World w, int m)
+	{ return new BlockPFence.TilePFence(); }
 	
 	public void loadRecipes()
 	{

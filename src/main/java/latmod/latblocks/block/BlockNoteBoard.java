@@ -1,9 +1,7 @@
 package latmod.latblocks.block;
 
-import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.tile.TileNoteBoard;
-import net.minecraft.block.material.Material;
+import latmod.latblocks.tile.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -12,7 +10,7 @@ public class BlockNoteBoard extends BlockPaintableSingle
 {
 	public BlockNoteBoard(String s)
 	{
-		super(s, Material.wood, 1F / 16F);
+		super(s, 1F / 16F);
 		setBlockTextureName("noteBoard");
 	}
 	
@@ -25,7 +23,7 @@ public class BlockNoteBoard extends BlockPaintableSingle
 		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_cover), this);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TileNoteBoard(); }
 	
 	public void setBlockBoundsForItemRender()

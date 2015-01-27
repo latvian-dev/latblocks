@@ -1,11 +1,9 @@
 package latmod.latblocks.block.paintable;
 
-import latmod.core.*;
-import latmod.core.tile.TileLM;
+import latmod.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
-import latmod.latblocks.tile.paintable.TilePCover;
-import net.minecraft.block.material.Material;
+import latmod.latblocks.tile.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -13,7 +11,7 @@ public class BlockPCover extends BlockPaintableSingle
 {
 	public BlockPCover(String s)
 	{
-		super(s, Material.wood, 1F / 8F);
+		super(s, 1F / 8F);
 	}
 	
 	public void loadRecipes()
@@ -31,9 +29,13 @@ public class BlockPCover extends BlockPaintableSingle
 		ODItems.add("paintableCover", new ItemStack(this));
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePCover(); }
 	
 	public void setBlockBoundsForItemRender()
 	{ setBlockBounds(0.5F - height / 2F, 0F, 0F, 0.5F + height / 2F, 1F, 1F); }
+	
+	public static class TilePCover extends TileSinglePaintable
+	{
+	}
 }

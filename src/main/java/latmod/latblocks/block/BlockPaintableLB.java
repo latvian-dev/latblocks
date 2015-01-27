@@ -3,7 +3,6 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import latmod.core.*;
-import latmod.core.MathHelperLM;
 import latmod.core.tile.*;
 import latmod.latblocks.client.render.RenderPaintable;
 import latmod.latblocks.tile.TilePaintableLB;
@@ -19,16 +18,16 @@ import cpw.mods.fml.relauncher.*;
 
 public abstract class BlockPaintableLB extends BlockLB
 {
-	public BlockPaintableLB(String s, Material m)
+	public BlockPaintableLB(String s)
 	{
-		super(s, m);
+		super(s, Material.rock);
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
 		registerTiles();
 	}
 	
-	public abstract TileLM createNewTileEntity(World w, int m);
+	public abstract TilePaintableLB createNewTileEntity(World w, int m);
 	
 	public int damageDropped(int i)
 	{ return 0; }

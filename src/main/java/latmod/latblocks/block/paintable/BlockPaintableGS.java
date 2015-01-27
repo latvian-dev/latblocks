@@ -1,8 +1,7 @@
 package latmod.latblocks.block.paintable;
-import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
-import latmod.latblocks.tile.paintable.TilePaintableGS;
+import latmod.latblocks.tile.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -25,6 +24,10 @@ public class BlockPaintableGS extends BlockPaintableSided
 		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePaintableGS(); }
+	
+	public static class TilePaintableGS extends TileSidedPaintable
+	{
+	}
 }

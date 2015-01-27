@@ -35,8 +35,9 @@ public class LatBlocksItems
 	public static ItemPainterParts i_parts;
 	public static ItemBlockPainter i_painter;
 	public static ItemBlockPainterDmd i_painter_dmd;
-	public static ItemNote i_note;
+	public static ItemColorPainter i_painter_col;
 	public static ItemHammer i_hammer;
+	public static ItemGlasses i_glasses;
 	
 	public static void init()
 	{
@@ -68,7 +69,8 @@ public class LatBlocksItems
 		i_parts = new ItemPainterParts("painterParts").register();
 		i_painter = new ItemBlockPainter("blockPainter").register();
 		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();
-		i_note = new ItemNote("note").register();
+		i_painter_col = new ItemColorPainter("colorPainter").register();
 		i_hammer = new ItemHammer("hammer").register();
+		i_glasses = new ItemGlasses("glasses").register();
 	}
 }

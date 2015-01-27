@@ -53,7 +53,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		BlockGlowium bg = (BlockGlowium)b;
 		
 		int meta = iba.getBlockMetadata(x, y, z);
-		renderBlocks.setCustomColor(EnumDyeColor.VALUES[meta].color);
+		renderBlocks.setCustomColor(EnumDyeColor.VALUES[meta].color.getRGB());
 		
 		renderBlocks.setOverrideBlockTexture(bg.getBlockIcon());
 		renderBlocks.renderStandardBlock(empty, x, y, z);

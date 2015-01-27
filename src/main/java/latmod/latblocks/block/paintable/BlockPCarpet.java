@@ -1,11 +1,9 @@
 package latmod.latblocks.block.paintable;
 
 import latmod.core.ODItems;
-import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
-import latmod.latblocks.tile.paintable.TilePCarpet;
-import net.minecraft.block.material.Material;
+import latmod.latblocks.tile.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -13,7 +11,7 @@ public class BlockPCarpet extends BlockPaintableSingle
 {
 	public BlockPCarpet(String s)
 	{
-		super(s, Material.cloth, 1F / 16F);
+		super(s, 1F / 16F);
 	}
 	
 	public void loadRecipes()
@@ -25,6 +23,10 @@ public class BlockPCarpet extends BlockPaintableSingle
 		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_cover), this);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePCarpet(); }
+	
+	public static class TilePCarpet extends TileSinglePaintable
+	{
+	}
 }

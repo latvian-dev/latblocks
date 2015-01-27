@@ -25,8 +25,8 @@ latblocks:tile.tank.name=LatTank
 
 # To be implemented #
 
-latblocks:tile.noteBoard.name=[WIP] Note Board
-latblocks:tile.quartzFurnace.name=[WIP] Quartz Furnace
+latblocks:tile.noteBoard.name=Note Board
+latblocks:tile.quartzFurnace.name=Quartz Furnace
 latblocks:tile.smoker.name=Paintable Smoker
 latblocks:tile.door.name=Paintable Door Block
 latblocks:tile.paintableQuartzFurnace.name=Paintable Quartz Furnace
@@ -37,16 +37,17 @@ latblocks:tile.buffer.name=Buffer
 
 latblocks:item.gemGlowium.name=Glowium
 latblocks:item.dustGlowium.name=Glowium Dust
+latblocks:item.lens.name=Glass Lens
 
 latblocks:item.paintRoller.rod.name=Block Painter Rod
 latblocks:item.paintRoller.basic.name=Paint Roller
 latblocks:item.paintRoller.dmd.name=Diamond Paint Roller
-latblocks:item.paintRoller.color.name=[WIP] Color Roller
+latblocks:item.paintRoller.color.name=Color Roller
 latblocks:item.paintRoller.multi.name=[WIP] Multi-Paint Roller
 
 latblocks:item.blockPainter.name=Block Painter
 latblocks:item.blockPainterDmd.name=Diamond Block Painter
-latblocks:item.colorPainter.name=[WIP] Color Painter
+latblocks:item.colorPainter.name=Color Painter
 latblocks:item.blockPainterMulti.name=[WIP] Multi-Block Painter
-latblocks:item.note.name=[WIP] Sticky Note
-latblocks:item.hammer.name=[WIP] LatBlocks Hammer
+latblocks:item.hammer.name=LatBlocks Hammer
+latblocks:item.glasses.name=LatBlocks Goggles

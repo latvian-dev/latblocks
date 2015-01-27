@@ -17,7 +17,7 @@ public class BlockTank extends BlockTankBase
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon[] icons;
-
+	
 	public BlockTank(String s)
 	{
 		super(s);
@@ -57,6 +57,8 @@ public class BlockTank extends BlockTankBase
 				'N', Items.nether_star,
 				'E', Items.ender_pearl,
 				'G', LatBlocksItems.b_tank_void);
+		
+		LatBlocksItems.i_hammer.addRecipe(new ItemStack(Items.nether_star, 2), new ItemStack(this, 1, 5));
 	}
 	
 	public int damageDropped(int i)
