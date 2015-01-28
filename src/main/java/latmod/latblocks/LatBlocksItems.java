@@ -16,6 +16,7 @@ public class LatBlocksItems
 	public static BlockPaintableDef b_paintable;
 	public static BlockPaintableRS b_paintable_rs;
 	public static BlockPaintableGS b_paintable_gs;
+	public static BlockPaintableLamp b_lamp;
 	public static BlockFountain b_fountain;
 	public static BlockPCover b_cover;
 	public static BlockPCarpet b_carpet;
@@ -50,6 +51,7 @@ public class LatBlocksItems
 		b_paintable = new BlockPaintableDef("paintable").register();
 		b_paintable_rs = new BlockPaintableRS("paintableRS").register();
 		b_paintable_gs = new BlockPaintableGS("paintableGS").register();
+		b_lamp = new BlockPaintableLamp("paintableLamp").register();
 		b_fountain = new BlockFountain("fountain").register();
 		b_cover = new BlockPCover("cover").register();
 		b_carpet = new BlockPCarpet("carpet").register();

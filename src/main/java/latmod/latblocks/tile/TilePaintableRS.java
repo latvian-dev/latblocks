@@ -1,5 +1,6 @@
 package latmod.latblocks.tile;
 
+import latmod.latblocks.block.paintable.BlockPaintableLamp;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -47,7 +48,7 @@ public class TilePaintableRS extends TileSidedPaintable
 				{
 					ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[i];
 					TileEntity te = worldObj.getTileEntity(xCoord + f.offsetX, yCoord + f.offsetY, zCoord + f.offsetZ);
-					if(te != null && !te.isInvalid() && te instanceof TilePaintableRS)
+					if(te != null && !te.isInvalid() && (te instanceof TilePaintableRS || te instanceof BlockPaintableLamp.TilePaintableLamp))
 						b = Math.max(b, ((TilePaintableRS)te).power);
 				}
 				

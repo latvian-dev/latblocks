@@ -1,9 +1,11 @@
 package latmod.latblocks.client;
 import latmod.core.LatCoreMC;
+import latmod.core.client.LatCoreMCClient;
 import latmod.core.gui.ContainerEmpty;
 import latmod.latblocks.LatBlocksCommon;
 import latmod.latblocks.client.render.*;
 import latmod.latblocks.gui.GuiColorPainter;
+import latmod.latblocks.tile.TileNoteBoard;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -19,6 +21,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		RenderPaintable.instance.register();
 		RenderTank.instance.register();
 		RenderGlowiumBlocks.instance.register();
+		LatCoreMCClient.addTileRenderer(TileNoteBoard.class, new RenderNoteBoard());
 	}
 	
 	public void openColorPainterGUI(EntityPlayer ep)
