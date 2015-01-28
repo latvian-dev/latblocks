@@ -1,10 +1,13 @@
 package latmod.latblocks.block;
 
-import java.util.List;
+import java.util.*;
 
 import latmod.core.*;
 import latmod.core.tile.*;
+import latmod.core.tile.IPaintable.Paint;
+import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.RenderPaintable;
+import latmod.latblocks.item.ItemGlasses;
 import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -153,7 +156,27 @@ public abstract class BlockPaintableLB extends BlockLB
 	{
 		TilePaintableLB t = (TilePaintableLB)iba.getTileEntity(x, y, z);
 		if(t != null && t.isValid())
-			return IPaintable.Paint.getIcon(t.getPaint()[s], s, blockIcon);
+			return IPaintable.Paint.getIcon(t.getPaint(s), s, blockIcon);
 		return blockIcon;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public final void randomDisplayTick(World w, int x, int y, int z, Random r)
+	{
+		TilePaintableLB t = (TilePaintableLB)w.getTileEntity(x, y, z);
+		
+		boolean hasInv = false;
+		
+		if(t != null)
+		{
+			for(int i = 0; i < 6; i++)
+			{
+				Paint p = t.getPaint(i);
+				if(!hasInv && p != null && p.block == LatBlocksItems.b_glass && p.meta == 0)
+					hasInv = true;
+			}
+			
+			if(hasInv) ItemGlasses.spawnInvParticles(w, x + 0.5D, y + 0.5D, z + 0.5D, 3);
+		}
 	}
 }

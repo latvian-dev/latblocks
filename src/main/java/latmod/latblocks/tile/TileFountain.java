@@ -4,6 +4,7 @@ import java.util.List;
 
 import latmod.core.*;
 import latmod.core.tile.*;
+import latmod.latblocks.LatBlocks;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -93,24 +94,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		}
 		
 		if(!isServer() && redstonePowered && tank.hasFluid() && tank.getFluid().getBlock() != null)
-		{
-			double mv = MathHelperLM.sin(tick * 0.1D);
-			
-			double mxz = MathHelperLM.map(mv, -1D, 1D, 0.15D, 0.1D);
-			double my = MathHelperLM.map(mv, -1D, 1D, 0.4D, 0.5D);
-			String s = "blockdust_" + Item.getIdFromItem(Item.getItemFromBlock(tank.getFluid().getBlock())) + "_" + 0;
-			
-			int c = 12;
-			double t = tick * 3D;
-			
-			for(int i = 0; i < c * 3; i++)
-			{
-				double mx = MathHelperLM.sinFromDeg(i * 360D / (double)c + t) * mxz;
-				double mz = MathHelperLM.cosFromDeg(i * 360D / (double)c + t) * mxz;
-				
-				worldObj.spawnParticle(s, xCoord + 0.5D, yCoord + 0.7D + MathHelperLM.rand.nextFloat() * 0.3D, zCoord + 0.5D, mx, my, mz);
-			}
-		}
+			LatBlocks.proxy.spawnFountainParticle(this);
 	}
 	
 	public ItemStack getFilled(ItemStack is)

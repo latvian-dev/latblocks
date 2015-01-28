@@ -30,8 +30,11 @@ public abstract class TileSinglePaintable extends TilePaintableLB
 		return false;
 	}
 	
-	public Paint[] getPaint()
-	{ return new Paint[]{ paint[0], paint[0], paint[0], paint[0], paint[0], paint[0] }; }
+	public Paint getPaint(int side)
+	{ return paint[0]; }
+	
+	public void setPaint(int side, Paint p)
+	{ paint[0] = p; }
 	
 	public ItemStack getWailaStack(IWailaDataAccessor data, IWailaConfigHandler config)
 	{ return (paint[0] == null) ? null : new ItemStack(paint[0].block, 1, paint[0].meta); }

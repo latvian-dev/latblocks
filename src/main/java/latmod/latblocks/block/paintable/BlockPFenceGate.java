@@ -5,10 +5,11 @@ import java.util.List;
 import latmod.core.*;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
-import latmod.latblocks.tile.TilePaintableLB;
+import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -23,7 +24,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)
-	{ return new BlockPFence.TilePFence(); }
+	{ return new TilePFenceGate(); }
 	
 	public void loadRecipes()
 	{
@@ -136,8 +137,8 @@ public class BlockPFenceGate extends BlockPaintableSingle
 			double hn = 1D / 8D * 1D;
 			double hp = 1D / 8D * 7D;
 			
-			if(iba.getBlock(x, y - 1, z) == this) hn = 0D;
-			if(iba.getBlock(x, y + 1, z) == this) hp = 1D;
+			if(iba.getBlock(x, y - 1, z) != Blocks.air) hn = 0D;
+			if(iba.getBlock(x, y + 1, z) != Blocks.air) hp = 1D;
 			
 			double dd = 1D / 8D;
 			
@@ -181,7 +182,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 			}
 		}
 		
-		w.playAuxSFXAtEntity(null, 1003, x, y, z, 0);
+		if(!w.isRemote) w.playAuxSFXAtEntity(null, 1003, x, y, z, 0);
 	}
 	
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
@@ -191,5 +192,9 @@ public class BlockPFenceGate extends BlockPaintableSingle
 			boolean flag = w.isBlockIndirectlyGettingPowered(x, y, z);
 			if(flag || b.canProvidePower()) setOpen(w, x, y, z, flag);
 		}
+	}
+	
+	public static class TilePFenceGate extends TileSinglePaintable
+	{
 	}
 }

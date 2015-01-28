@@ -59,10 +59,13 @@ public class RenderPaintable extends BlockRendererLM
 		
 		BlockPaintableLB blockP = (BlockPaintableLB)b;
 		
-		Paint[] p = t.getPaint();
+		Paint[] p = new Paint[6];
 		IIcon[] defIcon = new IIcon[6];
 		for(int i = 0; i < 6; i++)
+		{
+			p[i] = t.getPaint(i);
 			defIcon[i] = blockP.getDefaultWorldIcon(iba, x, y, z, i);
+		}
 		
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
 		blockP.addRenderBoxes(boxes, iba, x, y, z, -1);

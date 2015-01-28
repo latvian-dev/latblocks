@@ -23,14 +23,14 @@ public abstract class TileSidedPaintable extends TilePaintableLB
 		if(p.player.isSneaking())
 		{
 			for(int i = 0; i < 6; i++)
-				getPaint()[i] = p.paint;
+				setPaint(i, p.paint);
 			markDirty();
 			return true;
 		}
 		
-		if(p.canReplace(getPaint()[p.side]))
+		if(p.canReplace(getPaint(p.side)))
 		{
-			getPaint()[p.side] = p.paint;
+			setPaint(p.side, p.paint);
 			markDirty();
 			return true;
 		}
@@ -38,12 +38,15 @@ public abstract class TileSidedPaintable extends TilePaintableLB
 		return false;
 	}
 	
-	public Paint[] getPaint()
-	{ return paint; }
+	public Paint getPaint(int side)
+	{ return paint[side]; }
+	
+	public void setPaint(int side, Paint p)
+	{ paint[side] = p; }
 	
 	public ItemStack getWailaStack(IWailaDataAccessor data, IWailaConfigHandler config)
 	{
-		Paint p = getPaint()[data.getSide().ordinal()];
+		Paint p = getPaint(data.getSide().ordinal());
 		return (p == null) ? null : new ItemStack(p.block, 1, p.meta);
 	}
 }

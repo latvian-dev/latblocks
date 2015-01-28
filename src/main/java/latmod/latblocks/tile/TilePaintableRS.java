@@ -64,8 +64,15 @@ public class TilePaintableRS extends TileSidedPaintable
 		}
 	}
 	
-	public Paint[] getPaint()
-	{ return (power > 0) ? paint_on : paint; }
+	public Paint getPaint(int side)
+	{ return (power > 0) ? paint_on[side] : paint[side]; }
+	
+	public void setPaint(int side, Paint p)
+	{
+		if(power > 0)
+			paint_on[side] = p;
+		else paint[side] = p;
+	}
 	
 	public int iconMeta()
 	{ return (power > 0) ? 1 : 0; }

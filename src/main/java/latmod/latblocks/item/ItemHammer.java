@@ -39,6 +39,11 @@ public class ItemHammer extends ItemLB
 	public void addRecipe(ItemStack out, Object in)
 	{ mod.recipes.addShapelessRecipe(out, new ItemStack(this, 1, ODItems.ANY), in); }
 	
+	public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player)
+	{
+		return true;
+	}
+	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{
 		return false;

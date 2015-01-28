@@ -8,7 +8,6 @@ import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -35,9 +34,9 @@ public class BlockInvGelLamp extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 8), "LLL", "LPL", "LLL",
+		mod.recipes.addRecipe(new ItemStack(this), "L", "G",
 			'L', LatBlocksItems.b_gel_lamp,
-			'P', new ItemStack(Items.potionitem, 1, 8206));
+			'G', LatBlocksItems.b_glass);
 		
 		LatBlocksItems.i_hammer.addRecipe(new ItemStack(LatBlocksItems.b_gel_lamp), this);
 	}

@@ -43,14 +43,6 @@ public class BlockQFurnace extends BlockLB
 	public TileLM createNewTileEntity(World w, int m)
 	{ return new TileQFurnace(); }
 	
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int s, int m)
-	{
-		if(s == LatCoreMCClient.FRONT)
-			return iconOff;
-		return blockIcon;
-	}
-	
 	public int damageDropped(int i)
 	{ return 0; }
 	
@@ -60,6 +52,14 @@ public class BlockQFurnace extends BlockLB
 		blockIcon = ir.registerIcon(mod.assets + "furnSide");
 		iconOn = ir.registerIcon(mod.assets + "furnOn");
 		iconOff = ir.registerIcon(mod.assets + "furnOff");
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int s, int m)
+	{
+		if(s == LatCoreMCClient.FRONT)
+			return iconOff;
+		return blockIcon;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -80,6 +80,7 @@ public class BlockQFurnace extends BlockLB
 	public ArrayList<ItemStack> getDrops(World w, int x, int y, int z, int m, int f)
 	{ return new ArrayList<ItemStack>(); }
 	
+	@SideOnly(Side.CLIENT)
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
 	{
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileQFurnace.ITEM_TAG))

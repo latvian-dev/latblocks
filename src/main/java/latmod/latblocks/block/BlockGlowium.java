@@ -9,6 +9,7 @@ import latmod.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -196,7 +197,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public boolean recolourBlock(World w, int x, int y, int z, ForgeDirection side, int col)
 	{
-		int meta = (col + 1) % 16;
+		int meta = BlockColored.func_150031_c(col);
 		
 		if(w.getBlockMetadata(x, y, z) != meta)
 		{
@@ -216,13 +217,24 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 				BlockGlowium b = null;
 				int meta = w.getBlockMetadata(x, y, z);
 				
-				if(this == LatBlocksItems.b_glowium_block) b = LatBlocksItems.b_glowium_tile;
-				if(this == LatBlocksItems.b_glowium_tile) b = LatBlocksItems.b_glowium_brick;
-				if(this == LatBlocksItems.b_glowium_brick) b = LatBlocksItems.b_glowium_small;
-				if(this == LatBlocksItems.b_glowium_small) b = LatBlocksItems.b_glowium_chiseled;
-				if(this == LatBlocksItems.b_glowium_chiseled) b = LatBlocksItems.b_glowium_block;
+				if(ep.isSneaking())
+				{
+					if(this == LatBlocksItems.b_glowium_block) b = LatBlocksItems.b_glowium_chiseled;
+					if(this == LatBlocksItems.b_glowium_tile) b = LatBlocksItems.b_glowium_block;
+					if(this == LatBlocksItems.b_glowium_brick) b = LatBlocksItems.b_glowium_tile;
+					if(this == LatBlocksItems.b_glowium_small) b = LatBlocksItems.b_glowium_brick;
+					if(this == LatBlocksItems.b_glowium_chiseled) b = LatBlocksItems.b_glowium_small;
+				}
+				else
+				{
+					if(this == LatBlocksItems.b_glowium_block) b = LatBlocksItems.b_glowium_tile;
+					if(this == LatBlocksItems.b_glowium_tile) b = LatBlocksItems.b_glowium_brick;
+					if(this == LatBlocksItems.b_glowium_brick) b = LatBlocksItems.b_glowium_small;
+					if(this == LatBlocksItems.b_glowium_small) b = LatBlocksItems.b_glowium_chiseled;
+					if(this == LatBlocksItems.b_glowium_chiseled) b = LatBlocksItems.b_glowium_block;
+				}
 				
-				w.setBlock(x, y, z, b, meta, 3);
+				if(b != null) w.setBlock(x, y, z, b, meta, 3);
 			}
 			
 			return true;

@@ -1,5 +1,4 @@
 package latmod.latblocks.block;
-import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.tank.BlockTank;
@@ -24,10 +23,9 @@ public class BlockFountain extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), " P ", "PGP", "SHS",
+		mod.recipes.addRecipe(new ItemStack(this), " H ", "PGP", " P ",
 				'H', Blocks.hopper,
 				'G', BlockTank.TANK_BASIC,
-				'S', ODItems.STONE,
 				'P', LatBlocksItems.b_paintable);
 	}
 	
