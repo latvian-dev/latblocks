@@ -5,6 +5,7 @@ import java.util.List;
 import latmod.core.*;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
+import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -28,9 +29,8 @@ public class BlockPFence extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 4), "SPS", "SPS",
-				'P', LatBlocksItems.b_paintable,
-				'S', ODItems.STICK);
+		mod.recipes.addRecipe(new ItemStack(this, 2), "SSS", "SSS",
+				'S', ItemMaterialsLB.ROD);
 	}
 	
 	@SuppressWarnings("all")

@@ -1,6 +1,7 @@
 package latmod.latblocks.item;
 import latmod.core.*;
 import latmod.core.item.ItemMaterials;
+import latmod.core.recipes.LMRecipes;
 import latmod.latblocks.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -10,6 +11,7 @@ public class ItemMaterialsLB extends ItemMaterials
 	public static ItemStack GEM_GLOWIUM;
 	public static ItemStack DUST_GLOWIUM;
 	public static ItemStack LENS;
+	public static ItemStack ROD;
 	
 	public ItemMaterialsLB(String s)
 	{ super(s); }
@@ -21,6 +23,7 @@ public class ItemMaterialsLB extends ItemMaterials
 			"gemGlowium",
 			"dustGlowium",
 			"lens",
+			"rod",
 		};
 	}
 	
@@ -40,6 +43,7 @@ public class ItemMaterialsLB extends ItemMaterials
 		ODItems.add("gemGlowium", GEM_GLOWIUM = new ItemStack(this, 1, 0));
 		ODItems.add("dustGlowium", DUST_GLOWIUM = new ItemStack(this, 1, 1));
 		LENS = new ItemStack(this, 1, 2);
+		ODItems.add("rodPaintable", ROD = new ItemStack(this, 1, 3));
 	}
 	
 	public void loadRecipes()
@@ -50,5 +54,8 @@ public class ItemMaterialsLB extends ItemMaterials
 		
 		LatBlocksItems.i_hammer.addRecipe(DUST_GLOWIUM, GEM_GLOWIUM);
 		LatBlocksItems.i_hammer.addRecipe(LENS, ODItems.GLASS);
+		
+		mod.recipes.addRecipe(LMRecipes.size(ROD, 4), "P", "P",
+				'P', LatBlocksItems.b_paintable);
 	}
 }

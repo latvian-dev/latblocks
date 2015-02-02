@@ -131,6 +131,9 @@ public class BlockPStairs extends BlockPaintableSingle
 		if(addSE) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
 	}
 	
+	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
+	{ return true; }
+	
 	public static class TilePStairs extends TileSinglePaintable
 	{
 	}

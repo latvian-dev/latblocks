@@ -20,7 +20,7 @@ public class ItemHammer extends ItemLB
 		mod.recipes.addRecipe(new ItemStack(this), "IGI", " S ", " S ",
 				'I', ODItems.IRON,
 				'G', ItemMaterialsLB.GEM_GLOWIUM,
-				'S', ODItems.STICK);
+				'S', ItemMaterialsLB.ROD);
 	}
 	
 	public ItemStack getContainerItem(ItemStack is)

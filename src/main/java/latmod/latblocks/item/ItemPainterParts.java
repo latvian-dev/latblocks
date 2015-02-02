@@ -53,7 +53,7 @@ public class ItemPainterParts extends ItemMaterials
 	{
 		mod.recipes.addRecipe(PAINT_ROLLER_ROD, "  I", " SI", "S  ",
 				'I', ODItems.IRON,
-				'S', ODItems.STICK);
+				'S', ItemMaterialsLB.ROD);
 		
 		mod.recipes.addRecipe(LMRecipes.size(PAINT_ROLLER, 6), "WWW", "III", "WWW",
 				'W', ODItems.WOOL_WHITE,

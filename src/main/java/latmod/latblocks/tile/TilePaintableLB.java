@@ -9,9 +9,6 @@ public abstract class TilePaintableLB extends TileLM implements IPaintable, IWai
 	public boolean rerenderBlock()
 	{ return true; }
 	
-	public int iconMeta()
-	{ return 0; }
-	
 	public abstract Paint getPaint(int side);
 	public abstract void setPaint(int side, Paint p);
 	

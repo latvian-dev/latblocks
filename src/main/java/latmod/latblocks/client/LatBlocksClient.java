@@ -20,11 +20,13 @@ public class LatBlocksClient extends LatBlocksCommon
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, true, false, false);
+		LatCoreMCClient.addTileRenderer(TileNoteBoard.class, new RenderNoteBoard());
+		
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
 		RenderTank.instance.register();
 		RenderGlowiumBlocks.instance.register();
-		LatCoreMCClient.addTileRenderer(TileNoteBoard.class, new RenderNoteBoard());
+		RenderPSlope.instance.register();
 	}
 	
 	public void openColorPainterGUI(EntityPlayer ep)

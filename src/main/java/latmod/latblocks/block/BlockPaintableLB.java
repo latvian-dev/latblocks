@@ -3,7 +3,6 @@ package latmod.latblocks.block;
 import java.util.*;
 
 import latmod.core.*;
-import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.RenderPaintable;
@@ -47,7 +46,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return m; }
 	
-	public final void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
+	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
 		addBoxes(boxes, iba, x, y, z, -1);
@@ -59,16 +58,16 @@ public abstract class BlockPaintableLB extends BlockLB
 		{
 			AxisAlignedBB bb = boxes.get(i);
 			
-			if(bb.minX < minX) minX = bb.minX;
-			if(bb.minY < minY) minY = bb.minY;
-			if(bb.minZ < minZ) minZ = bb.minZ;
-			if(bb.maxX > maxX) maxX = bb.maxX;
-			if(bb.maxY > maxY) maxY = bb.maxY;
-			if(bb.maxZ > maxZ) maxZ = bb.maxZ;
+			if(bb.minX < minX) minX = Math.max(bb.minX, 0D);
+			if(bb.minY < minY) minY = Math.max(bb.minY, 0D);
+			if(bb.minZ < minZ) minZ = Math.max(bb.minZ, 0D);
+			if(bb.maxX > maxX) maxX = Math.min(bb.maxX, 1D);
+			if(bb.maxY > maxY) maxY = Math.min(bb.maxY, 1D);
+			if(bb.maxZ > maxZ) maxZ = Math.min(bb.maxZ, 1D);
 		}
 	}
 	
-	public final AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
 	{ return super.getCollisionBoundingBoxFromPool(w, x, y, z); }
 	
 	@SuppressWarnings("all")
@@ -153,12 +152,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
-	{
-		TilePaintableLB t = (TilePaintableLB)iba.getTileEntity(x, y, z);
-		if(t != null && t.isValid())
-			return IPaintable.Paint.getIcon(t.getPaint(s), s, blockIcon);
-		return blockIcon;
-	}
+	{ return blockIcon; }
 	
 	@SideOnly(Side.CLIENT)
 	public final void randomDisplayTick(World w, int x, int y, int z, Random r)

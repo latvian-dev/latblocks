@@ -25,6 +25,8 @@ public class LatBlocksItems
 	public static BlockPFence b_fence;
 	public static BlockPFenceGate b_fence_gate;
 	public static BlockPDoor b_door;
+	public static BlockPSlope b_slope;
+	public static BlockPLadder b_ladder;
 	
 	public static BlockNoteBoard b_note_board;
 	public static BlockQFurnace b_qfurnace;
@@ -63,6 +65,8 @@ public class LatBlocksItems
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
 		b_door = new BlockPDoor("door").register();
+		b_slope = new BlockPSlope("slope").register();
+		b_ladder = new BlockPLadder("ladder").register();
 		
 		b_note_board = new BlockNoteBoard("noteBoard").register();
 		b_qfurnace = new BlockQFurnace("quartzFurnace").register();

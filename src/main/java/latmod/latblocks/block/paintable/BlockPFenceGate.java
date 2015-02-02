@@ -5,6 +5,7 @@ import java.util.List;
 import latmod.core.*;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
+import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -30,7 +31,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	{
 		mod.recipes.addRecipe(new ItemStack(this), "PSP", "PSP",
 				'P', LatBlocksItems.b_paintable,
-				'S', LatBlocksItems.b_cover);
+				'S', ItemMaterialsLB.ROD);
 	}
 	
 	@SuppressWarnings("all")
@@ -134,10 +135,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		
 		if(m <= 1)
 		{
-			double hn = 1D / 8D * 1D;
 			double hp = 1D / 8D * 7D;
-			
-			if(iba.getBlock(x, y - 1, z) != Blocks.air) hn = 0D;
 			if(iba.getBlock(x, y + 1, z) != Blocks.air) hp = 1D;
 			
 			double dd = 1D / 8D;
@@ -155,7 +153,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 				x1 = 0.5D + dd / 2D;
 			}
 			
-			boxes.add(AxisAlignedBB.getBoundingBox(x0, hn, z0, x1, hp, z1));
+			boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, hp, z1));
 		}
 	}
 	
