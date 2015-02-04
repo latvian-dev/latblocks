@@ -81,8 +81,11 @@ public class BlockPSlope extends BlockLB
 		{
 			super.onPlacedBy(ep, is);
 			
-			pitch = (byte)(MathHelperLM.rayTrace(ep).sideHit);
-			if(pitch == 0 || pitch == 1); else pitch = -1;
+			int side = MathHelperLM.rayTrace(ep).sideHit;
+			
+			if(side == 0) pitch = 1;
+			else if(side == 1) pitch = 0;
+			else pitch = -1;
 			
 			yaw = (byte) MathHelperLM.get2DRotation(ep).ordinal();
 			
@@ -90,8 +93,6 @@ public class BlockPSlope extends BlockLB
 		}
 		
 		public boolean isSolid(int side)
-		{
-			return yaw != side || pitch != side;
-		}
+		{ return !(yaw == side || pitch == side); }
 	}
 }

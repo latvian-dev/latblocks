@@ -1,11 +1,12 @@
 package latmod.latblocks.gui;
-import org.lwjgl.opengl.GL11;
-
 import latmod.core.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileNoteBoard;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)

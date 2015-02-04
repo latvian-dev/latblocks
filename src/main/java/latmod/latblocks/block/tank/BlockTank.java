@@ -1,4 +1,6 @@
 package latmod.latblocks.block.tank;
+import java.util.ArrayList;
+
 import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.*;
@@ -9,6 +11,7 @@ import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockTank extends BlockTankBase
@@ -75,6 +78,9 @@ public class BlockTank extends BlockTankBase
 			icons[i] = ir.registerIcon(mod.assets + "tank/outside_" + i);
 	}
 	
+	public ArrayList<ItemStack> getDrops(World w, int x, int y, int z, int m, int f)
+	{ return new ArrayList<ItemStack>(); }
+	
 	@SideOnly(Side.CLIENT)
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
 	{
@@ -93,6 +99,12 @@ public class BlockTank extends BlockTankBase
 		else if(meta == 4) c = 4096;
 		
 		l.add("Capacity: " + c + MathHelperLM.getPluralWord(c, " bucket", " buckets"));
+		
+		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Fluid"))
+		{
+			FluidStack fs = FluidStack.loadFluidStackFromNBT(is.stackTagCompound.getCompoundTag("Fluid"));
+			l.add("Stored: " + fs.amount + "mB of " + fs.getLocalizedName());
+		}
 	}
 	
 	@SideOnly(Side.CLIENT)

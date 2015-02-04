@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockPFence extends BlockPaintableSingle
@@ -150,6 +151,9 @@ public class BlockPFence extends BlockPaintableSingle
 		Block b = iba.getBlock(x, y, z);
 		return b == this || b == Blocks.fence_gate || b == LatBlocksItems.b_fence_gate || (b.getMaterial().isOpaque());
 	}
+	
+	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side)
+	{ return side == ForgeDirection.UP || side == ForgeDirection.DOWN; }
 	
 	public static class TilePFence extends TileSinglePaintable
 	{

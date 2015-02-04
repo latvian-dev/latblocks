@@ -2,13 +2,13 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
-import latmod.core.*;
+import latmod.core.InvUtils;
 import latmod.core.tile.*;
 import latmod.latblocks.LatBlocks;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;

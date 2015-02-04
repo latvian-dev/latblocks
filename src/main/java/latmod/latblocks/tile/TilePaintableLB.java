@@ -1,8 +1,8 @@
 package latmod.latblocks.tile;
 
+import latmod.core.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import latmod.core.tile.*;
 
 public abstract class TilePaintableLB extends TileLM implements IPaintable, IWailaTile.Stack
 {

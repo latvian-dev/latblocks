@@ -1,12 +1,9 @@
 package latmod.latblocks;
-import java.util.List;
-
-import latmod.core.*;
+import latmod.core.LMMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 
 @Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:LatCoreMC")
 public class LatBlocks
@@ -51,7 +48,7 @@ public class LatBlocks
 	@Mod.EventHandler
 	public void missingMapping(FMLMissingMappingsEvent e)
 	{
-		List<MissingMapping> l = e.getAll();
+		/*List<MissingMapping> l = e.getAll();
 		
 		for(int i = 0; i < l.size(); i++)
 		{
@@ -67,6 +64,6 @@ public class LatBlocks
 			
 			LatCoreMC.remap(m, "Elemite:waterTank", LatBlocksItems.b_tank_water);
 			LatCoreMC.remap(m, "Elemite:voidTank", LatBlocksItems.b_tank_void);
-		}
+		}*/
 	}
 }

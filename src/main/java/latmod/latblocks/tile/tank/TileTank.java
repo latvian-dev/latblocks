@@ -52,6 +52,31 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 		tank.writeToNBT(tag);
 	}
 	
+	public void onPlacedBy(EntityPlayer ep, ItemStack is)
+	{
+		super.onPlacedBy(ep, is);
+		
+		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Fluid"))
+			tank.fluidTank.setFluid(FluidStack.loadFluidStackFromNBT(is.stackTagCompound.getCompoundTag("Fluid")));
+	}
+	
+	public void onBroken()
+	{
+		ItemStack is = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
+		
+		if(tank.hasFluid(1000))
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			tank.getFluidStack().writeToNBT(tag);
+			is.stackTagCompound = new NBTTagCompound();
+			is.stackTagCompound.setTag("Fluid", tag);
+		}
+		
+		InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, is, 10);
+		
+		super.onBroken();
+	}
+	
 	public void onNeighborBlockChange()
 	{
 	}

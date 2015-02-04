@@ -23,6 +23,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 		setHardness(0.2F);
 		setBlockTextureName("invGlass");
 		isBlockContainer = false;
+		setStepSound(soundTypeGlass);
 	}
 	
 	public void loadRecipes()
