@@ -25,9 +25,9 @@ public class LatBlocksItems
 	public static BlockPFence b_fence;
 	public static BlockPFenceGate b_fence_gate;
 	public static BlockPLadder b_ladder;
-	public static BlockPDoor b_door;
-	public static BlockPSlope b_slope;
 	public static BlockPPressurePlate b_pressure_plate;
+	//public static BlockPDoor b_door;
+	//public static BlockPSlope b_slope;
 	
 	public static BlockNoteBoard b_note_board;
 	public static BlockQFurnace b_qfurnace;
@@ -37,6 +37,7 @@ public class LatBlocksItems
 	public static BlockInvGelLamp b_gel_lamp_inv;
 	public static BlockTank b_tank;
 	public static BlockGlass b_glass;
+	public static BlockLatChest b_chest;
 	
 	public static ItemMaterialsLB i_mat;
 	public static ItemPainterParts i_parts;
@@ -66,9 +67,9 @@ public class LatBlocksItems
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
 		b_ladder = new BlockPLadder("ladder").register();
+		b_pressure_plate = new BlockPPressurePlate("pressurePlate").register();
 		//b_door = new BlockPDoor("door").register();
 		//b_slope = new BlockPSlope("slope").register();
-		//b_pressure_plate = new BlockPPressurePlate("pressurePlate").register();
 		
 		b_note_board = new BlockNoteBoard("noteBoard").register();
 		b_qfurnace = new BlockQFurnace("quartzFurnace").register();
@@ -78,6 +79,7 @@ public class LatBlocksItems
 		b_gel_lamp_inv = new BlockInvGelLamp("gelLampInv").register();
 		b_tank = new BlockTank("tank").register();
 		b_glass = new BlockGlass("glass").register();
+		b_chest = new BlockLatChest("chest").register();
 		
 		i_mat = new ItemMaterialsLB("materials").register();
 		i_parts = new ItemPainterParts("painterParts").register();

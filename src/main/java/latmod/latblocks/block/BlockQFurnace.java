@@ -5,6 +5,7 @@ import latmod.core.*;
 import latmod.core.client.LatCoreMCClient;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -31,11 +32,11 @@ public class BlockQFurnace extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QCQ",
+		mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
 				'Q', Blocks.quartz_block,
 				'F', Blocks.furnace,
 				'D', ODItems.DIAMOND,
-				'C', Blocks.chest);
+				'S', ItemMaterialsLB.STAR_DUST);
 		
 		LatBlocksItems.i_hammer.addRecipe(new ItemStack(this), new ItemStack(this, 1, ODItems.ANY));
 	}
@@ -100,8 +101,6 @@ public class BlockQFurnace extends BlockLB
 				int prog = (int)(t.progress * 100D / TileQFurnace.MAX_PROGRESS);
 				l.add("Progress: " + prog + "% smelting " + t.result.getDisplayName());
 			}
-			
-			
 		}
 	}
 }

@@ -89,7 +89,7 @@ public class BlockPSlope extends BlockLB
 			
 			yaw = (byte) MathHelperLM.get2DRotation(ep).ordinal();
 			
-			if(isServer()) LatCoreMC.printChat(ep, "Yaw: " + yaw + ", Pitch: " + pitch);
+			if(isServer()) LatCoreMC.printChat(ep, "Yaw: " + yaw + ", Pitch: " + pitch + ", Side: " + side);
 		}
 		
 		public boolean isSolid(int side)

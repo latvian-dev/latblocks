@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.*;
+import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,11 +58,9 @@ public class BlockTank extends BlockTankBase
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TET", "NGN", "TET",
 				'T', new ItemStack(this, 1, 4),
-				'N', Items.nether_star,
+				'N', ItemMaterialsLB.STAR_DUST,
 				'E', Items.ender_pearl,
 				'G', LatBlocksItems.b_tank_void);
-		
-		LatBlocksItems.i_hammer.addRecipe(new ItemStack(Items.nether_star, 2), new ItemStack(this, 1, 5));
 	}
 	
 	public int damageDropped(int i)

@@ -1,7 +1,5 @@
 package latmod.latblocks.tile;
 
-import mcp.mobius.waila.api.*;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileSidedPaintable extends TilePaintableLB
@@ -43,10 +41,4 @@ public abstract class TileSidedPaintable extends TilePaintableLB
 	
 	public void setPaint(int side, Paint p)
 	{ paint[side] = p; }
-	
-	public ItemStack getWailaStack(IWailaDataAccessor data, IWailaConfigHandler config)
-	{
-		Paint p = getPaint(data.getSide().ordinal());
-		return (p == null) ? null : new ItemStack(p.block, 1, p.meta);
-	}
 }

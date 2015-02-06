@@ -111,8 +111,22 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		}
 	}
 	
-	public boolean onRightClick(EntityPlayer ep, ItemStack is, int s, float x, float y, float z)
-	{ if(isServer()) openGui(ep, 0); return true; }
+	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
+	{
+		if(isServer() && !ep.isSneaking())
+		{
+			//if(!security.canInteract(ep))
+			//	printOwner(ep); else
+				LatCoreMC.openGui(ep, this, 0);
+		}
+		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
+		{
+			onBroken();
+			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+		}
+		
+		return true;
+	}
 	
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{

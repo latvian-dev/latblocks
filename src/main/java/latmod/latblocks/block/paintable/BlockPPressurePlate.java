@@ -28,34 +28,8 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 1, 0), "PP",
+		mod.recipes.addRecipe(new ItemStack(this, 1), "PP",
 				'P', LatBlocksItems.b_paintable);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 1), "P", "B",
-				'P', new ItemStack(this, 1, 0),
-				'B', ODItems.STONE);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 2), "P", "B",
-				'P', new ItemStack(this, 1, 0),
-				'B', ODItems.OBSIDIAN);
-	}
-	
-	public void onPostLoaded()
-	{
-		addAllDamages(3);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
-	{
-		if(is.stackSize == 1)
-		{
-			int i = is.getItemDamage();
-			
-			if(i == 0) l.add("All Entities");
-			else if(i == 1) l.add("Living Entities");
-			else if(i == 2) l.add("Players");
-		}
 	}
 	
 	@SuppressWarnings("all")
@@ -70,10 +44,10 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{ return m; }
+	{ return 0; }
 	
 	public int damageDropped(int m)
-	{ return m; }
+	{ return 0; }
 	
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
@@ -111,9 +85,6 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		}
 	}
 	
-	public void onEntityCollidedWithBlock(World w, int x, int y, int z, Entity e)
-	{ if(!w.isRemote) ((TilePPressurePlate)w.getTileEntity(x, y, z)).setPlate(true); }
-	
 	public int isProvidingWeakPower(IBlockAccess iba, int x, int y, int z, int s)
 	{ return ((TilePPressurePlate)iba.getTileEntity(x, y, z)).isPressed ? 15 : 0; }
 	
@@ -128,49 +99,47 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	
 	public static class TilePPressurePlate extends TileSinglePaintable
 	{
+		public byte plateType = 0;
+		public short maxTick = 40;
 		public boolean isPressed = false;
-		private int cooldown = 0;
+		private short cooldown = 0;
 		
 		public void readTileData(NBTTagCompound tag)
 		{
 			super.readTileData(tag);
+			plateType = tag.getByte("Type");
+			maxTick = tag.getShort("MaxTick");
 			isPressed = tag.getBoolean("Down");
-			cooldown = tag.getByte("Tick");
+			cooldown = tag.getShort("Tick");
 		}
 		
 		public void writeTileData(NBTTagCompound tag)
 		{
 			super.writeTileData(tag);
+			tag.setByte("Type", plateType);
+			tag.setShort("MaxTick", maxTick);
 			tag.setBoolean("Down", isPressed);
-			tag.setByte("Tick", (byte)cooldown);
+			tag.setShort("Tick", cooldown);
 		}
 		
 		public void onUpdate()
 		{
 			if(!isServer()) return;
 			
-			if(cooldown > 0) cooldown--;
-			else
-			{
-				setPlate(isPressed());
-				cooldown = 40;
-			}
-		}
-		
-		public void setPlate(boolean p)
-		{
-			if(!isServer()) return;
-			
 			boolean pPressed = isPressed;
 			
-			isPressed = p;
+			isPressed = isPressed();
+			
+			if(isPressed) cooldown = maxTick;
+			else if(cooldown > 0) cooldown--;
+			
+			isPressed = cooldown > 0;
 			
 			if(pPressed != isPressed)
 			{
-				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.1D, zCoord + 0.5D, "random.click", 0.3F, cooldown > 0 ? 0.6F : 0.5F);
+				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.1D, zCoord + 0.5D, "random.click", 0.3F, isPressed ? 0.6F : 0.5F);
 				worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getBlockType());
 				worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord - 1, zCoord, getBlockType());
-				//worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
 				markDirty();
 			}
 		}
@@ -178,15 +147,13 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		@SuppressWarnings("all")
 		private boolean isPressed()
 		{
-			int m = getBlockMetadata();
+			Class<? extends Entity> c = null;
 			
-			Class<? extends Entity> entityClass = null;
+				 if(plateType == 0) c = Entity.class;
+			else if(plateType == 1) c = EntityLivingBase.class;
+			else if(plateType == 2) c = EntityPlayer.class;
 			
-			if(m == 0) entityClass = Entity.class;
-			else if(m == 1) entityClass = EntityLivingBase.class;
-			else if(m == 2) entityClass = EntityPlayer.class;
-			
-			List list = worldObj.getEntitiesWithinAABB(entityClass, getBox(xCoord, yCoord, zCoord));
+			List list = worldObj.getEntitiesWithinAABB(c, getBox(xCoord, yCoord, zCoord));
 			
 			if (list != null && !list.isEmpty())
 			{

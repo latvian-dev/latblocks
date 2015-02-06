@@ -21,6 +21,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	{
 		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, true, false, false);
 		LatCoreMCClient.addTileRenderer(TileNoteBoard.class, new RenderNoteBoard());
+		LatCoreMCClient.addTileRenderer(TileLatChest.class, new RenderLatChest());
 		
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
