@@ -18,9 +18,12 @@ public class BlockPCarpet extends BlockPaintableSingle
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 3), "PPP",
 				'P', LatBlocksItems.b_cover);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(this), LatBlocksItems.b_cover, ODItems.TOOL_SAW);
-		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_cover), this);
+	}
+	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		ODItems.add(BlockPCover.ORE_NAME, new ItemStack(this));
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

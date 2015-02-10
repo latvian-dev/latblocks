@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+import latmod.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;
@@ -20,13 +21,17 @@ public class BlockPaintableRS extends BlockPaintableSided
 		setBlockTextureName("paintableRS");
 	}
 	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		ODItems.add(BlockPaintableDef.ORE_NAME, new ItemStack(this));
+	}
+	
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this), " P ", "PRP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'R', Blocks.redstone_block);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

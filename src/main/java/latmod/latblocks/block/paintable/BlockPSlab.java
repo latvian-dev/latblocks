@@ -1,6 +1,5 @@
 package latmod.latblocks.block.paintable;
 
-import latmod.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;
@@ -20,7 +19,6 @@ public class BlockPSlab extends BlockPaintableSingle
 		mod.recipes.addRecipe(new ItemStack(this, 6), "PPP",
 				'P', LatBlocksItems.b_paintable);
 		
-		mod.recipes.addShapelessRecipe(new ItemStack(this, 2), LatBlocksItems.b_paintable, ODItems.TOOL_SAW);
 		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this, this);
 	}
 	

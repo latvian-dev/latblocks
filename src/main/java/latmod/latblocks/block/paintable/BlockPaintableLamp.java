@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+import latmod.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.*;
 import net.minecraft.init.Blocks;
@@ -13,13 +14,17 @@ public class BlockPaintableLamp extends BlockPaintableRS
 		setBlockTextureName("paintableLamp");
 	}
 	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		ODItems.add(BlockPaintableDef.ORE_NAME, new ItemStack(this));
+	}
+	
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this), " P ", "PLP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'L', Blocks.redstone_lamp);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
 	public int getLightValue(IBlockAccess iba, int x, int y, int z)

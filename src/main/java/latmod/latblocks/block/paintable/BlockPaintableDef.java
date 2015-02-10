@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 
 public class BlockPaintableDef extends BlockPaintableSided
 {
+	public static final String ORE_NAME = "blockPaintable";
+	
 	public BlockPaintableDef(String s)
 	{
 		super(s);
@@ -16,7 +18,7 @@ public class BlockPaintableDef extends BlockPaintableSided
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
-		ODItems.add("blockPaintable", new ItemStack(this));
+		ODItems.add(ORE_NAME, new ItemStack(this));
 	}
 	
 	public void loadRecipes()
@@ -24,6 +26,8 @@ public class BlockPaintableDef extends BlockPaintableSided
 		mod.recipes.addRecipe(new ItemStack(this, 16), "WWW", "WPW", "WWW",
 				'W', new ItemStack(Blocks.wool, 1, ODItems.ANY),
 				'P', Blocks.quartz_block);
+		
+		mod.recipes.addShapelessRecipe(new ItemStack(this, 1), ORE_NAME);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

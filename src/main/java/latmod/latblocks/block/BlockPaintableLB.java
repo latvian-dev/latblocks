@@ -159,25 +159,24 @@ public abstract class BlockPaintableLB extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public final void randomDisplayTick(World w, int x, int y, int z, Random r)
 	{
-		TilePaintableLB t = (TilePaintableLB)w.getTileEntity(x, y, z);
-		
-		boolean hasInv = false;
-		
-		if(t != null)
+		if(ItemGlasses.hasClientPlayer())
 		{
-			for(int i = 0; i < 6; i++)
-			{
-				Paint p = t.getPaint(i);
-				if(!hasInv && p != null && p.block == LatBlocksItems.b_glass && p.meta == 0)
-					hasInv = true;
-			}
+			TilePaintableLB t = (TilePaintableLB)w.getTileEntity(x, y, z);
 			
-			if(hasInv) ItemGlasses.spawnInvParticles(w, x + 0.5D, y + 0.5D, z + 0.5D, 3);
+			if(t != null)
+			{
+				for(int i = 0; i < 6; i++)
+				{
+					Paint p = t.getPaint(i);
+					if(p != null && p.block == LatBlocksItems.b_glass && p.meta == 0)
+					{
+						ItemGlasses.spawnInvParticles(w, x + 0.5D, y + 0.5D, z + 0.5D, 3);
+						return;
+					}
+				}
+			}
 		}
 	}
-	
-	@SideOnly(Side.CLIENT)
-	private IIcon lastRemovedComponetIcon;
 	
 	@SideOnly(Side.CLIENT)
 	public boolean addHitEffects(World w, MovingObjectPosition mop, EffectRenderer er)
@@ -197,7 +196,6 @@ public abstract class BlockPaintableLB extends BlockLB
 		IIcon tex = p.block.getIcon(iba, x, y, z, mop.sideHit);
 		if (tex == null) tex = blockIcon;
 		
-		lastRemovedComponetIcon = tex;
 		addBlockHitEffects(w, er, x, y, z, mop.sideHit, tex);
 		
 		return true;

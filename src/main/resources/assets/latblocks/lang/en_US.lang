@@ -29,7 +29,6 @@ latblocks:tile.quartzFurnace.name=Quartz Furnace
 latblocks:tile.tankWater.name=Water Tank
 latblocks:tile.tankVoid.name=Void Tank
 latblocks:tile.gelLamp.name=Paintable Gel Lamp
-latblocks:tile.gelLampInv.name=Invisible Gel Lamp
 latblocks:tile.tank.name=LatTank
 latblocks:tile.glass.name=Invisible Glass
 latblocks:tile.chest.name=Quartz Chest

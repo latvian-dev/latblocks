@@ -2,7 +2,7 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
-import latmod.core.FastList;
+import latmod.core.*;
 import latmod.core.tile.IGuiTile;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
@@ -31,8 +31,14 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 1), "PP",
+		mod.recipes.addRecipe(new ItemStack(this, 2), "PP",
 				'P', LatBlocksItems.b_paintable);
+	}
+	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		ODItems.add(BlockPCover.ORE_NAME, new ItemStack(this));
 	}
 	
 	@SuppressWarnings("all")

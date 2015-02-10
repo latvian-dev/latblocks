@@ -9,6 +9,8 @@ import net.minecraft.world.World;
 
 public class BlockPCover extends BlockPaintableSingle
 {
+	public static final String ORE_NAME = "coverPaintable";
+	
 	public BlockPCover(String s)
 	{
 		super(s, 1F / 8F);
@@ -21,12 +23,14 @@ public class BlockPCover extends BlockPaintableSingle
 		
 		mod.recipes.addRecipe(new ItemStack(LatBlocksItems.b_paintable), "PP", "PP",
 				'P', this);
+		
+		mod.recipes.addShapelessRecipe(new ItemStack(this), ORE_NAME);
 	}
 	
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
-		ODItems.add("paintableCover", new ItemStack(this));
+		ODItems.add(ORE_NAME, new ItemStack(this));
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

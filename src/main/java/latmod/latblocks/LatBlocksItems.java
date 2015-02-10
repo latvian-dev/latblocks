@@ -7,12 +7,6 @@ import latmod.latblocks.item.*;
 
 public class LatBlocksItems
 {
-	public static BlockGlowium.BGBlock b_glowium_block;
-	public static BlockGlowium.BGTile b_glowium_tile;
-	public static BlockGlowium.BGBrick b_glowium_brick;
-	public static BlockGlowium.BGBrickSmall b_glowium_small;
-	public static BlockGlowium.BGBrickChiseled b_glowium_chiseled;
-	
 	public static BlockPaintableDef b_paintable;
 	public static BlockPaintableRS b_paintable_rs;
 	public static BlockPaintableGS b_paintable_gs;
@@ -34,10 +28,15 @@ public class LatBlocksItems
 	public static BlockWaterTank b_tank_water;
 	public static BlockVoidTank b_tank_void;
 	public static BlockGelLamp b_gel_lamp;
-	public static BlockInvGelLamp b_gel_lamp_inv;
 	public static BlockTank b_tank;
 	public static BlockGlass b_glass;
 	public static BlockLatChest b_chest;
+	
+	public static BlockGlowium.BGBlock b_glowium_block;
+	public static BlockGlowium.BGTile b_glowium_tile;
+	public static BlockGlowium.BGBrick b_glowium_brick;
+	public static BlockGlowium.BGBrickSmall b_glowium_small;
+	public static BlockGlowium.BGBrickChiseled b_glowium_chiseled;
 	
 	public static ItemMaterialsLB i_mat;
 	public static ItemPainterParts i_parts;
@@ -49,12 +48,6 @@ public class LatBlocksItems
 	
 	public static void init()
 	{
-		b_glowium_block = new BlockGlowium.BGBlock().register();
-		b_glowium_tile = new BlockGlowium.BGTile().register();
-		b_glowium_brick = new BlockGlowium.BGBrick().register();
-		b_glowium_small = new BlockGlowium.BGBrickSmall().register();
-		b_glowium_chiseled = new BlockGlowium.BGBrickChiseled().register();
-		
 		b_paintable = new BlockPaintableDef("paintable").register();
 		b_paintable_rs = new BlockPaintableRS("paintableRS").register();
 		b_paintable_gs = new BlockPaintableGS("paintableGS").register();
@@ -76,10 +69,15 @@ public class LatBlocksItems
 		b_tank_water = new BlockWaterTank("tankWater").register();
 		b_tank_void = new BlockVoidTank("tankVoid").register();
 		b_gel_lamp = new BlockGelLamp("gelLamp").register();
-		b_gel_lamp_inv = new BlockInvGelLamp("gelLampInv").register();
 		b_tank = new BlockTank("tank").register();
 		b_glass = new BlockGlass("glass").register();
 		b_chest = new BlockLatChest("chest").register();
+		
+		b_glowium_block = new BlockGlowium.BGBlock().register();
+		b_glowium_tile = new BlockGlowium.BGTile().register();
+		b_glowium_brick = new BlockGlowium.BGBrick().register();
+		b_glowium_small = new BlockGlowium.BGBrickSmall().register();
+		b_glowium_chiseled = new BlockGlowium.BGBrickChiseled().register();
 		
 		i_mat = new ItemMaterialsLB("materials").register();
 		i_parts = new ItemPainterParts("painterParts").register();

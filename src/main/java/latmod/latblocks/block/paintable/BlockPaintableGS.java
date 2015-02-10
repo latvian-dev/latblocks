@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+import latmod.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;
@@ -15,13 +16,17 @@ public class BlockPaintableGS extends BlockPaintableSided
 		setLightLevel(1F);
 	}
 	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		ODItems.add(BlockPaintableDef.ORE_NAME, new ItemStack(this));
+	}
+	
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this), " P ", "PGP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'G', Blocks.glowstone);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

@@ -1,6 +1,8 @@
 package latmod.latblocks.block;
 
+import latmod.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.block.paintable.BlockPCover;
 import latmod.latblocks.tile.*;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -19,8 +21,12 @@ public class BlockNoteBoard extends BlockPaintableSingle
 		mod.recipes.addShapelessRecipe(new ItemStack(this),
 				LatBlocksItems.b_cover,
 				Items.item_frame);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_cover), this);
+	}
+	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		ODItems.add(BlockPCover.ORE_NAME, new ItemStack(this));
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

@@ -33,6 +33,14 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 				'P', new ItemStack(Items.potionitem, 1, 8206));
 	}
 	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		
+		ODItems.add(ODItems.GLASS, new ItemStack(this, 1, ODItems.ANY));
+		ODItems.add(ODItems.GLASS_ANY, new ItemStack(this, 1, ODItems.ANY));
+	}
+	
 	public TileLM createNewTileEntity(World w, int m)
 	{ return null; }
 	
