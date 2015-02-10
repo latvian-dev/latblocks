@@ -2,13 +2,16 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
-import latmod.core.*;
+import latmod.core.FastList;
+import latmod.core.tile.IGuiTile;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.*;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
@@ -20,7 +23,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 {
 	public BlockPPressurePlate(String s)
 	{
-		super(s, 1F / 8F);
+		super(s, 1F / 16F);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)
@@ -63,10 +66,10 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
-		if(m == -1) m = iba.getBlockMetadata(x, y, z);
+		TilePPressurePlate t = (TilePPressurePlate)iba.getTileEntity(x, y, z);
 		
 		double p = 1D / 16D;
-		double h = ((TilePPressurePlate)iba.getTileEntity(x, y, z)).isPressed ? p / 2D : p;
+		double h = (t != null && t.isValid() && t.isPressed) ? p / 2D : p;
 		boxes.add(AxisAlignedBB.getBoundingBox(p, 0D, p, 1D - p, h, 1D - p));
 	}
 	
@@ -97,10 +100,10 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	private static AxisAlignedBB getBox(int x, int y, int z)
 	{ double p = 1D / 16D; return AxisAlignedBB.getBoundingBox(x + p, y, z + p, x + 1D - p, y + p, z + 1D - p); }
 	
-	public static class TilePPressurePlate extends TileSinglePaintable
+	public static class TilePPressurePlate extends TileSinglePaintable implements IGuiTile
 	{
 		public byte plateType = 0;
-		public short maxTick = 40;
+		public short maxTick = 20;
 		public boolean isPressed = false;
 		private short cooldown = 0;
 		
@@ -164,5 +167,11 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			
 			return false;
 		}
+		
+		public Container getContainer(EntityPlayer ep, int ID)
+		{ return null; }
+		
+		public GuiScreen getGui(EntityPlayer ep, int ID)
+		{ return null; }
 	}
 }
