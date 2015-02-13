@@ -1,6 +1,6 @@
 package latmod.latblocks.block.paintable;
 
-import java.util.List;
+import java.util.*;
 
 import latmod.core.*;
 import latmod.core.tile.IGuiTile;
@@ -49,7 +49,8 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
 	{
-		boxes.add(getBox(0, 0, 0));
+		double f1 = 1D / 16D;
+		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0.5D - f1, 0D, 1D, 0.5F + f1, 1D));
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
@@ -120,6 +121,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			maxTick = tag.getShort("MaxTick");
 			isPressed = tag.getBoolean("Down");
 			cooldown = tag.getShort("Tick");
+			security.readFromNBT(tag, "Security");
 		}
 		
 		public void writeTileData(NBTTagCompound tag)
@@ -129,6 +131,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			tag.setShort("MaxTick", maxTick);
 			tag.setBoolean("Down", isPressed);
 			tag.setShort("Tick", cooldown);
+			security.writeToNBT(tag, "Security");
 		}
 		
 		public void onUpdate()
@@ -167,8 +170,17 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			if (list != null && !list.isEmpty())
 			{
 				for(int i = 0; i < list.size(); i++)
-					if(!((Entity)list.get(i)).doesEntityNotTriggerPressurePlate())
+				{
+					Entity e = (Entity)list.get(i);
+					
+					if(!e.doesEntityNotTriggerPressurePlate())
+					{
+						if(plateType == 2 && !security.canInteract(e.getUniqueID()))
+							continue;
+						
 						return true;
+					}
+				}
 			}
 			
 			return false;
