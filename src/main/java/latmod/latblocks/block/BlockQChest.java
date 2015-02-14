@@ -6,7 +6,7 @@ import latmod.core.client.LatCoreMCClient;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.item.ItemMaterialsLB;
-import latmod.latblocks.tile.TileLatChest;
+import latmod.latblocks.tile.TileQChest;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,18 +16,18 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockLatChest extends BlockLB
+public class BlockQChest extends BlockLB
 {
 	@SideOnly(Side.CLIENT)
 	private IIcon chestFront, chestTop;
 	
-	public BlockLatChest(String s)
+	public BlockQChest(String s)
 	{
 		super(s, Material.wood);
 		float f = 1F / 16F;
 		setBlockBounds(f, 0F, f, 1F - f, 0.875F, 1F - f);
 		isBlockContainer = true;
-		mod.addTile(TileLatChest.class, s);
+		mod.addTile(TileQChest.class, s);
 	}
 	
 	public void loadRecipes()
@@ -45,7 +45,7 @@ public class BlockLatChest extends BlockLB
 	{ return 0; }
 	
 	public TileLM createNewTileEntity(World world, int m)
-	{ return new TileLatChest(); }
+	{ return new TileQChest(); }
 	
 	public boolean isOpaqueCube()
 	{ return false; }
@@ -81,10 +81,10 @@ public class BlockLatChest extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> al)
 	{
-		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileLatChest.ITEM_TAG))
+		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileQChest.ITEM_TAG))
 		{
-			TileLatChest t = new TileLatChest();
-			t.readTileData(is.stackTagCompound.getCompoundTag(TileLatChest.ITEM_TAG));
+			TileQChest t = new TileQChest();
+			t.readTileData(is.stackTagCompound.getCompoundTag(TileQChest.ITEM_TAG));
 			
 			if(is.hasDisplayName()) al.add(new ItemStack(is.getItem()).getDisplayName());
 			

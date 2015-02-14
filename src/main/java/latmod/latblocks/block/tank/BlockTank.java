@@ -42,15 +42,15 @@ public class BlockTank extends BlockTankBase
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 1), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 0),
-				'I', ODItems.QUARTZ);
+				'I', ODItems.IRON);
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 2), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 1),
-				'I', ODItems.IRON);
+				'I', ODItems.GOLD);
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 3), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 2),
-				'I', ODItems.GOLD);
+				'I', ODItems.QUARTZ);
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 4), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 3),

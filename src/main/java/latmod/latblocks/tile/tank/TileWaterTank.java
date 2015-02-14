@@ -4,7 +4,7 @@ import latmod.core.tile.Tank;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -112,7 +112,7 @@ public class TileWaterTank extends TileTankBase
 			}
 		}
 		
-		return false;
+		return !(is == null || is.getItem() instanceof ItemBlock);
 	}
 	
 	@SideOnly(Side.CLIENT)

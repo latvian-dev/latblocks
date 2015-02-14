@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render;
 import latmod.core.LatCoreMC;
-import latmod.latblocks.tile.TileLatChest;
+import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
@@ -17,9 +17,9 @@ public class RenderLatChest extends TileEntitySpecialRenderer
 	
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f)
 	{
-		if(te == null || !(te instanceof TileLatChest)) return;
+		if(te == null || !(te instanceof TileQChest)) return;
 		
-		TileLatChest t = ((TileLatChest)te);
+		TileQChest t = ((TileQChest)te);
 		
 		if(t.customName != null)
 		{

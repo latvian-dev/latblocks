@@ -19,7 +19,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 	
 	public BlockGlass(String s)
 	{
-		super(s, Material.rock);
+		super(s, Material.glass);
 		setHardness(0.2F);
 		setBlockTextureName("invGlass");
 		isBlockContainer = false;
@@ -29,7 +29,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 8), "GGG", "GPG", "GGG",
-				'G', ODItems.GLASS_ANY,
+				'G', ODItems.GLASS,
 				'P', new ItemStack(Items.potionitem, 1, 8206));
 	}
 	
@@ -38,7 +38,6 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 		super.onPostLoaded();
 		
 		ODItems.add(ODItems.GLASS, new ItemStack(this, 1, ODItems.ANY));
-		ODItems.add(ODItems.GLASS_ANY, new ItemStack(this, 1, ODItems.ANY));
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

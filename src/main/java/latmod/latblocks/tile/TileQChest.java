@@ -1,24 +1,25 @@
 package latmod.latblocks.tile;
 import latmod.core.*;
+import latmod.core.client.LMGuiButtons;
 import latmod.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class TileLatChest extends TileInvLM implements IGuiTile
+public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory
 {
 	public static final String ITEM_TAG = "ChestData";
 	
 	public ForgeDirection rotation = ForgeDirection.NORTH;
 	
-	public TileLatChest()
-	{ super(54); }
+	public TileQChest()
+	{ super(7 * 13); }
 	
 	public boolean rerenderBlock()
 	{ return true; }
@@ -52,11 +53,11 @@ public class TileLatChest extends TileInvLM implements IGuiTile
 	{ return 24D * 24D; }
 	
 	public Container getContainer(EntityPlayer ep, int ID)
-	{ return new ContainerLatChest(ep, this); }
+	{ return new ContainerQChest(ep, this); }
 	
 	@SideOnly(Side.CLIENT)
 	public GuiScreen getGui(EntityPlayer ep, int ID)
-	{ return new GuiLatChest(new ContainerLatChest(ep, this)); }
+	{ return new GuiQChest(new ContainerQChest(ep, this)); }
 	
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
@@ -97,4 +98,23 @@ public class TileLatChest extends TileInvLM implements IGuiTile
 		
 		super.onBroken();
 	}
+	
+	public void handleButton(String button, int mouseButton, EntityPlayer ep)
+	{
+		if(button.equals(LMGuiButtons.SECURITY))
+		{
+			if(ep != null && security.isOwner(ep))
+				security.level = (mouseButton == 0) ? security.level.next(LMSecurity.Level.VALUES_3) : security.level.prev(LMSecurity.Level.VALUES_3);
+			else printOwner(ep);
+		}
+	}
+	
+	public int[] getAccessibleSlotsFromSide(int s)
+	{ return security.level.isPublic() ? ALL_SLOTS : NO_SLOTS; }
+	
+	public boolean canInsertItem(int i, ItemStack is, int s)
+	{ return security.level.isPublic(); }
+	
+	public boolean canExtractItem(int i, ItemStack is, int s)
+	{ return security.level.isPublic(); }
 }

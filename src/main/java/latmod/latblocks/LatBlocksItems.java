@@ -30,7 +30,7 @@ public class LatBlocksItems
 	public static BlockGelLamp b_gel_lamp;
 	public static BlockTank b_tank;
 	public static BlockGlass b_glass;
-	public static BlockLatChest b_chest;
+	public static BlockQChest b_chest;
 	
 	public static BlockGlowium.BGBlock b_glowium_block;
 	public static BlockGlowium.BGTile b_glowium_tile;
@@ -71,7 +71,7 @@ public class LatBlocksItems
 		b_gel_lamp = new BlockGelLamp("gelLamp").register();
 		b_tank = new BlockTank("tank").register();
 		b_glass = new BlockGlass("glass").register();
-		b_chest = new BlockLatChest("chest").register();
+		b_chest = new BlockQChest("chest").register();
 		
 		b_glowium_block = new BlockGlowium.BGBlock().register();
 		b_glowium_tile = new BlockGlowium.BGTile().register();
