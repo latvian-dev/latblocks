@@ -6,7 +6,7 @@ import latmod.core.client.LatCoreMCClient;
 import latmod.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.item.ItemMaterialsLB;
-import latmod.latblocks.tile.*;
+import latmod.latblocks.tile.TileLatChest;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

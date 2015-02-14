@@ -1,9 +1,9 @@
 package latmod.latblocks.block;
-import java.util.*;
+import java.util.List;
 
 import latmod.core.*;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.item.*;
+import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

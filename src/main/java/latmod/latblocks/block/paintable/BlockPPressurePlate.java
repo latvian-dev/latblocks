@@ -1,6 +1,6 @@
 package latmod.latblocks.block.paintable;
 
-import java.util.*;
+import java.util.List;
 
 import latmod.core.*;
 import latmod.core.tile.IGuiTile;
