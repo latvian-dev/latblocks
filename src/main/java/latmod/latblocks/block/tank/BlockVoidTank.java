@@ -6,6 +6,7 @@ import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockVoidTank extends BlockTankBase
@@ -32,10 +33,10 @@ public class BlockVoidTank extends BlockTankBase
 	{ blockIcon = ir.registerIcon(mod.assets + "tank/outside_void"); }
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankItemBorderIcon(int m)
+	public IIcon getTankItemBorderIcon(ItemStack item)
 	{ return blockIcon; }
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankItemFluidIcon(int m)
+	public FluidStack getTankItemFluid(ItemStack item)
 	{ return null; }
 }

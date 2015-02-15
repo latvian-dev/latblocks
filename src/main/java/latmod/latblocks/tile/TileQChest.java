@@ -40,10 +40,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory
 			else LatCoreMC.openGui(ep, this, 0);
 		}
 		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
-		{
-			onBroken();
 			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
-		}
 		
 		return true;
 	}

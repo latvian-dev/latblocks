@@ -3,7 +3,6 @@ import latmod.core.InvUtils;
 import latmod.core.tile.Tank;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -13,6 +12,8 @@ import cpw.mods.fml.relauncher.*;
 
 public class TileWaterTank extends TileTankBase
 {
+	public static final FluidStack WATER_1000 = new FluidStack(FluidRegistry.WATER, 1000);
+	
 	public TileWaterTank()
 	{
 		tank = new Tank("Tank", 1D)
@@ -117,11 +118,11 @@ public class TileWaterTank extends TileTankBase
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankBorderIcon()
-	{ return LatBlocksItems.b_tank_water.getTankItemBorderIcon(blockMetadata); }
+	{ return blockMetadata == 1 ? LatBlocksItems.b_tank_water.icon_on : LatBlocksItems.b_tank_water.getBlockIcon(); }
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankFluidIcon()
-	{ return Blocks.water.getBlockTextureFromSide(1); }
+	public Fluid getTankRenderFluid()
+	{ return FluidRegistry.WATER; }
 	
 	@SideOnly(Side.CLIENT)
 	public double getTankFluidHeight()

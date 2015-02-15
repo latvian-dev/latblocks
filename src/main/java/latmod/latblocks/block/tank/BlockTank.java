@@ -83,6 +83,12 @@ public class BlockTank extends BlockTankBase
 	@SideOnly(Side.CLIENT)
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
 	{
+		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Fluid"))
+		{
+			FluidStack fs = FluidStack.loadFluidStackFromNBT(is.stackTagCompound.getCompoundTag("Fluid"));
+			l.add("Stored: " + fs.amount + "mB of " + fs.getLocalizedName());
+		}
+		
 		int meta = is.getItemDamage();
 		
 		if(meta == 5)
@@ -98,19 +104,32 @@ public class BlockTank extends BlockTankBase
 		else if(meta == 4) c = 4096;
 		
 		l.add("Capacity: " + c + MathHelperLM.getPluralWord(c, " bucket", " buckets"));
-		
-		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Fluid"))
-		{
-			FluidStack fs = FluidStack.loadFluidStackFromNBT(is.stackTagCompound.getCompoundTag("Fluid"));
-			l.add("Stored: " + fs.amount + "mB of " + fs.getLocalizedName());
-		}
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankItemBorderIcon(int m)
-	{ return icons[m]; }
+	public IIcon getTankItemBorderIcon(ItemStack item)
+	{ return icons[item.getItemDamage()]; }
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankItemFluidIcon(int m)
-	{ return null; }
+	public FluidStack getTankItemFluid(ItemStack item)
+	{
+		if(item.hasTagCompound() && item.stackTagCompound.hasKey("Fluid"))
+		{
+			FluidStack fs = FluidStack.loadFluidStackFromNBT(item.stackTagCompound.getCompoundTag("Fluid"));
+			
+			int meta = item.getItemDamage();
+			
+			double c = 1000D;
+			if(meta == 1) c = 8000D;
+			else if(meta == 2) c = 64000D;
+			else if(meta == 3) c = 512000D;
+			else if(meta == 4) c = 4096000D;
+			else if(meta == 5) c = fs.amount;
+			
+			fs.amount = (int)MathHelperLM.map(fs.amount, 0D, c, 0D, 1000D);
+			return fs;
+		}
+		
+		return null;
+	}
 }

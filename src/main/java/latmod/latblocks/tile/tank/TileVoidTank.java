@@ -45,7 +45,7 @@ public class TileVoidTank extends TileTankBase
 	{ return LatBlocksItems.b_tank_void.getBlockIcon(); }
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankFluidIcon()
+	public Fluid getTankRenderFluid()
 	{ return null; }
 	
 	@SideOnly(Side.CLIENT)

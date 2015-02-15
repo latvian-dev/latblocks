@@ -120,10 +120,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 				LatCoreMC.openGui(ep, this, 0);
 		}
 		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
-		{
-			onBroken();
 			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
-		}
 		
 		return true;
 	}

@@ -1,11 +1,14 @@
 package latmod.latblocks.block.tank;
+import latmod.core.client.LatCoreMCClient;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.RenderTank;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.*;
 
 public abstract class BlockTankBase extends BlockLB
@@ -40,7 +43,7 @@ public abstract class BlockTankBase extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
-	{ return getTankItemBorderIcon(m); }
+	{ return LatCoreMCClient.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
@@ -52,8 +55,8 @@ public abstract class BlockTankBase extends BlockLB
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public abstract IIcon getTankItemBorderIcon(int m);
+	public abstract IIcon getTankItemBorderIcon(ItemStack item);
 	
 	@SideOnly(Side.CLIENT)
-	public abstract IIcon getTankItemFluidIcon(int m);
+	public abstract FluidStack getTankItemFluid(ItemStack item);
 }

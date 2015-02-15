@@ -2,7 +2,7 @@ package latmod.latblocks.client;
 import latmod.core.*;
 import latmod.core.client.LatCoreMCClient;
 import latmod.core.gui.ContainerEmpty;
-import latmod.latblocks.LatBlocksCommon;
+import latmod.latblocks.*;
 import latmod.latblocks.client.render.*;
 import latmod.latblocks.gui.GuiColorPainter;
 import latmod.latblocks.tile.*;
@@ -26,6 +26,9 @@ public class LatBlocksClient extends LatBlocksCommon
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
 		RenderTank.instance.register();
+		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank);
+		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_water);
+		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_void);
 		RenderGlowiumBlocks.instance.register();
 		RenderPSlope.instance.register();
 	}

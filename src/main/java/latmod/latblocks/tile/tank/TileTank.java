@@ -181,8 +181,8 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	{ getMeta(); return LatBlocksItems.b_tank.icons[blockMetadata]; }
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankFluidIcon()
-	{ return tank.isEmpty() ? null : tank.getFluid().getStillIcon(); }
+	public Fluid getTankRenderFluid()
+	{ return tank.isEmpty() ? null : tank.getFluid(); }
 	
 	@SideOnly(Side.CLIENT)
 	public double getTankFluidHeight()

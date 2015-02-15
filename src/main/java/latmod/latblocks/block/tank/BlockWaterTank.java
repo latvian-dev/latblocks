@@ -7,6 +7,7 @@ import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockWaterTank extends BlockTankBase
@@ -43,10 +44,10 @@ public class BlockWaterTank extends BlockTankBase
 	{ return 0; }
 
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankItemBorderIcon(int m)
-	{ return (m == 1) ? icon_on : blockIcon; }
+	public IIcon getTankItemBorderIcon(ItemStack item)
+	{ return (item.getItemDamage() == 1) ? icon_on : blockIcon; }
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getTankItemFluidIcon(int m)
-	{ return Blocks.water.getBlockTextureFromSide(1); }
+	public FluidStack getTankItemFluid(ItemStack item)
+	{ return TileWaterTank.WATER_1000; }
 }

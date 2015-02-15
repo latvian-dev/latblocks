@@ -15,7 +15,7 @@ public abstract class TileTankBase extends TileLM implements IFluidHandler
 	public abstract IIcon getTankBorderIcon();
 	
 	@SideOnly(Side.CLIENT)
-	public abstract IIcon getTankFluidIcon();
+	public abstract Fluid getTankRenderFluid();
 	
 	@SideOnly(Side.CLIENT)
 	public abstract double getTankFluidHeight();
