@@ -15,10 +15,12 @@ public class LatBlocksConfig extends LMConfig
 	public static class General
 	{
 		public static boolean fencesIgnorePlayers;
+		public static boolean tankCraftingHandler;
 		
 		public static void load(Category c)
 		{
 			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
+			tankCraftingHandler = c.getBool("tankCraftingHandler", true);
 		}
 	}
 }

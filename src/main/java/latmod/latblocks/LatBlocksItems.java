@@ -87,4 +87,9 @@ public class LatBlocksItems
 		i_hammer = new ItemHammer("hammer").register();
 		i_glasses = new ItemGlasses("glasses").register();
 	}
+	
+	public static void postInit()
+	{
+		BlockGlowium.postLoaded();
+	}
 }

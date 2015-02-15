@@ -1,5 +1,7 @@
 package latmod.latblocks.item;
 import latmod.core.ODItems;
+import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.block.BlockGlowium;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -19,7 +21,7 @@ public class ItemHammer extends ItemLB
 	{
 		mod.recipes.addRecipe(new ItemStack(this), "IGI", " S ", " S ",
 				'I', ODItems.IRON,
-				'G', ItemMaterialsLB.GEM_GLOWIUM,
+				'G', new ItemStack(LatBlocksItems.b_glowium_block, 1, BlockGlowium.DEF_DMG),
 				'S', ItemMaterialsLB.ROD);
 	}
 	

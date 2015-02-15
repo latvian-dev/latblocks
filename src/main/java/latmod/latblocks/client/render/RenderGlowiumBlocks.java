@@ -1,6 +1,5 @@
 package latmod.latblocks.client.render;
 
-import latmod.core.EnumDyeColor;
 import latmod.core.client.BlockRendererLM;
 import latmod.latblocks.block.BlockGlowium;
 import net.minecraft.block.Block;
@@ -31,7 +30,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
 		BlockGlowium bg = (BlockGlowium)b;
 		
-		renderBlocks.setCustomColor(BlockGlowium.colors[meta]);
+		renderBlocks.setCustomColor(b.getRenderColor(meta));
 		
 		GL11.glPushMatrix();
 		rotateBlocks();
@@ -53,7 +52,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		BlockGlowium bg = (BlockGlowium)b;
 		
 		int meta = iba.getBlockMetadata(x, y, z);
-		renderBlocks.setCustomColor(EnumDyeColor.VALUES[meta].color.getRGB());
+		renderBlocks.setCustomColor(b.getRenderColor(meta));
 		
 		renderBlocks.setOverrideBlockTexture(bg.getBlockIcon());
 		renderBlocks.renderStandardBlock(empty, x, y, z);

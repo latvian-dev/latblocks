@@ -35,14 +35,15 @@ public class LatBlocks
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e)
 	{
+		LatBlocksItems.postInit();
 		proxy.init(e);
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
-		proxy.postInit(e);
 		mod.loadRecipes();
+		proxy.postInit(e);
 	}
 	
 	@Mod.EventHandler

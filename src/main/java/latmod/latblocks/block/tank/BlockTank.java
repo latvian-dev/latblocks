@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.RecipeSorter;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockTank extends BlockTankBase
@@ -36,6 +37,16 @@ public class BlockTank extends BlockTankBase
 	
 	public void loadRecipes()
 	{
+		if(LatBlocksConfig.General.tankCraftingHandler)
+		{
+			RecipeSorter.register("latblocks:tanks", TankCraftingHandler.class, RecipeSorter.Category.SHAPED, "before:minecraft:shaped");
+			TankCraftingHandler.register(new ItemStack(this, 1, 1), new ItemStack(this, 1, 0), new ItemStack(Items.iron_ingot));
+			TankCraftingHandler.register(new ItemStack(this, 1, 2), new ItemStack(this, 1, 1), new ItemStack(Items.gold_ingot));
+			TankCraftingHandler.register(new ItemStack(this, 1, 3), new ItemStack(this, 1, 2), new ItemStack(Items.quartz));
+			TankCraftingHandler.register(new ItemStack(this, 1, 4), new ItemStack(this, 1, 3), new ItemStack(Items.diamond));
+			TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.STAR_DUST);
+		}
+		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 0), "SGS", "G G", "SGS",
 				'G', ODItems.GLASS,
 				'S', ODItems.STICK);
@@ -56,11 +67,9 @@ public class BlockTank extends BlockTankBase
 				'T', new ItemStack(this, 1, 3),
 				'I', ODItems.DIAMOND);
 		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TET", "NGN", "TET",
+		mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 4),
-				'N', ItemMaterialsLB.STAR_DUST,
-				'E', Items.ender_pearl,
-				'G', LatBlocksItems.b_tank_void);
+				'I', ItemMaterialsLB.STAR_DUST);
 	}
 	
 	public int damageDropped(int i)

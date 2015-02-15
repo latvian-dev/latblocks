@@ -49,7 +49,6 @@ sourceSets {
     main {
         java {
             srcDir config.source_dir + mod_name + "/src/main/java"
-			srcDir config.source_dir + mod_name + "/src/main/api"
         }
         resources {
             srcDir config.source_dir + mod_name + "/src/main/resources"
