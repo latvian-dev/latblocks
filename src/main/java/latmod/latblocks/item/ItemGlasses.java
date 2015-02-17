@@ -53,7 +53,8 @@ public class ItemGlasses extends ItemArmor implements IItemLM
 	
 	public void loadRecipes()
 	{
-		LatBlocks.mod.recipes.addRecipe(new ItemStack(this), "CCC", "LIL",
+		if(LatBlocksConfig.Crafting.goggles)
+			LatBlocks.mod.recipes.addRecipe(new ItemStack(this), "CCC", "LIL",
 				'C', Items.leather,
 				'L', ItemMaterialsLB.LENS,
 				'I', ODItems.IRON);

@@ -24,13 +24,14 @@ public class LatBlocksItems
 	//public static BlockPSlope b_slope;
 	
 	public static BlockNoteBoard b_note_board;
+	public static BlockQChest b_qchest;
 	public static BlockQFurnace b_qfurnace;
+	//public static BlockQCraftingTable b_qcrafting_table;
 	public static BlockWaterTank b_tank_water;
 	public static BlockVoidTank b_tank_void;
 	public static BlockGelLamp b_gel_lamp;
 	public static BlockTank b_tank;
 	public static BlockGlass b_glass;
-	public static BlockQChest b_chest;
 	
 	public static BlockGlowium.BGBlock b_glowium_block;
 	public static BlockGlowium.BGTile b_glowium_tile;
@@ -65,13 +66,14 @@ public class LatBlocksItems
 		//b_slope = new BlockPSlope("slope").register();
 		
 		b_note_board = new BlockNoteBoard("noteBoard").register();
+		b_qchest = new BlockQChest("quartzChest").register();
 		b_qfurnace = new BlockQFurnace("quartzFurnace").register();
+		//b_qcrafting_table = new BlockQCraftingTable("quartzCraftingTable").register();
 		b_tank_water = new BlockWaterTank("tankWater").register();
 		b_tank_void = new BlockVoidTank("tankVoid").register();
 		b_gel_lamp = new BlockGelLamp("gelLamp").register();
 		b_tank = new BlockTank("tank").register();
 		b_glass = new BlockGlass("glass").register();
-		b_chest = new BlockQChest("chest").register();
 		
 		b_glowium_block = new BlockGlowium.BGBlock().register();
 		b_glowium_tile = new BlockGlowium.BGTile().register();

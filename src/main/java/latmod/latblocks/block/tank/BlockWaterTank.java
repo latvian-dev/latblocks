@@ -3,7 +3,7 @@ import latmod.core.tile.TileLM;
 import latmod.latblocks.client.render.RenderTank;
 import latmod.latblocks.tile.tank.TileWaterTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.*;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;

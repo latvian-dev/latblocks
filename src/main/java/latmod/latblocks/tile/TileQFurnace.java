@@ -115,9 +115,9 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	{
 		if(isServer() && !ep.isSneaking())
 		{
-			//if(!security.canInteract(ep))
-			//	printOwner(ep); else
-				LatCoreMC.openGui(ep, this, 0);
+			if(!security.canInteract(ep))
+				printOwner(ep);
+			else LatCoreMC.openGui(ep, this, 0);
 		}
 		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
 			worldObj.setBlockToAir(xCoord, yCoord, zCoord);

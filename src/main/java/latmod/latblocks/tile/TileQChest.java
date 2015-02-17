@@ -79,7 +79,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory
 	public void onBroken()
 	{
 		dropItems = false;
-		ItemStack is = new ItemStack(LatBlocksItems.b_chest, 1, 0);
+		ItemStack is = new ItemStack(LatBlocksItems.b_qchest, 1, 0);
 		
 		if(customName != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1)
 		{

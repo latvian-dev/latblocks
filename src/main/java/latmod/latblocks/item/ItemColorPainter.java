@@ -31,10 +31,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	}
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
-	{
-		if(w.isRemote) LatBlocks.proxy.openColorPainterGUI(ep);
-		return is;
-	}
+	{ if(w.isRemote && ep.isSneaking()) LatBlocks.proxy.openColorPainterGUI(ep); return is; }
 	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{

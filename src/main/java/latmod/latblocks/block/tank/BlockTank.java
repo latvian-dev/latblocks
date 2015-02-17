@@ -44,7 +44,9 @@ public class BlockTank extends BlockTankBase
 			TankCraftingHandler.register(new ItemStack(this, 1, 2), new ItemStack(this, 1, 1), new ItemStack(Items.gold_ingot));
 			TankCraftingHandler.register(new ItemStack(this, 1, 3), new ItemStack(this, 1, 2), new ItemStack(Items.quartz));
 			TankCraftingHandler.register(new ItemStack(this, 1, 4), new ItemStack(this, 1, 3), new ItemStack(Items.diamond));
-			TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.STAR_DUST);
+			
+			if(LatBlocksConfig.Crafting.endlessTank)
+				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.STAR_DUST);
 		}
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 0), "SGS", "G G", "SGS",
@@ -67,7 +69,8 @@ public class BlockTank extends BlockTankBase
 				'T', new ItemStack(this, 1, 3),
 				'I', ODItems.DIAMOND);
 		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
+		if(LatBlocksConfig.Crafting.endlessTank)
+			mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 4),
 				'I', ItemMaterialsLB.STAR_DUST);
 	}

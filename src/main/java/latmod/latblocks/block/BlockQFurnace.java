@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import latmod.core.*;
 import latmod.core.client.LatCoreMCClient;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.block.material.Material;
@@ -32,13 +32,17 @@ public class BlockQFurnace extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
-				'Q', Blocks.quartz_block,
-				'F', Blocks.furnace,
-				'D', ODItems.DIAMOND,
-				'S', ItemMaterialsLB.STAR_DUST);
-		
-		LatBlocksItems.i_hammer.addRecipe(new ItemStack(this), new ItemStack(this, 1, ODItems.ANY));
+		if(LatBlocksConfig.Crafting.chest)
+		{
+			mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
+					'Q', Blocks.quartz_block,
+					'F', Blocks.furnace,
+					'D', ODItems.DIAMOND,
+					'S', ItemMaterialsLB.STAR_DUST);
+			
+			if(LatBlocksConfig.Crafting.dataErase)
+				LatBlocksItems.i_hammer.addRecipe(new ItemStack(this), new ItemStack(this, 1, ODItems.ANY));
+		}
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

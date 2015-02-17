@@ -9,7 +9,7 @@ import latmod.core.tile.*;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
-import net.minecraft.block.*;
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -44,17 +44,20 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		{
 			super.loadRecipes();
 			
-			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
-					'G', ItemMaterialsLB.GEM_GLOWIUM);
-			
-			mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEM_GLOWIUM, 4), "G",
-					'G', new ItemStack(this, 1, DEF_DMG));
-			
-			if(!ChiselHelper.isInstalled())
-				LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
-			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium_chiseled, 4, DEF_DMG));
+			if(LatBlocksConfig.Crafting.glowiumBlocks)
+			{
+				mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
+						'G', ItemMaterialsLB.GEMS_GLOWIUM[0]);
+				
+				mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEMS_GLOWIUM[0], 4), "G",
+						'G', new ItemStack(this, 1, DEF_DMG));
+				
+				if(!ChiselHelper.isInstalled())
+					LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
+				
+				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+						'G', new ItemStack(LatBlocksItems.b_glowium_chiseled, 4, DEF_DMG));
+			}
 		}
 	}
 	
@@ -67,7 +70,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		{
 			super.loadRecipes();
 			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			if(LatBlocksConfig.Crafting.glowiumBlocks)
+				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium_block, 4, DEF_DMG));
 		}
 	}
@@ -81,7 +85,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		{
 			super.loadRecipes();
 			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			if(LatBlocksConfig.Crafting.glowiumBlocks)
+				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium_tile, 4, DEF_DMG));
 		}
 	}
@@ -95,7 +100,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		{
 			super.loadRecipes();
 			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			if(LatBlocksConfig.Crafting.glowiumBlocks)
+				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium_brick, 4, DEF_DMG));
 		}
 	}
@@ -109,7 +115,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		{
 			super.loadRecipes();
 			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			if(LatBlocksConfig.Crafting.glowiumBlocks)
+				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium_small, 4, DEF_DMG));
 		}
 	}
@@ -153,7 +160,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public void loadRecipes()
 	{
-		if(!ChiselHelper.isInstalled())
+		if(LatBlocksConfig.Crafting.glowiumBlocks && !ChiselHelper.isInstalled())
 		{
 			for(int i = 0; i < 16; i++)
 				mod.recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
