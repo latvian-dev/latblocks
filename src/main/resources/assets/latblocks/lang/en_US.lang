@@ -27,7 +27,6 @@ latblocks:tile.pressurePlate.name=Paintable Pressure Plate
 latblocks:tile.noteBoard.name=Note Board
 latblocks:tile.quartzChest.name=Quartz Chest
 latblocks:tile.quartzFurnace.name=Quartz Furnace
-latblocks:tile.quartzCraftingTable.name=Quartz Crafting Table
 latblocks:tile.tankWater.name=Water Tank
 latblocks:tile.tankVoid.name=Void Tank
 latblocks:tile.gelLamp.name=Paintable Gel Lamp
@@ -43,17 +42,15 @@ latblocks:tile.buffer.name=Buffer
 
 ### Items ###
 
-latblocks:item.gemGlowium.white.name=Glowium
+latblocks:item.gemGlowium.yellow.name=Glowium
 latblocks:item.gemGlowium.red.name=Red Glowium
 latblocks:item.gemGlowium.green.name=Green Glowium
 latblocks:item.gemGlowium.blue.name=Blue Glowium
-latblocks:item.gemGlowium.yellow.name=Yellow Glowium
 latblocks:item.gemGlowium.dark.name=Dark Glowium
-latblocks:item.dustGlowium.white.name=Glowium Dust
+latblocks:item.dustGlowium.yellow.name=Glowium Dust
 latblocks:item.dustGlowium.red.name=Red Glowium Dust
 latblocks:item.dustGlowium.green.name=Green Glowium Dust
 latblocks:item.dustGlowium.blue.name=Blue Glowium Dust
-latblocks:item.dustGlowium.yellow.name=Yellow Glowium Dust
 latblocks:item.dustGlowium.dark.name=Dark Glowium Dust
 latblocks:item.lens.name=Glass Lens
 latblocks:item.rod.name=Paintable Block Rod

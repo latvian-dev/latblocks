@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory // TileEntityFurnace
@@ -49,6 +50,36 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public boolean rerenderBlock()
 	{ return true; }
 	
+	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
+	{
+		if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
+		{
+			if(ep.isSneaking())
+				worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+			else
+			{
+				if(side == 0 || side == 1)
+				{
+					getMeta();
+					if(blockMetadata == 2) setMeta(5);
+					else if(blockMetadata == 3) setMeta(4);
+					else if(blockMetadata == 4) setMeta(2);
+					else if(blockMetadata == 5) setMeta(3);
+				}
+				else setMeta(side);
+				markDirty();
+			}
+		}
+		else if(isServer())
+		{
+			if(!security.canInteract(ep))
+				printOwner(ep);
+			else LatCoreMC.openGui(ep, this, 0);
+		}
+		
+		return true;
+	}
+	
 	public void onUpdate()
 	{
 		if(fuel == 0 && isServer() && items[SLOT_FUEL] != null)
@@ -81,19 +112,35 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		{
 			if(progress >= MAX_PROGRESS)
 			{
-				if(result != null && isServer())
+				if(result != null)
 				{
 					progress = 0;
 					markDirty();
 					
 					if(items[SLOT_OUTPUT] == null || items[SLOT_OUTPUT].stackSize + result.stackSize <= items[SLOT_OUTPUT].getMaxStackSize())
 					{
-						if(items[SLOT_OUTPUT] == null)
-							items[SLOT_OUTPUT] = result.copy();
-						else items[SLOT_OUTPUT].stackSize += result.stackSize;
+						if(isServer())
+						{
+							if(items[SLOT_OUTPUT] == null)
+								items[SLOT_OUTPUT] = result.copy();
+							else items[SLOT_OUTPUT].stackSize += result.stackSize;
+							
+							result = null;
+						}
 						
-						result = null;
-						markDirty();
+						ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[blockMetadata];
+						double px = xCoord + 0.5D + fd.offsetX * 0.6D;
+						double pz = zCoord + 0.5D + fd.offsetZ * 0.6D;
+						
+						for(int i = 0; i < 40; i++)
+						{
+							double r = MathHelperLM.randomDouble(ParticleHelper.rand, -0.25D, 0.25D);
+							double px1 = px + ((fd == ForgeDirection.WEST || fd == ForgeDirection.EAST) ? 0D : r);
+							double py = yCoord + ParticleHelper.rand.nextFloat() * 6.0D / 16.0D;
+							double pz1 = pz + ((fd == ForgeDirection.NORTH || fd == ForgeDirection.SOUTH) ? 0D : r);
+							
+							worldObj.spawnParticle("flame", px1 , py, pz1, 0D, 0D, 0D);
+						}
 					}
 				}
 			}
@@ -106,23 +153,20 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 					
 					if(fuel == 0 && isServer())
 						markDirty();
+					
+					if(progress % 3 == 0)
+					{
+						ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[blockMetadata];
+						double r = MathHelperLM.randomDouble(ParticleHelper.rand, -0.25D, 0.25D);
+						double px1 = xCoord + 0.5D + fd.offsetX * 0.6D + ((fd == ForgeDirection.WEST || fd == ForgeDirection.EAST) ? 0D : r);
+						double py = yCoord + ParticleHelper.rand.nextFloat() * 6.0D / 16.0D;
+						double pz1 = zCoord + 0.5D + fd.offsetZ * 0.6D + ((fd == ForgeDirection.NORTH || fd == ForgeDirection.SOUTH) ? 0D : r);
+						
+						worldObj.spawnParticle("flame", px1 , py, pz1, 0D, 0D, 0D);
+					}
 				}
 			}
 		}
-	}
-	
-	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
-	{
-		if(isServer() && !ep.isSneaking())
-		{
-			if(!security.canInteract(ep))
-				printOwner(ep);
-			else LatCoreMC.openGui(ep, this, 0);
-		}
-		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
-			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
-		
-		return true;
 	}
 	
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)

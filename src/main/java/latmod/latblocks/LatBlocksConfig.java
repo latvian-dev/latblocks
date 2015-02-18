@@ -1,8 +1,9 @@
 package latmod.latblocks;
-import latmod.core.LMConfig;
+import latmod.core.*;
+import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-public class LatBlocksConfig extends LMConfig
+public class LatBlocksConfig extends LMConfig implements IServerConfig
 {
 	public LatBlocksConfig(FMLPreInitializationEvent e)
 	{ super(e, "/LatMod/LatBlocks.cfg"); }
@@ -11,6 +12,18 @@ public class LatBlocksConfig extends LMConfig
 	{
 		General.load(get("general"));
 		Crafting.load(get("crafting"));
+	}
+	
+	public void readConfig(NBTTagCompound tag)
+	{
+		General.fencesIgnorePlayers = tag.getBoolean("Fences");
+		General.tankCraftingHandler = tag.getBoolean("Tanks");
+	}
+	
+	public void writeConfig(NBTTagCompound tag)
+	{
+		tag.setBoolean("Fences", General.fencesIgnorePlayers);
+		tag.setBoolean("Tanks", General.tankCraftingHandler);
 	}
 	
 	public static class General

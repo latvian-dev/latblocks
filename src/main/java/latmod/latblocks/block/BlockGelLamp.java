@@ -37,6 +37,19 @@ public class BlockGelLamp extends BlockPaintableLB
 	public TilePaintableLB createNewTileEntity(World w, int i)
 	{ return new TileGelLamp(); }
 	
+	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
+	{
+		if(LatCoreMC.isWrench(ep.inventory.getCurrentItem()))
+		{
+			int m = w.getBlockMetadata(x, y, z);
+			if(m < 6) w.setBlockMetadataWithNotify(x, y, z, m + 6, 3);
+			else w.setBlockMetadataWithNotify(x, y, z, m - 6, 3);
+			return true;
+		}
+		
+		return false;
+	}
+	
 	@SuppressWarnings("all")
 	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e) {}
 	
@@ -73,7 +86,13 @@ public class BlockGelLamp extends BlockPaintableLB
 		double f = 1D / 16D * 5D;
 		double h = 1D / 16D * 3D;
 		
-		ForgeDirection dir = ForgeDirection.VALID_DIRECTIONS[m];
+		if(m >= 6)
+		{
+			f = 1D / 8D;
+			h = 1D / 16D;
+		}
+		
+		ForgeDirection dir = ForgeDirection.VALID_DIRECTIONS[m % 6];
 		
 		if(dir == ForgeDirection.UP) // y+
 			boxes.add(AxisAlignedBB.getBoundingBox(f, 1D - h, f, 1D - f, 1D, 1D - f));
@@ -102,7 +121,7 @@ public class BlockGelLamp extends BlockPaintableLB
 	
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
-		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[w.getBlockMetadata(x, y, z)];
+		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[w.getBlockMetadata(x, y, z) % 6];
 		
 		if(w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ) == Blocks.air)
 		{
@@ -110,10 +129,6 @@ public class BlockGelLamp extends BlockPaintableLB
 			w.setBlockToAir(x, y, z);
 		}
 	}
-	
-	@SideOnly(Side.CLIENT)
-	public int getRenderBlockPass()
-	{ return 1; }
 	
 	public static class TileGelLamp extends TileSinglePaintable
 	{
