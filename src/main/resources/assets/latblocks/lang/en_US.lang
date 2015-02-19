@@ -32,6 +32,7 @@ latblocks:tile.tankVoid.name=Void Tank
 latblocks:tile.gelLamp.name=Paintable Gel Lamp
 latblocks:tile.tank.name=LatTank
 latblocks:tile.glass.name=Invisible Glass
+latblocks:tile.craftingPanel.name=Crafting Panel
 
 # To be implemented #
 
