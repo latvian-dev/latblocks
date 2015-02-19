@@ -2,6 +2,7 @@ package latmod.latblocks.tile;
 
 import latmod.core.*;
 import latmod.core.tile.*;
+import latmod.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;

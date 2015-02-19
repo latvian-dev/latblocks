@@ -2,7 +2,7 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
-import latmod.core.FastList;
+import latmod.core.util.FastList;
 import latmod.latblocks.block.*;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;

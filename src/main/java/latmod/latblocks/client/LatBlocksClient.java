@@ -1,7 +1,8 @@
 package latmod.latblocks.client;
-import latmod.core.*;
+import latmod.core.LatCoreMC;
 import latmod.core.client.LatCoreMCClient;
 import latmod.core.gui.ContainerEmpty;
+import latmod.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.*;
 import latmod.latblocks.gui.GuiColorPainter;

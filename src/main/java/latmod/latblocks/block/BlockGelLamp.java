@@ -2,6 +2,7 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import latmod.core.*;
+import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;

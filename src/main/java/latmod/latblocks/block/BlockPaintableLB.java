@@ -2,9 +2,10 @@ package latmod.latblocks.block;
 
 import java.util.*;
 
-import latmod.core.*;
+import latmod.core.ParticleHelper;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
+import latmod.core.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;

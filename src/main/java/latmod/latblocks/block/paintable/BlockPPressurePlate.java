@@ -2,8 +2,9 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
-import latmod.core.*;
+import latmod.core.ODItems;
 import latmod.core.tile.IGuiTile;
+import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;

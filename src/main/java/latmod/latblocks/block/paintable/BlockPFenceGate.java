@@ -2,7 +2,7 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
-import latmod.core.*;
+import latmod.core.util.*;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.item.ItemMaterialsLB;

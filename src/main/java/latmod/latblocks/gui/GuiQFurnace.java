@@ -1,6 +1,6 @@
 package latmod.latblocks.gui;
-import latmod.core.FastList;
 import latmod.core.gui.*;
+import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.util.ResourceLocation;

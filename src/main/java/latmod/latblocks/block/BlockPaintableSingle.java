@@ -1,5 +1,5 @@
 package latmod.latblocks.block;
-import latmod.core.FastList;
+import latmod.core.util.FastList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 import net.minecraft.world.*;

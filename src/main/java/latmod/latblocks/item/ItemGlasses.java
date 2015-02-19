@@ -2,6 +2,7 @@ package latmod.latblocks.item;
 import latmod.core.*;
 import latmod.core.item.IItemLM;
 import latmod.core.mod.LC;
+import latmod.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;

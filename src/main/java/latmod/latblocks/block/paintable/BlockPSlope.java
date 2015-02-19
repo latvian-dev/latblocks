@@ -1,6 +1,7 @@
 package latmod.latblocks.block.paintable;
-import latmod.core.*;
+import latmod.core.LatCoreMC;
 import latmod.core.tile.TileLM;
+import latmod.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.RenderPSlope;

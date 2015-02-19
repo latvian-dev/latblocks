@@ -6,6 +6,7 @@ import latmod.core.*;
 import latmod.core.mod.*;
 import latmod.core.recipes.LMRecipes;
 import latmod.core.tile.*;
+import latmod.core.util.FastList;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
