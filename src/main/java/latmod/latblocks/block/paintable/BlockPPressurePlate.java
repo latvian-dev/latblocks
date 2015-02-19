@@ -32,7 +32,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 2), "PP",
-				'P', LatBlocksItems.b_paintable);
+				'P', LatBlocksItems.b_cover);
 	}
 	
 	public void onPostLoaded()
