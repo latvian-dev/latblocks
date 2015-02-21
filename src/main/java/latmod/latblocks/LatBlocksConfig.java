@@ -30,11 +30,13 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 	{
 		public static boolean fencesIgnorePlayers;
 		public static boolean tankCraftingHandler;
+		public static boolean colorPainterOreNames;
 		
 		public static void load(Category c)
 		{
 			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
 			tankCraftingHandler = c.getBool("tankCraftingHandler", true);
+			colorPainterOreNames = c.getBool("colorPainterOreNames", false);
 		}
 	}
 	

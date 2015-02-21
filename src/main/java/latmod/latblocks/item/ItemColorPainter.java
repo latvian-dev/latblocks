@@ -1,12 +1,13 @@
 package latmod.latblocks.item;
-import latmod.core.EnumDyeColor;
+import latmod.core.*;
 import latmod.core.item.IClientActionItem;
 import latmod.core.util.FastList;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
@@ -28,8 +29,32 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addShapelessRecipe(new ItemStack(this), ItemPainterParts.PAINT_ROLLER_ROD, ItemPainterParts.PAINT_ROLLER_COLOR);
+		mod.recipes.addShapelessRecipe(new ItemStack(this, 1, 15), ItemPainterParts.PAINT_ROLLER_ROD, ItemPainterParts.PAINT_ROLLER_COLOR);
+		
+		for(int i = 0; i < 16; i++)
+		{
+			mod.recipes.addShapelessRecipe(new ItemStack(Blocks.wool, 1, BlockColored.func_150032_b(i)),
+					new ItemStack(this, 1, i),
+					new ItemStack(Blocks.wool, 1, ODItems.ANY));
+		}
 	}
+	
+	public void onPostLoaded()
+	{
+		super.onPostLoaded();
+		
+		if(LatBlocksConfig.General.colorPainterOreNames) for(int i = 0; i < 16; i++)
+			ODItems.add(EnumDyeColor.VALUES[i].dyeName, new ItemStack(this, 1, i));
+	}
+	
+	public ItemStack getContainerItem(ItemStack is)
+	{ return is == null ? null : is.copy(); }
+	
+	public boolean hasContainerItem(ItemStack is)
+	{ return true; }
+	
+	public boolean doesContainerItemLeaveCraftingGrid(ItemStack is)
+	{ return false; }
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
 	{ if(w.isRemote && ep.isSneaking()) LatBlocks.proxy.openColorPainterGUI(ep); return is; }
