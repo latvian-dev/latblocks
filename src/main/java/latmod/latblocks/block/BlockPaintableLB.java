@@ -7,7 +7,7 @@ import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.core.util.*;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.client.render.RenderPaintable;
+import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;
 import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.material.Material;

@@ -1,10 +1,10 @@
 package latmod.latblocks.client;
 import latmod.core.LatCoreMC;
-import latmod.core.client.LatCoreMCClient;
 import latmod.core.gui.ContainerEmpty;
 import latmod.core.util.MathHelperLM;
 import latmod.latblocks.*;
-import latmod.latblocks.client.render.*;
+import latmod.latblocks.client.render.tile.*;
+import latmod.latblocks.client.render.world.*;
 import latmod.latblocks.gui.GuiColorPainter;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
@@ -21,8 +21,9 @@ public class LatBlocksClient extends LatBlocksCommon
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, true, false, false);
-		LatCoreMCClient.addTileRenderer(TileNoteBoard.class, new RenderNoteBoard());
-		LatCoreMCClient.addTileRenderer(TileQChest.class, new RenderLatChest());
+		
+		RenderNoteBoard.instance.register(TileNoteBoard.class);
+		RenderLatChest.instance.register(TileQChest.class);
 		
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();

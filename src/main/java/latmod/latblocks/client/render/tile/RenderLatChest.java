@@ -1,26 +1,19 @@
-package latmod.latblocks.client.render;
+package latmod.latblocks.client.render.tile;
 import latmod.core.LatCoreMC;
+import latmod.core.client.TileRenderer;
 import latmod.latblocks.tile.TileQChest;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class RenderLatChest extends TileEntitySpecialRenderer
+public class RenderLatChest extends TileRenderer<TileQChest>
 {
-	public RenderLatChest()
-	{
-	}
+	public static final RenderLatChest instance = new RenderLatChest();
 	
-	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f)
+	public void renderTile(TileQChest t, double x, double y, double z, float f)
 	{
-		if(te == null || !(te instanceof TileQChest)) return;
-		
-		TileQChest t = ((TileQChest)te);
-		
 		if(t.customName != null)
 		{
 			GL11.glPushMatrix();

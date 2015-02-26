@@ -4,7 +4,7 @@ import latmod.core.tile.TileLM;
 import latmod.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockLB;
-import latmod.latblocks.client.render.RenderPSlope;
+import latmod.latblocks.client.render.world.RenderPSlope;
 import latmod.latblocks.tile.TileSinglePaintable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,6 +1,6 @@
 package latmod.latblocks.block.tank;
 import latmod.core.tile.TileLM;
-import latmod.latblocks.client.render.RenderTank;
+import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileWaterTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;

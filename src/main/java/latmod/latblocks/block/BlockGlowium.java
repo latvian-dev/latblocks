@@ -8,7 +8,7 @@ import latmod.core.recipes.LMRecipes;
 import latmod.core.tile.*;
 import latmod.core.util.FastList;
 import latmod.latblocks.*;
-import latmod.latblocks.client.render.RenderGlowiumBlocks;
+import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;

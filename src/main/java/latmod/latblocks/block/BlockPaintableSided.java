@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
 import latmod.latblocks.block.paintable.BlockPaintableDef;
-import latmod.latblocks.client.render.RenderPaintable;
+import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.tile.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.*;

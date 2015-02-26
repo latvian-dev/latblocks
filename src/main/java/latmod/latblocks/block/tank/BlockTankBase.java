@@ -1,7 +1,7 @@
 package latmod.latblocks.block.tank;
 import latmod.core.client.LatCoreMCClient;
 import latmod.latblocks.block.BlockLB;
-import latmod.latblocks.client.render.RenderTank;
+import latmod.latblocks.client.render.world.RenderTank;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;

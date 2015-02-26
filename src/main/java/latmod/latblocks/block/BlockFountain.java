@@ -4,7 +4,7 @@ import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.tank.BlockTank;
-import latmod.latblocks.client.render.RenderFountain;
+import latmod.latblocks.client.render.world.RenderFountain;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
