@@ -22,7 +22,7 @@ public class LatBlocks
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		mod = new LMMod(MOD_ID, new LatBlocksConfig(e), null);
+		mod = new LMMod(e, new LatBlocksConfig(e), null);
 		
 		LatBlocksItems.init();
 		mod.onPostLoaded();

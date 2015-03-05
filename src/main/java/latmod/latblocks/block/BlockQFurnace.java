@@ -1,8 +1,7 @@
 package latmod.latblocks.block;
 import java.util.ArrayList;
 
-import latmod.core.ODItems;
-import latmod.core.client.LatCoreMCClient;
+import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.core.util.FastList;
 import latmod.latblocks.*;
@@ -63,7 +62,7 @@ public class BlockQFurnace extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{
-		if(s == LatCoreMCClient.FRONT)
+		if(s == LatCoreMC.FRONT)
 			return iconOff;
 		return blockIcon;
 	}

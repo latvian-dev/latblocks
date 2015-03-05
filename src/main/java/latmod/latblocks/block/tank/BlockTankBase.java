@@ -1,5 +1,5 @@
 package latmod.latblocks.block.tank;
-import latmod.core.client.LatCoreMCClient;
+import latmod.core.LatCoreMC;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderTank;
 import net.minecraft.block.material.Material;
@@ -43,7 +43,7 @@ public abstract class BlockTankBase extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
-	{ return LatCoreMCClient.blockNullIcon; }
+	{ return LatCoreMC.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)

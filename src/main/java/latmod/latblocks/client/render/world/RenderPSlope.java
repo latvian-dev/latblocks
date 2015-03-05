@@ -1,5 +1,6 @@
 package latmod.latblocks.client.render.world;
-import latmod.core.client.*;
+import latmod.core.LatCoreMC;
+import latmod.core.client.BlockRendererLM;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.latblocks.block.paintable.BlockPSlope;
@@ -33,7 +34,7 @@ public class RenderPSlope extends BlockRendererLM
 		
 		for(int i = 0; i < 6; i++)
 		{
-			if(i != 0 && i != LatCoreMCClient.FRONT)
+			if(i != 0 && i != LatCoreMC.FRONT)
 			{
 				GL11.glPushMatrix();
 				renderBlocks.setRenderBounds(renderBlocks.fullBlock);
@@ -61,7 +62,7 @@ public class RenderPSlope extends BlockRendererLM
 		for(int i = 0; i < 6; i++)
 		{
 			boolean isSolid = t.isSolid(i);
-			defIcon[i] = isSolid ? b.getBlockTextureFromSide(1) : LatCoreMCClient.blockNullIcon;
+			defIcon[i] = isSolid ? b.getBlockTextureFromSide(1) : LatCoreMC.blockNullIcon;
 			p[i] = isSolid ? t.getPaint(i) : null;
 		}
 		

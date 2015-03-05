@@ -1,6 +1,5 @@
 package latmod.latblocks.block;
-import latmod.core.ODItems;
-import latmod.core.client.LatCoreMCClient;
+import latmod.core.*;
 import latmod.core.tile.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -48,7 +47,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getCustomPaint(int side, int meta)
-	{ return LatCoreMCClient.blockNullIcon; }
+	{ return LatCoreMC.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
@@ -80,7 +79,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 		
 		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[s];
 		if(isAt(iba, x + fd.offsetX, y + fd.offsetY, z + fd.offsetZ, iba.getBlockMetadata(x, y, z)) == 1)
-			return LatCoreMCClient.blockNullIcon;
+			return LatCoreMC.blockNullIcon;
 		
 		int m = 0;
 		
