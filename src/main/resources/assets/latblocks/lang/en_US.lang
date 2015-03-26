@@ -19,6 +19,7 @@ latblocks:tile.slab.name=Paintable Slab
 latblocks:tile.stairs.name=Paintable Stairs
 latblocks:tile.fence.name=Paintable Fence
 latblocks:tile.fenceGate.name=Paintable Fence Gate
+latblocks:tile.wall.name=Paintable Wall
 latblocks:tile.door.name=[WIP] Paintable Door
 latblocks:tile.slope.name=[WIP] Paintable Slope
 latblocks:tile.ladder.name=Paintable Ladder

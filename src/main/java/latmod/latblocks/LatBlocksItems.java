@@ -18,6 +18,7 @@ public class LatBlocksItems
 	public static BlockPStairs b_stairs;
 	public static BlockPFence b_fence;
 	public static BlockPFenceGate b_fence_gate;
+	public static BlockPWall b_wall;
 	public static BlockPLadder b_ladder;
 	public static BlockPPressurePlate b_pressure_plate;
 	//public static BlockPDoor b_door;
@@ -61,6 +62,7 @@ public class LatBlocksItems
 		b_stairs = new BlockPStairs("stairs").register();
 		b_fence = new BlockPFence("fence").register();
 		b_fence_gate = new BlockPFenceGate("fenceGate").register();
+		b_wall = new BlockPWall("wall").register();
 		b_ladder = new BlockPLadder("ladder").register();
 		b_pressure_plate = new BlockPPressurePlate("pressurePlate").register();
 		//b_door = new BlockPDoor("door").register();

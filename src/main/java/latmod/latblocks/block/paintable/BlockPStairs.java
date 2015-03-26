@@ -31,7 +31,7 @@ public class BlockPStairs extends BlockPaintableSingle
 	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
 	{
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 0.5D, 1D));
-		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0.5D, 0.5D, 1D, 1D, 1D));
+		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0.5D, 0D, 1D, 1D, 0.5D));
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)

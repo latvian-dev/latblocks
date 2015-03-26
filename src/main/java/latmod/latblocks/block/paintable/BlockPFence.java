@@ -149,7 +149,7 @@ public class BlockPFence extends BlockPaintableSingle
 	public boolean canConnect(IBlockAccess iba, int x, int y, int z)
 	{
 		Block b = iba.getBlock(x, y, z);
-		return b == this || b == Blocks.fence_gate || b == LatBlocksItems.b_fence_gate || (b.getMaterial().isOpaque());
+		return b == this || b == Blocks.fence_gate || b == LatBlocksItems.b_fence_gate || b == LatBlocksItems.b_wall || (b.getMaterial().isOpaque());
 	}
 	
 	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side)
