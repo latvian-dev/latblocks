@@ -107,12 +107,22 @@ public class BlockPWall extends BlockPaintableSingle
 		
 		double d = 0.01D;
 		
-		if(canConnect(iba, x - 1, y, z)) x0 = -d;
-		if(canConnect(iba, x + 1, y, z)) x1 = 1D + d;
-		if(canConnect(iba, x, y, z - 1)) z0 = -d;
-		if(canConnect(iba, x, y, z + 1)) z1 = 1D + d;
+		boolean canConnectZN = canConnect(iba, x, y, z - 1);
+		boolean canConnectXN = canConnect(iba, x - 1, y, z);
+		boolean canConnectZP = canConnect(iba, x, y, z + 1);
+		boolean canConnectXP = canConnect(iba, x + 1, y, z);
 		
-		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1D, z1));
+		if(canConnectZN) z0 = -d;
+		if(canConnectXN) x0 = -d;
+		if(canConnectZP) z1 = 1D + d;
+		if(canConnectXP) x1 = 1D + d;
+		
+		double h = 1D - 1D / 16D * 3D;
+		
+		if(!((canConnectZN && canConnectZP && !canConnectXN && !canConnectXP) || (!canConnectZN && !canConnectZP && canConnectXN && canConnectXP)) || !iba.isAirBlock(x, y + 1, z))
+			h = 1D;
+		
+		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1));
 	}
 	
 	public boolean canConnect(IBlockAccess iba, int x, int y, int z)
