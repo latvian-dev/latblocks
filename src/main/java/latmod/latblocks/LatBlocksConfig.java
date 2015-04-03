@@ -1,6 +1,6 @@
 package latmod.latblocks;
 import latmod.core.*;
-import latmod.core.util.Bits;
+import latmod.core.util.LatCore;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
@@ -17,29 +17,29 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 	
 	public void readConfig(NBTTagCompound tag)
 	{
-		boolean[] b = Bits.fromBits(tag.getShort("Flags"), 2);
+		boolean[] b = readBools(tag, "C");
+		LatCoreMC.printChat(null, LatCore.stripBool(b));
+		LatCoreMC.printChat(null, tag.getByte("C") & 255);
 		General.fencesIgnorePlayers = b[0];
 		General.tankCraftingHandler = b[1];
 	}
 	
 	public void writeConfig(NBTTagCompound tag)
 	{
-		tag.setShort("Flags", (short)Bits.toBits(
-				General.fencesIgnorePlayers,
-				General.tankCraftingHandler));
+		writeBools(tag, "C",
+		General.fencesIgnorePlayers,
+		General.tankCraftingHandler);
 	}
 	
 	public static class General
 	{
 		public static boolean fencesIgnorePlayers;
 		public static boolean tankCraftingHandler;
-		public static boolean colorPainterOreNames;
 		
 		public static void load(Category c)
 		{
 			fencesIgnorePlayers = c.getBool("fencesIgnorePlayers", true);
 			tankCraftingHandler = c.getBool("tankCraftingHandler", true);
-			colorPainterOreNames = c.getBool("colorPainterOreNames", false);
 		}
 	}
 	

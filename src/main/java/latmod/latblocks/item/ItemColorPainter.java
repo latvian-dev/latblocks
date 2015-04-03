@@ -39,14 +39,6 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		}
 	}
 	
-	public void onPostLoaded()
-	{
-		super.onPostLoaded();
-		
-		if(LatBlocksConfig.General.colorPainterOreNames) for(int i = 0; i < 16; i++)
-			ODItems.add(EnumDyeColor.VALUES[i].dyeName, new ItemStack(this, 1, i));
-	}
-	
 	public ItemStack getContainerItem(ItemStack is)
 	{ return is == null ? null : is.copy(); }
 	
