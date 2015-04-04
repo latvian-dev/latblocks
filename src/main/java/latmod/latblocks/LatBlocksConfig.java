@@ -18,8 +18,6 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 	public void readConfig(NBTTagCompound tag)
 	{
 		boolean[] b = readBools(tag, "C");
-		LatCoreMC.printChat(null, LatCore.stripBool(b));
-		LatCoreMC.printChat(null, tag.getByte("C") & 255);
 		General.fencesIgnorePlayers = b[0];
 		General.tankCraftingHandler = b[1];
 	}
