@@ -1,6 +1,5 @@
 package latmod.latblocks;
 import latmod.core.*;
-import latmod.core.util.LatCore;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
