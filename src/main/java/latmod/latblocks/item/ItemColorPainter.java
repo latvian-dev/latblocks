@@ -2,7 +2,7 @@ package latmod.latblocks.item;
 import latmod.core.*;
 import latmod.core.item.IClientActionItem;
 import latmod.core.util.FastList;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.LatBlocksCommon;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
@@ -49,7 +49,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	{ return false; }
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
-	{ if(w.isRemote && ep.isSneaking()) LatBlocks.proxy.openColorPainterGUI(ep); return is; }
+	{ if(!w.isRemote && ep.isSneaking()) LatCoreMC.displayClientGui(ep, LatBlocksCommon.GUI_COLOR_PAINTER, null); return is; }
 	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{

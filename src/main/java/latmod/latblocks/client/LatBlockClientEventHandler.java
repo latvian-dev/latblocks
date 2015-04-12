@@ -1,5 +1,6 @@
 package latmod.latblocks.client;
 
+import latmod.core.item.ItemBlockLM;
 import latmod.core.mod.LCConfig;
 import latmod.core.util.FastList;
 import latmod.latblocks.block.BlockPaintableLB;
@@ -21,28 +22,29 @@ public class LatBlockClientEventHandler
 	public static final LatBlockClientEventHandler instance = new LatBlockClientEventHandler();
 	
 	@SubscribeEvent
-	public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent event)
+	public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent e)
 	{
 		if(!LCConfig.Client.renderHighlights) return;
 		
-		if (event.currentItem != null && event.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && event.currentItem.getItem() instanceof ItemBlock)
+		if (e.currentItem != null && e.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && e.currentItem.getItem() instanceof ItemBlock)
 		{
-			Block itemBlock = Block.getBlockFromItem(event.currentItem.getItem());
+			Block itemBlock = Block.getBlockFromItem(e.currentItem.getItem());
 			
 			if(itemBlock instanceof BlockPaintableLB)
 			{
 				BlockPaintableLB block = (BlockPaintableLB)itemBlock;
+				ItemBlockLM itemBlockLM = (ItemBlockLM)e.currentItem.getItem();
 				
-				if(!block.canPlace(event.player.worldObj, event.target.blockX, event.target.blockY, event.target.blockZ, event.target.sideHit, event.currentItem)) return;
+				if(!itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.currentItem)) return;
 				
-				FastList<AxisAlignedBB> placementBoxes = new FastList<AxisAlignedBB>();
-				block.getPlacementBoxes(placementBoxes, event);
+				FastList<AxisAlignedBB> pl = new FastList<AxisAlignedBB>();
+				block.getPlacementBoxes(pl, e);
 				
-				if(!placementBoxes.isEmpty())
+				if(!pl.isEmpty())
 				{
-					ForgeDirection fg = ForgeDirection.VALID_DIRECTIONS[event.target.sideHit];
+					ForgeDirection fg = ForgeDirection.VALID_DIRECTIONS[e.target.sideHit];
 					
-					if(!event.player.worldObj.getBlock(event.target.blockX + fg.offsetX, event.target.blockY + fg.offsetY, event.target.blockZ + fg.offsetZ).isReplaceable(event.player.worldObj, event.target.blockX, event.target.blockY, event.target.blockZ))
+					if(!e.player.worldObj.getBlock(e.target.blockX + fg.offsetX, e.target.blockY + fg.offsetY, e.target.blockZ + fg.offsetZ).isReplaceable(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ))
 						return;
 					
 					GL11.glEnable(GL11.GL_BLEND);
@@ -52,19 +54,19 @@ public class LatBlockClientEventHandler
 					GL11.glDisable(GL11.GL_TEXTURE_2D);
 					GL11.glDepthMask(false);
 					float f1 = 0.002F;
-					double pt = event.partialTicks;
+					double pt = e.partialTicks;
 					
-					double d0 = event.player.lastTickPosX + (event.player.posX - event.player.lastTickPosX) * pt;
-					double d1 = event.player.lastTickPosY + (event.player.posY - event.player.lastTickPosY) * pt;
-					double d2 = event.player.lastTickPosZ + (event.player.posZ - event.player.lastTickPosZ) * pt;
+					double d0 = e.player.lastTickPosX + (e.player.posX - e.player.lastTickPosX) * pt;
+					double d1 = e.player.lastTickPosY + (e.player.posY - e.player.lastTickPosY) * pt;
+					double d2 = e.player.lastTickPosZ + (e.player.posZ - e.player.lastTickPosZ) * pt;
 					
-					for(int i = 0; i < placementBoxes.size(); i++)
+					for(int i = 0; i < pl.size(); i++)
 					{
-						AxisAlignedBB bb0 = placementBoxes.get(i);
+						AxisAlignedBB bb0 = pl.get(i);
 						
 						if(bb0 != null)
 						{
-							bb0 = bb0.getOffsetBoundingBox(event.target.blockX, event.target.blockY, event.target.blockZ);
+							bb0 = bb0.getOffsetBoundingBox(e.target.blockX, e.target.blockY, e.target.blockZ);
 							bb0 = bb0.getOffsetBoundingBox(fg.offsetX, fg.offsetY, fg.offsetZ);
 							bb0 = bb0.getOffsetBoundingBox(-d0, -d1, -d2);
 							
@@ -72,17 +74,17 @@ public class LatBlockClientEventHandler
 						}
 					}
 					
-					FastList<AxisAlignedBB> highlightBoxes = new FastList<AxisAlignedBB>();
-					block.drawHighlight(highlightBoxes, event);
+					FastList<AxisAlignedBB> hl = new FastList<AxisAlignedBB>();
+					block.drawHighlight(hl, e);
 					
-					for(int i = 0; i < highlightBoxes.size(); i++)
+					for(int i = 0; i < hl.size(); i++)
 					{
-						AxisAlignedBB bb = highlightBoxes.get(i);
+						AxisAlignedBB bb = hl.get(i);
 						
 						GL11.glLineWidth(1F);
 						GL11.glColor4f(1F, 1F, 1F, 0.7F);
 						
-						bb = bb.getOffsetBoundingBox(event.target.blockX, event.target.blockY, event.target.blockZ);
+						bb = bb.getOffsetBoundingBox(e.target.blockX, e.target.blockY, e.target.blockZ);
 						bb = bb.getOffsetBoundingBox(fg.offsetX, fg.offsetY, fg.offsetZ);
 						bb = bb.getOffsetBoundingBox(-d0, -d1, -d2);
 	 					
@@ -93,7 +95,7 @@ public class LatBlockClientEventHandler
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
 					GL11.glDisable(GL11.GL_BLEND);
 					
-					if(!highlightBoxes.isEmpty()) event.setCanceled(true);
+					if(!hl.isEmpty()) e.setCanceled(true);
 				}
 			}
 		}

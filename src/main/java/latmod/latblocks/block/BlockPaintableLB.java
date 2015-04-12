@@ -3,6 +3,7 @@ package latmod.latblocks.block;
 import java.util.*;
 
 import latmod.core.ParticleHelper;
+import latmod.core.item.ItemBlockLM;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.core.util.*;
@@ -33,6 +34,9 @@ public abstract class BlockPaintableLB extends BlockLB
 	}
 	
 	public abstract TilePaintableLB createNewTileEntity(World w, int m);
+	
+	public Class<? extends ItemBlockLM> getItemBlock()
+	{ return ItemBlockPaintable.class; }
 	
 	public int damageDropped(int i)
 	{ return 0; }
