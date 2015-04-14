@@ -41,7 +41,23 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory
 			else LatCoreMC.openGui(ep, this, 0);
 		}
 		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
+		{
+			dropItems = false;
+			ItemStack drop = new ItemStack(LatBlocksItems.b_qchest, 1, 0);
+			
+			if(customName != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1)
+			{
+				NBTTagCompound tag = new NBTTagCompound();
+				writeTileData(tag);
+				tag.removeTag("CustomName");
+				drop.setTagCompound(new NBTTagCompound());
+				drop.stackTagCompound.setTag(ITEM_TAG, tag);
+				if(customName != null) drop.setStackDisplayName(customName);
+			}
+			
+			InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
 			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+		}
 		
 		return true;
 	}
@@ -75,26 +91,6 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory
 			
 			markDirty();
 		}
-	}
-	
-	public void onBroken()
-	{
-		dropItems = false;
-		ItemStack is = new ItemStack(LatBlocksItems.b_qchest, 1, 0);
-		
-		if(customName != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1)
-		{
-			NBTTagCompound tag = new NBTTagCompound();
-			writeTileData(tag);
-			tag.removeTag("CustomName");
-			is.setTagCompound(new NBTTagCompound());
-			is.stackTagCompound.setTag(ITEM_TAG, tag);
-			if(customName != null) is.setStackDisplayName(customName);
-		}
-		
-		InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, is, 10);
-		
-		super.onBroken();
 	}
 	
 	public void handleButton(String button, int mouseButton, EntityPlayer ep)

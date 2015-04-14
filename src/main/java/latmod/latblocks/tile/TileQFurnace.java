@@ -56,7 +56,24 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
 		{
 			if(ep.isSneaking())
+			{
+				dropItems = false;
+				ItemStack drop = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
+				
+				if(fuel > 0 || result != null || customName != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1)
+				{
+					NBTTagCompound tag = new NBTTagCompound();
+					writeTileData(tag);
+					tag.removeTag("CustomName");
+					drop.setTagCompound(new NBTTagCompound());
+					drop.stackTagCompound.setTag(ITEM_TAG, tag);
+					if(customName != null) drop.setStackDisplayName(customName);
+				}
+				
+				InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
+				
 				worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+			}
 			else
 			{
 				if(side == 0 || side == 1)
@@ -183,26 +200,6 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 			customName = null;
 		
 		setMeta(MathHelperLM.get2DRotation(ep).ordinal());
-	}
-	
-	public void onBroken()
-	{
-		dropItems = false;
-		ItemStack is = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
-		
-		if(fuel > 0 || result != null || customName != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1)
-		{
-			NBTTagCompound tag = new NBTTagCompound();
-			writeTileData(tag);
-			tag.removeTag("CustomName");
-			is.setTagCompound(new NBTTagCompound());
-			is.stackTagCompound.setTag(ITEM_TAG, tag);
-			if(customName != null) is.setStackDisplayName(customName);
-		}
-		
-		InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, is, 10);
-		
-		super.onBroken();
 	}
 	
 	public boolean isLit()

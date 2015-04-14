@@ -11,7 +11,7 @@ public class ContainerQChest extends ContainerLM
 		super(ep, t);
 		
 		for(int y = 0; y < 7; y++) for(int x = 0; x < 13; x++)
-			addSlotToContainer(new Slot(t, x + y * 9, x * 18 + 8, y * 18 + 30));
+			addSlotToContainer(new Slot(t, x + y * 13, x * 18 + 8, y * 18 + 30));
 		
 		addPlayerSlots(44, 165);
 	}

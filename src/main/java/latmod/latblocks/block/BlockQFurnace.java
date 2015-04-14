@@ -80,19 +80,6 @@ public class BlockQFurnace extends BlockLB
 		return blockIcon;
 	}
 	
-	public void harvestBlock(World w, EntityPlayer ep, int x, int y, int z, int m)
-	{
-	}
-	
-	public void onBlockHarvested(World w, int x, int y, int z, int m, EntityPlayer ep)
-	{
-		if (!(ep.capabilities.isCreativeMode))
-		{
-			dropBlockAsItem(w, x, y, z, m, 0);
-			w.setBlock(x, y, z, Blocks.air, 0, 7);
-		}
-	}
-	
 	@SideOnly(Side.CLIENT)
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
 	{
