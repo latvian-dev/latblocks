@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.opengl.GL11;
 
@@ -35,16 +34,13 @@ public class LatBlockClientEventHandler
 				BlockPaintableLB block = (BlockPaintableLB)itemBlock;
 				ItemBlockLM itemBlockLM = (ItemBlockLM)e.currentItem.getItem();
 				
-				if(!itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.currentItem)) return;
-				
 				FastList<AxisAlignedBB> pl = new FastList<AxisAlignedBB>();
 				block.getPlacementBoxes(pl, e);
 				
 				if(!pl.isEmpty())
 				{
-					ForgeDirection fg = ForgeDirection.VALID_DIRECTIONS[e.target.sideHit];
-					
-					if(!e.player.worldObj.getBlock(e.target.blockX + fg.offsetX, e.target.blockY + fg.offsetY, e.target.blockZ + fg.offsetZ).isReplaceable(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ))
+					if(!e.player.worldObj.getBlock(e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit])
+					.isReplaceable(e.player.worldObj, e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit]))
 						return;
 					
 					GL11.glEnable(GL11.GL_BLEND);
@@ -60,20 +56,6 @@ public class LatBlockClientEventHandler
 					double d1 = e.player.lastTickPosY + (e.player.posY - e.player.lastTickPosY) * pt;
 					double d2 = e.player.lastTickPosZ + (e.player.posZ - e.player.lastTickPosZ) * pt;
 					
-					for(int i = 0; i < pl.size(); i++)
-					{
-						AxisAlignedBB bb0 = pl.get(i);
-						
-						if(bb0 != null)
-						{
-							bb0 = bb0.getOffsetBoundingBox(e.target.blockX, e.target.blockY, e.target.blockZ);
-							bb0 = bb0.getOffsetBoundingBox(fg.offsetX, fg.offsetY, fg.offsetZ);
-							bb0 = bb0.getOffsetBoundingBox(-d0, -d1, -d2);
-							
-							RenderGlobal.drawOutlinedBoundingBox(bb0.expand(f1, f1, f1), -1);
-						}
-					}
-					
 					FastList<AxisAlignedBB> hl = new FastList<AxisAlignedBB>();
 					block.drawHighlight(hl, e);
 					
@@ -85,10 +67,27 @@ public class LatBlockClientEventHandler
 						GL11.glColor4f(1F, 1F, 1F, 0.7F);
 						
 						bb = bb.getOffsetBoundingBox(e.target.blockX, e.target.blockY, e.target.blockZ);
-						bb = bb.getOffsetBoundingBox(fg.offsetX, fg.offsetY, fg.offsetZ);
+						bb = bb.getOffsetBoundingBox(Facing.offsetsXForSide[e.target.sideHit], Facing.offsetsYForSide[e.target.sideHit], Facing.offsetsZForSide[e.target.sideHit]);
 						bb = bb.getOffsetBoundingBox(-d0, -d1, -d2);
 	 					
 	 					RenderGlobal.drawOutlinedBoundingBox(bb.expand(f1, f1, f1), -1);
+					}
+					
+					if(itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.currentItem))
+					{
+						for(int i = 0; i < pl.size(); i++)
+						{
+							AxisAlignedBB bb0 = pl.get(i);
+							
+							if(bb0 != null)
+							{
+								bb0 = bb0.getOffsetBoundingBox(e.target.blockX, e.target.blockY, e.target.blockZ);
+								bb0 = bb0.getOffsetBoundingBox(Facing.offsetsXForSide[e.target.sideHit], Facing.offsetsYForSide[e.target.sideHit], Facing.offsetsZForSide[e.target.sideHit]);
+								bb0 = bb0.getOffsetBoundingBox(-d0, -d1, -d2);
+								
+								RenderGlobal.drawOutlinedBoundingBox(bb0.expand(f1, f1, f1), -1);
+							}
+						}
 					}
 					
 					GL11.glDepthMask(true);

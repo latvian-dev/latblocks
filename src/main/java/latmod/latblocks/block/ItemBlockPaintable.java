@@ -14,19 +14,6 @@ public class ItemBlockPaintable extends ItemBlockLM
 	
 	public boolean canPlace(World w, int x, int y, int z, int s, ItemStack is)
 	{
-		return true;
-		/*
-		Block b = w.getBlock(x, y, z);
-		
-        if (b == Blocks.snow_layer && (w.getBlockMetadata(x, y, z) & 7) < 1) s = 1;
-        else if (b != Blocks.vine && b != Blocks.tallgrass && b != Blocks.deadbush && !b.isReplaceable(w, x, y, z))
-        {
-        	x += ForgeDirection.VALID_DIRECTIONS[s].offsetX;
-			y += ForgeDirection.VALID_DIRECTIONS[s].offsetY;
-			z += ForgeDirection.VALID_DIRECTIONS[s].offsetZ;
-        }
-        
-		return b.getMaterial() != Material.air && w.canPlaceEntityOnSide(b, x, y, z, false, s, null, is.copy());
-		*/
+		return super.canPlace(w, x, y, z, s, is);
 	}
 }
