@@ -1,6 +1,4 @@
 package latmod.latblocks.block;
-import java.util.List;
-
 import latmod.core.*;
 import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
@@ -51,8 +49,7 @@ public class BlockGelLamp extends BlockPaintableLB
 		return false;
 	}
 	
-	@SuppressWarnings("all")
-	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e) {}
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e) {}
 	
 	public boolean canPlaceBlockOnSide(World w, int x, int y, int z, int s)
 	{

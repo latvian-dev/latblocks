@@ -73,7 +73,7 @@ public class LatBlockClientEventHandler
 	 					RenderGlobal.drawOutlinedBoundingBox(bb.expand(f1, f1, f1), -1);
 					}
 					
-					if(itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.currentItem))
+					if(itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.player, e.currentItem))
 					{
 						for(int i = 0; i < pl.size(); i++)
 						{

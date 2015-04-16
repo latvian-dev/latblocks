@@ -2,7 +2,7 @@ package latmod.latblocks.tile.tank;
 
 import java.util.List;
 
-import latmod.core.InvUtils;
+import latmod.core.*;
 import latmod.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import mcp.mobius.waila.api.*;
@@ -60,27 +60,6 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 			tank.fluidTank.setFluid(FluidStack.loadFluidStackFromNBT(is.stackTagCompound.getCompoundTag("Fluid")));
 	}
 	
-	public void onBroken()
-	{
-		ItemStack is = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
-		
-		if(tank.hasFluid(1000))
-		{
-			NBTTagCompound tag = new NBTTagCompound();
-			tank.getFluidStack().writeToNBT(tag);
-			is.stackTagCompound = new NBTTagCompound();
-			is.stackTagCompound.setTag("Fluid", tag);
-		}
-		
-		InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, is, 10);
-		
-		super.onBroken();
-	}
-	
-	public void onNeighborBlockChange()
-	{
-	}
-	
 	public void onUpdate()
 	{
 		if(isServer() && tick % 5 == 0 && (prevFluidAmmount == null || prevFluidAmmount != tank.getAmount()))
@@ -110,6 +89,21 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
 		if(is == null || is.getItem() instanceof IPaintable.IPainterItem) return false;
+		
+		if(ep.isSneaking() && LatCoreMC.isWrench(is))
+		{
+			ItemStack drop = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
+			
+			if(tank.hasFluid(1000))
+			{
+				NBTTagCompound tag = new NBTTagCompound();
+				tank.getFluidStack().writeToNBT(tag);
+				drop.stackTagCompound = new NBTTagCompound();
+				drop.stackTagCompound.setTag("Fluid", tag);
+			}
+			
+			InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
+		}
 		
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
 		

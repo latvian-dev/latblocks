@@ -42,10 +42,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		ODItems.add(BlockPCover.ORE_NAME, new ItemStack(this));
 	}
 	
-	@SuppressWarnings("all")
-	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
-	{
-	}
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e) {}
 	
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)

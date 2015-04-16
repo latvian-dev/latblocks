@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiCrafting;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.*;
@@ -16,21 +17,44 @@ import cpw.mods.fml.relauncher.*;
 
 public class BlockCraftingPanel extends BlockLB
 {
+	@SideOnly(Side.CLIENT)
+	public IIcon icon_side;
+	
 	public BlockCraftingPanel(String s)
 	{
 		super(s, Material.wood);
 		setHardness(0.7F);
 		isBlockContainer = true;
+		mod.addTile(TileCraftingPanel.class, s);
 	}
+	
+	public TileLM createNewTileEntity(World w, int i)
+	{ return new TileCraftingPanel(); }
 	
 	public void loadRecipes()
 	{
 		LatBlocksItems.i_hammer.addRecipe(new ItemStack(this), Blocks.crafting_table);
 	}
 	
-	public TileLM createNewTileEntity(World w, int i)
-	{ return new TileCraftingPanel(); }
-	
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister ir)
+	{
+		blockIcon = ir.registerIcon(mod.assets + "craftingPanel");
+		icon_side = ir.registerIcon(mod.assets + "craftingPanelSide");
+	}
+
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int s, int m)
+	{ if(s == 3 || s == 2) return blockIcon; return icon_side; }
+
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
+	{
+		int m = iba.getBlockMetadata(x, y, z);
+		if(s == m || Facing.oppositeSide[s] == m) return blockIcon;
+		return icon_side;
+	}
+
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{ return super.onBlockActivated(w, x, y, z, ep, s, x1, y1, z1); }
 	
@@ -84,7 +108,7 @@ public class BlockCraftingPanel extends BlockLB
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{
 		if(!canPlaceBlockOnSide(w, mop.blockX, mop.blockY, mop.blockZ, mop.sideHit)) return -1;
-		return ForgeDirection.VALID_DIRECTIONS[mop.sideHit].getOpposite().ordinal();
+		return Facing.oppositeSide[mop.sideHit];
 	}
 	
 	public int damageDropped(int i)

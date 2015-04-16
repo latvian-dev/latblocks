@@ -1,9 +1,8 @@
 package latmod.latblocks.block;
 
-import java.util.*;
+import java.util.Random;
 
 import latmod.core.ParticleHelper;
-import latmod.core.item.ItemBlockLM;
 import latmod.core.tile.*;
 import latmod.core.tile.IPaintable.Paint;
 import latmod.core.util.*;
@@ -35,8 +34,8 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	public abstract TilePaintableLB createNewTileEntity(World w, int m);
 	
-	public Class<? extends ItemBlockLM> getItemBlock()
-	{ return ItemBlockPaintable.class; }
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e)
+	{ addBoxes(boxes, w, x, y, z, m); }
 	
 	public int damageDropped(int i)
 	{ return 0; }
@@ -76,19 +75,6 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
 	{ return super.getCollisionBoundingBoxFromPool(w, x, y, z); }
-	
-	@SuppressWarnings("all")
-	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
-	{
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		addBoxes(boxes, w, x, y, z, -1);
-		
-		for(int i = 0; i < boxes.size(); i++)
-		{
-			AxisAlignedBB bb1 = boxes.get(i).getOffsetBoundingBox(x, y, z);
-			if(bb.intersectsWith(bb1)) l.add(bb1);
-		}
-	}
 	
 	public boolean canHarvestBlock(EntityPlayer ep, int meta)
 	{ return true; }

@@ -15,7 +15,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory // TileEntityFurnace
+public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile // TileEntityFurnace
 {
 	public static final String ITEM_TAG = "Furnace";
 	public static final int MAX_ITEMS = 3;

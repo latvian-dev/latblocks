@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory
+public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile
 {
 	public static final String ITEM_TAG = "ChestData";
 	

@@ -1,6 +1,4 @@
 package latmod.latblocks.block.tank;
-import java.util.ArrayList;
-
 import latmod.core.ODItems;
 import latmod.core.tile.TileLM;
 import latmod.core.util.*;
@@ -89,9 +87,6 @@ public class BlockTank extends BlockTankBase
 		for(int i = 0; i < icons.length; i++)
 			icons[i] = ir.registerIcon(mod.assets + "tank/outside_" + i);
 	}
-	
-	public ArrayList<ItemStack> getDrops(World w, int x, int y, int z, int m, int f)
-	{ return new ArrayList<ItemStack>(); }
 	
 	@SideOnly(Side.CLIENT)
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)

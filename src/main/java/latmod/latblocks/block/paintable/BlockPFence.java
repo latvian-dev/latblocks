@@ -1,7 +1,5 @@
 package latmod.latblocks.block.paintable;
 
-import java.util.List;
-
 import latmod.core.util.*;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
@@ -34,8 +32,7 @@ public class BlockPFence extends BlockPaintableSingle
 				'S', ItemMaterialsLB.ROD);
 	}
 	
-	@SuppressWarnings("all")
-	public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e)
 	{
 		double p = 1D / 4D;
 		double pn = 0.5D - p / 2D;
@@ -55,8 +52,7 @@ public class BlockPFence extends BlockPaintableSingle
 		
 		double h = 1.5D;
 		if(LatBlocksConfig.General.fencesIgnorePlayers && e instanceof EntityPlayer) h = 1D;
-		AxisAlignedBB bb1 = AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1).getOffsetBoundingBox(x, y, z);
-		if(bb.intersectsWith(bb1)) l.add(bb1);
+		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1));
 	}
 	
 	@SideOnly(Side.CLIENT)
