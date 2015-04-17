@@ -39,9 +39,6 @@ public class BlockQChest extends BlockLB
 					'F', Blocks.chest,
 					'D', ODItems.DIAMOND,
 					'S', ItemMaterialsLB.STAR_DUST);
-			
-			if(LatBlocksConfig.Crafting.dataErase)
-				LatBlocksItems.i_hammer.addRecipe(new ItemStack(this), new ItemStack(this, 1, ODItems.ANY));
 		}
 	}
 	

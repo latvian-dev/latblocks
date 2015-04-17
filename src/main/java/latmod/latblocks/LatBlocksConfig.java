@@ -45,7 +45,6 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 		public static int hammer;
 		public static boolean goggles;
 		public static boolean glowiumBlocks;
-		public static boolean dataErase;
 		public static boolean endlessTank;
 		public static boolean glowiumGems;
 		public static boolean glowiumDusts;
@@ -57,7 +56,6 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 			hammer = c.getInt("hammer", 1, 0, 2);
 			goggles = c.getBool("goggles", true);
 			glowiumBlocks = c.getBool("glowiumBlocks", true);
-			dataErase = c.getBool("dataErase", true);
 			endlessTank = c.getBool("endlessTank", true);
 			glowiumGems = c.getBool("glowiumGems", true);
 			glowiumDusts = c.getBool("glowiumDusts", true);

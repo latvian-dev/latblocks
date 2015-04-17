@@ -24,16 +24,12 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 {
 	public static final RenderTank instance = new RenderTank();
 	
-	private static AxisAlignedBB[] boxes = new AxisAlignedBB[0];
+	private static final AxisAlignedBB[] boxes = new AxisAlignedBB[12];
 	
 	public static IIcon icon_inside = null;
 	
-	static { refreshBoxes(); }
-	
-	private static void refreshBoxes()
+	static
 	{
-		boxes = new AxisAlignedBB[12];
-		
 		double p = 1D / 16D - 0.001D;
 		
 		boxes[0] = AxisAlignedBB.getBoundingBox(0D, 0D, 0D, p, 1D, p);

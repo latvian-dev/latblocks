@@ -37,9 +37,6 @@ public class BlockQFurnace extends BlockLB
 					'F', Blocks.furnace,
 					'D', ODItems.DIAMOND,
 					'S', ItemMaterialsLB.STAR_DUST);
-			
-			if(LatBlocksConfig.Crafting.dataErase)
-				LatBlocksItems.i_hammer.addRecipe(new ItemStack(this), new ItemStack(this, 1, ODItems.ANY));
 		}
 	}
 	

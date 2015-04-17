@@ -6,6 +6,7 @@ import latmod.core.InvUtils;
 import latmod.core.tile.*;
 import latmod.latblocks.LatBlocks;
 import mcp.mobius.waila.api.*;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -62,7 +63,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		return false;
 	}
 	
-	public void onNeighborBlockChange()
+	public void onNeighborBlockChange(Block b)
 	{
 		if(isServer())
 		{
@@ -116,7 +117,14 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(is == null || is.getItem() instanceof IPaintable.IPainterItem) return false;
+		if(is == null)
+		{
+			redstonePowered = !redstonePowered;
+			markDirty();
+			return true;
+		}
+		
+		if(is.getItem() instanceof IPaintable.IPainterItem) return false;
 		
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
 		

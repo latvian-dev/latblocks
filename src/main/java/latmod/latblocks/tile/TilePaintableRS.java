@@ -1,6 +1,7 @@
 package latmod.latblocks.tile;
 
 import latmod.latblocks.block.paintable.BlockPaintableLamp;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -31,7 +32,7 @@ public class TilePaintableRS extends TileSidedPaintable
 	{
 	}
 	
-	public void onNeighborBlockChange()
+	public void onNeighborBlockChange(Block block)
 	{
 		if(isServer())
 		{
