@@ -1,24 +1,19 @@
 package latmod.latblocks.client;
 import latmod.core.LatCoreMC;
-import latmod.core.gui.*;
 import latmod.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;
-import latmod.latblocks.gui.GuiColorPainter;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.particle.EntityBlockDustFX;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class LatBlocksClient extends LatBlocksCommon implements IClientGuiHandler
+public class LatBlocksClient extends LatBlocksCommon
 {
 	public void preInit(FMLPreInitializationEvent e)
 	{
@@ -62,11 +57,5 @@ public class LatBlocksClient extends LatBlocksCommon implements IClientGuiHandle
 			
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityBlockDustFX(t.getWorldObj(), x, y + MathHelperLM.rand.nextFloat() * 0.3D, z, mx, my, mz, block, 0));
 		}
-	}
-	
-	public GuiScreen displayGui(String s, NBTTagCompound data, EntityPlayer ep)
-	{
-		if(s.equals(GUI_COLOR_PAINTER)) return new GuiColorPainter(new ContainerEmpty(ep, null));
-		return null;
 	}
 }

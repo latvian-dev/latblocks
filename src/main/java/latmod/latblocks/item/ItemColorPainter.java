@@ -49,7 +49,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	{ return false; }
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
-	{ if(!w.isRemote && ep.isSneaking()) LatCoreMC.displayClientGui(ep, LatBlocksCommon.GUI_COLOR_PAINTER, null); return is; }
+	{ if(!w.isRemote && ep.isSneaking()) LatCoreMC.openGui(ep, LatBlocksCommon.GUI_COLOR_PAINTER, null); return is; }
 	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{

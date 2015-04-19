@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import latmod.core.*;
 import latmod.core.tile.TileLM;
 import latmod.core.util.FastList;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksConfig;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.block.material.Material;

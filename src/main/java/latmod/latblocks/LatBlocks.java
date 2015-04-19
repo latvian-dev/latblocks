@@ -1,5 +1,5 @@
 package latmod.latblocks;
-import latmod.core.LMMod;
+import latmod.core.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
@@ -44,6 +44,8 @@ public class LatBlocks
 	{
 		mod.loadRecipes();
 		proxy.postInit(e);
+		
+		LatCoreMC.addLMGuiHandler(LatBlocksGuiHandler.COLOR_PAINTER, LatBlocksGuiHandler.instance);
 	}
 	
 	@Mod.EventHandler

@@ -92,7 +92,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		{
 			if(!security.canInteract(ep))
 				printOwner(ep);
-			else LatCoreMC.openGui(ep, this, 0);
+			else LatCoreMC.openGui(ep, this, null);
 		}
 		
 		return true;
@@ -205,11 +205,11 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public boolean isLit()
 	{ return result != null && fuel > 0; }
 	
-	public Container getContainer(EntityPlayer ep, int ID)
+	public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 	{ return new ContainerQFurnace(ep, this); }
 	
 	@SideOnly(Side.CLIENT)
-	public GuiScreen getGui(EntityPlayer ep, int ID)
+	public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
 	{ return new GuiQFurnace(new ContainerQFurnace(ep, this)); }
 	
 	public boolean isItemValidForSlot(int i, ItemStack is)

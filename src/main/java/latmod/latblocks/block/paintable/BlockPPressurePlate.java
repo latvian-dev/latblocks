@@ -184,10 +184,10 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			return false;
 		}
 		
-		public Container getContainer(EntityPlayer ep, int ID)
+		public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 		{ return null; }
 		
-		public GuiScreen getGui(EntityPlayer ep, int ID)
+		public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
 		{ return null; }
 	}
 }

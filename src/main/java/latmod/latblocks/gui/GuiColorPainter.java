@@ -5,6 +5,7 @@ import latmod.core.gui.*;
 import latmod.core.net.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
@@ -20,9 +21,9 @@ public class GuiColorPainter extends GuiLM
 	
 	public final ButtonLM buttons[] = new ButtonLM[16];
 	
-	public GuiColorPainter(ContainerEmpty c)
+	public GuiColorPainter(EntityPlayer ep)
 	{
-		super(c, texLoc);
+		super(new ContainerEmpty(ep, null), texLoc);
 		xSize = 156;
 		ySize = 80;
 		

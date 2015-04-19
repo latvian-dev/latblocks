@@ -38,7 +38,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		{
 			if(!security.canInteract(ep))
 				printOwner(ep);
-			else LatCoreMC.openGui(ep, this, 0);
+			else LatCoreMC.openGui(ep, this, null);
 		}
 		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
 		{
@@ -66,11 +66,11 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public double getMaxRenderDistanceSquared()
 	{ return 24D * 24D; }
 	
-	public Container getContainer(EntityPlayer ep, int ID)
+	public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 	{ return new ContainerQChest(ep, this); }
 	
 	@SideOnly(Side.CLIENT)
-	public GuiScreen getGui(EntityPlayer ep, int ID)
+	public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
 	{ return new GuiQChest(new ContainerQChest(ep, this)); }
 	
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)

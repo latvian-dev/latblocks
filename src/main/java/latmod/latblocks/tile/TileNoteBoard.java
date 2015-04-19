@@ -2,6 +2,7 @@ package latmod.latblocks.tile;
 
 import java.util.*;
 
+import latmod.core.LatCoreMC;
 import latmod.core.gui.ContainerEmpty;
 import latmod.core.tile.*;
 import latmod.core.util.MathHelperLM;
@@ -82,7 +83,12 @@ public class TileNoteBoard extends TileSinglePaintable implements IGuiTile, IWai
 			if(isServer())
 			{
 				int index = getIndex(MathHelperLM.getMOPFrom(xCoord, yCoord, zCoord, side, hitX, hitY, hitZ));
-				if(index >= 0 && index < 16) openGui(ep, index);
+				if(index >= 0 && index < 16)
+				{
+					NBTTagCompound data = new NBTTagCompound();
+					data.setByte("I", (byte)index);
+					LatCoreMC.openGui(ep, this, data);
+				}
 			}
 			
 			return true;
@@ -91,12 +97,12 @@ public class TileNoteBoard extends TileSinglePaintable implements IGuiTile, IWai
 		return false;
 	}
 	
-	public Container getContainer(EntityPlayer ep, int ID)
+	public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 	{ return new ContainerEmpty(ep, null); }
 	
 	@SideOnly(Side.CLIENT)
-	public GuiScreen getGui(EntityPlayer ep, int ID)
-	{ return new GuiNoteBoard(new ContainerEmpty(ep, null), this, ID); }
+	public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
+	{ return new GuiNoteBoard(new ContainerEmpty(ep, null), this, data.getByte("I")); }
 	
 	public void onClientAction(EntityPlayer ep, String action, NBTTagCompound data)
 	{

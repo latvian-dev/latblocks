@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+import latmod.core.LatCoreMC;
 import latmod.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.block.Block;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -128,9 +130,9 @@ public class BlockCraftingPanel extends BlockLB
 	public static class TileCraftingPanel extends TileLM implements IGuiTile
 	{
 		public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
-		{ if(isServer()) openGui(ep, 0); return true; }
+		{ if(isServer()) LatCoreMC.openGui(ep, this, null); return true; }
 		
-		public Container getContainer(EntityPlayer ep, int ID)
+		public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 		{
 			return new ContainerWorkbench(ep.inventory, worldObj, xCoord, yCoord, zCoord)
 			{
@@ -140,7 +142,7 @@ public class BlockCraftingPanel extends BlockLB
 		}
 		
 		@SideOnly(Side.CLIENT)
-		public GuiScreen getGui(EntityPlayer ep, int ID)
+		public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
 		{ return new GuiCrafting(ep.inventory, worldObj, xCoord, yCoord, zCoord); }
 	}
 }
