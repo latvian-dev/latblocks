@@ -38,7 +38,7 @@ public class GuiNoteBoard extends GuiLM
 				tag.setString("Txt", titleBox.text);
 				
 				board.sendClientAction(TileNoteBoard.ACTION_CHANGE_TEXT, tag);
-				mc.displayGuiScreen(null);
+				container.player.closeScreen();
 			}
 		});
 		
