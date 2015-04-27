@@ -90,7 +90,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	{
 		if(is == null || is.getItem() instanceof IPaintable.IPainterItem) return false;
 		
-		if(ep.isSneaking() && LatCoreMC.isWrench(is))
+		if(isServer() && ep.isSneaking() && LatCoreMC.isWrench(is))
 		{
 			ItemStack drop = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
 			
@@ -103,6 +103,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 			}
 			
 			InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
+			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
 		}
 		
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
