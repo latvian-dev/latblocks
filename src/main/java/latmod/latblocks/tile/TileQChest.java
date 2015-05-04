@@ -98,7 +98,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		if(button.equals(LMGuiButtons.SECURITY))
 		{
 			if(ep != null && security.isOwner(ep))
-				security.level = (mouseButton == 0) ? security.level.next(LMSecurity.Level.VALUES_3) : security.level.prev(LMSecurity.Level.VALUES_3);
+				security.level = (mouseButton == 0) ? security.level.next(LMSecurity.Level.VALUES) : security.level.prev(LMSecurity.Level.VALUES);
 			else printOwner(ep);
 		}
 	}
