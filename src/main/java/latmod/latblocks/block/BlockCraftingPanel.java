@@ -64,11 +64,7 @@ public class BlockCraftingPanel extends BlockLB
 	{ return null; }
 	
 	public boolean canPlaceBlockOnSide(World w, int x, int y, int z, int s)
-	{
-		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[s].getOpposite();
-		Block b = w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ);
-		return b == Blocks.fence || b == LatBlocksItems.b_fence || b.isSideSolid(w, x, y, z, f.getOpposite());
-	}
+	{ return true; }
 	
 	public boolean isOpaqueCube()
 	{ return false; }
