@@ -40,7 +40,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 				printOwner(ep);
 			else LatCoreMC.openGui(ep, this, null);
 		}
-		else if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
+		else if(isServer() && security.canInteract(ep) && InvUtils.isWrench(is))
 		{
 			dropItems = false;
 			ItemStack drop = new ItemStack(LatBlocksItems.b_qchest, 1, 0);

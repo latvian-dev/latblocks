@@ -2,7 +2,7 @@ package latmod.latblocks.tile.tank;
 
 import java.util.List;
 
-import latmod.core.*;
+import latmod.core.InvUtils;
 import latmod.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import mcp.mobius.waila.api.*;
@@ -90,7 +90,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	{
 		if(is == null || is.getItem() instanceof IPaintable.IPainterItem) return false;
 		
-		if(isServer() && ep.isSneaking() && LatCoreMC.isWrench(is))
+		if(isServer() && ep.isSneaking() && InvUtils.isWrench(is))
 		{
 			ItemStack drop = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
 			

@@ -38,7 +38,7 @@ public class BlockGelLamp extends BlockPaintableLB
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{
-		if(LatCoreMC.isWrench(ep.inventory.getCurrentItem()))
+		if(InvUtils.isWrench(ep.inventory.getCurrentItem()))
 		{
 			int m = w.getBlockMetadata(x, y, z);
 			if(m < 6) w.setBlockMetadataWithNotify(x, y, z, m + 6, 3);

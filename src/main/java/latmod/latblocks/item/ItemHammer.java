@@ -1,5 +1,6 @@
 package latmod.latblocks.item;
 import latmod.core.ODItems;
+import latmod.core.item.Tool;
 import latmod.latblocks.LatBlocksConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ public class ItemHammer extends ItemLB
 		setMaxStackSize(1);
 		setFull3D();
 		setMaxDamage(512);
-		setHarvestLevel("wrench", 0);
+		setHarvestLevel(Tool.Type.WRENCH, Tool.Level.BASIC);
 	}
 	
 	public void loadRecipes()

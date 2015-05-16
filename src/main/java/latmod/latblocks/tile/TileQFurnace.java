@@ -53,7 +53,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(isServer() && security.canInteract(ep) && LatCoreMC.isWrench(is))
+		if(isServer() && security.canInteract(ep) && InvUtils.isWrench(is))
 		{
 			if(ep.isSneaking())
 			{
