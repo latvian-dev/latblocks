@@ -47,7 +47,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getCustomPaint(int side, int meta)
-	{ return LatCoreMC.blockNullIcon; }
+	{ return LatCoreMC.Client.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
@@ -79,7 +79,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 		
 		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[s];
 		if(isAt(iba, x + fd.offsetX, y + fd.offsetY, z + fd.offsetZ, iba.getBlockMetadata(x, y, z)) == 1)
-			return LatCoreMC.blockNullIcon;
+			return LatCoreMC.Client.blockNullIcon;
 		
 		int m = 0;
 		

@@ -43,7 +43,7 @@ public abstract class BlockTankBase extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
-	{ return LatCoreMC.blockNullIcon; }
+	{ return LatCoreMC.Client.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)

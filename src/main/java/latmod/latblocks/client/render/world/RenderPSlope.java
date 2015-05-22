@@ -62,7 +62,7 @@ public class RenderPSlope extends BlockRendererLM
 		for(int i = 0; i < 6; i++)
 		{
 			boolean isSolid = t.isSolid(i);
-			defIcon[i] = isSolid ? b.getBlockTextureFromSide(1) : LatCoreMC.blockNullIcon;
+			defIcon[i] = isSolid ? b.getBlockTextureFromSide(1) : LatCoreMC.Client.blockNullIcon;
 			p[i] = isSolid ? t.getPaint(i) : null;
 		}
 		
