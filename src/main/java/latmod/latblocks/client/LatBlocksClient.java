@@ -5,6 +5,7 @@ import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;
 import latmod.latblocks.tile.*;
+import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityBlockDustFX;
@@ -21,6 +22,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		
 		RenderNoteBoard.instance.register(TileNoteBoard.class);
 		RenderLatChest.instance.register(TileQChest.class);
+		RenderTankTile.instance.register(TileTankBase.class);
 		
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();

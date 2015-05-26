@@ -75,24 +75,6 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		renderBlocks.setOverrideBlockTexture(icon_inside);
 		renderBlocks.renderStandardBlock(Blocks.stone, x, y, z);
 		
-		Fluid f = t.getTankRenderFluid();
-		
-		if(f != null)
-		{
-			double fluid_height = t.getTankFluidHeight();
-			IIcon icon_fluid = null;
-			
-			if(fluid_height > 0D && (icon_fluid = f.getStillIcon()) != null)
-			{
-				double op = p + 0.001D;
-				double h1 = MathHelperLM.map(fluid_height, 0D, 1D, op, 1D - op);
-				
-				renderBlocks.setRenderBounds(op, op, op, 1D - op, h1, 1D - op);
-				renderBlocks.setOverrideBlockTexture(icon_fluid);
-				renderBlocks.renderStandardBlock(Blocks.stone, x, y, z);
-			}
-		}
-		
 		return true;
 	}
 	

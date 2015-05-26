@@ -39,7 +39,7 @@ public class TileWaterTank extends TileTankBase
 	
 	public void onUpdate()
 	{
-		if(!worldObj.isRemote && tick % 10 == 0 && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 1)
+		if(isServer() && tick % 10 == 0 && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 1)
 		{
 			for(int i = 0; i < 6; i++)
 			{
@@ -63,7 +63,7 @@ public class TileWaterTank extends TileTankBase
 	{
 		if(is == null && ep.isSneaking())
 		{
-			if(!worldObj.isRemote)
+			if(isServer())
 			{
 				getMeta();
 				setMeta(1 - blockMetadata);

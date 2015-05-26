@@ -36,7 +36,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	}
 	
 	public boolean rerenderBlock()
-	{ return true; }
+	{ return false; }
 	
 	public void readTileData(NBTTagCompound tag)
 	{
