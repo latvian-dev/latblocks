@@ -1,4 +1,5 @@
 package latmod.latblocks.client.render.tile;
+import latmod.core.LatCoreMC;
 import latmod.core.client.TileRenderer;
 import latmod.core.util.MathHelperLM;
 import latmod.latblocks.client.render.world.RenderTank;
@@ -42,6 +43,13 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				GL11.glTranslated(x + 0.5D, y + 0.5D, z + 0.5D);
 				GL11.glColor4f(1F, 1F, 1F, 1F);
 				
+				boolean glows = b.getLightValue() > 0 || f.getLuminosity() > 0;
+				
+				if(glows)
+				{
+					LatCoreMC.Client.pushMaxBrightness();
+				}
+				
 				Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
 				
 				double op = 1D / 16D + 0.001D;
@@ -52,6 +60,8 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				RenderTank.instance.renderBlocks.setOverrideBlockTexture(icon_fluid);
 				//RenderTank.instance.renderBlocks.renderBlockSandFalling(t.getBlockType(), t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord, 0);
 				RenderTank.instance.renderBlocks.renderStandardBlockIcons(b, t.xCoord, t.yCoord, t.zCoord, new IIcon[]{ icon_fluid, icon_fluid, icon_fluid, icon_fluid, icon_fluid, icon_fluid }, true);
+				
+				if(glows) LatCoreMC.Client.popMaxBrightness();
 				
 				GL11.glPopAttrib();
 				GL11.glPopMatrix();

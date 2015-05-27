@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import cpw.mods.fml.relauncher.*;
 
-public class TileNoteBoard extends TileSinglePaintable implements IGuiTile, IWailaTile.Body, ISecureTile
+public class TileNoteBoard extends TileSinglePaintable implements IGuiTile, IWailaTile.Body
 {
 	public static final String ACTION_CHANGE_TEXT = "ChangeNoteText";
 	

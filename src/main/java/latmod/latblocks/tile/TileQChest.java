@@ -34,12 +34,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(isServer() && !ep.isSneaking())
-		{
-			if(!security.canInteract(ep))
-				printOwner(ep);
-			else LatCoreMC.openGui(ep, this, null);
-		}
+		if(isServer() && !ep.isSneaking()) LatCoreMC.openGui(ep, this, null);
 		else if(isServer() && security.canInteract(ep) && InvUtils.isWrench(is))
 		{
 			dropItems = false;
@@ -111,4 +106,10 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return security.level.isPublic(); }
+	
+	public boolean canPlayerInteract(EntityPlayer ep, boolean breakBlock)
+	{ return security.canInteract(ep); }
+	
+	public void onPlayerNotOwner(EntityPlayer ep, boolean breakBlock)
+	{ printOwner(ep); }
 }

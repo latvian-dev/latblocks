@@ -88,13 +88,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 				markDirty();
 			}
 		}
-		else if(isServer())
-		{
-			if(!security.canInteract(ep))
-				printOwner(ep);
-			else LatCoreMC.openGui(ep, this, null);
-		}
-		
+		else if(isServer()) LatCoreMC.openGui(ep, this, null);
 		return true;
 	}
 	
@@ -227,4 +221,10 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return true; }
+	
+	public boolean canPlayerInteract(EntityPlayer ep, boolean breakBlock)
+	{ return security.canInteract(ep); }
+	
+	public void onPlayerNotOwner(EntityPlayer ep, boolean breakBlock)
+	{ printOwner(ep); }
 }
