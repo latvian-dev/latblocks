@@ -1,8 +1,8 @@
 package latmod.latblocks.client.render.tile;
 import latmod.core.LatCoreMC;
 import latmod.core.client.TileRenderer;
+import latmod.core.client.model.CubeRenderer;
 import latmod.core.util.MathHelperLM;
-import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -19,6 +19,7 @@ import cpw.mods.fml.relauncher.*;
 public class RenderTankTile extends TileRenderer<TileTankBase>
 {
 	public static final RenderTankTile instance = new RenderTankTile();
+	public static final CubeRenderer cubeRenderer = new CubeRenderer(CubeRenderer.TEX_NOT_SCALED);
 	
 	public void renderTile(TileTankBase t, double x, double y, double z, float pt)
 	{
@@ -40,7 +41,9 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				GL11.glEnable(GL11.GL_BLEND);
 				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 				GL11.glDisable(GL11.GL_LIGHTING);
-				GL11.glTranslated(x + 0.5D, y + 0.5D, z + 0.5D);
+				GL11.glTranslated(x, y, z);
+				//GL11.glTranslated(x, y + 1D, z + 1D);
+				//GL11.glScalef(1F, -1F, -1F);
 				GL11.glColor4f(1F, 1F, 1F, 1F);
 				
 				boolean glows = b.getLightValue() > 0 || f.getLuminosity() > 0;
@@ -55,11 +58,17 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				double op = 1D / 16D + 0.001D;
 				double h1 = MathHelperLM.map(fluid_height, 0D, 1D, op, 1D - op);
 				
+				cubeRenderer.setSize(op, op, op, 1D - op, h1, 1D - op);
+				cubeRenderer.setUV(icon_fluid);
+				cubeRenderer.renderAll();
+				
+				/*
 				RenderTank.instance.renderBlocks.blockAccess = t.getWorldObj();
 				RenderTank.instance.renderBlocks.setRenderBounds(op, op, op, 1D - op, h1, 1D - op);
 				RenderTank.instance.renderBlocks.setOverrideBlockTexture(icon_fluid);
 				//RenderTank.instance.renderBlocks.renderBlockSandFalling(t.getBlockType(), t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord, 0);
 				RenderTank.instance.renderBlocks.renderStandardBlockIcons(b, t.xCoord, t.yCoord, t.zCoord, new IIcon[]{ icon_fluid, icon_fluid, icon_fluid, icon_fluid, icon_fluid, icon_fluid }, true);
+				*/
 				
 				if(glows) LatCoreMC.Client.popMaxBrightness();
 				
