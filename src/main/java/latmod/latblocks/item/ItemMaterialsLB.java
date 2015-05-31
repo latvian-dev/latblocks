@@ -1,14 +1,33 @@
 package latmod.latblocks.item;
 import latmod.core.*;
-import latmod.core.item.ItemMaterials;
 import latmod.core.recipes.LMRecipes;
 import latmod.latblocks.*;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.*;
 
-public class ItemMaterialsLB extends ItemMaterials
+public class ItemMaterialsLB extends ItemLB
 {
+	public static final String[] names =
+	{
+		"gem_yellow",
+		"dust_yellow",
+		"lens",
+		"rod",
+		"dust_star",
+		"gem_red",
+		"gem_green",
+		"gem_blue",
+		"gem_dark",
+		"dust_red",
+		"dust_green",
+		"dust_blue",
+		"dust_dark",
+	};
+	
 	public static final ItemStack GEMS_GLOWIUM[] = new ItemStack[5];
 	public static final ItemStack DUSTS_GLOWIUM[] = new ItemStack[5];
 	
@@ -16,28 +35,11 @@ public class ItemMaterialsLB extends ItemMaterials
 	public static ItemStack ROD;
 	public static ItemStack STAR_DUST;
 	
+	@SideOnly(Side.CLIENT)
+	public IIcon[] icons;
+	
 	public ItemMaterialsLB(String s)
 	{ super(s); }
-	
-	public String[] getNames()
-	{
-		return new String[]
-		{
-			"gemGlowium.yellow",
-			"dustGlowium.yellow",
-			"lens",
-			"rod",
-			"dustStar",
-			"gemGlowium.red",
-			"gemGlowium.green",
-			"gemGlowium.blue",
-			"gemGlowium.dark",
-			"dustGlowium.red",
-			"dustGlowium.green",
-			"dustGlowium.blue",
-			"dustGlowium.dark",
-		};
-	}
 	
 	public String getPrefix()
 	{ return null; }
@@ -50,7 +52,7 @@ public class ItemMaterialsLB extends ItemMaterials
 	
 	public void onPostLoaded()
 	{
-		super.onPostLoaded();
+		addAllDamages(names.length);
 		
 		ODItems.add("gemGlowium", GEMS_GLOWIUM[0] = new ItemStack(this, 1, 0));
 		ODItems.add("dustGlowium", DUSTS_GLOWIUM[0] = new ItemStack(this, 1, 1));
@@ -104,4 +106,19 @@ public class ItemMaterialsLB extends ItemMaterials
 		mod.recipes.addRecipe(LMRecipes.size(ROD, 4), "P", "P",
 				'P', LatBlocksItems.b_paintable);
 	}
+	
+	public String getUnlocalizedName(ItemStack is)
+	{ return mod.getItemName(names[is.getItemDamage()]); }
+	
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister ir)
+	{
+		icons = new IIcon[names.length];
+		for(int i = 0; i < names.length; i++)
+			icons[i] = ir.registerIcon(mod.assets + names[i]);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getIconFromDamageForRenderPass(int m, int r)
+	{ return (m >= 0 && m < icons.length) ? icons[m] : LatCoreMC.Client.unknownItemIcon; }
 }

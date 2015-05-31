@@ -18,7 +18,7 @@ public class BlockPaintableRS extends BlockPaintableSided
 	public BlockPaintableRS(String s)
 	{
 		super(s);
-		setBlockTextureName("paintableRS");
+		setBlockTextureName("paintable_rs");
 	}
 	
 	public void onPostLoaded()

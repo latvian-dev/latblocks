@@ -44,25 +44,25 @@ latblocks:tile.buffer.name=Buffer
 
 ### Items ###
 
-latblocks:item.gemGlowium.yellow.name=Glowium
-latblocks:item.gemGlowium.red.name=Red Glowium
-latblocks:item.gemGlowium.green.name=Green Glowium
-latblocks:item.gemGlowium.blue.name=Blue Glowium
-latblocks:item.gemGlowium.dark.name=Dark Glowium
-latblocks:item.dustGlowium.yellow.name=Glowium Dust
-latblocks:item.dustGlowium.red.name=Red Glowium Dust
-latblocks:item.dustGlowium.green.name=Green Glowium Dust
-latblocks:item.dustGlowium.blue.name=Blue Glowium Dust
-latblocks:item.dustGlowium.dark.name=Dark Glowium Dust
+latblocks:item.gem_yellow.name=Glowium
+latblocks:item.gem_red.name=Red Glowium
+latblocks:item.gem_green.name=Green Glowium
+latblocks:item.gem_blue.name=Blue Glowium
+latblocks:item.gem_dark.name=Dark Glowium
+latblocks:item.dust_yellow.name=Glowium Dust
+latblocks:item.dust_red.name=Red Glowium Dust
+latblocks:item.dust_green.name=Green Glowium Dust
+latblocks:item.dust_blue.name=Blue Glowium Dust
+latblocks:item.dust_dark.name=Dark Glowium Dust
 latblocks:item.lens.name=Glass Lens
 latblocks:item.rod.name=Paintable Block Rod
-latblocks:item.dustStar.name=Star Dust
+latblocks:item.dust_star.name=Star Dust
 
-latblocks:item.paintRoller.rod.name=Block Painter Rod
-latblocks:item.paintRoller.basic.name=Paint Roller
-latblocks:item.paintRoller.dmd.name=Diamond Paint Roller
-latblocks:item.paintRoller.color.name=Color Roller
-latblocks:item.paintRoller.multi.name=[WIP] Multi-Paint Roller
+latblocks:item.roller_rod.name=Block Painter Rod
+latblocks:item.roller_basic.name=Paint Roller
+latblocks:item.roller_dmd.name=Diamond Paint Roller
+latblocks:item.roller_color.name=Color Roller
+latblocks:item.roller_multi.name=[WIP] Multi-Paint Roller
 
 latblocks:item.blockPainter.name=Block Painter
 latblocks:item.blockPainterDmd.name=Diamond Block Painter

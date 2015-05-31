@@ -12,7 +12,7 @@ public class BlockPaintableGS extends BlockPaintableSided
 	public BlockPaintableGS(String s)
 	{
 		super(s);
-		setBlockTextureName("paintableGS");
+		setBlockTextureName("paintable_gs");
 		setLightLevel(1F);
 	}
 	

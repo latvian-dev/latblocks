@@ -13,7 +13,7 @@ public class BlockNoteBoard extends BlockPaintableSingle
 	public BlockNoteBoard(String s)
 	{
 		super(s, 1F / 16F);
-		setBlockTextureName("noteBoard");
+		setBlockTextureName("note_board");
 	}
 	
 	public void loadRecipes()

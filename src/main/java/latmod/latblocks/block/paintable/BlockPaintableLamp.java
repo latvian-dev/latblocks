@@ -11,7 +11,7 @@ public class BlockPaintableLamp extends BlockPaintableRS
 	public BlockPaintableLamp(String s)
 	{
 		super(s);
-		setBlockTextureName("paintableLamp");
+		setBlockTextureName("paintable_lamp");
 	}
 	
 	public void onPostLoaded()

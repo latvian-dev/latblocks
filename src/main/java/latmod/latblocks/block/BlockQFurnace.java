@@ -49,9 +49,9 @@ public class BlockQFurnace extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "furnSide");
-		iconOn = ir.registerIcon(mod.assets + "furnOn");
-		iconOff = ir.registerIcon(mod.assets + "furnOff");
+		blockIcon = ir.registerIcon(mod.assets + "furn_side");
+		iconOn = ir.registerIcon(mod.assets + "furn_on");
+		iconOff = ir.registerIcon(mod.assets + "furn_off");
 	}
 	
 	@SideOnly(Side.CLIENT)

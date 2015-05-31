@@ -41,8 +41,8 @@ public class BlockCraftingPanel extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "craftingPanel");
-		icon_side = ir.registerIcon(mod.assets + "craftingPanelSide");
+		blockIcon = ir.registerIcon(mod.assets + "crafting_panel");
+		icon_side = ir.registerIcon(mod.assets + "crafting_panel_side");
 	}
 
 	@SideOnly(Side.CLIENT)

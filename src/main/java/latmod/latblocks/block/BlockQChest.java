@@ -57,9 +57,9 @@ public class BlockQChest extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		chestFront = ir.registerIcon(mod.assets + "chestFront");
-		blockIcon = ir.registerIcon(mod.assets + "chestSide");
-		chestTop = ir.registerIcon(mod.assets + "chestTop");
+		chestFront = ir.registerIcon(mod.assets + "chest_front");
+		blockIcon = ir.registerIcon(mod.assets + "chest_side");
+		chestTop = ir.registerIcon(mod.assets + "chest_top");
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -65,10 +65,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM
 	{ return i == 0; }
 	
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-    { return LatBlocks.mod.assets + "textures/items/glassesArmor.png"; }
-	
-	public Item getItem()
-	{ return this; }
+    { return LatBlocks.mod.assets + "textures/items/glasses_armor.png"; }
 	
 	public String getItemID()
 	{ return itemName; }

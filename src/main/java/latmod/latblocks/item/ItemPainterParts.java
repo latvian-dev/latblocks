@@ -1,36 +1,38 @@
 package latmod.latblocks.item;
 import latmod.core.*;
-import latmod.core.item.ItemMaterials;
 import latmod.core.recipes.LMRecipes;
 import latmod.latblocks.LatBlocks;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.*;
 
-public class ItemPainterParts extends ItemMaterials
+public class ItemPainterParts extends ItemLB
 {
+	public static final String[] names =
+	{
+		"rod",
+		"basic",
+		"dmd",
+		"color",
+		"multi",
+	};
+	
 	public static ItemStack PAINT_ROLLER_ROD;
 	public static ItemStack PAINT_ROLLER;
 	public static ItemStack PAINT_ROLLER_DMD;
 	public static ItemStack PAINT_ROLLER_COLOR;
 	public static ItemStack PAINT_ROLLER_MULTI;
 	
+	@SideOnly(Side.CLIENT)
+	public IIcon[] icons;
+	
 	public ItemPainterParts(String s)
 	{ super(s); }
 	
-	public String[] getNames()
-	{
-		return new String[]
-		{
-			"rod",
-			"basic",
-			"dmd",
-			"color",
-			"multi",
-		};
-	}
-	
 	public String getPrefix()
-	{ return "paintRoller"; }
+	{ return "paint_roller"; }
 	
 	public LMMod getMod()
 	{ return LatBlocks.mod; }
@@ -40,7 +42,7 @@ public class ItemPainterParts extends ItemMaterials
 	
 	public void onPostLoaded()
 	{
-		super.onPostLoaded();
+		addAllDamages(names.length);
 		
 		PAINT_ROLLER_ROD = new ItemStack(this, 1, 0);
 		PAINT_ROLLER = new ItemStack(this, 1, 1);
@@ -76,4 +78,19 @@ public class ItemPainterParts extends ItemMaterials
 		
 		//mod.recipes.addShapelessRecipe(PAINT_ROLLER_MULTI, PAINT_ROLLER_DMD, PAINT_ROLLER_COLOR);
 	}
+	
+	public String getUnlocalizedName(ItemStack is)
+	{ return mod.getItemName("roller_" + names[is.getItemDamage()]); }
+	
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister ir)
+	{
+		icons = new IIcon[names.length];
+		for(int i = 0; i < names.length; i++)
+			icons[i] = ir.registerIcon(mod.assets + "paint_roller/" + names[i]);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getIconFromDamageForRenderPass(int m, int r)
+	{ return (m >= 0 && m < icons.length) ? icons[m] : LatCoreMC.Client.unknownItemIcon; }
 }
