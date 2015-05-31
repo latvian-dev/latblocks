@@ -69,7 +69,7 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 			renderBlocks.renderStandardBlock(Blocks.stone, x, y, z);
 		}
 		
-		double p = 1D / 16D;
+		double p = 1D / 16D - 0.001D;
 		
 		renderBlocks.setRenderBounds(p, p, p, 1D - p, 1D - p, 1D - p);
 		renderBlocks.setOverrideBlockTexture(icon_inside);
@@ -118,7 +118,8 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		}
 		
 		GL11.glPushMatrix();
-		renderBlocks.setRenderBounds(p, p, p, 1D - p, 1D - p, 1D - p);
+		double p1 = p - 0.001D;
+		renderBlocks.setRenderBounds(p1, p1, p1, 1D - p1, 1D - p1, 1D - p1);
 		renderBlocks.setOverrideBlockTexture(icon_inside);
 		renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
 		GL11.glPopMatrix();

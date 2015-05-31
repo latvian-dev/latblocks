@@ -1,7 +1,7 @@
 package latmod.latblocks.client.render.tile;
 import latmod.core.LatCoreMC;
 import latmod.core.client.TileRenderer;
-import latmod.core.client.model.CubeRenderer;
+import latmod.core.client.model.TexturedCubeRenderer;
 import latmod.core.util.MathHelperLM;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.*;
 public class RenderTankTile extends TileRenderer<TileTankBase>
 {
 	public static final RenderTankTile instance = new RenderTankTile();
-	public static final CubeRenderer cubeRenderer = new CubeRenderer(CubeRenderer.TEX_NOT_SCALED);
+	public static final TexturedCubeRenderer fluidRenderer = new TexturedCubeRenderer(true);
 	
 	public void renderTile(TileTankBase t, double x, double y, double z, float pt)
 	{
@@ -47,20 +47,16 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				GL11.glColor4f(1F, 1F, 1F, 1F);
 				
 				boolean glows = b.getLightValue() > 0 || f.getLuminosity() > 0;
-				
-				if(glows)
-				{
-					LatCoreMC.Client.pushMaxBrightness();
-				}
+				if(glows) LatCoreMC.Client.pushMaxBrightness();
 				
 				Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
 				
 				double op = 1D / 16D + 0.001D;
 				double h1 = MathHelperLM.map(fluid_height, 0D, 1D, op, 1D - op);
 				
-				cubeRenderer.setSize(op, op, op, 1D - op, h1, 1D - op);
-				cubeRenderer.setUV(icon_fluid);
-				cubeRenderer.renderAll();
+				fluidRenderer.setSize(op, op, op, 1D - op, h1, 1D - op);
+				fluidRenderer.setUV(-1, icon_fluid);
+				fluidRenderer.renderAll();
 				
 				/*
 				RenderTank.instance.renderBlocks.blockAccess = t.getWorldObj();
