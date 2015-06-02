@@ -10,6 +10,7 @@ import latmod.core.util.FastList;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
+import latmod.latblocks.tile.TileGlowium;
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -39,7 +40,10 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	public static class BGBlock extends BlockGlowium
 	{
 		public BGBlock()
-		{ super("glowiumBlock", "block"); }
+		{
+			super("glowiumBlock", "block");
+			mod.addTile(TileGlowium.class, "glowium");
+		}
 		
 		public void loadRecipes()
 		{
@@ -131,7 +135,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	{
 		super(s, Material.rock);
 		name = s1;
-		isBlockContainer = false;
+		isBlockContainer = true;
 		setHardness(1.5F);
 		setResistance(10F);
 	}
@@ -171,7 +175,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
-	{ return null; }
+	{ return new TileGlowium(); }
 	
 	public int damageDropped(int m)
 	{ return m; }
@@ -193,9 +197,14 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }
 	
+	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side)
+	{ return true; }
+	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-    { return true; }
+    {
+		return super.shouldSideBeRendered(iba, x, y, z, s);
+	}
 	
 	public boolean recolourBlock(World w, int x, int y, int z, ForgeDirection side, int col)
 	{
@@ -236,7 +245,20 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 					if(this == LatBlocksItems.b_glowium_chiseled) b = LatBlocksItems.b_glowium_block;
 				}
 				
-				if(b != null) w.setBlock(x, y, z, b, meta, 3);
+				if(b != null)
+				{
+					TileGlowium t = (TileGlowium)w.getTileEntity(x, y, z);
+					IPaintable.Paint[] prevPaint = t.paint.clone();
+					
+					w.setBlock(x, y, z, b, meta, 3);
+					
+					t = (TileGlowium)w.getTileEntity(x, y, z);
+					if(t != null && t.isValid())
+					{
+						for(int i = 0; i < t.paint.length; i++)
+							t.paint[i] = prevPaint[i];
+					}
+				}
 			}
 			
 			return true;
