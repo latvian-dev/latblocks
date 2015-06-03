@@ -6,7 +6,6 @@ import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.tile.TileGlowium;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
@@ -66,13 +65,14 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		
 		for(int s = 0; s < 6; s++)
 		{
-			Block b1 = iba.getBlock(x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s]);
-			if(b1.shouldSideBeRendered(iba, x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s], Facing.oppositeSide[s]))
+			if(bg.shouldSideBeRendered(iba, x, y, z, s))
 			{
-				renderBlocks.setFaceBounds(s, 0D, 0D, 0D, 1D, 1D, 1D);
+				double d = -0.001D;
+				renderBlocks.setFaceBounds(s, d, d, d, 1D - d, 1D - d, 1D - d);
 				renderBlocks.setCustomColor(renderColor);
 				renderBlocks.setOverrideBlockTexture(bg.icon_glow);
 				renderBlocks.renderStandardBlock(glow, x, y, z);
+				renderBlocks.setFaceBounds(s, 0D, 0D, 0D, 1D, 1D, 1D);
 				
 				if(t.paint[s] == null || t.paint[s].block == null)
 				{
@@ -82,8 +82,6 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 				else
 				{
 					renderBlocks.setCustomColor(null);
-					double d = 0.001D;
-					renderBlocks.setFaceBounds(s, d, d, d, 1D - d, 1D - d, 1D - d);
 					IPaintable.Renderer.renderFace(iba, renderBlocks, s, t.paint[s], bg.getBlockIcon(), x, y, z);
 				}
 			}

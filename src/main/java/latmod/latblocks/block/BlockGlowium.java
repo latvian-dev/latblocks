@@ -11,13 +11,14 @@ import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileGlowium;
-import net.minecraft.block.BlockColored;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
@@ -203,7 +204,14 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
     {
-		return super.shouldSideBeRendered(iba, x, y, z, s);
+		Block b1 = iba.getBlock(x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s]);
+		if(b1 == Blocks.air || b1.renderAsNormalBlock()) return true;
+		return  (s == 0 && b1.getBlockBoundsMinY() == 0D) ||
+				(s == 1 && b1.getBlockBoundsMaxY() == 1D) ||
+				(s == 2 && b1.getBlockBoundsMinZ() == 0D) ||
+				(s == 3 && b1.getBlockBoundsMaxZ() == 1D) ||
+				(s == 4 && b1.getBlockBoundsMinX() == 0D) ||
+				(s == 5 && b1.getBlockBoundsMaxX() == 1D);
 	}
 	
 	public boolean recolourBlock(World w, int x, int y, int z, ForgeDirection side, int col)

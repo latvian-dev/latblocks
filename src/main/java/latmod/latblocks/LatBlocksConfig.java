@@ -16,16 +16,18 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 	
 	public void readConfig(NBTTagCompound tag)
 	{
-		boolean[] b = readBools(tag, "C");
-		General.fencesIgnorePlayers = b[0];
-		General.tankCraftingHandler = b[1];
+		int[] b = tag.getIntArray("C");
+		General.fencesIgnorePlayers = b[0] == 1;
+		General.tankCraftingHandler = b[1] == 1;
 	}
 	
 	public void writeConfig(NBTTagCompound tag)
 	{
-		writeBools(tag, "C",
-		General.fencesIgnorePlayers,
-		General.tankCraftingHandler);
+		tag.setIntArray("C", new int[]
+		{
+			General.fencesIgnorePlayers ? 1 : 0,
+			General.tankCraftingHandler ? 1 : 0,
+		});
 	}
 	
 	public static class General
