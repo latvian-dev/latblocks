@@ -35,7 +35,7 @@ public class TileGlowium extends TileSidedPaintable
 		
 		boolean hasGlasses = ItemGlasses.hasPlayer(data.getPlayer());
 		
-		if(hasGlasses && getWailaStack(data, config) != null)
+		if(hasGlasses && paint[data.getSide().ordinal()] != null)
 			info.add((new ItemStack(getBlockType(), 1, getBlockMetadata())).getDisplayName() + " [" + EnumDyeColor.VALUES[blockMetadata].toString() + "]");
 		else if(hasGlasses)
 			info.add(EnumDyeColor.VALUES[blockMetadata].toString());
