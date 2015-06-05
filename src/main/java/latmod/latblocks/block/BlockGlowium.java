@@ -27,22 +27,45 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 {
 	public static final String ORE_NAME = "blockGlowium";
 	public static final int DEF_DMG = EnumDyeColor.YELLOW.ID;
-	public static final FastList<BlockGlowium> allBlocks = new FastList<BlockGlowium>();
+	
+	public static final int[] brightColors =
+	{
+		0xFF2D2D2D, // Black
+		0xFFFF0000, // Red
+		0xFF00D615, // Green
+		0xFF9B3E00, // Brown
+		0xFF0049FF, // Blue
+		0xFFB43DFF, // Purple
+		0xFF00FFFF, // Cyan
+		0xFFCECECE, // LightGray
+		0xFF494949, // Gray
+		0xFFFF9999, // Pink
+		0xFF00F321, // Lime
+		0xFFFFD800, // Yellow
+		0xFF56B8FF, // LightBlue
+		0xFFFF22DC, // Magenta
+		0xFFFF8900, // Orange
+		0xFFFFFFFF, // White
+	};
 	
 	public static void postLoaded()
 	{
 		if(ChiselHelper.isInstalled())
 		{
-			for(int i = 0; i < allBlocks.size(); i++)
-				ChiselHelper.register(new GroupGlowium(allBlocks.get(i)));
+			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_block));
+			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_tile));
+			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_brick));
+			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_small));
+			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_chiseled));
+			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_lined_block));
 		}
 	}
 	
 	public static class BGBlock extends BlockGlowium
 	{
-		public BGBlock()
+		public BGBlock(String s)
 		{
-			super("glowiumBlock", "block");
+			super(s, "block");
 			mod.addTile(TileGlowium.class, "glowium");
 		}
 		
@@ -69,8 +92,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public static class BGTile extends BlockGlowium
 	{
-		public BGTile()
-		{ super("glowiumTile", "tile"); }
+		public BGTile(String s)
+		{ super(s, "tile"); }
 		
 		public void loadRecipes()
 		{
@@ -84,8 +107,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public static class BGBrick extends BlockGlowium
 	{
-		public BGBrick()
-		{ super("glowiumBrick", "brick"); }
+		public BGBrick(String s)
+		{ super(s, "brick"); }
 		
 		public void loadRecipes()
 		{
@@ -99,8 +122,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public static class BGBrickSmall extends BlockGlowium
 	{
-		public BGBrickSmall()
-		{ super("glowiumSmallBrick", "small"); }
+		public BGBrickSmall(String s)
+		{ super(s, "small"); }
 		
 		public void loadRecipes()
 		{
@@ -114,8 +137,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public static class BGBrickChiseled extends BlockGlowium
 	{
-		public BGBrickChiseled()
-		{ super("glowiumChiseledBrick", "chiseled"); }
+		public BGBrickChiseled(String s)
+		{ super(s, "chiseled"); }
 		
 		public void loadRecipes()
 		{
@@ -130,7 +153,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	public final String name;
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon icon_glow;
+	private IIcon icon_glow;
 	
 	public BlockGlowium(String s, String s1)
 	{
@@ -146,7 +169,6 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public void onPostLoaded()
 	{
-		allBlocks.add(this);
 		blocksAdded.add(new ItemStack(this, 1, DEF_DMG));
 		if(!ChiselHelper.isInstalled())
 			ODItems.add(ORE_NAME, new ItemStack(this, 1, ODItems.ANY));
@@ -205,13 +227,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
     {
 		Block b1 = iba.getBlock(x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s]);
-		if(b1 == Blocks.air || b1.renderAsNormalBlock()) return true;
-		return  (s == 0 && b1.getBlockBoundsMinY() == 0D) ||
-				(s == 1 && b1.getBlockBoundsMaxY() == 1D) ||
-				(s == 2 && b1.getBlockBoundsMinZ() == 0D) ||
-				(s == 3 && b1.getBlockBoundsMaxZ() == 1D) ||
-				(s == 4 && b1.getBlockBoundsMinX() == 0D) ||
-				(s == 5 && b1.getBlockBoundsMaxX() == 1D);
+		if(b1 instanceof BlockGlowium) return false;
+		return b1 == Blocks.air || !b1.renderAsNormalBlock() || !b1.isOpaqueCube();
 	}
 	
 	public boolean recolourBlock(World w, int x, int y, int z, ForgeDirection side, int col)
@@ -277,7 +294,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(int m)
-	{ return EnumDyeColor.VALUES[m].colorBright.getRGB(); }
+	{ return brightColors[m]; }
 	
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
@@ -288,6 +305,14 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
 	{ l.add(EnumDyeColor.VALUES[is.getItemDamage()].toString()); }
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getGlowItemIcon()
+	{ return icon_glow; }
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getGlowIcon(IBlockAccess iba, int x, int y, int z, int s)
+	{ return icon_glow; }
 	
 	public static class GroupGlowium extends ChiselHelper.Group
 	{

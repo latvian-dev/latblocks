@@ -40,6 +40,7 @@ public class LatBlocksItems
 	public static BlockGlowium.BGBrick b_glowium_brick;
 	public static BlockGlowium.BGBrickSmall b_glowium_small;
 	public static BlockGlowium.BGBrickChiseled b_glowium_chiseled;
+	public static BlockLinedBlock b_lined_block;
 	
 	public static ItemMaterialsLB i_mat;
 	public static ItemPainterParts i_parts;
@@ -79,11 +80,12 @@ public class LatBlocksItems
 		b_glass = new BlockGlass("glass").register();
 		b_crafting_panel = new BlockCraftingPanel("craftingPanel").register();
 		
-		b_glowium_block = new BlockGlowium.BGBlock().register();
-		b_glowium_tile = new BlockGlowium.BGTile().register();
-		b_glowium_brick = new BlockGlowium.BGBrick().register();
-		b_glowium_small = new BlockGlowium.BGBrickSmall().register();
-		b_glowium_chiseled = new BlockGlowium.BGBrickChiseled().register();
+		b_glowium_block = new BlockGlowium.BGBlock("glowiumBlock").register();
+		b_glowium_tile = new BlockGlowium.BGTile("glowiumTile").register();
+		b_glowium_brick = new BlockGlowium.BGBrick("glowiumBrick").register();
+		b_glowium_small = new BlockGlowium.BGBrickSmall("glowiumSmallBrick").register();
+		b_glowium_chiseled = new BlockGlowium.BGBrickChiseled("glowiumChiseledBrick").register();
+		b_lined_block = new BlockLinedBlock("lined_block").register();
 		
 		i_mat = new ItemMaterialsLB("materials").register();
 		i_parts = new ItemPainterParts("painterParts").register();

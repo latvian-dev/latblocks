@@ -1,5 +1,6 @@
 package latmod.latblocks.client.render.world;
 
+import latmod.core.LatCoreMC;
 import latmod.core.client.*;
 import latmod.core.tile.IPaintable;
 import latmod.latblocks.block.BlockGlowium;
@@ -42,10 +43,14 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		
 		renderBlocks.setCustomColor(b.getRenderColor(meta));
 		
+		double d = -0.001D;
+		renderBlocks.setRenderBounds(d, d, d, 1D - d, 1D - d, 1D - d);
 		GL11.glPushMatrix();
 		rotateBlocks();
-		renderBlocks.setOverrideBlockTexture(bg.icon_glow);
+		LatCoreMC.Client.pushMaxBrightness();
+		renderBlocks.setOverrideBlockTexture(bg.getGlowItemIcon());
 		renderBlocks.renderBlockAsItem(b, meta, 1F);
+		LatCoreMC.Client.popMaxBrightness();
 		GL11.glPopMatrix();
 	}
 	
@@ -67,10 +72,10 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		{
 			if(bg.shouldSideBeRendered(iba, x, y, z, s))
 			{
-				double d = -0.001D;
+				double d = -0.005D;
 				renderBlocks.setFaceBounds(s, d, d, d, 1D - d, 1D - d, 1D - d);
 				renderBlocks.setCustomColor(renderColor);
-				renderBlocks.setOverrideBlockTexture(bg.icon_glow);
+				renderBlocks.setOverrideBlockTexture(bg.getGlowIcon(iba, x, y, z, s));
 				renderBlocks.renderStandardBlock(glow, x, y, z);
 				renderBlocks.setFaceBounds(s, 0D, 0D, 0D, 1D, 1D, 1D);
 				

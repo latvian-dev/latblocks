@@ -1,12 +1,13 @@
 package latmod.latblocks.block;
 import latmod.core.*;
 import latmod.core.tile.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
+import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
@@ -65,7 +66,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 		icons = new IIcon[2][2][2][2];
 		
 		for(int a = 0; a <= 1; a++) for(int b = 0; b <= 1; b++) for(int c = 0; c <= 1; c++) for(int d = 0; d <= 1; d++)
-			icons[a][b][c][d] = ir.registerIcon(mod.assets + "glass/inv/g_" + a + "_" + b + "_" + c + "_" + d);
+			icons[a][b][c][d] = ir.registerIcon(mod.assets + "glass/inv/" + a + "" + b + "" + c + "" + d);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -126,8 +127,12 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-	{ return true; }
+    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+    {
+		Block b1 = iba.getBlock(x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s]);
+		if(b1 == this) return false;
+		return b1 == Blocks.air || !b1.renderAsNormalBlock() || !b1.isOpaqueCube();
+	}
 	
 	private int isAt(IBlockAccess iba, int x, int y, int z, int m)
 	{ return (iba.getBlock(x, y, z) == this) ? 1 : 0; }

@@ -7,6 +7,7 @@ latblocks:tile.glowium.tile.name=Glowium Tile
 latblocks:tile.glowium.brick.name=Glowium Brick
 latblocks:tile.glowium.small.name=Small Glowium Brick
 latblocks:tile.glowium.chiseled.name=Chiseled Glowium Brick
+latblocks:tile.glowium.lined.name=Lined Glowium Block
 
 latblocks:tile.paintable.name=Paintable Block
 latblocks:tile.paintableRS.name=Dual Paintable Block
