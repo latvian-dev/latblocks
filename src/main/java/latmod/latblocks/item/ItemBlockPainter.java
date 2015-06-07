@@ -1,5 +1,5 @@
 package latmod.latblocks.item;
-import latmod.core.tile.IPaintable;
+import latmod.ftbu.core.tile.IPaintable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

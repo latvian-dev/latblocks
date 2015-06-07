@@ -1,5 +1,5 @@
 package latmod.latblocks.block.paintable;
-import latmod.core.ODItems;
+import latmod.ftbu.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;

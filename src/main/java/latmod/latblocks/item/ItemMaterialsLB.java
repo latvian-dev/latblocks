@@ -1,6 +1,7 @@
 package latmod.latblocks.item;
-import latmod.core.*;
-import latmod.core.recipes.LMRecipes;
+import latmod.ftbu.core.*;
+import latmod.ftbu.core.client.LatCoreMCClient;
+import latmod.ftbu.core.recipes.LMRecipes;
 import latmod.latblocks.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -120,5 +121,5 @@ public class ItemMaterialsLB extends ItemLB
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconFromDamageForRenderPass(int m, int r)
-	{ return (m >= 0 && m < icons.length) ? icons[m] : LatCoreMC.Client.unknownItemIcon; }
+	{ return (m >= 0 && m < icons.length) ? icons[m] : LatCoreMCClient.unknownItemIcon; }
 }

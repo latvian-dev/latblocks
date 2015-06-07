@@ -1,6 +1,6 @@
 package latmod.latblocks;
 
-import latmod.core.LMProxy;
+import latmod.ftbu.core.LMProxy;
 import latmod.latblocks.tile.TileFountain;
 
 public class LatBlocksCommon extends LMProxy // LatBlocksClient

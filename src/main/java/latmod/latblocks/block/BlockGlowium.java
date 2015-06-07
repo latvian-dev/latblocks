@@ -2,11 +2,11 @@ package latmod.latblocks.block;
 
 import java.util.List;
 
-import latmod.core.*;
-import latmod.core.mod.*;
-import latmod.core.recipes.LMRecipes;
-import latmod.core.tile.*;
-import latmod.core.util.FastList;
+import latmod.ftbu.FTBUConfig;
+import latmod.ftbu.core.*;
+import latmod.ftbu.core.recipes.LMRecipes;
+import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
@@ -178,7 +178,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item j, CreativeTabs c, List l)
 	{
-		if(LCConfig.Client.addAllColorItems)
+		if(FTBUConfig.Client.addAllColorItems)
 		{
 			for(int i = 0; i < 16; i++)
 				l.add(new ItemStack(this, 1, i));

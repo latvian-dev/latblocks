@@ -1,7 +1,7 @@
 package latmod.latblocks.tile.tank;
-import latmod.core.ParticleHelper;
-import latmod.core.mod.LC;
-import latmod.core.tile.Tank;
+import latmod.ftbu.FTBU;
+import latmod.ftbu.core.ParticleHelper;
+import latmod.ftbu.core.tile.Tank;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -43,7 +43,7 @@ public class TileVoidTank extends TileTankBase
 			double y = yCoord + s + ParticleHelper.rand.nextFloat() * (1D - s * 2D);
 			double z = zCoord + s + ParticleHelper.rand.nextFloat() * (1D - s * 2D);
 			int[] col = { 0xAA000000, 0xAA666666, 0xAA3300FF };
-			LC.proxy.spawnDust(worldObj, x, y, z, col[ParticleHelper.rand.nextInt(col.length)]);
+			FTBU.proxy.spawnDust(worldObj, x, y, z, col[ParticleHelper.rand.nextInt(col.length)]);
 		}
 	}
 	

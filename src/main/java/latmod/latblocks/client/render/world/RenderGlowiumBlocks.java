@@ -1,8 +1,7 @@
 package latmod.latblocks.client.render.world;
 
-import latmod.core.LatCoreMC;
-import latmod.core.client.*;
-import latmod.core.tile.IPaintable;
+import latmod.ftbu.core.client.*;
+import latmod.ftbu.core.tile.IPaintable;
 import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.tile.TileGlowium;
 import net.minecraft.block.Block;
@@ -47,10 +46,10 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		renderBlocks.setRenderBounds(d, d, d, 1D - d, 1D - d, 1D - d);
 		GL11.glPushMatrix();
 		rotateBlocks();
-		LatCoreMC.Client.pushMaxBrightness();
+		LatCoreMCClient.pushMaxBrightness();
 		renderBlocks.setOverrideBlockTexture(bg.getGlowItemIcon());
 		renderBlocks.renderBlockAsItem(b, meta, 1F);
-		LatCoreMC.Client.popMaxBrightness();
+		LatCoreMCClient.popMaxBrightness();
 		GL11.glPopMatrix();
 	}
 	

@@ -1,8 +1,8 @@
 package latmod.latblocks.tile;
-import latmod.core.*;
-import latmod.core.client.LMGuiButtons;
-import latmod.core.tile.*;
-import latmod.core.util.MathHelperLM;
+import latmod.ftbu.core.*;
+import latmod.ftbu.core.client.LMGuiButtons;
+import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;

@@ -1,6 +1,6 @@
 package latmod.latblocks.tile.tank;
 
-import latmod.core.tile.*;
+import latmod.ftbu.core.tile.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;

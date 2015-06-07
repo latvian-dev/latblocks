@@ -2,7 +2,7 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
-import latmod.core.EnumDyeColor;
+import latmod.ftbu.core.EnumDyeColor;
 import latmod.latblocks.item.ItemGlasses;
 import mcp.mobius.waila.api.*;
 import net.minecraft.item.ItemStack;

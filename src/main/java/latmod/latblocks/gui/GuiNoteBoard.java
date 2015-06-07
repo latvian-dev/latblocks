@@ -1,5 +1,5 @@
 package latmod.latblocks.gui;
-import latmod.core.gui.*;
+import latmod.ftbu.core.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileNoteBoard;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,8 +1,8 @@
 package latmod.latblocks.gui;
 import java.util.ArrayList;
 
-import latmod.core.client.LMGuiButtons;
-import latmod.core.gui.*;
+import latmod.ftbu.core.client.LMGuiButtons;
+import latmod.ftbu.core.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 

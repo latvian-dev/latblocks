@@ -1,5 +1,5 @@
 package latmod.latblocks.block.tank;
-import latmod.core.tile.TileLM;
+import latmod.ftbu.core.tile.TileLM;
 import latmod.latblocks.tile.tank.TileVoidTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.*;

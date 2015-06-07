@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
-import latmod.core.*;
-import latmod.core.util.FastList;
+import latmod.ftbu.core.*;
+import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;

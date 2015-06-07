@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render.tile;
 
-import latmod.core.client.TileRenderer;
+import latmod.ftbu.core.client.TileRenderer;
 import latmod.latblocks.tile.TileNoteBoard;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

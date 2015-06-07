@@ -1,8 +1,8 @@
 package latmod.latblocks.client.render.world;
-import latmod.core.LatCoreMC;
-import latmod.core.client.BlockRendererLM;
-import latmod.core.tile.*;
-import latmod.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.client.*;
+import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.tile.IPaintable.Paint;
 import latmod.latblocks.block.paintable.BlockPSlope;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -62,7 +62,7 @@ public class RenderPSlope extends BlockRendererLM
 		for(int i = 0; i < 6; i++)
 		{
 			boolean isSolid = t.isSolid(i);
-			defIcon[i] = isSolid ? b.getBlockTextureFromSide(1) : LatCoreMC.Client.blockNullIcon;
+			defIcon[i] = isSolid ? b.getBlockTextureFromSide(1) : LatCoreMCClient.blockNullIcon;
 			p[i] = isSolid ? t.getPaint(i) : null;
 		}
 		

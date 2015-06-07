@@ -2,10 +2,10 @@ package latmod.latblocks.block;
 
 import java.util.List;
 
-import latmod.core.LMMod;
-import latmod.core.block.BlockLM;
-import latmod.core.item.ItemBlockLM;
-import latmod.core.util.FastList;
+import latmod.ftbu.core.LMMod;
+import latmod.ftbu.core.block.BlockLM;
+import latmod.ftbu.core.item.ItemBlockLM;
+import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

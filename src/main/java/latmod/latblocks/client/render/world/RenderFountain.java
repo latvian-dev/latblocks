@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render.world;
-import latmod.core.client.BlockRendererLM;
-import latmod.core.tile.IPaintable;
+import latmod.ftbu.core.client.BlockRendererLM;
+import latmod.ftbu.core.tile.IPaintable;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;

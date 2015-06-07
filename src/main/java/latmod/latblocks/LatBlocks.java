@@ -1,11 +1,11 @@
 package latmod.latblocks;
-import latmod.core.*;
+import latmod.ftbu.core.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
 
-@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:LatCoreMC")
+@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:FTBU")
 public class LatBlocks
 {
 	protected static final String MOD_ID = "LatBlocks";
@@ -16,13 +16,14 @@ public class LatBlocks
 	@SidedProxy(clientSide = "latmod.latblocks.client.LatBlocksClient", serverSide = "latmod.latblocks.LatBlocksCommon")
 	public static LatBlocksCommon proxy;
 	
+	@LMMod.Instance(MOD_ID)
 	public static LMMod mod;
 	public static CreativeTabs tab;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		mod = new LMMod(e, new LatBlocksConfig(e), null);
+		LMMod.init(this, new LatBlocksConfig(e), null);
 		
 		LatBlocksItems.init();
 		mod.onPostLoaded();

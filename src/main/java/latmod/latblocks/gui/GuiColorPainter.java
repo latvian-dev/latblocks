@@ -1,8 +1,8 @@
 package latmod.latblocks.gui;
-import latmod.core.EnumDyeColor;
-import latmod.core.client.LMRenderHelper;
-import latmod.core.gui.*;
-import latmod.core.net.*;
+import latmod.ftbu.core.EnumDyeColor;
+import latmod.ftbu.core.client.LMRenderHelper;
+import latmod.ftbu.core.gui.*;
+import latmod.ftbu.core.net.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;

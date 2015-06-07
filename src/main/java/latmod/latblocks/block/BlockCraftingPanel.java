@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
-import latmod.core.LatCoreMC;
-import latmod.core.tile.*;
+import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

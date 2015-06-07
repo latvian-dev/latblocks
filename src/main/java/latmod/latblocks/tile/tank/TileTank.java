@@ -2,8 +2,8 @@ package latmod.latblocks.tile.tank;
 
 import java.util.List;
 
-import latmod.core.InvUtils;
-import latmod.core.tile.*;
+import latmod.ftbu.core.InvUtils;
+import latmod.ftbu.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;

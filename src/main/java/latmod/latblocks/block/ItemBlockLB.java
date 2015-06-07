@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 
-import latmod.core.item.ItemBlockLM;
-import latmod.core.util.*;
+import latmod.ftbu.core.item.ItemBlockLM;
+import latmod.ftbu.core.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

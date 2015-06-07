@@ -2,8 +2,8 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
-import latmod.core.InvUtils;
-import latmod.core.tile.*;
+import latmod.ftbu.core.InvUtils;
+import latmod.ftbu.core.tile.*;
 import latmod.latblocks.LatBlocks;
 import mcp.mobius.waila.api.*;
 import net.minecraft.block.Block;

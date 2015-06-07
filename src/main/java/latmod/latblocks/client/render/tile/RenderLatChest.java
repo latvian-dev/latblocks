@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render.tile;
-import latmod.core.LatCoreMC;
-import latmod.core.client.TileRenderer;
+import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.client.*;
 import latmod.latblocks.tile.TileQChest;
 
 import org.lwjgl.opengl.GL11;
@@ -40,7 +40,7 @@ public class RenderLatChest extends TileRenderer<TileQChest>
 			GL11.glTranslated(0.5D, 0.23D, 1D / 16D - 0.001D);
 			GL11.glColor4f(1F, 1F, 1F, 1F);
 			
-			if(glow) LatCoreMC.Client.pushMaxBrightness();
+			if(glow) LatCoreMCClient.pushMaxBrightness();
 			
 			int ss = func_147498_b().getStringWidth(s);
 			double d = 1D / Math.max((ss + 30), 64);
@@ -54,7 +54,7 @@ public class RenderLatChest extends TileRenderer<TileQChest>
 				GL11.glPopMatrix();
 			}
 			
-			if(glow) LatCoreMC.Client.popMaxBrightness();
+			if(glow) LatCoreMCClient.popMaxBrightness();
 			
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();

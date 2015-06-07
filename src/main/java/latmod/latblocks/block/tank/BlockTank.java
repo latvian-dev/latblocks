@@ -1,7 +1,7 @@
 package latmod.latblocks.block.tank;
-import latmod.core.ODItems;
-import latmod.core.tile.TileLM;
-import latmod.core.util.*;
+import latmod.ftbu.core.ODItems;
+import latmod.ftbu.core.tile.TileLM;
+import latmod.ftbu.core.util.*;
 import latmod.latblocks.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;

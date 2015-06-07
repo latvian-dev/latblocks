@@ -1,5 +1,5 @@
 package latmod.latblocks.block;
-import latmod.core.LatCoreMC;
+import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.latblocks.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -50,7 +50,7 @@ public class BlockLinedBlock extends BlockGlowium
 	{
 		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[s];
 		if(isAt(iba, x + fd.offsetX, y + fd.offsetY, z + fd.offsetZ, iba.getBlockMetadata(x, y, z)) == 1)
-			return LatCoreMC.Client.blockNullIcon;
+			return LatCoreMCClient.blockNullIcon;
 		
 		int m = iba.getBlockMetadata(x, y, z);
 		

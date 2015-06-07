@@ -1,6 +1,6 @@
 package latmod.latblocks.client;
-import latmod.core.LatCoreMC;
-import latmod.core.util.MathHelperLM;
+import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;

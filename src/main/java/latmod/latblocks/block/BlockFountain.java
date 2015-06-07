@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
-import latmod.core.ParticleHelper;
-import latmod.core.tile.*;
-import latmod.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.ParticleHelper;
+import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.tile.IPaintable.Paint;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.tank.BlockTank;
 import latmod.latblocks.client.render.world.RenderFountain;

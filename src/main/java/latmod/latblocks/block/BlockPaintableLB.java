@@ -2,10 +2,10 @@ package latmod.latblocks.block;
 
 import java.util.Random;
 
-import latmod.core.ParticleHelper;
-import latmod.core.tile.*;
-import latmod.core.tile.IPaintable.Paint;
-import latmod.core.util.*;
+import latmod.ftbu.core.ParticleHelper;
+import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;

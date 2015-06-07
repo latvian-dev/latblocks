@@ -1,7 +1,7 @@
 package latmod.latblocks;
 
-import latmod.core.ILMGuiHandler;
-import latmod.core.gui.ContainerEmpty;
+import latmod.ftbu.core.ILMGuiHandler;
+import latmod.ftbu.core.gui.ContainerEmpty;
 import latmod.latblocks.gui.GuiColorPainter;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;

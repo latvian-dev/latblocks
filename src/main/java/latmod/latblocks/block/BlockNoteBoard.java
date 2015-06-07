@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
 
-import latmod.core.ODItems;
+import latmod.ftbu.core.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.paintable.BlockPCover;
 import latmod.latblocks.tile.*;

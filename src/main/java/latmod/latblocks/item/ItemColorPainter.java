@@ -1,7 +1,7 @@
 package latmod.latblocks.item;
-import latmod.core.*;
-import latmod.core.item.IClientActionItem;
-import latmod.core.util.FastList;
+import latmod.ftbu.core.*;
+import latmod.ftbu.core.item.IClientActionItem;
+import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocksCommon;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;

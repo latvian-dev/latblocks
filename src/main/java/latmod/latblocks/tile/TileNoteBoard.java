@@ -2,10 +2,10 @@ package latmod.latblocks.tile;
 
 import java.util.*;
 
-import latmod.core.LatCoreMC;
-import latmod.core.gui.ContainerEmpty;
-import latmod.core.tile.*;
-import latmod.core.util.MathHelperLM;
+import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.gui.ContainerEmpty;
+import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.block.Placement;
 import latmod.latblocks.gui.GuiNoteBoard;
 import mcp.mobius.waila.api.*;

@@ -1,6 +1,6 @@
 package latmod.latblocks.block.paintable;
 
-import latmod.core.util.*;
+import latmod.ftbu.core.util.*;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;
