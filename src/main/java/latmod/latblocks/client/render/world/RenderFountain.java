@@ -2,6 +2,7 @@ package latmod.latblocks.client.render.world;
 import latmod.ftbu.core.client.BlockRendererLM;
 import latmod.ftbu.core.tile.IPaintable;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -110,7 +111,7 @@ public class RenderFountain extends BlockRendererLM
 		renderBlocks.clearOverrideBlockTexture();
 		
 		GL11.glPushMatrix();
-		rotateBlocks();
+		LatBlocksClient.rotateBlocks();
 		
 		for(int i = 0; i < boxes.length; i++)
 		{

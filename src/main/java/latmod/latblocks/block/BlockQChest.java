@@ -66,7 +66,7 @@ public class BlockQChest extends BlockLB
 	public IIcon getIcon(int s, int m)
 	{
 		if(s == 0 || s == 1) return chestTop;
-		return (s == LatCoreMC.FRONT) ? chestFront : blockIcon;
+		return (s == 3) ? chestFront : blockIcon;
 	}
 	
 	@SideOnly(Side.CLIENT)

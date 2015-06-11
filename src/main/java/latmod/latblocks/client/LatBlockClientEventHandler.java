@@ -1,6 +1,5 @@
 package latmod.latblocks.client;
 
-import latmod.ftbu.FTBUConfig;
 import latmod.ftbu.core.item.ItemBlockLM;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.block.BlockPaintableLB;
@@ -23,7 +22,7 @@ public class LatBlockClientEventHandler
 	@SubscribeEvent
 	public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent e)
 	{
-		if(!FTBUConfig.Client.renderHighlights) return;
+		if(!LatBlocksClient.renderHighlights.getB()) return;
 		
 		if (e.currentItem != null && e.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && e.currentItem.getItem() instanceof ItemBlock)
 		{

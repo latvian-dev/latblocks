@@ -1,5 +1,6 @@
 package latmod.latblocks.client;
 import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.client.ClientConfig;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
@@ -10,14 +11,27 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityBlockDustFX;
 import net.minecraft.client.renderer.entity.RenderManager;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class LatBlocksClient extends LatBlocksCommon
 {
+	private static final ClientConfig clientConfig = new ClientConfig("LatBlocks");
+	public static final ClientConfig.Property rotateBlocks = new ClientConfig.Property("RotateBlocks", true);
+	public static final ClientConfig.Property renderHighlights = new ClientConfig.Property("RenderHighlights", true);
+	public static final ClientConfig.Property addAllGlowiumBlocks = new ClientConfig.Property("AddAllGlowiumBlocks", true);
+	
 	public void preInit(FMLPreInitializationEvent e)
 	{
+		clientConfig.add(rotateBlocks);
+		clientConfig.add(renderHighlights);
+		clientConfig.add(addAllGlowiumBlocks);
+		ClientConfig.Registry.add(clientConfig);
+		
 		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, true, false, false);
 		
 		RenderNoteBoard.instance.register(TileNoteBoard.class);
@@ -60,4 +74,7 @@ public class LatBlocksClient extends LatBlocksCommon
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityBlockDustFX(t.getWorldObj(), x, y + MathHelperLM.rand.nextFloat() * 0.3D, z, mx, my, mz, block, 0));
 		}
 	}
+	
+	public static void rotateBlocks()
+	{ if(rotateBlocks.getB()) GL11.glRotated(Minecraft.getSystemTime() * 0.053D, 0D, 1D, 0D); }
 }

@@ -1,8 +1,8 @@
 package latmod.latblocks.client.render.world;
-import latmod.ftbu.FTBUConfig;
 import latmod.ftbu.core.client.BlockRendererLM;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.block.tank.BlockTankBase;
+import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -85,7 +85,7 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 	{ return true; }
 	
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
-	{ return helper != ItemRendererHelper.ENTITY_ROTATION || !FTBUConfig.Client.rotateBlocks; }
+	{ return helper != ItemRendererHelper.ENTITY_ROTATION || !LatBlocksClient.rotateBlocks.getB(); }
 	
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
@@ -98,7 +98,7 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		double p = 1D / 16D;
 		
 		GL11.glPushMatrix();
-		rotateBlocks();
+		LatBlocksClient.rotateBlocks();
 		
 		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 		GL11.glEnable(GL11.GL_LIGHTING);

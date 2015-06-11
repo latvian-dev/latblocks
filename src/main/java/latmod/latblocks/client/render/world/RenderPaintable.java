@@ -4,6 +4,7 @@ import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.tile.IPaintable.Paint;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.block.BlockPaintableLB;
+import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -33,7 +34,7 @@ public class RenderPaintable extends BlockRendererLM
 		renderBlocks.setOverrideBlockTexture(((BlockPaintableLB)b).getDefaultItemIcon());
 		
 		GL11.glPushMatrix();
-		rotateBlocks();
+		LatBlocksClient.rotateBlocks();
 		
 		for(int i = 0; i < boxes.size(); i++)
 		{

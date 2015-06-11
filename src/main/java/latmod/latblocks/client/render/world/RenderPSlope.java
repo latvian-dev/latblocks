@@ -1,9 +1,9 @@
 package latmod.latblocks.client.render.world;
-import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.client.*;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.tile.IPaintable.Paint;
 import latmod.latblocks.block.paintable.BlockPSlope;
+import latmod.latblocks.client.LatBlocksClient;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
@@ -30,11 +30,11 @@ public class RenderPSlope extends BlockRendererLM
 		renderBlocks.setOverrideBlockTexture(b.getBlockTextureFromSide(1));
 		
 		GL11.glPushMatrix();
-		rotateBlocks();
+		LatBlocksClient.rotateBlocks();
 		
 		for(int i = 0; i < 6; i++)
 		{
-			if(i != 0 && i != LatCoreMC.FRONT)
+			if(i != 0 && i != 3)
 			{
 				GL11.glPushMatrix();
 				renderBlocks.setRenderBounds(renderBlocks.fullBlock);

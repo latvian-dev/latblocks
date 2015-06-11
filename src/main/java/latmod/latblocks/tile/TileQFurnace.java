@@ -211,8 +211,8 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	
 	public int[] getAccessibleSlotsFromSide(int s)
 	{
-		if(s == LatCoreMC.BOTTOM) return new int[]{ SLOT_FUEL };
-		if(s == LatCoreMC.TOP) return new int[]{ SLOT_INPUT };
+		if(s == 0) return new int[]{ SLOT_FUEL };
+		if(s == 1) return new int[]{ SLOT_INPUT };
 		return new int[] { SLOT_OUTPUT };
 	}
 	
