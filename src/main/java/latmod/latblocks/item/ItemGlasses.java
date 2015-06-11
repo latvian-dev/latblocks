@@ -1,8 +1,8 @@
 package latmod.latblocks.item;
-import latmod.ftbu.FTBU;
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.item.IItemLM;
 import latmod.ftbu.core.util.MathHelperLM;
+import latmod.ftbu.mod.FTBU;
 import latmod.latblocks.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;

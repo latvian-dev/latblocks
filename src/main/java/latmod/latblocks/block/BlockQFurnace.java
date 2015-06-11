@@ -1,5 +1,5 @@
 package latmod.latblocks.block;
-import latmod.ftbu.core.*;
+import latmod.ftbu.core.ODItems;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocksConfig;

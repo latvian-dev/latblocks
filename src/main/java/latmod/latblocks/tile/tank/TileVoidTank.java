@@ -1,7 +1,7 @@
 package latmod.latblocks.tile.tank;
-import latmod.ftbu.FTBU;
 import latmod.ftbu.core.ParticleHelper;
 import latmod.ftbu.core.tile.Tank;
+import latmod.ftbu.mod.FTBU;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
