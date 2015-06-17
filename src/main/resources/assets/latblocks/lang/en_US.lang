@@ -71,3 +71,9 @@ latblocks:item.colorPainter.name=Color Painter
 latblocks:item.blockPainterMulti.name=[WIP] Multi-Block Painter
 latblocks:item.hammer.name=LatBlocks Hammer
 latblocks:item.glasses.name=LatBlocks Goggles
+
+#ClientConfig
+config.group.latblocks=LatBlocks
+config.property.rotate_blocks=Rotate Blocks
+config.property.render_highlights=Item OreDict Names
+config.property.all_glowium_blocks=Debug Info

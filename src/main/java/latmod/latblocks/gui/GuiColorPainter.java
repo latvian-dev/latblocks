@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.*;
 public class GuiColorPainter extends GuiLM
 {
 	public static final ResourceLocation texLoc = LatBlocks.mod.getLocation("textures/gui/colorPainter.png");
-	public static final TextureCoords colTex = new TextureCoords(texLoc, 156, 0);
+	public static final TextureCoords colTex = new TextureCoords(texLoc, 156, 0, 16, 16);
 	
 	public final ButtonLM buttons[] = new ButtonLM[16];
 	

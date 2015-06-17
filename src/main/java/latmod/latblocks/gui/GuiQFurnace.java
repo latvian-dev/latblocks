@@ -10,10 +10,8 @@ import cpw.mods.fml.relauncher.*;
 public class GuiQFurnace extends GuiLM
 {
 	public static final ResourceLocation texLoc = LatBlocks.mod.getLocation("textures/gui/qfurnace.png");
-	
-	public final TextureCoords
-	texFuel = new TextureCoords(texLoc, 176, 0),
-	texProgress = new TextureCoords(texLoc, 176, 14);
+	public static final TextureCoords texFuel = new TextureCoords(texLoc, 176, 0, 14, 14);
+	public static final TextureCoords texProgress = new TextureCoords(texLoc, 176, 14, 22, 15);
 	
 	public TileQFurnace furnace;
 	public WidgetLM barFuel, barProgress;
@@ -23,7 +21,7 @@ public class GuiQFurnace extends GuiLM
 		super(c, texLoc);
 		furnace = (TileQFurnace)c.inv;
 		
-		widgets.add(barFuel = new WidgetLM(this, 57, 36, 14, 14)
+		widgets.add(barFuel = new WidgetLM(this, 57, 36, texFuel.width, texFuel.height)
 		{
 			public void addMouseOverText(FastList<String> l)
 			{
@@ -32,7 +30,7 @@ public class GuiQFurnace extends GuiLM
 				l.add(d + " items");
 			}
 		});
-		widgets.add(barProgress = new WidgetLM(this, 80, 35, 22, 15)
+		widgets.add(barProgress = new WidgetLM(this, 80, 35, texProgress.width, texProgress.height)
 		{
 			public void addMouseOverText(FastList<String> l)
 			{
