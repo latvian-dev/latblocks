@@ -3,14 +3,12 @@ import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.client.LMRenderHelper;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.net.*;
+import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
@@ -33,7 +31,7 @@ public class GuiColorPainter extends GuiLM
 			int x = (i % 8) * 18 + 7;
 			int y = (i / 8) * 18 + 6;
 			
-			widgets.add(buttons[id] = new ButtonLM(this, x, y, 16, 16)
+			buttons[id] = new ButtonLM(this, x, y, 16, 16)
 			{
 				public void onButtonPressed(int b)
 				{
@@ -42,15 +40,21 @@ public class GuiColorPainter extends GuiLM
 					MessageLM.NET.sendToServer(new MessageClientItemAction(ItemColorPainter.ACTION, tag));
 					container.player.closeScreen();
 				}
-			});
+			};
 			
 			buttons[id].title = EnumDyeColor.VALUES[id].toString();
 		}
 	}
 	
-	public void drawGuiContainerBackgroundLayer(float f, int mx, int my)
+	public void addWidgets(FastList<WidgetLM> l)
 	{
-		super.drawGuiContainerBackgroundLayer(f, mx, my);
+		for(int i = 0; i < buttons.length; i++)
+			l.add(buttons[i]);
+	}
+	
+	public void drawBackground()
+	{
+		super.drawBackground();
 		
 		for(int i = 0; i < buttons.length; i++)
 		{
@@ -59,11 +63,5 @@ public class GuiColorPainter extends GuiLM
 		}
 		
 		LMRenderHelper.recolor();
-	}
-	
-	public void drawText(int mx, int my)
-	{
-		super.drawText(mx, my);
-		GL11.glDisable(GL11.GL_LIGHTING);
 	}
 }

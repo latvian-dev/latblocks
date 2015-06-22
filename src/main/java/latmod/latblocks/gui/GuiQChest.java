@@ -1,13 +1,9 @@
 package latmod.latblocks.gui;
-import java.util.ArrayList;
-
 import latmod.ftbu.core.client.LMGuiButtons;
 import latmod.ftbu.core.gui.*;
+import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
@@ -25,48 +21,49 @@ public class GuiQChest extends GuiLM
 		ySize = 247;
 		chest = (TileQChest)c.inv;
 		
-		widgets.add(textBoxLabel = new TextBoxLM(this, 7, 6, 215, 18)
+		textBoxLabel = new TextBoxLM(this, 7, 6, 215, 18)
 		{
 			public void textChanged()
 			{
 				chest.clientCustomName(textBoxLabel.text);
 			}
-		});
+		};
 		
 		textBoxLabel.charLimit = 40;
 		
 		if(chest.customName != null)
 			textBoxLabel.text = chest.customName;
 		
-		widgets.add(buttonSecurity = new ButtonLM(this, 225, 7, 16, 16)
+		buttonSecurity = new ButtonLM(this, 225, 7, 16, 16)
 		{
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
 				chest.clientPressButton(LMGuiButtons.SECURITY, b);
 			}
-		});
+			
+			public void addMouseOverText(FastList<String> l)
+			{
+				l.add(chest.security.level.getText());
+			}
+		};
 	}
 	
-	public void drawGuiContainerBackgroundLayer(float f, int mx, int my)
+	public void addWidgets(FastList<WidgetLM> l)
 	{
-		super.drawGuiContainerBackgroundLayer(f, mx, my);
-		
+		l.add(textBoxLabel);
+		l.add(buttonSecurity);
+	}
+	
+	public void drawBackground()
+	{
+		super.drawBackground();
 		buttonSecurity.render(Icons.security[chest.security.level.ID]);
 	}
 	
-	public void drawScreen(int mx, int my, float f)
+	public void drawText(FastList<String> l)
 	{
-		super.drawScreen(mx, my, f);
-		
-		GL11.glDisable(GL11.GL_LIGHTING);
 		textBoxLabel.render(11, 11, 0xCECECE);
-		
-		ArrayList<String> al = new ArrayList<String>();
-		
-		if(buttonSecurity.mouseOver(mx, my))
-			al.add(chest.security.level.getText());
-		
-		if(!al.isEmpty()) drawHoveringText(al, mx, my, fontRendererObj);
+		super.drawText(l);
 	}
 }

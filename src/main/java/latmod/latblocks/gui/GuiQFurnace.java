@@ -13,15 +13,15 @@ public class GuiQFurnace extends GuiLM
 	public static final TextureCoords texFuel = new TextureCoords(texLoc, 176, 0, 14, 14);
 	public static final TextureCoords texProgress = new TextureCoords(texLoc, 176, 14, 22, 15);
 	
-	public TileQFurnace furnace;
-	public WidgetLM barFuel, barProgress;
+	public final TileQFurnace furnace;
+	public final WidgetLM barFuel, barProgress;
 	
 	public GuiQFurnace(final ContainerQFurnace c)
 	{
 		super(c, texLoc);
 		furnace = (TileQFurnace)c.inv;
 		
-		widgets.add(barFuel = new WidgetLM(this, 57, 36, texFuel.width, texFuel.height)
+		barFuel = new WidgetLM(this, 57, 36, texFuel.width, texFuel.height)
 		{
 			public void addMouseOverText(FastList<String> l)
 			{
@@ -29,8 +29,9 @@ public class GuiQFurnace extends GuiLM
 				d = ((int)(d * 10D)) / 10D;
 				l.add(d + " items");
 			}
-		});
-		widgets.add(barProgress = new WidgetLM(this, 80, 35, texProgress.width, texProgress.height)
+		};
+		
+		barProgress = new WidgetLM(this, 80, 35, texProgress.width, texProgress.height)
 		{
 			public void addMouseOverText(FastList<String> l)
 			{
@@ -40,12 +41,18 @@ public class GuiQFurnace extends GuiLM
 					l.add(d + "%");
 				}
 			}
-		});
+		};
 	}
 	
-	public void drawGuiContainerBackgroundLayer(float f, int mx, int my)
+	public void addWidgets(FastList<WidgetLM> l)
 	{
-		super.drawGuiContainerBackgroundLayer(f, mx, my);
+		l.add(barFuel);
+		l.add(barProgress);
+	}
+	
+	public void drawBackground()
+	{
+		super.drawBackground();
 		
 		if(furnace.fuel > 0) barFuel.render(texFuel);
 		barProgress.render(texProgress, furnace.progress / TileQFurnace.MAX_PROGRESS, 1D);

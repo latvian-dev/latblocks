@@ -4,7 +4,6 @@ import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.ftbu.core.recipes.LMRecipes;
 import latmod.latblocks.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -40,16 +39,11 @@ public class ItemMaterialsLB extends ItemLB
 	public IIcon[] icons;
 	
 	public ItemMaterialsLB(String s)
-	{ super(s); }
-	
-	public String getPrefix()
-	{ return null; }
-	
-	public LMMod getMod()
-	{ return LatBlocks.mod; }
-	
-	public CreativeTabs getCreativeTab()
-	{ return LatBlocks.tab; }
+	{
+		super(s);
+		setHasSubtypes(true);
+		setMaxDamage(0);
+	}
 	
 	public void onPostLoaded()
 	{
