@@ -1,9 +1,8 @@
 package latmod.latblocks.block;
-import java.util.ArrayList;
-
 import latmod.ftbu.core.ODItems;
+import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.FastList;
+import latmod.ftbu.core.util.*;
 import latmod.latblocks.LatBlocksConfig;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQChest;
@@ -20,6 +19,8 @@ public class BlockQChest extends BlockLB
 {
 	@SideOnly(Side.CLIENT)
 	private IIcon chestFront, chestTop;
+	
+	private static final TileQChest tempTile = new TileQChest();
 	
 	public BlockQChest(String s)
 	{
@@ -71,38 +72,34 @@ public class BlockQChest extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
-	{
-		if(s == 0 || s == 1) return chestTop;
-		return (s == iba.getBlockMetadata(x, y, z)) ? chestFront : blockIcon;
-	}
-	
-	public ArrayList<ItemStack> getDrops(World w, int x, int y, int z, int m, int f)
-	{ return new ArrayList<ItemStack>(); }
+	{ return LatCoreMCClient.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
-	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> al)
+	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
 	{
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileQChest.ITEM_TAG))
 		{
-			TileQChest t = new TileQChest();
-			t.readTileData(is.stackTagCompound.getCompoundTag(TileQChest.ITEM_TAG));
+			tempTile.readTileData(is.stackTagCompound.getCompoundTag(TileQChest.ITEM_TAG));
 			
-			if(is.hasDisplayName()) al.add(new ItemStack(is.getItem()).getDisplayName());
+			if(is.hasDisplayName()) l.add(new ItemStack(is.getItem()).getDisplayName());
 			
 			int slotsUsed = 0;
 			int items = 0;
 			
-			for(int i = 0; i < t.items.length; i++)
+			for(int i = 0; i < tempTile.items.length; i++)
 			{
-				if(t.items[i] != null)
+				if(tempTile.items[i] != null)
 				{
 					slotsUsed++;
-					items += t.items[i].stackSize;
+					items += tempTile.items[i].stackSize;
 				}
 			}
 			
-			al.add("Slots Used: " + slotsUsed + " / " + t.items.length);
-			al.add("Items in chest: " + items);
+			l.add("Slots Used: " + slotsUsed + " / " + tempTile.items.length);
+			l.add("Items in chest: " + items);
+			l.add("Title: " + tempTile.customName);
+			l.add("Chest Color: " + LatCore.Colors.getHex(tempTile.colorChest));
+			l.add("Text Color: " + LatCore.Colors.getHex(tempTile.colorText));
 		}
 	}
 }

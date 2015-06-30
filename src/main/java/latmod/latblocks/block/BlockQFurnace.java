@@ -19,6 +19,8 @@ public class BlockQFurnace extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public IIcon iconOn, iconOff;
 	
+	private static final TileQFurnace tempFurn = new TileQFurnace();
+	
 	public BlockQFurnace(String s)
 	{
 		super(s, Material.rock);
@@ -78,20 +80,19 @@ public class BlockQFurnace extends BlockLB
 	{
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileQFurnace.ITEM_TAG))
 		{
-			TileQFurnace t = new TileQFurnace();
-			t.readTileData(is.stackTagCompound.getCompoundTag(TileQFurnace.ITEM_TAG));
+			tempFurn.readTileData(is.stackTagCompound.getCompoundTag(TileQFurnace.ITEM_TAG));
 			
-			if(t.fuel > 0)
+			if(tempFurn.fuel > 0)
 			{
-				double fuel = (t.fuel / TileQFurnace.MAX_PROGRESS);
+				double fuel = (tempFurn.fuel / TileQFurnace.MAX_PROGRESS);
 				fuel = ((int)(fuel * 10D)) / 10D;
 				l.add("Fuel: " + fuel + " items");
 			}
 			
-			if(t.progress > 0 && t.result != null)
+			if(tempFurn.progress > 0 && tempFurn.result != null)
 			{
-				int prog = (int)(t.progress * 100D / TileQFurnace.MAX_PROGRESS);
-				l.add("Progress: " + prog + "% smelting " + t.result.getDisplayName());
+				int prog = (int)(tempFurn.progress * 100D / TileQFurnace.MAX_PROGRESS);
+				l.add("Progress: " + prog + "% smelting " + tempFurn.result.getDisplayName());
 			}
 		}
 	}
