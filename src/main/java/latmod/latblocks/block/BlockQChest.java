@@ -39,7 +39,7 @@ public class BlockQChest extends BlockLB
 					'Q', Blocks.quartz_block,
 					'F', Blocks.chest,
 					'D', ODItems.DIAMOND,
-					'S', ItemMaterialsLB.STAR_DUST);
+					'S', ItemMaterialsLB.DUSTS_GLOWIUM[4]);
 		}
 	}
 	

@@ -29,8 +29,8 @@ public class BlockPaintableLamp extends BlockPaintableRS
 	
 	public int getLightValue(IBlockAccess iba, int x, int y, int z)
 	{
-		TilePaintableLamp t = (TilePaintableLamp)iba.getTileEntity(x, y, z);
-		if(t != null && t.isValid()) if(t.power > 0) return 15; return 0;
+		TilePaintableLamp t = getTile(TilePaintableLamp.class, iba, x, y, z);
+		return (t != null && t.power > 0) ? 15 : 0;
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

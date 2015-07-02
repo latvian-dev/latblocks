@@ -9,6 +9,12 @@ latblocks:tile.glowium.small.name=Small Glowium Brick
 latblocks:tile.glowium.chiseled.name=Chiseled Glowium Brick
 latblocks:tile.glowium.lined.name=Lined Glowium Block
 
+latblocks:tile.brick.gravel_brick.name=Gravel Brick
+latblocks:tile.brick.lapis_brick.name=Lapis Brick
+latblocks:tile.brick.tiny_gravel.name=Tiny Gravel Block
+latblocks:tile.brick.tiny_stonebrick.name=Tiny Stone Bricks Block
+latblocks:tile.brick.tiny_glowstone.name=Tiny Glowstone Block
+
 latblocks:tile.paintable.name=Paintable Block
 latblocks:tile.paintableRS.name=Dual Paintable Block
 latblocks:tile.paintableGS.name=Glowing Paintable Block

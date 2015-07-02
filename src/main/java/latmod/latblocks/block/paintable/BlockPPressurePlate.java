@@ -71,11 +71,9 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
-		TilePPressurePlate t = (TilePPressurePlate)iba.getTileEntity(x, y, z);
-		
+		TilePPressurePlate t = getTile(TilePPressurePlate.class, iba, x, y, z);
 		double p = 1D / 16D;
-		double h = (t != null && t.isValid() && t.isPressed) ? p / 2D : p;
-		boxes.add(AxisAlignedBB.getBoundingBox(p, 0D, p, 1D - p, h, 1D - p));
+		boxes.add(AxisAlignedBB.getBoundingBox(p, 0D, p, 1D - p, (t != null && t.isPressed) ? p / 2D : p, 1D - p));
 	}
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)

@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
@@ -130,7 +130,7 @@ public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlock
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
     {
-		Block b1 = iba.getBlock(x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s]);
+		Block b1 = iba.getBlock(x, y, z);
 		if(b1 == this) return false;
 		return b1 == Blocks.air || !b1.renderAsNormalBlock() || !b1.isOpaqueCube();
 	}

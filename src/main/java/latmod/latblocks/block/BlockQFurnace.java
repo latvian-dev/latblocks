@@ -38,7 +38,7 @@ public class BlockQFurnace extends BlockLB
 					'Q', Blocks.quartz_block,
 					'F', Blocks.furnace,
 					'D', ODItems.DIAMOND,
-					'S', ItemMaterialsLB.STAR_DUST);
+					'S', ItemMaterialsLB.DUSTS_GLOWIUM[4]);
 		}
 	}
 	
@@ -65,12 +65,8 @@ public class BlockQFurnace extends BlockLB
 	{
 		if(s == iba.getBlockMetadata(x, y, z))
 		{
-			TileQFurnace t = (TileQFurnace)iba.getTileEntity(x, y, z);
-			
-			if(t != null && t.isValid() && t.isLit())
-				return iconOn;
-			
-			return iconOff;
+			TileQFurnace t = getTile(TileQFurnace.class, iba, x, y, z);
+			return (t != null && t.isLit()) ? iconOn : iconOff;
 		}
 		return blockIcon;
 	}

@@ -11,7 +11,7 @@ public class ContainerQChest extends ContainerLM
 		super(ep, t);
 		
 		for(int y = 0; y < TileQChest.INV_H; y++) for(int x = 0; x < TileQChest.INV_W; x++)
-			addSlotToContainer(new Slot(t, x + y * TileQChest.INV_H, x * 18 + 8, y * 18 + 30));
+			addSlotToContainer(new Slot(t, x + y * TileQChest.INV_W, x * 18 + 8, y * 18 + 30));
 		
 		addPlayerSlots(44, 165);
 		

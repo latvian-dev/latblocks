@@ -4,6 +4,7 @@ import latmod.ftbu.core.util.LatCore;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.model.ModelChest;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.*;
@@ -15,6 +16,7 @@ public class RenderLatChest extends TileRenderer<TileQChest>
 {
 	public static final RenderLatChest instance = new RenderLatChest();
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/blocks/chest_model.png");
+	public static final ResourceLocation tex_color = LatBlocks.mod.getLocation("textures/blocks/chest_model_color.png");
 	public final ModelChest model = new ModelChest();
 	
 	public void renderTile(TileQChest t, double x, double y, double z, float pt)
@@ -35,13 +37,16 @@ public class RenderLatChest extends TileRenderer<TileQChest>
 		GL11.glRotatef(rotYaw, 0F, 1F, 0F);
 		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 		
-		bindTexture(tex);
-		
 		model.chestLid.rotateAngleX = -t.getLidAngle(pt);
+		
 		LatCore.Colors.setGLColor(t.colorChest, 255);
+		bindTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
+		bindTexture(tex);
+		model.chestBelow.render(0.0625F);
+		model.chestLid.render(0.0625F);
 		
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		
@@ -71,6 +76,21 @@ public class RenderLatChest extends TileRenderer<TileQChest>
 			
 			if(t.textGlows) LatCoreMCClient.popMaxBrightness();
 			GL11.glEnable(GL11.GL_LIGHTING);
+			GL11.glPopMatrix();
+		}
+		
+		GL11.glColor4f(1F, 1F, 1F, 1F);
+		
+		if(t.iconItem != null && t.iconItem.getItem() != null)
+		{
+			GL11.glPushMatrix();
+			GL11.glTranslatef(0.5F, 0.80F, 0.125F);
+			if(!(t.iconItem.getItem() instanceof ItemBlock))
+				GL11.glTranslatef(0F, 0.05F, -0.09F);
+			GL11.glRotatef(180F, 0F, 1F, 0F);
+			float iS = 0.8F;
+			GL11.glScalef(-iS, -iS, iS);
+			LMRenderHelper.renderItem(t.getWorldObj(), t.iconItem, true, true);
 			GL11.glPopMatrix();
 		}
 		

@@ -272,13 +272,14 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 				
 				if(b != null)
 				{
-					TileGlowium t = (TileGlowium)w.getTileEntity(x, y, z);
+					TileGlowium t = getTile(TileGlowium.class, w, x, y, z);
 					IPaintable.Paint[] prevPaint = t.paint.clone();
 					
 					w.setBlock(x, y, z, b, meta, 3);
 					
-					t = (TileGlowium)w.getTileEntity(x, y, z);
-					if(t != null && t.isValid())
+					t = getTile(TileGlowium.class, w, x, y, z);
+					
+					if(t != null)
 					{
 						for(int i = 0; i < t.paint.length; i++)
 							t.paint[i] = prevPaint[i];

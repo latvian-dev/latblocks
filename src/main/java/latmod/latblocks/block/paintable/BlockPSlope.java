@@ -50,9 +50,8 @@ public class BlockPSlope extends BlockLB
 	
 	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
 	{
-		TilePSlope t = (TilePSlope) iba.getTileEntity(x, y, z);
-		if(t != null && t.isValid()) return t.isSolid(side.ordinal());
-		return true;
+		TilePSlope t = getTile(TilePSlope.class, iba, x, y, z);
+		return (t == null) ? true : t.isSolid(side.ordinal());
 	}
 	
 	@SideOnly(Side.CLIENT)

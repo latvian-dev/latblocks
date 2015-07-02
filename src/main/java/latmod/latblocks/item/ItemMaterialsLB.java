@@ -71,17 +71,9 @@ public class ItemMaterialsLB extends ItemLB
 					'G', ODItems.GLOWSTONE,
 					'Q', ODItems.QUARTZ);
 			
-			mod.recipes.addRecipe(GEMS_GLOWIUM[1], " D ", "DGD", " D ",
-					'D', EnumDyeColor.RED.dyeName,
-					'G', GEMS_GLOWIUM[0]);
-			
-			mod.recipes.addRecipe(GEMS_GLOWIUM[2], " D ", "DGD", " D ",
-					'D', EnumDyeColor.GREEN.dyeName,
-					'G', GEMS_GLOWIUM[0]);
-			
-			mod.recipes.addRecipe(GEMS_GLOWIUM[3], " D ", "DGD", " D ",
-					'D', EnumDyeColor.BLUE.dyeName,
-					'G', GEMS_GLOWIUM[0]);
+			mod.recipes.addShapelessRecipe(GEMS_GLOWIUM[1], GEMS_GLOWIUM[0], EnumDyeColor.RED.dyeName);
+			mod.recipes.addShapelessRecipe(GEMS_GLOWIUM[2], GEMS_GLOWIUM[0], EnumDyeColor.GREEN.dyeName);
+			mod.recipes.addShapelessRecipe(GEMS_GLOWIUM[3], GEMS_GLOWIUM[0], EnumDyeColor.BLUE.dyeName);
 			
 			mod.recipes.addRecipe(GEMS_GLOWIUM[4], " 1 ", "2O3", " 4 ",
 					'O', ODItems.OBSIDIAN,

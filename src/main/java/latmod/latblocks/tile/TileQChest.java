@@ -19,17 +19,25 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public static final String ITEM_TAG = "ChestData";
 	public static final String BUTTON_GLOW = "qchest.glow";
-	public static final String BUTTON_COL_CHEST = "qchest.ccol";
-	public static final String BUTTON_COL_TEXT = "qchest.tcol";
+	public static final String BUTTON_COL = "qchest.col";
+	public static final String BUTTON_SET_ITEM = "qchest.item";
 	public static final float MAX_ANGLE = (float)(MathHelperLM.HALF_PI / 4D * 3D);
 	
-	public int colorChest = 0xFFFFFFFF, colorText = 0xFF000000;
+	public int colorChest, colorText;
 	public boolean textGlows;
+	public ItemStack iconItem;
+	
 	public int playersUsing = 0;
 	public float lidAngle = 0F;
+	public float prevLidAngle = 0F;
 	
 	public TileQChest()
-	{ super(INV_W * INV_H); }
+	{
+		super(INV_W * INV_H);
+		colorChest = 0xB5B5B5;
+		colorText = 0x222222;
+		customName = "Unnamed";
+	}
 	
 	public boolean rerenderBlock()
 	{ return true; }
@@ -40,8 +48,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		colorChest = tag.hasKey("CColor") ? tag.getInteger("CColor") : 0xFFFFFFFF;
 		colorText = tag.hasKey("TColor") ? tag.getInteger("TColor") : 0xFFFFFFFF;
 		textGlows = tag.getBoolean("Glows");
-		playersUsing = tag.getByte("PlayersUsing");
-		if(playersUsing < 0) playersUsing = 0;
+		iconItem = tag.hasKey("Icon") ? ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Icon")) : null;
 	}
 	
 	public void writeTileData(NBTTagCompound tag)
@@ -50,17 +57,45 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		tag.setInteger("CColor", colorChest);
 		tag.setInteger("TColor", colorText);
 		tag.setBoolean("Glows", textGlows);
+		
+		if(iconItem != null)
+		{
+			NBTTagCompound itemTag = new NBTTagCompound();
+			iconItem.writeToNBT(itemTag);
+			tag.setTag("Icon", itemTag);
+		}
+	}
+	
+	public void readTileClientData(NBTTagCompound tag)
+	{
+		playersUsing = tag.getByte("PlayersUsing");
+		if(playersUsing < 0) playersUsing = 0;
+	}
+	
+	public void writeTileClientData(NBTTagCompound tag)
+	{
 		if(playersUsing > 0) tag.setByte("PlayersUsing", (byte)playersUsing);
 	}
 	
 	public void onUpdate()
 	{
-		if(!isServer())
+		//if(!isServer())
 		{
-			if(playersUsing > 0) lidAngle += MAX_ANGLE / 15F;
-			else lidAngle -= MAX_ANGLE / 15F;
+			//LatCoreMC.printChat(null, "playersUsing:" + playersUsing);
+			
+			prevLidAngle = lidAngle;
+			
+			float inc = 0.1F;
+			if(playersUsing > 0) lidAngle += inc;
+			else lidAngle -= inc;
+			
 			lidAngle = MathHelperLM.clampFloat(lidAngle, 0F, MAX_ANGLE);
-			//angles = playersUsing > 0 ? MAX_ANGLE : 0;
+			
+			if(lidAngle > 0F && prevLidAngle == 0F)
+				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestopen", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
+			
+			if(prevLidAngle == MAX_ANGLE && lidAngle < MAX_ANGLE)
+				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 		}
 	}
 	
@@ -110,7 +145,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		}
 	}
 	
-	public void handleButton(String button, int mouseButton, EntityPlayer ep)
+	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayer ep)
 	{
 		if(button.equals(LMGuiButtons.SECURITY))
 		{
@@ -123,10 +158,15 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		}
 		else if(button.equals(BUTTON_GLOW))
 			textGlows = !textGlows;
-		else if(button.startsWith(BUTTON_COL_CHEST))
-			colorChest = Integer.parseInt(button.substring(BUTTON_COL_CHEST.length()));
-		else if(button.startsWith(BUTTON_COL_TEXT))
-			colorText = Integer.parseInt(button.substring(BUTTON_COL_TEXT.length()));
+		else if(button.equals(BUTTON_COL))
+		{
+			int col = data.getInteger("C");
+			int i = data.getByte("ID");
+			if(i == 0) colorChest = col;
+			else colorText = col;
+		}
+		else if(button.equals(BUTTON_SET_ITEM))
+			iconItem = (data == null) ? null : ItemStack.loadItemStackFromNBT(data);
 	}
 	
 	public int[] getAccessibleSlotsFromSide(int s)
@@ -158,9 +198,6 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		if(isServer()) markDirty();
 	}
 	
-	//TODO: Make me smooth!
 	public float getLidAngle(float pt)
-	{
-		return lidAngle;
-	}
+	{ return MathHelperLM.clampFloat(lidAngle + (lidAngle - prevLidAngle) * pt, 0F, MAX_ANGLE); }
 }

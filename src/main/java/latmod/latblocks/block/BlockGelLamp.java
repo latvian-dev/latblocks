@@ -1,7 +1,6 @@
 package latmod.latblocks.block;
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.util.FastList;
-import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
@@ -52,11 +51,7 @@ public class BlockGelLamp extends BlockPaintableLB
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e) {}
 	
 	public boolean canPlaceBlockOnSide(World w, int x, int y, int z, int s)
-	{
-		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[s].getOpposite();
-		Block b = w.getBlock(x + f.offsetX, y + f.offsetY, z + f.offsetZ);
-		return b == Blocks.fence || b == LatBlocksItems.b_fence || b.isSideSolid(w, x, y, z, f.getOpposite());
-	}
+	{ return true; }
 	
 	public boolean isOpaqueCube()
 	{ return false; }
@@ -109,10 +104,7 @@ public class BlockGelLamp extends BlockPaintableLB
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{
-		if(!canPlaceBlockOnSide(w, mop.blockX, mop.blockY, mop.blockZ, mop.sideHit)) return -1;
-		return ForgeDirection.VALID_DIRECTIONS[mop.sideHit].getOpposite().ordinal();
-	}
+	{ return ForgeDirection.VALID_DIRECTIONS[mop.sideHit].getOpposite().ordinal(); }
 	
 	public int damageDropped(int i)
 	{ return 0; }
