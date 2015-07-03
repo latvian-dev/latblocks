@@ -21,7 +21,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public static final String BUTTON_GLOW = "qchest.glow";
 	public static final String BUTTON_COL = "qchest.col";
 	public static final String BUTTON_SET_ITEM = "qchest.item";
-	public static final float MAX_ANGLE = (float)(MathHelperLM.HALF_PI / 4D * 3D);
+	public static final float MAX_ANGLE = 2F;
 	
 	public int colorChest, colorText;
 	public boolean textGlows;
@@ -85,7 +85,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 			
 			prevLidAngle = lidAngle;
 			
-			float inc = 0.1F;
+			float inc = 0.2F;
 			if(playersUsing > 0) lidAngle += inc;
 			else lidAngle -= inc;
 			
