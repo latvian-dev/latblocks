@@ -4,8 +4,8 @@ import latmod.ftbu.core.tile.TileLM;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockLBBricks extends BlockLB
@@ -55,4 +55,7 @@ public class BlockLBBricks extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{ return icons[m]; }
+	
+	public int getLightValue(IBlockAccess iba, int x, int y, int z)
+	{ if(iba.getBlockMetadata(x, y, z) == 4) return 15; return 0; }
 }
