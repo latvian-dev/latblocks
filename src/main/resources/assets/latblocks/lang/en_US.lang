@@ -14,6 +14,7 @@ latblocks:tile.brick.lapis_brick.name=Lapis Brick
 latblocks:tile.brick.tiny_gravel.name=Tiny Gravel Block
 latblocks:tile.brick.tiny_stonebrick.name=Tiny Stone Bricks Block
 latblocks:tile.brick.tiny_glowstone.name=Tiny Glowstone Block
+latblocks:tile.brick.gravel_tile.name=Gravel Tile
 
 latblocks:tile.paintable.name=Paintable Block
 latblocks:tile.paintableRS.name=Dual Paintable Block

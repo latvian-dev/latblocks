@@ -1,8 +1,10 @@
 package latmod.latblocks.block;
 
 import latmod.ftbu.core.tile.TileLM;
+import latmod.latblocks.LatBlocksConfig;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -16,7 +18,8 @@ public class BlockLBBricks extends BlockLB
 		"lapis_brick",
 		"tiny_gravel",
 		"tiny_stonebrick",
-		"tiny_glowstone"
+		"tiny_glowstone",
+		"gravel_tile"
 	};
 	
 	@SideOnly(Side.CLIENT)
@@ -39,6 +42,25 @@ public class BlockLBBricks extends BlockLB
 	
 	public void loadRecipes()
 	{
+		if(!LatBlocksConfig.Crafting.bricks) return;
+		
+		mod.recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB",
+				'B', new ItemStack(this, 1, 5));
+		
+		mod.recipes.addRecipe(new ItemStack(this, 4, 1), "BB", "BB",
+				'B', Blocks.lapis_block);
+		
+		mod.recipes.addRecipe(new ItemStack(this, 4, 2), "BB", "BB",
+				'B', Blocks.gravel);
+		
+		mod.recipes.addRecipe(new ItemStack(this, 4, 3), "BB", "BB",
+				'B', Blocks.stonebrick);
+		
+		mod.recipes.addRecipe(new ItemStack(this, 4, 4), "BB", "BB",
+				'B', Blocks.glowstone);
+		
+		mod.recipes.addRecipe(new ItemStack(this, 4, 5), "BB", "BB",
+				'B', new ItemStack(this, 1, 2));
 	}
 	
 	public String getUnlocalizedName(int i)

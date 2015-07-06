@@ -52,6 +52,7 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 		public static boolean glowiumDusts;
 		public static boolean chest;
 		public static boolean furnace;
+		public static boolean bricks;
 		
 		public static void load(Category c)
 		{
@@ -63,6 +64,7 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 			glowiumDusts = c.getBool("glowiumDusts", true);
 			chest = c.getBool("chest", true);
 			furnace = c.getBool("furnace", true);
+			bricks = c.getBool("bricks", true);
 		}
 	}
 }
