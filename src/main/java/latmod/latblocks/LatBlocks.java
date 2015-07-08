@@ -46,7 +46,7 @@ public class LatBlocks
 		mod.loadRecipes();
 		proxy.postInit(e);
 		
-		LatCoreMC.addLMGuiHandler(LatBlocksGuiHandler.COLOR_PAINTER, LatBlocksGuiHandler.instance);
+		ILMGuiHandler.Registry.addLMGuiHandler(LatBlocksGuiHandler.COLOR_PAINTER, LatBlocksGuiHandler.instance);
 	}
 	
 	@Mod.EventHandler

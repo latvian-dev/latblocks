@@ -32,7 +32,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(addAllGlowiumBlocks);
 		ClientConfig.Registry.add(clientConfig);
 		
-		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, true, false, false);
+		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, LatCoreMC.BusType.FORGE);
 		
 		RenderNoteBoard.instance.register(TileNoteBoard.class);
 		RenderLatChest.instance.register(TileQChest.class);

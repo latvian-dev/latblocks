@@ -5,6 +5,7 @@ import latmod.ftbu.core.util.*;
 import latmod.latblocks.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
@@ -49,7 +50,7 @@ public class BlockTank extends BlockTankBase
 		}
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 0), "SGS", "G G", "SGS",
-				'G', ODItems.GLASS,
+				'G', ODItems.GLASS_PANE_ANY,
 				'S', ODItems.STICK);
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 1), "TTT", "TIT", "TTT",
@@ -99,19 +100,24 @@ public class BlockTank extends BlockTankBase
 		
 		int meta = is.getItemDamage();
 		
-		if(meta == 5)
+		int cap = MathHelperLM.power(8, meta);
+		
+		if(meta == 5) l.add("Capacity: Endless");
+		else l.add("Capacity: " + cap + MathHelperLM.getPluralWord(cap, " bucket", " buckets"));
+		
+		if(GuiScreen.isShiftKeyDown())
 		{
-			l.add("Capacity: Endless");
-			return;
+			l.add((cap * 4) + "x " + new ItemStack(Items.stick).getDisplayName());
+			l.add((int)Math.ceil(cap * 4D * 6D / 16D) + "x " + new ItemStack(Blocks.glass).getDisplayName());
+			
+			if(cap >= 8) l.add((cap / 8) + "x " + new ItemStack(Items.iron_ingot).getDisplayName());
+			if(cap >= 64) l.add((cap / 64) + "x " + new ItemStack(Items.gold_ingot).getDisplayName());
+			if(cap >= 512) l.add((cap / 512) + "x " + new ItemStack(Items.quartz).getDisplayName());
+			if(cap >= 4096) l.add((cap / 4096) + "x " + new ItemStack(Items.diamond).getDisplayName());
+			if(meta == 5) l.add("1x " + ItemMaterialsLB.STAR_DUST.getDisplayName());
+			
+			//l.add("" + MathHelperLM.power(8, 0));
 		}
-		
-		int c = 1;
-		if(meta == 1) c = 8;
-		else if(meta == 2) c = 64;
-		else if(meta == 3) c = 512;
-		else if(meta == 4) c = 4096;
-		
-		l.add("Capacity: " + c + MathHelperLM.getPluralWord(c, " bucket", " buckets"));
 	}
 	
 	@SideOnly(Side.CLIENT)
