@@ -30,21 +30,20 @@ public class LatBlocks
 		
 		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.b_fountain));
 		
-		proxy.preInit(e);
+		proxy.preInit();
 	}
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e)
 	{
 		LatBlocksItems.postInit();
-		proxy.init(e);
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
 		mod.loadRecipes();
-		proxy.postInit(e);
+		proxy.postInit();
 		
 		ILMGuiHandler.Registry.addLMGuiHandler(LatBlocksGuiHandler.COLOR_PAINTER, LatBlocksGuiHandler.instance);
 	}

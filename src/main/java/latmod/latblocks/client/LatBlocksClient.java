@@ -14,24 +14,18 @@ import net.minecraft.client.renderer.entity.RenderManager;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class LatBlocksClient extends LatBlocksCommon
 {
 	private static final ClientConfig clientConfig = new ClientConfig("latblocks");
-	public static final ClientConfig.Property rotateBlocks = new ClientConfig.Property("rotate_blocks", false);
-	public static final ClientConfig.Property renderHighlights = new ClientConfig.Property("render_highlights", true);
-	public static final ClientConfig.Property addAllGlowiumBlocks = new ClientConfig.Property("all_glowium_blocks", true);
+	public static final ClientConfig.Property rotateBlocks = new ClientConfig.Property(clientConfig, "rotate_blocks", false);
+	public static final ClientConfig.Property renderHighlights = new ClientConfig.Property(clientConfig, "render_highlights", true);
+	public static final ClientConfig.Property addAllGlowiumBlocks = new ClientConfig.Property(clientConfig, "all_glowium_blocks", true);
 	
-	public void preInit(FMLPreInitializationEvent e)
+	public void preInit()
 	{
-		clientConfig.add(rotateBlocks);
-		clientConfig.add(renderHighlights);
-		clientConfig.add(addAllGlowiumBlocks);
-		ClientConfig.Registry.add(clientConfig);
-		
 		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, LatCoreMC.BusType.FORGE);
 		
 		RenderNoteBoard.instance.register(TileNoteBoard.class);
@@ -46,6 +40,11 @@ public class LatBlocksClient extends LatBlocksCommon
 		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_void);
 		RenderGlowiumBlocks.instance.register();
 		RenderPSlope.instance.register();
+	}
+	
+	public void postInit()
+	{
+		ClientConfig.Registry.add(clientConfig);
 	}
 	
 	public void spawnFountainParticle(TileFountain t)
