@@ -26,7 +26,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	
 	public void preInit()
 	{
-		LatCoreMC.addEventHandler(LatBlockClientEventHandler.instance, LatCoreMC.BusType.FORGE);
+		LatCoreMC.BusType.FORGE.register(LatBlockClientEventHandler.instance);
 		
 		RenderNoteBoard.instance.register(TileNoteBoard.class);
 		RenderLatChest.instance.register(TileQChest.class);

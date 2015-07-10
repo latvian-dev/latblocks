@@ -1,5 +1,6 @@
 package latmod.latblocks;
 import latmod.ftbu.core.*;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
@@ -21,7 +22,7 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 		General.tankCraftingHandler = b[1] == 1;
 	}
 	
-	public void writeConfig(NBTTagCompound tag)
+	public void writeConfig(NBTTagCompound tag, EntityPlayerMP ep)
 	{
 		tag.setIntArray("C", new int[]
 		{
