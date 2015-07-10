@@ -20,9 +20,9 @@ import cpw.mods.fml.relauncher.*;
 public class LatBlocksClient extends LatBlocksCommon
 {
 	private static final ClientConfig clientConfig = new ClientConfig("latblocks");
-	public static final ClientConfig.Property rotateBlocks = new ClientConfig.Property(clientConfig, "rotate_blocks", false);
-	public static final ClientConfig.Property renderHighlights = new ClientConfig.Property(clientConfig, "render_highlights", true);
-	public static final ClientConfig.Property addAllGlowiumBlocks = new ClientConfig.Property(clientConfig, "all_glowium_blocks", true);
+	public static final ClientConfig.Property rotateBlocks = new ClientConfig.Property("rotate_blocks", false);
+	public static final ClientConfig.Property renderHighlights = new ClientConfig.Property("render_highlights", true);
+	public static final ClientConfig.Property addAllGlowiumBlocks = new ClientConfig.Property("all_glowium_blocks", true);
 	
 	public void preInit()
 	{
@@ -44,6 +44,9 @@ public class LatBlocksClient extends LatBlocksCommon
 	
 	public void postInit()
 	{
+		clientConfig.add(rotateBlocks);
+		clientConfig.add(renderHighlights);
+		clientConfig.add(addAllGlowiumBlocks);
 		ClientConfig.Registry.add(clientConfig);
 	}
 	
