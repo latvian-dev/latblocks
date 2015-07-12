@@ -19,6 +19,7 @@ public class LatBlocks
 	@LMMod.Instance(MOD_ID)
 	public static LMMod mod;
 	public static CreativeTabs tab;
+	public static LBGlowiumCreativeTab tabGlowium;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
@@ -29,6 +30,7 @@ public class LatBlocks
 		mod.onPostLoaded();
 		
 		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.b_fountain));
+		tabGlowium = new LBGlowiumCreativeTab();
 		
 		proxy.preInit();
 	}
@@ -42,10 +44,10 @@ public class LatBlocks
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
+		tabGlowium.init();
+		
 		mod.loadRecipes();
 		proxy.postInit();
-		
-		ILMGuiHandler.Registry.addLMGuiHandler(LatBlocksGuiHandler.COLOR_PAINTER, LatBlocksGuiHandler.instance);
 	}
 	
 	@Mod.EventHandler

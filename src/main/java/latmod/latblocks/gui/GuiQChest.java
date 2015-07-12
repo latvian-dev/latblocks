@@ -1,5 +1,5 @@
 package latmod.latblocks.gui;
-import latmod.ftbu.core.InvUtils;
+import latmod.ftbu.core.*;
 import latmod.ftbu.core.client.LMGuiButtons;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.util.*;
@@ -7,6 +7,8 @@ import latmod.ftbu.mod.client.gui.GuiSelectColor;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
@@ -18,7 +20,6 @@ import cpw.mods.fml.relauncher.*;
 public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCallback
 {
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest.png");
-	public static final TextureCoords color_tex = new TextureCoords(tex, 248, 0, 8, 8);
 	
 	public final TileQChest chest;
 	public final TextBoxLM textBoxLabel;
@@ -65,7 +66,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				mc.displayGuiScreen(new GuiSelectColor(GuiQChest.this, chest.colorChest, 0));
+				GuiSelectColor.displayGui(GuiQChest.this, chest.colorChest, 0, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
@@ -80,14 +81,11 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				mc.displayGuiScreen(new GuiSelectColor(GuiQChest.this, chest.colorText, 1));
+				GuiSelectColor.displayGui(GuiQChest.this, chest.colorChest, 1, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
-			{
-				l.add(title);
-				l.add(LatCore.Colors.getHex(chest.colorText));
-			}
+			{ l.add(LatCore.Colors.getHex(chest.colorText)); }
 		};
 		
 		buttonGlow = new ButtonLM(this, 15, 216, 16, 16)
@@ -154,12 +152,12 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		
 		super.drawBackground();
 		buttonSecurity.render(Icons.security[chest.security.level.ID]);
-		LatCore.Colors.setGLColor(chest.colorChest, 200);
-		color_tex.render(this, buttonColChest.posX + 2, buttonColChest.posY + 2, 12, 12);
-		LatCore.Colors.setGLColor(chest.colorText, 200);
-		color_tex.render(this, buttonColText.posX + 2, buttonColText.posY + 2, 12, 12);
+		LatCore.Colors.setGLColor(chest.colorChest, 220);
+		buttonColChest.render(GuiQuartzBag.color_tex);
+		LatCore.Colors.setGLColor(chest.colorText, 220);
+		buttonColText.render(GuiQuartzBag.color_tex);
 		LatCore.Colors.setGLColor(0xFFFFDE0C, chest.textGlows ? 255 : 100);
-		color_tex.render(this, buttonGlow.posX + 2, buttonGlow.posY + 2, 12, 12);
+		buttonGlow.render(GuiQuartzBag.color_tex);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		buttonSetItem.render();
 	}
@@ -170,17 +168,35 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		super.drawText(l);
 	}
 	
-	public void onColorSelected(boolean set, int color, int ID)
+	public void onColorSelected(GuiSelectColor.ColorSelected c)
 	{
-		if(set)
+		if(c.set)
 		{
 			NBTTagCompound data = new NBTTagCompound();
-			data.setInteger("C", color);
-			data.setByte("ID", (byte)ID);
+			data.setInteger("C", c.color);
+			data.setByte("ID", (byte)c.ID);
 			chest.clientPressButton(TileQChest.BUTTON_COL, 0, data);
 		}
 		
 		mc.displayGuiScreen(this);
 		refreshWidgets();
+	}
+	
+	public boolean handleDragNDrop(GuiContainer g, int x, int y, ItemStack is, int b)
+	{
+		if(is != null && buttonSetItem.isAt(x - guiLeft, y - guiTop))
+		{
+			ItemStack is1 = InvUtils.singleCopy(is);
+			is.stackSize = 0;
+			
+			buttonSetItem.setItem(is1);
+			chest.iconItem = is1;
+			NBTTagCompound data = new NBTTagCompound();
+			is1.writeToNBT(data);
+			chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, b, data);
+			return true;
+		}
+		
+		return false;
 	}
 }

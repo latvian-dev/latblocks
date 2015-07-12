@@ -1,4 +1,5 @@
 itemGroup.latblocks:tab=LatBlocks
+itemGroup.latblocks:tab.glowium=LatBlocks Glowium
 
 ### Blocks ###
 
@@ -78,6 +79,7 @@ latblocks:item.colorPainter.name=Color Painter
 latblocks:item.blockPainterMulti.name=[WIP] Multi-Block Painter
 latblocks:item.hammer.name=LatBlocks Hammer
 latblocks:item.glasses.name=LatBlocks Goggles
+latblocks:item.qbag.name=Quartz Bag
 
 #ClientConfig
 config.group.latblocks=LatBlocks

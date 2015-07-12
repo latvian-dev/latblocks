@@ -28,7 +28,6 @@ public class LatBlocksClient extends LatBlocksCommon
 	{
 		LatCoreMC.BusType.FORGE.register(LatBlockClientEventHandler.instance);
 		
-		RenderNoteBoard.instance.register(TileNoteBoard.class);
 		RenderLatChest.instance.register(TileQChest.class);
 		RenderTankTile.instance.register(TileTankBase.class);
 		
@@ -48,6 +47,8 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(renderHighlights);
 		clientConfig.add(addAllGlowiumBlocks);
 		ClientConfig.Registry.add(clientConfig);
+		
+		LatBlocksGuiHandler.instance.registerClient();
 	}
 	
 	public void spawnFountainParticle(TileFountain t)

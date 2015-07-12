@@ -55,6 +55,11 @@ public class GuiQFurnace extends GuiLM
 		super.drawBackground();
 		
 		if(furnace.fuel > 0) barFuel.render(texFuel);
-		barProgress.render(texProgress, furnace.progress / TileQFurnace.MAX_PROGRESS, 1D);
+		if(furnace.progress > 0)
+		{
+			setTexture(texture);
+			double d = furnace.progress / TileQFurnace.MAX_PROGRESS;
+			drawTexturedRectD(guiLeft + barProgress.posX, guiTop + barProgress.posY, zLevel, texProgress.width * d, texProgress.height, texProgress.minU, texProgress.minV, texProgress.minU + (texProgress.maxU - texProgress.minU) * d, texProgress.maxV);
+		}
 	}
 }

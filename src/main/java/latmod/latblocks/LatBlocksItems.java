@@ -24,7 +24,6 @@ public class LatBlocksItems
 	//public static BlockPDoor b_door;
 	//public static BlockPSlope b_slope;
 	
-	public static BlockNoteBoard b_note_board;
 	public static BlockQChest b_qchest;
 	public static BlockQFurnace b_qfurnace;
 	//public static BlockQCraftingTable b_qcrafting_table;
@@ -35,12 +34,7 @@ public class LatBlocksItems
 	public static BlockGlass b_glass;
 	public static BlockCraftingPanel b_crafting_panel;
 	
-	public static BlockGlowium.BGBlock b_glowium_block;
-	public static BlockGlowium.BGTile b_glowium_tile;
-	public static BlockGlowium.BGBrick b_glowium_brick;
-	public static BlockGlowium.BGBrickSmall b_glowium_small;
-	public static BlockGlowium.BGBrickChiseled b_glowium_chiseled;
-	public static BlockLinedBlock b_lined_block;
+	public static BlockGlowium[] b_glowium;
 	public static BlockLBBricks b_bricks;
 	
 	public static ItemMaterialsLB i_mat;
@@ -50,6 +44,7 @@ public class LatBlocksItems
 	public static ItemColorPainter i_painter_col;
 	public static ItemHammer i_hammer;
 	public static ItemGlasses i_glasses;
+	public static ItemQuartzBag i_qbag;
 	
 	public static void init()
 	{
@@ -70,7 +65,6 @@ public class LatBlocksItems
 		//b_door = new BlockPDoor("door").register();
 		//b_slope = new BlockPSlope("slope").register();
 		
-		b_note_board = new BlockNoteBoard("noteBoard").register();
 		b_qchest = new BlockQChest("quartzChest").register();
 		b_qfurnace = new BlockQFurnace("quartzFurnace").register();
 		//b_qcrafting_table = new BlockQCraftingTable("quartzCraftingTable").register();
@@ -81,12 +75,16 @@ public class LatBlocksItems
 		b_glass = new BlockGlass("glass").register();
 		b_crafting_panel = new BlockCraftingPanel("craftingPanel").register();
 		
-		b_glowium_block = new BlockGlowium.BGBlock("glowiumBlock").register();
-		b_glowium_tile = new BlockGlowium.BGTile("glowiumTile").register();
-		b_glowium_brick = new BlockGlowium.BGBrick("glowiumBrick").register();
-		b_glowium_small = new BlockGlowium.BGBrickSmall("glowiumSmallBrick").register();
-		b_glowium_chiseled = new BlockGlowium.BGBrickChiseled("glowiumChiseledBrick").register();
-		b_lined_block = new BlockLinedBlock("lined_block").register();
+		b_glowium = new BlockGlowium[]
+		{
+			new BlockGlowium.BGBlock("glowiumBlock").register(),
+			new BlockGlowium.BGTile("glowiumTile").register(),
+			new BlockGlowium.BGBrick("glowiumBrick").register(),
+			new BlockGlowium.BGBrickSmall("glowiumSmallBrick").register(),
+			new BlockGlowium.BGBrickChiseled("glowiumChiseledBrick").register(),
+			new BlockLinedBlock("lined_block").register(),
+		};
+		
 		b_bricks = new BlockLBBricks("bricks").register();
 		
 		i_mat = new ItemMaterialsLB("materials").register();
@@ -96,6 +94,7 @@ public class LatBlocksItems
 		i_painter_col = new ItemColorPainter("colorPainter").register();
 		i_hammer = new ItemHammer("hammer").register();
 		i_glasses = new ItemGlasses("glasses").register();
+		i_qbag = new ItemQuartzBag("qbag").register();
 	}
 	
 	public static void postInit()

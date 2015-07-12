@@ -52,12 +52,8 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	{
 		if(ChiselHelper.isInstalled())
 		{
-			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_block));
-			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_tile));
-			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_brick));
-			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_small));
-			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium_chiseled));
-			ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_lined_block));
+			for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
+				ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium[i]));
 		}
 	}
 	
@@ -85,7 +81,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 					LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
 				
 				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-						'G', new ItemStack(LatBlocksItems.b_glowium_chiseled, 4, DEF_DMG));
+						'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
 			}
 		}
 	}
@@ -101,7 +97,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			
 			if(LatBlocksConfig.Crafting.glowiumBlocks)
 				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium_block, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium[0], 4, DEF_DMG));
 		}
 	}
 	
@@ -116,7 +112,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			
 			if(LatBlocksConfig.Crafting.glowiumBlocks)
 				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium_tile, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium[1], 4, DEF_DMG));
 		}
 	}
 	
@@ -131,7 +127,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			
 			if(LatBlocksConfig.Crafting.glowiumBlocks)
 				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium_brick, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium[2], 4, DEF_DMG));
 		}
 	}
 	
@@ -146,7 +142,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 			
 			if(LatBlocksConfig.Crafting.glowiumBlocks)
 				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium_small, 4, DEF_DMG));
+					'G', new ItemStack(LatBlocksItems.b_glowium[3], 4, DEF_DMG));
 		}
 	}
 	
@@ -204,6 +200,10 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	{ return m; }
 	
 	@SideOnly(Side.CLIENT)
+	public CreativeTabs getCreativeTabToDisplayOn()
+	{ return LatBlocks.tabGlowium; }
+	
+	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
 		blockIcon = ir.registerIcon(mod.assets + "glowium/" + name);
@@ -255,19 +255,23 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 				
 				if(ep.isSneaking())
 				{
-					if(this == LatBlocksItems.b_glowium_block) b = LatBlocksItems.b_glowium_chiseled;
-					if(this == LatBlocksItems.b_glowium_tile) b = LatBlocksItems.b_glowium_block;
-					if(this == LatBlocksItems.b_glowium_brick) b = LatBlocksItems.b_glowium_tile;
-					if(this == LatBlocksItems.b_glowium_small) b = LatBlocksItems.b_glowium_brick;
-					if(this == LatBlocksItems.b_glowium_chiseled) b = LatBlocksItems.b_glowium_small;
+					for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
+					{
+						if(this == LatBlocksItems.b_glowium[i])
+							b = LatBlocksItems.b_glowium[(i + 1) % LatBlocksItems.b_glowium.length];
+					}
 				}
 				else
 				{
-					if(this == LatBlocksItems.b_glowium_block) b = LatBlocksItems.b_glowium_tile;
-					if(this == LatBlocksItems.b_glowium_tile) b = LatBlocksItems.b_glowium_brick;
-					if(this == LatBlocksItems.b_glowium_brick) b = LatBlocksItems.b_glowium_small;
-					if(this == LatBlocksItems.b_glowium_small) b = LatBlocksItems.b_glowium_chiseled;
-					if(this == LatBlocksItems.b_glowium_chiseled) b = LatBlocksItems.b_glowium_block;
+					for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
+					{
+						if(this == LatBlocksItems.b_glowium[i])
+						{
+							int j = i - 1;
+							if(j < 0) j = LatBlocksItems.b_glowium.length - 1;
+							b = LatBlocksItems.b_glowium[j];
+						}
+					}
 				}
 				
 				if(b != null)

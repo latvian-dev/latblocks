@@ -3,8 +3,9 @@ import latmod.ftbu.core.client.*;
 import latmod.ftbu.core.util.LatCore;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
+import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelChest;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.*;
@@ -84,10 +85,22 @@ public class RenderLatChest extends TileRenderer<TileQChest>
 		if(t.iconItem != null && t.iconItem.getItem() != null)
 		{
 			GL11.glPushMatrix();
-			GL11.glTranslatef(0.5F, 0.80F, 0.125F);
-			if(!(t.iconItem.getItem() instanceof ItemBlock))
-				GL11.glTranslatef(0F, 0.05F, -0.09F);
+			
+			Block b = Block.getBlockFromItem(t.iconItem.getItem());
+			
+			if(b != Blocks.air
+			&& b.getBlockBoundsMinX() == 0D
+			&& b.getBlockBoundsMinY() == 0D
+			&& b.getBlockBoundsMinZ() == 0D
+			&& b.getBlockBoundsMaxX() == 1D
+			&& b.getBlockBoundsMaxY() == 1D
+			&& b.getBlockBoundsMaxZ() == 1D)
+				GL11.glTranslatef(0.5F, 0.80F, 0.105F);
+			else
+				GL11.glTranslatef(0.5F, 0.85F, 0.04F);
+			
 			GL11.glRotatef(180F, 0F, 1F, 0F);
+			
 			float iS = 0.8F;
 			GL11.glScalef(-iS, -iS, iS);
 			LMRenderHelper.renderItem(t.getWorldObj(), t.iconItem, true, true);

@@ -22,7 +22,7 @@ public class BlockLinedBlock extends BlockGlowium
 		
 		if(LatBlocksConfig.Crafting.glowiumBlocks)
 			mod.recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ",
-				'G', new ItemStack(LatBlocksItems.b_glowium_brick, 1, DEF_DMG));
+				'G', new ItemStack(LatBlocksItems.b_glowium[1], 1, DEF_DMG));
 	}
 	
 	public void onPostLoaded()

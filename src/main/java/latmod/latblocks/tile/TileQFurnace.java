@@ -19,7 +19,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 {
 	public static final String ITEM_TAG = "Furnace";
 	public static final int MAX_ITEMS = 3;
-	public static final double MAX_PROGRESS = 175D;
+	public static final double MAX_PROGRESS = 200D;
 	
 	public static final int SLOT_INPUT = 0;
 	public static final int SLOT_FUEL = 1;
