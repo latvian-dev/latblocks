@@ -4,8 +4,8 @@ import java.util.List;
 
 import latmod.ftbu.core.InvUtils;
 import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
-import mcp.mobius.waila.api.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -221,7 +221,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return getFilled(is) == null; }
 
-	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
+	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{
 		if(tank.isEmpty()) info.add("Tank: Empty");
 		else info.add("Tank: " + tank.getAmount() + " mB of " + tank.getFluidStack().getLocalizedName());

@@ -3,8 +3,8 @@ package latmod.latblocks.tile;
 import java.util.List;
 
 import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.item.ItemGlasses;
-import mcp.mobius.waila.api.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -23,15 +23,15 @@ public abstract class TilePaintableLB extends TileLM implements IPaintable, IWai
 		return super.shouldRefresh(oldBlock, newBlock, oldMeta, newMeta, world, x, y, z);
 	}
 	
-	public ItemStack getWailaStack(IWailaDataAccessor data, IWailaConfigHandler config)
+	public ItemStack getWailaStack(WailaDataAccessor data)
 	{
-		Paint p = getPaint(data.getSide().ordinal());
+		Paint p = getPaint(data.side);
 		return (p == null) ? null : new ItemStack(p.block, 1, p.meta);
 	}
 	
-	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
+	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{
-		if(ItemGlasses.hasPlayer(data.getPlayer()) && getWailaStack(data, config) != null)
+		if(ItemGlasses.hasPlayer(data.player) && getWailaStack(data) != null)
 			info.add((new ItemStack(getBlockType(), 1, getBlockMetadata())).getDisplayName());
 	}
 }

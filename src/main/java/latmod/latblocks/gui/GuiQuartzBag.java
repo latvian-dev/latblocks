@@ -43,7 +43,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 			{
 				NBTTagCompound tag = new NBTTagCompound();
 				tag.setString("N", textBoxLabel.text);
-				MessageLM.NET.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_NAME, tag));
+				LMNetHelper.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_NAME, tag));
 			}
 		};
 		
@@ -58,7 +58,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 			{
 				playClickSound();
 				security.level = security.level.next(LMSecurity.Level.VALUES);
-				MessageLM.NET.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_SECURITY, null));
+				LMNetHelper.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_SECURITY, null));
 			}
 			
 			public void addMouseOverText(FastList<String> l)
@@ -114,7 +114,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 			buttonColChest.title = LatCore.Colors.getHex(color);
 			NBTTagCompound data = new NBTTagCompound();
 			data.setInteger("C", color);
-			MessageLM.NET.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_COLOR, data));
+			LMNetHelper.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_COLOR, data));
 		}
 		
 		mc.displayGuiScreen(this);

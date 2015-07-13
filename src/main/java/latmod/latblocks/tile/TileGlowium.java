@@ -3,8 +3,8 @@ package latmod.latblocks.tile;
 import java.util.List;
 
 import latmod.ftbu.core.EnumDyeColor;
+import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.item.ItemGlasses;
-import mcp.mobius.waila.api.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -29,13 +29,13 @@ public class TileGlowium extends TileSidedPaintable
 			return false; return super.setPaint(p);
 	}
 	
-	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
+	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{
 		if(blockMetadata < 0 && blockMetadata >= 16) return;
 		
-		boolean hasGlasses = ItemGlasses.hasPlayer(data.getPlayer());
+		boolean hasGlasses = ItemGlasses.hasPlayer(data.player);
 		
-		if(hasGlasses && paint[data.getSide().ordinal()] != null)
+		if(hasGlasses && paint[data.side] != null)
 			info.add((new ItemStack(getBlockType(), 1, getBlockMetadata())).getDisplayName() + " [" + EnumDyeColor.VALUES[blockMetadata].toString() + "]");
 		else if(hasGlasses)
 			info.add(EnumDyeColor.VALUES[blockMetadata].toString());

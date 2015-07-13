@@ -48,15 +48,6 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 		0xFFFFFFFF, // White
 	};
 	
-	public static void postLoaded()
-	{
-		if(ChiselHelper.isInstalled())
-		{
-			for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
-				ChiselHelper.register(new GroupGlowium(LatBlocksItems.b_glowium[i]));
-		}
-	}
-	
 	public static class BGBlock extends BlockGlowium
 	{
 		public BGBlock(String s)
@@ -77,8 +68,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 				mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEMS_GLOWIUM[0], 4), "G",
 						'G', new ItemStack(this, 1, DEF_DMG));
 				
-				if(!ChiselHelper.isInstalled())
-					LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
+				LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
 				
 				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 						'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
@@ -166,8 +156,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	public void onPostLoaded()
 	{
 		blocksAdded.add(new ItemStack(this, 1, DEF_DMG));
-		if(!ChiselHelper.isInstalled())
-			ODItems.add(ORE_NAME, new ItemStack(this, 1, ODItems.ANY));
+		ODItems.add(ORE_NAME, new ItemStack(this, 1, ODItems.ANY));
 	}
 	
 	@SuppressWarnings("all")
@@ -184,7 +173,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.glowiumBlocks && !ChiselHelper.isInstalled())
+		if(LatBlocksConfig.Crafting.glowiumBlocks)
 		{
 			for(int i = 0; i < 16; i++)
 				mod.recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
@@ -318,24 +307,4 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	@SideOnly(Side.CLIENT)
 	public IIcon getGlowIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{ return icon_glow; }
-	
-	public static class GroupGlowium extends ChiselHelper.Group
-	{
-		public GroupGlowium(BlockGlowium b)
-		{
-			super(b);
-			
-			name = b.blockName;
-			
-			/*
-			for(int i = 0; i < allBlocks.size(); i++)
-			{
-				BlockGlowium b1 = allBlocks.get(i);
-				if(b1 != b) addVariation(b1, DEF_DMG);
-			}*/
-			
-			for(int i = 0; i < 16; i++)
-				addVariation(b, i);
-		}
-	}
 }

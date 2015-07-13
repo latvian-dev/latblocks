@@ -37,7 +37,7 @@ public class GuiColorPainter extends GuiLM
 				{
 					NBTTagCompound tag = new NBTTagCompound();
 					tag.setByte("Dmg", (byte)id);
-					MessageLM.NET.sendToServer(new MessageClientItemAction(ItemColorPainter.ACTION, tag));
+					LMNetHelper.sendToServer(new MessageClientItemAction(ItemColorPainter.ACTION, tag));
 					container.player.closeScreen();
 				}
 			};

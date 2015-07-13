@@ -4,8 +4,8 @@ import java.util.List;
 
 import latmod.ftbu.core.InvUtils;
 import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocksItems;
-import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -165,7 +165,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 		return false;
 	}
 	
-	public void addWailaBody(IWailaDataAccessor data, IWailaConfigHandler config, List<String> info)
+	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{
 		if(tank.isEmpty()) info.add("Tank: Empty");
 		else info.add("Tank: " + tank.getAmount() + " mB of " + tank.getFluidStack().getLocalizedName() + (blockMetadata == 5 ? "" : (" [ " + ((int)(tank.getAmountD() * 100D)) + "% ]")));

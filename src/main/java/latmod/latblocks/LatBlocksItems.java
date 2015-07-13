@@ -96,9 +96,4 @@ public class LatBlocksItems
 		i_glasses = new ItemGlasses("glasses").register();
 		i_qbag = new ItemQuartzBag("qbag").register();
 	}
-	
-	public static void postInit()
-	{
-		BlockGlowium.postLoaded();
-	}
 }

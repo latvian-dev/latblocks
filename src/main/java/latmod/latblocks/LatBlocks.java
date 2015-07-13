@@ -1,5 +1,5 @@
 package latmod.latblocks;
-import latmod.ftbu.core.*;
+import latmod.ftbu.core.LMMod;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
@@ -33,12 +33,6 @@ public class LatBlocks
 		tabGlowium = new LBGlowiumCreativeTab();
 		
 		proxy.preInit();
-	}
-	
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent e)
-	{
-		LatBlocksItems.postInit();
 	}
 	
 	@Mod.EventHandler
