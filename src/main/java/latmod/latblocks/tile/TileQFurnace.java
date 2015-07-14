@@ -67,7 +67,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 					tag.removeTag("CustomName");
 					drop.setTagCompound(new NBTTagCompound());
 					drop.stackTagCompound.setTag(ITEM_TAG, tag);
-					if(customName != null) drop.setStackDisplayName(customName);
+					if(customName != null && !customName.trim().isEmpty()) drop.setStackDisplayName(customName);
 				}
 				
 				InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
@@ -194,6 +194,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 			customName = null;
 		
 		setMeta(MathHelperLM.get2DRotation(ep).ordinal());
+		markDirty();
 	}
 	
 	public boolean isLit()

@@ -1,5 +1,5 @@
 package latmod.latblocks.gui;
-import latmod.ftbu.core.*;
+import latmod.ftbu.core.InvUtils;
 import latmod.ftbu.core.client.LMGuiButtons;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.util.*;
