@@ -1,5 +1,5 @@
 package latmod.latblocks.block.tank;
-import latmod.ftbu.core.ODItems;
+import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.*;
 import latmod.latblocks.*;

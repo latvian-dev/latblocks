@@ -1,5 +1,5 @@
 package latmod.latblocks.item;
-import latmod.ftbu.core.ODItems;
+import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.Tool;
 import latmod.latblocks.LatBlocksConfig;
 import net.minecraft.entity.player.EntityPlayer;

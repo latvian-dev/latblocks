@@ -80,6 +80,7 @@ latblocks:item.blockPainterMulti.name=[WIP] Multi-Block Painter
 latblocks:item.hammer.name=LatBlocks Hammer
 latblocks:item.glasses.name=LatBlocks Goggles
 latblocks:item.qbag.name=Quartz Bag
+latblocks:item.pfurn.name=Pocket Furnace
 
 #ClientConfig
 config.group.latblocks=LatBlocks

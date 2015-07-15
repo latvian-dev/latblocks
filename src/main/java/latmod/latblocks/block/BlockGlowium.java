@@ -2,7 +2,8 @@ package latmod.latblocks.block;
 
 import java.util.List;
 
-import latmod.ftbu.core.*;
+import latmod.ftbu.core.EnumDyeColor;
+import latmod.ftbu.core.inv.*;
 import latmod.ftbu.core.recipes.LMRecipes;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.util.FastList;

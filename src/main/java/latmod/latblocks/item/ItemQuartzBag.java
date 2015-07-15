@@ -1,6 +1,7 @@
 package latmod.latblocks.item;
 
-import latmod.ftbu.core.*;
+import latmod.ftbu.core.LMSecurity;
+import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.IClientActionItem;
 import latmod.ftbu.core.util.*;
 import latmod.latblocks.*;

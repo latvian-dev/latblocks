@@ -2,7 +2,7 @@ package latmod.latblocks.block;
 
 import java.util.Random;
 
-import latmod.ftbu.core.ParticleHelper;
+import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.tile.IPaintable.Paint;
 import latmod.ftbu.core.util.*;
@@ -222,7 +222,7 @@ public abstract class BlockPaintableLB extends BlockLB
 			double d0 = x + (x1 + 0.5D) / b0;
 			double d1 = y + (y1 + 0.5D) / b0;
 			double d2 = z + (z1 + 0.5D) / b0;
-			int i2 = ParticleHelper.rand.nextInt(6);
+			int i2 = LatCoreMC.rand.nextInt(6);
 			EntityDiggingFX fx = new EntityDiggingFX(w, d0, d1, d2, d0 - x - 0.5D, d1 - y - 0.5D, d2 - z - 0.5D, this, i2, 0).applyColourMultiplier(x, y, z);
 			fx.setParticleIcon(tex);
 			er.addEffect(fx);
@@ -235,9 +235,9 @@ public abstract class BlockPaintableLB extends BlockLB
 	private void addBlockHitEffects(World w, EffectRenderer er, int x, int y, int z, int side, IIcon tex)
 	{
 		float f = 0.1F;
-		double d0 = x + ParticleHelper.rand.nextDouble() * (getBlockBoundsMaxX() - getBlockBoundsMinX() - (f * 2.0F)) + f + getBlockBoundsMinX();
-		double d1 = y + ParticleHelper.rand.nextDouble() * (getBlockBoundsMaxY() - getBlockBoundsMinY() - (f * 2.0F)) + f + getBlockBoundsMinY();
-		double d2 = z + ParticleHelper.rand.nextDouble() * (getBlockBoundsMaxZ() - getBlockBoundsMinZ() - (f * 2.0F)) + f + getBlockBoundsMinZ();
+		double d0 = x + LatCoreMC.rand.nextDouble() * (getBlockBoundsMaxX() - getBlockBoundsMinX() - (f * 2.0F)) + f + getBlockBoundsMinX();
+		double d1 = y + LatCoreMC.rand.nextDouble() * (getBlockBoundsMaxY() - getBlockBoundsMinY() - (f * 2.0F)) + f + getBlockBoundsMinY();
+		double d2 = z + LatCoreMC.rand.nextDouble() * (getBlockBoundsMaxZ() - getBlockBoundsMinZ() - (f * 2.0F)) + f + getBlockBoundsMinZ();
 
 		if (side == 0) d1 = y + getBlockBoundsMinY() - f;
 		else if (side == 1) d1 = y + getBlockBoundsMaxY() + f;

@@ -2,7 +2,7 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
-import latmod.ftbu.core.ODItems;
+import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.IGuiTile;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;

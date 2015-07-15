@@ -1,5 +1,6 @@
 package latmod.latblocks.item;
-import latmod.ftbu.core.*;
+import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.IItemLM;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.ftbu.mod.FTBU;
@@ -30,9 +31,9 @@ public class ItemGlasses extends ItemArmor implements IItemLM
 			double s = 0.25D;
 			for(int i = 0; i < q; i++)
 			{
-				double x1 = x + MathHelperLM.randomDouble(ParticleHelper.rand, -s, s);
-				double y1 = y + MathHelperLM.randomDouble(ParticleHelper.rand, -s, s);
-				double z1 = z + MathHelperLM.randomDouble(ParticleHelper.rand, -s, s);
+				double x1 = x + MathHelperLM.randomDouble(LatCoreMC.rand, -s, s);
+				double y1 = y + MathHelperLM.randomDouble(LatCoreMC.rand, -s, s);
+				double z1 = z + MathHelperLM.randomDouble(LatCoreMC.rand, -s, s);
 				FTBU.proxy.spawnDust(w, x1, y1, z1, 0xC200FFFF);
 			}
 		}

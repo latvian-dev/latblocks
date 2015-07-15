@@ -1,6 +1,7 @@
 package latmod.latblocks.item;
-import latmod.ftbu.core.*;
+import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.client.LatCoreMCClient;
+import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.recipes.LMRecipes;
 import latmod.latblocks.*;
 import net.minecraft.client.renderer.texture.IIconRegister;

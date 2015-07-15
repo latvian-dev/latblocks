@@ -2,7 +2,7 @@ package latmod.latblocks.tile.tank;
 
 import java.util.List;
 
-import latmod.ftbu.core.InvUtils;
+import latmod.ftbu.core.inv.InvUtils;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocksItems;

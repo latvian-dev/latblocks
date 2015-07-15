@@ -1,6 +1,7 @@
 package latmod.latblocks.tile;
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.client.LMGuiButtons;
+import latmod.ftbu.core.inv.InvUtils;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;

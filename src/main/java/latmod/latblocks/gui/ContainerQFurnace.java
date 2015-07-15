@@ -1,5 +1,6 @@
 package latmod.latblocks.gui;
 import latmod.ftbu.core.gui.ContainerLM;
+import latmod.ftbu.core.inv.SlotLM;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;
@@ -12,8 +13,8 @@ public class ContainerQFurnace extends ContainerLM
 	public ContainerQFurnace(EntityPlayer ep, TileQFurnace t)
 	{
 		super(ep, t);
-		addSlotToContainer(new Slot(t, TileQFurnace.SLOT_INPUT, 56, 17));
-		addSlotToContainer(new Slot(t, TileQFurnace.SLOT_FUEL, 56, 53));
+		addSlotToContainer(new SlotLM(t, TileQFurnace.SLOT_INPUT, 56, 17));
+		addSlotToContainer(new SlotLM(t, TileQFurnace.SLOT_FUEL, 56, 53));
 		addSlotToContainer(new SlotFurnace(ep, t, TileQFurnace.SLOT_OUTPUT, 116, 35));
 		addPlayerSlots(84);
 	}

@@ -1,5 +1,5 @@
 package latmod.latblocks.tile.tank;
-import latmod.ftbu.core.ParticleHelper;
+import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.tile.Tank;
 import latmod.ftbu.mod.FTBU;
 import latmod.latblocks.LatBlocksItems;
@@ -39,11 +39,11 @@ public class TileVoidTank extends TileTankBase
 		for(int i = 0; i < 10; i++)
 		{
 			double s = 0.25D;
-			double x = xCoord + s + ParticleHelper.rand.nextFloat() * (1D - s * 2D);
-			double y = yCoord + s + ParticleHelper.rand.nextFloat() * (1D - s * 2D);
-			double z = zCoord + s + ParticleHelper.rand.nextFloat() * (1D - s * 2D);
+			double x = xCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
+			double y = yCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
+			double z = zCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
 			int[] col = { 0xAA000000, 0xAA666666, 0xAA3300FF };
-			FTBU.proxy.spawnDust(worldObj, x, y, z, col[ParticleHelper.rand.nextInt(col.length)]);
+			FTBU.proxy.spawnDust(worldObj, x, y, z, col[LatCoreMC.rand.nextInt(col.length)]);
 		}
 	}
 	
