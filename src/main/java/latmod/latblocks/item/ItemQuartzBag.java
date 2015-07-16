@@ -1,7 +1,7 @@
 package latmod.latblocks.item;
 
 import latmod.ftbu.core.LMSecurity;
-import latmod.ftbu.core.inv.ODItems;
+import latmod.ftbu.core.inv.*;
 import latmod.ftbu.core.item.IClientActionItem;
 import latmod.ftbu.core.util.*;
 import latmod.latblocks.*;
@@ -170,7 +170,9 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 				}
 				else if(action.equals(ACTION_SET_NAME))
 				{
-					is.setStackDisplayName(data.getString("N"));
+					String n = data.getString("N");
+					if(n.isEmpty()) InvUtils.removeDisplayName(is);
+					else is.setStackDisplayName(n);
 				}
 				else if(action.equals(ACTION_SET_SECURITY))
 				{

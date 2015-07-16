@@ -42,7 +42,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 			public void textChanged()
 			{
 				NBTTagCompound tag = new NBTTagCompound();
-				tag.setString("N", textBoxLabel.text);
+				tag.setString("N", textBoxLabel.text.trim());
 				LMNetHelper.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_NAME, tag));
 			}
 		};

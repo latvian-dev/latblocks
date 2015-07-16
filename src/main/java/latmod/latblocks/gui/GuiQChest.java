@@ -81,7 +81,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				GuiSelectColor.displayGui(GuiQChest.this, chest.colorChest, 1, false);
+				GuiSelectColor.displayGui(GuiQChest.this, chest.colorText, 1, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
