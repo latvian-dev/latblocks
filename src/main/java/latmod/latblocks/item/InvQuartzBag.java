@@ -1,6 +1,6 @@
 package latmod.latblocks.item;
 
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -21,7 +21,7 @@ public class InvQuartzBag implements IInventory
 		items = new ItemStack[INV_W * INV_H];
 		
 		NBTTagCompound tag = ItemQuartzBag.getData(getItem());
-		if(tag != null) InvUtils.readItemsFromNBT(items, tag, ItemQuartzBag.TAG_INV);
+		if(tag != null) LMInvUtils.readItemsFromNBT(items, tag, ItemQuartzBag.TAG_INV);
 	}
 	
 	public ItemStack getItem()
@@ -37,10 +37,10 @@ public class InvQuartzBag implements IInventory
 	{ return items[i]; }
 	
 	public ItemStack decrStackSize(int slot, int amt)
-	{ return InvUtils.decrStackSize(this, slot, amt); }
+	{ return LMInvUtils.decrStackSize(this, slot, amt); }
 	
 	public ItemStack getStackInSlotOnClosing(int i)
-	{ return InvUtils.getStackInSlotOnClosing(this, i); }
+	{ return LMInvUtils.getStackInSlotOnClosing(this, i); }
 	
 	public void setInventorySlotContents(int i, ItemStack is)
 	{ items[i] = is; markDirty(); }
@@ -60,7 +60,7 @@ public class InvQuartzBag implements IInventory
 		if(parent == null) return;
 		NBTTagCompound tag = ItemQuartzBag.getData(parent);
 		if(tag == null) return;
-		InvUtils.writeItemsToNBT(items, tag, ItemQuartzBag.TAG_INV);
+		LMInvUtils.writeItemsToNBT(items, tag, ItemQuartzBag.TAG_INV);
 		ItemQuartzBag.setData(parent, tag);
 	}
 	

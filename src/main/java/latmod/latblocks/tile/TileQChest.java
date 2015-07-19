@@ -1,19 +1,19 @@
 package latmod.latblocks.tile;
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.client.LMGuiButtons;
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.relauncher.*;
 
-public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile
+public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile, IQuartzInventory
 {
 	public static final int INV_W = 13;
 	public static final int INV_H = 7;
@@ -41,7 +41,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	}
 	
 	public boolean rerenderBlock()
-	{ return true; }
+	{ return false; }
 	
 	public void readTileData(NBTTagCompound tag)
 	{
@@ -102,8 +102,14 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(isServer() && !ep.isSneaking()) LatCoreMC.openGui(ep, this, null);
-		else if(isServer() && security.canInteract(ep) && InvUtils.isWrench(is))
+		if(isServer() && !ep.isSneaking())
+		{
+			if(security.canInteract(ep))
+				LatCoreMC.openGui(ep, this, null);
+			else
+				printOwner(ep);
+		}
+		else if(isServer() && security.canInteract(ep) && LMInvUtils.isWrench(is))
 		{
 			dropItems = false;
 			ItemStack drop = new ItemStack(LatBlocksItems.b_qchest, 1, 0);
@@ -113,7 +119,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 			drop.setTagCompound(new NBTTagCompound());
 			drop.stackTagCompound.setTag(ITEM_TAG, tag);
 			
-			InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
+			LMInvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
 			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
 		}
 		
@@ -134,8 +140,8 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
 		super.onPlacedBy(ep, is);
-
-		if(!worldObj.isRemote)
+		
+		if(isServer())
 		{
 			setMeta(MathHelperLM.get2DRotation(ep).ordinal());
 			
@@ -146,7 +152,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		}
 	}
 	
-	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayer ep)
+	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayerMP ep)
 	{
 		if(button.equals(LMGuiButtons.SECURITY))
 		{
@@ -201,4 +207,29 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public float getLidAngle(float pt)
 	{ return MathHelperLM.clampFloat(lidAngle + (lidAngle - prevLidAngle) * pt, 0F, MAX_ANGLE); }
+	
+	public String getTitle()
+	{ return getInventoryName(); }
+	
+	public int getColor()
+	{ return colorChest; }
+	
+	public ItemStack getIcon()
+	{ return iconItem; }
+	
+	@SideOnly(Side.CLIENT)
+	public void openChestGui(EntityPlayer ep)
+	{ clientOpenGui(null); }
+	
+	public void onClientAction(EntityPlayerMP ep, String action, NBTTagCompound data)
+	{
+		if(action.equals(ACTION_OPEN_GUI))
+		{
+			if(security.canInteract(ep))
+				super.onClientAction(ep, action, data);
+			else
+				printOwner(ep);
+		}
+		else super.onClientAction(ep, action, data);
+	}
 }

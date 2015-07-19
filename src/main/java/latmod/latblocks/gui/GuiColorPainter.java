@@ -1,9 +1,8 @@
 package latmod.latblocks.gui;
 import latmod.ftbu.core.EnumDyeColor;
-import latmod.ftbu.core.client.LMRenderHelper;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.net.*;
-import latmod.ftbu.core.util.FastList;
+import latmod.ftbu.core.util.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,10 +57,10 @@ public class GuiColorPainter extends GuiLM
 		
 		for(int i = 0; i < buttons.length; i++)
 		{
-			LMRenderHelper.colorize(EnumDyeColor.VALUES[i].color.getRGB());
+			LatCore.Colors.setGLColor(EnumDyeColor.VALUES[i].color.getRGB(), 255);
 			buttons[i].render(colTex);
 		}
 		
-		LMRenderHelper.recolor();
+		LatCore.Colors.recolor();
 	}
 }

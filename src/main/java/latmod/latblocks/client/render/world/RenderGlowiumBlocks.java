@@ -18,16 +18,6 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 {
 	public static final RenderGlowiumBlocks instance = new RenderGlowiumBlocks();
 	
-	public Block glow = new BlockCustom()
-	{
-		public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
-		{ return BlockGlowing.MAX; }
-	};
-	
-	public Block empty = new BlockCustom()
-	{
-	};
-	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
@@ -76,13 +66,13 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 				renderBlocks.setFaceBounds(s, d, d, d, 1D - d, 1D - d, 1D - d);
 				renderBlocks.setCustomColor(renderColor);
 				renderBlocks.setOverrideBlockTexture(bg.getGlowIcon(iba, x, y, z, s));
-				renderBlocks.renderStandardBlock(glow, x, y, z);
+				renderBlocks.renderStandardBlock(BlockGlowing.instGlowing, x, y, z);
 				renderBlocks.setFaceBounds(s, 0D, 0D, 0D, 1D, 1D, 1D);
 				
 				if(t.paint[s] == null || t.paint[s].block == null)
 				{
 					renderBlocks.setOverrideBlockTexture(bg.getBlockIcon());
-					renderBlocks.renderStandardBlock(empty, x, y, z);
+					renderBlocks.renderStandardBlock(BlockCustom.inst, x, y, z);
 				}
 				else
 				{

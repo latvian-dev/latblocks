@@ -2,7 +2,7 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
@@ -102,7 +102,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 	{
 		if(tank.getAmount() < 1000) return null;
 		if(is == null || is.getItem() == null) return null;
-		ItemStack is1 = InvUtils.singleCopy(is);
+		ItemStack is1 = LMInvUtils.singleCopy(is);
 		FluidStack fs = new FluidStack(tank.getFluid(), 1000);
 		
 		if(is1.getItem() instanceof IFluidContainerItem)
@@ -134,7 +134,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 			
 			if (qty != 0 && !ep.capabilities.isCreativeMode)
 			{
-				ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+				ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 				ep.inventory.markDirty();
 				markDirty();
 			}
@@ -161,14 +161,14 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 								return false;
 							else
 							{
-								ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+								ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 								ep.inventory.markDirty();
 								markDirty();
 							}
 						}
 						else
 						{
-							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, filled);
 							ep.inventory.markDirty();
 							markDirty();

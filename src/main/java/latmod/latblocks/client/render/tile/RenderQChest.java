@@ -13,9 +13,9 @@ import org.lwjgl.opengl.*;
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class RenderLatChest extends TileRenderer<TileQChest>
+public class RenderQChest extends TileRenderer<TileQChest>
 {
-	public static final RenderLatChest instance = new RenderLatChest();
+	public static final RenderQChest instance = new RenderQChest();
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/blocks/chest_model.png");
 	public static final ResourceLocation tex_color = LatBlocks.mod.getLocation("textures/blocks/chest_model_color.png");
 	public final ModelChest model = new ModelChest();

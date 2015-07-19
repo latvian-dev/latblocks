@@ -1,7 +1,7 @@
 package latmod.latblocks.tile;
 
 import latmod.ftbu.core.LatCoreMC;
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;
@@ -38,7 +38,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		super.readTileData(tag);
 		fuel = tag.getInteger("Fuel");
 		progress = tag.getShort("Progress");
-		result = InvUtils.loadStack(tag, "Result");
+		result = LMInvUtils.loadStack(tag, "Result");
 	}
 	
 	public void writeTileData(NBTTagCompound tag)
@@ -46,7 +46,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		super.writeTileData(tag);
 		tag.setInteger("Fuel", fuel);
 		tag.setShort("Progress", (short)progress);
-		InvUtils.saveStack(tag, "Result", result);
+		LMInvUtils.saveStack(tag, "Result", result);
 	}
 	
 	public boolean rerenderBlock()
@@ -54,14 +54,14 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(isServer() && security.canInteract(ep) && InvUtils.isWrench(is))
+		if(isServer() && security.canInteract(ep) && LMInvUtils.isWrench(is))
 		{
 			if(ep.isSneaking())
 			{
 				dropItems = false;
 				ItemStack drop = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
 				
-				if(fuel > 0 || result != null || customName != null || InvUtils.getFirstFilledIndex(this, null, -1) != -1)
+				if(fuel > 0 || result != null || customName != null || LMInvUtils.getFirstFilledIndex(this, null, -1) != -1)
 				{
 					NBTTagCompound tag = new NBTTagCompound();
 					writeTileData(tag);
@@ -71,7 +71,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 					if(customName != null && !customName.trim().isEmpty()) drop.setStackDisplayName(customName);
 				}
 				
-				InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
+				LMInvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
 				
 				worldObj.setBlockToAir(xCoord, yCoord, zCoord);
 			}
@@ -101,7 +101,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 			
 			if(fuel > 0)
 			{
-				items[SLOT_FUEL] = InvUtils.reduceItem(items[SLOT_FUEL]);
+				items[SLOT_FUEL] = LMInvUtils.reduceItem(items[SLOT_FUEL]);
 				markDirty();
 			}
 		}
@@ -114,7 +114,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 				
 				if(out != null && fuel > 0)
 				{
-					items[SLOT_INPUT] = InvUtils.reduceItem(items[SLOT_INPUT]);
+					items[SLOT_INPUT] = LMInvUtils.reduceItem(items[SLOT_INPUT]);
 					result = out.copy();
 					progress = 1;
 					markDirty();

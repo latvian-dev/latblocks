@@ -236,7 +236,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{
-		if(InvUtils.isWrench(ep.getHeldItem()))
+		if(LMInvUtils.isWrench(ep.getHeldItem()))
 		{
 			if(!w.isRemote)
 			{

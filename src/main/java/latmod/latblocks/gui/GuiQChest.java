@@ -1,13 +1,14 @@
 package latmod.latblocks.gui;
 import latmod.ftbu.core.client.LMGuiButtons;
 import latmod.ftbu.core.gui.*;
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.util.*;
 import latmod.ftbu.mod.client.gui.GuiSelectColor;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -24,7 +25,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	public final TileQChest chest;
 	public final TextBoxLM textBoxLabel;
 	public final ButtonLM buttonSecurity, buttonColChest, buttonColText, buttonGlow;
-	public final ItemButtonLM buttonSetItem;
+	public final ItemButtonLM buttonSetItem, buttonNet;
 	
 	public GuiQChest(ContainerQChest c)
 	{
@@ -107,7 +108,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 				if(GuiScreen.isShiftKeyDown())
 					chest.iconItem = null;
 				else if(gui.container.player.inventory.getItemStack() != null)
-					chest.iconItem = InvUtils.singleCopy(gui.container.player.inventory.getItemStack());
+					chest.iconItem = LMInvUtils.singleCopy(gui.container.player.inventory.getItemStack());
 				
 				setItem(chest.iconItem);
 				
@@ -131,6 +132,17 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		};
 		
 		buttonSetItem.setItem(chest.iconItem);
+		
+		buttonNet = new ItemButtonLM(this, 217, 216, 16, 16)
+		{
+			public void onButtonPressed(int b)
+			{
+				playClickSound();
+				mc.displayGuiScreen(new GuiQChestNet(chest));
+			}
+		};
+		
+		buttonNet.setItem(new ItemStack(Blocks.web));
 	}
 	
 	public void addWidgets(FastList<WidgetLM> l)
@@ -144,6 +156,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		l.add(buttonColText);
 		l.add(buttonGlow);
 		l.add(buttonSetItem);
+		l.add(buttonNet);
 	}
 	
 	public void drawBackground()
@@ -160,6 +173,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		buttonGlow.render(GuiQuartzBag.color_tex);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		buttonSetItem.render();
+		buttonNet.render();
 	}
 	
 	public void drawText(FastList<String> l)
@@ -186,7 +200,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	{
 		if(is != null && buttonSetItem.isAt(x - guiLeft, y - guiTop))
 		{
-			ItemStack is1 = InvUtils.singleCopy(is);
+			ItemStack is1 = LMInvUtils.singleCopy(is);
 			is.stackSize = 0;
 			
 			buttonSetItem.setItem(is1);

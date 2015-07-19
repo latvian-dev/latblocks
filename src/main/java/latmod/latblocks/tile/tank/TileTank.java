@@ -2,7 +2,7 @@ package latmod.latblocks.tile.tank;
 
 import java.util.List;
 
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocksItems;
@@ -73,7 +73,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	{
 		if(tank.getAmount() < 1000) return null;
 		if(is == null || is.getItem() == null) return null;
-		ItemStack is1 = InvUtils.singleCopy(is);
+		ItemStack is1 = LMInvUtils.singleCopy(is);
 		FluidStack fs = new FluidStack(tank.getFluid(), 1000);
 		
 		if(is1.getItem() instanceof IFluidContainerItem)
@@ -90,7 +90,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	{
 		if(is == null || is.getItem() instanceof IPaintable.IPainterItem) return false;
 		
-		if(isServer() && ep.isSneaking() && InvUtils.isWrench(is))
+		if(isServer() && ep.isSneaking() && LMInvUtils.isWrench(is))
 		{
 			ItemStack drop = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
 			
@@ -102,7 +102,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 				drop.stackTagCompound.setTag("Fluid", tag);
 			}
 			
-			InvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
+			LMInvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
 			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
 		}
 		
@@ -114,7 +114,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 			
 			if (qty != 0 && !ep.capabilities.isCreativeMode)
 			{
-				ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+				ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 				ep.inventory.markDirty();
 				markDirty();
 			}
@@ -141,14 +141,14 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 								return false;
 							else
 							{
-								ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+								ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 								ep.inventory.markDirty();
 								markDirty();
 							}
 						}
 						else
 						{
-							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, filled);
 							ep.inventory.markDirty();
 							markDirty();

@@ -1,6 +1,6 @@
 package latmod.latblocks.block.tank;
 
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -30,7 +30,7 @@ public class TankCraftingHandler implements IRecipe // ShapedRecipes
 		{
 			ItemStack ci = inv.getStackInSlot(4);
 			
-			hasItem = ci != null && ci.stackSize > 0 && InvUtils.itemsEquals(ci, item, false, false);
+			hasItem = ci != null && ci.stackSize > 0 && LMInvUtils.itemsEquals(ci, item, false, false);
 			
 			if(hasItem) for(int i = 0; i < 9; i++)
 			{
@@ -38,7 +38,7 @@ public class TankCraftingHandler implements IRecipe // ShapedRecipes
 				
 				if(is != null && i != 4)
 				{
-					if(InvUtils.itemsEquals(is, input, false, false))
+					if(LMInvUtils.itemsEquals(is, input, false, false))
 						tanks++;
 				}
 			}

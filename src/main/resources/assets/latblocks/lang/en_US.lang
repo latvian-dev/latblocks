@@ -34,7 +34,6 @@ latblocks:tile.slope.name=[WIP] Paintable Slope
 latblocks:tile.ladder.name=Paintable Ladder
 latblocks:tile.pressurePlate.name=Paintable Pressure Plate
 
-latblocks:tile.noteBoard.name=Note Board
 latblocks:tile.quartzChest.name=Quartz Chest
 latblocks:tile.quartzFurnace.name=Quartz Furnace
 latblocks:tile.tankWater.name=Water Tank
@@ -43,6 +42,7 @@ latblocks:tile.gelLamp.name=Paintable Gel Lamp
 latblocks:tile.tank.name=LatTank
 latblocks:tile.glass.name=Invisible Glass
 latblocks:tile.craftingPanel.name=Crafting Panel
+latblocks:tile.cable.name=Quartz Chest Connector
 
 # To be implemented #
 

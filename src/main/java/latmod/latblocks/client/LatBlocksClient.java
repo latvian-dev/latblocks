@@ -28,7 +28,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	{
 		LatCoreMC.BusType.FORGE.register(LatBlockClientEventHandler.instance);
 		
-		RenderLatChest.instance.register(TileQChest.class);
+		RenderQChest.instance.register(TileQChest.class);
 		RenderTankTile.instance.register(TileTankBase.class);
 		
 		RenderFountain.instance.register();
@@ -39,6 +39,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_void);
 		RenderGlowiumBlocks.instance.register();
 		RenderPSlope.instance.register();
+		RenderQCable.instance.register();
 	}
 	
 	public void postInit()

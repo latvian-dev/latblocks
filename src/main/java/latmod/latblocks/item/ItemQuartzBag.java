@@ -171,7 +171,7 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 				else if(action.equals(ACTION_SET_NAME))
 				{
 					String n = data.getString("N");
-					if(n.isEmpty()) InvUtils.removeDisplayName(is);
+					if(n.isEmpty()) LMInvUtils.removeDisplayName(is);
 					else is.setStackDisplayName(n);
 				}
 				else if(action.equals(ACTION_SET_SECURITY))

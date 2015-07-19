@@ -1,5 +1,5 @@
 package latmod.latblocks.tile.tank;
-import latmod.ftbu.core.inv.InvUtils;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.Tank;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
@@ -93,14 +93,14 @@ public class TileWaterTank extends TileTankBase
 							return false;
 						else
 						{
-							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 							ep.inventory.markDirty();
 							markDirty();
 						}
 					}
 					else
 					{
-						ep.inventory.setInventorySlotContents(ep.inventory.currentItem, InvUtils.reduceItem(is));
+						ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 						ep.inventory.setInventorySlotContents(ep.inventory.currentItem, filled);
 						ep.inventory.markDirty();
 						markDirty();
