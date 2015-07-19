@@ -127,4 +127,10 @@ public class TileWaterTank extends TileTankBase
 	@SideOnly(Side.CLIENT)
 	public double getTankFluidHeight()
 	{ return 1D; }
+	
+	public int getQColor()
+	{ return 0xFF0068E0; }
+	
+	public ItemStack getQIcon()
+	{ return new ItemStack(LatBlocksItems.b_tank_water); }
 }

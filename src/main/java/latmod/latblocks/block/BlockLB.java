@@ -16,6 +16,8 @@ import cpw.mods.fml.relauncher.*;
 
 public abstract class BlockLB extends BlockLM
 {
+	public boolean hasSpecialPlacement = false;
+	
 	public BlockLB(String s, Material m)
 	{ super(s, m); }
 	

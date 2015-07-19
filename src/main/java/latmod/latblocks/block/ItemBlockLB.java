@@ -17,10 +17,11 @@ public class ItemBlockLB extends ItemBlockLM
 	
 	public boolean canPlace(World w, int x, int y, int z, int s, EntityPlayer ep, ItemStack is)
 	{
+		BlockLB b = (BlockLB) Block.getBlockFromItem(is.getItem());
+		if(!b.hasSpecialPlacement) return super.canPlace(w, x, y, z, s, ep, is);
+		
 		MovingObjectPosition mop = MathHelperLM.rayTrace(ep);
 		if(mop == null) return false;
-		
-		BlockLB b = (BlockLB) Block.getBlockFromItem(is.getItem());
 		
 		int bx = x + Facing.offsetsXForSide[s];
 		int by = y + Facing.offsetsYForSide[s];

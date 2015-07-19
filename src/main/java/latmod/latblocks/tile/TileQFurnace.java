@@ -16,7 +16,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile // TileEntityFurnace
+public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory, IQuartzNetTile // TileEntityFurnace
 {
 	public static final String ITEM_TAG = "Furnace";
 	public static final int MAX_ITEMS = 3;
@@ -127,10 +127,10 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 			{
 				if(result != null)
 				{
-					progress = 0;
+					progress = (int)MAX_PROGRESS;
 					markDirty();
 					
-					if(items[SLOT_OUTPUT] == null || items[SLOT_OUTPUT].stackSize + result.stackSize <= items[SLOT_OUTPUT].getMaxStackSize())
+					if(items[SLOT_OUTPUT] == null || (items[SLOT_OUTPUT].stackSize + result.stackSize <= items[SLOT_OUTPUT].getMaxStackSize()))
 					{
 						if(isServer())
 						{
@@ -140,6 +140,8 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 							
 							result = null;
 						}
+						
+						progress = 0;
 						
 						ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[blockMetadata];
 						double px = xCoord + 0.5D + fd.offsetX * 0.6D;
@@ -209,7 +211,11 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	{ return new GuiQFurnace(new ContainerQFurnace(ep, this)); }
 	
 	public boolean isItemValidForSlot(int i, ItemStack is)
-	{ return true; }
+	{
+		if(i == SLOT_FUEL) return TileEntityFurnace.getItemBurnTime(is) > 0;
+		else if(i == SLOT_OUTPUT) return false;
+		return true;
+	}
 	
 	public int[] getAccessibleSlotsFromSide(int s)
 	{
@@ -229,4 +235,16 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	
 	public void onPlayerNotOwner(EntityPlayer ep, boolean breakBlock)
 	{ printOwner(ep); }
+	
+	public String getQTitle()
+	{ return getQIcon().getDisplayName(); }
+	
+	public int getQColor()
+	{ return 0xFFB5AEA6; }
+	
+	public ItemStack getQIcon() { return new ItemStack(LatBlocksItems.b_qfurnace, 1, isLit() ? 100 : 0); }
+	
+	@SideOnly(Side.CLIENT)
+	public void openQGui(EntityPlayer ep)
+	{ clientOpenGui(null); }
 }

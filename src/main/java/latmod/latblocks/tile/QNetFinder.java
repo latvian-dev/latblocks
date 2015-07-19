@@ -11,15 +11,15 @@ public class QNetFinder
 {
 	private static final FastList<ChunkCoordinates> tempCoordList = new FastList<ChunkCoordinates>();
 	
-	public static FastList<IQuartzInventory> getTiles(IBlockAccess w, int x, int y, int z, int maxNetSize)
+	public static FastList<IQuartzNetTile> getTiles(IBlockAccess w, int x, int y, int z, int maxNetSize)
 	{
 		tempCoordList.clear();
-		FastList<IQuartzInventory> l = new FastList<IQuartzInventory>();
+		FastList<IQuartzNetTile> l = new FastList<IQuartzNetTile>();
 		addToList(l, w, new ChunkCoordinates(x, y, z), maxNetSize, true);
 		return l;
 	}
 	
-	private static void addToList(FastList<IQuartzInventory> l, IBlockAccess w, ChunkCoordinates c, int maxNetSize, boolean first)
+	private static void addToList(FastList<IQuartzNetTile> l, IBlockAccess w, ChunkCoordinates c, int maxNetSize, boolean first)
 	{
 		if(tempCoordList.contains(c)) return;
 		tempCoordList.add(c);
@@ -27,9 +27,9 @@ public class QNetFinder
 		if(first)
 		{
 			TileEntity te = w.getTileEntity(c.posX, c.posY, c.posZ);
-			if(te != null && te instanceof IQuartzInventory)
+			if(te != null && te instanceof IQuartzNetTile)
 			{
-				l.add((IQuartzInventory)te);
+				l.add((IQuartzNetTile)te);
 				if(l.size() == maxNetSize) return;
 			}
 			
@@ -62,9 +62,9 @@ public class QNetFinder
 		else
 		{
 			TileEntity te = w.getTileEntity(c.posX, c.posY, c.posZ);
-			if(te != null && te instanceof IQuartzInventory)
+			if(te != null && te instanceof IQuartzNetTile)
 			{
-				l.add((IQuartzInventory)te);
+				l.add((IQuartzNetTile)te);
 				if(l.size() == maxNetSize) return;
 			}
 		}

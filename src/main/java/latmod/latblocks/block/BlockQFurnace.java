@@ -58,7 +58,7 @@ public class BlockQFurnace extends BlockLB
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
-	{ return (s == 3) ? iconOff : blockIcon; }
+	{ return (s == 3) ? ((m == 100) ? iconOn : iconOff) : blockIcon; }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)

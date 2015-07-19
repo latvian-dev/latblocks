@@ -185,4 +185,22 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 		if(blockMetadata == 5 && tank.hasFluid()) return 1D;
 		return tank.getAmountD();
 	}
+	
+	public int getQColor()
+	{ return 0xFF80D4E5; }
+	
+	public ItemStack getQIcon()
+	{
+		ItemStack drop = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
+		
+		if(tank.hasFluid(1))
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			tank.getFluidStack().writeToNBT(tag);
+			drop.stackTagCompound = new NBTTagCompound();
+			drop.stackTagCompound.setTag("Fluid", tag);
+		}
+		
+		return drop;
+	}
 }

@@ -13,12 +13,12 @@ public class GuiQChestNet extends GuiLM
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest_net.png");
 	public static final TextureCoords tex_color = new TextureCoords(tex, 156, 0, 16, 16);
 	
-	public final IQuartzInventory parent;
+	public final IQuartzNetTile parent;
 	public final TileEntity tile;
 	
 	public final FastList<ButtonQInv> qinvs;
 	
-	public GuiQChestNet(IQuartzInventory i)
+	public GuiQChestNet(IQuartzNetTile i)
 	{
 		super(null, tex);
 		parent = i;
@@ -34,8 +34,8 @@ public class GuiQChestNet extends GuiLM
 	{
 		qinvs.clear();
 		
-		FastList<IQuartzInventory> list = QNetFinder.getTiles(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord, 32);
-		for(IQuartzInventory inv : list)
+		FastList<IQuartzNetTile> list = QNetFinder.getTiles(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord, 32);
+		for(IQuartzNetTile inv : list)
 			qinvs.add(new ButtonQInv(this, inv));
 		
 		l.addAll(qinvs);
@@ -48,12 +48,8 @@ public class GuiQChestNet extends GuiLM
 		
 		for(ButtonQInv b : qinvs)
 		{
-			b.title = b.inv.getTitle();
-			
-			LatCore.Colors.setGLColor(b.inv.getColor(), 255);
+			LatCore.Colors.setGLColor(b.inv.getQColor(), 255);
 			b.render(tex_color);
-			
-			b.setItem(b.inv.getIcon());
 			b.render();
 		}
 		
@@ -62,21 +58,22 @@ public class GuiQChestNet extends GuiLM
 	
 	public static class ButtonQInv extends ItemButtonLM implements Comparable<ButtonQInv>
 	{
-		public final IQuartzInventory inv;
+		public final IQuartzNetTile inv;
 		
-		public ButtonQInv(GuiQChestNet g, IQuartzInventory i)
+		public ButtonQInv(GuiQChestNet g, IQuartzNetTile i)
 		{
 			super(g, 7, 6, 16, 16);
 			inv = i;
 			posX += (g.qinvs.size() % 8) * 18;
 			posY += (g.qinvs.size() / 8) * 18;
-			title = inv.getTitle();
+			title = inv.getQTitle();
+			setItem(inv.getQIcon());
 		}
 		
 		public void onButtonPressed(int b)
-		{ inv.openChestGui(gui.container.player); }
+		{ inv.openQGui(gui.container.player); }
 		
 		public int compareTo(ButtonQInv o)
-		{ return inv.getTitle().compareTo(o.inv.getTitle()); }
+		{ return inv.getQTitle().compareTo(o.inv.getQTitle()); }
 	}
 }

@@ -29,6 +29,7 @@ public abstract class BlockPaintableLB extends BlockLB
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
+		hasSpecialPlacement = true;
 		registerTiles();
 	}
 	

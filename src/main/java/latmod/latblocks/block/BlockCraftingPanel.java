@@ -27,6 +27,7 @@ public class BlockCraftingPanel extends BlockLB
 		super(s, Material.wood);
 		setHardness(0.7F);
 		isBlockContainer = true;
+		hasSpecialPlacement = true;
 		mod.addTile(TileCraftingPanel.class, s);
 	}
 	

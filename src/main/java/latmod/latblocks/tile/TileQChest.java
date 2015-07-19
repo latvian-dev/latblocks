@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.relauncher.*;
 
-public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile, IQuartzInventory
+public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile, IQuartzNetTile
 {
 	public static final int INV_W = 13;
 	public static final int INV_H = 7;
@@ -41,7 +41,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	}
 	
 	public boolean rerenderBlock()
-	{ return false; }
+	{ return true; }
 	
 	public void readTileData(NBTTagCompound tag)
 	{
@@ -69,17 +69,22 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public void readTileClientData(NBTTagCompound tag)
 	{
+		super.readTileClientData(tag);
 		playersUsing = tag.getByte("PlayersUsing");
 		if(playersUsing < 0) playersUsing = 0;
 	}
 	
 	public void writeTileClientData(NBTTagCompound tag)
 	{
+		super.writeTileClientData(tag);
 		if(playersUsing > 0) tag.setByte("PlayersUsing", (byte)playersUsing);
 	}
 	
 	public void onUpdate()
 	{
+		//if(equalsMOP(MathHelperLM.rayTrace(FTBU.proxy.getClientPlayer())))
+		//	LatCoreMC.printChat(null, "Side: " + LatCoreMC.getEffectiveSide());
+		
 		//if(!isServer())
 		{
 			//LatCoreMC.printChat(null, "playersUsing:" + playersUsing);
@@ -208,17 +213,17 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public float getLidAngle(float pt)
 	{ return MathHelperLM.clampFloat(lidAngle + (lidAngle - prevLidAngle) * pt, 0F, MAX_ANGLE); }
 	
-	public String getTitle()
+	public String getQTitle()
 	{ return getInventoryName(); }
 	
-	public int getColor()
+	public int getQColor()
 	{ return colorChest; }
 	
-	public ItemStack getIcon()
+	public ItemStack getQIcon()
 	{ return iconItem; }
 	
 	@SideOnly(Side.CLIENT)
-	public void openChestGui(EntityPlayer ep)
+	public void openQGui(EntityPlayer ep)
 	{ clientOpenGui(null); }
 	
 	public void onClientAction(EntityPlayerMP ep, String action, NBTTagCompound data)

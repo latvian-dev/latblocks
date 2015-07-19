@@ -20,7 +20,7 @@ public class BlockQChest extends BlockLB
 	@SideOnly(Side.CLIENT)
 	private IIcon chestFront, chestTop;
 	
-	private static final TileQChest tempTile = new TileQChest();
+	public static final TileQChest tempTile = new TileQChest();
 	
 	public BlockQChest(String s)
 	{
@@ -30,6 +30,9 @@ public class BlockQChest extends BlockLB
 		isBlockContainer = true;
 		mod.addTile(TileQChest.class, s);
 	}
+	
+	public TileLM createNewTileEntity(World world, int m)
+	{ return new TileQChest(); }
 	
 	public void loadRecipes()
 	{
@@ -45,9 +48,6 @@ public class BlockQChest extends BlockLB
 	
 	public int damageDropped(int i)
 	{ return 0; }
-	
-	public TileLM createNewTileEntity(World world, int m)
-	{ return new TileQChest(); }
 	
 	public boolean isOpaqueCube()
 	{ return false; }

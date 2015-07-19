@@ -5,7 +5,7 @@ import latmod.ftbu.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.world.RenderQCable;
 import latmod.latblocks.item.ItemMaterialsLB;
-import latmod.latblocks.tile.IQuartzInventory;
+import latmod.latblocks.tile.IQuartzNetTile;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
@@ -24,9 +24,10 @@ public class BlockQCable extends BlockLB
 	
 	public BlockQCable(String s)
 	{
-		super(s, Material.rock);
+		super(s, Material.wood);
 		isBlockContainer = false;
 		setBlockBoundsForItemRender();
+		setHardness(0.6F);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -64,7 +65,7 @@ public class BlockQCable extends BlockLB
 	{
 		if(iba.getBlock(x, y, z) == LatBlocksItems.b_qcable) return true;
 		TileEntity te = iba.getTileEntity(x, y, z);
-		return (te != null && te instanceof IQuartzInventory);
+		return (te != null && te instanceof IQuartzNetTile);
 	}
 	
 	@SideOnly(Side.CLIENT)

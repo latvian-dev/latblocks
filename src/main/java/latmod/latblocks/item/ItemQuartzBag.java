@@ -39,9 +39,9 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "LDL", "LCL", "LLL",
+		mod.recipes.addRecipe(new ItemStack(this), "LSL", "LCL", "LLL",
 				'L', Items.leather,
-				'D', ODItems.DIAMOND,
+				'S', Items.string,
 				'C', LatBlocksItems.b_qchest);
 	}
 	

@@ -23,6 +23,7 @@ public class BlockGelLamp extends BlockPaintableLB
 		setHardness(0.1F);
 		setBlockTextureName("lamp");
 		isBlockContainer = true;
+		hasSpecialPlacement = true;
 	}
 	
 	public void loadRecipes()

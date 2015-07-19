@@ -28,18 +28,23 @@ public class LatBlocksClient extends LatBlocksCommon
 	{
 		LatCoreMC.BusType.FORGE.register(LatBlockClientEventHandler.instance);
 		
+		// TESR //
 		RenderQChest.instance.register(TileQChest.class);
 		RenderTankTile.instance.register(TileTankBase.class);
 		
+		// ISBRH //
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
 		RenderTank.instance.register();
-		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank);
-		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_water);
-		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_void);
 		RenderGlowiumBlocks.instance.register();
 		RenderPSlope.instance.register();
 		RenderQCable.instance.register();
+		
+		// IIR //
+		RenderQChest.instance.registerItemRenderer(LatBlocksItems.b_qchest);
+		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank);
+		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_water);
+		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_void);
 	}
 	
 	public void postInit()
