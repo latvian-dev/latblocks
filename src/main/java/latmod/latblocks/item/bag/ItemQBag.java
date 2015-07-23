@@ -1,13 +1,14 @@
-package latmod.latblocks.item;
+package latmod.latblocks.item.bag;
 
 import latmod.ftbu.core.LMSecurity;
-import latmod.ftbu.core.inv.*;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.item.IClientActionItem;
 import latmod.ftbu.core.util.*;
+import latmod.ftbu.mod.FTBU;
 import latmod.latblocks.*;
+import latmod.latblocks.item.ItemLB;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -16,21 +17,21 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.*;
 
-public class ItemQuartzBag extends ItemLB implements IClientActionItem
+public class ItemQBag extends ItemLB implements IClientActionItem
 {
 	public static final String ACTION_SET_COLOR = "latblocks.qbag.col";
 	public static final String ACTION_SET_NAME = "latblocks.qbag.name";
 	public static final String ACTION_SET_SECURITY = "latblocks.qbag.security";
 	
 	public static final String TAG_DATA = "Bag";
+	public static final String TAG_ID = "ID";
 	public static final String TAG_SECURITY = "Security";
 	public static final String TAG_COLOR = "Col";
-	public static final String TAG_INV = "Inv";
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon icon_mask;
 	
-	public ItemQuartzBag(String s)
+	public ItemQBag(String s)
 	{
 		super(s);
 		setMaxStackSize(1);
@@ -55,11 +56,16 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 		is.stackTagCompound.setTag(TAG_DATA, tag);
 	}
 	
+	public static int getBagID(ItemStack is)
+	{
+		NBTTagCompound tag = getData(is);
+		return (tag == null) ? 0 : tag.getInteger(TAG_ID);
+	}
+	
 	public static int getColor(ItemStack is)
 	{
 		NBTTagCompound tag = getData(is);
-		if(tag != null) return tag.getInteger(TAG_COLOR);
-		return 0xFFFFFFFF;
+		return (tag == null) ? 0xFFFFFFFF : tag.getInteger(TAG_COLOR);
 	}
 	
 	public static LMSecurity getSecurity(ItemStack is)
@@ -82,20 +88,17 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 		
 		NBTTagCompound tag = getData(is);
 		
-		if(tag == null)
+		if(tag != null)
 		{
-			tag = new NBTTagCompound();
+			int ID = getBagID(is);
 			
-			LMSecurity s = new LMSecurity(ep);
-			s.writeToNBT(tag, TAG_SECURITY);
-			tag.setInteger(TAG_COLOR, w.rand.nextInt());
+			if(ID <= 0)
+			{
+				is.stackSize--;
+				LMInvUtils.giveItem(ep, new ItemStack(this));
+				return is;
+			}
 			
-			ep.openContainer.detectAndSendChanges();
-			
-			setData(is, tag);
-		}
-		else
-		{
 			LMSecurity s = getSecurity(is);
 			
 			if(!s.canInteract(ep))
@@ -104,7 +107,23 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 				return is;
 			}
 			
-			LatBlocksGuiHandler.instance.openGui(ep, LatBlocksGuiHandler.QUARTZ_BAG, null);
+			NBTTagCompound data = new NBTTagCompound();
+			data.setInteger("ID", ID);
+			LatBlocksGuiHandler.instance.openGui(ep, LatBlocksGuiHandler.QUARTZ_BAG, data);
+		}
+		else
+		{
+			tag = new NBTTagCompound();
+			tag.setInteger(TAG_ID, ++QBagDataHandler.lastBagID);
+			QBagDataHandler.getItems(QBagDataHandler.lastBagID);
+			
+			LMSecurity s = new LMSecurity(ep);
+			s.writeToNBT(tag, TAG_SECURITY);
+			tag.setInteger(TAG_COLOR, w.rand.nextInt());
+			
+			//ep.openContainer.detectAndSendChanges();
+			
+			setData(is, tag);
 		}
 		
 		return is;
@@ -149,6 +168,9 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 			if(s.level.isPublic()) l.add("" + s.getOwner());
 			else l.add(s.getOwner() + " [" + s.level.getText() + "]");
 			l.add("Color: " + LatCore.Colors.getHex(getColor(is)));
+			
+			if(FTBU.proxy.isShiftDown())
+				l.add("BagID: " + getBagID(is));
 		}
 	}
 	
@@ -187,30 +209,18 @@ public class ItemQuartzBag extends ItemLB implements IClientActionItem
 		return is;
 	}
 	
-	public boolean hasCustomEntity(ItemStack stack)
-	{ return true; }
+	public int getEntityLifespan(ItemStack is, World w)
+	{ return Integer.MAX_VALUE; }
+	
+	public boolean hasCustomEntity(ItemStack is)
+	{ return getData(is) != null; }
 	
 	public Entity createEntity(World w, Entity e, ItemStack is)
 	{
-		EntityBagItem ei = new EntityBagItem(w, e.posX, e.posY, e.posZ, is);
+		EntityItemQBag ei = new EntityItemQBag(w, e.posX, e.posY, e.posZ, is);
 		ei.motionX = e.motionX;
 		ei.motionY = e.motionY;
 		ei.motionZ = e.motionZ;
 		return ei;
-	}
-	
-	public static class EntityBagItem extends EntityItem
-	{
-		public EntityBagItem(World w)
-		{ super(w); }
-		
-		public EntityBagItem(World w, double x, double y, double z, ItemStack is)
-		{
-			super(w, x, y, z, is);
-			delayBeforeCanPickup = 40;
-		}
-		
-		public boolean isEntityInvulnerable()
-		{ return true; }
 	}
 }

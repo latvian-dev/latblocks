@@ -5,7 +5,7 @@ import latmod.ftbu.core.net.*;
 import latmod.ftbu.core.util.*;
 import latmod.ftbu.mod.client.gui.GuiSelectColor;
 import latmod.latblocks.LatBlocks;
-import latmod.latblocks.item.*;
+import latmod.latblocks.item.bag.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
@@ -19,7 +19,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qbag.png");
 	public static final TextureCoords color_tex = new TextureCoords(tex, 230, 0, 16, 16);
 	
-	public final InvQuartzBag bag;
+	public final InvQBag bag;
 	public final TextBoxLM textBoxLabel;
 	public final ButtonLM buttonSecurity, buttonColChest;
 	
@@ -32,10 +32,10 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 		
 		xSize = 230;
 		ySize = 229;
-		bag = (InvQuartzBag)c.inv;
+		bag = (InvQBag)c.inv;
 		
-		security = ItemQuartzBag.getSecurity(bag.getItem());
-		color = ItemQuartzBag.getColor(bag.getItem());
+		security = ItemQBag.getSecurity(bag.getItem());
+		color = ItemQBag.getColor(bag.getItem());
 		
 		textBoxLabel = new TextBoxLM(this, 7, 6, 175, 18)
 		{
@@ -43,7 +43,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 			{
 				NBTTagCompound tag = new NBTTagCompound();
 				tag.setString("N", textBoxLabel.text.trim());
-				LMNetHelper.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_NAME, tag));
+				LMNetHelper.sendToServer(new MessageClientItemAction(ItemQBag.ACTION_SET_NAME, tag));
 			}
 		};
 		
@@ -58,7 +58,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 			{
 				playClickSound();
 				security.level = security.level.next(LMSecurity.Level.VALUES);
-				LMNetHelper.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_SECURITY, null));
+				LMNetHelper.sendToServer(new MessageClientItemAction(ItemQBag.ACTION_SET_SECURITY, null));
 			}
 			
 			public void addMouseOverText(FastList<String> l)
@@ -114,7 +114,7 @@ public class GuiQuartzBag extends GuiLM implements GuiSelectColor.ColorSelectorC
 			buttonColChest.title = LatCore.Colors.getHex(color);
 			NBTTagCompound data = new NBTTagCompound();
 			data.setInteger("C", color);
-			LMNetHelper.sendToServer(new MessageClientItemAction(ItemQuartzBag.ACTION_SET_COLOR, data));
+			LMNetHelper.sendToServer(new MessageClientItemAction(ItemQBag.ACTION_SET_COLOR, data));
 		}
 		
 		mc.displayGuiScreen(this);

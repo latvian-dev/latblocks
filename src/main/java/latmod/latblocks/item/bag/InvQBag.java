@@ -1,40 +1,33 @@
-package latmod.latblocks.item;
+package latmod.latblocks.item.bag;
 
 import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-public class InvQuartzBag implements IInventory
+public class InvQBag implements IInventory
 {
-	public static final int INV_W = 12;
-	public static final int INV_H = 6;
-	
 	public final EntityPlayer player;
-	public final ItemStack[] items;
+	public final InvQItems items;
 	
-	public InvQuartzBag(EntityPlayer ep)
+	public InvQBag(EntityPlayer ep, int id)
 	{
 		player = ep;
-		items = new ItemStack[INV_W * INV_H];
-		
-		NBTTagCompound tag = ItemQuartzBag.getData(getItem());
-		if(tag != null) LMInvUtils.readItemsFromNBT(items, tag, ItemQuartzBag.TAG_INV);
+		items = (id == 0) ? new InvQItems(0) : QBagDataHandler.getItems(id);
 	}
 	
 	public ItemStack getItem()
 	{
 		ItemStack is = player.inventory.getCurrentItem();
-		return (is != null && is.getItem() == LatBlocksItems.i_qbag && is.hasTagCompound() && is.getTagCompound().hasKey(ItemQuartzBag.TAG_DATA)) ? is : null;
+		return (is != null && is.getItem() == LatBlocksItems.i_qbag && is.hasTagCompound() && is.getTagCompound().hasKey(ItemQBag.TAG_DATA)) ? is : null;
 	}
 	
 	public int getSizeInventory()
-	{ return items.length; }
+	{ return items.stacks.length; }
 	
 	public ItemStack getStackInSlot(int i)
-	{ return items[i]; }
+	{ return items.stacks[i]; }
 	
 	public ItemStack decrStackSize(int slot, int amt)
 	{ return LMInvUtils.decrStackSize(this, slot, amt); }
@@ -43,7 +36,7 @@ public class InvQuartzBag implements IInventory
 	{ return LMInvUtils.getStackInSlotOnClosing(this, i); }
 	
 	public void setInventorySlotContents(int i, ItemStack is)
-	{ items[i] = is; markDirty(); }
+	{ items.stacks[i] = is; markDirty(); }
 	
 	public String getInventoryName()
 	{ return getItem().getDisplayName(); }
@@ -55,20 +48,13 @@ public class InvQuartzBag implements IInventory
 	{ return 64; }
 	
 	public void markDirty()
-	{
-		ItemStack parent = getItem();
-		if(parent == null) return;
-		NBTTagCompound tag = ItemQuartzBag.getData(parent);
-		if(tag == null) return;
-		LMInvUtils.writeItemsToNBT(items, tag, ItemQuartzBag.TAG_INV);
-		ItemQuartzBag.setData(parent, tag);
-	}
+	{ items.update(); }
 	
 	public boolean isUseableByPlayer(EntityPlayer ep)
 	{
 		ItemStack parent = getItem();
 		if(parent == null) return true;
-		return ItemQuartzBag.getSecurity(parent).canInteract(ep);
+		return ItemQBag.getSecurity(parent).canInteract(ep);
 	}
 	
 	public void openInventory() { }

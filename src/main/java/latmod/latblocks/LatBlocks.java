@@ -1,5 +1,6 @@
 package latmod.latblocks;
-import latmod.ftbu.core.LMMod;
+import latmod.ftbu.core.*;
+import latmod.latblocks.item.bag.QBagDataHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
@@ -38,6 +39,7 @@ public class LatBlocks
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
+		LatCoreMC.BusType.LATMOD.register(QBagDataHandler.instance);
 		tabGlowium.init();
 		
 		mod.loadRecipes();

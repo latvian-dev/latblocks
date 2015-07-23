@@ -138,7 +138,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				mc.displayGuiScreen(new GuiQChestNet(chest));
+				chest.clientPressButton(TileQChest.BUTTON_QNET, b, null);
 			}
 		};
 		

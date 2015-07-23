@@ -7,7 +7,7 @@ import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -244,7 +244,6 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	
 	public ItemStack getQIcon() { return new ItemStack(LatBlocksItems.b_qfurnace, 1, isLit() ? 100 : 0); }
 	
-	@SideOnly(Side.CLIENT)
-	public void openQGui(EntityPlayer ep)
-	{ clientOpenGui(null); }
+	public void onQClicked(EntityPlayerMP ep, int button)
+	{ LatCoreMC.openGui(ep, this, null); }
 }

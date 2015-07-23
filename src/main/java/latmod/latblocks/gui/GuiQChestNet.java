@@ -3,6 +3,7 @@ import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.util.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.relauncher.*;
@@ -11,21 +12,18 @@ import cpw.mods.fml.relauncher.*;
 public class GuiQChestNet extends GuiLM
 {
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest_net.png");
-	public static final TextureCoords tex_color = new TextureCoords(tex, 156, 0, 16, 16);
+	public static final TextureCoords tex_color = new TextureCoords(tex, 174, 0, 16, 16);
 	
-	public final IQuartzNetTile parent;
-	public final TileEntity tile;
-	
+	public final TileQChest chest;
 	public final FastList<ButtonQInv> qinvs;
 	
-	public GuiQChestNet(IQuartzNetTile i)
+	public GuiQChestNet(ContainerQChestNet c)
 	{
-		super(null, tex);
-		parent = i;
-		tile = (TileEntity)parent;
+		super(c, tex);
+		chest = (TileQChest)c.inv;
 		
-		xSize = 156;
-		ySize = 82;
+		xSize = 174;
+		ySize = 167;
 		
 		qinvs = new FastList<ButtonQInv>();
 	}
@@ -34,7 +32,7 @@ public class GuiQChestNet extends GuiLM
 	{
 		qinvs.clear();
 		
-		FastList<IQuartzNetTile> list = QNetFinder.getTiles(tile.getWorldObj(), tile.xCoord, tile.yCoord, tile.zCoord, 32);
+		FastList<IQuartzNetTile> list = QNetFinder.getTiles(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, 32);
 		for(IQuartzNetTile inv : list)
 			qinvs.add(new ButtonQInv(this, inv));
 		
@@ -58,11 +56,13 @@ public class GuiQChestNet extends GuiLM
 	
 	public static class ButtonQInv extends ItemButtonLM implements Comparable<ButtonQInv>
 	{
+		public final TileQChest chest;
 		public final IQuartzNetTile inv;
 		
 		public ButtonQInv(GuiQChestNet g, IQuartzNetTile i)
 		{
-			super(g, 7, 6, 16, 16);
+			super(g, 16, 8, 16, 16);
+			chest = g.chest;
 			inv = i;
 			posX += (g.qinvs.size() % 8) * 18;
 			posY += (g.qinvs.size() / 8) * 18;
@@ -71,7 +71,12 @@ public class GuiQChestNet extends GuiLM
 		}
 		
 		public void onButtonPressed(int b)
-		{ inv.openQGui(gui.container.player); }
+		{
+			NBTTagCompound data = new NBTTagCompound();
+			TileEntity te = (TileEntity)inv;
+			data.setIntArray("Data", new int[] { te.xCoord, te.yCoord, te.zCoord, b });
+			chest.sendClientAction(TileQChest.BUTTON_QNET_CLICK, data);
+		}
 		
 		public int compareTo(ButtonQInv o)
 		{ return inv.getQTitle().compareTo(o.inv.getQTitle()); }

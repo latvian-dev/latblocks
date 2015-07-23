@@ -4,6 +4,7 @@ import latmod.latblocks.block.*;
 import latmod.latblocks.block.paintable.*;
 import latmod.latblocks.block.tank.*;
 import latmod.latblocks.item.*;
+import latmod.latblocks.item.bag.ItemQBag;
 
 public class LatBlocksItems
 {
@@ -45,7 +46,7 @@ public class LatBlocksItems
 	public static ItemColorPainter i_painter_col;
 	public static ItemHammer i_hammer;
 	public static ItemGlasses i_glasses;
-	public static ItemQuartzBag i_qbag;
+	public static ItemQBag i_qbag;
 	//public static ItemPocketFurnace i_pfurnace;
 	
 	public static void init()
@@ -97,7 +98,7 @@ public class LatBlocksItems
 		i_painter_col = new ItemColorPainter("colorPainter").register();
 		i_hammer = new ItemHammer("hammer").register();
 		i_glasses = new ItemGlasses("glasses").register();
-		i_qbag = new ItemQuartzBag("qbag").register();
+		i_qbag = new ItemQBag("qbag").register();
 		//i_pfurnace = new  ItemPocketFurnace("pfurnace").register();
 	}
 }
