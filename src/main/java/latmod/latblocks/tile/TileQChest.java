@@ -193,19 +193,17 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public ItemStack getQIcon()
 	{ return iconItem; }
 	
-	public void onQClicked(EntityPlayerMP ep, int button)
-	{ LatCoreMC.openGui(ep, this, null); }
+	public void onQClicked(EntityPlayer ep, int button)
+	{
+		if(!isServer()) return;
+		if(!security.canInteract(ep))
+		{ printOwner(ep); return; }
+		LatCoreMC.openGui(ep, this, null);
+	}
 	
 	public void onClientAction(EntityPlayerMP ep, String action, NBTTagCompound data)
 	{
-		if(action.equals(ACTION_OPEN_GUI))
-		{
-			if(security.canInteract(ep))
-				super.onClientAction(ep, action, data);
-			else
-				printOwner(ep);
-		}
-		else if(action.equals(BUTTON_QNET_CLICK))
+		if(action.equals(BUTTON_QNET_CLICK))
 		{
 			int[] ai = data.getIntArray("Data");
 			TileEntity te = worldObj.getTileEntity(ai[0], ai[1], ai[2]);

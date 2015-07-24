@@ -5,8 +5,10 @@ import java.util.List;
 import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.item.ItemGlasses;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.IFluidBlock;
 
 public class TileGlowium extends TileSidedPaintable
 {
@@ -25,7 +27,7 @@ public class TileGlowium extends TileSidedPaintable
 	
 	public boolean setPaint(PaintData p)
 	{
-		if(p.paint != null && (!p.paint.block.isOpaqueCube() || !p.paint.block.renderAsNormalBlock()))
+		if(p.paint != null && !(p.paint.block instanceof IFluidBlock || p.paint.block instanceof BlockLiquid) && (!p.paint.block.isOpaqueCube() || !p.paint.block.renderAsNormalBlock()))
 			return false; return super.setPaint(p);
 	}
 	

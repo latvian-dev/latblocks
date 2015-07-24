@@ -3,7 +3,7 @@ import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.latblocks.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
@@ -54,6 +54,9 @@ public class BlockLinedBlock extends BlockGlowium
 		
 		int m = iba.getBlockMetadata(x, y, z);
 		
+		if(isBlockAlone(iba, x, y, z, m))
+			return icons[0][0][0][0];
+		
 		int a = 0;
 		int b = 0;
 		int c = 0;
@@ -93,9 +96,22 @@ public class BlockLinedBlock extends BlockGlowium
 			}
 		}
 		
+		if(a == 0 && b == 0 && c == 0 && d == 0)
+			return LatCoreMCClient.blockNullIcon;
 		return icons[a][b][c][d];
 	}
 	
 	private int isAt(IBlockAccess iba, int x, int y, int z, int m)
 	{ return (iba.getBlock(x, y, z) == this && iba.getBlockMetadata(x, y, z) == m) ? 1 : 0; }
+	
+	private boolean isBlockAlone(IBlockAccess iba, int x, int y, int z, int m)
+	{
+		for(int i = 0; i < 6; i++)
+		{
+			if(isAt(iba, x + Facing.offsetsXForSide[i], y + Facing.offsetsYForSide[i], z + Facing.offsetsZForSide[i], m) == 1)
+				return false;
+		}
+		
+		return true;
+	}
 }

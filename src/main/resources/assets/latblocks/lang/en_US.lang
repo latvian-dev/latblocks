@@ -81,9 +81,10 @@ latblocks:item.hammer.name=LatBlocks Hammer
 latblocks:item.glasses.name=LatBlocks Goggles
 latblocks:item.qbag.name=Quartz Bag
 latblocks:item.pfurn.name=Pocket Furnace
+latblocks:item.ebag.name=Ender Bag
 
 #ClientConfig
 config.group.latblocks=LatBlocks
 config.property.rotate_blocks=Rotate Blocks
 config.property.render_highlights=Render Highlights
-config.property.all_glowium_blocks=Add All Glowium Blocks
+config.property.smooth_lighting=Paintable Blocks Smooth Lighting

@@ -8,7 +8,6 @@ import latmod.ftbu.core.recipes.LMRecipes;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.*;
-import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileGlowium;
@@ -22,9 +21,10 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.*;
 import cpw.mods.fml.relauncher.*;
 
-public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPaint
+public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustomPaintBlockIcon
 {
 	public static final String ORE_NAME = "blockGlowium";
 	public static final int DEF_DMG = EnumDyeColor.YELLOW.ID;
@@ -164,12 +164,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item j, CreativeTabs c, List l)
 	{
-		if(LatBlocksClient.addAllGlowiumBlocks.getB())
-		{
-			for(int i = 0; i < 16; i++)
-				l.add(new ItemStack(this, 1, i));
-		}
-		else l.add(new ItemStack(this, 1, DEF_DMG));
+		l.add(new ItemStack(this, 1, DEF_DMG));
 	}
 	
 	public void loadRecipes()
@@ -308,4 +303,18 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.INoPain
 	@SideOnly(Side.CLIENT)
 	public IIcon getGlowIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{ return icon_glow; }
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getCustomPaintIcon(int side, IPaintable.Paint p)
+	{
+		if(p.block instanceof IFluidBlock)
+		{
+			Fluid f = ((IFluidBlock)p.block).getFluid();
+			if(f != null) return f.getStillIcon();
+		}
+		else if(p.block instanceof BlockLiquid || p.block instanceof BlockFluidBase)
+			return p.block.getIcon(1, p.meta);
+		
+		return null;
+	}
 }

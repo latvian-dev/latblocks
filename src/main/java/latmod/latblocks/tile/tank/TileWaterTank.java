@@ -55,6 +55,12 @@ public class TileWaterTank extends TileTankBase
 						h.fill(dir.getOpposite(), new FluidStack(FluidRegistry.WATER, 1000), true);
 				}
 			}
+			
+			if(tank.getAmount() != tank.getCapacity())
+			{
+				tank.fluidTank.setFluid(new FluidStack(FluidRegistry.WATER, tank.getCapacity()));
+				markDirty();
+			}
 		}
 	}
 	
@@ -66,7 +72,7 @@ public class TileWaterTank extends TileTankBase
 			if(isServer())
 			{
 				getMeta();
-				setMeta(1 - blockMetadata);
+				setMeta((blockMetadata == 0) ? 1 : 0);
 				markDirty();
 			}
 			

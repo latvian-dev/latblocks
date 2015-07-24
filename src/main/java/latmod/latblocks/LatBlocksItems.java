@@ -47,7 +47,7 @@ public class LatBlocksItems
 	public static ItemHammer i_hammer;
 	public static ItemGlasses i_glasses;
 	public static ItemQBag i_qbag;
-	//public static ItemPocketFurnace i_pfurnace;
+	public static ItemEnderBag i_ebag;
 	
 	public static void init()
 	{
@@ -99,6 +99,6 @@ public class LatBlocksItems
 		i_hammer = new ItemHammer("hammer").register();
 		i_glasses = new ItemGlasses("glasses").register();
 		i_qbag = new ItemQBag("qbag").register();
-		//i_pfurnace = new  ItemPocketFurnace("pfurnace").register();
+		i_ebag = new ItemEnderBag("ebag").register();
 	}
 }

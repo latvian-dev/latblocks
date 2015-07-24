@@ -116,7 +116,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 	}
 	
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
-	{ return type != ItemRenderType.FIRST_PERSON_MAP; }
+	{ return true; }
 	
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{ return true; }

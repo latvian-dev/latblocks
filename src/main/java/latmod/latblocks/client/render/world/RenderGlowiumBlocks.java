@@ -17,6 +17,27 @@ import cpw.mods.fml.relauncher.*;
 public class RenderGlowiumBlocks extends BlockRendererLM
 {
 	public static final RenderGlowiumBlocks instance = new RenderGlowiumBlocks();
+	private static int faceRendering = -1;
+	private static IPaintable.Paint paintUsing = null;
+	
+	public Block empty = new BlockCustom()
+	{
+		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+		{ return s == faceRendering; }
+		
+		public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
+		{
+			if(paintUsing == null || paintUsing.block == null)
+				return super.getMixedBrightnessForBlock(iba, x, y, z);
+			return paintUsing.block.getMixedBrightnessForBlock(iba, x, y, z);
+		}
+	};
+	
+	public Block glow = new BlockGlowing()
+	{
+		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+		{ return s == faceRendering; }
+	};
 	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
@@ -60,19 +81,20 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		
 		for(int s = 0; s < 6; s++)
 		{
+			faceRendering = s;
 			if(bg.shouldSideBeRendered(iba, x, y, z, s))
 			{
 				double d = -0.005D;
 				renderBlocks.setFaceBounds(s, d, d, d, 1D - d, 1D - d, 1D - d);
 				renderBlocks.setCustomColor(renderColor);
 				renderBlocks.setOverrideBlockTexture(bg.getGlowIcon(iba, x, y, z, s));
-				renderBlocks.renderStandardBlock(BlockGlowing.instGlowing, x, y, z);
+				renderBlocks.renderStandardBlock(glow, x, y, z);
 				renderBlocks.setFaceBounds(s, 0D, 0D, 0D, 1D, 1D, 1D);
 				
 				if(t.paint[s] == null || t.paint[s].block == null)
 				{
 					renderBlocks.setOverrideBlockTexture(bg.getBlockIcon());
-					renderBlocks.renderStandardBlock(BlockCustom.inst, x, y, z);
+					renderBlocks.renderStandardBlock(empty, x, y, z);
 				}
 				else
 				{
@@ -81,8 +103,6 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 				}
 			}
 		}
-		
-		//renderBlocks.renderStandardBlock(empty, x, y, z);
 		
 		return true;
 	}

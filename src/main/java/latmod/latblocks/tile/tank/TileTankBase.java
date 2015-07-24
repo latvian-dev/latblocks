@@ -2,7 +2,7 @@ package latmod.latblocks.tile.tank;
 
 import latmod.ftbu.core.tile.*;
 import latmod.latblocks.tile.IQuartzNetTile;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -51,7 +51,7 @@ public abstract class TileTankBase extends TileLM implements IFluidHandler, IQua
 	public String getQTitle()
 	{ return getQIcon().getDisplayName(); }
 	
-	public void onQClicked(EntityPlayerMP ep, int button)
+	public void onQClicked(EntityPlayer ep, int button)
 	{
 	}
 }

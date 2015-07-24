@@ -5,12 +5,11 @@ import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.item.IClientActionItem;
 import latmod.ftbu.core.util.*;
 import latmod.ftbu.mod.FTBU;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksGuiHandler;
 import latmod.latblocks.item.ItemLB;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -40,10 +39,10 @@ public class ItemQBag extends ItemLB implements IClientActionItem
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "LSL", "LCL", "LLL",
+		/*mod.recipes.addRecipe(new ItemStack(this), "LSL", "LCL", "LLL",
 				'L', Items.leather,
 				'S', Items.string,
-				'C', LatBlocksItems.b_qchest);
+				'C', LatBlocksItems.b_qchest);*/
 	}
 	
 	public static NBTTagCompound getData(ItemStack is)

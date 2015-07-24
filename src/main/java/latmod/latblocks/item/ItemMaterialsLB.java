@@ -89,7 +89,10 @@ public class ItemMaterialsLB extends ItemLB
 				LatBlocksItems.i_hammer.addRecipe(DUSTS_GLOWIUM[i], GEMS_GLOWIUM[i]);
 		
 		LatBlocksItems.i_hammer.addRecipe(LENS, ODItems.GLASS);
-		LatBlocksItems.i_hammer.addRecipe(LMRecipes.size(STAR_DUST, 8), Items.nether_star);
+		LatBlocksItems.i_hammer.addRecipe(LMRecipes.size(STAR_DUST, 8), Items.nether_star, ODItems.GLOWSTONE);
+		
+		if(LatBlocksConfig.Crafting.easyStartDust) LatBlocksItems.i_hammer.addRecipe(LMRecipes.size(STAR_DUST, 8),
+				ODItems.DIAMOND, ODItems.DIAMOND, ODItems.DIAMOND, ODItems.GLOWSTONE);
 		
 		mod.recipes.addRecipe(LMRecipes.size(ROD, 4), "P", "P",
 				'P', LatBlocksItems.b_paintable);

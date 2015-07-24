@@ -1,17 +1,22 @@
 package latmod.latblocks.block.tank;
 import latmod.ftbu.core.client.LatCoreMCClient;
+import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.tile.IPaintable.Paint;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderTank;
+import latmod.latblocks.tile.tank.TileTankBase;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.*;
 
-public abstract class BlockTankBase extends BlockLB
+public abstract class BlockTankBase extends BlockLB implements IPaintable.ICustomPaintBlock
 {
 	public BlockTankBase(String s)
 	{
@@ -52,6 +57,22 @@ public abstract class BlockTankBase extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
+	}
+	
+	public Paint getCustomPaint(World w, int x, int y, int z)
+	{
+		TileEntity te = w.getTileEntity(x, y, z);
+		if(te != null && te instanceof TileTankBase)
+		{
+			TileTankBase t = (TileTankBase)te;
+			if(t != null && t.tank.hasFluid())
+			{
+				Block b = t.tank.getFluid().getBlock();
+				if(b != null) return new Paint(b, 0);
+			}
+		}
+		
+		return null;
 	}
 	
 	@SideOnly(Side.CLIENT)

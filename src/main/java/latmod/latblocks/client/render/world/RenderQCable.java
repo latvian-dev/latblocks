@@ -16,6 +16,10 @@ public class RenderQCable extends BlockRendererLM
 {
 	public static final RenderQCable instance = new RenderQCable();
 	
+	public BlockCustom empty = new BlockCustom()
+	{
+	};
+	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		GL11.glColor4f(1F, 1F, 1F, 1F);
@@ -24,7 +28,7 @@ public class RenderQCable extends BlockRendererLM
 		renderBlocks.setCustomColor(0xFFFFFFFF);
 		renderBlocks.setRenderBoundsFromBlock(b);
 		renderBlocks.setOverrideBlockTexture(LatBlocksItems.b_qcable.getBlockIcon());
-		renderBlocks.renderBlockAsItem(BlockCustom.inst, meta, 1F);
+		renderBlocks.renderBlockAsItem(empty, meta, 1F);
 		GL11.glPopMatrix();
 	}
 	
@@ -60,6 +64,6 @@ public class RenderQCable extends BlockRendererLM
 	private void renderBox(int x, int y, int z, double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
 	{
 		renderBlocks.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
-		renderBlocks.renderStandardBlock(BlockCustom.inst, x, y, z);
+		renderBlocks.renderStandardBlock(empty, x, y, z);
 	}
 }

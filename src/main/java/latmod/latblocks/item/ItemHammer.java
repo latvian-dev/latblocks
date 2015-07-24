@@ -1,6 +1,7 @@
 package latmod.latblocks.item;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.Tool;
+import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocksConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -38,8 +39,14 @@ public class ItemHammer extends ItemLB
 	public boolean doesContainerItemLeaveCraftingGrid(ItemStack is)
 	{ return false; }
 	
-	public void addRecipe(ItemStack out, Object in)
-	{ mod.recipes.addShapelessRecipe(out, new ItemStack(this, 1, ODItems.ANY), in); }
+	public void addRecipe(ItemStack out, Object in, Object... extra)
+	{
+		FastList<Object> l = new FastList<Object>();
+		l.add(new ItemStack(this, 1, ODItems.ANY));
+		l.add(in);
+		l.addAll(extra);
+		mod.recipes.addShapelessRecipe(out, l.toArray());
+	}
 	
 	public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player)
 	{
