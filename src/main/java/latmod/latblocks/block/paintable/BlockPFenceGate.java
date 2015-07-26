@@ -29,7 +29,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	{
 		mod.recipes.addRecipe(new ItemStack(this), "PSP", "PSP",
 				'P', LatBlocksItems.b_paintable,
-				'S', ItemMaterialsLB.ROD);
+				'S', ItemMaterialsLB.ROD.stack);
 	}
 	
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e)

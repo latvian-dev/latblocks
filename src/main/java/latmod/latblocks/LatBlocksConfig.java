@@ -47,26 +47,18 @@ public class LatBlocksConfig extends LMConfig implements IServerConfig
 	{
 		public static int hammer;
 		public static boolean goggles;
-		public static boolean glowiumBlocks;
 		public static boolean endlessTank;
-		public static boolean glowiumGems;
-		public static boolean glowiumDusts;
 		public static boolean chest;
 		public static boolean furnace;
-		public static boolean bricks;
 		public static boolean easyStartDust;
 		
 		public static void load(Category c)
 		{
 			hammer = c.getInt("hammer", 1, 0, 2);
 			goggles = c.getBool("goggles", true);
-			glowiumBlocks = c.getBool("glowiumBlocks", true);
 			endlessTank = c.getBool("endlessTank", true);
-			glowiumGems = c.getBool("glowiumGems", true);
-			glowiumDusts = c.getBool("glowiumDusts", true);
 			chest = c.getBool("chest", true);
 			furnace = c.getBool("furnace", true);
-			bricks = c.getBool("bricks", true);
 			easyStartDust = c.getBool("easyStartDust", true);
 		}
 	}

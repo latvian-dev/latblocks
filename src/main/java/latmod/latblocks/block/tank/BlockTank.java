@@ -1,4 +1,6 @@
 package latmod.latblocks.block.tank;
+import java.text.DecimalFormat;
+
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.*;
@@ -46,7 +48,7 @@ public class BlockTank extends BlockTankBase
 			TankCraftingHandler.register(new ItemStack(this, 1, 4), new ItemStack(this, 1, 3), new ItemStack(Items.diamond));
 			
 			if(LatBlocksConfig.Crafting.endlessTank)
-				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.STAR_DUST);
+				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.STAR_DUST.stack);
 		}
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 0), "SGS", "G G", "SGS",
@@ -72,7 +74,7 @@ public class BlockTank extends BlockTankBase
 		if(LatBlocksConfig.Crafting.endlessTank)
 			mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 4),
-				'I', ItemMaterialsLB.STAR_DUST);
+				'I', ItemMaterialsLB.STAR_DUST.stack);
 	}
 	
 	public int damageDropped(int i)
@@ -102,8 +104,8 @@ public class BlockTank extends BlockTankBase
 		
 		int cap = MathHelperLM.power(8, meta);
 		
-		if(meta == 5) l.add("Capacity: Endless");
-		else l.add("Capacity: " + cap + MathHelperLM.getPluralWord(cap, " bucket", " buckets"));
+		DecimalFormat format = new DecimalFormat("###,###,###,###,###.###");
+		l.add(format.format( ((meta == 5) ? 2000000000 : (cap * 1000)) ).replace(',', '\'') + " mB [ Mk" + (meta + 1) + " ]");
 		
 		if(GuiScreen.isShiftKeyDown())
 		{
@@ -114,9 +116,7 @@ public class BlockTank extends BlockTankBase
 			if(cap >= 64) l.add((cap / 64) + "x " + new ItemStack(Items.gold_ingot).getDisplayName());
 			if(cap >= 512) l.add((cap / 512) + "x " + new ItemStack(Items.quartz).getDisplayName());
 			if(cap >= 4096) l.add((cap / 4096) + "x " + new ItemStack(Items.diamond).getDisplayName());
-			if(meta == 5) l.add("1x " + ItemMaterialsLB.STAR_DUST.getDisplayName());
-			
-			//l.add("" + MathHelperLM.power(8, 0));
+			if(meta == 5) l.add("1x " + ItemMaterialsLB.STAR_DUST.stack.getDisplayName());
 		}
 	}
 	

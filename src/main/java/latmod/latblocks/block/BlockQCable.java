@@ -38,7 +38,7 @@ public class BlockQCable extends BlockLB
 		mod.recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS",
 				'S', Blocks.wooden_slab,
 				'G', ODItems.GLOWSTONE,
-				'D', ItemMaterialsLB.STAR_DUST);
+				'D', ItemMaterialsLB.STAR_DUST.stack);
 	}
 	
 	public void setBlockBoundsForItemRender()

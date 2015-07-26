@@ -1,5 +1,6 @@
 package latmod.latblocks.tile.tank;
 import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.Tank;
 import latmod.ftbu.mod.FTBU;
 import latmod.latblocks.LatBlocksItems;
@@ -49,7 +50,18 @@ public class TileVoidTank extends TileTankBase
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		return true;
+		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
+		
+		if (liquid != null)
+		{
+			ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
+			ep.inventory.markDirty();
+			markDirty();
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@SideOnly(Side.CLIENT)

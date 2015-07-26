@@ -1,7 +1,6 @@
 package latmod.latblocks.block;
 
 import latmod.ftbu.core.tile.TileLM;
-import latmod.latblocks.LatBlocksConfig;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
@@ -42,8 +41,6 @@ public class BlockLBBricks extends BlockLB
 	
 	public void loadRecipes()
 	{
-		if(!LatBlocksConfig.Crafting.bricks) return;
-		
 		mod.recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB",
 				'B', new ItemStack(this, 1, 5));
 		

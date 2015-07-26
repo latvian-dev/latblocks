@@ -21,10 +21,9 @@ import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
 import cpw.mods.fml.relauncher.*;
 
-public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustomPaintBlockIcon
+public abstract class BlockGlowium extends BlockLB
 {
 	public static final String ORE_NAME = "blockGlowium";
 	public static final int DEF_DMG = EnumDyeColor.YELLOW.ID;
@@ -61,19 +60,16 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 		{
 			super.loadRecipes();
 			
-			if(LatBlocksConfig.Crafting.glowiumBlocks)
-			{
-				mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
-						'G', ItemMaterialsLB.GEMS_GLOWIUM[0]);
-				
-				mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEMS_GLOWIUM[0], 4), "G",
-						'G', new ItemStack(this, 1, DEF_DMG));
-				
-				LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
-				
-				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-						'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
-			}
+			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
+					'G', ItemMaterialsLB.GEM_GLOWIUM_Y.stack);
+			
+			mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEM_GLOWIUM_Y.stack, 4), "G",
+					'G', new ItemStack(this, 1, DEF_DMG));
+			
+			LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
+			
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+					'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
 		}
 	}
 	
@@ -86,8 +82,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 		{
 			super.loadRecipes();
 			
-			if(LatBlocksConfig.Crafting.glowiumBlocks)
-				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[0], 4, DEF_DMG));
 		}
 	}
@@ -101,8 +96,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 		{
 			super.loadRecipes();
 			
-			if(LatBlocksConfig.Crafting.glowiumBlocks)
-				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[1], 4, DEF_DMG));
 		}
 	}
@@ -116,8 +110,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 		{
 			super.loadRecipes();
 			
-			if(LatBlocksConfig.Crafting.glowiumBlocks)
-				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[2], 4, DEF_DMG));
 		}
 	}
@@ -131,8 +124,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 		{
 			super.loadRecipes();
 			
-			if(LatBlocksConfig.Crafting.glowiumBlocks)
-				mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[3], 4, DEF_DMG));
 		}
 	}
@@ -169,13 +161,9 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.glowiumBlocks)
-		{
-			for(int i = 0; i < 16; i++)
-				mod.recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
-						'G', new ItemStack(this, 1, DEF_DMG),
-						'C', EnumDyeColor.VALUES[i].dyeName);
-		}
+		for(int i = 0; i < 16; i++) mod.recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
+				'G', new ItemStack(this, 1, DEF_DMG),
+				'C', EnumDyeColor.VALUES[i].dyeName);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -211,7 +199,7 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
     {
-		Block b1 = iba.getBlock(x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s]);
+		Block b1 = iba.getBlock(x, y, z);
 		if(b1 instanceof BlockGlowium) return false;
 		return b1 == Blocks.air || !b1.renderAsNormalBlock() || !b1.isOpaqueCube();
 	}
@@ -303,18 +291,4 @@ public abstract class BlockGlowium extends BlockLB implements IPaintable.ICustom
 	@SideOnly(Side.CLIENT)
 	public IIcon getGlowIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{ return icon_glow; }
-	
-	@SideOnly(Side.CLIENT)
-	public IIcon getCustomPaintIcon(int side, IPaintable.Paint p)
-	{
-		if(p.block instanceof IFluidBlock)
-		{
-			Fluid f = ((IFluidBlock)p.block).getFluid();
-			if(f != null) return f.getStillIcon();
-		}
-		else if(p.block instanceof BlockLiquid || p.block instanceof BlockFluidBase)
-			return p.block.getIcon(1, p.meta);
-		
-		return null;
-	}
 }

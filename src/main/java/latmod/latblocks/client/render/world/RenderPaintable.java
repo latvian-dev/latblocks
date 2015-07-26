@@ -20,10 +20,14 @@ import cpw.mods.fml.relauncher.*;
 public class RenderPaintable extends BlockRendererLM
 {
 	public static final RenderPaintable instance = new RenderPaintable();
+	private static final FastList<AxisAlignedBB> boxes0 = new FastList<AxisAlignedBB>();
+	private static BlockPaintableLB blockP;
 	
-	public RenderPaintable()
+	public BlockCustom base = new BlockCustom()
 	{
-	}
+		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
+		{ return blockP.getDefaultWorldIcon(iba, x, y, z, s); }
+	};
 	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
@@ -58,21 +62,17 @@ public class RenderPaintable extends BlockRendererLM
 		
 		if(t == null || t.isInvalid()) return false;
 		
-		BlockPaintableLB blockP = (BlockPaintableLB)b;
+		blockP = (BlockPaintableLB)b;
 		
 		Paint[] p = new Paint[6];
-		IIcon[] defIcon = new IIcon[6];
 		for(int i = 0; i < 6; i++)
-		{
 			p[i] = t.getPaint(i);
-			defIcon[i] = blockP.getDefaultWorldIcon(iba, x, y, z, i);
-		}
 		
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		blockP.addRenderBoxes(boxes, iba, x, y, z, -1);
+		boxes0.clear();
+		blockP.addRenderBoxes(boxes0, iba, x, y, z, -1);
 		
-		for(int i = 0; i < boxes.size(); i++)
-			IPaintable.Renderer.renderCube(iba, renderBlocks, p, defIcon, x, y, z, boxes.get(i));
+		for(int i = 0; i < boxes0.size(); i++)
+			IPaintable.Renderer.renderCube(iba, renderBlocks, p, base, x, y, z, boxes0.get(i));
 		
 		return true;
 	}

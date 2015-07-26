@@ -104,6 +104,39 @@ public class RenderFountain extends BlockRendererLM
 		return AxisAlignedBB.getBoundingBox(x - w, y1, z - d, x + w, y2, z + d);
 	}
 	
+	private static TileFountain tile;
+	
+	public BlockCustom base = new BlockCustom()
+	{
+		public IIcon getIcon(int s, int m)
+		{ return LatBlocksItems.b_paintable.getBlockIcon(); }
+		
+		public boolean isOpaqueCube()
+		{ return false; }
+		
+		public boolean renderAsNormalBlock()
+		{ return false; }
+	};
+	
+	public BlockCustom fluid = new BlockCustom()
+	{
+		public IIcon getIcon(int s, int m)
+		{
+			IIcon icon = tile.tank.getFluid().getStillIcon();
+			if(icon == null && tile.tank.getFluid().getBlock() != null)
+				icon = tile.tank.getFluid().getBlock().getBlockTextureFromSide(1);
+			return icon;
+		}
+		
+		public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
+		{
+			if(tile.tank.getFluid().getBlock() != null)
+				return iba.getLightBrightnessForSkyBlocks(x, y, z, tile.tank.getFluid().getBlock().getLightValue());
+				//return tile.tank.getFluid().getBlock().getMixedBrightnessForBlock(iba, x, y, z);
+			return super.getMixedBrightnessForBlock(iba, x, y, z);
+		}
+	};
+	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.renderAllFaces = true;
@@ -136,23 +169,24 @@ public class RenderFountain extends BlockRendererLM
 	{
 		renderBlocks.renderAllFaces = false;
 		renderBlocks.blockAccess = iba;
+		renderBlocks.setCustomColor(null);
 		
-		TileFountain t = (TileFountain)iba.getTileEntity(x, y, z);
-		if(t == null || t.isInvalid()) return false;
+		tile = (TileFountain)iba.getTileEntity(x, y, z);
+		if(tile == null) return false;
 		
-		IIcon defIcon = LatBlocksItems.b_paintable.getBlockIcon();
-		IPaintable.Paint[] paint = IPaintable.Renderer.to6(t.paint[0]);
-		IIcon[] icons = IPaintable.Renderer.to6(defIcon);
+		IPaintable.Paint[] paint = IPaintable.Renderer.to6(tile.paint[0]);
 		
 		for(int i = 0; i < boxes.length; i++)
-			IPaintable.Renderer.renderCube(iba, renderBlocks, paint, icons, t.xCoord, t.yCoord, t.zCoord, boxes[i]);
+			IPaintable.Renderer.renderCube(iba, renderBlocks, paint, base, tile.xCoord, tile.yCoord, tile.zCoord, boxes[i]);
 		
-		if(t.tank.hasFluid())
+		if(tile.tank.hasFluid())
 		{
+			renderBlocks.setOverrideBlockTexture(fluid.getIcon(1, 0));
+			
 			for(int i = 0; i < fluid_boxes.length; i++)
 			{
 				renderBlocks.setRenderBounds(fluid_boxes[i]);
-				renderFluidBlock(t);
+				renderBlocks.renderStandardBlock(fluid, x, y, z);
 			}
 		}
 		
@@ -161,24 +195,4 @@ public class RenderFountain extends BlockRendererLM
 	
 	public boolean shouldRender3DInInventory(int renderID)
 	{ return true; }
-	
-	public void renderFluidBlock(TileFountain t)
-	{
-		renderBlocks.setCustomColor(null);
-		
-		IIcon icon = t.tank.getFluid().getStillIcon();
-		if(icon == null && t.tank.getFluid().getBlock() != null)
-			icon = t.tank.getFluid().getBlock().getBlockTextureFromSide(2);
-		
-		if(icon != null)
-		{
-			renderBlocks.setOverrideBlockTexture(icon);
-			renderBlocks.renderStandardBlock(Blocks.stone, t.xCoord, t.yCoord, t.zCoord);
-		}
-		else
-		{
-			renderBlocks.clearOverrideBlockTexture();
-			renderBlocks.renderStandardBlock(Blocks.flowing_water, t.xCoord, t.yCoord, t.zCoord);
-		}
-	}
 }

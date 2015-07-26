@@ -22,7 +22,8 @@ public class LatBlocksClient extends LatBlocksCommon
 	private static final ClientConfig clientConfig = new ClientConfig("latblocks");
 	public static final ClientConfig.Property rotateBlocks = new ClientConfig.Property("rotate_blocks", false);
 	public static final ClientConfig.Property renderHighlights = new ClientConfig.Property("render_highlights", true);
-	public static final ClientConfig.Property smoothLighting = new ClientConfig.Property("smooth_lighting", true);
+	public static final ClientConfig.Property fluidsGlow = new ClientConfig.Property("fluids_glow", true);
+	public static final ClientConfig.Property fluidsFlowing = new ClientConfig.Property("fluids_flowing", false);
 	
 	public void preInit()
 	{
@@ -51,7 +52,8 @@ public class LatBlocksClient extends LatBlocksCommon
 	{
 		clientConfig.add(rotateBlocks);
 		clientConfig.add(renderHighlights);
-		clientConfig.add(smoothLighting);
+		clientConfig.add(fluidsGlow);
+		clientConfig.add(fluidsFlowing);
 		ClientConfig.Registry.add(clientConfig);
 		
 		LatBlocksGuiHandler.instance.registerClient();
@@ -75,12 +77,18 @@ public class LatBlocksClient extends LatBlocksCommon
 		
 		Block block = t.tank.getFluid().getBlock();
 		
+		final int brightness = t.getWorldObj().getLightBrightnessForSkyBlocks(t.xCoord, t.yCoord + 1, t.zCoord, block.getLightValue());
+		
 		for(int i = 0; i < c * 3; i++)
 		{
 			double mx = MathHelperLM.sinFromDeg(i * 360D / (double)c + tick) * mxz;
 			double mz = MathHelperLM.cosFromDeg(i * 360D / (double)c + tick) * mxz;
 			
-			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityBlockDustFX(t.getWorldObj(), x, y + MathHelperLM.rand.nextFloat() * 0.3D, z, mx, my, mz, block, 0));
+			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityBlockDustFX(t.getWorldObj(), x, y + MathHelperLM.rand.nextFloat() * 0.3D, z, mx, my, mz, block, 0)
+			{
+				public int getBrightnessForRender(float f)
+				{ return brightness; }
+			});
 		}
 	}
 	

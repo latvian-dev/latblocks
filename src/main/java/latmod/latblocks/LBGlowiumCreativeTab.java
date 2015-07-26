@@ -18,7 +18,7 @@ public class LBGlowiumCreativeTab extends CreativeTabs
 	{
 		allBlocks.clear();
 		
-		for(int i = 0; i < LatBlocksItems.b_glowium.length; i++) for(int j = 0; j < 16; j++)
+		for(int j = 0; j < 16; j++) for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
 			allBlocks.add(new ItemStack(LatBlocksItems.b_glowium[i], 1, j));
 	}
 	

@@ -38,7 +38,7 @@ public class BlockQFurnace extends BlockLB
 					'Q', Blocks.quartz_block,
 					'F', Blocks.furnace,
 					'D', ODItems.DIAMOND,
-					'S', ItemMaterialsLB.DUSTS_GLOWIUM[4]);
+					'S', ItemMaterialsLB.DUST_GLOWIUM_D.stack);
 		}
 	}
 	

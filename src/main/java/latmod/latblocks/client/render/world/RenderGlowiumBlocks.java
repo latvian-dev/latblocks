@@ -7,6 +7,7 @@ import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TileGlowium;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
@@ -82,7 +83,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		for(int s = 0; s < 6; s++)
 		{
 			faceRendering = s;
-			if(bg.shouldSideBeRendered(iba, x, y, z, s))
+			if(bg.shouldSideBeRendered(iba, x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s], s))
 			{
 				double d = -0.005D;
 				renderBlocks.setFaceBounds(s, d, d, d, 1D - d, 1D - d, 1D - d);
@@ -99,7 +100,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 				else
 				{
 					renderBlocks.setCustomColor(null);
-					IPaintable.Renderer.renderFace(iba, renderBlocks, s, t.paint[s], bg.getBlockIcon(), x, y, z);
+					IPaintable.Renderer.renderFace(iba, renderBlocks, s, t.paint[s], bg, x, y, z);
 				}
 			}
 		}

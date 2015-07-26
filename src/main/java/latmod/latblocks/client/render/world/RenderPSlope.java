@@ -1,13 +1,10 @@
 package latmod.latblocks.client.render.world;
-import latmod.ftbu.core.client.*;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.client.BlockRendererLM;
 import latmod.latblocks.block.paintable.BlockPSlope;
 import latmod.latblocks.client.LatBlocksClient;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
@@ -55,18 +52,7 @@ public class RenderPSlope extends BlockRendererLM
 		
 		BlockPSlope.TilePSlope t = (BlockPSlope.TilePSlope) iba.getTileEntity(x, y, z);
 		
-		if(t == null || t.isInvalid()) return false;
-		
-		Paint[] p = new Paint[6];
-		IIcon[] defIcon = new IIcon[6];
-		for(int i = 0; i < 6; i++)
-		{
-			boolean isSolid = t.isSolid(i);
-			defIcon[i] = isSolid ? b.getBlockTextureFromSide(1) : LatCoreMCClient.blockNullIcon;
-			p[i] = isSolid ? t.getPaint(i) : null;
-		}
-		
-		IPaintable.Renderer.renderCube(iba, renderBlocks, p, defIcon, x, y, z, renderBlocks.fullBlock);
+		if(t == null) return false;
 		
 		return true;
 	}

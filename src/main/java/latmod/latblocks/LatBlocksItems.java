@@ -40,7 +40,6 @@ public class LatBlocksItems
 	public static BlockLBBricks b_bricks;
 	
 	public static ItemMaterialsLB i_mat;
-	public static ItemPainterParts i_parts;
 	public static ItemBlockPainter i_painter;
 	public static ItemBlockPainterDmd i_painter_dmd;
 	public static ItemColorPainter i_painter_col;
@@ -92,7 +91,6 @@ public class LatBlocksItems
 		b_bricks = new BlockLBBricks("bricks").register();
 		
 		i_mat = new ItemMaterialsLB("materials").register();
-		i_parts = new ItemPainterParts("painterParts").register();
 		i_painter = new ItemBlockPainter("blockPainter").register();
 		i_painter_dmd = new ItemBlockPainterDmd("blockPainterDmd").register();
 		i_painter_col = new ItemColorPainter("colorPainter").register();

@@ -5,16 +5,20 @@ import java.util.List;
 import latmod.ftbu.core.LMMod;
 import latmod.ftbu.core.block.BlockLM;
 import latmod.ftbu.core.item.ItemBlockLM;
+import latmod.ftbu.core.tile.IPaintable;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocks;
+import latmod.latblocks.client.LatBlocksClient;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.*;
 import cpw.mods.fml.relauncher.*;
 
-public abstract class BlockLB extends BlockLM
+public abstract class BlockLB extends BlockLM implements IPaintable.ICustomPaintBlockIcon
 {
 	public boolean hasSpecialPlacement = false;
 	
@@ -48,5 +52,21 @@ public abstract class BlockLB extends BlockLM
 	{
 		AxisAlignedBB bb = getCollisionBoundingBoxFromPool(w, x, y, z);
 		if(bb != null) boxes.add(bb.getOffsetBoundingBox(-x, -y, -z));
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public IIcon getCustomPaintIcon(int side, IPaintable.Paint p)
+	{
+		if(LatBlocksClient.fluidsFlowing.getB()) return null;
+		
+		if(p.block instanceof IFluidBlock)
+		{
+			Fluid f = ((IFluidBlock)p.block).getFluid();
+			if(f != null) return f.getStillIcon();
+		}
+		else if(p.block instanceof BlockLiquid || p.block instanceof BlockFluidBase)
+			return p.block.getIcon(1, p.meta);
+		
+		return null;
 	}
 }

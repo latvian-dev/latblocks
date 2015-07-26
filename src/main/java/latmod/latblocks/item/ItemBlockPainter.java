@@ -16,7 +16,7 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addShapelessRecipe(new ItemStack(this), ItemPainterParts.PAINT_ROLLER_ROD, ItemPainterParts.PAINT_ROLLER);
+		mod.recipes.addShapelessRecipe(new ItemStack(this), ItemMaterialsLB.PAINT_ROLLER_ROD.stack, ItemMaterialsLB.PAINT_ROLLER.stack);
 	}
 	
 	public ItemStack getPaintItem(ItemStack is)
