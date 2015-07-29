@@ -1,8 +1,8 @@
 package latmod.latblocks.block;
 import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.paint.*;
+import latmod.ftbu.core.tile.TileLM;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,7 +14,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
-public class BlockGlass extends BlockLB implements IPaintable.ICustomPaintBlockIcon
+public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon icons[][][][];

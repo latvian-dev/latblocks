@@ -2,6 +2,7 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
+import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.item.ItemGlasses;

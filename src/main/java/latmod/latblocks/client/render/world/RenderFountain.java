@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render.world;
 import latmod.ftbu.core.client.BlockRendererLM;
-import latmod.ftbu.core.tile.IPaintable;
+import latmod.ftbu.core.paint.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TileFountain;
@@ -174,10 +174,10 @@ public class RenderFountain extends BlockRendererLM
 		tile = (TileFountain)iba.getTileEntity(x, y, z);
 		if(tile == null) return false;
 		
-		IPaintable.Paint[] paint = IPaintable.Renderer.to6(tile.paint[0]);
+		Paint[] paint = PaintableRenderer.to6(tile.paint[0]);
 		
 		for(int i = 0; i < boxes.length; i++)
-			IPaintable.Renderer.renderCube(iba, renderBlocks, paint, base, tile.xCoord, tile.yCoord, tile.zCoord, boxes[i]);
+			PaintableRenderer.renderCube(iba, renderBlocks, paint, base, tile.xCoord, tile.yCoord, tile.zCoord, boxes[i]);
 		
 		if(tile.tank.hasFluid())
 		{

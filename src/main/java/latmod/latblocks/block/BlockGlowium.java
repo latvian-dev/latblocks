@@ -4,8 +4,9 @@ import java.util.List;
 
 import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.inv.*;
+import latmod.ftbu.core.paint.Paint;
 import latmod.ftbu.core.recipes.LMRecipes;
-import latmod.ftbu.core.tile.*;
+import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
@@ -18,7 +19,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
@@ -250,7 +251,7 @@ public abstract class BlockGlowium extends BlockLB
 				if(b != null)
 				{
 					TileGlowium t = getTile(TileGlowium.class, w, x, y, z);
-					IPaintable.Paint[] prevPaint = t.paint.clone();
+					Paint[] prevPaint = t.paint.clone();
 					
 					w.setBlock(x, y, z, b, meta, 3);
 					

@@ -3,6 +3,7 @@ package latmod.latblocks.tile.tank;
 import java.util.List;
 
 import latmod.ftbu.core.inv.LMInvUtils;
+import latmod.ftbu.core.paint.IPainterItem;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocksItems;
@@ -88,7 +89,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(is == null || is.getItem() instanceof IPaintable.IPainterItem) return false;
+		if(is == null || is.getItem() instanceof IPainterItem) return false;
 		
 		if(isServer() && ep.isSneaking() && LMInvUtils.isWrench(is))
 		{

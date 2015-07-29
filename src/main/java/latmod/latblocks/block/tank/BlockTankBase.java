@@ -1,7 +1,6 @@
 package latmod.latblocks.block.tank;
 import latmod.ftbu.core.client.LatCoreMCClient;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.paint.*;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileTankBase;
@@ -16,7 +15,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import cpw.mods.fml.relauncher.*;
 
-public abstract class BlockTankBase extends BlockLB implements IPaintable.ICustomPaintBlock
+public abstract class BlockTankBase extends BlockLB implements ICustomPaintBlock
 {
 	public BlockTankBase(String s)
 	{

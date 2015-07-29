@@ -1,5 +1,6 @@
 package latmod.latblocks.tile;
 
+import latmod.ftbu.core.paint.*;
 import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileSinglePaintable extends TilePaintableLB

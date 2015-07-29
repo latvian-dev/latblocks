@@ -1,10 +1,10 @@
 package latmod.latblocks.item;
-import latmod.ftbu.core.tile.IPaintable;
+import latmod.ftbu.core.paint.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
+public class ItemBlockPainter extends ItemLB implements IPainterItem
 {
 	public ItemBlockPainter(String s)
 	{
@@ -20,7 +20,7 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 	}
 	
 	public ItemStack getPaintItem(ItemStack is)
-	{ return IPaintable.Helper.getPaintItem(is); }
+	{ return PaintItemHelper.getPaintItem(is); }
 	
 	public boolean canPaintBlock(ItemStack is)
 	{ return is.getItemDamage() <= getMaxDamage(); }
@@ -29,8 +29,8 @@ public class ItemBlockPainter extends ItemLB implements IPaintable.IPainterItem
 	{ is.damageItem(1, ep); }
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
-	{ return IPaintable.Helper.onItemRightClick(this, is, w, ep); }
+	{ return PaintItemHelper.onItemRightClick(this, is, w, ep); }
 	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
-	{ return IPaintable.Helper.onItemUse(this, is, ep, w, x, y, z, s, x1, y1, z1); }
+	{ return PaintItemHelper.onItemUse(this, is, ep, w, x, y, z, s, x1, y1, z1); }
 }

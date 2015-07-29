@@ -5,7 +5,7 @@ import java.util.List;
 import latmod.ftbu.core.LMMod;
 import latmod.ftbu.core.block.BlockLM;
 import latmod.ftbu.core.item.ItemBlockLM;
-import latmod.ftbu.core.tile.IPaintable;
+import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.client.LatBlocksClient;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.*;
 import cpw.mods.fml.relauncher.*;
 
-public abstract class BlockLB extends BlockLM implements IPaintable.ICustomPaintBlockIcon
+public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 {
 	public boolean hasSpecialPlacement = false;
 	
@@ -55,7 +55,7 @@ public abstract class BlockLB extends BlockLM implements IPaintable.ICustomPaint
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public IIcon getCustomPaintIcon(int side, IPaintable.Paint p)
+	public IIcon getCustomPaintIcon(int side, Paint p)
 	{
 		if(LatBlocksClient.fluidsFlowing.getB()) return null;
 		

@@ -1,7 +1,6 @@
 package latmod.latblocks.client.render.world;
 import latmod.ftbu.core.client.BlockRendererLM;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.latblocks.client.LatBlocksClient;
@@ -72,11 +71,8 @@ public class RenderPaintable extends BlockRendererLM
 		blockP.addRenderBoxes(boxes0, iba, x, y, z, -1);
 		
 		for(int i = 0; i < boxes0.size(); i++)
-			IPaintable.Renderer.renderCube(iba, renderBlocks, p, base, x, y, z, boxes0.get(i));
+			PaintableRenderer.renderCube(iba, renderBlocks, p, base, x, y, z, boxes0.get(i));
 		
 		return true;
 	}
-	
-	public boolean shouldRender3DInInventory(int renderID)
-	{ return true; }
 }

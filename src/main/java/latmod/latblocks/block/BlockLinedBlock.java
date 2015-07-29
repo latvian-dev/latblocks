@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
 import latmod.ftbu.core.client.LatCoreMCClient;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;

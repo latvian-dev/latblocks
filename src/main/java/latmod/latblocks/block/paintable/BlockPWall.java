@@ -60,8 +60,7 @@ public class BlockPWall extends BlockPaintableSingle
 		double h2 = 1D - 1D / 16D * 3D;
 		
 		boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.5D, p, 1D, p));
-		boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.5D, 1D, h2, p2));
-		//boxes.add(AxisAlignedBB.getBoundingBox(1D - (ds + p), 0D, pn, 1D - ds, 1D, pp));
+		boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.5D, p2, h2, 1D));
 	}
 	
 	@SideOnly(Side.CLIENT)

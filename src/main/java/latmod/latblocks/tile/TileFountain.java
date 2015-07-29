@@ -3,6 +3,7 @@ package latmod.latblocks.tile;
 import java.util.List;
 
 import latmod.ftbu.core.inv.LMInvUtils;
+import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
@@ -124,7 +125,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 			return true;
 		}
 		
-		if(is.getItem() instanceof IPaintable.IPainterItem) return false;
+		if(is.getItem() instanceof IPainterItem) return false;
 		
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
 		

@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 import latmod.ftbu.core.LatCoreMC;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.tile.IPaintable.Paint;
+import latmod.ftbu.core.paint.*;
+import latmod.ftbu.core.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.tank.BlockTank;
 import latmod.latblocks.client.render.world.RenderFountain;
@@ -67,7 +67,7 @@ public class BlockFountain extends BlockLB
 		
 		if(p == null || p.block == null) return false;
 		
-		IBlockAccess iba = new IPaintable.BlockAccess(w, x, y, z, p);
+		IBlockAccess iba = new PaintBlockAccess(w, x, y, z, p);
 		
 		IIcon tex = p.block.getIcon(iba, x, y, z, mop.sideHit);
 		if (tex == null) tex = blockIcon;
@@ -93,7 +93,7 @@ public class BlockFountain extends BlockLB
 		
 		if(p == null || p.block == null) return false;
 		
-		IBlockAccess iba = new IPaintable.BlockAccess(w, x, y, z, p);
+		IBlockAccess iba = new PaintBlockAccess(w, x, y, z, p);
 		
 		IIcon tex = p.block.getIcon(iba, x, y, z, side);
 		if (tex == null) tex = blockIcon;

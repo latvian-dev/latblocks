@@ -1,13 +1,13 @@
 package latmod.latblocks.client.render.world;
 
 import latmod.ftbu.core.client.*;
-import latmod.ftbu.core.tile.IPaintable;
+import latmod.ftbu.core.paint.*;
 import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.client.LatBlocksClient;
-import latmod.latblocks.tile.TileGlowium;
+import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.Facing;
+import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
@@ -15,29 +15,48 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class RenderGlowiumBlocks extends BlockRendererLM
+public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 {
 	public static final RenderGlowiumBlocks instance = new RenderGlowiumBlocks();
-	private static int faceRendering = -1;
-	private static IPaintable.Paint paintUsing = null;
+	private static int currentColor = 0;
+	private static BlockGlowium currentGBlock;
 	
-	public Block empty = new BlockCustom()
+	/*
+	public BlockCustom glow = new BlockGlowing()
 	{
 		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-		{ return s == faceRendering; }
+		{ return s == BlockCustom.currentSide; }
 		
-		public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
-		{
-			if(paintUsing == null || paintUsing.block == null)
-				return super.getMixedBrightnessForBlock(iba, x, y, z);
-			return paintUsing.block.getMixedBrightnessForBlock(iba, x, y, z);
-		}
+		public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
+		{ return currentColor; }
+		
+		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
+		{ return currentGBlock.getGlowIcon(iba, x, y, z, s); }
+	};
+	*/
+	
+	public BlockCustom base = new BlockCustom()
+	{
+		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+		{ return s == PaintableRenderer.currentSide; }
+		
+		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
+		{ return currentGBlock.getBlockIcon(); }
+		
+		public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
+		{ return currentColor; }
 	};
 	
-	public Block glow = new BlockGlowing()
+	public BlockCustom glow = new BlockGlowing()
 	{
 		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-		{ return s == faceRendering; }
+		{ return s == PaintableRenderer.currentSide; }
+		
+		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
+		{ return currentGBlock.getGlowIcon(iba, x, y, z, s); }
+		
+		public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
+		{ return currentColor; }
 	};
 	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
@@ -66,42 +85,52 @@ public class RenderGlowiumBlocks extends BlockRendererLM
 		GL11.glPopMatrix();
 	}
 	
-	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int renderID, RenderBlocks renderer0)
+	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.blockAccess = iba;
-		BlockGlowium bg = (BlockGlowium)b;
+		renderBlocks.setRenderBoundsFromBlock(b);
+		renderBlocks.setCustomColor(null);
 		
-		int meta = iba.getBlockMetadata(x, y, z);
+		TilePaintableLB t = (TilePaintableLB)iba.getTileEntity(x, y, z);
 		
-		TileGlowium t = (TileGlowium)iba.getTileEntity(x, y, z);
 		if(t == null || t.isInvalid()) return false;
 		
-		int renderColor = b.getRenderColor(meta);
+		currentGBlock = (BlockGlowium)b;
 		
-		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
+		currentColor = BlockGlowium.brightColors[iba.getBlockMetadata(x, y, z)];
+		
+		AxisAlignedBB glowBB = renderBlocks.fullBlock.expand(0.003D, 0.003D, 0.003D);
 		
 		for(int s = 0; s < 6; s++)
 		{
-			faceRendering = s;
-			if(bg.shouldSideBeRendered(iba, x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s], s))
+			Paint p = t.getPaint(s);
+			PaintableRenderer.currentSide = s;
+			
+			if((p != null && (!p.block.isOpaqueCube() || !p.block.renderAsNormalBlock())) || currentGBlock.shouldSideBeRendered(iba, x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s], s))
 			{
-				double d = -0.005D;
-				renderBlocks.setFaceBounds(s, d, d, d, 1D - d, 1D - d, 1D - d);
-				renderBlocks.setCustomColor(renderColor);
-				renderBlocks.setOverrideBlockTexture(bg.getGlowIcon(iba, x, y, z, s));
-				renderBlocks.renderStandardBlock(glow, x, y, z);
-				renderBlocks.setFaceBounds(s, 0D, 0D, 0D, 1D, 1D, 1D);
+				renderBlocks.renderAllFaces = false;
+				renderBlocks.setCustomColor(currentColor);
 				
-				if(t.paint[s] == null || t.paint[s].block == null)
+				renderBlocks.setFaceBounds(s, glowBB);
+				renderBlocks.setOverrideBlockTexture(currentGBlock.getGlowIcon(iba, x, y, z, s));
+				renderBlocks.renderStandardBlock(glow, x, y, z);
+				
+				renderBlocks.setFaceBounds(s, renderBlocks.fullBlock);
+				PaintableRenderer.renderFace(iba, renderBlocks, 0, p, base, x, y, z);
+				
+				/*
+				if(p == null)
 				{
-					renderBlocks.setOverrideBlockTexture(bg.getBlockIcon());
-					renderBlocks.renderStandardBlock(empty, x, y, z);
+					renderBlocks.setCustomColor(currentColor);
+					renderBlocks.setOverrideBlockTexture(base.getIcon(iba, x, y, z, s));
+					renderBlocks.renderStandardBlock(base, x, y, z);
 				}
 				else
 				{
-					renderBlocks.setCustomColor(null);
-					IPaintable.Renderer.renderFace(iba, renderBlocks, s, t.paint[s], bg, x, y, z);
-				}
+					renderBlocks.setCustomColor(p.block.colorMultiplier(iba, x, y, z));
+					renderBlocks.setOverrideBlockTexture(p.getIcon(iba, x, y, z, s));
+					renderBlocks.renderStandardBlock(p.block, x, y, z);
+				}*/
 			}
 		}
 		
