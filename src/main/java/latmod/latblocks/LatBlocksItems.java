@@ -4,7 +4,6 @@ import latmod.latblocks.block.*;
 import latmod.latblocks.block.paintable.*;
 import latmod.latblocks.block.tank.*;
 import latmod.latblocks.item.*;
-import latmod.latblocks.item.bag.ItemQBag;
 
 public class LatBlocksItems
 {
@@ -22,7 +21,7 @@ public class LatBlocksItems
 	public static BlockPWall b_wall;
 	public static BlockPLadder b_ladder;
 	public static BlockPPressurePlate b_pressure_plate;
-	//public static BlockPDoor b_door;
+	public static BlockPDoor b_door;
 	//public static BlockPSlope b_slope;
 	
 	public static BlockQChest b_qchest;
@@ -35,6 +34,7 @@ public class LatBlocksItems
 	public static BlockGlass b_glass;
 	public static BlockCraftingPanel b_crafting_panel;
 	public static BlockQCable b_qcable;
+	public static BlockGlowiumFarmland b_farmland;
 	
 	public static BlockGlowium[] b_glowium;
 	public static BlockLBBricks b_bricks;
@@ -45,7 +45,7 @@ public class LatBlocksItems
 	public static ItemColorPainter i_painter_col;
 	public static ItemHammer i_hammer;
 	public static ItemGlasses i_glasses;
-	public static ItemQBag i_qbag;
+	//public static ItemQBag i_qbag;
 	public static ItemEnderBag i_ebag;
 	
 	public static void init()
@@ -64,7 +64,7 @@ public class LatBlocksItems
 		b_wall = new BlockPWall("wall").register();
 		b_ladder = new BlockPLadder("ladder").register();
 		b_pressure_plate = new BlockPPressurePlate("pressurePlate").register();
-		//b_door = new BlockPDoor("door").register();
+		b_door = new BlockPDoor("door").register();
 		//b_slope = new BlockPSlope("slope").register();
 		
 		b_qchest = new BlockQChest("quartzChest").register();
@@ -77,6 +77,7 @@ public class LatBlocksItems
 		b_glass = new BlockGlass("glass").register();
 		b_crafting_panel = new BlockCraftingPanel("craftingPanel").register();
 		b_qcable = new BlockQCable("cable").register();
+		b_farmland = new BlockGlowiumFarmland("farmland").register();
 		
 		b_glowium = new BlockGlowium[]
 		{
@@ -96,7 +97,7 @@ public class LatBlocksItems
 		i_painter_col = new ItemColorPainter("colorPainter").register();
 		i_hammer = new ItemHammer("hammer").register();
 		i_glasses = new ItemGlasses("glasses").register();
-		i_qbag = new ItemQBag("qbag").register();
+		//i_qbag = new ItemQBag("qbag").register();
 		i_ebag = new ItemEnderBag("ebag").register();
 	}
 }

@@ -1,0 +1,39 @@
+package latmod.latblocks.block;
+
+import latmod.ftbu.core.inv.ODItems;
+import latmod.ftbu.core.tile.TileLM;
+import latmod.latblocks.item.ItemMaterialsLB;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.*;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
+
+public class BlockGlowiumFarmland extends BlockLB
+{
+	public BlockGlowiumFarmland(String s)
+	{
+		super(s, Material.ground);
+		isBlockContainer = false;
+	}
+	
+	public TileLM createNewTileEntity(World w, int m)
+	{ return null; }
+	
+	public void loadRecipes()
+	{
+		mod.recipes.addRecipe(new ItemStack(this, 8), "SDO", "TGT", "ODS",
+				'S', ODItems.SAND,
+				'D', Blocks.dirt,
+				'O', Blocks.soul_sand,
+				'T', Blocks.tallgrass,
+				'G', ItemMaterialsLB.DUST_GLOWIUM_G.item);
+	}
+	
+	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
+	{ return true; }
+	
+	public boolean isFertile(World world, int x, int y, int z)
+	{ return true; }
+}

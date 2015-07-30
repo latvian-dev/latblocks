@@ -116,7 +116,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 				renderBlocks.renderStandardBlock(glow, x, y, z);
 				
 				renderBlocks.setFaceBounds(s, renderBlocks.fullBlock);
-				PaintableRenderer.renderFace(iba, renderBlocks, 0, p, base, x, y, z);
+				PaintableRenderer.renderFace(iba, renderBlocks, s, p, base, x, y, z);
 				
 				/*
 				if(p == null)

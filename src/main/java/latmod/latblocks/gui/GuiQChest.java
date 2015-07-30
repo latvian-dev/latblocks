@@ -165,12 +165,12 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		
 		super.drawBackground();
 		buttonSecurity.render(Icons.security[chest.security.level.ID]);
-		LatCore.Colors.setGLColor(chest.colorChest, 220);
-		buttonColChest.render(GuiQuartzBag.color_tex);
-		LatCore.Colors.setGLColor(chest.colorText, 220);
-		buttonColText.render(GuiQuartzBag.color_tex);
+		LatCore.Colors.setGLColor(chest.colorChest, 250);
+		buttonColChest.render(Icons.color_blank);
+		LatCore.Colors.setGLColor(chest.colorText, 250);
+		buttonColText.render(Icons.color_blank);
 		LatCore.Colors.setGLColor(0xFFFFDE0C, chest.textGlows ? 255 : 100);
-		buttonGlow.render(GuiQuartzBag.color_tex);
+		buttonGlow.render(Icons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		buttonSetItem.render();
 		buttonNet.render();

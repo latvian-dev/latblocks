@@ -43,6 +43,7 @@ latblocks:tile.tank.name=LatTank
 latblocks:tile.glass.name=Invisible Glass
 latblocks:tile.craftingPanel.name=Crafting Panel
 latblocks:tile.cable.name=Quartz Chest Connector
+latblocks:tile.farmland.name=Green Glowium Farmland
 
 # To be implemented #
 
@@ -76,8 +77,6 @@ latblocks:item.blockPainterDmd.name=Diamond Block Painter
 latblocks:item.colorPainter.name=Color Painter
 latblocks:item.hammer.name=LatBlocks Hammer
 latblocks:item.glasses.name=LatBlocks Goggles
-latblocks:item.qbag.name=Quartz Bag
-latblocks:item.pfurn.name=Pocket Furnace
 latblocks:item.ebag.name=Ender Bag
 
 #ClientConfig
