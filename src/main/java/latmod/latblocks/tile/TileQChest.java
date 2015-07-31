@@ -4,14 +4,13 @@ import latmod.ftbu.core.client.LMGuiButtons;
 import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.util.MathHelperLM;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.relauncher.*;
 
 public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile, IQuartzNetTile
@@ -23,8 +22,6 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public static final String BUTTON_GLOW = "qchest.glow";
 	public static final String BUTTON_COL = "qchest.col";
 	public static final String BUTTON_SET_ITEM = "qchest.item";
-	public static final String BUTTON_QNET = "qchest.net";
-	public static final String BUTTON_QNET_CLICK = "qchest.net_click";
 	public static final float MAX_ANGLE = 2F;
 	
 	public int colorChest, colorText;
@@ -141,14 +138,13 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	{
 		super.onPlacedBy(ep, is);
 		
-		if(isServer())
+		//if(isServer())
 		{
-			setMeta(MathHelperLM.get2DRotation(ep).ordinal());
-			
 			if(is.hasTagCompound() && is.stackTagCompound.hasKey(ITEM_TAG))
+			{
 				readTileData(is.stackTagCompound.getCompoundTag(ITEM_TAG));
-			
-			markDirty();
+				markDirty();
+			}
 		}
 	}
 	
@@ -201,19 +197,6 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		LatCoreMC.openGui(ep, this, null);
 	}
 	
-	public void onClientAction(EntityPlayerMP ep, String action, NBTTagCompound data)
-	{
-		if(action.equals(BUTTON_QNET_CLICK))
-		{
-			int[] ai = data.getIntArray("Data");
-			TileEntity te = worldObj.getTileEntity(ai[0], ai[1], ai[2]);
-			if(te != null && te instanceof IQuartzNetTile)
-				((IQuartzNetTile)te).onQClicked(ep, ai[3]);
-		}
-		
-		super.onClientAction(ep, action, data);
-	}
-	
 	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayerMP ep)
 	{
 		if(button.equals(LMGuiButtons.SECURITY))
@@ -236,13 +219,5 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		}
 		else if(button.equals(BUTTON_SET_ITEM))
 			iconItem = (data == null) ? null : ItemStack.loadItemStackFromNBT(data);
-		else if(button.equals(BUTTON_QNET))
-		{
-			NBTTagCompound tag = new NBTTagCompound();
-			tag.setInteger("X", xCoord);
-			tag.setInteger("Y", yCoord);
-			tag.setInteger("Z", zCoord);
-			LatBlocksGuiHandler.instance.openGui(ep, LatBlocksGuiHandler.QUARTZ_NET, tag);
-		}
 	}
 }

@@ -87,7 +87,7 @@ public class BlockPSlope extends BlockLB
 			else if(side == 1) pitch = 0;
 			else pitch = -1;
 			
-			yaw = (byte) MathHelperLM.get2DRotation(ep).ordinal();
+			yaw = (byte) MathHelperLM.get2DRotation(ep);
 			
 			if(isServer()) LatCoreMC.printChat(ep, "Yaw: " + yaw + ", Pitch: " + pitch + ", Side: " + side);
 			

@@ -196,7 +196,6 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		else
 			customName = null;
 		
-		setMeta(MathHelperLM.get2DRotation(ep).ordinal());
 		markDirty();
 	}
 	

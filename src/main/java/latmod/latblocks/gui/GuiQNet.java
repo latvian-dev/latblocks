@@ -9,18 +9,18 @@ import net.minecraft.util.ResourceLocation;
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class GuiQChestNet extends GuiLM
+public class GuiQNet extends GuiLM
 {
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest_net.png");
 	public static final TextureCoords tex_color = new TextureCoords(tex, 174, 0, 16, 16);
 	
-	public final TileQChest chest;
+	public final TileQTerminal term;
 	public final FastList<ButtonQInv> qinvs;
 	
-	public GuiQChestNet(ContainerQChestNet c)
+	public GuiQNet(ContainerQNet c)
 	{
 		super(c, tex);
-		chest = (TileQChest)c.inv;
+		term = (TileQTerminal)c.inv;
 		
 		xSize = 174;
 		ySize = 167;
@@ -32,7 +32,7 @@ public class GuiQChestNet extends GuiLM
 	{
 		qinvs.clear();
 		
-		FastList<IQuartzNetTile> list = QNetFinder.getTiles(chest.getWorldObj(), chest.xCoord, chest.yCoord, chest.zCoord, 32);
+		FastList<IQuartzNetTile> list = QNetFinder.getTiles(term.getWorldObj(), term.xCoord, term.yCoord, term.zCoord, 32);
 		for(IQuartzNetTile inv : list)
 			qinvs.add(new ButtonQInv(this, inv));
 		
@@ -56,13 +56,13 @@ public class GuiQChestNet extends GuiLM
 	
 	public static class ButtonQInv extends ItemButtonLM implements Comparable<ButtonQInv>
 	{
-		public final TileQChest chest;
+		public final TileQTerminal term;
 		public final IQuartzNetTile inv;
 		
-		public ButtonQInv(GuiQChestNet g, IQuartzNetTile i)
+		public ButtonQInv(GuiQNet g, IQuartzNetTile i)
 		{
 			super(g, 16, 8, 16, 16);
-			chest = g.chest;
+			term = g.term;
 			inv = i;
 			posX += (g.qinvs.size() % 8) * 18;
 			posY += (g.qinvs.size() / 8) * 18;
@@ -72,10 +72,11 @@ public class GuiQChestNet extends GuiLM
 		
 		public void onButtonPressed(int b)
 		{
+			inv.onQClicked(gui.container.player, b);
 			NBTTagCompound data = new NBTTagCompound();
 			TileEntity te = (TileEntity)inv;
 			data.setIntArray("Data", new int[] { te.xCoord, te.yCoord, te.zCoord, b });
-			chest.sendClientAction(TileQChest.BUTTON_QNET_CLICK, data);
+			term.clientPressButton(TileQTerminal.BUTTON_QNET, b, data);
 		}
 		
 		public int compareTo(ButtonQInv o)

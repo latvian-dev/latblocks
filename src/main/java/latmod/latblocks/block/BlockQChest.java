@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
@@ -42,9 +42,12 @@ public class BlockQChest extends BlockLB
 					'Q', Blocks.quartz_block,
 					'F', Blocks.chest,
 					'D', ODItems.DIAMOND,
-					'S', ItemMaterialsLB.DUST_GLOWIUM_D.stack);
+					'S', ItemMaterialsLB.DUST_GLOWIUM_D);
 		}
 	}
+	
+	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
+	{ return MathHelperLM.get2DRotation(ep); }
 	
 	public int damageDropped(int i)
 	{ return 0; }

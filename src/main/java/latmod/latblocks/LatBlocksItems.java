@@ -34,6 +34,7 @@ public class LatBlocksItems
 	public static BlockGlass b_glass;
 	public static BlockCraftingPanel b_crafting_panel;
 	public static BlockQCable b_qcable;
+	public static BlockQTerminal b_qterminal;
 	public static BlockGlowiumFarmland b_farmland;
 	
 	public static BlockGlowium[] b_glowium;
@@ -77,6 +78,7 @@ public class LatBlocksItems
 		b_glass = new BlockGlass("glass").register();
 		b_crafting_panel = new BlockCraftingPanel("craftingPanel").register();
 		b_qcable = new BlockQCable("cable").register();
+		b_qterminal = new BlockQTerminal("terminal").register();
 		b_farmland = new BlockGlowiumFarmland("farmland").register();
 		
 		b_glowium = new BlockGlowium[]

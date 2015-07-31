@@ -48,7 +48,7 @@ public class BlockTank extends BlockTankBase
 			TankCraftingHandler.register(new ItemStack(this, 1, 4), new ItemStack(this, 1, 3), new ItemStack(Items.diamond));
 			
 			if(LatBlocksConfig.Crafting.endlessTank)
-				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.STAR_DUST.stack);
+				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.DUST_STAR.getStack());
 		}
 		
 		mod.recipes.addRecipe(new ItemStack(this, 1, 0), "SGS", "G G", "SGS",
@@ -74,7 +74,7 @@ public class BlockTank extends BlockTankBase
 		if(LatBlocksConfig.Crafting.endlessTank)
 			mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 4),
-				'I', ItemMaterialsLB.STAR_DUST.stack);
+				'I', ItemMaterialsLB.DUST_STAR);
 	}
 	
 	public int damageDropped(int i)
@@ -116,7 +116,7 @@ public class BlockTank extends BlockTankBase
 			if(cap >= 64) l.add((cap / 64) + "x " + new ItemStack(Items.gold_ingot).getDisplayName());
 			if(cap >= 512) l.add((cap / 512) + "x " + new ItemStack(Items.quartz).getDisplayName());
 			if(cap >= 4096) l.add((cap / 4096) + "x " + new ItemStack(Items.diamond).getDisplayName());
-			if(meta == 5) l.add("1x " + ItemMaterialsLB.STAR_DUST.stack.getDisplayName());
+			if(meta == 5) l.add("1x " + ItemMaterialsLB.DUST_STAR.getStack().getDisplayName());
 		}
 	}
 	

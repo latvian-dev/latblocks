@@ -1,6 +1,6 @@
 package latmod.latblocks.client.render.world;
 
-import latmod.ftbu.core.client.BlockRendererLM;
+import latmod.ftbu.core.client.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockQCable;
 import net.minecraft.block.Block;
@@ -34,7 +34,7 @@ public class RenderQCable extends BlockRendererLM
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int renderID, RenderBlocks renderer0)
 	{
-		renderBlocks.blockAccess = iba;
+		renderBlocks.setInst(iba);
 		renderBlocks.renderAllFaces = true;
 		
 		double s0 = BlockQCable.border;

@@ -1,5 +1,5 @@
 package latmod.latblocks.client.render.world;
-import latmod.ftbu.core.client.BlockRendererLM;
+import latmod.ftbu.core.client.*;
 import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.block.BlockPaintableLB;
@@ -26,6 +26,13 @@ public class RenderPaintable extends BlockRendererLM
 	{
 		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 		{ return blockP.getDefaultWorldIcon(iba, x, y, z, s); }
+		
+		public int getLightValue()
+		{
+			if(LatBlocksClient.blocksGlow.getB() && PaintableRenderer.currentPaint != null)
+				return PaintableRenderer.currentPaint.block.getLightValue();
+			return 0;
+		}
 	};
 	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
@@ -53,7 +60,7 @@ public class RenderPaintable extends BlockRendererLM
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.renderAllFaces = true;
-		renderBlocks.blockAccess = iba;
+		renderBlocks.setInst(iba);
 		renderBlocks.setRenderBoundsFromBlock(b);
 		renderBlocks.setCustomColor(null);
 		

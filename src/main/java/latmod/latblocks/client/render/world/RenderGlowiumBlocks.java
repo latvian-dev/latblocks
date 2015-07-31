@@ -37,20 +37,24 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 	
 	public BlockCustom base = new BlockCustom()
 	{
-		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-		{ return s == PaintableRenderer.currentSide; }
-		
 		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 		{ return currentGBlock.getBlockIcon(); }
 		
 		public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
 		{ return currentColor; }
+		
+		public int getLightValue()
+		{
+			if(LatBlocksClient.blocksGlow.getB() && PaintableRenderer.currentPaint != null)
+				return PaintableRenderer.currentPaint.block.getLightValue();
+			return 0;
+		}
 	};
 	
-	public BlockCustom glow = new BlockGlowing()
+	public BlockCustom glow = new BlockCustom()
 	{
-		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-		{ return s == PaintableRenderer.currentSide; }
+		public int getLightValue()
+		{ return 15; }
 		
 		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 		{ return currentGBlock.getGlowIcon(iba, x, y, z, s); }
@@ -87,7 +91,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
-		renderBlocks.blockAccess = iba;
+		renderBlocks.setInst(iba);
 		renderBlocks.setRenderBoundsFromBlock(b);
 		renderBlocks.setCustomColor(null);
 		
@@ -104,7 +108,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 		for(int s = 0; s < 6; s++)
 		{
 			Paint p = t.getPaint(s);
-			PaintableRenderer.currentSide = s;
+			renderBlocks.currentSide = s;
 			
 			if((p != null && (!p.block.isOpaqueCube() || !p.block.renderAsNormalBlock())) || currentGBlock.shouldSideBeRendered(iba, x + Facing.offsetsXForSide[s], y + Facing.offsetsYForSide[s], z + Facing.offsetsZForSide[s], s))
 			{
@@ -117,20 +121,6 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 				
 				renderBlocks.setFaceBounds(s, renderBlocks.fullBlock);
 				PaintableRenderer.renderFace(iba, renderBlocks, s, p, base, x, y, z);
-				
-				/*
-				if(p == null)
-				{
-					renderBlocks.setCustomColor(currentColor);
-					renderBlocks.setOverrideBlockTexture(base.getIcon(iba, x, y, z, s));
-					renderBlocks.renderStandardBlock(base, x, y, z);
-				}
-				else
-				{
-					renderBlocks.setCustomColor(p.block.colorMultiplier(iba, x, y, z));
-					renderBlocks.setOverrideBlockTexture(p.getIcon(iba, x, y, z, s));
-					renderBlocks.renderStandardBlock(p.block, x, y, z);
-				}*/
 			}
 		}
 		

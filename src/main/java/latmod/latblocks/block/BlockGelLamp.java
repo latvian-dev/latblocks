@@ -29,7 +29,7 @@ public class BlockGelLamp extends BlockPaintableLB
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 8), "GS", "SG",
-				'G', ItemMaterialsLB.DUST_GLOWIUM_Y.stack,
+				'G', ItemMaterialsLB.DUST_GLOWIUM_Y,
 				'S', ODItems.SLIMEBALL);
 	}
 	

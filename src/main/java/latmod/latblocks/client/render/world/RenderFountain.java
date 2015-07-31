@@ -1,5 +1,5 @@
 package latmod.latblocks.client.render.world;
-import latmod.ftbu.core.client.BlockRendererLM;
+import latmod.ftbu.core.client.*;
 import latmod.ftbu.core.paint.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.LatBlocksClient;
@@ -116,6 +116,13 @@ public class RenderFountain extends BlockRendererLM
 		
 		public boolean renderAsNormalBlock()
 		{ return false; }
+		
+		public int getLightValue()
+		{
+			if(LatBlocksClient.blocksGlow.getB() && PaintableRenderer.currentPaint != null)
+				return PaintableRenderer.currentPaint.block.getLightValue();
+			return 0;
+		}
 	};
 	
 	public BlockCustom fluid = new BlockCustom()
@@ -128,12 +135,11 @@ public class RenderFountain extends BlockRendererLM
 			return icon;
 		}
 		
-		public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
+		public int getLightValue()
 		{
-			if(tile.tank.getFluid().getBlock() != null)
-				return iba.getLightBrightnessForSkyBlocks(x, y, z, tile.tank.getFluid().getBlock().getLightValue());
-				//return tile.tank.getFluid().getBlock().getMixedBrightnessForBlock(iba, x, y, z);
-			return super.getMixedBrightnessForBlock(iba, x, y, z);
+			if(LatBlocksClient.blocksGlow.getB() && tile.tank.getFluid().getBlock() != null)
+				return tile.tank.getFluid().getBlock().getLightValue();
+			return 0;
 		}
 	};
 	
@@ -167,8 +173,9 @@ public class RenderFountain extends BlockRendererLM
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block block, int modelID, RenderBlocks rb)
 	{
+		renderBlocks.setInst(iba);
 		renderBlocks.renderAllFaces = false;
-		renderBlocks.blockAccess = iba;
+		renderBlocks.currentSide = -1;
 		renderBlocks.setCustomColor(null);
 		
 		tile = (TileFountain)iba.getTileEntity(x, y, z);
@@ -178,6 +185,8 @@ public class RenderFountain extends BlockRendererLM
 		
 		for(int i = 0; i < boxes.length; i++)
 			PaintableRenderer.renderCube(iba, renderBlocks, paint, base, tile.xCoord, tile.yCoord, tile.zCoord, boxes[i]);
+		
+		renderBlocks.currentSide = -1;
 		
 		if(tile.tank.hasFluid())
 		{

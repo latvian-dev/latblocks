@@ -45,7 +45,7 @@ public class BlockPLadder extends BlockPaintableSingle
 	public void loadRecipes()
 	{
 		mod.recipes.addRecipe(new ItemStack(this, 2), "S S", "SSS", "S S",
-				'S', ItemMaterialsLB.ROD.stack);
+				'S', ItemMaterialsLB.ROD);
 	}
 	
 	@SideOnly(Side.CLIENT)

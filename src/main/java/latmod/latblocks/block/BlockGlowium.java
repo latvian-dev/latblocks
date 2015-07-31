@@ -5,7 +5,6 @@ import java.util.List;
 import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.inv.*;
 import latmod.ftbu.core.paint.Paint;
-import latmod.ftbu.core.recipes.LMRecipes;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.*;
@@ -16,6 +15,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
@@ -62,9 +62,9 @@ public abstract class BlockGlowium extends BlockLB
 			super.loadRecipes();
 			
 			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
-					'G', ItemMaterialsLB.GEM_GLOWIUM_Y.stack);
+					'G', ItemMaterialsLB.GEM_GLOWIUM_Y);
 			
-			mod.recipes.addRecipe(LMRecipes.size(ItemMaterialsLB.GEM_GLOWIUM_Y.stack, 4), "G",
+			mod.recipes.addRecipe(ItemMaterialsLB.GEM_GLOWIUM_Y.getStack(4), "G",
 					'G', new ItemStack(this, 1, DEF_DMG));
 			
 			LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
@@ -292,4 +292,7 @@ public abstract class BlockGlowium extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public IIcon getGlowIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{ return icon_glow; }
+	
+	public boolean canCreatureSpawn(EnumCreatureType t, IBlockAccess iba, int x, int y, int z)
+	{ return t.getPeacefulCreature(); }
 }

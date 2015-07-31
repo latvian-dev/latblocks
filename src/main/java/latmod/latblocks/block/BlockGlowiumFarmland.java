@@ -16,6 +16,8 @@ public class BlockGlowiumFarmland extends BlockLB
 	{
 		super(s, Material.ground);
 		isBlockContainer = false;
+		setHardness(0.5F);
+		setLightLevel(10F / 16F);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -27,8 +29,8 @@ public class BlockGlowiumFarmland extends BlockLB
 				'S', ODItems.SAND,
 				'D', Blocks.dirt,
 				'O', Blocks.soul_sand,
-				'T', Blocks.tallgrass,
-				'G', ItemMaterialsLB.DUST_GLOWIUM_G.item);
+				'T', ODItems.GLOWSTONE,
+				'G', ItemMaterialsLB.DUST_GLOWIUM_G);
 	}
 	
 	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)

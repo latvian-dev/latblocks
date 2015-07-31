@@ -2,7 +2,6 @@ package latmod.latblocks.item;
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.*;
-import latmod.ftbu.core.recipes.LMRecipes;
 import latmod.latblocks.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -24,7 +23,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 	
 	public static MaterialItem LENS;
 	public static MaterialItem ROD;
-	public static MaterialItem STAR_DUST;
+	public static MaterialItem DUST_STAR;
 	
 	public static MaterialItem PAINT_ROLLER_ROD;
 	public static MaterialItem PAINT_ROLLER;
@@ -43,153 +42,153 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 	
 	public void onPostLoaded() // LastID = 16
 	{
-		add(GEM_GLOWIUM_Y = new MaterialItem(0, "gem_yellow")
+		add(GEM_GLOWIUM_Y = new MaterialItem(this, 0, "gem_yellow")
 		{
 			public void onPostLoaded()
-			{ ODItems.add("gemGlowium", stack); }
+			{ ODItems.add("gemGlowium", getStack()); }
 			
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(stack, " G ", "GQG", " G ",
+				mod.recipes.addRecipe(getStack(), " G ", "GQG", " G ",
 						'G', ODItems.GLOWSTONE,
 						'Q', ODItems.QUARTZ);
 			}
 		});
 		
-		add(GEM_GLOWIUM_R = new MaterialItem(5, "gem_red")
+		add(GEM_GLOWIUM_R = new MaterialItem(this, 5, "gem_red")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(stack, GEM_GLOWIUM_Y.stack, EnumDyeColor.RED.dyeName); }
+			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumDyeColor.RED.dyeName); }
 		});
 		
-		add(GEM_GLOWIUM_G = new MaterialItem(6, "gem_green")
+		add(GEM_GLOWIUM_G = new MaterialItem(this, 6, "gem_green")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(stack, GEM_GLOWIUM_Y.stack, EnumDyeColor.GREEN.dyeName); }
+			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumDyeColor.GREEN.dyeName); }
 		});
 		
-		add(GEM_GLOWIUM_B = new MaterialItem(7, "gem_blue")
+		add(GEM_GLOWIUM_B = new MaterialItem(this, 7, "gem_blue")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(stack, GEM_GLOWIUM_Y.stack, EnumDyeColor.BLUE.dyeName); }
+			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumDyeColor.BLUE.dyeName); }
 		});
 		
-		add(GEM_GLOWIUM_D = new MaterialItem(8, "gem_dark")
+		add(GEM_GLOWIUM_D = new MaterialItem(this, 8, "gem_dark")
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(stack, " 1 ", "2O3", " 4 ",
+				mod.recipes.addRecipe(getStack(), " 1 ", "2O3", " 4 ",
 						'O', ODItems.OBSIDIAN,
-						'1', GEM_GLOWIUM_Y.stack,
-						'2', GEM_GLOWIUM_R.stack,
-						'3', GEM_GLOWIUM_G.stack,
-						'4', GEM_GLOWIUM_B.stack);
+						'1', GEM_GLOWIUM_Y,
+						'2', GEM_GLOWIUM_R,
+						'3', GEM_GLOWIUM_G,
+						'4', GEM_GLOWIUM_B);
 			}
 		});
 		
-		add(DUST_GLOWIUM_Y = new MaterialItem(1, "dust_yellow")
+		add(DUST_GLOWIUM_Y = new MaterialItem(this, 1, "dust_yellow")
 		{
 			public void onPostLoaded()
-			{ ODItems.add("dustGlowium", stack); }
+			{ ODItems.add("dustGlowium", getStack()); }
 			
 			public void loadRecipes()
-			{ LatBlocksItems.i_hammer.addRecipe(stack, GEM_GLOWIUM_Y.stack); }
+			{ LatBlocksItems.i_hammer.addRecipe(getStack(), GEM_GLOWIUM_Y); }
 		});
 		
-		add(DUST_GLOWIUM_R = new MaterialItem(9, "dust_red")
+		add(DUST_GLOWIUM_R = new MaterialItem(this, 9, "dust_red")
 		{
 			public void loadRecipes()
-			{ LatBlocksItems.i_hammer.addRecipe(stack, GEM_GLOWIUM_R.stack); }
+			{ LatBlocksItems.i_hammer.addRecipe(getStack(), GEM_GLOWIUM_R); }
 		});
 		
-		add(DUST_GLOWIUM_G = new MaterialItem(10, "dust_green")
+		add(DUST_GLOWIUM_G = new MaterialItem(this, 10, "dust_green")
 		{
 			public void loadRecipes()
-			{ LatBlocksItems.i_hammer.addRecipe(stack, GEM_GLOWIUM_G.stack); }
+			{ LatBlocksItems.i_hammer.addRecipe(getStack(), GEM_GLOWIUM_G); }
 		});
 		
-		add(DUST_GLOWIUM_B = new MaterialItem(11, "dust_blue")
+		add(DUST_GLOWIUM_B = new MaterialItem(this, 11, "dust_blue")
 		{
 			public void loadRecipes()
-			{ LatBlocksItems.i_hammer.addRecipe(stack, GEM_GLOWIUM_B.stack); }
+			{ LatBlocksItems.i_hammer.addRecipe(getStack(), GEM_GLOWIUM_B); }
 		});
 		
-		add(DUST_GLOWIUM_D = new MaterialItem(12, "dust_dark")
+		add(DUST_GLOWIUM_D = new MaterialItem(this, 12, "dust_dark")
 		{
 			public void loadRecipes()
-			{ LatBlocksItems.i_hammer.addRecipe(stack, GEM_GLOWIUM_D.stack); }
+			{ LatBlocksItems.i_hammer.addRecipe(getStack(), GEM_GLOWIUM_D); }
 		});
 		
-		add(LENS = new MaterialItem(2, "lens")
+		add(LENS = new MaterialItem(this, 2, "lens")
 		{
 			public void onPostLoaded()
-			{ ODItems.add("dustGlowium", stack); }
+			{ ODItems.add("dustGlowium", getStack()); }
 			
 			public void loadRecipes()
 			{
-				LatBlocksItems.i_hammer.addRecipe(stack, ODItems.GLASS);
+				LatBlocksItems.i_hammer.addRecipe(getStack(), ODItems.GLASS);
 			}
 		});
 		
-		add(ROD = new MaterialItem(3, "rod")
+		add(ROD = new MaterialItem(this, 3, "rod")
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(LMRecipes.size(stack, 4), "P", "P",
+				mod.recipes.addRecipe(getStack(4), "P", "P",
 						'P', LatBlocksItems.b_paintable);
 			}
 		});
 		
-		add(STAR_DUST = new MaterialItem(4, "dust_star")
+		add(DUST_STAR = new MaterialItem(this, 4, "dust_star")
 		{
 			public void onPostLoaded()
-			{ ODItems.add("dustLMStar", stack); }
+			{ ODItems.add("dustLMStar", getStack()); }
 			
 			public void loadRecipes()
 			{
-				LatBlocksItems.i_hammer.addRecipe(LMRecipes.size(stack, 8), Items.nether_star, ODItems.GLOWSTONE);
+				LatBlocksItems.i_hammer.addRecipe(getStack(8), Items.nether_star, ODItems.GLOWSTONE);
 				
-				if(LatBlocksConfig.Crafting.easyStartDust) LatBlocksItems.i_hammer.addRecipe(LMRecipes.size(stack, 8),
+				if(LatBlocksConfig.Crafting.easyStartDust) LatBlocksItems.i_hammer.addRecipe(getStack(8),
 						ODItems.DIAMOND, ODItems.DIAMOND, ODItems.DIAMOND, ODItems.GLOWSTONE);
 			}
 		});
 		
-		add(PAINT_ROLLER_ROD = new MaterialItem(13, "painter_rod")
+		add(PAINT_ROLLER_ROD = new MaterialItem(this, 13, "painter_rod")
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(stack, "  I", " SI", "S  ",
+				mod.recipes.addRecipe(getStack(), "  I", " SI", "S  ",
 						'I', ODItems.IRON,
-						'S', ROD.stack);
+						'S', ROD);
 			}
 		});
 		
-		add(PAINT_ROLLER = new MaterialItem(14, "paint_roller_basic")
+		add(PAINT_ROLLER = new MaterialItem(this, 14, "paint_roller_basic")
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(LMRecipes.size(stack, 6), "WWW", "III", "WWW",
+				mod.recipes.addRecipe(getStack(6), "WWW", "III", "WWW",
 						'W', ODItems.WOOL_WHITE,
 						'I', ODItems.IRON);
 			}
 		});
 		
-		add(PAINT_ROLLER_DMD = new MaterialItem(15, "paint_roller_dmd")
+		add(PAINT_ROLLER_DMD = new MaterialItem(this, 15, "paint_roller_dmd")
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(stack, "DDD", "DRD", "DDD",
+				mod.recipes.addRecipe(getStack(), "DDD", "DRD", "DDD",
 						'D', ODItems.DIAMOND,
-						'R', PAINT_ROLLER.stack);
+						'R', PAINT_ROLLER);
 			}
 		});
 		
-		add(PAINT_ROLLER_COLOR = new MaterialItem(16, "paint_roller_color")
+		add(PAINT_ROLLER_COLOR = new MaterialItem(this, 16, "paint_roller_color")
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(stack, "123", "8R4", "765",
-						'R', PAINT_ROLLER_DMD.stack,
+				mod.recipes.addRecipe(getStack(), "123", "8R4", "765",
+						'R', PAINT_ROLLER_DMD,
 						'1', EnumDyeColor.BLUE.dyeName,
 						'2', EnumDyeColor.CYAN.dyeName,
 						'3', EnumDyeColor.GREEN.dyeName,

@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.FastList;
+import latmod.ftbu.core.util.*;
 import latmod.latblocks.LatBlocksConfig;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.*;
 import net.minecraft.world.*;
 import cpw.mods.fml.relauncher.*;
 
@@ -38,12 +38,15 @@ public class BlockQFurnace extends BlockLB
 					'Q', Blocks.quartz_block,
 					'F', Blocks.furnace,
 					'D', ODItems.DIAMOND,
-					'S', ItemMaterialsLB.DUST_GLOWIUM_D.stack);
+					'S', ItemMaterialsLB.DUST_GLOWIUM_D);
 		}
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
 	{ return new TileQFurnace(); }
+	
+	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
+	{ return MathHelperLM.get2DRotation(ep); }
 	
 	public int damageDropped(int i)
 	{ return 0; }

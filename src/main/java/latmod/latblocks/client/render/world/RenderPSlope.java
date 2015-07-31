@@ -45,8 +45,8 @@ public class RenderPSlope extends BlockRendererLM
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
+		renderBlocks.setInst(iba);
 		renderBlocks.renderAllFaces = true;
-		renderBlocks.blockAccess = iba;
 		renderBlocks.setRenderBoundsFromBlock(b);
 		renderBlocks.setCustomColor(null);
 		

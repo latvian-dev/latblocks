@@ -2,10 +2,11 @@ package latmod.latblocks.block;
 
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
-import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderQCable;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.IQuartzNetTile;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
@@ -35,10 +36,11 @@ public class BlockQCable extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS",
+		if(LatBlocksConfig.Crafting.qNetBlocks)
+			mod.recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS",
 				'S', Blocks.wooden_slab,
 				'G', ODItems.GLOWSTONE,
-				'D', ItemMaterialsLB.STAR_DUST.stack);
+				'D', ItemMaterialsLB.DUST_GLOWIUM_B);
 	}
 	
 	public void setBlockBoundsForItemRender()
@@ -49,7 +51,7 @@ public class BlockQCable extends BlockLB
 	
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
-		float s = border;// - 1 / 16F;
+		float s = border + (1F / 16F);// - 1 / 16F;
 		
 		boolean x0 = connects(iba, x - 1, y, z);
 		boolean x1 = connects(iba, x + 1, y, z);
@@ -63,7 +65,15 @@ public class BlockQCable extends BlockLB
 	
 	public static boolean connects(IBlockAccess iba, int x, int y, int z)
 	{
-		if(iba.getBlock(x, y, z) == LatBlocksItems.b_qcable) return true;
+		Block b = iba.getBlock(x, y, z);
+		if(b == LatBlocksItems.b_qcable
+		|| b == LatBlocksItems.b_qterminal
+		|| b == LatBlocksItems.b_qchest
+		|| b == LatBlocksItems.b_qfurnace
+		|| b == LatBlocksItems.b_tank
+		|| b == LatBlocksItems.b_tank_void
+		|| b == LatBlocksItems.b_tank_water) return true;
+		if(!b.hasTileEntity(iba.getBlockMetadata(x, y, z))) return false;
 		TileEntity te = iba.getTileEntity(x, y, z);
 		return (te != null && te instanceof IQuartzNetTile);
 	}

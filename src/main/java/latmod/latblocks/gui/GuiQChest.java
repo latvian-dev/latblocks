@@ -8,7 +8,6 @@ import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +24,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	public final TileQChest chest;
 	public final TextBoxLM textBoxLabel;
 	public final ButtonLM buttonSecurity, buttonColChest, buttonColText, buttonGlow;
-	public final ItemButtonLM buttonSetItem, buttonNet;
+	public final ItemButtonLM buttonSetItem;
 	
 	public GuiQChest(ContainerQChest c)
 	{
@@ -132,17 +131,6 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		};
 		
 		buttonSetItem.setItem(chest.iconItem);
-		
-		buttonNet = new ItemButtonLM(this, 217, 216, 16, 16)
-		{
-			public void onButtonPressed(int b)
-			{
-				playClickSound();
-				chest.clientPressButton(TileQChest.BUTTON_QNET, b, null);
-			}
-		};
-		
-		buttonNet.setItem(new ItemStack(Blocks.web));
 	}
 	
 	public void addWidgets(FastList<WidgetLM> l)
@@ -156,7 +144,6 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		l.add(buttonColText);
 		l.add(buttonGlow);
 		l.add(buttonSetItem);
-		l.add(buttonNet);
 	}
 	
 	public void drawBackground()
@@ -173,7 +160,6 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		buttonGlow.render(Icons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		buttonSetItem.render();
-		buttonNet.render();
 	}
 	
 	public void drawText(FastList<String> l)

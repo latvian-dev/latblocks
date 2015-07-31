@@ -1,12 +1,12 @@
 package latmod.latblocks.gui;
 
 import latmod.ftbu.core.gui.ContainerLM;
-import latmod.latblocks.tile.TileQChest;
+import latmod.latblocks.tile.TileQTerminal;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class ContainerQChestNet extends ContainerLM
+public class ContainerQNet extends ContainerLM
 {
-	public ContainerQChestNet(EntityPlayer ep, TileQChest t)
+	public ContainerQNet(EntityPlayer ep, TileQTerminal t)
 	{
 		super(ep, t);
 		addPlayerSlots(7, 85);

@@ -54,8 +54,8 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
+		renderBlocks.setInst(iba);
 		renderBlocks.renderAllFaces = true;
-		renderBlocks.blockAccess = iba;
 		renderBlocks.setCustomColor(null);
 		
 		TileTankBase t = (TileTankBase)iba.getTileEntity(x, y, z);

@@ -30,7 +30,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addShapelessRecipe(new ItemStack(this, 1, 0), ItemMaterialsLB.PAINT_ROLLER_ROD.stack, ItemMaterialsLB.PAINT_ROLLER_COLOR.stack);
+		mod.recipes.addShapelessRecipe(new ItemStack(this, 1, 0), ItemMaterialsLB.PAINT_ROLLER_ROD, ItemMaterialsLB.PAINT_ROLLER_COLOR);
 		
 		for(int i = 0; i < 16; i++)
 		{
