@@ -4,7 +4,8 @@ import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.*;
 import latmod.latblocks.*;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
+import net.minecraft.init.*;
+import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.*;
 
 public class ItemMaterialsLB extends ItemMaterialsLM
@@ -49,7 +50,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 			
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), " G ", "GQG", " G ",
+				mod.recipes.addRecipe(getStack(), "QG",
 						'G', ODItems.GLOWSTONE,
 						'Q', ODItems.QUARTZ);
 			}
@@ -121,9 +122,6 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		
 		add(LENS = new MaterialItem(this, 2, "lens")
 		{
-			public void onPostLoaded()
-			{ ODItems.add("dustGlowium", getStack()); }
-			
 			public void loadRecipes()
 			{
 				LatBlocksItems.i_hammer.addRecipe(getStack(), ODItems.GLASS);
@@ -167,9 +165,10 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(6), "WWW", "III", "WWW",
-						'W', ODItems.WOOL_WHITE,
-						'I', ODItems.IRON);
+				mod.recipes.addRecipe(getStack(), "WWW", "PIP", "WWW",
+						'W', new ItemStack(Blocks.carpet, 1, 0),
+						'I', ODItems.IRON,
+						'P', Items.paper);
 			}
 		});
 		
@@ -177,7 +176,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), "DDD", "DRD", "DDD",
+				mod.recipes.addRecipe(getStack(), "D", "R", "D",
 						'D', ODItems.DIAMOND,
 						'R', PAINT_ROLLER);
 			}

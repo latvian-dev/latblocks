@@ -25,6 +25,13 @@ public class LatBlocksClient extends LatBlocksCommon
 	public static final ClientConfig.Property blocksGlow = new ClientConfig.Property("blocks_glow", true);
 	public static final ClientConfig.Property fluidsFlowing = new ClientConfig.Property("fluids_flowing", false);
 	
+	public static final ClientConfig.Property defaultSinglePaint = new ClientConfig.Property("def_single_paint", 0, "edit")
+	{
+		public void onClicked()
+		{
+		}
+	};
+	
 	public void preInit()
 	{
 		LatCoreMC.BusType.FORGE.register(LatBlockClientEventHandler.instance);
@@ -54,6 +61,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(renderHighlights);
 		clientConfig.add(blocksGlow);
 		clientConfig.add(fluidsFlowing);
+		clientConfig.add(defaultSinglePaint);
 		ClientConfig.Registry.add(clientConfig);
 		
 		LatBlocksGuiHandler.instance.registerClient();

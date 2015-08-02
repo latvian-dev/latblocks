@@ -5,6 +5,7 @@ import latmod.ftbu.core.item.IItemLM;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.ftbu.mod.FTBU;
 import latmod.latblocks.*;
+import latmod.latblocks.api.ILBGlasses;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,15 +14,16 @@ import net.minecraft.item.*;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.*;
 
-public class ItemGlasses extends ItemArmor implements IItemLM
+public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 {
 	public static boolean hasClientPlayer()
 	{ return hasPlayer(FTBU.proxy.getClientPlayer()); }
 	
 	public static boolean hasPlayer(EntityPlayer ep)
 	{
-		return (ep == null) ? false : (ep.inventory.armorInventory[3] != null
-		&& ep.inventory.armorInventory[3].getItem() == LatBlocksItems.i_glasses);
+		if(ep == null) return false;
+		ItemStack is = ep.inventory.armorInventory[3];
+		return is != null && is.getItem() instanceof ILBGlasses && ((ILBGlasses)is.getItem()).areLBGlassesActive(is, ep);
 	}
 	
 	public static void spawnInvParticles(World w, double x, double y, double z, int q)
@@ -81,4 +83,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM
 		super.registerIcons(ir);
 		itemIcon = ir.registerIcon(LatBlocks.mod.assets + itemName);
 	}
+	
+	public boolean areLBGlassesActive(ItemStack is, EntityPlayer ep)
+	{ return true; }
 }

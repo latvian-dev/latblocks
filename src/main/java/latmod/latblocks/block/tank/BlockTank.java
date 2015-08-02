@@ -51,7 +51,7 @@ public class BlockTank extends BlockTankBase
 				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.DUST_STAR.getStack());
 		}
 		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 0), "SGS", "G G", "SGS",
+		mod.recipes.addRecipe(new ItemStack(this, 1, 0), " S ", "SGS", " S ",
 				'G', ODItems.GLASS_PANE_ANY,
 				'S', ODItems.STICK);
 		
@@ -110,7 +110,7 @@ public class BlockTank extends BlockTankBase
 		if(GuiScreen.isShiftKeyDown())
 		{
 			l.add((cap * 4) + "x " + new ItemStack(Items.stick).getDisplayName());
-			l.add((int)Math.ceil(cap * 4D * 6D / 16D) + "x " + new ItemStack(Blocks.glass).getDisplayName());
+			l.add((int)Math.ceil(cap * 6D / 16D) + "x " + new ItemStack(Blocks.glass).getDisplayName());
 			
 			if(cap >= 8) l.add((cap / 8) + "x " + new ItemStack(Items.iron_ingot).getDisplayName());
 			if(cap >= 64) l.add((cap / 64) + "x " + new ItemStack(Items.gold_ingot).getDisplayName());

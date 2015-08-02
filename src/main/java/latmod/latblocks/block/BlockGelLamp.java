@@ -28,9 +28,7 @@ public class BlockGelLamp extends BlockPaintableLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 8), "GS", "SG",
-				'G', ItemMaterialsLB.DUST_GLOWIUM_Y,
-				'S', ODItems.SLIMEBALL);
+		mod.recipes.addShapelessRecipe(new ItemStack(this, 8), ItemMaterialsLB.DUST_GLOWIUM_Y, ODItems.SLIMEBALL);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int i)
