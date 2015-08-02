@@ -4,10 +4,12 @@ import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.util.*;
 import latmod.ftbu.mod.client.gui.GuiSelectColor;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -23,8 +25,11 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	
 	public final TileQChest chest;
 	public final TextBoxLM textBoxLabel;
-	public final ButtonLM buttonSecurity, buttonColChest, buttonColText, buttonGlow;
-	public final ItemButtonLM buttonSetItem;
+	public final ButtonLM buttonSecurity, buttonColChest, buttonColText;
+	public final ItemButtonLM buttonSetItem, buttonGlow;
+	
+	private static final ItemStack lampOn = new ItemStack((Block)Block.blockRegistry.getObject("lit_redstone_lamp"));
+	private static final ItemStack lampOff = new ItemStack(Blocks.redstone_lamp);
 	
 	public GuiQChest(ContainerQChest c)
 	{
@@ -88,7 +93,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			{ l.add(LatCore.Colors.getHex(chest.colorText)); }
 		};
 		
-		buttonGlow = new ButtonLM(this, 15, 216, 16, 16)
+		buttonGlow = new ItemButtonLM(this, 15, 216, 16, 16)
 		{
 			public void onButtonPressed(int b)
 			{
@@ -105,28 +110,35 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 				playClickSound();
 				
 				if(GuiScreen.isShiftKeyDown())
-					chest.iconItem = null;
-				else if(gui.container.player.inventory.getItemStack() != null)
-					chest.iconItem = LMInvUtils.singleCopy(gui.container.player.inventory.getItemStack());
-				
-				setItem(chest.iconItem);
-				
-				if(chest.iconItem != null)
-				{
-					NBTTagCompound data = new NBTTagCompound();
-					chest.iconItem.writeToNBT(data);
-					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, b, data);
-				}
+					setItem(null);
 				else
 				{
-					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, b, null);
+					ItemStack is = gui.getHeldItem();
+					if(is != null) setItem(is);
 				}
 			}
 			
 			public void addMouseOverText(FastList<String> l)
 			{
-				l.add("Icon");
-				l.add((item == null) ? "No item selected" : item.getDisplayName());
+				l.add((item == null) ? Blocks.air.getLocalizedName() : item.getDisplayName());
+			}
+			
+			public void setItem(ItemStack is)
+			{
+				super.setItem(is);
+				
+				chest.iconItem = is;
+				
+				if(chest.iconItem != null)
+				{
+					NBTTagCompound data = new NBTTagCompound();
+					chest.iconItem.writeToNBT(data);
+					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, 0, data);
+				}
+				else
+				{
+					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, 0, null);
+				}
 			}
 		};
 		
@@ -135,8 +147,9 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	
 	public void addWidgets(FastList<WidgetLM> l)
 	{
-		buttonColChest.title = "Chest Color";
-		buttonColText.title = "Text Color";
+		buttonColChest.title = LatBlocksItems.b_qchest.getLocalizedName();
+		buttonColText.title = "ABC";
+		buttonGlow.setItem(chest.textGlows ? lampOn : lampOff);
 		
 		l.add(textBoxLabel);
 		l.add(buttonSecurity);
@@ -148,18 +161,17 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	
 	public void drawBackground()
 	{
-		buttonGlow.title = chest.textGlows ? "Glow: True" : "Glow: False";
-		
 		super.drawBackground();
 		buttonSecurity.render(Icons.security[chest.security.level.ID]);
 		LatCore.Colors.setGLColor(chest.colorChest, 250);
 		buttonColChest.render(Icons.color_blank);
 		LatCore.Colors.setGLColor(chest.colorText, 250);
 		buttonColText.render(Icons.color_blank);
-		LatCore.Colors.setGLColor(0xFFFFDE0C, chest.textGlows ? 255 : 100);
-		buttonGlow.render(Icons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
+		buttonGlow.render();
 		buttonSetItem.render();
+		if(buttonSetItem.item == null)
+			buttonSetItem.render(Icons.remove_gray);
 	}
 	
 	public void drawText(FastList<String> l)
@@ -188,12 +200,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		{
 			ItemStack is1 = LMInvUtils.singleCopy(is);
 			is.stackSize = 0;
-			
 			buttonSetItem.setItem(is1);
-			chest.iconItem = is1;
-			NBTTagCompound data = new NBTTagCompound();
-			is1.writeToNBT(data);
-			chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, b, data);
 			return true;
 		}
 		

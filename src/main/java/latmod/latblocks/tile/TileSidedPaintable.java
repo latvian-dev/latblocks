@@ -1,6 +1,9 @@
 package latmod.latblocks.tile;
 
 import latmod.ftbu.core.paint.*;
+import latmod.latblocks.gui.LatBlocksNetHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TileSidedPaintable extends TilePaintableLB
@@ -42,4 +45,10 @@ public abstract class TileSidedPaintable extends TilePaintableLB
 	
 	public void setPaint(int side, Paint p)
 	{ paint[side] = p; }
+	
+	public void onPlacedBy(EntityPlayer ep, ItemStack is)
+	{
+		super.onPlacedBy(ep, is);
+		LatBlocksNetHandler.setDefPaint(this, ep, paint);
+	}
 }

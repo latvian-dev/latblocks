@@ -7,6 +7,7 @@ import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
+import latmod.latblocks.gui.LatBlocksNetHandler;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -50,6 +51,12 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		tank.writeToNBT(tag);
 		Paint.writeToNBT(tag, "Texture", paint);
 		tag.setBoolean("RSIn", redstonePowered);
+	}
+	
+	public void onPlacedBy(EntityPlayer ep, ItemStack is)
+	{
+		super.onPlacedBy(ep, is);
+		LatBlocksNetHandler.setDefPaint(this, ep, paint);
 	}
 	
 	public boolean setPaint(PaintData p)

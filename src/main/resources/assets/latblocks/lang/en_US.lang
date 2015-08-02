@@ -80,9 +80,11 @@ latblocks:item.hammer.name=LatBlocks Hammer
 latblocks:item.glasses.name=LatBlocks Goggles
 latblocks:item.ebag.name=Ender Bag
 
-#ClientConfig
+### ClientConfig ###
+
 config.group.latblocks=LatBlocks
 config.property.rotate_blocks=Rotate Blocks
 config.property.render_highlights=Render Highlights
 config.property.blocks_glow=Painted Blocks Glow
 config.property.fluids_flowing=Painted Fluids Flowing
+config.property.def_paint=Default Paint

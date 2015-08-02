@@ -1,10 +1,12 @@
 package latmod.latblocks.client;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.client.ClientConfig;
+import latmod.ftbu.core.net.*;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;
+import latmod.latblocks.gui.LatBlocksNetHandler;
 import latmod.latblocks.tile.*;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
@@ -25,10 +27,13 @@ public class LatBlocksClient extends LatBlocksCommon
 	public static final ClientConfig.Property blocksGlow = new ClientConfig.Property("blocks_glow", true);
 	public static final ClientConfig.Property fluidsFlowing = new ClientConfig.Property("fluids_flowing", false);
 	
-	public static final ClientConfig.Property defaultSinglePaint = new ClientConfig.Property("def_single_paint", 0, "edit")
+	public static final ClientConfig.Property defaultPaint = new ClientConfig.Property("def_paint", 0, "edit")
 	{
 		public void onClicked()
 		{
+			LatBlocksNetHandler.openDefPaintGui = true;
+			LMNetHelper.sendToServer(new MessageCustomClientAction(LatBlocks.mod.modID));
+			LatBlocksNetHandler.openDefPaintGui = false;
 		}
 	};
 	
@@ -61,10 +66,10 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(renderHighlights);
 		clientConfig.add(blocksGlow);
 		clientConfig.add(fluidsFlowing);
-		clientConfig.add(defaultSinglePaint);
+		clientConfig.add(defaultPaint);
 		ClientConfig.Registry.add(clientConfig);
 		
-		LatBlocksGuiHandler.instance.registerClient();
+		LatBlocksNetHandler.instance.registerClient();
 	}
 	
 	public void spawnFountainParticle(TileFountain t)
