@@ -3,7 +3,7 @@ import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.IClientActionItem;
 import latmod.ftbu.core.util.FastList;
-import latmod.latblocks.gui.LatBlocksNetHandler;
+import latmod.latblocks.LatBlocksNetHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;

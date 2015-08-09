@@ -17,7 +17,7 @@ public class BlockGlowiumFarmland extends BlockLB
 		super(s, Material.ground);
 		isBlockContainer = false;
 		setHardness(0.5F);
-		setLightLevel(10F / 16F);
+		setLightLevel(12F / 16F);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

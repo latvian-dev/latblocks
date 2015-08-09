@@ -138,7 +138,7 @@ public class RenderFountain extends BlockRendererLM
 		public int getLightValue()
 		{
 			if(LatBlocksClient.blocksGlow.getB() && tile.tank.getFluid().getBlock() != null)
-				return tile.tank.getFluid().getBlock().getLightValue();
+				return Math.max(tile.tank.getFluid().getLuminosity(), tile.tank.getFluid().getBlock().getLightValue());
 			return 0;
 		}
 	};

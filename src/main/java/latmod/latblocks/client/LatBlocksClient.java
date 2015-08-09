@@ -6,7 +6,6 @@ import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;
-import latmod.latblocks.gui.LatBlocksNetHandler;
 import latmod.latblocks.tile.*;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
@@ -90,7 +89,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		
 		Block block = t.tank.getFluid().getBlock();
 		
-		final int brightness = t.getWorldObj().getLightBrightnessForSkyBlocks(t.xCoord, t.yCoord + 1, t.zCoord, block.getLightValue());
+		final int brightness = t.getWorldObj().getLightBrightnessForSkyBlocks(t.xCoord, t.yCoord + 1, t.zCoord, Math.max(t.tank.getFluid().getLuminosity(), block.getLightValue()));
 		
 		for(int i = 0; i < c * 3; i++)
 		{

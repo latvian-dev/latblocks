@@ -6,7 +6,7 @@ import latmod.ftbu.core.net.*;
 import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.util.FastList;
 import latmod.ftbu.core.world.*;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Blocks;
@@ -37,13 +37,15 @@ public class GuiDefaultPaint extends GuiLM
 		buttons[SidedDirection.RIGHT.ID] = new PaintButton(this, 85, 35);
 		
 		LMPlayerClient p = LMWorldClient.inst.getPlayer(c.player);
-		Paint[] paint = new Paint[6];
-		Paint.readFromNBT(p.commonData, LatBlocksNetHandler.DEF_PAINT_TAG, paint);
 		
-		for(int i = 0; i < 6; i++)
+		int[] ai = p.commonPrivateData.getIntArray(LatBlocksNetHandler.DEF_PAINT_TAG);
+		if(ai.length == 12)
 		{
-			if(paint[i] != null)
-				buttons[i].setItem(new ItemStack(paint[i].block, 1, paint[i].meta));
+			for(int i = 0; i < 6; i++)
+			{
+				Block b = Block.getBlockById(ai[i * 2 + 0]);
+				if(b != Blocks.air) buttons[i].setItem(new ItemStack(b, 1, ai[i * 2 + 1]));
+			}
 		}
 	}
 	
@@ -119,7 +121,7 @@ public class GuiDefaultPaint extends GuiLM
 			
 			LMNetHelper.sendToServer(new MessageCustomClientAction(LatBlocks.mod.modID));
 			
-			title = (item == null) ? "" : item.getDisplayName();
+			title = (item == null) ? null : item.getDisplayName();
 		}
 	}
 }

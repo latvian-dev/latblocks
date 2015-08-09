@@ -125,7 +125,7 @@ public class BlockPDoor extends BlockPaintableSided
 					setMeta(0);
 					worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", LatCoreMC.rand.nextFloat() * 0.05F, LatCoreMC.rand.nextFloat() * 0.2F + 0.9F);
 				}
-				else if(timer == 47)
+				else if(timer == 37)
 				{
 					for(int i = 0; i < 6; i++)
 					{
@@ -144,7 +144,7 @@ public class BlockPDoor extends BlockPaintableSided
 		{
 			if(timer == 0 && isServer())
 			{
-				timer = 50;
+				timer = 40;
 				setMeta(1);
 				markDirty();
 				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", LatCoreMC.rand.nextFloat() * 0.2F, LatCoreMC.rand.nextFloat() * 0.2F + 0.9F);

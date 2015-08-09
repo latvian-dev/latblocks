@@ -1,4 +1,4 @@
-package latmod.latblocks.gui;
+package latmod.latblocks;
 
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.gui.ContainerEmpty;
@@ -7,8 +7,11 @@ import latmod.ftbu.core.paint.Paint;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.ftbu.core.world.*;
+import latmod.latblocks.gui.*;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.*;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.relauncher.*;
@@ -55,7 +58,20 @@ public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFro
 	public void sendToServer(EntityPlayer ep, NBTTagCompound data)
 	{
 		if(openDefPaintGui) data.setBoolean("G", true);
-		else Paint.writeToNBT(data, "P", currentPaint);
+		else
+		{
+			int ai[] = new int[12];
+			for(int i = 0; i < 6; i++)
+			{
+				if(currentPaint[i] != null)
+				{
+					ai[i * 2 + 0] = Block.getIdFromBlock(currentPaint[i].block);
+					ai[i * 2 + 1] = currentPaint[i].meta;
+				}
+			}
+			
+			data.setIntArray("P", ai);
+		}
 	}
 	
 	public void readFromClient(EntityPlayerMP ep, NBTTagCompound data)
@@ -65,18 +81,23 @@ public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFro
 		else
 		{
 			LMPlayerServer p = LMWorldServer.inst.getPlayer(ep);
-			Paint[] paint = new Paint[6];
-			Paint.readFromNBT(data, "P", paint);
-			Paint.writeToNBT(p.commonData, DEF_PAINT_TAG, paint);
+			p.commonPrivateData.setIntArray(DEF_PAINT_TAG, data.getIntArray("P"));
 			p.sendUpdate(null, true);
 		}
 	}
-
+	
 	public static void setDefPaint(TileLM t, EntityPlayer ep, Paint[] paint)
 	{
 		LMPlayerServer player = LMWorldServer.inst.getPlayer(ep);
 		Paint[] p = new Paint[6];
-		Paint.readFromNBT(player.commonData, LatBlocksNetHandler.DEF_PAINT_TAG, p);
+		int[] ai = player.commonPrivateData.getIntArray(LatBlocksNetHandler.DEF_PAINT_TAG);
+		if(ai.length != 12) return;
+		
+		for(int i = 0; i < 6; i++)
+		{
+			Block b = Block.getBlockById(ai[i * 2 + 0]);
+			if(b != Blocks.air) p[i] = new Paint(b, ai[i * 2 + 1]);
+		}
 		
 		if(paint.length != 6)
 		{
@@ -97,7 +118,6 @@ public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFro
 			for(int f = 0; f < 6; f++)
 			{
 				SidedDirection sd = SidedDirection.get(f, r3, r2);
-				//sd = SidedDirection.FRONT;
 				
 				if(sd != SidedDirection.NONE && p[sd.ID] != null)
 					paint[f] = p[sd.ID].clone();

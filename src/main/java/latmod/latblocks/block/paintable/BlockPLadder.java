@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.*;
 
 public class BlockPLadder extends BlockPaintableSingle
@@ -99,14 +98,12 @@ public class BlockPLadder extends BlockPaintableSingle
 		
 		AxisAlignedBB[] boxes = ladder_boxes.clone();
 		
-		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[m];
-		
 		double shift = 0.5D - 1D / 16D;
 		
 		for(int i = 0; i < boxes.length; i++)
 		{
-			boxes[i] = MathHelperLM.rotate90BoxV(boxes[i], f);
-			boxes[i] = boxes[i].getOffsetBoundingBox(f.offsetX * shift, 0D, f.offsetZ * shift);
+			boxes[i] = MathHelperLM.rotate90BoxV(boxes[i], m);
+			boxes[i] = boxes[i].getOffsetBoundingBox(Facing.offsetsXForSide[m] * shift, 0D, Facing.offsetsZForSide[m] * shift);
 		}
 		
 		boxes0.addAll(boxes);

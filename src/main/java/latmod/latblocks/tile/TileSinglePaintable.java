@@ -1,7 +1,7 @@
 package latmod.latblocks.tile;
 
 import latmod.ftbu.core.paint.*;
-import latmod.latblocks.gui.LatBlocksNetHandler;
+import latmod.latblocks.LatBlocksNetHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

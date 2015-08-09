@@ -166,7 +166,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		
-		if(customName != null)
+		if(customName != null && !customName.isEmpty())
 		{
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_LIGHTING);
@@ -198,28 +198,41 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		{
 			GL11.glPushMatrix();
 			
-			Block b = Block.getBlockFromItem(iconItem.getItem());
+			try
+			{
+				Block b = Block.getBlockFromItem(iconItem.getItem());
+				
+				if(b != Blocks.air
+				&& b.getBlockBoundsMinX() == 0D
+				&& b.getBlockBoundsMinY() == 0D
+				&& b.getBlockBoundsMinZ() == 0D
+				&& b.getBlockBoundsMaxX() == 1D
+				&& b.getBlockBoundsMaxY() == 1D
+				&& b.getBlockBoundsMaxZ() == 1D)
+					GL11.glTranslatef(0.5F, 0.80F, 0.105F);
+				else
+					GL11.glTranslatef(0.5F, 0.85F, 0.04F);
+				
+				GL11.glRotatef(180F, 0F, 1F, 0F);
+				
+				float iS = 0.8F;
+				GL11.glScalef(-iS, -iS, iS);
+				LMRenderHelper.renderItem(LatCoreMCClient.getMinecraft().theWorld, iconItem, true, true);
+			}
+			catch(Exception e)
+			{
+			}
 			
-			if(b != Blocks.air
-			&& b.getBlockBoundsMinX() == 0D
-			&& b.getBlockBoundsMinY() == 0D
-			&& b.getBlockBoundsMinZ() == 0D
-			&& b.getBlockBoundsMaxX() == 1D
-			&& b.getBlockBoundsMaxY() == 1D
-			&& b.getBlockBoundsMaxZ() == 1D)
-				GL11.glTranslatef(0.5F, 0.80F, 0.105F);
-			else
-				GL11.glTranslatef(0.5F, 0.85F, 0.04F);
-			
-			GL11.glRotatef(180F, 0F, 1F, 0F);
-			
-			float iS = 0.8F;
-			GL11.glScalef(-iS, -iS, iS);
-			LMRenderHelper.renderItem(LatCoreMCClient.getMinecraft().theWorld, iconItem, true, true);
 			GL11.glPopMatrix();
 		}
 		
 		GL11.glPopAttrib();
 		GL11.glPopMatrix();
+	}
+	
+	public FontRenderer func_147498_b()
+	{
+		FontRenderer f = super.func_147498_b();
+		return (f == null) ? LatCoreMCClient.getMinecraft().fontRenderer : f;
 	}
 }

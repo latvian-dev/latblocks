@@ -6,10 +6,9 @@ import latmod.ftbu.core.util.*;
 import latmod.ftbu.mod.client.gui.GuiSelectColor;
 import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -27,9 +26,6 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	public final TextBoxLM textBoxLabel;
 	public final ButtonLM buttonSecurity, buttonColChest, buttonColText;
 	public final ItemButtonLM buttonSetItem, buttonGlow;
-	
-	private static final ItemStack lampOn = new ItemStack((Block)Block.blockRegistry.getObject("lit_redstone_lamp"));
-	private static final ItemStack lampOff = new ItemStack(Blocks.redstone_lamp);
 	
 	public GuiQChest(ContainerQChest c)
 	{
@@ -120,7 +116,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			
 			public void addMouseOverText(FastList<String> l)
 			{
-				l.add((item == null) ? Blocks.air.getLocalizedName() : item.getDisplayName());
+				if(item != null) l.add(item.getDisplayName());
 			}
 			
 			public void setItem(ItemStack is)
@@ -149,7 +145,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	{
 		buttonColChest.title = LatBlocksItems.b_qchest.getLocalizedName();
 		buttonColText.title = "ABC";
-		buttonGlow.setItem(chest.textGlows ? lampOn : lampOff);
+		buttonGlow.setItem(new ItemStack(chest.textGlows ? Items.glowstone_dust : Items.gunpowder));
 		
 		l.add(textBoxLabel);
 		l.add(buttonSecurity);
@@ -168,10 +164,12 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		LatCore.Colors.setGLColor(chest.colorText, 250);
 		buttonColText.render(Icons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
+		
 		buttonGlow.render();
 		buttonSetItem.render();
+		
 		if(buttonSetItem.item == null)
-			buttonSetItem.render(Icons.remove_gray);
+			buttonSetItem.render(Icons.cancel);
 	}
 	
 	public void drawText(FastList<String> l)
