@@ -82,7 +82,7 @@ public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFro
 		{
 			LMPlayerServer p = LMWorldServer.inst.getPlayer(ep);
 			p.commonPrivateData.setIntArray(DEF_PAINT_TAG, data.getIntArray("P"));
-			p.sendUpdate(null, true);
+			p.sendUpdate(true);
 		}
 	}
 	

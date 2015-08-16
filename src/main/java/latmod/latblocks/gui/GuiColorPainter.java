@@ -57,10 +57,10 @@ public class GuiColorPainter extends GuiLM
 		
 		for(int i = 0; i < buttons.length; i++)
 		{
-			LatCore.Colors.setGLColor(EnumDyeColor.VALUES[i].color.getRGB(), 255);
+			LMColorUtils.setGLColor(EnumDyeColor.VALUES[i].color.getRGB(), 255);
 			buttons[i].render(colTex);
 		}
 		
-		LatCore.Colors.recolor();
+		LMColorUtils.recolor();
 	}
 }

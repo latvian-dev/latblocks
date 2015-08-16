@@ -101,8 +101,8 @@ public class BlockQChest extends BlockLB
 			l.add("Slots Used: " + slotsUsed + " / " + tempTile.items.length);
 			l.add("Items in chest: " + items);
 			l.add("Title: " + tempTile.customName);
-			l.add("Chest Color: " + LatCore.Colors.getHex(tempTile.colorChest));
-			l.add("Text Color: " + LatCore.Colors.getHex(tempTile.colorText));
+			l.add("Chest Color: " + LMColorUtils.getHex(tempTile.colorChest));
+			l.add("Text Color: " + LMColorUtils.getHex(tempTile.colorText));
 		}
 	}
 }

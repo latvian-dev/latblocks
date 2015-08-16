@@ -46,12 +46,12 @@ public class GuiQNet extends GuiLM
 		
 		for(ButtonQInv b : qinvs)
 		{
-			LatCore.Colors.setGLColor(b.inv.getQColor(), 255);
+			LMColorUtils.setGLColor(b.inv.getQColor(), 255);
 			b.render(tex_color);
 			b.render();
 		}
 		
-		LatCore.Colors.recolor();
+		LMColorUtils.recolor();
 	}
 	
 	public static class ButtonQInv extends ItemButtonLM implements Comparable<ButtonQInv>

@@ -1,5 +1,5 @@
 package latmod.latblocks.client;
-import latmod.ftbu.core.LatCoreMC;
+import latmod.ftbu.core.EnumBusType;
 import latmod.ftbu.core.client.ClientConfig;
 import latmod.ftbu.core.net.*;
 import latmod.ftbu.core.util.MathHelperLM;
@@ -38,7 +38,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	
 	public void preInit()
 	{
-		LatCoreMC.BusType.FORGE.register(LatBlockClientEventHandler.instance);
+		EnumBusType.FORGE.register(LatBlockClientEventHandler.instance);
 		
 		// TESR //
 		RenderQChest.instance.register(TileQChest.class);

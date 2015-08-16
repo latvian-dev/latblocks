@@ -33,5 +33,5 @@ public class LBGlowiumCreativeTab extends CreativeTabs
 	
 	@SideOnly(Side.CLIENT)
 	public ItemStack getIconItemStack()
-	{ return allBlocks.get((int)((LatCore.millis() / 1000L) % allBlocks.size())); }
+	{ return allBlocks.get((int)((LMUtils.millis() / 1000L) % allBlocks.size())); }
 }

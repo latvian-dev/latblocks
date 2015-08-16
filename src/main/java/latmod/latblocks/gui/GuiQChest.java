@@ -73,7 +73,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			public void addMouseOverText(FastList<String> l)
 			{
 				l.add(title);
-				l.add(LatCore.Colors.getHex(chest.colorChest));
+				l.add(LMColorUtils.getHex(chest.colorChest));
 			}
 		};
 		
@@ -86,7 +86,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			}
 			
 			public void addMouseOverText(FastList<String> l)
-			{ l.add(LatCore.Colors.getHex(chest.colorText)); }
+			{ l.add(LMColorUtils.getHex(chest.colorText)); }
 		};
 		
 		buttonGlow = new ItemButtonLM(this, 15, 216, 16, 16)
@@ -121,9 +121,8 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			
 			public void setItem(ItemStack is)
 			{
-				super.setItem(is);
-				
-				chest.iconItem = is;
+				chest.iconItem = LMInvUtils.singleCopy(is);
+				super.setItem(chest.iconItem);
 				
 				if(chest.iconItem != null)
 				{
@@ -159,9 +158,9 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	{
 		super.drawBackground();
 		buttonSecurity.render(Icons.security[chest.security.level.ID]);
-		LatCore.Colors.setGLColor(chest.colorChest, 250);
+		LMColorUtils.setGLColor(chest.colorChest, 250);
 		buttonColChest.render(Icons.color_blank);
-		LatCore.Colors.setGLColor(chest.colorText, 250);
+		LMColorUtils.setGLColor(chest.colorText, 250);
 		buttonColText.render(Icons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		
