@@ -88,6 +88,7 @@ public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFro
 	
 	public static void setDefPaint(TileLM t, EntityPlayer ep, Paint[] paint)
 	{
+		if(ep.worldObj.isRemote) return;
 		LMPlayerServer player = LMWorldServer.inst.getPlayer(ep);
 		Paint[] p = new Paint[6];
 		int[] ai = player.commonPrivateData.getIntArray(LatBlocksNetHandler.DEF_PAINT_TAG);
