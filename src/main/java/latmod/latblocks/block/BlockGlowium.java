@@ -12,7 +12,7 @@ import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileGlowium;
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.material.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EnumCreatureType;
@@ -295,4 +295,7 @@ public abstract class BlockGlowium extends BlockLB
 	
 	public boolean canCreatureSpawn(EnumCreatureType t, IBlockAccess iba, int x, int y, int z)
 	{ return t.getPeacefulCreature(); }
+	
+	public MapColor getMapColor(int m)
+	{ return MapColor.getMapColorForBlockColored(BlockColored.func_150032_b(m)); }
 }
