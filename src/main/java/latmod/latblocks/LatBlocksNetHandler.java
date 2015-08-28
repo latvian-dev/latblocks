@@ -1,8 +1,8 @@
 package latmod.latblocks;
 
 import latmod.ftbu.core.*;
+import latmod.ftbu.core.api.ICustomActionFromClient;
 import latmod.ftbu.core.gui.ContainerEmpty;
-import latmod.ftbu.core.net.CustomActionFromClient;
 import latmod.ftbu.core.paint.Paint;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.MathHelperLM;
@@ -16,7 +16,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.relauncher.*;
 
-public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFromClient
+public class LatBlocksNetHandler extends LMGuiHandler implements ICustomActionFromClient
 {
 	public static final LatBlocksNetHandler instance = new LatBlocksNetHandler("LatBlocks");
 	
@@ -55,8 +55,12 @@ public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFro
 		return null;
 	}
 	
-	public void sendToServer(EntityPlayer ep, NBTTagCompound data)
+	public String getActionHandlerID()
+	{ return LatBlocks.mod.modID; }
+	
+	public NBTTagCompound sendToServer(EntityPlayer ep)
 	{
+		NBTTagCompound data = new NBTTagCompound();
 		if(openDefPaintGui) data.setBoolean("G", true);
 		else
 		{
@@ -72,6 +76,8 @@ public class LatBlocksNetHandler extends LMGuiHandler implements CustomActionFro
 			
 			data.setIntArray("P", ai);
 		}
+		
+		return data;
 	}
 	
 	public void readFromClient(EntityPlayerMP ep, NBTTagCompound data)

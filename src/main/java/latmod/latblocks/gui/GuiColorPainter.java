@@ -8,6 +8,9 @@ import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
@@ -57,10 +60,10 @@ public class GuiColorPainter extends GuiLM
 		
 		for(int i = 0; i < buttons.length; i++)
 		{
-			LMColorUtils.setGLColor(EnumDyeColor.VALUES[i].color.getRGB(), 255);
+			LMColorUtils.setGLColor(EnumDyeColor.VALUES[i].color, 255);
 			buttons[i].render(colTex);
 		}
 		
-		LMColorUtils.recolor();
+		GL11.glColor4f(1F, 1F, 1F, 1F);
 	}
 }

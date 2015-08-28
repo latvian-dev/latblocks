@@ -1,6 +1,6 @@
 package latmod.latblocks;
 import latmod.ftbu.core.LMMod;
-import latmod.ftbu.core.event.CustomAction;
+import latmod.ftbu.core.api.FTBUApi;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
@@ -35,7 +35,7 @@ public class LatBlocks
 		
 		proxy.preInit();
 		
-		CustomAction.register(mod.modID, LatBlocksNetHandler.instance);
+		FTBUApi.add(LatBlocksNetHandler.instance);
 	}
 	
 	@Mod.EventHandler
