@@ -44,10 +44,10 @@ public class GuiQFurnace extends GuiLM
 		};
 	}
 	
-	public void addWidgets(FastList<WidgetLM> l)
+	public void addWidgets()
 	{
-		l.add(barFuel);
-		l.add(barProgress);
+		mainPanel.add(barFuel);
+		mainPanel.add(barProgress);
 	}
 	
 	public void drawBackground()

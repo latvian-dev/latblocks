@@ -31,7 +31,7 @@ public class GuiQNet extends GuiLM
 		qinvs = new FastList<ButtonQInv>();
 	}
 	
-	public void addWidgets(FastList<WidgetLM> l)
+	public void addWidgets()
 	{
 		qinvs.clear();
 		
@@ -39,7 +39,7 @@ public class GuiQNet extends GuiLM
 		for(IQuartzNetTile inv : list)
 			qinvs.add(new ButtonQInv(this, inv));
 		
-		l.addAll(qinvs);
+		mainPanel.addAll(qinvs);
 		qinvs.sort(null);
 	}
 	

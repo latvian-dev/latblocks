@@ -140,35 +140,35 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		buttonSetItem.setItem(chest.iconItem);
 	}
 	
-	public void addWidgets(FastList<WidgetLM> l)
+	public void addWidgets()
 	{
 		buttonColChest.title = LatBlocksItems.b_qchest.getLocalizedName();
 		buttonColText.title = "ABC";
 		buttonGlow.setItem(new ItemStack(chest.textGlows ? Items.glowstone_dust : Items.gunpowder));
 		
-		l.add(textBoxLabel);
-		l.add(buttonSecurity);
-		l.add(buttonColChest);
-		l.add(buttonColText);
-		l.add(buttonGlow);
-		l.add(buttonSetItem);
+		mainPanel.add(textBoxLabel);
+		mainPanel.add(buttonSecurity);
+		mainPanel.add(buttonColChest);
+		mainPanel.add(buttonColText);
+		mainPanel.add(buttonGlow);
+		mainPanel.add(buttonSetItem);
 	}
 	
 	public void drawBackground()
 	{
 		super.drawBackground();
-		buttonSecurity.render(Icons.security[chest.security.level.ID]);
+		buttonSecurity.render(GuiIcons.security[chest.security.level.ID]);
 		LMColorUtils.setGLColor(chest.colorChest, 250);
-		buttonColChest.render(Icons.color_blank);
+		buttonColChest.render(GuiIcons.color_blank);
 		LMColorUtils.setGLColor(chest.colorText, 250);
-		buttonColText.render(Icons.color_blank);
+		buttonColText.render(GuiIcons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		
 		buttonGlow.render();
 		buttonSetItem.render();
 		
 		if(buttonSetItem.item == null)
-			buttonSetItem.render(Icons.cancel);
+			buttonSetItem.render(GuiIcons.cancel);
 	}
 	
 	public void drawText(FastList<String> l)
@@ -193,7 +193,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 	
 	public boolean handleDragNDrop(GuiContainer g, int x, int y, ItemStack is, int b)
 	{
-		if(is != null && buttonSetItem.isAt(x - guiLeft, y - guiTop))
+		if(is != null && buttonSetItem.mouseOver())
 		{
 			ItemStack is1 = LMInvUtils.singleCopy(is);
 			is.stackSize = 0;

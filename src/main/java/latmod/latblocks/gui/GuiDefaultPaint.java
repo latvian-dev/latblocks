@@ -4,7 +4,6 @@ import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.net.*;
 import latmod.ftbu.core.paint.*;
-import latmod.ftbu.core.util.FastList;
 import latmod.ftbu.core.world.*;
 import latmod.latblocks.*;
 import net.minecraft.block.Block;
@@ -49,9 +48,9 @@ public class GuiDefaultPaint extends GuiLM
 		}
 	}
 	
-	public void addWidgets(FastList<WidgetLM> l)
+	public void addWidgets()
 	{
-		l.addAll(buttons);
+		mainPanel.addAll(buttons);
 	}
 	
 	public void drawBackground()
