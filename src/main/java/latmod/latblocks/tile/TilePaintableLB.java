@@ -5,23 +5,64 @@ import java.util.List;
 import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
+import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemGlasses;
-import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class TilePaintableLB extends TileLM implements IPaintable, IWailaTile.Stack, IWailaTile.Body
 {
+	public final Paint[] paint;
+	
+	public TilePaintableLB(int i)
+	{ paint = new Paint[i]; }
+	
+	public void readTileData(NBTTagCompound tag)
+	{
+		Paint.readFromNBT(tag, "Texture", paint);
+	}
+	
+	public void writeTileData(NBTTagCompound tag)
+	{
+		Paint.writeToNBT(tag, "Texture", paint);
+	}
+	
 	public boolean rerenderBlock()
 	{ return true; }
 	
 	public abstract Paint getPaint(int side);
 	public abstract void setPaint(int side, Paint p);
 	
-	public boolean shouldRefresh(Block oldBlock, Block newBlock, int oldMeta, int newMeta, World world, int x, int y, int z)
+	public boolean isPaintValid(int side, Paint p)
+	{ return true; }
+	
+	public final boolean setPaint(PaintData p)
 	{
-		//return oldBlock != newBlock;
-		return super.shouldRefresh(oldBlock, newBlock, oldMeta, newMeta, world, x, y, z);
+		if(p.player.isSneaking())
+		{
+			for(int i = 0; i < paint.length; i++)
+				if(p.paint == null || isPaintValid(i, p.paint))
+					setPaint(i, p.paint);
+			markDirty();
+			return true;
+		}
+		
+		if(p.canReplace(getPaint(p.side)))
+		{
+			if(p.paint == null || isPaintValid(p.side, p.paint))
+				setPaint(p.side, p.paint);
+			markDirty();
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public void onPlacedBy(EntityPlayer ep, ItemStack is)
+	{
+		super.onPlacedBy(ep, is);
+		LatBlocks.proxy.setDefPaint(this, ep, paint);
 	}
 	
 	public ItemStack getWailaStack(WailaDataAccessor data)

@@ -6,7 +6,7 @@ import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.tile.*;
 import latmod.ftbu.core.waila.WailaDataAccessor;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -55,7 +55,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
 		super.onPlacedBy(ep, is);
-		LatBlocksNetHandler.setDefPaint(this, ep, paint);
+		LatBlocks.proxy.setDefPaint(this, ep, paint);
 	}
 	
 	public boolean setPaint(PaintData p)
@@ -69,6 +69,9 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		
 		return false;
 	}
+	
+	public boolean isPaintValid(int side, Paint p)
+	{ return true; }
 	
 	public void onNeighborBlockChange(Block b)
 	{

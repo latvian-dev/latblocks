@@ -1,6 +1,15 @@
 package latmod.latblocks;
 
+import latmod.ftbu.core.SidedDirection;
+import latmod.ftbu.core.paint.Paint;
+import latmod.ftbu.core.tile.TileLM;
+import latmod.ftbu.core.util.MathHelperLM;
+import latmod.ftbu.core.world.*;
 import latmod.latblocks.tile.TileFountain;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import cpw.mods.fml.relauncher.Side;
 
 public class LatBlocksCommon // LatBlocksClient
 {
@@ -14,5 +23,46 @@ public class LatBlocksCommon // LatBlocksClient
 	
 	public void spawnFountainParticle(TileFountain t)
 	{
+	}
+	
+	public void setDefPaint(TileLM t, EntityPlayer ep, Paint[] paint)
+	{
+		LMPlayer player = LMWorld.getWorld(t.isServer() ? Side.SERVER : Side.CLIENT).getPlayer(ep);
+		Paint[] p = new Paint[6];
+		int[] ai = player.commonPrivateData.getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
+		if(ai.length != 12) return;
+		
+		for(int i = 0; i < 6; i++)
+		{
+			Block b = Block.getBlockById(ai[i * 2 + 0]);
+			if(b != Blocks.air) p[i] = new Paint(b, ai[i * 2 + 1]);
+		}
+		
+		if(paint.length != 6)
+		{
+			if(p[SidedDirection.FRONT.ID] != null)
+			{
+				for(int i = 0; i < paint.length; i++)
+					paint[i] = p[SidedDirection.FRONT.ID].clone();
+			}
+		}
+		else
+		{
+			int r3 = MathHelperLM.get3DRotation(t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord, ep);
+			int r2 = 0;
+			
+			if(r3 == 0 || r3 == 1)
+				r2 = MathHelperLM.get2DRotation(ep);
+			
+			for(int f = 0; f < 6; f++)
+			{
+				SidedDirection sd = SidedDirection.get(f, r3, r2);
+				
+				if(sd != SidedDirection.NONE && p[sd.ID] != null)
+					paint[f] = p[sd.ID].clone();
+			}
+		}
+		
+		t.markDirty();
 	}
 }

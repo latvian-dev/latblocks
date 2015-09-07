@@ -3,7 +3,7 @@ import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.IClientActionItem;
 import latmod.ftbu.core.util.FastList;
-import latmod.latblocks.LatBlocksNetHandler;
+import latmod.latblocks.LatBlocksGuiHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
@@ -50,7 +50,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	{ return false; }
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
-	{ if(!w.isRemote && ep.isSneaking()) LatBlocksNetHandler.instance.openGui(ep, LatBlocksNetHandler.COLOR_PAINTER, null); return is; }
+	{ if(!w.isRemote && ep.isSneaking()) LatBlocksGuiHandler.instance.openGui(ep, LatBlocksGuiHandler.COLOR_PAINTER, null); return is; }
 	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{

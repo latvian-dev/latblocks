@@ -1,6 +1,6 @@
 package latmod.latblocks;
 import latmod.ftbu.core.LMMod;
-import latmod.ftbu.core.api.FTBUApi;
+import latmod.latblocks.net.LatBlocksNetHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.*;
@@ -26,24 +26,18 @@ public class LatBlocks
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		LMMod.init(this, new LatBlocksConfig(e), null);
-		
 		LatBlocksItems.init();
 		mod.onPostLoaded();
-		
 		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.b_fountain));
 		tabGlowium = new LBGlowiumCreativeTab();
-		
+		LatBlocksNetHandler.init();
 		proxy.preInit();
-		
-		FTBUApi.add(LatBlocksNetHandler.instance);
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
-		//LatCoreMC.BusType.LATMOD.register(QBagDataHandler.instance);
 		tabGlowium.init();
-		
 		mod.loadRecipes();
 		proxy.postInit();
 	}

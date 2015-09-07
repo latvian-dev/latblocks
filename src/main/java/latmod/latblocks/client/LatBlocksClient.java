@@ -1,17 +1,20 @@
 package latmod.latblocks.client;
 import latmod.ftbu.core.EnumBusType;
 import latmod.ftbu.core.client.ClientConfig;
-import latmod.ftbu.core.net.*;
+import latmod.ftbu.core.paint.Paint;
+import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;
+import latmod.latblocks.net.*;
 import latmod.latblocks.tile.*;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityBlockDustFX;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.opengl.GL11;
 
@@ -29,16 +32,12 @@ public class LatBlocksClient extends LatBlocksCommon
 	public static final ClientConfig.Property defaultPaint = new ClientConfig.Property("def_paint", 0, "edit")
 	{
 		public void onClicked()
-		{
-			LatBlocksNetHandler.openDefPaintGui = true;
-			LMNetHelper.sendToServer(new MessageCustomClientAction(LatBlocks.mod.modID));
-			LatBlocksNetHandler.openDefPaintGui = false;
-		}
+		{ LatBlocksNetHandler.NET.sendToServer(new MessageOpenDefPaintGui()); }
 	};
 	
 	public void preInit()
 	{
-		EnumBusType.FORGE.register(LatBlockClientEventHandler.instance);
+		EnumBusType.register(LatBlockClientEventHandler.instance);
 		
 		// TESR //
 		RenderQChest.instance.register(TileQChest.class);
@@ -68,7 +67,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(defaultPaint);
 		ClientConfig.Registry.add(clientConfig);
 		
-		LatBlocksNetHandler.instance.registerClient();
+		LatBlocksGuiHandler.instance.registerClient();
 	}
 	
 	public void spawnFountainParticle(TileFountain t)
@@ -102,6 +101,11 @@ public class LatBlocksClient extends LatBlocksCommon
 				{ return brightness; }
 			});
 		}
+	}
+	
+	public void setDefPaint(TileLM t, EntityPlayer ep, Paint[] paint)
+	{
+		super.setDefPaint(t, ep, paint);
 	}
 	
 	public static void rotateBlocks()

@@ -3,7 +3,7 @@ package latmod.latblocks.tile;
 import java.util.List;
 
 import latmod.ftbu.core.EnumDyeColor;
-import latmod.ftbu.core.paint.PaintData;
+import latmod.ftbu.core.paint.Paint;
 import latmod.ftbu.core.waila.WailaDataAccessor;
 import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.block.BlockLiquid;
@@ -26,11 +26,8 @@ public class TileGlowium extends TileSidedPaintable
 		super.writeTileData(tag);
 	}
 	
-	public boolean setPaint(PaintData p)
-	{
-		if(p.paint != null && !(p.paint.block instanceof IFluidBlock || p.paint.block instanceof BlockLiquid) && (!p.paint.block.isOpaqueCube() || !p.paint.block.renderAsNormalBlock()))
-			return false; return super.setPaint(p);
-	}
+	public boolean isPaintValid(int side, Paint p)
+	{ return p.block instanceof IFluidBlock || p.block instanceof BlockLiquid || (p.block.isOpaqueCube() && !p.block.renderAsNormalBlock()); }
 	
 	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{

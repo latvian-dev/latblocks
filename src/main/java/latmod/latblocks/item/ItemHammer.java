@@ -24,7 +24,7 @@ public class ItemHammer extends ItemLB
 			mod.recipes.addRecipe(new ItemStack(this), "IGI", " S ", " S ",
 				'I', ODItems.IRON,
 				'G', (LatBlocksConfig.Crafting.hammer == 1 ? ItemMaterialsLB.GEM_GLOWIUM_D : ODItems.DIAMOND),
-				'S', ItemMaterialsLB.ROD);
+				'S', ODItems.STICK);
 	}
 	
 	public ItemStack getContainerItem(ItemStack is)
