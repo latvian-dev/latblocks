@@ -18,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCallback
+public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCallback, IClientActionGui
 {
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest.png");
 	
@@ -202,5 +202,10 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		}
 		
 		return false;
+	}
+	
+	public void onClientDataChanged()
+	{
+		refreshWidgets();
 	}
 }
