@@ -1,4 +1,7 @@
 package latmod.latblocks.gui;
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.util.*;
 import latmod.latblocks.LatBlocks;
@@ -6,10 +9,6 @@ import latmod.latblocks.tile.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class GuiQNet extends GuiLM

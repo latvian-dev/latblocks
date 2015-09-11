@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.tile.*;
 import latmod.latblocks.LatBlocksItems;
@@ -15,7 +16,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockCraftingPanel extends BlockLB
 {

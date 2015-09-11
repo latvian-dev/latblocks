@@ -1,5 +1,6 @@
 package latmod.latblocks.tile.tank;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.tile.*;
 import latmod.latblocks.tile.IQuartzNetTile;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,7 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import cpw.mods.fml.relauncher.*;
 
 public abstract class TileTankBase extends TileLM implements IFluidHandler, IQuartzNetTile
 {

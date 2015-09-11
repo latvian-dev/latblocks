@@ -1,5 +1,6 @@
 package latmod.latblocks.block.paintable;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.util.*;
 import latmod.latblocks.*;
 import latmod.latblocks.block.BlockPaintableSingle;
@@ -14,7 +15,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockPFence extends BlockPaintableSingle
 {

@@ -1,5 +1,6 @@
 package latmod.latblocks.block.paintable;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.paint.IPainterItem;
@@ -15,7 +16,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockPDoor extends BlockPaintableSided
 {

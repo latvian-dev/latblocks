@@ -1,5 +1,6 @@
 package latmod.latblocks;
 
+import cpw.mods.fml.relauncher.Side;
 import latmod.ftbu.core.SidedDirection;
 import latmod.ftbu.core.paint.Paint;
 import latmod.ftbu.core.tile.TileLM;
@@ -9,7 +10,6 @@ import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import cpw.mods.fml.relauncher.Side;
 
 public class LatBlocksCommon // LatBlocksClient
 {

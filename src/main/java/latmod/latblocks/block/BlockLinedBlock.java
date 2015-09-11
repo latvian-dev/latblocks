@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -6,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockLinedBlock extends BlockGlowium
 {

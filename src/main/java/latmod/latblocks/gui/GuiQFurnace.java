@@ -1,10 +1,10 @@
 package latmod.latblocks.gui;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class GuiQFurnace extends GuiLM

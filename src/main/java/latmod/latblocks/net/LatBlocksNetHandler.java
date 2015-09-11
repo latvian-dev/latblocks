@@ -1,9 +1,9 @@
 package latmod.latblocks.net;
 
-import latmod.ftbu.core.net.LMNetHelper;
-import latmod.latblocks.LatBlocks;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
+import latmod.ftbu.core.net.LMNetHelper;
+import latmod.latblocks.LatBlocks;
 
 public class LatBlocksNetHandler
 {

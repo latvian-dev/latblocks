@@ -1,4 +1,7 @@
 package latmod.latblocks.client.render.world;
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.*;
 import latmod.ftbu.core.paint.*;
 import latmod.latblocks.LatBlocksItems;
@@ -9,10 +12,6 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class RenderFountain extends BlockRendererLM

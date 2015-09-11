@@ -1,4 +1,5 @@
 package latmod.latblocks.tile;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.client.LMGuiButtons;
 import latmod.ftbu.core.inv.LMInvUtils;
@@ -11,7 +12,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import cpw.mods.fml.relauncher.*;
 
 public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile, IQuartzNetTile
 {
@@ -99,14 +99,10 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
-		if(isServer() && !ep.isSneaking())
-		{
-			if(security.canInteract(ep))
-				LatCoreMC.openGui(ep, this, null);
-			else
-				printOwner(ep);
-		}
-		else if(isServer() && security.canInteract(ep) && LMInvUtils.isWrench(is))
+		if(!isServer()) return true;
+		else if(!security.canInteract(ep)) { printOwner(ep); return true; }
+		else if(!ep.isSneaking()) LatCoreMC.openGui(ep, this, null);
+		else if(LMInvUtils.isWrench(is))
 		{
 			dropItems = false;
 			ItemStack drop = new ItemStack(LatBlocksItems.b_qchest, 1, 0);

@@ -1,4 +1,5 @@
 package latmod.latblocks.block.tank;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.latblocks.tile.tank.TileVoidTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -7,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockVoidTank extends BlockTankBase
 {

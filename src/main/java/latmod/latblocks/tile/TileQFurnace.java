@@ -1,5 +1,6 @@
 package latmod.latblocks.tile;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.tile.*;
@@ -14,7 +15,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory, IQuartzNetTile // TileEntityFurnace
 {

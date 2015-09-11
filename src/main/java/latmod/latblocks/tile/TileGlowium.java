@@ -27,7 +27,7 @@ public class TileGlowium extends TileSidedPaintable
 	}
 	
 	public boolean isPaintValid(int side, Paint p)
-	{ return p.block instanceof IFluidBlock || p.block instanceof BlockLiquid || (p.block.isOpaqueCube() && !p.block.renderAsNormalBlock()); }
+	{ return p == null || (p.block instanceof IFluidBlock || p.block instanceof BlockLiquid || (p.block.isOpaqueCube() && p.block.renderAsNormalBlock())); }
 	
 	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{

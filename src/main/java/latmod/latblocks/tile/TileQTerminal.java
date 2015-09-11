@@ -1,5 +1,6 @@
 package latmod.latblocks.tile;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.tile.*;
 import latmod.latblocks.gui.*;
@@ -9,7 +10,6 @@ import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import cpw.mods.fml.relauncher.*;
 
 public class TileQTerminal extends TileLM implements IGuiTile
 {

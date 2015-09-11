@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
@@ -13,7 +14,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockQChest extends BlockLB
 {

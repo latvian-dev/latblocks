@@ -1,5 +1,6 @@
 package latmod.latblocks.block;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.latblocks.*;
@@ -14,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockQCable extends BlockLB
 {

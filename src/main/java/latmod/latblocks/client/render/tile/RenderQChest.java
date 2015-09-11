@@ -1,4 +1,7 @@
 package latmod.latblocks.client.render.tile;
+import org.lwjgl.opengl.*;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.*;
 import latmod.ftbu.core.util.LMColorUtils;
 import latmod.latblocks.LatBlocks;
@@ -12,10 +15,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-
-import org.lwjgl.opengl.*;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class RenderQChest extends TileRenderer<TileQChest> implements IItemRenderer // BlockQChest

@@ -1,4 +1,7 @@
 package latmod.latblocks.client.render.world;
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.BlockRendererLM;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.latblocks.block.tank.BlockTankBase;
@@ -14,10 +17,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.fluids.FluidStack;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class RenderTank extends BlockRendererLM implements IItemRenderer

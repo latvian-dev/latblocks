@@ -1,5 +1,9 @@
 package latmod.latblocks.client;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.item.ItemBlockLM;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.block.BlockPaintableLB;
@@ -8,11 +12,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class LatBlockClientEventHandler

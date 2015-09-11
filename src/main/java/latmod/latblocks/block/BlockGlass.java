@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.LatCoreMCClient;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.paint.*;
@@ -12,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 {

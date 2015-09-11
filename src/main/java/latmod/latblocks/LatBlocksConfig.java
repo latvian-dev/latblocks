@@ -1,8 +1,8 @@
 package latmod.latblocks;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import latmod.ftbu.core.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class LatBlocksConfig extends LMConfig implements IServerConfig
 {

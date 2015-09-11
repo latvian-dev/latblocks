@@ -1,6 +1,7 @@
 package latmod.latblocks.block.tank;
 import java.text.DecimalFormat;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.*;
@@ -16,7 +17,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.RecipeSorter;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockTank extends BlockTankBase
 {

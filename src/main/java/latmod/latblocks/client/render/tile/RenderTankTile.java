@@ -1,4 +1,7 @@
 package latmod.latblocks.client.render.tile;
+import org.lwjgl.opengl.*;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.*;
 import latmod.ftbu.core.client.model.TexturedCubeRenderer;
 import latmod.ftbu.core.util.MathHelperLM;
@@ -9,10 +12,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
-
-import org.lwjgl.opengl.*;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class RenderTankTile extends TileRenderer<TileTankBase>

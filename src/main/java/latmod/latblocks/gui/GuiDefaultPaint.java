@@ -1,4 +1,5 @@
 package latmod.latblocks.gui;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.SidedDirection;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.inv.LMInvUtils;
@@ -11,7 +12,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class GuiDefaultPaint extends GuiLM

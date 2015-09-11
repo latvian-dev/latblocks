@@ -1,10 +1,10 @@
 package latmod.latblocks.item;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LMMod;
 import latmod.ftbu.core.item.ItemLM;
 import latmod.latblocks.LatBlocks;
 import net.minecraft.creativetab.CreativeTabs;
-import cpw.mods.fml.relauncher.*;
 
 public class ItemLB extends ItemLM
 {

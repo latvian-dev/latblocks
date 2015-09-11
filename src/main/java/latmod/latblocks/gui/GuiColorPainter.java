@@ -1,4 +1,7 @@
 package latmod.latblocks.gui;
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.net.*;
@@ -8,10 +11,6 @@ import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class GuiColorPainter extends GuiLM

@@ -1,4 +1,7 @@
 package latmod.latblocks.client;
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.EnumBusType;
 import latmod.ftbu.core.client.ClientConfig;
 import latmod.ftbu.core.paint.Paint;
@@ -15,10 +18,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityBlockDustFX;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class LatBlocksClient extends LatBlocksCommon

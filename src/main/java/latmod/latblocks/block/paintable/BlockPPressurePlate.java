@@ -2,6 +2,7 @@ package latmod.latblocks.block.paintable;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.IGuiTile;
 import latmod.ftbu.core.util.FastList;
@@ -18,7 +19,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePlate
 {

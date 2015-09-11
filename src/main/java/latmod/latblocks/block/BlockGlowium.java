@@ -2,6 +2,7 @@ package latmod.latblocks.block;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.EnumDyeColor;
 import latmod.ftbu.core.inv.*;
 import latmod.ftbu.core.paint.Paint;
@@ -22,7 +23,6 @@ import net.minecraft.item.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public abstract class BlockGlowium extends BlockLB
 {

@@ -14,24 +14,24 @@ public class ItemHammer extends ItemLB
 		super(s);
 		setMaxStackSize(1);
 		setFull3D();
-		setMaxDamage(512);
+		setMaxDamage(0);
 		setHarvestLevel(Tool.Type.WRENCH, Tool.Level.BASIC);
 	}
 	
 	public void loadRecipes()
 	{
 		if(LatBlocksConfig.Crafting.hammer > 0)
-			mod.recipes.addRecipe(new ItemStack(this), "IGI", " S ", " S ",
+			mod.recipes.addRecipe(new ItemStack(this), "OGO", " I ", " I ",
 				'I', ODItems.IRON,
-				'G', (LatBlocksConfig.Crafting.hammer == 1 ? ItemMaterialsLB.GEM_GLOWIUM_D : ODItems.DIAMOND),
-				'S', ODItems.STICK);
+				'O', ODItems.OBSIDIAN,
+				'G', (LatBlocksConfig.Crafting.hammer == 1 ? ItemMaterialsLB.GEM_GLOWIUM_D : ODItems.DIAMOND));
 	}
 	
+	public int getDamage(ItemStack is)
+	{ return 0; }
+	
 	public ItemStack getContainerItem(ItemStack is)
-	{
-		if(is.getItemDamage() > getMaxDamage()) return null;
-		return new ItemStack(this, 1, is.getItemDamage() + 1);
-	}
+	{ return new ItemStack(this, 1, 0); }
 	
 	public boolean hasContainerItem(ItemStack is)
 	{ return true; }
@@ -49,12 +49,8 @@ public class ItemHammer extends ItemLB
 	}
 	
 	public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player)
-	{
-		return true;
-	}
+	{ return true; }
 	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
-	{
-		return false;
-	}
+	{ return false; }
 }

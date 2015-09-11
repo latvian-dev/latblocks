@@ -1,4 +1,5 @@
 package latmod.latblocks.item;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.*;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.*;
@@ -6,7 +7,6 @@ import latmod.latblocks.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.*;
 
 public class ItemMaterialsLB extends ItemMaterialsLM
 {

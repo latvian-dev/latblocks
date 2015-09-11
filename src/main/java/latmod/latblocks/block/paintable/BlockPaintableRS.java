@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
@@ -8,7 +9,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockPaintableRS extends BlockPaintableSided
 {

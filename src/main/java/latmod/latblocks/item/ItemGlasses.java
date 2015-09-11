@@ -1,4 +1,5 @@
 package latmod.latblocks.item;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.item.IItemLM;
@@ -12,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.*;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.*;
 
 public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 {

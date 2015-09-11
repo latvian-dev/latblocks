@@ -1,10 +1,10 @@
 package latmod.latblocks;
+import cpw.mods.fml.common.*;
+import cpw.mods.fml.common.event.*;
 import latmod.ftbu.core.LMMod;
 import latmod.latblocks.net.LatBlocksNetHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.event.*;
 
 @Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:FTBU")
 public class LatBlocks

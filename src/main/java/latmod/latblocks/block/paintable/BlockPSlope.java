@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.MathHelperLM;
@@ -12,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockPSlope extends BlockLB
 {

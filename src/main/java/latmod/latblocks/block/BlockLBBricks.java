@@ -1,5 +1,6 @@
 package latmod.latblocks.block;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.tile.TileLM;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -7,7 +8,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockLBBricks extends BlockLB
 {

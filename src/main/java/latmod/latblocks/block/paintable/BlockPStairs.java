@@ -1,5 +1,6 @@
 package latmod.latblocks.block.paintable;
 
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
@@ -9,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import cpw.mods.fml.relauncher.*;
 
 public class BlockPStairs extends BlockPaintableSingle
 {

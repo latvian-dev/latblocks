@@ -1,11 +1,11 @@
 package latmod.latblocks.block;
+import cpw.mods.fml.relauncher.*;
 import latmod.latblocks.block.paintable.BlockPaintableDef;
 import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.tile.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.*;
 
 public abstract class BlockPaintableSided extends BlockPaintableLB
 {

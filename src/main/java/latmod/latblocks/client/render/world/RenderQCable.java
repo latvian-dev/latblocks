@@ -1,15 +1,14 @@
 package latmod.latblocks.client.render.world;
 
+import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.client.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockQCable;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public class RenderQCable extends BlockRendererLM
