@@ -18,6 +18,7 @@ public class BlockGlowiumFarmland extends BlockLB
 		isBlockContainer = false;
 		setHardness(0.5F);
 		setLightLevel(12F / 16F);
+		setStepSound(soundTypeGravel);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

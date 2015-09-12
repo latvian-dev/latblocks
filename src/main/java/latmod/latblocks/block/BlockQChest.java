@@ -17,9 +17,6 @@ import net.minecraft.world.*;
 
 public class BlockQChest extends BlockLB
 {
-	@SideOnly(Side.CLIENT)
-	private IIcon chestFront, chestTop;
-	
 	public static final TileQChest tempTile = new TileQChest();
 	
 	public BlockQChest(String s)
@@ -61,17 +58,11 @@ public class BlockQChest extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		chestFront = ir.registerIcon(mod.assets + "chest_front");
-		blockIcon = ir.registerIcon(mod.assets + "chest_side");
-		chestTop = ir.registerIcon(mod.assets + "chest_top");
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
-	{
-		if(s == 0 || s == 1) return chestTop;
-		return (s == 3) ? chestFront : blockIcon;
-	}
+	{ return Blocks.quartz_block.getIcon(s, 0); }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
