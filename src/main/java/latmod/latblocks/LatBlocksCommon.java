@@ -2,7 +2,7 @@ package latmod.latblocks;
 
 import cpw.mods.fml.relauncher.Side;
 import latmod.ftbu.core.SidedDirection;
-import latmod.ftbu.core.paint.Paint;
+import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.tile.TileLM;
 import latmod.ftbu.core.util.MathHelperLM;
 import latmod.ftbu.core.world.*;
@@ -27,6 +27,9 @@ public class LatBlocksCommon // LatBlocksClient
 	
 	public void setDefPaint(TileLM t, EntityPlayer ep, Paint[] paint)
 	{
+		IPaintable paintable = (t instanceof IPaintable) ? (IPaintable)t : null;
+		if(paintable == null) return;
+		
 		LMPlayer player = LMWorld.getWorld(t.isServer() ? Side.SERVER : Side.CLIENT).getPlayer(ep);
 		Paint[] p = new Paint[6];
 		int[] ai = player.commonPrivateData.getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
@@ -43,7 +46,10 @@ public class LatBlocksCommon // LatBlocksClient
 			if(p[SidedDirection.FRONT.ID] != null)
 			{
 				for(int i = 0; i < paint.length; i++)
-					paint[i] = p[SidedDirection.FRONT.ID].clone();
+				{
+					if(paintable.isPaintValid(i, p[SidedDirection.FRONT.ID]))
+						paint[i] = p[SidedDirection.FRONT.ID];
+				}
 			}
 		}
 		else
@@ -58,7 +64,7 @@ public class LatBlocksCommon // LatBlocksClient
 			{
 				SidedDirection sd = SidedDirection.get(f, r3, r2);
 				
-				if(sd != SidedDirection.NONE && p[sd.ID] != null)
+				if(sd != SidedDirection.NONE && p[sd.ID] != null && paintable.isPaintValid(f, p[sd.ID]))
 					paint[f] = p[sd.ID].clone();
 			}
 		}

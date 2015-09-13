@@ -6,7 +6,7 @@ import latmod.ftbu.core.client.LMGuiButtons;
 import latmod.ftbu.core.gui.*;
 import latmod.ftbu.core.inv.LMInvUtils;
 import latmod.ftbu.core.util.*;
-import latmod.ftbu.mod.client.gui.GuiSelectColor;
+import latmod.ftbu.mod.client.gui.field.color.*;
 import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
-public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCallback, IClientActionGui
+public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 {
 	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest.png");
 	
@@ -66,7 +66,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				GuiSelectColor.displayGui(GuiQChest.this, chest.colorChest, 0, false);
+				GuiSelectColorRGB.displayGui(GuiQChest.this, chest.colorChest, 0, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
@@ -81,7 +81,7 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				GuiSelectColor.displayGui(GuiQChest.this, chest.colorText, 1, false);
+				GuiSelectColorRGB.displayGui(GuiQChest.this, chest.colorText, 1, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
@@ -176,13 +176,13 @@ public class GuiQChest extends GuiLM implements GuiSelectColor.ColorSelectorCall
 		super.drawText(l);
 	}
 	
-	public void onColorSelected(GuiSelectColor.ColorSelected c)
+	public void onColorSelected(ColorSelected c)
 	{
 		if(c.set)
 		{
 			NBTTagCompound data = new NBTTagCompound();
 			data.setInteger("C", c.color);
-			data.setByte("ID", (byte)c.ID);
+			data.setByte("ID", (byte)c.ID.hashCode());
 			chest.clientPressButton(TileQChest.BUTTON_COL, 0, data);
 		}
 		
