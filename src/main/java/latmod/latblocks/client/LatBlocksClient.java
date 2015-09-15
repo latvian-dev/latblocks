@@ -2,7 +2,7 @@ package latmod.latblocks.client;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.EnumBusType;
+import latmod.ftbu.core.EventBusHelper;
 import latmod.ftbu.core.client.ClientConfig;
 import latmod.ftbu.core.paint.Paint;
 import latmod.ftbu.core.tile.TileLM;
@@ -36,7 +36,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	
 	public void preInit()
 	{
-		EnumBusType.register(LatBlockClientEventHandler.instance);
+		EventBusHelper.register(LatBlockClientEventHandler.instance);
 		
 		// TESR //
 		RenderQChest.instance.register(TileQChest.class);
