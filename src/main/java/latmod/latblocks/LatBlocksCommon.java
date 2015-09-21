@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import latmod.ftbu.core.SidedDirection;
 import latmod.ftbu.core.paint.*;
 import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.ftbu.core.util.MathHelperMC;
 import latmod.ftbu.core.world.*;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;
@@ -54,11 +54,11 @@ public class LatBlocksCommon // LatBlocksClient
 		}
 		else
 		{
-			int r3 = MathHelperLM.get3DRotation(t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord, ep);
+			int r3 = MathHelperMC.get3DRotation(t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord, ep);
 			int r2 = 0;
 			
 			if(r3 == 0 || r3 == 1)
-				r2 = MathHelperLM.get2DRotation(ep);
+				r2 = MathHelperMC.get2DRotation(ep);
 			
 			for(int f = 0; f < 6; f++)
 			{

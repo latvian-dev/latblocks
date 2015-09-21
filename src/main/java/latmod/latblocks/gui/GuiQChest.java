@@ -66,7 +66,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				GuiSelectColorRGB.displayGui(GuiQChest.this, chest.colorChest, 0, false);
+				ColorSelected.displayGui(GuiQChest.this, chest.colorChest, 0, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
@@ -81,7 +81,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				GuiSelectColorRGB.displayGui(GuiQChest.this, chest.colorText, 1, false);
+				ColorSelected.displayGui(GuiQChest.this, chest.colorText, 1, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)

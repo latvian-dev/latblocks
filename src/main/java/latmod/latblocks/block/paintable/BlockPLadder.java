@@ -102,7 +102,7 @@ public class BlockPLadder extends BlockPaintableSingle
 		
 		for(int i = 0; i < boxes.length; i++)
 		{
-			boxes[i] = MathHelperLM.rotate90BoxV(boxes[i], m);
+			boxes[i] = MathHelperMC.rotate90BoxV(boxes[i], m);
 			boxes[i] = boxes[i].getOffsetBoundingBox(Facing.offsetsXForSide[m] * shift, 0D, Facing.offsetsZForSide[m] * shift);
 		}
 		

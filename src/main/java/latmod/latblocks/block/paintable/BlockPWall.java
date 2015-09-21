@@ -59,8 +59,8 @@ public class BlockPWall extends BlockPaintableSingle
 		double p2 = 1D / 16D * 6D;
 		double h2 = 1D - 1D / 16D * 3D;
 		
-		boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.5D, p, 1D, p));
-		boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.5D, p2, h2, 1D));
+		boxes.add(MathHelperMC.getBox(0.5D, 0D, 0.5D, p, 1D, p));
+		boxes.add(MathHelperMC.getBox(0.5D, 0D, 0.5D, p2, h2, 1D));
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -80,13 +80,13 @@ public class BlockPWall extends BlockPaintableSingle
 		boolean canConnectZP = canConnect(iba, x, y, z + 1);
 		boolean canConnectXP = canConnect(iba, x + 1, y, z);
 		
-		if(canConnectZN) boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.25D, p2, h, 0.5D));
-		if(canConnectXN) boxes.add(MathHelperLM.getBox(0.25D, 0D, 0.5D, 0.5D, h, p2));
-		if(canConnectZP) boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.75D, p2, h, 0.5D));
-		if(canConnectXP) boxes.add(MathHelperLM.getBox(0.75D, 0D, 0.5D, 0.5D, h, p2));
+		if(canConnectZN) boxes.add(MathHelperMC.getBox(0.5D, 0D, 0.25D, p2, h, 0.5D));
+		if(canConnectXN) boxes.add(MathHelperMC.getBox(0.25D, 0D, 0.5D, 0.5D, h, p2));
+		if(canConnectZP) boxes.add(MathHelperMC.getBox(0.5D, 0D, 0.75D, p2, h, 0.5D));
+		if(canConnectXP) boxes.add(MathHelperMC.getBox(0.75D, 0D, 0.5D, 0.5D, h, p2));
 		
 		if(!((canConnectZN && canConnectZP && !canConnectXN && !canConnectXP) || (!canConnectZN && !canConnectZP && canConnectXN && canConnectXP)) || !iba.isAirBlock(x, y + 1, z))
-			boxes.add(MathHelperLM.getBox(0.5D, 0D, 0.5D, p, 1D, p));
+			boxes.add(MathHelperMC.getBox(0.5D, 0D, 0.5D, p, 1D, p));
 	}
 	
 	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)

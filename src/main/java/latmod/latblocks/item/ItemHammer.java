@@ -2,7 +2,7 @@ package latmod.latblocks.item;
 import com.google.common.collect.Multimap;
 
 import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.item.Tool;
+import latmod.ftbu.core.item.*;
 import latmod.ftbu.core.util.FastList;
 import latmod.latblocks.LatBlocksConfig;
 import net.minecraft.block.Block;
@@ -13,7 +13,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemHammer extends ItemLB
+public class ItemHammer extends ItemLB implements ICreativeSafeItem
 {
 	public ItemHammer(String s)
 	{

@@ -2,7 +2,7 @@ package latmod.latblocks.block.paintable;
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.LatCoreMC;
 import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.ftbu.core.util.MathHelperMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderPSlope;
@@ -81,13 +81,13 @@ public class BlockPSlope extends BlockLB
 		{
 			super.onPlacedBy(ep, is);
 			
-			int side = MathHelperLM.rayTrace(ep).sideHit;
+			int side = MathHelperMC.rayTrace(ep).sideHit;
 			
 			if(side == 0) pitch = 1;
 			else if(side == 1) pitch = 0;
 			else pitch = -1;
 			
-			yaw = (byte) MathHelperLM.get2DRotation(ep);
+			yaw = (byte) MathHelperMC.get2DRotation(ep);
 			
 			if(isServer()) LatCoreMC.printChat(ep, "Yaw: " + yaw + ", Pitch: " + pitch + ", Side: " + side);
 			

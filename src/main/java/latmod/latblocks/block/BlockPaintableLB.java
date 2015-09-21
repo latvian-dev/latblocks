@@ -132,7 +132,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	{
 		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
 		addBoxes(boxes, w, x, y, z, -1);
-		return MathHelperLM.collisionRayTrace(w, x, y, z, start, end, boxes);
+		return MathHelperMC.collisionRayTrace(w, x, y, z, start, end, boxes);
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -107,7 +107,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			
 			float iS = 0.8F;
 			GL11.glScalef(-iS, -iS, iS);
-			LMRenderHelper.renderItem(LatCoreMCClient.getMinecraft().theWorld, t.iconItem, true, true);
+			LMRenderHelper.renderItem(LatCoreMCClient.mc.theWorld, t.iconItem, true, true);
 			GL11.glPopMatrix();
 		}
 		
@@ -216,7 +216,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 				
 				float iS = 0.8F;
 				GL11.glScalef(-iS, -iS, iS);
-				LMRenderHelper.renderItem(LatCoreMCClient.getMinecraft().theWorld, iconItem, true, true);
+				LMRenderHelper.renderItem(LatCoreMCClient.mc.theWorld, iconItem, true, true);
 			}
 			catch(Exception e)
 			{
@@ -232,6 +232,6 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 	public FontRenderer func_147498_b()
 	{
 		FontRenderer f = super.func_147498_b();
-		return (f == null) ? LatCoreMCClient.getMinecraft().fontRenderer : f;
+		return (f == null) ? LatCoreMCClient.mc.fontRenderer : f;
 	}
 }

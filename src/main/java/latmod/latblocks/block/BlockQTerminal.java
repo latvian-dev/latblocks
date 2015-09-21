@@ -2,7 +2,7 @@ package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.core.inv.ODItems;
 import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.ftbu.core.util.MathHelperMC;
 import latmod.latblocks.LatBlocksConfig;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQTerminal;
@@ -46,7 +46,7 @@ public class BlockQTerminal extends BlockLB
 	{ return 0; }
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{ return MathHelperLM.get3DRotation(w, mop.blockX, mop.blockY, mop.blockZ, ep); }
+	{ return MathHelperMC.get3DRotation(w, mop.blockX, mop.blockY, mop.blockZ, ep); }
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)

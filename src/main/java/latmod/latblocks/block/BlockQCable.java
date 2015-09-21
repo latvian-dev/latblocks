@@ -12,7 +12,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 
@@ -51,7 +50,7 @@ public class BlockQCable extends BlockLB
 	
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
-		float s = border + (1F / 16F);// - 1 / 16F;
+		float s = border - (1F / 32F);// - 1 / 16F;
 		
 		boolean x0 = connects(iba, x - 1, y, z);
 		boolean x1 = connects(iba, x + 1, y, z);
@@ -74,8 +73,7 @@ public class BlockQCable extends BlockLB
 		|| b == LatBlocksItems.b_tank_void
 		|| b == LatBlocksItems.b_tank_water) return true;
 		if(!b.hasTileEntity(iba.getBlockMetadata(x, y, z))) return false;
-		TileEntity te = iba.getTileEntity(x, y, z);
-		return (te != null && te instanceof IQuartzNetTile);
+		return iba.getTileEntity(x, y, z) instanceof IQuartzNetTile;
 	}
 	
 	@SideOnly(Side.CLIENT)

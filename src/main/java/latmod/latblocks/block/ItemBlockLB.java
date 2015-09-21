@@ -20,7 +20,7 @@ public class ItemBlockLB extends ItemBlockLM
 		BlockLB b = (BlockLB) Block.getBlockFromItem(is.getItem());
 		if(!b.hasSpecialPlacement) return super.canPlace(w, x, y, z, s, ep, is);
 		
-		MovingObjectPosition mop = MathHelperLM.rayTrace(ep);
+		MovingObjectPosition mop = MathHelperMC.rayTrace(ep);
 		if(mop == null) return false;
 		
 		int bx = x + Facing.offsetsXForSide[s];

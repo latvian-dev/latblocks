@@ -30,7 +30,7 @@ public class QNetFinder
 			if(te != null && te instanceof IQuartzNetTile)
 			{
 				l.add((IQuartzNetTile)te);
-				if(l.size() == maxNetSize) return;
+				if(maxNetSize > 0 && l.size() == maxNetSize) return;
 			}
 			
 			for(int i = 0; i < 6; i++)
@@ -63,10 +63,8 @@ public class QNetFinder
 		{
 			TileEntity te = w.getTileEntity(c.posX, c.posY, c.posZ);
 			if(te != null && te instanceof IQuartzNetTile)
-			{
 				l.add((IQuartzNetTile)te);
-				if(l.size() == maxNetSize) return;
-			}
+				//if(maxNetSize > 0 && l.size() == maxNetSize) return;
 		}
 	}
 }

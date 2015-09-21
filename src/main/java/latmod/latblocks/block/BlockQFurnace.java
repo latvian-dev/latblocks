@@ -46,7 +46,7 @@ public class BlockQFurnace extends BlockLB
 	{ return new TileQFurnace(); }
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
-	{ return MathHelperLM.get2DRotation(ep); }
+	{ return MathHelperMC.get2DRotation(ep); }
 	
 	public int damageDropped(int i)
 	{ return 0; }
