@@ -3,11 +3,11 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.EnumDyeColor;
-import latmod.ftbu.core.inv.*;
-import latmod.ftbu.core.paint.Paint;
-import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.FastList;
+import latmod.core.util.FastList;
+import latmod.ftbu.inv.*;
+import latmod.ftbu.paint.Paint;
+import latmod.ftbu.tile.TileLM;
+import latmod.ftbu.util.EnumDyeColor;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;

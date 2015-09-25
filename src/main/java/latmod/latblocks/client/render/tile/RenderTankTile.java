@@ -2,9 +2,9 @@ package latmod.latblocks.client.render.tile;
 import org.lwjgl.opengl.*;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.client.*;
-import latmod.ftbu.core.client.model.TexturedCubeRenderer;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.core.util.MathHelperLM;
+import latmod.ftbu.util.client.*;
+import latmod.ftbu.util.client.model.TexturedCubeRenderer;
 import latmod.latblocks.tile.tank.TileTankBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;

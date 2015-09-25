@@ -1,7 +1,7 @@
 package latmod.latblocks;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
-import latmod.ftbu.core.LMMod;
+import latmod.ftbu.util.LMMod;
 import latmod.latblocks.net.LatBlocksNetHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;

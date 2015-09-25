@@ -1,9 +1,9 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.client.LatCoreMCClient;
-import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.paint.*;
-import latmod.ftbu.core.tile.TileLM;
+import latmod.ftbu.inv.ODItems;
+import latmod.ftbu.paint.*;
+import latmod.ftbu.tile.TileLM;
+import latmod.ftbu.util.client.LatCoreMCClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

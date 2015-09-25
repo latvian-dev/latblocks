@@ -1,7 +1,7 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.util.*;
+import latmod.core.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
 import latmod.latblocks.tile.*;

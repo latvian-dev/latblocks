@@ -3,7 +3,7 @@ package latmod.latblocks.client.render.world;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.client.*;
+import latmod.ftbu.util.client.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockQCable;
 import net.minecraft.block.Block;

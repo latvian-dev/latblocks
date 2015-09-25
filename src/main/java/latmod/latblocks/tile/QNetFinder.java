@@ -1,6 +1,6 @@
 package latmod.latblocks.tile;
 
-import latmod.ftbu.core.util.FastList;
+import latmod.core.util.FastList;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;

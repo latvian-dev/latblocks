@@ -1,7 +1,8 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.util.*;
+import latmod.core.util.FastList;
+import latmod.ftbu.util.MathHelperMC;
 import latmod.latblocks.block.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
@@ -24,13 +25,15 @@ public class BlockPLadder extends BlockPaintableSingle
 		double d = 1D / 16D;
 		double dz = 1D / 64D;
 		
+		double b = 1D / 128D;
+		
 		ladder_boxes[0] = AxisAlignedBB.getBoundingBox(d, 0D, c0, d * 3, 1D, c1);
 		ladder_boxes[1] = AxisAlignedBB.getBoundingBox(d * 13, 0D, c0, d * 15, 1D, c1);
 		
-		ladder_boxes[2] = AxisAlignedBB.getBoundingBox(0D, d * 1, c0 + dz, 1D, d * 3, c1 - dz);
-		ladder_boxes[3] = AxisAlignedBB.getBoundingBox(0D, d * 5, c0 + dz, 1D, d * 7, c1 - dz);
-		ladder_boxes[4] = AxisAlignedBB.getBoundingBox(0D, d * 9, c0 + dz, 1D, d * 11, c1 - dz);
-		ladder_boxes[5] = AxisAlignedBB.getBoundingBox(0D, d * 13, c0 + dz, 1D, d * 15, c1 - dz);
+		ladder_boxes[2] = AxisAlignedBB.getBoundingBox(b, d * 1, c0 + dz, 1D - b, d * 3, c1 - dz);
+		ladder_boxes[3] = AxisAlignedBB.getBoundingBox(b, d * 5, c0 + dz, 1D - b, d * 7, c1 - dz);
+		ladder_boxes[4] = AxisAlignedBB.getBoundingBox(b, d * 9, c0 + dz, 1D - b, d * 11, c1 - dz);
+		ladder_boxes[5] = AxisAlignedBB.getBoundingBox(b, d * 13, c0 + dz, 1D - b, d * 15, c1 - dz);
 	}
 	
 	public BlockPLadder(String s)

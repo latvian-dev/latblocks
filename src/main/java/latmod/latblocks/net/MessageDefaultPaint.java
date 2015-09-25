@@ -2,9 +2,9 @@ package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
 import io.netty.buffer.ByteBuf;
-import latmod.ftbu.core.net.MessageLM;
-import latmod.ftbu.core.paint.Paint;
-import latmod.ftbu.core.world.*;
+import latmod.ftbu.net.MessageLM;
+import latmod.ftbu.paint.Paint;
+import latmod.ftbu.world.*;
 import latmod.latblocks.LatBlocksGuiHandler;
 import net.minecraft.block.Block;
 

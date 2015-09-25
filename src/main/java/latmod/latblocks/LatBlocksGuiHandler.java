@@ -1,8 +1,8 @@
 package latmod.latblocks;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.LMGuiHandler;
-import latmod.ftbu.core.gui.ContainerEmpty;
+import latmod.ftbu.util.LMGuiHandler;
+import latmod.ftbu.util.gui.ContainerEmpty;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;

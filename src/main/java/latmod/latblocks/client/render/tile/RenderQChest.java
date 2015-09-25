@@ -2,8 +2,8 @@ package latmod.latblocks.client.render.tile;
 import org.lwjgl.opengl.*;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.client.*;
-import latmod.ftbu.core.util.LMColorUtils;
+import latmod.core.util.LMColorUtils;
+import latmod.ftbu.util.client.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.block.BlockQChest;
 import latmod.latblocks.tile.TileQChest;

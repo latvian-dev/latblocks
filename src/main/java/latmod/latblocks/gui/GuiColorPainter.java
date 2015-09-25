@@ -2,10 +2,10 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.EnumDyeColor;
-import latmod.ftbu.core.gui.*;
-import latmod.ftbu.core.net.*;
-import latmod.ftbu.core.util.LMColorUtils;
+import latmod.core.util.LMColorUtils;
+import latmod.ftbu.net.*;
+import latmod.ftbu.util.EnumDyeColor;
+import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;

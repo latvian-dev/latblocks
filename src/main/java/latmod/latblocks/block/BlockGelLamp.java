@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.inv.*;
-import latmod.ftbu.core.util.FastList;
+import latmod.core.util.FastList;
+import latmod.ftbu.inv.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;

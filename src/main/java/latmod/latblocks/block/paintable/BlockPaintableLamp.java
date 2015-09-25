@@ -1,5 +1,5 @@
 package latmod.latblocks.block.paintable;
-import latmod.ftbu.core.inv.ODItems;
+import latmod.ftbu.inv.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.*;
 import net.minecraft.init.Blocks;

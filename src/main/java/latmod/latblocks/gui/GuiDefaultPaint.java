@@ -1,10 +1,10 @@
 package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.SidedDirection;
-import latmod.ftbu.core.gui.*;
-import latmod.ftbu.core.inv.LMInvUtils;
-import latmod.ftbu.core.paint.*;
-import latmod.ftbu.core.world.*;
+import latmod.ftbu.inv.LMInvUtils;
+import latmod.ftbu.paint.*;
+import latmod.ftbu.util.SidedDirection;
+import latmod.ftbu.util.gui.*;
+import latmod.ftbu.world.*;
 import latmod.latblocks.*;
 import latmod.latblocks.net.*;
 import net.minecraft.block.Block;

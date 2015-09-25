@@ -1,7 +1,8 @@
 package latmod.latblocks.block;
 
-import latmod.ftbu.core.item.ItemBlockLM;
-import latmod.ftbu.core.util.*;
+import latmod.core.util.FastList;
+import latmod.ftbu.item.ItemBlockLM;
+import latmod.ftbu.util.MathHelperMC;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

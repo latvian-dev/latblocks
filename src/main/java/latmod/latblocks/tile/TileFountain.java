@@ -2,10 +2,10 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
-import latmod.ftbu.core.inv.LMInvUtils;
-import latmod.ftbu.core.paint.*;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.waila.WailaDataAccessor;
+import latmod.ftbu.inv.LMInvUtils;
+import latmod.ftbu.paint.*;
+import latmod.ftbu.tile.*;
+import latmod.ftbu.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

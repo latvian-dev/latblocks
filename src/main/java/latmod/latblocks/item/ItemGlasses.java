@@ -1,10 +1,10 @@
 package latmod.latblocks.item;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.LatCoreMC;
-import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.item.IItemLM;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.core.util.MathHelperLM;
+import latmod.ftbu.inv.ODItems;
+import latmod.ftbu.item.IItemLM;
 import latmod.ftbu.mod.FTBU;
+import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.*;
 import latmod.latblocks.api.ILBGlasses;
 import net.minecraft.client.renderer.texture.IIconRegister;

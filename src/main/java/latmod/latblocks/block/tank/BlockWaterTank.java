@@ -1,6 +1,6 @@
 package latmod.latblocks.block.tank;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.tile.TileLM;
+import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileWaterTank;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -1,8 +1,8 @@
 package latmod.latblocks.item;
-import latmod.ftbu.core.EnumDyeColor;
-import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.item.IClientActionItem;
-import latmod.ftbu.core.util.FastList;
+import latmod.core.util.FastList;
+import latmod.ftbu.inv.ODItems;
+import latmod.ftbu.item.IClientActionItem;
+import latmod.ftbu.util.EnumDyeColor;
 import latmod.latblocks.LatBlocksGuiHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;

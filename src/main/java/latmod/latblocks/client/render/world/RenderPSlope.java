@@ -2,7 +2,7 @@ package latmod.latblocks.client.render.world;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.client.BlockRendererLM;
+import latmod.ftbu.util.client.BlockRendererLM;
 import latmod.latblocks.block.paintable.BlockPSlope;
 import latmod.latblocks.client.LatBlocksClient;
 import net.minecraft.block.Block;

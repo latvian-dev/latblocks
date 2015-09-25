@@ -2,8 +2,8 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.gui.*;
-import latmod.ftbu.core.util.*;
+import latmod.core.util.*;
+import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.*;
 import net.minecraft.nbt.NBTTagCompound;

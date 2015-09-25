@@ -1,6 +1,6 @@
 package latmod.latblocks.gui;
-import latmod.ftbu.core.gui.ContainerLM;
-import latmod.ftbu.core.inv.SlotLM;
+import latmod.ftbu.inv.SlotLM;
+import latmod.ftbu.util.gui.ContainerLM;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;

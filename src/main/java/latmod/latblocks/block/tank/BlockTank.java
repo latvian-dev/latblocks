@@ -2,9 +2,9 @@ package latmod.latblocks.block.tank;
 import java.text.DecimalFormat;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.*;
+import latmod.core.util.*;
+import latmod.ftbu.inv.ODItems;
+import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;

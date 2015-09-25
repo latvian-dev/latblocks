@@ -1,8 +1,7 @@
 package latmod.latblocks.block.paintable;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.LatCoreMC;
-import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.MathHelperMC;
+import latmod.ftbu.tile.TileLM;
+import latmod.ftbu.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderPSlope;

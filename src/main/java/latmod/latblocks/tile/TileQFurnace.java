@@ -1,10 +1,10 @@
 package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.LatCoreMC;
-import latmod.ftbu.core.inv.LMInvUtils;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.core.util.MathHelperLM;
+import latmod.ftbu.inv.LMInvUtils;
+import latmod.ftbu.tile.*;
+import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;

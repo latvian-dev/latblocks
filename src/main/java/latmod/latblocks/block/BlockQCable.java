@@ -1,8 +1,8 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.tile.TileLM;
+import latmod.ftbu.inv.ODItems;
+import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderQCable;
 import latmod.latblocks.item.ItemMaterialsLB;

@@ -2,11 +2,11 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.client.LMGuiButtons;
-import latmod.ftbu.core.gui.*;
-import latmod.ftbu.core.inv.LMInvUtils;
-import latmod.ftbu.core.util.*;
-import latmod.ftbu.mod.client.gui.field.color.*;
+import latmod.core.util.*;
+import latmod.ftbu.api.callback.*;
+import latmod.ftbu.inv.LMInvUtils;
+import latmod.ftbu.util.client.LMGuiButtons;
+import latmod.ftbu.util.gui.*;
 import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.gui.GuiScreen;

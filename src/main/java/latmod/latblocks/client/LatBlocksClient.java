@@ -2,11 +2,11 @@ package latmod.latblocks.client;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.EventBusHelper;
-import latmod.ftbu.core.client.ClientConfig;
-import latmod.ftbu.core.paint.Paint;
-import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.core.util.MathHelperLM;
+import latmod.ftbu.paint.Paint;
+import latmod.ftbu.tile.TileLM;
+import latmod.ftbu.util.EventBusHelper;
+import latmod.ftbu.util.client.ClientConfig;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;

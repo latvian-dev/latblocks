@@ -2,8 +2,8 @@ package latmod.latblocks.client.render.world;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.client.BlockRendererLM;
-import latmod.ftbu.core.util.MathHelperLM;
+import latmod.core.util.MathHelperLM;
+import latmod.ftbu.util.client.BlockRendererLM;
 import latmod.latblocks.block.tank.BlockTankBase;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.tank.TileTankBase;

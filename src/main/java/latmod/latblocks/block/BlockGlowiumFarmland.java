@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 
-import latmod.ftbu.core.inv.ODItems;
-import latmod.ftbu.core.tile.TileLM;
+import latmod.ftbu.inv.ODItems;
+import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

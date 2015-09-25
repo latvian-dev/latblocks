@@ -2,7 +2,7 @@ package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
 import io.netty.buffer.ByteBuf;
-import latmod.ftbu.core.net.MessageLM;
+import latmod.ftbu.net.MessageLM;
 import latmod.latblocks.LatBlocksGuiHandler;
 
 public class MessageOpenDefPaintGui extends MessageLM<MessageOpenDefPaintGui>

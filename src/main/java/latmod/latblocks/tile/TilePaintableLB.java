@@ -2,9 +2,9 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
-import latmod.ftbu.core.paint.*;
-import latmod.ftbu.core.tile.*;
-import latmod.ftbu.core.waila.WailaDataAccessor;
+import latmod.ftbu.paint.*;
+import latmod.ftbu.tile.*;
+import latmod.ftbu.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.entity.player.EntityPlayer;

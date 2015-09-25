@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.tile.TileLM;
+import latmod.ftbu.tile.TileLM;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;

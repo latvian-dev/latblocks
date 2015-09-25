@@ -4,8 +4,8 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.core.item.ItemBlockLM;
-import latmod.ftbu.core.util.FastList;
+import latmod.core.util.FastList;
+import latmod.ftbu.item.ItemBlockLM;
 import latmod.latblocks.block.BlockPaintableLB;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.*;

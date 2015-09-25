@@ -1,11 +1,10 @@
 package latmod.latblocks;
 
 import cpw.mods.fml.relauncher.Side;
-import latmod.ftbu.core.SidedDirection;
-import latmod.ftbu.core.paint.*;
-import latmod.ftbu.core.tile.TileLM;
-import latmod.ftbu.core.util.MathHelperMC;
-import latmod.ftbu.core.world.*;
+import latmod.ftbu.paint.*;
+import latmod.ftbu.tile.TileLM;
+import latmod.ftbu.util.*;
+import latmod.ftbu.world.*;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
