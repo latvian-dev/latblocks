@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.*;
 import latmod.core.util.*;
 import latmod.ftbu.api.callback.*;
 import latmod.ftbu.inv.LMInvUtils;
-import latmod.ftbu.util.client.LMGuiButtons;
+import latmod.ftbu.util.client.*;
 import latmod.ftbu.util.gui.*;
 import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;
@@ -157,9 +157,9 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 	{
 		super.drawBackground();
 		buttonSecurity.render(GuiIcons.security[chest.security.level.ID]);
-		LMColorUtils.setGLColor(chest.colorChest, 250);
+		LatCoreMCClient.setColor(chest.colorChest, 250);
 		buttonColChest.render(GuiIcons.color_blank);
-		LMColorUtils.setGLColor(chest.colorText, 250);
+		LatCoreMCClient.setColor(chest.colorText, 250);
 		buttonColText.render(GuiIcons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		

@@ -2,7 +2,6 @@ package latmod.latblocks.client.render.tile;
 import org.lwjgl.opengl.*;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.LMColorUtils;
 import latmod.ftbu.util.client.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.block.BlockQChest;
@@ -47,7 +46,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		model.chestLid.rotateAngleX = -t.getLidAngle(pt);
 		
-		LMColorUtils.setGLColor(t.colorChest, 255);
+		LatCoreMCClient.setColor(t.colorChest, 255);
 		bindTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
@@ -154,7 +153,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		model.chestLid.rotateAngleX = 0F;
 		
-		LMColorUtils.setGLColor(colorChest, 255);
+		LatCoreMCClient.setColor(colorChest, 255);
 		bindTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);

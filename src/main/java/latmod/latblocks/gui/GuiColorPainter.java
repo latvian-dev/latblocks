@@ -2,9 +2,9 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.LMColorUtils;
 import latmod.ftbu.net.*;
 import latmod.ftbu.util.EnumDyeColor;
+import latmod.ftbu.util.client.LatCoreMCClient;
 import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
@@ -58,7 +58,7 @@ public class GuiColorPainter extends GuiLM
 		
 		for(int i = 0; i < buttons.length; i++)
 		{
-			LMColorUtils.setGLColor(EnumDyeColor.VALUES[i].color, 255);
+			LatCoreMCClient.setColor(EnumDyeColor.VALUES[i].color, 255);
 			buttons[i].render(colTex);
 		}
 		

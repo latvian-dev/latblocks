@@ -2,7 +2,8 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.*;
+import latmod.core.util.FastList;
+import latmod.ftbu.util.client.LatCoreMCClient;
 import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.*;
@@ -48,7 +49,7 @@ public class GuiQNet extends GuiLM
 		
 		for(ButtonQInv b : qinvs)
 		{
-			LMColorUtils.setGLColor(b.inv.getQColor(), 255);
+			LatCoreMCClient.setColor(b.inv.getQColor(), 255);
 			b.render(tex_color);
 			b.render();
 		}
