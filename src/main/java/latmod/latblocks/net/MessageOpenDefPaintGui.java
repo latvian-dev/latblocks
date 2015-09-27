@@ -1,17 +1,17 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
-import io.netty.buffer.ByteBuf;
+import latmod.core.util.ByteIOStream;
 import latmod.ftbu.net.MessageLM;
 import latmod.latblocks.LatBlocksGuiHandler;
 
 public class MessageOpenDefPaintGui extends MessageLM<MessageOpenDefPaintGui>
 {
-	public void fromBytes(ByteBuf bb)
+	public void readData(ByteIOStream io) throws Exception
 	{
 	}
 	
-	public void toBytes(ByteBuf bb)
+	public void writeData(ByteIOStream io) throws Exception
 	{
 	}
 	

@@ -1,7 +1,7 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
-import io.netty.buffer.ByteBuf;
+import latmod.core.util.*;
 import latmod.ftbu.net.MessageLM;
 import latmod.ftbu.paint.Paint;
 import latmod.ftbu.world.*;
@@ -10,10 +10,10 @@ import net.minecraft.block.Block;
 
 public class MessageDefaultPaint extends MessageLM<MessageDefaultPaint>
 {
-	public final int[] paintIntArray;
+	public final short[] paintIntArray;
 	
 	public MessageDefaultPaint()
-	{ paintIntArray = new int[12]; }
+	{ paintIntArray = new short[12]; }
 	
 	public MessageDefaultPaint(Paint[] p)
 	{
@@ -21,27 +21,27 @@ public class MessageDefaultPaint extends MessageLM<MessageDefaultPaint>
 		
 		for(int i = 0; i < 6; i++)
 		{
-			paintIntArray[i * 2 + 0] = Math.max(0, (p[i] == null) ? 0 : Block.getIdFromBlock(p[i].block));
-			paintIntArray[i * 2 + 1] = (p[i] == null) ? 0 : p[i].meta;
+			paintIntArray[i * 2 + 0] = (short)(Math.max(0, (p[i] == null) ? 0 : Block.getIdFromBlock(p[i].block)));
+			paintIntArray[i * 2 + 1] = (short)((p[i] == null) ? 0 : p[i].meta);
 		}
 	}
 	
-	public void fromBytes(ByteBuf bb)
+	public void readData(ByteIOStream io) throws Exception
 	{
 		for(int i = 0; i < paintIntArray.length; i++)
-			paintIntArray[i] = bb.readShort();
+			paintIntArray[i] = io.readShort();
 	}
 	
-	public void toBytes(ByteBuf bb)
+	public void writeData(ByteIOStream io) throws Exception
 	{
 		for(int i = 0; i < paintIntArray.length; i++)
-			bb.writeShort(paintIntArray[i]);
+			io.writeShort(paintIntArray[i]);
 	}
 	
 	public IMessage onMessage(MessageDefaultPaint m, MessageContext ctx)
 	{
 		LMPlayerServer p = LMWorldServer.inst.getPlayer(ctx.getServerHandler().playerEntity);
-		p.commonPrivateData.setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, m.paintIntArray);
+		p.commonPrivateData.setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, Converter.toInts(m.paintIntArray));
 		p.sendUpdate(true);
 		return null;
 	}
