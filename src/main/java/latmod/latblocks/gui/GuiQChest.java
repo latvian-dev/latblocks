@@ -3,6 +3,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
 import latmod.core.util.*;
+import latmod.ftbu.api.LMGuis;
 import latmod.ftbu.api.callback.*;
 import latmod.ftbu.inv.LMInvUtils;
 import latmod.ftbu.util.client.*;
@@ -66,7 +67,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				ColorSelected.displayGui(GuiQChest.this, chest.colorChest, 0, false);
+				LMGuis.displayColorSelector(GuiQChest.this, chest.colorChest, 0, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
@@ -81,7 +82,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			public void onButtonPressed(int b)
 			{
 				playClickSound();
-				ColorSelected.displayGui(GuiQChest.this, chest.colorText, 1, false);
+				LMGuis.displayColorSelector(GuiQChest.this, chest.colorText, 1, false);
 			}
 			
 			public void addMouseOverText(FastList<String> l)
