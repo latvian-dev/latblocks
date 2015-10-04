@@ -4,7 +4,7 @@ import latmod.core.util.FastList;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.MathHelperMC;
-import latmod.latblocks.LatBlocksConfig;
+import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.block.material.Material;
@@ -33,7 +33,7 @@ public class BlockQFurnace extends BlockLB
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.chest)
+		if(LatBlocksConfigCrafting.chest.get())
 		{
 			mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
 					'Q', Blocks.quartz_block,

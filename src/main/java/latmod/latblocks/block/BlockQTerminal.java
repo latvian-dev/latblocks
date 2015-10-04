@@ -3,7 +3,7 @@ import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.MathHelperMC;
-import latmod.latblocks.LatBlocksConfig;
+import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQTerminal;
 import net.minecraft.block.material.Material;
@@ -29,7 +29,7 @@ public class BlockQTerminal extends BlockLB
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.qNetBlocks)
+		if(LatBlocksConfigCrafting.qNetBlocks.get())
 		{
 			mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QSQ", "QDQ",
 					'Q', Blocks.quartz_block,

@@ -1,7 +1,8 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
-import latmod.core.util.*;
+import io.netty.buffer.ByteBuf;
+import latmod.core.util.Converter;
 import latmod.ftbu.net.MessageLM;
 import latmod.ftbu.paint.Paint;
 import latmod.ftbu.world.*;
@@ -26,13 +27,13 @@ public class MessageDefaultPaint extends MessageLM<MessageDefaultPaint>
 		}
 	}
 	
-	public void readData(ByteIOStream io) throws Exception
+	public void fromBytes(ByteBuf io)
 	{
 		for(int i = 0; i < paintIntArray.length; i++)
 			paintIntArray[i] = io.readShort();
 	}
 	
-	public void writeData(ByteIOStream io) throws Exception
+	public void toBytes(ByteBuf io)
 	{
 		for(int i = 0; i < paintIntArray.length; i++)
 			io.writeShort(paintIntArray[i]);
@@ -42,7 +43,7 @@ public class MessageDefaultPaint extends MessageLM<MessageDefaultPaint>
 	{
 		LMPlayerServer p = LMWorldServer.inst.getPlayer(ctx.getServerHandler().playerEntity);
 		p.commonPrivateData.setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, Converter.toInts(m.paintIntArray));
-		p.sendUpdate(true);
+		p.sendUpdate();
 		return null;
 	}
 }

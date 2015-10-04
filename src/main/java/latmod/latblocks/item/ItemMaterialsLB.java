@@ -4,6 +4,7 @@ import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.item.*;
 import latmod.ftbu.util.*;
 import latmod.latblocks.*;
+import latmod.latblocks.config.LatBlocksConfigCrafting;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
@@ -146,7 +147,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 			{
 				LatBlocksItems.i_hammer.addRecipe(getStack(8), Items.nether_star, ODItems.GLOWSTONE);
 				
-				if(LatBlocksConfig.Crafting.easyStartDust) LatBlocksItems.i_hammer.addRecipe(getStack(8),
+				if(LatBlocksConfigCrafting.easyStartDust.get()) LatBlocksItems.i_hammer.addRecipe(getStack(8),
 						ODItems.DIAMOND, ODItems.DIAMOND, ODItems.DIAMOND, ODItems.GLOWSTONE);
 			}
 		});

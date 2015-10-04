@@ -5,7 +5,8 @@ import cpw.mods.fml.relauncher.*;
 import latmod.core.util.*;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocks;
+import latmod.latblocks.config.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;
 import net.minecraft.client.gui.GuiScreen;
@@ -39,7 +40,7 @@ public class BlockTank extends BlockTankBase
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.General.tankCraftingHandler)
+		if(LatBlocksConfigGeneral.tankCraftingHandler.get())
 		{
 			RecipeSorter.register("latblocks:tanks", TankCraftingHandler.class, RecipeSorter.Category.SHAPED, "before:minecraft:shaped");
 			TankCraftingHandler.register(new ItemStack(this, 1, 1), new ItemStack(this, 1, 0), new ItemStack(Items.iron_ingot));
@@ -47,7 +48,7 @@ public class BlockTank extends BlockTankBase
 			TankCraftingHandler.register(new ItemStack(this, 1, 3), new ItemStack(this, 1, 2), new ItemStack(Items.quartz));
 			TankCraftingHandler.register(new ItemStack(this, 1, 4), new ItemStack(this, 1, 3), new ItemStack(Items.diamond));
 			
-			if(LatBlocksConfig.Crafting.endlessTank)
+			if(LatBlocksConfigCrafting.endlessTank.get())
 				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.DUST_STAR.getStack());
 		}
 		
@@ -71,7 +72,7 @@ public class BlockTank extends BlockTankBase
 				'T', new ItemStack(this, 1, 3),
 				'I', ODItems.DIAMOND);
 		
-		if(LatBlocksConfig.Crafting.endlessTank)
+		if(LatBlocksConfigCrafting.endlessTank.get())
 			mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 4),
 				'I', ItemMaterialsLB.DUST_STAR);

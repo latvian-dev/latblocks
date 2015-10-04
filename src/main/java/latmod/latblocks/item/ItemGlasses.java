@@ -5,8 +5,9 @@ import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.item.IItemLM;
 import latmod.ftbu.mod.FTBU;
 import latmod.ftbu.util.LatCoreMC;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocks;
 import latmod.latblocks.api.ILBGlasses;
+import latmod.latblocks.config.LatBlocksConfigCrafting;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,7 +58,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.goggles)
+		if(LatBlocksConfigCrafting.goggles.get())
 			LatBlocks.mod.recipes.addRecipe(new ItemStack(this), "CCC", "LIL",
 				'C', Items.leather,
 				'L', ItemMaterialsLB.LENS,

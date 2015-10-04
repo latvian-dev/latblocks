@@ -5,7 +5,7 @@ import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.MathHelperMC;
 import latmod.ftbu.util.client.LatCoreMCClient;
-import latmod.latblocks.LatBlocksConfig;
+import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.block.material.Material;
@@ -34,7 +34,7 @@ public class BlockQChest extends BlockLB
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.chest)
+		if(LatBlocksConfigCrafting.chest.get())
 		{
 			mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
 					'Q', Blocks.quartz_block,

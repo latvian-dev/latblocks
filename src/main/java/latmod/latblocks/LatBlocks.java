@@ -2,6 +2,7 @@ package latmod.latblocks;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
 import latmod.ftbu.util.LMMod;
+import latmod.latblocks.config.LatBlocksConfig;
 import latmod.latblocks.net.LatBlocksNetHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -25,7 +26,8 @@ public class LatBlocks
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		LMMod.init(this, new LatBlocksConfig(e), null);
+		LMMod.init(this);
+		LatBlocksConfig.load();
 		LatBlocksItems.init();
 		mod.onPostLoaded();
 		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.b_fountain));

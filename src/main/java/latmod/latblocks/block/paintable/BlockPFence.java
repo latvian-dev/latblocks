@@ -3,8 +3,9 @@ package latmod.latblocks.block.paintable;
 import cpw.mods.fml.relauncher.*;
 import latmod.core.util.FastList;
 import latmod.ftbu.util.MathHelperMC;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
+import latmod.latblocks.config.LatBlocksConfigGeneral;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;
@@ -52,7 +53,7 @@ public class BlockPFence extends BlockPaintableSingle
 		if(canConnect(w, x, y, z + 1)) z1 = 1D + d;
 		
 		double h = 1.5D;
-		if(LatBlocksConfig.General.fencesIgnorePlayers && e instanceof EntityPlayer) h = 1D;
+		if(LatBlocksConfigGeneral.fencesIgnorePlayers.get() && e instanceof EntityPlayer) h = 1D;
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1));
 	}
 	

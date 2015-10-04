@@ -3,8 +3,9 @@ package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.world.RenderQCable;
+import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.IQuartzNetTile;
 import net.minecraft.block.Block;
@@ -35,7 +36,7 @@ public class BlockQCable extends BlockLB
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.qNetBlocks)
+		if(LatBlocksConfigCrafting.qNetBlocks.get())
 			mod.recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS",
 				'S', Blocks.wooden_slab,
 				'G', ODItems.GLOWSTONE,

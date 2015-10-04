@@ -4,7 +4,7 @@ import com.google.common.collect.Multimap;
 import latmod.core.util.FastList;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.item.*;
-import latmod.latblocks.LatBlocksConfig;
+import latmod.latblocks.config.LatBlocksConfigCrafting;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -33,11 +33,11 @@ public class ItemHammer extends ItemLB implements ICreativeSafeItem
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfig.Crafting.hammer > 0)
+		if(LatBlocksConfigCrafting.hammer.get() > 0)
 			mod.recipes.addRecipe(new ItemStack(this), "OGO", " I ", " I ",
 				'I', ODItems.IRON,
 				'O', ODItems.OBSIDIAN,
-				'G', (LatBlocksConfig.Crafting.hammer == 1 ? ItemMaterialsLB.GEM_GLOWIUM_D : ODItems.DIAMOND));
+				'G', (LatBlocksConfigCrafting.hammer.get() == 1 ? ItemMaterialsLB.GEM_GLOWIUM_D : ODItems.DIAMOND));
 	}
 	
 	public int getDamage(ItemStack is)
