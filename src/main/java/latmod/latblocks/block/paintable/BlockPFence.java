@@ -1,13 +1,13 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.FastList;
 import latmod.ftbu.util.MathHelperMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.config.LatBlocksConfigGeneral;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
+import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

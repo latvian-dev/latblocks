@@ -3,7 +3,7 @@ package latmod.latblocks;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.*;
+import latmod.lib.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
 

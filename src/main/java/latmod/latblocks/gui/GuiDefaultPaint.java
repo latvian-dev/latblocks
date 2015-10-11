@@ -6,7 +6,7 @@ import latmod.ftbu.util.SidedDirection;
 import latmod.ftbu.util.gui.*;
 import latmod.ftbu.world.*;
 import latmod.latblocks.*;
-import latmod.latblocks.net.*;
+import latmod.latblocks.net.MessageDefaultPaint;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Blocks;
@@ -119,7 +119,7 @@ public class GuiDefaultPaint extends GuiLM
 				if(is1 != null) paint[i] = new Paint(Block.getBlockFromItem(is1.getItem()), is1.getItemDamage());
 			}
 			
-			LatBlocksNetHandler.NET.sendToServer(new MessageDefaultPaint(paint));
+			new MessageDefaultPaint(paint).sendToServer();
 		}
 	}
 }

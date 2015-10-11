@@ -2,11 +2,11 @@ package latmod.latblocks.client.render.world;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.MathHelperLM;
 import latmod.ftbu.util.client.BlockRendererLM;
 import latmod.latblocks.block.tank.BlockTankBase;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.tank.TileTankBase;
+import latmod.lib.MathHelperLM;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;

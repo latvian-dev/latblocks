@@ -1,9 +1,9 @@
 package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.FastList;
 import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQFurnace;
+import latmod.lib.FastList;
 import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)

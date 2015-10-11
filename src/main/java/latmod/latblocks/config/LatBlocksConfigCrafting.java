@@ -1,6 +1,7 @@
 package latmod.latblocks.config;
 
-import latmod.ftbu.api.config.*;
+import latmod.lib.config.*;
+import latmod.lib.util.IntBounds;
 
 public class LatBlocksConfigCrafting
 {

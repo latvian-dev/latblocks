@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.FastList;
+import latmod.lib.FastList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 import net.minecraft.world.*;

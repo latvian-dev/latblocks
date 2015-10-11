@@ -2,13 +2,13 @@ package latmod.latblocks.block.tank;
 import java.text.DecimalFormat;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.*;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.config.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;
+import latmod.lib.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

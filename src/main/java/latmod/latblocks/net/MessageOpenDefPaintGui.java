@@ -17,4 +17,7 @@ public class MessageOpenDefPaintGui extends MessageLM<MessageOpenDefPaintGui>
 	
 	public IMessage onMessage(MessageOpenDefPaintGui m, MessageContext ctx)
 	{ LatBlocksGuiHandler.instance.openGui(ctx.getServerHandler().playerEntity, LatBlocksGuiHandler.DEF_PAINT, null); return null; }
+	
+	public SimpleNetworkWrapper getWrapper()
+	{ return LatBlocksNetHandler.NET; }
 }

@@ -3,13 +3,13 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.FastList;
 import latmod.ftbu.block.BlockLM;
 import latmod.ftbu.item.ItemBlockLM;
 import latmod.ftbu.paint.*;
 import latmod.ftbu.util.LMMod;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.client.LatBlocksClient;
+import latmod.lib.FastList;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

@@ -2,10 +2,10 @@ package latmod.latblocks.client.render.tile;
 import org.lwjgl.opengl.*;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.MathHelperLM;
 import latmod.ftbu.util.client.*;
-import latmod.ftbu.util.client.model.TexturedCubeRenderer;
+import latmod.ftbu.util.client.model.CubeRenderer;
 import latmod.latblocks.tile.tank.TileTankBase;
+import latmod.lib.MathHelperLM;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.Fluid;
 public class RenderTankTile extends TileRenderer<TileTankBase>
 {
 	public static final RenderTankTile instance = new RenderTankTile();
-	public static final TexturedCubeRenderer fluidRenderer = new TexturedCubeRenderer(true);
+	public static final CubeRenderer fluidRenderer = new CubeRenderer();
 	
 	public void renderTile(TileTankBase t, double x, double y, double z, float pt)
 	{
@@ -53,7 +53,7 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				double h1 = MathHelperLM.map(fluid_height, 0D, 1D, op, 1D - op);
 				
 				fluidRenderer.setSize(op, op, op, 1D - op, h1, 1D - op);
-				fluidRenderer.setUV(-1, icon_fluid);
+				fluidRenderer.setUVFromIcon(icon_fluid);
 				fluidRenderer.renderAll();
 				
 				/*

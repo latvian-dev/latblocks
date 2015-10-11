@@ -1,6 +1,5 @@
 package latmod.latblocks.item;
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.MathHelperLM;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.item.IItemLM;
 import latmod.ftbu.mod.FTBU;
@@ -8,6 +7,7 @@ import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.api.ILBGlasses;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
+import latmod.lib.MathHelperLM;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

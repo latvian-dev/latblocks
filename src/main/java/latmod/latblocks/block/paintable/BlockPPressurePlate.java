@@ -3,12 +3,12 @@ package latmod.latblocks.block.paintable;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.FastList;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.IGuiTile;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;
+import latmod.lib.FastList;
 import net.minecraft.block.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.*;

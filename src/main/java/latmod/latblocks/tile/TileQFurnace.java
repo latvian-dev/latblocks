@@ -1,12 +1,12 @@
 package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.MathHelperLM;
 import latmod.ftbu.inv.LMInvUtils;
 import latmod.ftbu.tile.*;
 import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
+import latmod.lib.MathHelperLM;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;

@@ -2,17 +2,17 @@ package latmod.latblocks.client;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.MathHelperLM;
+import latmod.ftbu.api.client.*;
 import latmod.ftbu.paint.Paint;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.EventBusHelper;
-import latmod.ftbu.util.client.ClientConfig;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;
-import latmod.latblocks.net.*;
+import latmod.latblocks.net.MessageOpenDefPaintGui;
 import latmod.latblocks.tile.*;
 import latmod.latblocks.tile.tank.TileTankBase;
+import latmod.lib.MathHelperLM;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityBlockDustFX;
@@ -23,15 +23,15 @@ import net.minecraft.entity.player.EntityPlayer;
 public class LatBlocksClient extends LatBlocksCommon
 {
 	private static final ClientConfig clientConfig = new ClientConfig("latblocks");
-	public static final ClientConfig.Property rotateBlocks = new ClientConfig.Property("rotate_blocks", false);
-	public static final ClientConfig.Property renderHighlights = new ClientConfig.Property("render_highlights", true);
-	public static final ClientConfig.Property blocksGlow = new ClientConfig.Property("blocks_glow", true);
-	public static final ClientConfig.Property fluidsFlowing = new ClientConfig.Property("fluids_flowing", false);
+	public static final ClientConfigProperty rotateBlocks = new ClientConfigProperty("rotate_blocks", false);
+	public static final ClientConfigProperty renderHighlights = new ClientConfigProperty("render_highlights", true);
+	public static final ClientConfigProperty blocksGlow = new ClientConfigProperty("blocks_glow", true);
+	public static final ClientConfigProperty fluidsFlowing = new ClientConfigProperty("fluids_flowing", false);
 	
-	public static final ClientConfig.Property defaultPaint = new ClientConfig.Property("def_paint", 0, "edit")
+	public static final ClientConfigProperty defaultPaint = new ClientConfigProperty("def_paint", 0, "edit")
 	{
 		public void onClicked()
-		{ LatBlocksNetHandler.NET.sendToServer(new MessageOpenDefPaintGui()); }
+		{ new MessageOpenDefPaintGui().sendToServer(); }
 	};
 	
 	public void preInit()
@@ -64,7 +64,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(blocksGlow);
 		clientConfig.add(fluidsFlowing);
 		clientConfig.add(defaultPaint);
-		ClientConfig.Registry.add(clientConfig);
+		ClientConfigRegistry.add(clientConfig);
 		
 		LatBlocksGuiHandler.instance.registerClient();
 	}

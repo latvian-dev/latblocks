@@ -1,9 +1,10 @@
 package latmod.latblocks.config;
 import java.io.File;
 
-import latmod.ftbu.api.config.*;
+import latmod.ftbu.api.config.ConfigListRegistry;
 import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocks;
+import latmod.lib.config.ConfigFile;
 
 public class LatBlocksConfig
 {
@@ -14,7 +15,7 @@ public class LatBlocksConfig
 		configFile = new ConfigFile(LatBlocks.mod.modID, new File(LatCoreMC.configFolder, "/LatMod/LatBlocks.txt"), true);
 		LatBlocksConfigGeneral.load(configFile);
 		LatBlocksConfigCrafting.load(configFile);
-		ConfigFileRegistry.add(configFile);
+		ConfigListRegistry.add(configFile);
 		configFile.load();
 	}
 }

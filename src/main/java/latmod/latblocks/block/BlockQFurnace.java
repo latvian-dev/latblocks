@@ -1,12 +1,12 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.FastList;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.MathHelperMC;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
+import latmod.lib.FastList;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

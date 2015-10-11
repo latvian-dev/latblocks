@@ -1,10 +1,10 @@
 package latmod.latblocks.item;
 import com.google.common.collect.Multimap;
 
-import latmod.core.util.FastList;
 import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.item.*;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
+import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;

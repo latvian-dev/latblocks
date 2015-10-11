@@ -3,7 +3,6 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.FastList;
 import latmod.ftbu.inv.*;
 import latmod.ftbu.paint.Paint;
 import latmod.ftbu.tile.TileLM;
@@ -12,6 +11,7 @@ import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileGlowium;
+import latmod.lib.FastList;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.client.renderer.texture.IIconRegister;

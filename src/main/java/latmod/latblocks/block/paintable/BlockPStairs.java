@@ -1,10 +1,10 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.core.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.*;
 import latmod.latblocks.tile.*;
+import latmod.lib.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;

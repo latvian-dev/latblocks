@@ -2,7 +2,7 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.net.*;
+import latmod.ftbu.net.MessageClientItemAction;
 import latmod.ftbu.util.EnumDyeColor;
 import latmod.ftbu.util.client.LatCoreMCClient;
 import latmod.ftbu.util.gui.*;
@@ -38,7 +38,7 @@ public class GuiColorPainter extends GuiLM
 				{
 					NBTTagCompound tag = new NBTTagCompound();
 					tag.setByte("Dmg", (byte)id);
-					LMNetHelper.sendToServer(new MessageClientItemAction(ItemColorPainter.ACTION, tag));
+					new MessageClientItemAction(ItemColorPainter.ACTION, tag).sendToServer();
 					container.player.closeScreen();
 				}
 			};

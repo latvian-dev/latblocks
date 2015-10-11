@@ -7,7 +7,7 @@ import latmod.latblocks.LatBlocks;
 
 public class LatBlocksNetHandler
 {
-	public static final SimpleNetworkWrapper NET = LMNetHelper.newChannel(LatBlocks.mod.modID);
+	static final SimpleNetworkWrapper NET = LMNetHelper.newChannel(LatBlocks.mod.modID);
 	
 	public static void init()
 	{
