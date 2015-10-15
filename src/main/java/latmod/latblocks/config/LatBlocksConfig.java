@@ -12,7 +12,7 @@ public class LatBlocksConfig
 	
 	public static void load()
 	{
-		configFile = new ConfigFile(LatBlocks.mod.modID, new File(LatCoreMC.configFolder, "/LatMod/LatBlocks.txt"), true);
+		configFile = new ConfigFile(LatBlocks.mod.modID, new File(LatCoreMC.configFolder, "/LatMod/LatBlocks.json"), true);
 		LatBlocksConfigGeneral.load(configFile);
 		LatBlocksConfigCrafting.load(configFile);
 		ConfigListRegistry.add(configFile);
