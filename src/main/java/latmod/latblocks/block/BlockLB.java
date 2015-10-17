@@ -3,9 +3,9 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
+import latmod.ftbu.api.paint.*;
 import latmod.ftbu.block.BlockLM;
 import latmod.ftbu.item.ItemBlockLM;
-import latmod.ftbu.paint.*;
 import latmod.ftbu.util.LMMod;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.client.LatBlocksClient;

@@ -3,7 +3,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.api.client.*;
-import latmod.ftbu.paint.Paint;
+import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.EventBusHelper;
 import latmod.latblocks.*;

@@ -1,6 +1,6 @@
 package latmod.latblocks.item;
+import latmod.ftbu.api.item.IClientActionItem;
 import latmod.ftbu.inv.ODItems;
-import latmod.ftbu.item.IClientActionItem;
 import latmod.ftbu.util.EnumDyeColor;
 import latmod.latblocks.LatBlocksGuiHandler;
 import latmod.lib.FastList;

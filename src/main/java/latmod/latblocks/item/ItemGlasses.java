@@ -1,7 +1,7 @@
 package latmod.latblocks.item;
 import cpw.mods.fml.relauncher.*;
+import latmod.ftbu.api.item.IItemLM;
 import latmod.ftbu.inv.ODItems;
-import latmod.ftbu.item.IItemLM;
 import latmod.ftbu.mod.FTBU;
 import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocks;

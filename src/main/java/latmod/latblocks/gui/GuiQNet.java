@@ -49,7 +49,7 @@ public class GuiQNet extends GuiLM
 		
 		for(ButtonQInv b : qinvs)
 		{
-			LatCoreMCClient.setColor(b.inv.getQColor(), 255);
+			LatCoreMCClient.setGLColor(b.inv.getQColor(), 255);
 			b.render(tex_color);
 			b.render();
 		}

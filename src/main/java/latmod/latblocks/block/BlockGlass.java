@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
+import latmod.ftbu.api.paint.*;
 import latmod.ftbu.inv.ODItems;
-import latmod.ftbu.paint.*;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.client.LatCoreMCClient;
 import net.minecraft.block.Block;

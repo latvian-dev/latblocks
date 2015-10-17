@@ -158,9 +158,9 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 	{
 		super.drawBackground();
 		buttonSecurity.render(GuiIcons.security[chest.security.level.ID]);
-		LatCoreMCClient.setColor(chest.colorChest, 250);
+		LatCoreMCClient.setGLColor(chest.colorChest, 250);
 		buttonColChest.render(GuiIcons.color_blank);
-		LatCoreMCClient.setColor(chest.colorText, 250);
+		LatCoreMCClient.setGLColor(chest.colorText, 250);
 		buttonColText.render(GuiIcons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		

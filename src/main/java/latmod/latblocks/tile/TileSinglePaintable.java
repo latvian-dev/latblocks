@@ -1,6 +1,6 @@
 package latmod.latblocks.tile;
 
-import latmod.ftbu.paint.Paint;
+import latmod.ftbu.api.paint.Paint;
 
 public abstract class TileSinglePaintable extends TilePaintableLB
 {

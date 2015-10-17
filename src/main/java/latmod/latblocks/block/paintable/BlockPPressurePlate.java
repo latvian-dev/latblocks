@@ -3,8 +3,8 @@ package latmod.latblocks.block.paintable;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
+import latmod.ftbu.api.tile.IGuiTile;
 import latmod.ftbu.inv.ODItems;
-import latmod.ftbu.tile.IGuiTile;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;

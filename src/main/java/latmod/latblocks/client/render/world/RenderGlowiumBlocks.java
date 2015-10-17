@@ -3,7 +3,7 @@ package latmod.latblocks.client.render.world;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.paint.*;
+import latmod.ftbu.api.paint.*;
 import latmod.ftbu.util.client.*;
 import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.client.LatBlocksClient;

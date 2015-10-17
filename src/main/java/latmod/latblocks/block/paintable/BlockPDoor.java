@@ -1,8 +1,8 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
+import latmod.ftbu.api.paint.IPainterItem;
 import latmod.ftbu.inv.ODItems;
-import latmod.ftbu.paint.IPainterItem;
 import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;

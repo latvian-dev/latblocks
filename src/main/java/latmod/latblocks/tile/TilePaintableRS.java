@@ -1,6 +1,6 @@
 package latmod.latblocks.tile;
 
-import latmod.ftbu.paint.Paint;
+import latmod.ftbu.api.paint.Paint;
 import latmod.latblocks.block.paintable.BlockPaintableLamp;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;

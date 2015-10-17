@@ -2,8 +2,8 @@ package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
 import io.netty.buffer.ByteBuf;
+import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.net.MessageLM;
-import latmod.ftbu.paint.Paint;
 import latmod.ftbu.world.*;
 import latmod.latblocks.LatBlocksGuiHandler;
 import latmod.lib.Converter;

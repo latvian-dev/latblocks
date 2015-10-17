@@ -58,7 +58,7 @@ public class GuiColorPainter extends GuiLM
 		
 		for(int i = 0; i < buttons.length; i++)
 		{
-			LatCoreMCClient.setColor(EnumDyeColor.VALUES[i].color, 255);
+			LatCoreMCClient.setGLColor(EnumDyeColor.VALUES[i].color, 255);
 			buttons[i].render(colTex);
 		}
 		

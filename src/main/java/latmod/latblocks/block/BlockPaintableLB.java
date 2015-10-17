@@ -3,7 +3,7 @@ package latmod.latblocks.block;
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.paint.*;
+import latmod.ftbu.api.paint.*;
 import latmod.ftbu.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.world.RenderPaintable;

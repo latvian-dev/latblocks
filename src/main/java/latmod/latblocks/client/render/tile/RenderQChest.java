@@ -46,7 +46,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		model.chestLid.rotateAngleX = -t.getLidAngle(pt);
 		
-		LatCoreMCClient.setColor(t.colorChest, 255);
+		LatCoreMCClient.setGLColor(t.colorChest, 255);
 		bindTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
@@ -153,7 +153,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		model.chestLid.rotateAngleX = 0F;
 		
-		LatCoreMCClient.setColor(colorChest, 255);
+		LatCoreMCClient.setGLColor(colorChest, 255);
 		bindTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);

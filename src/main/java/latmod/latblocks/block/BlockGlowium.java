@@ -3,8 +3,8 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
+import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.inv.*;
-import latmod.ftbu.paint.Paint;
 import latmod.ftbu.tile.TileLM;
 import latmod.ftbu.util.EnumDyeColor;
 import latmod.latblocks.*;

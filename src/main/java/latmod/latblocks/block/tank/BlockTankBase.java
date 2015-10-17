@@ -1,6 +1,6 @@
 package latmod.latblocks.block.tank;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.paint.*;
+import latmod.ftbu.api.paint.*;
 import latmod.ftbu.util.client.LatCoreMCClient;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderTank;
