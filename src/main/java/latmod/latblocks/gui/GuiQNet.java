@@ -2,7 +2,7 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.util.client.LatCoreMCClient;
+import ftb.lib.client.FTBLibClient;
 import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.*;
@@ -49,7 +49,7 @@ public class GuiQNet extends GuiLM
 		
 		for(ButtonQInv b : qinvs)
 		{
-			LatCoreMCClient.setGLColor(b.inv.getQColor(), 255);
+			FTBLibClient.setGLColor(b.inv.getQColor(), 255);
 			b.render(tex_color);
 			b.render();
 		}

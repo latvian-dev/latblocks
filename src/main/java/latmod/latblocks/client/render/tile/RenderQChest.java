@@ -2,6 +2,7 @@ package latmod.latblocks.client.render.tile;
 import org.lwjgl.opengl.*;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.FTBLibClient;
 import latmod.ftbu.util.client.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.block.BlockQChest;
@@ -46,7 +47,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		model.chestLid.rotateAngleX = -t.getLidAngle(pt);
 		
-		LatCoreMCClient.setGLColor(t.colorChest, 255);
+		FTBLibClient.setGLColor(t.colorChest, 255);
 		bindTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
@@ -67,7 +68,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			GL11.glTranslated(0.5D, 0.23D, 1D / 16D - 0.001D);
 			GL11.glColor4f(1F, 1F, 1F, 1F);
 			
-			if(t.textGlows) LatCoreMCClient.pushMaxBrightness();
+			if(t.textGlows) FTBLibClient.pushMaxBrightness();
 			
 			int ss = font.getStringWidth(t.customName);
 			double d = 1D / Math.max((ss + 30), 64);
@@ -78,7 +79,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			font.drawString(t.customName, -ss / 2, 0, t.colorText);
 			GL11.glPopMatrix();
 			
-			if(t.textGlows) LatCoreMCClient.popMaxBrightness();
+			if(t.textGlows) FTBLibClient.popMaxBrightness();
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();
 		}
@@ -106,7 +107,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			
 			float iS = 0.8F;
 			GL11.glScalef(-iS, -iS, iS);
-			LMRenderHelper.renderItem(LatCoreMCClient.mc.theWorld, t.iconItem, true, true);
+			LMRenderHelper.renderItem(FTBLibClient.mc.theWorld, t.iconItem, true, true);
 			GL11.glPopMatrix();
 		}
 		
@@ -153,7 +154,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		model.chestLid.rotateAngleX = 0F;
 		
-		LatCoreMCClient.setGLColor(colorChest, 255);
+		FTBLibClient.setGLColor(colorChest, 255);
 		bindTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
@@ -174,7 +175,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			GL11.glTranslated(0.5D, 0.23D, 1D / 16D - 0.001D);
 			GL11.glColor4f(1F, 1F, 1F, 1F);
 			
-			if(textGlows) LatCoreMCClient.pushMaxBrightness();
+			if(textGlows) FTBLibClient.pushMaxBrightness();
 			
 			int ss = func_147498_b().getStringWidth(customName);
 			double d = 1D / Math.max((ss + 30), 64);
@@ -185,7 +186,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			func_147498_b().drawString(customName, -ss / 2, 0, colorText);
 			GL11.glPopMatrix();
 			
-			if(textGlows) LatCoreMCClient.popMaxBrightness();
+			if(textGlows) FTBLibClient.popMaxBrightness();
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();
 		}
@@ -215,7 +216,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 				
 				float iS = 0.8F;
 				GL11.glScalef(-iS, -iS, iS);
-				LMRenderHelper.renderItem(LatCoreMCClient.mc.theWorld, iconItem, true, true);
+				LMRenderHelper.renderItem(FTBLibClient.mc.theWorld, iconItem, true, true);
 			}
 			catch(Exception e)
 			{
@@ -231,6 +232,6 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 	public FontRenderer func_147498_b()
 	{
 		FontRenderer f = super.func_147498_b();
-		return (f == null) ? LatCoreMCClient.mc.fontRenderer : f;
+		return (f == null) ? FTBLibClient.mc.fontRenderer : f;
 	}
 }

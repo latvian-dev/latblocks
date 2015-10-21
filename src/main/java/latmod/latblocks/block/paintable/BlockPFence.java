@@ -1,7 +1,7 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.util.MathHelperMC;
+import ftb.lib.MathHelperMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.config.LatBlocksConfigGeneral;

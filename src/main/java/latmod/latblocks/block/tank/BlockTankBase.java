@@ -1,7 +1,7 @@
 package latmod.latblocks.block.tank;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.FTBLibClient;
 import latmod.ftbu.api.paint.*;
-import latmod.ftbu.util.client.LatCoreMCClient;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileTankBase;
@@ -47,7 +47,7 @@ public abstract class BlockTankBase extends BlockLB implements ICustomPaintBlock
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
-	{ return LatCoreMCClient.blockNullIcon; }
+	{ return FTBLibClient.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)

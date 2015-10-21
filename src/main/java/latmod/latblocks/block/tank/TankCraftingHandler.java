@@ -1,6 +1,6 @@
 package latmod.latblocks.block.tank;
 
-import latmod.ftbu.inv.LMInvUtils;
+import ftb.lib.item.LMInvUtils;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;

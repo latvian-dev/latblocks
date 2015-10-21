@@ -2,7 +2,8 @@ package latmod.latblocks.client.render.tile;
 import org.lwjgl.opengl.*;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.util.client.*;
+import ftb.lib.client.FTBLibClient;
+import latmod.ftbu.util.client.TileRenderer;
 import latmod.ftbu.util.client.model.CubeRenderer;
 import latmod.latblocks.tile.tank.TileTankBase;
 import latmod.lib.MathHelperLM;
@@ -45,7 +46,7 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				GL11.glColor4f(1F, 1F, 1F, 1F);
 				
 				boolean glows = b.getLightValue() > 0 || f.getLuminosity() > 0;
-				if(glows) LatCoreMCClient.pushMaxBrightness();
+				if(glows) FTBLibClient.pushMaxBrightness();
 				
 				Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
 				
@@ -64,7 +65,7 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				RenderTank.instance.renderBlocks.renderStandardBlockIcons(b, t.xCoord, t.yCoord, t.zCoord, new IIcon[]{ icon_fluid, icon_fluid, icon_fluid, icon_fluid, icon_fluid, icon_fluid }, true);
 				*/
 				
-				if(glows) LatCoreMCClient.popMaxBrightness();
+				if(glows) FTBLibClient.popMaxBrightness();
 				
 				GL11.glPopAttrib();
 				GL11.glPopMatrix();

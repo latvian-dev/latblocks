@@ -3,6 +3,7 @@ package latmod.latblocks.client.render.world;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.FTBLibClient;
 import latmod.ftbu.api.paint.*;
 import latmod.ftbu.util.client.*;
 import latmod.latblocks.block.BlockGlowium;
@@ -81,10 +82,10 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 		renderBlocks.setRenderBounds(d, d, d, 1D - d, 1D - d, 1D - d);
 		GL11.glPushMatrix();
 		LatBlocksClient.rotateBlocks();
-		LatCoreMCClient.pushMaxBrightness();
+		FTBLibClient.pushMaxBrightness();
 		renderBlocks.setOverrideBlockTexture(bg.getGlowItemIcon());
 		renderBlocks.renderBlockAsItem(b, meta, 1F);
-		LatCoreMCClient.popMaxBrightness();
+		FTBLibClient.popMaxBrightness();
 		GL11.glPopMatrix();
 	}
 	

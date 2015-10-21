@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.inv.ODItems;
+import ftb.lib.item.ODItems;
 import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.world.RenderQCable;

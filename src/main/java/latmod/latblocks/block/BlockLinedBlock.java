@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.util.client.LatCoreMCClient;
+import ftb.lib.client.FTBLibClient;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -49,7 +49,7 @@ public class BlockLinedBlock extends BlockGlowium
 	{
 		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[s];
 		if(isAt(iba, x + fd.offsetX, y + fd.offsetY, z + fd.offsetZ, iba.getBlockMetadata(x, y, z)) == 1)
-			return LatCoreMCClient.blockNullIcon;
+			return FTBLibClient.blockNullIcon;
 		
 		int m = iba.getBlockMetadata(x, y, z);
 		
@@ -96,7 +96,7 @@ public class BlockLinedBlock extends BlockGlowium
 		}
 		
 		if(a == 0 && b == 0 && c == 0 && d == 0)
-			return LatCoreMCClient.blockNullIcon;
+			return FTBLibClient.blockNullIcon;
 		return icons[a][b][c][d];
 	}
 	

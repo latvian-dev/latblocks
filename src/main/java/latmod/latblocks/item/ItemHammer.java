@@ -1,8 +1,8 @@
 package latmod.latblocks.item;
 import com.google.common.collect.Multimap;
 
-import latmod.ftbu.api.item.*;
-import latmod.ftbu.inv.ODItems;
+import ftb.lib.item.*;
+import latmod.ftbu.api.item.ICreativeSafeItem;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.lib.FastList;
 import net.minecraft.block.Block;

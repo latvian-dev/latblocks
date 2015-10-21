@@ -1,8 +1,8 @@
 package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.SidedDirection;
+import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.paint.*;
-import latmod.ftbu.inv.LMInvUtils;
-import latmod.ftbu.util.SidedDirection;
 import latmod.ftbu.util.gui.*;
 import latmod.ftbu.world.*;
 import latmod.latblocks.*;

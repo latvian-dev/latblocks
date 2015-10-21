@@ -3,9 +3,9 @@ package latmod.latblocks.tile.tank;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.paint.IPainterItem;
 import latmod.ftbu.api.tile.IWailaTile;
-import latmod.ftbu.inv.LMInvUtils;
 import latmod.ftbu.tile.Tank;
 import latmod.ftbu.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocksItems;

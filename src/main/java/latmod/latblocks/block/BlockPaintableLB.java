@@ -3,8 +3,9 @@ package latmod.latblocks.block;
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.MathHelperMC;
 import latmod.ftbu.api.paint.*;
-import latmod.ftbu.util.*;
+import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;

@@ -2,8 +2,8 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
+import ftb.lib.EnumDyeColor;
 import latmod.ftbu.api.paint.Paint;
-import latmod.ftbu.util.EnumDyeColor;
 import latmod.ftbu.waila.WailaDataAccessor;
 import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.block.BlockLiquid;

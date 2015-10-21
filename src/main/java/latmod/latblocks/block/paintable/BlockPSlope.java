@@ -1,7 +1,7 @@
 package latmod.latblocks.block.paintable;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.*;
 import latmod.ftbu.tile.TileLM;
-import latmod.ftbu.util.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderPSlope;
@@ -88,7 +88,7 @@ public class BlockPSlope extends BlockLB
 			
 			yaw = (byte) MathHelperMC.get2DRotation(ep);
 			
-			if(isServer()) LatCoreMC.printChat(ep, "Yaw: " + yaw + ", Pitch: " + pitch + ", Side: " + side);
+			if(isServer()) FTBLib.printChat(ep, "Yaw: " + yaw + ", Pitch: " + pitch + ", Side: " + side);
 			
 			markDirty();
 		}

@@ -2,10 +2,11 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.FTBLibClient;
+import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.client.LMGuis;
 import latmod.ftbu.api.client.callback.*;
-import latmod.ftbu.inv.LMInvUtils;
-import latmod.ftbu.util.client.*;
+import latmod.ftbu.util.client.LMGuiButtons;
 import latmod.ftbu.util.gui.*;
 import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;
@@ -158,9 +159,9 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 	{
 		super.drawBackground();
 		buttonSecurity.render(GuiIcons.security[chest.security.level.ID]);
-		LatCoreMCClient.setGLColor(chest.colorChest, 250);
+		FTBLibClient.setGLColor(chest.colorChest, 250);
 		buttonColChest.render(GuiIcons.color_blank);
-		LatCoreMCClient.setGLColor(chest.colorText, 250);
+		FTBLibClient.setGLColor(chest.colorText, 250);
 		buttonColText.render(GuiIcons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		

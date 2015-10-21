@@ -1,6 +1,6 @@
 package latmod.latblocks.tile.tank;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.inv.LMInvUtils;
+import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.tile.Tank;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.entity.player.EntityPlayer;

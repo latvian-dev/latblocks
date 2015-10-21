@@ -1,9 +1,9 @@
 package latmod.latblocks;
 
 import cpw.mods.fml.relauncher.Side;
+import ftb.lib.*;
 import latmod.ftbu.api.paint.*;
 import latmod.ftbu.tile.TileLM;
-import latmod.ftbu.util.*;
 import latmod.ftbu.world.*;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.block.Block;

@@ -1,9 +1,9 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.FTBLibClient;
+import ftb.lib.item.ODItems;
 import latmod.ftbu.api.paint.*;
-import latmod.ftbu.inv.ODItems;
 import latmod.ftbu.tile.TileLM;
-import latmod.ftbu.util.client.LatCoreMCClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -50,7 +50,7 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getCustomPaintIcon(int side, Paint p)
-	{ return LatCoreMCClient.blockNullIcon; }
+	{ return FTBLibClient.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
@@ -82,7 +82,7 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 		
 		ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[s];
 		if(isAt(iba, x + fd.offsetX, y + fd.offsetY, z + fd.offsetZ, iba.getBlockMetadata(x, y, z)) == 1)
-			return LatCoreMCClient.blockNullIcon;
+			return FTBLibClient.blockNullIcon;
 		
 		int m = 0;
 		

@@ -1,6 +1,6 @@
 package latmod.latblocks.block;
 
-import latmod.ftbu.inv.ODItems;
+import ftb.lib.item.ODItems;
 import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;

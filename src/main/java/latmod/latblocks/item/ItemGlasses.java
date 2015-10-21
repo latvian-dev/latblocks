@@ -1,8 +1,8 @@
 package latmod.latblocks.item;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.item.ODItems;
+import ftb.lib.mod.FTBLibMod;
 import latmod.ftbu.api.item.IItemLM;
-import latmod.ftbu.inv.ODItems;
-import latmod.ftbu.mod.FTBU;
 import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.api.ILBGlasses;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 {
 	public static boolean hasClientPlayer()
-	{ return hasPlayer(FTBU.proxy.getClientPlayer()); }
+	{ return hasPlayer(FTBLibMod.proxy.getClientPlayer()); }
 	
 	public static boolean hasPlayer(EntityPlayer ep)
 	{
@@ -37,7 +37,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 				double x1 = x + MathHelperLM.randomDouble(LatCoreMC.rand, -s, s);
 				double y1 = y + MathHelperLM.randomDouble(LatCoreMC.rand, -s, s);
 				double z1 = z + MathHelperLM.randomDouble(LatCoreMC.rand, -s, s);
-				FTBU.proxy.spawnDust(w, x1, y1, z1, 0xC200FFFF);
+				FTBLibMod.proxy.spawnDust(w, x1, y1, z1, 0xC200FFFF);
 			}
 		}
 	}

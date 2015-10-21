@@ -1,7 +1,7 @@
 package latmod.latblocks.tile.tank;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.inv.LMInvUtils;
-import latmod.ftbu.mod.FTBU;
+import ftb.lib.item.LMInvUtils;
+import ftb.lib.mod.FTBLibMod;
 import latmod.ftbu.tile.Tank;
 import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
@@ -44,7 +44,7 @@ public class TileVoidTank extends TileTankBase
 			double y = yCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
 			double z = zCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
 			int[] col = { 0xAA000000, 0xAA666666, 0xAA3300FF };
-			FTBU.proxy.spawnDust(worldObj, x, y, z, col[LatCoreMC.rand.nextInt(col.length)]);
+			FTBLibMod.proxy.spawnDust(worldObj, x, y, z, col[LatCoreMC.rand.nextInt(col.length)]);
 		}
 	}
 	

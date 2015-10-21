@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 
+import ftb.lib.MathHelperMC;
 import latmod.ftbu.item.ItemBlockLM;
-import latmod.ftbu.util.MathHelperMC;
 import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

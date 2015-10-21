@@ -1,7 +1,7 @@
 package latmod.latblocks.tile;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.tile.*;
-import latmod.ftbu.inv.LMInvUtils;
 import latmod.ftbu.tile.TileInvLM;
 import latmod.ftbu.util.*;
 import latmod.ftbu.util.client.LMGuiButtons;

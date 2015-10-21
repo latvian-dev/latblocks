@@ -1,6 +1,6 @@
 package latmod.latblocks.config;
 
-import latmod.ftbu.api.config.ConfigSyncRegistry;
+import ftb.lib.api.config.ConfigSyncRegistry;
 import latmod.lib.config.*;
 
 public class LatBlocksConfigGeneral
