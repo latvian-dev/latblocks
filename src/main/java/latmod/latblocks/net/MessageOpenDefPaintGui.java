@@ -1,23 +1,20 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
-import io.netty.buffer.ByteBuf;
-import latmod.ftbu.net.MessageLM;
+import ftb.lib.api.*;
 import latmod.latblocks.LatBlocksGuiHandler;
 
-public class MessageOpenDefPaintGui extends MessageLM<MessageOpenDefPaintGui>
+public class MessageOpenDefPaintGui extends MessageLM
 {
-	public void fromBytes(ByteBuf io)
-	{
-	}
+	public MessageOpenDefPaintGui()
+	{ super(DATA_NONE); }
 	
-	public void toBytes(ByteBuf io)
-	{
-	}
-	
-	public IMessage onMessage(MessageOpenDefPaintGui m, MessageContext ctx)
-	{ LatBlocksGuiHandler.instance.openGui(ctx.getServerHandler().playerEntity, LatBlocksGuiHandler.DEF_PAINT, null); return null; }
-	
-	public SimpleNetworkWrapper getWrapper()
+	public LMNetworkWrapper getWrapper()
 	{ return LatBlocksNetHandler.NET; }
+
+	public IMessage onMessage(MessageContext ctx)
+	{
+		LatBlocksGuiHandler.instance.openGui(ctx.getServerHandler().playerEntity, LatBlocksGuiHandler.DEF_PAINT, null);
+		return null;
+	}
 }

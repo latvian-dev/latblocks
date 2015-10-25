@@ -1,52 +1,46 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
-import io.netty.buffer.ByteBuf;
+import ftb.lib.api.*;
 import latmod.ftbu.api.paint.Paint;
-import latmod.ftbu.net.MessageLM;
 import latmod.ftbu.world.*;
 import latmod.latblocks.LatBlocksGuiHandler;
 import latmod.lib.Converter;
 import net.minecraft.block.Block;
 
-public class MessageDefaultPaint extends MessageLM<MessageDefaultPaint>
+public class MessageDefaultPaint extends MessageLM
 {
-	public final short[] paintIntArray;
-	
-	public MessageDefaultPaint()
-	{ paintIntArray = new short[12]; }
+	public MessageDefaultPaint() { super(DATA_SHORT); }
 	
 	public MessageDefaultPaint(Paint[] p)
 	{
 		this();
 		
+		short a[] = new short[12];
+		
 		for(int i = 0; i < 6; i++)
 		{
-			paintIntArray[i * 2 + 0] = (short)(Math.max(0, (p[i] == null) ? 0 : Block.getIdFromBlock(p[i].block)));
-			paintIntArray[i * 2 + 1] = (short)((p[i] == null) ? 0 : p[i].meta);
+			a[i * 2 + 0] = (short)(Math.max(0, (p[i] == null) ? 0 : Block.getIdFromBlock(p[i].block)));
+			a[i * 2 + 1] = (short)((p[i] == null) ? 0 : p[i].meta);
 		}
+		
+		for(int i = 0; i < 12; i++)
+			io.writeShort(a[i]);
 	}
 	
-	public void fromBytes(ByteBuf io)
-	{
-		for(int i = 0; i < paintIntArray.length; i++)
-			paintIntArray[i] = io.readShort();
-	}
+	public LMNetworkWrapper getWrapper()
+	{ return LatBlocksNetHandler.NET; }
 	
-	public void toBytes(ByteBuf io)
+	public IMessage onMessage(MessageContext ctx)
 	{
-		for(int i = 0; i < paintIntArray.length; i++)
-			io.writeShort(paintIntArray[i]);
-	}
-	
-	public IMessage onMessage(MessageDefaultPaint m, MessageContext ctx)
-	{
+		short a[] = new short[12];
+		
+		for(int i = 0; i < a.length; i++)
+			a[i] = io.readShort();
+		
 		LMPlayerServer p = LMWorldServer.inst.getPlayer(ctx.getServerHandler().playerEntity);
-		p.commonPrivateData.setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, Converter.toInts(m.paintIntArray));
+		p.commonPrivateData.setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, Converter.toInts(a));
 		p.sendUpdate();
 		return null;
 	}
-	
-	public SimpleNetworkWrapper getWrapper()
-	{ return LatBlocksNetHandler.NET; }
 }
