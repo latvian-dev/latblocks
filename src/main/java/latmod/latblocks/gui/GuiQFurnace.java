@@ -1,5 +1,6 @@
 package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.TextureCoords;
 import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQFurnace;
