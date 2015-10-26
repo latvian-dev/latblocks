@@ -57,7 +57,7 @@ public class GuiDefaultPaint extends GuiLM
 	{
 		super.drawBackground();
 		for(int i = 0; i < buttons.length; i++)
-			buttons[i].render();
+			buttons[i].renderWidget();
 	}
 	
 	public boolean handleDragNDrop(GuiContainer g, int x, int y, ItemStack is, int b)

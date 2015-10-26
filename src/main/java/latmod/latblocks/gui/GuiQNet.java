@@ -51,7 +51,7 @@ public class GuiQNet extends GuiLM
 		{
 			FTBLibClient.setGLColor(b.inv.getQColor(), 255);
 			b.render(tex_color);
-			b.render();
+			b.renderWidget();
 		}
 		
 		GL11.glColor4f(1F, 1F, 1F, 1F);

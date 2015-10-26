@@ -165,8 +165,8 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		buttonColText.render(GuiIcons.color_blank);
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		
-		buttonGlow.render();
-		buttonSetItem.render();
+		buttonGlow.renderWidget();
+		buttonSetItem.renderWidget();
 		
 		if(buttonSetItem.item == null)
 			buttonSetItem.render(GuiIcons.cancel);
