@@ -6,6 +6,7 @@ import ftb.lib.EventBusHelper;
 import latmod.ftbu.api.client.*;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.tile.TileLM;
+import latmod.ftbu.util.LMGuiHandlerRegistry;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;
@@ -66,7 +67,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(defaultPaint);
 		ClientConfigRegistry.add(clientConfig);
 		
-		LatBlocksGuiHandler.instance.registerClient();
+		LMGuiHandlerRegistry.add(LatBlocksGuiHandler.instance);
 	}
 	
 	public void spawnFountainParticle(TileFountain t)

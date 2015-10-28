@@ -22,7 +22,7 @@ public class GuiQFurnace extends GuiLM
 		super(c, texLoc);
 		furnace = (TileQFurnace)c.inv;
 		
-		barFuel = new WidgetLM(this, 57, 36, texFuel.width, texFuel.height)
+		barFuel = new WidgetLM(this, 57, 36, texFuel.widthI, texFuel.heightI)
 		{
 			public void addMouseOverText(FastList<String> l)
 			{
@@ -32,7 +32,7 @@ public class GuiQFurnace extends GuiLM
 			}
 		};
 		
-		barProgress = new WidgetLM(this, 80, 35, texProgress.width, texProgress.height)
+		barProgress = new WidgetLM(this, 80, 35, texProgress.widthI, texProgress.heightI)
 		{
 			public void addMouseOverText(FastList<String> l)
 			{
