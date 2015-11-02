@@ -158,7 +158,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 	public void drawBackground()
 	{
 		super.drawBackground();
-		buttonSecurity.render(GuiIcons.security[chest.security.level.ID]);
+		buttonSecurity.render(chest.security.level.getIcon());
 		FTBLibClient.setGLColor(chest.colorChest, 250);
 		buttonColChest.render(GuiIcons.color_blank);
 		FTBLibClient.setGLColor(chest.colorText, 250);
