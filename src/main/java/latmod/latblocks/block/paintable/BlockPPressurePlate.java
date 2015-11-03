@@ -4,16 +4,13 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.item.ODItems;
-import latmod.ftbu.api.tile.IGuiTile;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;
 import latmod.lib.FastList;
 import net.minecraft.block.*;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
@@ -103,7 +100,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	private static AxisAlignedBB getBox(int x, int y, int z)
 	{ double p = 1D / 16D; return AxisAlignedBB.getBoundingBox(x + p, y, z + p, x + 1D - p, y + p, z + 1D - p); }
 	
-	public static class TilePPressurePlate extends TileSinglePaintable implements IGuiTile
+	public static class TilePPressurePlate extends TileSinglePaintable
 	{
 		public byte plateType = 0;
 		public short maxTick = 20;
@@ -181,11 +178,5 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			
 			return false;
 		}
-		
-		public Container getContainer(EntityPlayer ep, NBTTagCompound data)
-		{ return null; }
-		
-		public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
-		{ return null; }
 	}
 }

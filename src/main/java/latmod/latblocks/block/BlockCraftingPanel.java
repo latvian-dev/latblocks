@@ -1,8 +1,8 @@
 package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.api.tile.IGuiTile;
+import ftb.lib.FTBLib;
+import ftb.lib.api.gui.IGuiTile;
 import latmod.ftbu.tile.TileLM;
-import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -128,7 +128,7 @@ public class BlockCraftingPanel extends BlockLB
 	public static class TileCraftingPanel extends TileLM implements IGuiTile
 	{
 		public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
-		{ if(isServer()) LatCoreMC.openGui(ep, this, null); return true; }
+		{ if(isServer()) FTBLib.openGui(ep, this, null); return true; }
 		
 		public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 		{

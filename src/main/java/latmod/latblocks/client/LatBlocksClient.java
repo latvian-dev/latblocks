@@ -3,10 +3,10 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EventBusHelper;
+import ftb.lib.api.gui.LMGuiHandlerRegistry;
 import latmod.ftbu.api.client.*;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.tile.TileLM;
-import latmod.ftbu.util.LMGuiHandlerRegistry;
 import latmod.latblocks.*;
 import latmod.latblocks.client.render.tile.*;
 import latmod.latblocks.client.render.world.*;

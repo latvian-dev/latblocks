@@ -1,8 +1,9 @@
 package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.FTBLib;
+import ftb.lib.api.gui.IGuiTile;
 import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.api.tile.IGuiTile;
 import latmod.ftbu.tile.TileInvLM;
 import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
@@ -90,7 +91,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 				markDirty();
 			}
 		}
-		else if(isServer()) LatCoreMC.openGui(ep, this, null);
+		else if(isServer()) FTBLib.openGui(ep, this, null);
 		return true;
 	}
 	
@@ -245,5 +246,5 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public ItemStack getQIcon() { return new ItemStack(LatBlocksItems.b_qfurnace, 1, isLit() ? 100 : 0); }
 	
 	public void onQClicked(EntityPlayer ep, int button)
-	{ if(isServer()) LatCoreMC.openGui(ep, this, null); }
+	{ if(isServer()) FTBLib.openGui(ep, this, null); }
 }

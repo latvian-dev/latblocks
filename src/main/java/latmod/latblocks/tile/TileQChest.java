@@ -1,9 +1,11 @@
 package latmod.latblocks.tile;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.FTBLib;
+import ftb.lib.api.gui.IGuiTile;
 import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.api.tile.*;
+import latmod.ftbu.api.tile.ISecureTile;
 import latmod.ftbu.tile.TileInvLM;
-import latmod.ftbu.util.*;
+import latmod.ftbu.util.LMSecurityLevel;
 import latmod.ftbu.util.client.LMGuiButtons;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
@@ -102,7 +104,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	{
 		if(!isServer()) return true;
 		else if(!security.canInteract(ep)) { printOwner(ep); return true; }
-		else if(!ep.isSneaking()) LatCoreMC.openGui(ep, this, null);
+		else if(!ep.isSneaking()) FTBLib.openGui(ep, this, null);
 		else if(LMInvUtils.isWrench(is))
 		{
 			dropItems = false;
@@ -191,7 +193,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		if(!isServer()) return;
 		if(!security.canInteract(ep))
 		{ printOwner(ep); return; }
-		LatCoreMC.openGui(ep, this, null);
+		FTBLib.openGui(ep, this, null);
 	}
 	
 	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayerMP ep)
