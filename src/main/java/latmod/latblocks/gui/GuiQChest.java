@@ -2,6 +2,7 @@ package latmod.latblocks.gui;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.api.gui.GuiIcons;
 import ftb.lib.client.FTBLibClient;
 import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.client.LMGuis;
