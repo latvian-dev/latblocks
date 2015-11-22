@@ -1,14 +1,13 @@
 package latmod.latblocks.client.render.world;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.FTBLibClient;
+import ftb.lib.client.*;
 import latmod.ftbu.api.paint.*;
 import latmod.ftbu.util.client.*;
 import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TilePaintableLB;
+import latmod.lib.LMColorUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.util.*;
@@ -68,25 +67,25 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
 		BlockGlowium bg = (BlockGlowium)b;
 		
-		renderBlocks.setCustomColor(LMRenderHelper.copyB(b.getRenderColor(meta), -20));
+		renderBlocks.setCustomColor(LMColorUtils.addBrightness(b.getRenderColor(meta), -20));
 		
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		LatBlocksClient.rotateBlocks();
 		renderBlocks.setOverrideBlockTexture(bg.getBlockIcon());
 		renderBlocks.renderBlockAsItem(b, meta, 1F);
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
 		
 		renderBlocks.setCustomColor(b.getRenderColor(meta));
 		
 		double d = -0.001D;
 		renderBlocks.setRenderBounds(d, d, d, 1D - d, 1D - d, 1D - d);
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		LatBlocksClient.rotateBlocks();
 		FTBLibClient.pushMaxBrightness();
 		renderBlocks.setOverrideBlockTexture(bg.getGlowItemIcon());
 		renderBlocks.renderBlockAsItem(b, meta, 1F);
 		FTBLibClient.popMaxBrightness();
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)

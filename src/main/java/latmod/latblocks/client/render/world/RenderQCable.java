@@ -1,8 +1,7 @@
 package latmod.latblocks.client.render.world;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.GlStateManager;
 import latmod.ftbu.util.client.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockQCable;
@@ -21,14 +20,14 @@ public class RenderQCable extends BlockRendererLM
 	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
-		GL11.glColor4f(1F, 1F, 1F, 1F);
-		GL11.glPushMatrix();
+		GlStateManager.color(1F, 1F, 1F, 1F);
+		GlStateManager.pushMatrix();
 		b.setBlockBoundsForItemRender();
 		renderBlocks.setCustomColor(0xFFFFFFFF);
 		renderBlocks.setRenderBoundsFromBlock(b);
 		renderBlocks.setOverrideBlockTexture(LatBlocksItems.b_qcable.getBlockIcon());
 		renderBlocks.renderBlockAsItem(empty, meta, 1F);
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int renderID, RenderBlocks renderer0)

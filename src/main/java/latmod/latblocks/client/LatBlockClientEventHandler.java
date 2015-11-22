@@ -4,11 +4,12 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.GlStateManager;
 import latmod.ftbu.item.ItemBlockLM;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.lib.FastList;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
@@ -41,12 +42,12 @@ public class LatBlockClientEventHandler
 					.isReplaceable(e.player.worldObj, e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit]))
 						return;
 					
-					GL11.glEnable(GL11.GL_BLEND);
-					OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-					GL11.glColor4f(1F, 1F, 1F, 0.5F);
+					GlStateManager.enableBlend();
+					GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+					GlStateManager.color(1F, 1F, 1F, 0.5F);
 					GL11.glLineWidth(3F);
-					GL11.glDisable(GL11.GL_TEXTURE_2D);
-					GL11.glDepthMask(false);
+					GlStateManager.disableTexture();
+					GlStateManager.depthMask(false);
 					float f1 = 0.002F;
 					double pt = e.partialTicks;
 					
@@ -62,7 +63,7 @@ public class LatBlockClientEventHandler
 						AxisAlignedBB bb = hl.get(i);
 						
 						GL11.glLineWidth(1F);
-						GL11.glColor4f(1F, 1F, 1F, 0.7F);
+						GlStateManager.color(1F, 1F, 1F, 0.7F);
 						
 						bb = bb.getOffsetBoundingBox(e.target.blockX, e.target.blockY, e.target.blockZ);
 						bb = bb.getOffsetBoundingBox(Facing.offsetsXForSide[e.target.sideHit], Facing.offsetsYForSide[e.target.sideHit], Facing.offsetsZForSide[e.target.sideHit]);
@@ -88,9 +89,9 @@ public class LatBlockClientEventHandler
 						}
 					}
 					
-					GL11.glDepthMask(true);
-					GL11.glEnable(GL11.GL_TEXTURE_2D);
-					GL11.glDisable(GL11.GL_BLEND);
+					GlStateManager.depthMask(true);
+					GlStateManager.enableTexture();
+					GlStateManager.enableBlend();
 					
 					if(!hl.isEmpty()) e.setCanceled(true);
 				}

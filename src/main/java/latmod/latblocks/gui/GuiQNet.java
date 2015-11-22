@@ -1,9 +1,9 @@
 package latmod.latblocks.gui;
-import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.*;
-import latmod.ftbu.util.gui.*;
+import ftb.lib.gui.GuiLM;
+import ftb.lib.gui.widgets.ItemButtonLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.*;
 import latmod.lib.FastList;
@@ -54,7 +54,7 @@ public class GuiQNet extends GuiLM
 			b.renderWidget();
 		}
 		
-		GL11.glColor4f(1F, 1F, 1F, 1F);
+		GlStateManager.color(1F, 1F, 1F, 1F);
 	}
 	
 	public static class ButtonQInv extends ItemButtonLM implements Comparable<ButtonQInv>

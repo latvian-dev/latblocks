@@ -1,9 +1,10 @@
 package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.SidedDirection;
+import ftb.lib.gui.GuiLM;
+import ftb.lib.gui.widgets.ItemButtonLM;
 import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.paint.*;
-import latmod.ftbu.util.gui.*;
 import latmod.ftbu.world.*;
 import latmod.latblocks.*;
 import latmod.latblocks.net.MessageDefaultPaint;

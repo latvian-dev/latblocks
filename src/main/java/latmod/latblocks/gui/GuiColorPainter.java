@@ -1,11 +1,11 @@
 package latmod.latblocks.gui;
-import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EnumDyeColor;
 import ftb.lib.client.*;
+import ftb.lib.gui.*;
+import ftb.lib.gui.widgets.ButtonLM;
 import ftb.lib.mod.net.MessageClientItemAction;
-import latmod.ftbu.util.gui.*;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;
@@ -62,6 +62,6 @@ public class GuiColorPainter extends GuiLM
 			buttons[i].render(colTex);
 		}
 		
-		GL11.glColor4f(1F, 1F, 1F, 1F);
+		GlStateManager.color(1F, 1F, 1F, 1F);
 	}
 }

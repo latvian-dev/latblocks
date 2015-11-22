@@ -1,8 +1,9 @@
 package latmod.latblocks.client.render.tile;
-import org.lwjgl.opengl.*;
+
+import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.FTBLibClient;
+import ftb.lib.client.*;
 import latmod.ftbu.util.client.TileRenderer;
 import latmod.ftbu.util.client.model.CubeRenderer;
 import latmod.latblocks.tile.tank.TileTankBase;
@@ -34,16 +35,16 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				Block b = f.getBlock();
 				if(b == null || b == Blocks.air) b = Blocks.stone;
 				
-				GL11.glPushMatrix();
-				GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-				GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-				GL11.glEnable(GL11.GL_BLEND);
-				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-				GL11.glDisable(GL11.GL_LIGHTING);
-				GL11.glTranslated(x, y, z);
+				GlStateManager.pushMatrix();
+				GlStateManager.pushAttrib();
+				GlStateManager.enableRescaleNormal();
+				GlStateManager.enableBlend();
+				GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+				GlStateManager.disableLighting();
+				GlStateManager.translate(x, y, z);
 				//GL11.glTranslated(x, y + 1D, z + 1D);
 				//GL11.glScalef(1F, -1F, -1F);
-				GL11.glColor4f(1F, 1F, 1F, 1F);
+				GlStateManager.color(1F, 1F, 1F, 1F);
 				
 				boolean glows = b.getLightValue() > 0 || f.getLuminosity() > 0;
 				if(glows) FTBLibClient.pushMaxBrightness();
@@ -67,8 +68,8 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				
 				if(glows) FTBLibClient.popMaxBrightness();
 				
-				GL11.glPopAttrib();
-				GL11.glPopMatrix();
+				GlStateManager.popAttrib();
+				GlStateManager.popMatrix();
 			}
 		}
 	}

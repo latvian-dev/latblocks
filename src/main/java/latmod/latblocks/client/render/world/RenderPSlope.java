@@ -1,7 +1,6 @@
 package latmod.latblocks.client.render.world;
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.GlStateManager;
 import latmod.ftbu.util.client.BlockRendererLM;
 import latmod.latblocks.block.paintable.BlockPSlope;
 import latmod.latblocks.client.LatBlocksClient;
@@ -25,21 +24,21 @@ public class RenderPSlope extends BlockRendererLM
 		renderBlocks.setCustomColor(null);
 		renderBlocks.setOverrideBlockTexture(b.getBlockTextureFromSide(1));
 		
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		LatBlocksClient.rotateBlocks();
 		
 		for(int i = 0; i < 6; i++)
 		{
 			if(i != 0 && i != 3)
 			{
-				GL11.glPushMatrix();
+				GlStateManager.pushMatrix();
 				renderBlocks.setRenderBounds(renderBlocks.fullBlock);
 				renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
-				GL11.glPopMatrix();
+				GlStateManager.popMatrix();
 			}
 		}
 		
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)

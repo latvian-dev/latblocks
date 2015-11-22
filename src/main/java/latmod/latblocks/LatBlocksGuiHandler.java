@@ -2,7 +2,7 @@ package latmod.latblocks;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.gui.LMGuiHandler;
-import latmod.ftbu.util.gui.ContainerEmpty;
+import ftb.lib.gui.ContainerEmpty;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;

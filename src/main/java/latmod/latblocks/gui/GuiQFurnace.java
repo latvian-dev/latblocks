@@ -1,7 +1,8 @@
 package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.TextureCoords;
-import latmod.ftbu.util.gui.*;
+import ftb.lib.gui.GuiLM;
+import ftb.lib.gui.widgets.WidgetLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQFurnace;
 import latmod.lib.FastList;

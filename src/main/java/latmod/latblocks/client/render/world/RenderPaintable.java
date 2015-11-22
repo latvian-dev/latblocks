@@ -1,7 +1,7 @@
 package latmod.latblocks.client.render.world;
-import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.GlStateManager;
 import latmod.ftbu.api.paint.*;
 import latmod.ftbu.util.client.*;
 import latmod.latblocks.block.BlockPaintableLB;
@@ -42,18 +42,18 @@ public class RenderPaintable extends BlockRendererLM
 		renderBlocks.setCustomColor(null);
 		renderBlocks.setOverrideBlockTexture(((BlockPaintableLB)b).getDefaultItemIcon());
 		
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		LatBlocksClient.rotateBlocks();
 		
 		for(int i = 0; i < boxes.size(); i++)
 		{
-			GL11.glPushMatrix();
+			GlStateManager.pushMatrix();
 			renderBlocks.setRenderBounds(boxes.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
-			GL11.glPopMatrix();
+			GlStateManager.popMatrix();
 		}
 		
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
 	}
 	
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)

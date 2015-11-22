@@ -1,9 +1,9 @@
 package latmod.latblocks.client;
-import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EventBusHelper;
 import ftb.lib.api.gui.LMGuiHandlerRegistry;
+import ftb.lib.client.GlStateManager;
 import latmod.ftbu.api.client.*;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.tile.TileLM;
@@ -109,5 +109,5 @@ public class LatBlocksClient extends LatBlocksCommon
 	}
 	
 	public static void rotateBlocks()
-	{ if(rotateBlocks.getB()) GL11.glRotated(Minecraft.getSystemTime() * 0.053D, 0D, 1D, 0D); }
+	{ if(rotateBlocks.getB()) GlStateManager.rotate((float)(Minecraft.getSystemTime() * 0.053D), 0F, 1F, 0F); }
 }

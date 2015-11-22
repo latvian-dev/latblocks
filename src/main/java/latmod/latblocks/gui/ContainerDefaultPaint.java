@@ -1,5 +1,5 @@
 package latmod.latblocks.gui;
-import latmod.ftbu.util.gui.ContainerLM;
+import ftb.lib.gui.ContainerLM;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ContainerDefaultPaint extends ContainerLM

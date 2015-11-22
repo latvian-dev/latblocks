@@ -1,7 +1,7 @@
 package latmod.latblocks.client.render.world;
-import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.client.GlStateManager;
 import latmod.ftbu.util.client.BlockRendererLM;
 import latmod.latblocks.block.tank.BlockTankBase;
 import latmod.latblocks.client.LatBlocksClient;
@@ -96,32 +96,32 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		
 		double p = 1D / 16D;
 		
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		LatBlocksClient.rotateBlocks();
 		
-		GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
-		GL11.glEnable(GL11.GL_LIGHTING);
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glEnable(GL11.GL_CULL_FACE);
-		GL11.glColor3f(1, 1, 1);
-		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GlStateManager.pushAttrib();
+		GlStateManager.enableLighting();
+		GlStateManager.disableBlend();
+		GlStateManager.enableCull();
+		GlStateManager.color(1F, 1F, 1F, 1F);
+		GlStateManager.enableAlpha();
 		
 		renderBlocks.setOverrideBlockTexture(tb.getTankItemBorderIcon(item));
 		
 		for(int i = 0; i < boxes.length; i++)
 		{
-			GL11.glPushMatrix();
+			GlStateManager.pushMatrix();
 			renderBlocks.setRenderBounds(boxes[i]);
 			renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
-			GL11.glPopMatrix();
+			GlStateManager.popMatrix();
 		}
 		
-		GL11.glPushMatrix();
+		GlStateManager.pushMatrix();
 		double p1 = p - 0.001D;
 		renderBlocks.setRenderBounds(p1, p1, p1, 1D - p1, 1D - p1, 1D - p1);
 		renderBlocks.setOverrideBlockTexture(icon_inside);
 		renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
 		
 		FluidStack fluid = tb.getTankItemFluid(item);
 		
@@ -130,14 +130,14 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 			double op = p + 0.001D;
 			double h1 = MathHelperLM.map(Math.min(fluid.amount / 1000D, 1D), 0D, 1D, op, 1D - op);
 			
-			GL11.glPushMatrix();
+			GlStateManager.pushMatrix();
 			renderBlocks.setRenderBounds(op, op, op, 1D - op, h1, 1D - op);
 			renderBlocks.setOverrideBlockTexture(fluid.getFluid().getStillIcon());
 			renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
-			GL11.glPopMatrix();
+			GlStateManager.popMatrix();
 		}
 		
-		GL11.glPopAttrib();
-		GL11.glPopMatrix();
+		GlStateManager.popAttrib();
+		GlStateManager.popMatrix();
 	}
 }
