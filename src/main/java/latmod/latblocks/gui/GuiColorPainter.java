@@ -1,7 +1,7 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.EnumDyeColor;
+import ftb.lib.EnumMCColor;
 import ftb.lib.client.*;
 import ftb.lib.gui.*;
 import ftb.lib.gui.widgets.ButtonLM;
@@ -43,7 +43,7 @@ public class GuiColorPainter extends GuiLM
 				}
 			};
 			
-			buttons[id].title = EnumDyeColor.VALUES[id].toString();
+			buttons[id].title = EnumMCColor.VALUES[id].toString();
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class GuiColorPainter extends GuiLM
 		
 		for(int i = 0; i < buttons.length; i++)
 		{
-			FTBLibClient.setGLColor(EnumDyeColor.VALUES[i].color, 255);
+			FTBLibClient.setGLColor(EnumMCColor.VALUES[i].color, 255);
 			buttons[i].render(colTex);
 		}
 		

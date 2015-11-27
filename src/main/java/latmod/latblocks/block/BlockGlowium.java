@@ -3,7 +3,7 @@ package latmod.latblocks.block;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.EnumDyeColor;
+import ftb.lib.EnumMCColor;
 import ftb.lib.item.*;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.tile.TileLM;
@@ -27,7 +27,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public abstract class BlockGlowium extends BlockLB
 {
 	public static final String ORE_NAME = "blockGlowium";
-	public static final int DEF_DMG = EnumDyeColor.YELLOW.ID;
+	public static final int DEF_DMG = EnumMCColor.YELLOW.ID;
 	
 	public static final int[] brightColors =
 	{
@@ -164,7 +164,7 @@ public abstract class BlockGlowium extends BlockLB
 	{
 		for(int i = 0; i < 16; i++) mod.recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
 				'G', new ItemStack(this, 1, DEF_DMG),
-				'C', EnumDyeColor.VALUES[i].dyeName);
+				'C', EnumMCColor.VALUES[i].dyeName);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -283,7 +283,7 @@ public abstract class BlockGlowium extends BlockLB
 	{ return false; }
 	
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
-	{ l.add(EnumDyeColor.VALUES[is.getItemDamage()].toString()); }
+	{ l.add(EnumMCColor.VALUES[is.getItemDamage()].toString()); }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getGlowItemIcon()

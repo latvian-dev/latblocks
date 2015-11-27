@@ -1,13 +1,12 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.gui.GuiIcons;
+import ftb.lib.api.gui.*;
+import ftb.lib.api.gui.callback.*;
 import ftb.lib.client.*;
 import ftb.lib.gui.GuiLM;
 import ftb.lib.gui.widgets.*;
 import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.api.client.LMGuis;
-import latmod.ftbu.api.client.callback.*;
 import latmod.ftbu.util.client.LMGuiButtons;
 import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;

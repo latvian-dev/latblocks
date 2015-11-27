@@ -2,7 +2,7 @@ package latmod.latblocks.tile;
 
 import java.util.List;
 
-import ftb.lib.EnumDyeColor;
+import ftb.lib.EnumMCColor;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.waila.WailaDataAccessor;
 import latmod.latblocks.item.ItemGlasses;
@@ -36,8 +36,8 @@ public class TileGlowium extends TileSidedPaintable
 		boolean hasGlasses = ItemGlasses.hasPlayer(data.player);
 		
 		if(hasGlasses && paint[data.side] != null)
-			info.add((new ItemStack(getBlockType(), 1, getBlockMetadata())).getDisplayName() + " [" + EnumDyeColor.VALUES[blockMetadata].toString() + "]");
+			info.add((new ItemStack(getBlockType(), 1, getBlockMetadata())).getDisplayName() + " [" + EnumMCColor.VALUES[blockMetadata].toString() + "]");
 		else if(hasGlasses)
-			info.add(EnumDyeColor.VALUES[blockMetadata].toString());
+			info.add(EnumMCColor.VALUES[blockMetadata].toString());
 	}
 }

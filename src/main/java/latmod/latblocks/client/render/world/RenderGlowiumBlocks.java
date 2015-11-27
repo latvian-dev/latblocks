@@ -44,7 +44,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 		
 		public int getLightValue()
 		{
-			if(LatBlocksClient.blocksGlow.getB() && PaintableRenderer.currentPaint != null)
+			if(LatBlocksClient.blocksGlow.get() && PaintableRenderer.currentPaint != null)
 				return PaintableRenderer.currentPaint.block.getLightValue();
 			return 0;
 		}

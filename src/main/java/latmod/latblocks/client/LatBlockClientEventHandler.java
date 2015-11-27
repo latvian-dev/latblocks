@@ -22,7 +22,7 @@ public class LatBlockClientEventHandler
 	@SubscribeEvent
 	public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent e)
 	{
-		if(!LatBlocksClient.renderHighlights.getB()) return;
+		if(!LatBlocksClient.renderHighlights.get()) return;
 		
 		if (e.currentItem != null && e.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && e.currentItem.getItem() instanceof ItemBlock)
 		{

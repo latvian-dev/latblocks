@@ -1,5 +1,5 @@
 package latmod.latblocks.item;
-import ftb.lib.EnumDyeColor;
+import ftb.lib.EnumMCColor;
 import ftb.lib.api.gui.IClientActionItem;
 import ftb.lib.item.ODItems;
 import latmod.latblocks.LatBlocksGuiHandler;
@@ -86,5 +86,5 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	}
 	
 	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
-	{ l.add(EnumChatFormatting.WHITE + "" + EnumChatFormatting.BOLD + EnumDyeColor.VALUES[is.getItemDamage()].toString()); }
+	{ l.add(EnumChatFormatting.WHITE + "" + EnumChatFormatting.BOLD + EnumMCColor.VALUES[is.getItemDamage()].toString()); }
 }

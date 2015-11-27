@@ -118,7 +118,7 @@ public class RenderFountain extends BlockRendererLM
 		
 		public int getLightValue()
 		{
-			if(LatBlocksClient.blocksGlow.getB() && PaintableRenderer.currentPaint != null)
+			if(LatBlocksClient.blocksGlow.get() && PaintableRenderer.currentPaint != null)
 				return PaintableRenderer.currentPaint.block.getLightValue();
 			return 0;
 		}
@@ -136,7 +136,7 @@ public class RenderFountain extends BlockRendererLM
 		
 		public int getLightValue()
 		{
-			if(LatBlocksClient.blocksGlow.getB() && tile.tank.getFluid().getBlock() != null)
+			if(LatBlocksClient.blocksGlow.get() && tile.tank.getFluid().getBlock() != null)
 				return Math.max(tile.tank.getFluid().getLuminosity(), tile.tank.getFluid().getBlock().getLightValue());
 			return 0;
 		}

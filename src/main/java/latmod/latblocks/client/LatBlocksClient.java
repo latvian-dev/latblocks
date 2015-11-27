@@ -2,9 +2,9 @@ package latmod.latblocks.client;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EventBusHelper;
+import ftb.lib.api.config.*;
 import ftb.lib.api.gui.LMGuiHandlerRegistry;
 import ftb.lib.client.GlStateManager;
-import latmod.ftbu.api.client.*;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.*;
@@ -14,6 +14,7 @@ import latmod.latblocks.net.MessageOpenDefPaintGui;
 import latmod.latblocks.tile.*;
 import latmod.latblocks.tile.tank.TileTankBase;
 import latmod.lib.MathHelperLM;
+import latmod.lib.config.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityBlockDustFX;
@@ -23,17 +24,12 @@ import net.minecraft.entity.player.EntityPlayer;
 @SideOnly(Side.CLIENT)
 public class LatBlocksClient extends LatBlocksCommon
 {
-	private static final ClientConfig clientConfig = new ClientConfig("latblocks");
-	public static final ClientConfigProperty rotateBlocks = new ClientConfigProperty("rotate_blocks", false);
-	public static final ClientConfigProperty renderHighlights = new ClientConfigProperty("render_highlights", true);
-	public static final ClientConfigProperty blocksGlow = new ClientConfigProperty("blocks_glow", true);
-	public static final ClientConfigProperty fluidsFlowing = new ClientConfigProperty("fluids_flowing", false);
-	
-	public static final ClientConfigProperty defaultPaint = new ClientConfigProperty("def_paint", 0, "edit")
-	{
-		public void onClicked()
-		{ new MessageOpenDefPaintGui().sendToServer(); }
-	};
+	private static final ConfigGroup clientConfig = new ConfigGroup("latblocks");
+	public static final ConfigEntryBool rotateBlocks = new ConfigEntryBool("rotate_blocks", false);
+	public static final ConfigEntryBool renderHighlights = new ConfigEntryBool("render_highlights", true);
+	public static final ConfigEntryBool blocksGlow = new ConfigEntryBool("blocks_glow", true);
+	public static final ConfigEntryBool fluidsFlowing = new ConfigEntryBool("fluids_flowing", false);
+	public static final ConfigEntryBlank defaultPaint = new ConfigEntryBlank("def_paint");
 	
 	public void preInit()
 	{
@@ -66,6 +62,12 @@ public class LatBlocksClient extends LatBlocksCommon
 		clientConfig.add(fluidsFlowing);
 		clientConfig.add(defaultPaint);
 		ClientConfigRegistry.add(clientConfig);
+		
+		ClientConfigHandler.addCustom(new ClientConfigHandler(defaultPaint)
+		{
+			public void onClicked()
+			{ new MessageOpenDefPaintGui().sendToServer(); }
+		});
 		
 		LMGuiHandlerRegistry.add(LatBlocksGuiHandler.instance);
 	}
@@ -109,5 +111,5 @@ public class LatBlocksClient extends LatBlocksCommon
 	}
 	
 	public static void rotateBlocks()
-	{ if(rotateBlocks.getB()) GlStateManager.rotate((float)(Minecraft.getSystemTime() * 0.053D), 0F, 1F, 0F); }
+	{ if(rotateBlocks.get()) GlStateManager.rotate((float)(Minecraft.getSystemTime() * 0.053D), 0F, 1F, 0F); }
 }

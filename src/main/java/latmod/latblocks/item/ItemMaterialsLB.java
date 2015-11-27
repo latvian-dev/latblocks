@@ -1,6 +1,6 @@
 package latmod.latblocks.item;
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.EnumDyeColor;
+import ftb.lib.EnumMCColor;
 import ftb.lib.item.ODItems;
 import latmod.ftbu.item.*;
 import latmod.ftbu.util.LMMod;
@@ -61,19 +61,19 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		add(GEM_GLOWIUM_R = new MaterialItem(this, 5, "gem_red")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumDyeColor.RED.dyeName); }
+			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.RED.dyeName); }
 		});
 		
 		add(GEM_GLOWIUM_G = new MaterialItem(this, 6, "gem_green")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumDyeColor.GREEN.dyeName); }
+			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.GREEN.dyeName); }
 		});
 		
 		add(GEM_GLOWIUM_B = new MaterialItem(this, 7, "gem_blue")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumDyeColor.BLUE.dyeName); }
+			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.BLUE.dyeName); }
 		});
 		
 		add(GEM_GLOWIUM_D = new MaterialItem(this, 8, "gem_dark")
@@ -190,14 +190,14 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 			{
 				mod.recipes.addRecipe(getStack(), "123", "8R4", "765",
 						'R', PAINT_ROLLER_DMD,
-						'1', EnumDyeColor.BLUE.dyeName,
-						'2', EnumDyeColor.CYAN.dyeName,
-						'3', EnumDyeColor.GREEN.dyeName,
-						'4', EnumDyeColor.LIME.dyeName,
-						'5', EnumDyeColor.YELLOW.dyeName,
-						'6', EnumDyeColor.ORANGE.dyeName,
-						'7', EnumDyeColor.RED.dyeName,
-						'8', EnumDyeColor.PURPLE.dyeName);
+						'1', EnumMCColor.BLUE.dyeName,
+						'2', EnumMCColor.CYAN.dyeName,
+						'3', EnumMCColor.GREEN.dyeName,
+						'4', EnumMCColor.LIME.dyeName,
+						'5', EnumMCColor.YELLOW.dyeName,
+						'6', EnumMCColor.ORANGE.dyeName,
+						'7', EnumMCColor.RED.dyeName,
+						'8', EnumMCColor.PURPLE.dyeName);
 			}
 		});
 		
