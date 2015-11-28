@@ -2,7 +2,7 @@ package latmod.latblocks.client;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EventBusHelper;
-import ftb.lib.api.config.*;
+import ftb.lib.api.config.ClientConfigRegistry;
 import ftb.lib.api.gui.LMGuiHandlerRegistry;
 import ftb.lib.client.GlStateManager;
 import latmod.ftbu.api.paint.Paint;
@@ -29,7 +29,11 @@ public class LatBlocksClient extends LatBlocksCommon
 	public static final ConfigEntryBool renderHighlights = new ConfigEntryBool("render_highlights", true);
 	public static final ConfigEntryBool blocksGlow = new ConfigEntryBool("blocks_glow", true);
 	public static final ConfigEntryBool fluidsFlowing = new ConfigEntryBool("fluids_flowing", false);
-	public static final ConfigEntryBlank defaultPaint = new ConfigEntryBlank("def_paint");
+	public static final ConfigEntryBlank defaultPaint = new ConfigEntryBlank("def_paint")
+	{
+		public void onClicked()
+		{ new MessageOpenDefPaintGui().sendToServer(); }
+	};
 	
 	public void preInit()
 	{
@@ -56,19 +60,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	
 	public void postInit()
 	{
-		clientConfig.add(rotateBlocks);
-		clientConfig.add(renderHighlights);
-		clientConfig.add(blocksGlow);
-		clientConfig.add(fluidsFlowing);
-		clientConfig.add(defaultPaint);
-		ClientConfigRegistry.add(clientConfig);
-		
-		ClientConfigHandler.addCustom(new ClientConfigHandler(defaultPaint)
-		{
-			public void onClicked()
-			{ new MessageOpenDefPaintGui().sendToServer(); }
-		});
-		
+		ClientConfigRegistry.add(clientConfig.addAll(LatBlocksClient.class));
 		LMGuiHandlerRegistry.add(LatBlocksGuiHandler.instance);
 	}
 	

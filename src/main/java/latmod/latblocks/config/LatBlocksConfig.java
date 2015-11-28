@@ -11,9 +11,10 @@ public class LatBlocksConfig
 	
 	public static void load()
 	{
-		configFile = new ConfigFile("latblocks", new File(FTBLib.folderConfig, "LatBlocks.json"), true);
-		LatBlocksConfigGeneral.load(configFile);
-		LatBlocksConfigCrafting.load(configFile);
+		configFile = new ConfigFile("latblocks", new File(FTBLib.folderConfig, "LatBlocks.json"));
+		configFile.configList.setName("LatBlocks");
+		configFile.add(LatBlocksConfigGeneral.group.addAll(LatBlocksConfigGeneral.class));
+		configFile.add(LatBlocksConfigCrafting.group.addAll(LatBlocksConfigCrafting.class));
 		ConfigListRegistry.instance.add(configFile);
 		configFile.load();
 	}
