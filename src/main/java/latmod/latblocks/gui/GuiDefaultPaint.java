@@ -38,7 +38,7 @@ public class GuiDefaultPaint extends GuiLM
 		
 		LMPlayerClient p = LMWorldClient.inst.getPlayer(c.player);
 		
-		int[] ai = p.commonPrivateData.getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
+		int[] ai = p.getPrivateData().getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
 		if(ai.length == 12)
 		{
 			for(int i = 0; i < 6; i++)

@@ -39,7 +39,7 @@ public class MessageDefaultPaint extends MessageLM
 			a[i] = io.readShort();
 		
 		LMPlayerServer p = LMWorldServer.inst.getPlayer(ctx.getServerHandler().playerEntity);
-		p.commonPrivateData.setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, Converter.toInts(a));
+		p.getPrivateData().setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, Converter.toInts(a));
 		p.sendUpdate();
 		return null;
 	}

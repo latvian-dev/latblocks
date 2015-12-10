@@ -31,7 +31,7 @@ public class LatBlocksCommon // LatBlocksClient
 		
 		LMPlayer player = LMWorld.getWorld(t.isServer() ? Side.SERVER : Side.CLIENT).getPlayer(ep);
 		Paint[] p = new Paint[6];
-		int[] ai = player.commonPrivateData.getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
+		int[] ai = player.getPrivateData().getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
 		if(ai.length != 12) return;
 		
 		for(int i = 0; i < 6; i++)
