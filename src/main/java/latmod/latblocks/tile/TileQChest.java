@@ -179,14 +179,25 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public float getLidAngle(float pt)
 	{ return MathHelperLM.clampFloat(lidAngle + (lidAngle - prevLidAngle) * pt, 0F, MAX_ANGLE); }
 	
-	public String getQTitle()
-	{ return getInventoryName(); }
-	
-	public int getQColor()
-	{ return colorChest; }
-	
-	public ItemStack getQIcon()
-	{ return iconItem; }
+	public ItemStack getQIconItem()
+	{
+		ItemStack is;
+		
+		if(iconItem == null)
+		{
+			is = new ItemStack(LatBlocksItems.b_qchest, 1, 0);
+			NBTTagCompound tag = new NBTTagCompound();
+			writeTileData(tag);
+			is.setTagCompound(new NBTTagCompound());
+			is.stackTagCompound.setTag(ITEM_TAG, tag);
+			return is;
+		}
+		
+		is = LMInvUtils.singleCopy(iconItem);
+		is.setStackDisplayName(new ItemStack(LatBlocksItems.b_qchest, 1, 0).getDisplayName());
+		
+		return is;
+	}
 	
 	public void onQClicked(EntityPlayer ep, int button)
 	{

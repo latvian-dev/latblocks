@@ -237,13 +237,8 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public void onPlayerNotOwner(EntityPlayer ep, boolean breakBlock)
 	{ printOwner(ep); }
 	
-	public String getQTitle()
-	{ return getQIcon().getDisplayName(); }
-	
-	public int getQColor()
-	{ return 0xFFB5AEA6; }
-	
-	public ItemStack getQIcon() { return new ItemStack(LatBlocksItems.b_qfurnace, 1, isLit() ? 100 : 0); }
+	public ItemStack getQIconItem()
+	{ return new ItemStack(LatBlocksItems.b_qfurnace, 1, isLit() ? 100 : 0); }
 	
 	public void onQClicked(EntityPlayer ep, int button)
 	{ if(isServer()) FTBLib.openGui(ep, this, null); }

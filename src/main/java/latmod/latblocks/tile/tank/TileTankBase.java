@@ -48,9 +48,6 @@ public abstract class TileTankBase extends TileLM implements IFluidHandler, IQua
 	{
 	}
 	
-	public String getQTitle()
-	{ return getQIcon().getDisplayName(); }
-	
 	public void onQClicked(EntityPlayer ep, int button)
 	{
 	}

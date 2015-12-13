@@ -76,9 +76,6 @@ public class TileVoidTank extends TileTankBase
 	public double getTankFluidHeight()
 	{ return 0D; }
 	
-	public int getQColor()
-	{ return 0xFF2D0B51; }
-	
-	public ItemStack getQIcon()
+	public ItemStack getQIconItem()
 	{ return new ItemStack(LatBlocksItems.b_tank_void); }
 }

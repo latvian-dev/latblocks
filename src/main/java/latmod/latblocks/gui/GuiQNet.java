@@ -48,11 +48,7 @@ public class GuiQNet extends GuiLM
 		super.drawBackground();
 		
 		for(ButtonQInv b : qinvs)
-		{
-			FTBLibClient.setGLColor(b.inv.getQColor(), 255);
-			b.render(tex_color);
 			b.renderWidget();
-		}
 		
 		GlStateManager.color(1F, 1F, 1F, 1F);
 	}
@@ -69,8 +65,8 @@ public class GuiQNet extends GuiLM
 			inv = i;
 			posX += (g.qinvs.size() % 8) * 18;
 			posY += (g.qinvs.size() / 8) * 18;
-			title = inv.getQTitle();
-			setItem(inv.getQIcon());
+			setItem(inv.getQIconItem());
+			title = item.getDisplayName();
 		}
 		
 		public void onButtonPressed(int b)
@@ -83,6 +79,6 @@ public class GuiQNet extends GuiLM
 		}
 		
 		public int compareTo(ButtonQInv o)
-		{ return inv.getQTitle().compareTo(o.inv.getQTitle()); }
+		{ return title.compareToIgnoreCase(o.title); }
 	}
 }

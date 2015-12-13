@@ -188,10 +188,7 @@ public class TileTank extends TileTankBase implements IWailaTile.Body
 		return tank.getAmountD();
 	}
 	
-	public int getQColor()
-	{ return 0xFF80D4E5; }
-	
-	public ItemStack getQIcon()
+	public ItemStack getQIconItem()
 	{
 		ItemStack drop = new ItemStack(LatBlocksItems.b_tank, 1, getBlockMetadata());
 		
