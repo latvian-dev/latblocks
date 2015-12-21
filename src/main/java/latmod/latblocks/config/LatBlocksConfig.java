@@ -3,7 +3,7 @@ import java.io.File;
 
 import ftb.lib.FTBLib;
 import ftb.lib.api.config.ConfigRegistry;
-import latmod.lib.config.ConfigFile;
+import latmod.lib.config.*;
 
 public class LatBlocksConfig
 {
@@ -13,8 +13,8 @@ public class LatBlocksConfig
 	{
 		configFile = new ConfigFile("latblocks", new File(FTBLib.folderConfig, "LatBlocks.json"));
 		configFile.configGroup.setName("LatBlocks");
-		configFile.add(LatBlocksConfigGeneral.group.addAll(LatBlocksConfigGeneral.class));
-		configFile.add(LatBlocksConfigCrafting.group.addAll(LatBlocksConfigCrafting.class));
+		configFile.add(new ConfigGroup("crafting").addAll(LatBlocksConfigCrafting.class));
+		configFile.add(new ConfigGroup("general").addAll(LatBlocksConfigGeneral.class));
 		ConfigRegistry.add(configFile);
 		configFile.load();
 	}

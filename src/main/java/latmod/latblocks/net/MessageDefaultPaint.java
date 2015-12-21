@@ -5,12 +5,12 @@ import ftb.lib.api.*;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.world.*;
 import latmod.latblocks.LatBlocksGuiHandler;
-import latmod.lib.Converter;
+import latmod.lib.*;
 import net.minecraft.block.Block;
 
 public class MessageDefaultPaint extends MessageLM
 {
-	public MessageDefaultPaint() { super(DATA_SHORT); }
+	public MessageDefaultPaint() { super(ByteCount.BYTE); }
 	
 	public MessageDefaultPaint(Paint[] p)
 	{

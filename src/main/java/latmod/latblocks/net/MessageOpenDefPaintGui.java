@@ -6,8 +6,7 @@ import latmod.latblocks.LatBlocksGuiHandler;
 
 public class MessageOpenDefPaintGui extends MessageLM
 {
-	public MessageOpenDefPaintGui()
-	{ super(DATA_NONE); }
+	public MessageOpenDefPaintGui() { super(null); }
 	
 	public LMNetworkWrapper getWrapper()
 	{ return LatBlocksNetHandler.NET; }
