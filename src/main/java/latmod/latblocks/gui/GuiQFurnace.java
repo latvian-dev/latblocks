@@ -1,11 +1,12 @@
 package latmod.latblocks.gui;
+import java.util.List;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.TextureCoords;
 import ftb.lib.gui.GuiLM;
 import ftb.lib.gui.widgets.WidgetLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQFurnace;
-import latmod.lib.FastList;
 import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
@@ -25,7 +26,7 @@ public class GuiQFurnace extends GuiLM
 		
 		barFuel = new WidgetLM(this, 57, 36, texFuel.widthI, texFuel.heightI)
 		{
-			public void addMouseOverText(FastList<String> l)
+			public void addMouseOverText(List<String> l)
 			{
 				double d = (furnace.fuel / TileQFurnace.MAX_PROGRESS);
 				d = ((int)(d * 10D)) / 10D;
@@ -35,7 +36,7 @@ public class GuiQFurnace extends GuiLM
 		
 		barProgress = new WidgetLM(this, 80, 35, texProgress.widthI, texProgress.heightI)
 		{
-			public void addMouseOverText(FastList<String> l)
+			public void addMouseOverText(List<String> l)
 			{
 				if(furnace.result != null)
 				{

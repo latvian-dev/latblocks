@@ -1,5 +1,7 @@
 package latmod.latblocks.gui;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.gui.*;
 import ftb.lib.api.gui.callback.*;
@@ -57,7 +59,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 				chest.clientPressButton(LMGuiButtons.SECURITY, b);
 			}
 			
-			public void addMouseOverText(FastList<String> l)
+			public void addMouseOverText(List<String> l)
 			{
 				l.add(chest.security.level.getText());
 			}
@@ -71,7 +73,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorChest, 0, false);
 			}
 			
-			public void addMouseOverText(FastList<String> l)
+			public void addMouseOverText(List<String> l)
 			{
 				l.add(title);
 				l.add(LMColorUtils.getHex(chest.colorChest));
@@ -86,7 +88,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorText, 1, false);
 			}
 			
-			public void addMouseOverText(FastList<String> l)
+			public void addMouseOverText(List<String> l)
 			{ l.add(LMColorUtils.getHex(chest.colorText)); }
 		};
 		
@@ -115,7 +117,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 				}
 			}
 			
-			public void addMouseOverText(FastList<String> l)
+			public void addMouseOverText(List<String> l)
 			{
 				if(item != null) l.add(item.getDisplayName());
 			}
