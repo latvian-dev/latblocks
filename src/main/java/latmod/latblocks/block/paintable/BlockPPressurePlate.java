@@ -168,7 +168,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 					
 					if(!e.doesEntityNotTriggerPressurePlate())
 					{
-						if(plateType == 2 && !security.canInteract(e.getUniqueID()))
+						if(plateType == 2 && e instanceof EntityPlayer && !security.canInteract((EntityPlayer)e))
 							continue;
 						
 						return true;
