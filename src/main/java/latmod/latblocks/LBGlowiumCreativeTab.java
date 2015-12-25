@@ -1,11 +1,11 @@
 package latmod.latblocks;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.*;
 import latmod.lib.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
+
+import java.util.List;
 
 public class LBGlowiumCreativeTab extends CreativeTabs
 {

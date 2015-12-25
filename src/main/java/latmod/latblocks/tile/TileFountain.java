@@ -1,7 +1,5 @@
 package latmod.latblocks.tile;
 
-import java.util.List;
-
 import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.paint.*;
 import latmod.ftbu.api.tile.IWailaTile;
@@ -15,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+
+import java.util.List;
 
 public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler, ISidedInventory, IWailaTile.Body
 {

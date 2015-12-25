@@ -1,7 +1,5 @@
 package latmod.latblocks.block;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
 import latmod.ftbu.api.paint.*;
@@ -20,6 +18,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 public abstract class BlockPaintableLB extends BlockLB
 {

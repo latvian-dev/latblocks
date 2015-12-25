@@ -1,7 +1,5 @@
 package latmod.latblocks.gui;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.gui.*;
 import ftb.lib.api.gui.callback.*;
@@ -19,6 +17,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui

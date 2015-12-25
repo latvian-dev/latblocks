@@ -1,7 +1,5 @@
 package latmod.latblocks.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EnumMCColor;
 import ftb.lib.item.*;
@@ -23,6 +21,8 @@ import net.minecraft.item.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.List;
 
 public abstract class BlockGlowium extends BlockLB
 {

@@ -1,7 +1,5 @@
 package latmod.latblocks.block.paintable;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
@@ -16,6 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+
+import java.util.List;
 
 public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePlate
 {

@@ -1,7 +1,5 @@
 package latmod.latblocks.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.api.paint.*;
 import latmod.ftbu.block.BlockLM;
@@ -17,6 +15,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.*;
+
+import java.util.List;
 
 public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 {

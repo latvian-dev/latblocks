@@ -1,7 +1,5 @@
 package latmod.latblocks.tile;
 
-import java.util.List;
-
 import latmod.ftbu.api.paint.*;
 import latmod.ftbu.api.tile.IWailaTile;
 import latmod.ftbu.tile.TileLM;
@@ -11,6 +9,8 @@ import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.List;
 
 public abstract class TilePaintableLB extends TileLM implements IPaintable, IWailaTile.Stack, IWailaTile.Body
 {

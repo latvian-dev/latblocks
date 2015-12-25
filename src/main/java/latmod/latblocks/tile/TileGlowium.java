@@ -1,7 +1,5 @@
 package latmod.latblocks.tile;
 
-import java.util.List;
-
 import ftb.lib.EnumMCColor;
 import latmod.ftbu.api.paint.Paint;
 import latmod.ftbu.waila.WailaDataAccessor;
@@ -10,6 +8,8 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.IFluidBlock;
+
+import java.util.List;
 
 public class TileGlowium extends TileSidedPaintable
 {

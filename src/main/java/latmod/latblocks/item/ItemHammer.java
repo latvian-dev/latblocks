@@ -1,6 +1,6 @@
 package latmod.latblocks.item;
-import com.google.common.collect.Multimap;
 
+import com.google.common.collect.Multimap;
 import ftb.lib.item.*;
 import latmod.ftbu.api.item.ICreativeSafeItem;
 import latmod.latblocks.config.LatBlocksConfigCrafting;

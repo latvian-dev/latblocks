@@ -1,7 +1,5 @@
 package latmod.latblocks.tile.tank;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.api.paint.IPainterItem;
@@ -15,6 +13,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+
+import java.util.List;
 
 public class TileTank extends TileTankBase implements IWailaTile.Body
 {

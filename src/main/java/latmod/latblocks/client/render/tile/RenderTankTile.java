@@ -1,7 +1,5 @@
 package latmod.latblocks.client.render.tile;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.*;
 import latmod.ftbu.util.client.TileRenderer;
@@ -14,6 +12,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class RenderTankTile extends TileRenderer<TileTankBase>
