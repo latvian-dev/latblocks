@@ -60,7 +60,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	
 	public void postInit()
 	{
-		ClientConfigRegistry.add(clientConfig.addAll(LatBlocksClient.class));
+		ClientConfigRegistry.add(clientConfig.addAll(LatBlocksClient.class, null, false));
 		LMGuiHandlerRegistry.add(LatBlocksGuiHandler.instance);
 	}
 	

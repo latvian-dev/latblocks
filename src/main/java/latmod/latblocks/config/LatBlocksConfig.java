@@ -14,8 +14,8 @@ public class LatBlocksConfig
 	{
 		configFile = new ConfigFile("latblocks", new File(FTBLib.folderConfig, "LatBlocks.json"));
 		configFile.configGroup.setName("LatBlocks");
-		configFile.add(new ConfigGroup("crafting").addAll(LatBlocksConfigCrafting.class));
-		configFile.add(new ConfigGroup("general").addAll(LatBlocksConfigGeneral.class));
+		configFile.add(new ConfigGroup("crafting").addAll(LatBlocksConfigCrafting.class, null, false));
+		configFile.add(new ConfigGroup("general").addAll(LatBlocksConfigGeneral.class, null, false));
 		ConfigRegistry.add(configFile);
 		configFile.load();
 	}
