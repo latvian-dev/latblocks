@@ -12,7 +12,7 @@ public class LatBlocksConfig
 	
 	public static void load()
 	{
-		configFile = new ConfigFile("latblocks", new File(FTBLib.folderConfig, "LatBlocks.json"));
+		configFile = new ConfigFile("latblocks", new File(FTBLib.folderConfig, "LatMod/LatBlocks.json"));
 		configFile.configGroup.setName("LatBlocks");
 		configFile.add(new ConfigGroup("crafting").addAll(LatBlocksConfigCrafting.class, null, false));
 		configFile.add(new ConfigGroup("general").addAll(LatBlocksConfigGeneral.class, null, false));
