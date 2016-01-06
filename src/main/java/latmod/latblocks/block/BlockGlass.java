@@ -30,7 +30,7 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 8), "GGG", "GPG", "GGG",
+		getMod().recipes.addRecipe(new ItemStack(this, 8), "GGG", "GPG", "GGG",
 				'G', ODItems.GLASS,
 				'P', new ItemStack(Items.potionitem, 1, 8206));
 	}
@@ -68,7 +68,7 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 		icons = new IIcon[2][2][2][2];
 		
 		for(int a = 0; a <= 1; a++) for(int b = 0; b <= 1; b++) for(int c = 0; c <= 1; c++) for(int d = 0; d <= 1; d++)
-			icons[a][b][c][d] = ir.registerIcon(mod.assets + "glass/inv/" + a + "" + b + "" + c + "" + d);
+			icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glass/inv/" + a + "" + b + "" + c + "" + d);
 	}
 	
 	@SideOnly(Side.CLIENT)

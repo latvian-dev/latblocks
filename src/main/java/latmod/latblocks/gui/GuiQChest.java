@@ -10,7 +10,7 @@ import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.util.client.LMGuiButtons;
 import latmod.latblocks.*;
 import latmod.latblocks.tile.TileQChest;
-import latmod.lib.*;
+import latmod.lib.LMColorUtils;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Items;
@@ -174,7 +174,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			buttonSetItem.render(GuiIcons.cancel);
 	}
 	
-	public void drawText(FastList<String> l)
+	public void drawText(List<String> l)
 	{
 		textBoxLabel.render(11, 11, 0xCECECE);
 		super.drawText(l);

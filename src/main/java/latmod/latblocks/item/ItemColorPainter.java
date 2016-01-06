@@ -1,9 +1,9 @@
 package latmod.latblocks.item;
+
 import ftb.lib.EnumMCColor;
 import ftb.lib.api.gui.IClientActionItem;
 import ftb.lib.item.ODItems;
 import latmod.latblocks.LatBlocksGuiHandler;
-import latmod.lib.FastList;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
@@ -14,6 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.List;
 
 public class ItemColorPainter extends ItemLB implements IClientActionItem
 {
@@ -30,11 +32,11 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addShapelessRecipe(new ItemStack(this, 1, 0), ItemMaterialsLB.PAINT_ROLLER_ROD, ItemMaterialsLB.PAINT_ROLLER_COLOR);
+		getMod().recipes.addShapelessRecipe(new ItemStack(this, 1, 0), ItemMaterialsLB.PAINT_ROLLER_ROD, ItemMaterialsLB.PAINT_ROLLER_COLOR);
 		
 		for(int i = 0; i < 16; i++)
 		{
-			mod.recipes.addShapelessRecipe(new ItemStack(Blocks.wool, 1, BlockColored.func_150032_b(i)),
+			getMod().recipes.addShapelessRecipe(new ItemStack(Blocks.wool, 1, BlockColored.func_150032_b(i)),
 					new ItemStack(this, 1, i),
 					new ItemStack(Blocks.wool, 1, ODItems.ANY));
 		}
@@ -85,6 +87,6 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		return is;
 	}
 	
-	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
+	public void addInfo(ItemStack is, EntityPlayer ep, List<String> l)
 	{ l.add(EnumChatFormatting.WHITE + "" + EnumChatFormatting.BOLD + EnumMCColor.VALUES[is.getItemDamage()].toString()); }
 }

@@ -7,18 +7,19 @@ import latmod.ftbu.util.client.*;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TilePaintableLB;
-import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 
+import java.util.ArrayList;
+
 @SideOnly(Side.CLIENT)
 public class RenderPaintable extends BlockRendererLM
 {
 	public static final RenderPaintable instance = new RenderPaintable();
-	private static final FastList<AxisAlignedBB> boxes0 = new FastList<AxisAlignedBB>();
+	private static final ArrayList<AxisAlignedBB> boxes0 = new ArrayList<>();
 	private static BlockPaintableLB blockP;
 	
 	public BlockCustom base = new BlockCustom()
@@ -37,18 +38,18 @@ public class RenderPaintable extends BlockRendererLM
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.renderAllFaces = false;
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
-		((BlockPaintableLB)b).addItemRenderBoxes(boxes);
+		boxes0.clear();
+		((BlockPaintableLB)b).addItemRenderBoxes(boxes0);
 		renderBlocks.setCustomColor(null);
 		renderBlocks.setOverrideBlockTexture(((BlockPaintableLB)b).getDefaultItemIcon());
 		
 		GlStateManager.pushMatrix();
 		LatBlocksClient.rotateBlocks();
 		
-		for(int i = 0; i < boxes.size(); i++)
+		for(int i = 0; i < boxes0.size(); i++)
 		{
 			GlStateManager.pushMatrix();
-			renderBlocks.setRenderBounds(boxes.get(i));
+			renderBlocks.setRenderBounds(boxes0.get(i));
 			renderBlocks.renderBlockAsItem(Blocks.stone, 0, 1F);
 			GlStateManager.popMatrix();
 		}

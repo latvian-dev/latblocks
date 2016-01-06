@@ -12,7 +12,7 @@ public class ItemBlockPainterDmd extends ItemBlockPainter
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addShapelessRecipe(new ItemStack(this), ItemMaterialsLB.PAINT_ROLLER_ROD, ItemMaterialsLB.PAINT_ROLLER_DMD);
+		getMod().recipes.addShapelessRecipe(new ItemStack(this), ItemMaterialsLB.PAINT_ROLLER_ROD, ItemMaterialsLB.PAINT_ROLLER_DMD);
 	}
 	
 	public boolean canPaintBlock(ItemStack is)

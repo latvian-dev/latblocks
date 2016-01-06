@@ -5,13 +5,15 @@ import ftb.lib.MathHelperMC;
 import latmod.latblocks.block.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
-import latmod.lib.FastList;
+import latmod.lib.LMListUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+
+import java.util.List;
 
 public class BlockPLadder extends BlockPaintableSingle
 {
@@ -46,14 +48,14 @@ public class BlockPLadder extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 2), "S S", "SSS", "S S",
+		getMod().recipes.addRecipe(new ItemStack(this, 2), "S S", "SSS", "S S",
 				'S', ItemMaterialsLB.ROD);
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
+	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
-		boxes.addAll(ladder_boxes);
+		LMListUtils.addAll(boxes, ladder_boxes);
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
@@ -64,7 +66,7 @@ public class BlockPLadder extends BlockPaintableSingle
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 		if(onBlockPlaced(event.player.worldObj, event.player, event.target, -1) == -1)
 			return;
@@ -83,7 +85,7 @@ public class BlockPLadder extends BlockPaintableSingle
 		else if(m == Placement.D_EAST) setBlockBounds(1F - height, 0F, 0F, 1F, 1F, 1F);
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		super.addBoxes(boxes, iba, x, y, z, m);
 		
@@ -95,7 +97,7 @@ public class BlockPLadder extends BlockPaintableSingle
 	{ return true; }
 	
 	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes0, IBlockAccess iba, int x, int y, int z, int m)
+	public void addRenderBoxes(List<AxisAlignedBB> boxes0, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		
@@ -108,8 +110,8 @@ public class BlockPLadder extends BlockPaintableSingle
 			boxes[i] = MathHelperMC.rotate90BoxV(boxes[i], m);
 			boxes[i] = boxes[i].getOffsetBoundingBox(Facing.offsetsXForSide[m] * shift, 0D, Facing.offsetsZForSide[m] * shift);
 		}
-		
-		boxes0.addAll(boxes);
+
+		LMListUtils.addAll(boxes0, boxes);
 	}
 	
 	public static class TilePLadder extends TileSinglePaintable

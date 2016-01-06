@@ -8,7 +8,6 @@ import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;
 import latmod.latblocks.tile.TilePaintableLB;
-import latmod.lib.FastList;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
@@ -19,7 +18,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.Random;
+import java.util.*;
 
 public abstract class BlockPaintableLB extends BlockLB
 {
@@ -35,7 +34,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	public abstract TilePaintableLB createNewTileEntity(World w, int m);
 	
-	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e)
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
 	{ addBoxes(boxes, w, x, y, z, m); }
 	
 	public int damageDropped(int i)
@@ -43,7 +42,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	public void registerTiles()
 	{
-		mod.addTile(createNewTileEntity(null, 0).getClass(), blockName);
+		getMod().addTile(createNewTileEntity(null, 0).getClass(), blockName);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -55,7 +54,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
+		ArrayList<AxisAlignedBB> boxes = new ArrayList<AxisAlignedBB>();
 		addBoxes(boxes, iba, x, y, z, -1);
 		
 		minX = minY = minZ = 1D;
@@ -86,10 +85,10 @@ public abstract class BlockPaintableLB extends BlockLB
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{ addBoxes(boxes, iba, x, y, z, m); }
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));
 	}
@@ -98,14 +97,14 @@ public abstract class BlockPaintableLB extends BlockLB
 	{ setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F); }
 	
 	@SideOnly(Side.CLIENT)
-	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
+	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
 		setBlockBoundsForItemRender();
 		boxes.add(AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ));
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void getPlacementBoxes(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 		int m = onBlockPlaced(event.player.worldObj, event.player, event.target, -1);
 		if(m == -1) return;
@@ -114,14 +113,14 @@ public abstract class BlockPaintableLB extends BlockLB
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z)
 	{
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
+		ArrayList<AxisAlignedBB> boxes = new ArrayList<>();
 		addBoxes(boxes, w, x, y, z, -1);
 		
 		MovingObjectPosition mop = Minecraft.getMinecraft().objectMouseOver;
@@ -131,7 +130,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	public MovingObjectPosition collisionRayTrace(World w, int x, int y, int z, Vec3 start, Vec3 end)
 	{
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
+		ArrayList<AxisAlignedBB> boxes = new ArrayList<>();
 		addBoxes(boxes, w, x, y, z, -1);
 		return MathHelperMC.collisionRayTrace(w, x, y, z, start, end, boxes);
 	}
@@ -251,5 +250,4 @@ public abstract class BlockPaintableLB extends BlockLB
 		digFX.applyColourMultiplier(x, y, z).multiplyVelocity(0.2F).multipleParticleScaleBy(0.6F);
 		digFX.setParticleIcon(tex);
 		er.addEffect(digFX);
-	}
-}
+	}}

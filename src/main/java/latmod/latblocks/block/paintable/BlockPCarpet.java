@@ -16,7 +16,7 @@ public class BlockPCarpet extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 3), "PPP",
+		getMod().recipes.addRecipe(new ItemStack(this, 3), "PPP",
 				'P', LatBlocksItems.b_cover);
 	}
 	

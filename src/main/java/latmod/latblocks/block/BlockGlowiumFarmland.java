@@ -26,7 +26,7 @@ public class BlockGlowiumFarmland extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 8), "SDO", "TGT", "ODS",
+		getMod().recipes.addRecipe(new ItemStack(this, 8), "SDO", "TGT", "ODS",
 				'S', ODItems.SAND,
 				'D', Blocks.dirt,
 				'O', Blocks.soul_sand,

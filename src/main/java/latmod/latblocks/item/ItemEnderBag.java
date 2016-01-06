@@ -14,7 +14,7 @@ public class ItemEnderBag extends ItemLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "LSL", "LCL", "LLL",
+		getMod().recipes.addRecipe(new ItemStack(this), "LSL", "LCL", "LLL",
 				'L', Items.leather,
 				'S', Items.string,
 				'C', Blocks.ender_chest);

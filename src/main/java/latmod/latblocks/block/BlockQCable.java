@@ -37,7 +37,7 @@ public class BlockQCable extends BlockLB
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.qNetBlocks.get())
-			mod.recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS",
+			getMod().recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS",
 				'S', Blocks.wooden_slab,
 				'G', ODItems.GLOWSTONE,
 				'D', ItemMaterialsLB.DUST_GLOWIUM_B);
@@ -80,8 +80,8 @@ public class BlockQCable extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "cable");
-		icon_glow = ir.registerIcon(mod.assets + "cable_glow");
+		blockIcon = ir.registerIcon(getMod().assets + "cable");
+		icon_glow = ir.registerIcon(getMod().assets + "cable_glow");
 	}
 	
 	public boolean renderAsNormalBlock()

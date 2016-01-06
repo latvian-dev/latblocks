@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.GlStateManager;
 import latmod.ftbu.item.ItemBlockLM;
 import latmod.latblocks.block.BlockPaintableLB;
-import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.item.ItemBlock;
@@ -13,10 +12,13 @@ import net.minecraft.util.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
+
 @SideOnly(Side.CLIENT)
 public class LatBlockClientEventHandler
 {
 	public static final LatBlockClientEventHandler instance = new LatBlockClientEventHandler();
+	private final ArrayList<AxisAlignedBB> placementBoxes = new ArrayList<>();
 	
 	@SubscribeEvent
 	public void onDrawBlockHighlightEvent(DrawBlockHighlightEvent e)
@@ -31,11 +33,11 @@ public class LatBlockClientEventHandler
 			{
 				BlockPaintableLB block = (BlockPaintableLB)itemBlock;
 				ItemBlockLM itemBlockLM = (ItemBlockLM)e.currentItem.getItem();
+
+				placementBoxes.clear();
+				block.getPlacementBoxes(placementBoxes, e);
 				
-				FastList<AxisAlignedBB> pl = new FastList<AxisAlignedBB>();
-				block.getPlacementBoxes(pl, e);
-				
-				if(!pl.isEmpty())
+				if(!placementBoxes.isEmpty())
 				{
 					if(!e.player.worldObj.getBlock(e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit])
 					.isReplaceable(e.player.worldObj, e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit]))
@@ -53,8 +55,8 @@ public class LatBlockClientEventHandler
 					double d0 = e.player.lastTickPosX + (e.player.posX - e.player.lastTickPosX) * pt;
 					double d1 = e.player.lastTickPosY + (e.player.posY - e.player.lastTickPosY) * pt;
 					double d2 = e.player.lastTickPosZ + (e.player.posZ - e.player.lastTickPosZ) * pt;
-					
-					FastList<AxisAlignedBB> hl = new FastList<AxisAlignedBB>();
+
+					ArrayList<AxisAlignedBB> hl = new ArrayList<>();
 					block.drawHighlight(hl, e);
 					
 					for(int i = 0; i < hl.size(); i++)
@@ -73,9 +75,9 @@ public class LatBlockClientEventHandler
 					
 					if(itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.player, e.currentItem))
 					{
-						for(int i = 0; i < pl.size(); i++)
+						for(int i = 0; i < placementBoxes.size(); i++)
 						{
-							AxisAlignedBB bb0 = pl.get(i);
+							AxisAlignedBB bb0 = placementBoxes.get(i);
 							
 							if(bb0 != null)
 							{

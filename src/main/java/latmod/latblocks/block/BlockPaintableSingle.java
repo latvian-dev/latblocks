@@ -1,10 +1,12 @@
 package latmod.latblocks.block;
+
 import cpw.mods.fml.relauncher.*;
-import latmod.lib.FastList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+
+import java.util.List;
 
 public abstract class BlockPaintableSingle extends BlockPaintableLB
 {
@@ -23,7 +25,7 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 	{ return false; }
 	
 	@SideOnly(Side.CLIENT)
-	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 		double b0 = Placement.B0;
 		double b1 = Placement.B1;
@@ -93,7 +95,7 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		return -1;
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		

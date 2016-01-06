@@ -7,7 +7,6 @@ import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;
-import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,6 +15,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+
+import java.util.List;
 
 public class BlockPDoor extends BlockPaintableSided
 {
@@ -36,7 +37,7 @@ public class BlockPDoor extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 6), "PP", "PP", "PP",
+		getMod().recipes.addRecipe(new ItemStack(this, 6), "PP", "PP", "PP",
 				'P', LatBlocksItems.b_paintable);
 	}
 	
@@ -47,13 +48,13 @@ public class BlockPDoor extends BlockPaintableSided
 	{ return false; }
 	
 	@SideOnly(Side.CLIENT)
-	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
+	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void getPlacementBoxes(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void getPlacementBoxes(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
@@ -61,11 +62,11 @@ public class BlockPDoor extends BlockPaintableSided
 	{ return 0; }
 	
 	@SideOnly(Side.CLIENT)
-	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		if(m == 0) boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));

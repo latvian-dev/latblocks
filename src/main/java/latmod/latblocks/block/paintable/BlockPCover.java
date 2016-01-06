@@ -18,13 +18,13 @@ public class BlockPCover extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 16), "PP", "PP",
+		getMod().recipes.addRecipe(new ItemStack(this, 16), "PP", "PP",
 				'P', LatBlocksItems.b_paintable);
-		
-		mod.recipes.addRecipe(new ItemStack(LatBlocksItems.b_paintable), "PP", "PP",
+
+		getMod().recipes.addRecipe(new ItemStack(LatBlocksItems.b_paintable), "PP", "PP",
 				'P', this);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(this), ORE_NAME);
+
+		getMod().recipes.addShapelessRecipe(new ItemStack(this), ORE_NAME);
 	}
 	
 	public void onPostLoaded()

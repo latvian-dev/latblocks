@@ -5,7 +5,6 @@ import ftb.lib.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;
-import latmod.lib.FastList;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +28,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 2), "PP",
+		getMod().recipes.addRecipe(new ItemStack(this, 2), "PP",
 				'P', LatBlocksItems.b_cover);
 	}
 	
@@ -39,10 +38,10 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		ODItems.add(BlockPCover.ORE_NAME, new ItemStack(this));
 	}
 	
-	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e) {}
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e) {}
 	
 	@SideOnly(Side.CLIENT)
-	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
+	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
 		double f1 = 1D / 16D;
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0.5D - f1, 0D, 1D, 0.5F + f1, 1D));
@@ -55,18 +54,18 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	{ return 0; }
 	
 	@SideOnly(Side.CLIENT)
-	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 		boxes.add(getBox(0, 0, 0));
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		boxes.add(getBox(0, 0, 0));
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		TilePPressurePlate t = getTile(TilePPressurePlate.class, iba, x, y, z);
 		double p = 1D / 16D;

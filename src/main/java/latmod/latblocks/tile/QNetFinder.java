@@ -1,25 +1,26 @@
 package latmod.latblocks.tile;
 
 import latmod.latblocks.LatBlocksItems;
-import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 
+import java.util.*;
+
 public class QNetFinder
 {
-	private static final FastList<ChunkCoordinates> tempCoordList = new FastList<ChunkCoordinates>();
+	private static final ArrayList<ChunkCoordinates> tempCoordList = new ArrayList<>();
 	
-	public static FastList<IQuartzNetTile> getTiles(IBlockAccess w, int x, int y, int z, int maxNetSize)
+	public static List<IQuartzNetTile> getTiles(IBlockAccess w, int x, int y, int z, int maxNetSize)
 	{
 		tempCoordList.clear();
-		FastList<IQuartzNetTile> l = new FastList<IQuartzNetTile>();
+		ArrayList<IQuartzNetTile> l = new ArrayList<>();
 		addToList(l, w, new ChunkCoordinates(x, y, z), maxNetSize, true);
 		return l;
 	}
 	
-	private static void addToList(FastList<IQuartzNetTile> l, IBlockAccess w, ChunkCoordinates c, int maxNetSize, boolean first)
+	private static void addToList(ArrayList<IQuartzNetTile> l, IBlockAccess w, ChunkCoordinates c, int maxNetSize, boolean first)
 	{
 		if(tempCoordList.contains(c)) return;
 		tempCoordList.add(c);

@@ -29,7 +29,7 @@ public class BlockCraftingPanel extends BlockLB
 		setHardness(0.7F);
 		isBlockContainer = true;
 		hasSpecialPlacement = true;
-		mod.addTile(TileCraftingPanel.class, s);
+		getMod().addTile(TileCraftingPanel.class, s);
 	}
 	
 	public TileLM createNewTileEntity(World w, int i)
@@ -43,8 +43,8 @@ public class BlockCraftingPanel extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "crafting_panel");
-		icon_side = ir.registerIcon(mod.assets + "crafting_panel_side");
+		blockIcon = ir.registerIcon(getMod().assets + "crafting_panel");
+		icon_side = ir.registerIcon(getMod().assets + "crafting_panel_side");
 	}
 
 	@SideOnly(Side.CLIENT)

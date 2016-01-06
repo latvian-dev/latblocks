@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
 import ftb.lib.client.FTBLibClient;
@@ -7,7 +8,7 @@ import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQChest;
-import latmod.lib.*;
+import latmod.lib.LMColorUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +16,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+
+import java.util.List;
 
 public class BlockQChest extends BlockLB
 {
@@ -26,7 +29,7 @@ public class BlockQChest extends BlockLB
 		float f = 1F / 16F;
 		setBlockBounds(f, 0F, f, 1F - f, 0.875F, 1F - f);
 		isBlockContainer = true;
-		mod.addTile(TileQChest.class, s);
+		getMod().addTile(TileQChest.class, s);
 	}
 	
 	public TileLM createNewTileEntity(World world, int m)
@@ -36,7 +39,7 @@ public class BlockQChest extends BlockLB
 	{
 		if(LatBlocksConfigCrafting.chest.get())
 		{
-			mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
+			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
 					'Q', Blocks.quartz_block,
 					'F', Blocks.chest,
 					'D', ODItems.DIAMOND,
@@ -70,7 +73,7 @@ public class BlockQChest extends BlockLB
 	{ return FTBLibClient.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
-	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
+	public void addInfo(ItemStack is, EntityPlayer ep, List<String> l)
 	{
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileQChest.ITEM_TAG))
 		{

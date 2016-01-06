@@ -24,7 +24,7 @@ public class BlockPaintableGS extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), " P ", "PGP", " P ",
+		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PGP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'G', Blocks.glowstone);
 	}

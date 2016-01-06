@@ -18,12 +18,12 @@ public class BlockWaterTank extends BlockTankBase
 	public BlockWaterTank(String s)
 	{
 		super(s);
-		mod.addTile(TileWaterTank.class, s);
+		getMod().addTile(TileWaterTank.class, s);
 	}
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
+		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
 				'W', Items.water_bucket,
 				'T', BlockTank.TANK_BASIC,
 				'E', Items.ender_pearl);
@@ -35,9 +35,9 @@ public class BlockWaterTank extends BlockTankBase
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "tank/outside_water_off");
-		icon_on = ir.registerIcon(mod.assets + "tank/outside_water_on");
-		RenderTank.icon_inside = ir.registerIcon(mod.assets + "tank/inside");
+		blockIcon = ir.registerIcon(getMod().assets + "tank/outside_water_off");
+		icon_on = ir.registerIcon(getMod().assets + "tank/outside_water_on");
+		RenderTank.icon_inside = ir.registerIcon(getMod().assets + "tank/inside");
 	}
 	
 	public int damageDropped(int i)

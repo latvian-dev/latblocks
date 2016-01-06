@@ -7,7 +7,7 @@ import latmod.latblocks.LatBlocks;
 import latmod.latblocks.config.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;
-import latmod.lib.*;
+import latmod.lib.MathHelperLM;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +19,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.RecipeSorter;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class BlockTank extends BlockTankBase
 {
@@ -52,29 +53,29 @@ public class BlockTank extends BlockTankBase
 			if(LatBlocksConfigCrafting.endlessTank.get())
 				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.DUST_STAR.getStack());
 		}
-		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 0), " S ", "SGS", " S ",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 0), " S ", "SGS", " S ",
 				'G', ODItems.GLASS_PANE_ANY,
 				'S', ODItems.STICK);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 1), "TTT", "TIT", "TTT",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 1), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 0),
 				'I', ODItems.IRON);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 2), "TTT", "TIT", "TTT",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 2), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 1),
 				'I', ODItems.GOLD);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 3), "TTT", "TIT", "TTT",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 3), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 2),
 				'I', ODItems.QUARTZ);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 1, 4), "TTT", "TIT", "TTT",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 4), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 3),
 				'I', ODItems.DIAMOND);
 		
 		if(LatBlocksConfigCrafting.endlessTank.get())
-			mod.recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
+			getMod().recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
 				'T', new ItemStack(this, 1, 4),
 				'I', ItemMaterialsLB.DUST_STAR);
 	}
@@ -90,11 +91,11 @@ public class BlockTank extends BlockTankBase
 	{
 		icons = new IIcon[6];
 		for(int i = 0; i < icons.length; i++)
-			icons[i] = ir.registerIcon(mod.assets + "tank/outside_" + i);
+			icons[i] = ir.registerIcon(getMod().assets + "tank/outside_" + i);
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
+	public void addInfo(ItemStack is, EntityPlayer ep, List<String> l)
 	{
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Fluid"))
 		{

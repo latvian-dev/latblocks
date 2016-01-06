@@ -9,7 +9,6 @@ import latmod.latblocks.*;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileGlowium;
-import latmod.lib.FastList;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -54,22 +53,22 @@ public abstract class BlockGlowium extends BlockLB
 		public BGBlock(String s)
 		{
 			super(s, "block");
-			mod.addTile(TileGlowium.class, "glowium");
+			getMod().addTile(TileGlowium.class, "glowium");
 		}
 		
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-			
-			mod.recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
+
+			getMod().recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
 					'G', ItemMaterialsLB.GEM_GLOWIUM_Y);
-			
-			mod.recipes.addRecipe(ItemMaterialsLB.GEM_GLOWIUM_Y.getStack(4), "G",
+
+			getMod().recipes.addRecipe(ItemMaterialsLB.GEM_GLOWIUM_Y.getStack(4), "G",
 					'G', new ItemStack(this, 1, DEF_DMG));
 			
 			LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
-			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
 		}
 	}
@@ -82,8 +81,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[0], 4, DEF_DMG));
 		}
 	}
@@ -96,8 +95,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[1], 4, DEF_DMG));
 		}
 	}
@@ -110,8 +109,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[2], 4, DEF_DMG));
 		}
 	}
@@ -124,8 +123,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-			
-			mod.recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
+
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
 					'G', new ItemStack(LatBlocksItems.b_glowium[3], 4, DEF_DMG));
 		}
 	}
@@ -145,7 +144,7 @@ public abstract class BlockGlowium extends BlockLB
 	}
 	
 	public String getUnlocalizedName(int m)
-	{ return mod.getBlockName("glowium." + name); }
+	{ return getMod().getBlockName("glowium." + name); }
 	
 	public void onPostLoaded()
 	{
@@ -162,7 +161,7 @@ public abstract class BlockGlowium extends BlockLB
 	
 	public void loadRecipes()
 	{
-		for(int i = 0; i < 16; i++) mod.recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
+		for(int i = 0; i < 16; i++) getMod().recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
 				'G', new ItemStack(this, 1, DEF_DMG),
 				'C', EnumMCColor.VALUES[i].dyeName);
 	}
@@ -180,8 +179,8 @@ public abstract class BlockGlowium extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "glowium/" + name);
-		icon_glow = ir.registerIcon(mod.assets + "glowium/" + name + "_glow");
+		blockIcon = ir.registerIcon(getMod().assets + "glowium/" + name);
+		icon_glow = ir.registerIcon(getMod().assets + "glowium/" + name + "_glow");
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -282,7 +281,7 @@ public abstract class BlockGlowium extends BlockLB
 	public boolean hasPaint(IBlockAccess iba, int x, int y, int z, int s)
 	{ return false; }
 	
-	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
+	public void addInfo(ItemStack is, EntityPlayer ep, List<String> l)
 	{ l.add(EnumMCColor.VALUES[is.getItemDamage()].toString()); }
 	
 	@SideOnly(Side.CLIENT)

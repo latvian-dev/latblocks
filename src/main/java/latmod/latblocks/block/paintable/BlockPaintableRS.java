@@ -29,7 +29,7 @@ public class BlockPaintableRS extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), " P ", "PRP", " P ",
+		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PRP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'R', Blocks.redstone_block);
 	}
@@ -44,7 +44,7 @@ public class BlockPaintableRS extends BlockPaintableSided
 	public void registerBlockIcons(IIconRegister ir)
 	{
 		super.registerBlockIcons(ir);
-		icon_on = ir.registerIcon(mod.assets + getTextureName() + "_on");
+		icon_on = ir.registerIcon(getMod().assets + getTextureName() + "_on");
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -23,11 +23,11 @@ public class BlockPaintableDef extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 16), "WWW", "WQW", "WWW",
+		getMod().recipes.addRecipe(new ItemStack(this, 16), "WWW", "WQW", "WWW",
 				'W', new ItemStack(Blocks.wool, 1, 0),
 				'Q', ODItems.QUARTZ);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(this, 1), ORE_NAME);
+
+		getMod().recipes.addShapelessRecipe(new ItemStack(this, 1), ORE_NAME);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

@@ -2,12 +2,13 @@ package latmod.latblocks.block;
 
 import ftb.lib.MathHelperMC;
 import latmod.ftbu.item.ItemBlockLM;
-import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
 
 public class ItemBlockLB extends ItemBlockLM
 {
@@ -27,8 +28,8 @@ public class ItemBlockLB extends ItemBlockLM
 		int bx = x + Facing.offsetsXForSide[s];
 		int by = y + Facing.offsetsYForSide[s];
 		int bz = z + Facing.offsetsZForSide[s];
-		
-		FastList<AxisAlignedBB> list = new FastList<AxisAlignedBB>();
+
+		ArrayList<AxisAlignedBB> list = new ArrayList<>();
 		int m = b.onBlockPlaced(w, ep, mop, is.getItemDamage());
 		
 		if(m == -1) return false;

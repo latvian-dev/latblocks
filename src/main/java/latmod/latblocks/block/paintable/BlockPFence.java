@@ -7,7 +7,6 @@ import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.config.LatBlocksConfigGeneral;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
-import latmod.lib.FastList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +16,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.List;
 
 public class BlockPFence extends BlockPaintableSingle
 {
@@ -30,11 +31,11 @@ public class BlockPFence extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 2), "SSS", "SSS",
+		getMod().recipes.addRecipe(new ItemStack(this, 2), "SSS", "SSS",
 				'S', ItemMaterialsLB.ROD);
 	}
 	
-	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e)
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
 	{
 		double p = 1D / 4D;
 		double pn = 0.5D - p / 2D;
@@ -58,7 +59,7 @@ public class BlockPFence extends BlockPaintableSingle
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addItemRenderBoxes(FastList<AxisAlignedBB> boxes)
+	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
 		double p = 1F / 4D;
 		double pn = 0.5D - p / 2D;
@@ -82,12 +83,12 @@ public class BlockPFence extends BlockPaintableSingle
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void drawHighlight(FastList<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
+	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addRenderBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		double p = 1F / 4D;
 		
@@ -123,7 +124,7 @@ public class BlockPFence extends BlockPaintableSingle
 		}
 	}
 	
-	public void addBoxes(FastList<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
+	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		double p = 1D / 4D;
 		double pn = 0.5D - p / 2D;

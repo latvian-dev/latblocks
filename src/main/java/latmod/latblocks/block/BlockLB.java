@@ -7,7 +7,6 @@ import latmod.ftbu.item.ItemBlockLM;
 import latmod.ftbu.util.LMMod;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.client.LatBlocksClient;
-import latmod.lib.FastList;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,7 +15,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.*;
 
-import java.util.List;
+import java.util.*;
 
 public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 {
@@ -38,7 +37,7 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 	@SuppressWarnings("all")
 	public final void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB bb, List l, Entity e)
 	{
-		FastList<AxisAlignedBB> boxes = new FastList<AxisAlignedBB>();
+		ArrayList<AxisAlignedBB> boxes = new ArrayList<AxisAlignedBB>();
 		addCollisionBoxes(w, x, y, z, -1, boxes, e);
 		
 		for(int i = 0; i < boxes.size(); i++)
@@ -48,7 +47,7 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 		}
 	}
 	
-	public void addCollisionBoxes(World w, int x, int y, int z, int m, FastList<AxisAlignedBB> boxes, Entity e)
+	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
 	{
 		AxisAlignedBB bb = getCollisionBoundingBoxFromPool(w, x, y, z);
 		if(bb != null) boxes.add(bb.getOffsetBoundingBox(-x, -y, -z));

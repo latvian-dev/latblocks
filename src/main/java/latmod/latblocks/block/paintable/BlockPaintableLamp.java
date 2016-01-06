@@ -22,7 +22,7 @@ public class BlockPaintableLamp extends BlockPaintableRS
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), " P ", "PLP", " P ",
+		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PLP", " P ",
 				'P', LatBlocksItems.b_cover,
 				'L', Blocks.redstone_lamp);
 	}

@@ -21,12 +21,12 @@ public class BlockPSlope extends BlockLB
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
-		mod.addTile(TilePSlope.class, s);
+		getMod().addTile(TilePSlope.class, s);
 	}
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 4), "B  ", "BC ", "BBB",
+		getMod().recipes.addRecipe(new ItemStack(this, 4), "B  ", "BC ", "BBB",
 				'C', LatBlocksItems.b_cover,
 				'B', LatBlocksItems.b_paintable);
 	}

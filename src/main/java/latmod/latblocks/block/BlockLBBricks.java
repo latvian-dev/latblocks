@@ -41,34 +41,34 @@ public class BlockLBBricks extends BlockLB
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB",
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB",
 				'B', new ItemStack(this, 1, 5));
-		
-		mod.recipes.addRecipe(new ItemStack(this, 4, 1), "BB", "BB",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 1), "BB", "BB",
 				'B', Blocks.lapis_block);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 4, 2), "BB", "BB",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 2), "BB", "BB",
 				'B', Blocks.gravel);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 4, 3), "BB", "BB",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 3), "BB", "BB",
 				'B', Blocks.stonebrick);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 4, 4), "BB", "BB",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 4), "BB", "BB",
 				'B', Blocks.glowstone);
-		
-		mod.recipes.addRecipe(new ItemStack(this, 4, 5), "BB", "BB",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 5), "BB", "BB",
 				'B', new ItemStack(this, 1, 2));
 	}
 	
 	public String getUnlocalizedName(int i)
-	{ return mod.getBlockName("brick." + names[i]); }
+	{ return getMod().getBlockName("brick." + names[i]); }
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
 		icons = new IIcon[names.length];
 		for(int i = 0; i < names.length; i++)
-			icons[i] = ir.registerIcon(mod.assets + "bricks/" + names[i]);
+			icons[i] = ir.registerIcon(getMod().assets + "bricks/" + names[i]);
 	}
 	
 	@SideOnly(Side.CLIENT)

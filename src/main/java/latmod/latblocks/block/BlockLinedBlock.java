@@ -19,8 +19,8 @@ public class BlockLinedBlock extends BlockGlowium
 	public void loadRecipes()
 	{
 		super.loadRecipes();
-		
-		mod.recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ",
+
+		getMod().recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ",
 				'G', new ItemStack(LatBlocksItems.b_glowium[1], 1, DEF_DMG));
 	}
 	
@@ -32,12 +32,12 @@ public class BlockLinedBlock extends BlockGlowium
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "paintable");
+		blockIcon = ir.registerIcon(getMod().assets + "paintable");
 		
 		icons = new IIcon[2][2][2][2];
 		
 		for(int a = 0; a <= 1; a++) for(int b = 0; b <= 1; b++) for(int c = 0; c <= 1; c++) for(int d = 0; d <= 1; d++)
-			icons[a][b][c][d] = ir.registerIcon(mod.assets + "glowium/lined/" + a + "" + b + "" + c + "" + d);
+			icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glowium/lined/" + a + "" + b + "" + c + "" + d);
 	}
 	
 	@SideOnly(Side.CLIENT)

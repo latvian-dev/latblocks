@@ -1,15 +1,15 @@
 package latmod.latblocks;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.lib.*;
+import latmod.lib.LMUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
 
-import java.util.List;
+import java.util.*;
 
 public class LBGlowiumCreativeTab extends CreativeTabs
 {
-	private final FastList<ItemStack> allBlocks = new FastList<ItemStack>();
+	private final ArrayList<ItemStack> allBlocks = new ArrayList<>();
 	
 	public LBGlowiumCreativeTab()
 	{ super(LatBlocks.mod.assets + "tab.glowium"); }

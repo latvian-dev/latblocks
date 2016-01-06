@@ -16,10 +16,10 @@ public class BlockPSlab extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this, 6), "PPP",
+		getMod().recipes.addRecipe(new ItemStack(this, 6), "PPP",
 				'P', LatBlocksItems.b_paintable);
-		
-		mod.recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this, this);
+
+		getMod().recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this, this);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)

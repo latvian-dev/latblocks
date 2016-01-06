@@ -14,7 +14,7 @@ public abstract class BlockPaintableSided extends BlockPaintableLB
 	
 	public void registerTiles()
 	{
-		mod.addTile(createNewTileEntity(null, 0).getClass(), blockName);
+		getMod().addTile(createNewTileEntity(null, 0).getClass(), blockName);
 	}
 	
 	public int getLightOpacity()

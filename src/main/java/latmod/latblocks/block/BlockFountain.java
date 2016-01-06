@@ -23,12 +23,12 @@ public class BlockFountain extends BlockLB
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
-		mod.addTile(TileFountain.class, s);
+		getMod().addTile(TileFountain.class, s);
 	}
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), " H ", "PGP", " P ",
+		getMod().recipes.addRecipe(new ItemStack(this), " H ", "PGP", " P ",
 				'H', Blocks.hopper,
 				'G', BlockTank.TANK_BASIC,
 				'P', LatBlocksItems.b_paintable);

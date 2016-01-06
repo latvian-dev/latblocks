@@ -24,14 +24,14 @@ public class BlockQTerminal extends BlockLB
 		super(s, Material.rock);
 		setHardness(1.2F);
 		isBlockContainer = true;
-		mod.addTile(TileQTerminal.class, s);
+		getMod().addTile(TileQTerminal.class, s);
 	}
 	
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.qNetBlocks.get())
 		{
-			mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QSQ", "QDQ",
+			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QSQ", "QDQ",
 					'Q', Blocks.quartz_block,
 					'D', ODItems.DIAMOND,
 					'D', ItemMaterialsLB.DUST_GLOWIUM_D,
@@ -51,8 +51,8 @@ public class BlockQTerminal extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "terminal_side");
-		icon_front = ir.registerIcon(mod.assets + "terminal_front");
+		blockIcon = ir.registerIcon(getMod().assets + "terminal_side");
+		icon_front = ir.registerIcon(getMod().assets + "terminal_front");
 	}
 	
 	@SideOnly(Side.CLIENT)

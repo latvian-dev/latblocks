@@ -6,10 +6,11 @@ import ftb.lib.gui.GuiLM;
 import ftb.lib.gui.widgets.ItemButtonLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.*;
-import latmod.lib.FastList;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.*;
 
 @SideOnly(Side.CLIENT)
 public class GuiQNet extends GuiLM
@@ -18,7 +19,7 @@ public class GuiQNet extends GuiLM
 	public static final TextureCoords tex_color = new TextureCoords(tex, 174, 0, 16, 16);
 	
 	public final TileQTerminal term;
-	public final FastList<ButtonQInv> qinvs;
+	public final List<ButtonQInv> qinvs;
 	
 	public GuiQNet(ContainerQNet c)
 	{
@@ -28,14 +29,14 @@ public class GuiQNet extends GuiLM
 		xSize = 174;
 		ySize = 167;
 		
-		qinvs = new FastList<ButtonQInv>();
+		qinvs = new ArrayList<>();
 	}
 	
 	public void addWidgets()
 	{
 		qinvs.clear();
 		
-		FastList<IQuartzNetTile> list = QNetFinder.getTiles(term.getWorldObj(), term.xCoord, term.yCoord, term.zCoord, 32);
+		List<IQuartzNetTile> list = QNetFinder.getTiles(term.getWorldObj(), term.xCoord, term.yCoord, term.zCoord, 32);
 		for(IQuartzNetTile inv : list)
 			qinvs.add(new ButtonQInv(this, inv));
 		

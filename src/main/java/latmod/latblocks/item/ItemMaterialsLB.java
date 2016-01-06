@@ -52,7 +52,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 			
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), "QG",
+				getMod().recipes.addRecipe(getStack(), "QG",
 						'G', ODItems.GLOWSTONE,
 						'Q', ODItems.QUARTZ);
 			}
@@ -61,26 +61,26 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		add(GEM_GLOWIUM_R = new MaterialItem(this, 5, "gem_red")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.RED.dyeName); }
+			{ getMod().recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.RED.dyeName); }
 		});
 		
 		add(GEM_GLOWIUM_G = new MaterialItem(this, 6, "gem_green")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.GREEN.dyeName); }
+			{ getMod().recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.GREEN.dyeName); }
 		});
 		
 		add(GEM_GLOWIUM_B = new MaterialItem(this, 7, "gem_blue")
 		{
 			public void loadRecipes()
-			{ mod.recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.BLUE.dyeName); }
+			{ getMod().recipes.addShapelessRecipe(getStack(), GEM_GLOWIUM_Y, EnumMCColor.BLUE.dyeName); }
 		});
 		
 		add(GEM_GLOWIUM_D = new MaterialItem(this, 8, "gem_dark")
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), " 1 ", "2O3", " 4 ",
+				getMod().recipes.addRecipe(getStack(), " 1 ", "2O3", " 4 ",
 						'O', ODItems.OBSIDIAN,
 						'1', GEM_GLOWIUM_Y,
 						'2', GEM_GLOWIUM_R,
@@ -134,7 +134,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(4), "P", "P",
+				getMod().recipes.addRecipe(getStack(4), "P", "P",
 						'P', LatBlocksItems.b_paintable);
 			}
 		});
@@ -157,7 +157,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), "  I", " SI", "S  ",
+				getMod().recipes.addRecipe(getStack(), "  I", " SI", "S  ",
 						'I', ODItems.IRON,
 						'S', ROD);
 			}
@@ -167,7 +167,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), "WWW", "PIP", "WWW",
+				getMod().recipes.addRecipe(getStack(), "WWW", "PIP", "WWW",
 						'W', new ItemStack(Blocks.carpet, 1, 0),
 						'I', ODItems.IRON,
 						'P', Items.paper);
@@ -178,7 +178,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), "D", "R", "D",
+				getMod().recipes.addRecipe(getStack(), "D", "R", "D",
 						'D', ODItems.DIAMOND,
 						'R', PAINT_ROLLER);
 			}
@@ -188,7 +188,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 		{
 			public void loadRecipes()
 			{
-				mod.recipes.addRecipe(getStack(), "123", "8R4", "765",
+				getMod().recipes.addRecipe(getStack(), "123", "8R4", "765",
 						'R', PAINT_ROLLER_DMD,
 						'1', EnumMCColor.BLUE.dyeName,
 						'2', EnumMCColor.CYAN.dyeName,

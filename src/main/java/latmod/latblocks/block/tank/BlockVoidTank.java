@@ -14,12 +14,12 @@ public class BlockVoidTank extends BlockTankBase
 	public BlockVoidTank(String s)
 	{
 		super(s);
-		mod.addTile(TileVoidTank.class, s);
+		getMod().addTile(TileVoidTank.class, s);
 	}
 	
 	public void loadRecipes()
 	{
-		mod.recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
+		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
 				'W', Items.water_bucket,
 				'T', BlockTank.TANK_BASIC,
 				'E', Blocks.obsidian);
@@ -30,7 +30,7 @@ public class BlockVoidTank extends BlockTankBase
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
-	{ blockIcon = ir.registerIcon(mod.assets + "tank/outside_void"); }
+	{ blockIcon = ir.registerIcon(getMod().assets + "tank/outside_void"); }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankItemBorderIcon(ItemStack item)

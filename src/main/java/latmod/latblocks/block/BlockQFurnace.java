@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
 import ftb.lib.item.ODItems;
@@ -6,7 +7,6 @@ import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
-import latmod.lib.FastList;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +14,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
+
+import java.util.List;
 
 public class BlockQFurnace extends BlockLB
 {
@@ -28,14 +30,14 @@ public class BlockQFurnace extends BlockLB
 		setHardness(1.2F);
 		setBlockTextureName("furnSide");
 		isBlockContainer = true;
-		mod.addTile(TileQFurnace.class, s);
+		getMod().addTile(TileQFurnace.class, s);
 	}
 	
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.chest.get())
 		{
-			mod.recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
+			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
 					'Q', Blocks.quartz_block,
 					'F', Blocks.furnace,
 					'D', ODItems.DIAMOND,
@@ -55,9 +57,9 @@ public class BlockQFurnace extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(mod.assets + "furn_side");
-		iconOn = ir.registerIcon(mod.assets + "furn_on");
-		iconOff = ir.registerIcon(mod.assets + "furn_off");
+		blockIcon = ir.registerIcon(getMod().assets + "furn_side");
+		iconOn = ir.registerIcon(getMod().assets + "furn_on");
+		iconOff = ir.registerIcon(getMod().assets + "furn_off");
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -76,7 +78,7 @@ public class BlockQFurnace extends BlockLB
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addInfo(ItemStack is, EntityPlayer ep, FastList<String> l)
+	public void addInfo(ItemStack is, EntityPlayer ep, List<String> l)
 	{
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileQFurnace.ITEM_TAG))
 		{
