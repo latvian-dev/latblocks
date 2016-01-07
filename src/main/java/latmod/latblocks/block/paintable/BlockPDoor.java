@@ -3,10 +3,10 @@ package latmod.latblocks.block.paintable;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.item.ODItems;
 import latmod.ftbu.api.paint.IPainterItem;
-import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;
+import latmod.lib.MathHelperLM;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -124,7 +124,7 @@ public class BlockPDoor extends BlockPaintableSided
 				{
 					markDirty();
 					setMeta(0);
-					worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", LatCoreMC.rand.nextFloat() * 0.05F, LatCoreMC.rand.nextFloat() * 0.2F + 0.9F);
+					worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", MathHelperLM.rand.nextFloat() * 0.05F, MathHelperLM.rand.nextFloat() * 0.2F + 0.9F);
 				}
 				else if(timer == 37)
 				{
@@ -148,7 +148,7 @@ public class BlockPDoor extends BlockPaintableSided
 				timer = 40;
 				setMeta(1);
 				markDirty();
-				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", LatCoreMC.rand.nextFloat() * 0.2F, LatCoreMC.rand.nextFloat() * 0.2F + 0.9F);
+				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", MathHelperLM.rand.nextFloat() * 0.2F, MathHelperLM.rand.nextFloat() * 0.2F + 0.9F);
 				//worldObj.playAuxSFXAtEntity(null, 1003, xCoord, yCoord, zCoord, 0);
 			}
 		}

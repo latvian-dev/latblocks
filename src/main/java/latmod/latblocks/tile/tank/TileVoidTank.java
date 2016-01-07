@@ -1,10 +1,11 @@
 package latmod.latblocks.tile.tank;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.item.LMInvUtils;
 import ftb.lib.mod.FTBLibMod;
 import latmod.ftbu.tile.Tank;
-import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
+import latmod.lib.MathHelperLM;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -40,11 +41,11 @@ public class TileVoidTank extends TileTankBase
 		for(int i = 0; i < 10; i++)
 		{
 			double s = 0.25D;
-			double x = xCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
-			double y = yCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
-			double z = zCoord + s + LatCoreMC.rand.nextFloat() * (1D - s * 2D);
+			double x = xCoord + s + MathHelperLM.rand.nextFloat() * (1D - s * 2D);
+			double y = yCoord + s + MathHelperLM.rand.nextFloat() * (1D - s * 2D);
+			double z = zCoord + s + MathHelperLM.rand.nextFloat() * (1D - s * 2D);
 			int[] col = { 0xAA000000, 0xAA666666, 0xAA3300FF };
-			FTBLibMod.proxy.spawnDust(worldObj, x, y, z, col[LatCoreMC.rand.nextInt(col.length)]);
+			FTBLibMod.proxy.spawnDust(worldObj, x, y, z, col[MathHelperLM.rand.nextInt(col.length)]);
 		}
 	}
 	

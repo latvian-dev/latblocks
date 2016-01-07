@@ -5,7 +5,6 @@ import ftb.lib.FTBLib;
 import ftb.lib.api.gui.IGuiTile;
 import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.tile.TileInvLM;
-import latmod.ftbu.util.LatCoreMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
 import latmod.lib.MathHelperLM;
@@ -151,9 +150,9 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 						
 						for(int i = 0; i < 40; i++)
 						{
-							double r = MathHelperLM.randomDouble(LatCoreMC.rand, -0.25D, 0.25D);
+							double r = MathHelperLM.randomDouble(MathHelperLM.rand, -0.25D, 0.25D);
 							double px1 = px + ((fd == ForgeDirection.WEST || fd == ForgeDirection.EAST) ? 0D : r);
-							double py = yCoord + LatCoreMC.rand.nextFloat() * 6.0D / 16.0D;
+							double py = yCoord + MathHelperLM.rand.nextFloat() * 6.0D / 16.0D;
 							double pz1 = pz + ((fd == ForgeDirection.NORTH || fd == ForgeDirection.SOUTH) ? 0D : r);
 							
 							worldObj.spawnParticle("flame", px1 , py, pz1, 0D, 0D, 0D);
@@ -174,9 +173,9 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 					if(progress % 3 == 0)
 					{
 						ForgeDirection fd = ForgeDirection.VALID_DIRECTIONS[blockMetadata];
-						double r = MathHelperLM.randomDouble(LatCoreMC.rand, -0.25D, 0.25D);
+						double r = MathHelperLM.randomDouble(MathHelperLM.rand, -0.25D, 0.25D);
 						double px1 = xCoord + 0.5D + fd.offsetX * 0.6D + ((fd == ForgeDirection.WEST || fd == ForgeDirection.EAST) ? 0D : r);
-						double py = yCoord + LatCoreMC.rand.nextFloat() * 6.0D / 16.0D;
+						double py = yCoord + MathHelperLM.rand.nextFloat() * 6.0D / 16.0D;
 						double pz1 = zCoord + 0.5D + fd.offsetZ * 0.6D + ((fd == ForgeDirection.NORTH || fd == ForgeDirection.SOUTH) ? 0D : r);
 						
 						worldObj.spawnParticle("flame", px1 , py, pz1, 0D, 0D, 0D);
