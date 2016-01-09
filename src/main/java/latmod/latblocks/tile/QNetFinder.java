@@ -1,6 +1,7 @@
 package latmod.latblocks.tile;
 
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.api.IQuartzNetTile;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;

@@ -5,6 +5,7 @@ import ftb.lib.client.*;
 import ftb.lib.gui.GuiLM;
 import ftb.lib.gui.widgets.ItemButtonLM;
 import latmod.latblocks.LatBlocks;
+import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.tile.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

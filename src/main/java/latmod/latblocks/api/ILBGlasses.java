@@ -5,5 +5,5 @@ import net.minecraft.item.ItemStack;
 
 public interface ILBGlasses
 {
-	public boolean areLBGlassesActive(ItemStack is, EntityPlayer ep);
+	boolean areLBGlassesActive(ItemStack is, EntityPlayer ep);
 }

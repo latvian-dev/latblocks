@@ -2,7 +2,7 @@ package latmod.latblocks.tile.tank;
 
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.tile.*;
-import latmod.latblocks.tile.IQuartzNetTile;
+import latmod.latblocks.api.IQuartzNetTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;

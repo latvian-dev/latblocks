@@ -185,7 +185,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		if(c.set)
 		{
 			NBTTagCompound data = new NBTTagCompound();
-			data.setInteger("C", c.color);
+			data.setInteger("C", c.color.color());
 			data.setByte("ID", (byte)c.ID.hashCode());
 			chest.clientPressButton(TileQChest.BUTTON_COL, 0, data);
 		}

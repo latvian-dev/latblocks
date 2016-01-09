@@ -8,6 +8,7 @@ import latmod.ftbu.tile.TileInvLM;
 import latmod.ftbu.util.LMSecurityLevel;
 import latmod.ftbu.util.client.LMGuiButtons;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.gui.*;
 import latmod.lib.MathHelperLM;
 import net.minecraft.client.gui.GuiScreen;

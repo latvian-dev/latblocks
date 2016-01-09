@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.*;
 import ftb.lib.FTBLib;
 import ftb.lib.api.gui.IGuiTile;
 import latmod.ftbu.tile.TileLM;
+import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.*;

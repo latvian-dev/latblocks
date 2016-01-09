@@ -1,10 +1,10 @@
-package latmod.latblocks.tile;
+package latmod.latblocks.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public interface IQuartzNetTile
 {
-	public ItemStack getQIconItem();
-	public void onQClicked(EntityPlayer ep, int button);
+	ItemStack getQIconItem();
+	void onQClicked(EntityPlayer ep, int button);
 }
