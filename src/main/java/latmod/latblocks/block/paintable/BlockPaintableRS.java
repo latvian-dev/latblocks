@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
@@ -29,9 +30,7 @@ public class BlockPaintableRS extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PRP", " P ",
-				'P', LatBlocksItems.b_cover,
-				'R', Blocks.redstone_block);
+		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PRP", " P ", 'P', LatBlocksItems.b_cover, 'R', Blocks.redstone_block);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)
@@ -50,7 +49,7 @@ public class BlockPaintableRS extends BlockPaintableSided
 	@SideOnly(Side.CLIENT)
 	public IIcon getDefaultWorldIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{
-		TilePaintableRS t = (TilePaintableRS)iba.getTileEntity(x, y, z);
+		TilePaintableRS t = (TilePaintableRS) iba.getTileEntity(x, y, z);
 		return ((t.power > 0) ? icon_on : blockIcon);
 	}
 }

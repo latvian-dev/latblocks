@@ -23,10 +23,8 @@ public class LatBlocksGuiHandler extends LMGuiHandler
 	
 	public Container getContainer(EntityPlayer ep, int id, NBTTagCompound data)
 	{
-		if(id == COLOR_PAINTER)
-			return new ContainerEmpty(ep, null);
-		else if(id == DEF_PAINT)
-			return new ContainerDefaultPaint(ep);
+		if(id == COLOR_PAINTER) return new ContainerEmpty(ep, null);
+		else if(id == DEF_PAINT) return new ContainerDefaultPaint(ep);
 		//else if(id == QUARTZ_BAG)
 		//	return new ContainerQuartzBag(new InvQBag(ep, data.getInteger("ID")));
 		
@@ -36,10 +34,8 @@ public class LatBlocksGuiHandler extends LMGuiHandler
 	@SideOnly(Side.CLIENT)
 	public GuiScreen getGui(EntityPlayer ep, int id, NBTTagCompound data)
 	{
-		if(id == COLOR_PAINTER)
-			return new GuiColorPainter(ep);
-		else if(id == DEF_PAINT)
-			return new GuiDefaultPaint(new ContainerDefaultPaint(ep));
+		if(id == COLOR_PAINTER) return new GuiColorPainter(ep);
+		else if(id == DEF_PAINT) return new GuiDefaultPaint(new ContainerDefaultPaint(ep));
 		//else if(id == QUARTZ_BAG)
 		//	return new GuiQuartzBag((ContainerQuartzBag)getContainer(ep, id, data));
 		

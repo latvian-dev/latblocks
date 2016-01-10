@@ -11,15 +11,7 @@ import net.minecraft.world.*;
 
 public class BlockLBBricks extends BlockLB
 {
-	public static final String[] names =
-	{
-		"gravel_brick",
-		"lapis_brick",
-		"tiny_gravel",
-		"tiny_stonebrick",
-		"tiny_glowstone",
-		"gravel_tile"
-	};
+	public static final String[] names = {"gravel_brick", "lapis_brick", "tiny_gravel", "tiny_stonebrick", "tiny_glowstone", "gravel_tile"};
 	
 	@SideOnly(Side.CLIENT)
 	private IIcon icons[];
@@ -41,23 +33,17 @@ public class BlockLBBricks extends BlockLB
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB",
-				'B', new ItemStack(this, 1, 5));
-
-		getMod().recipes.addRecipe(new ItemStack(this, 4, 1), "BB", "BB",
-				'B', Blocks.lapis_block);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 4, 2), "BB", "BB",
-				'B', Blocks.gravel);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 4, 3), "BB", "BB",
-				'B', Blocks.stonebrick);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 4, 4), "BB", "BB",
-				'B', Blocks.glowstone);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 4, 5), "BB", "BB",
-				'B', new ItemStack(this, 1, 2));
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB", 'B', new ItemStack(this, 1, 5));
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 1), "BB", "BB", 'B', Blocks.lapis_block);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 2), "BB", "BB", 'B', Blocks.gravel);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 3), "BB", "BB", 'B', Blocks.stonebrick);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 4), "BB", "BB", 'B', Blocks.glowstone);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 4, 5), "BB", "BB", 'B', new ItemStack(this, 1, 2));
 	}
 	
 	public String getUnlocalizedName(int i)
@@ -76,5 +62,8 @@ public class BlockLBBricks extends BlockLB
 	{ return icons[m]; }
 	
 	public int getLightValue(IBlockAccess iba, int x, int y, int z)
-	{ if(iba.getBlockMetadata(x, y, z) == 4) return 15; return 0; }
+	{
+		if(iba.getBlockMetadata(x, y, z) == 4) return 15;
+		return 0;
+	}
 }

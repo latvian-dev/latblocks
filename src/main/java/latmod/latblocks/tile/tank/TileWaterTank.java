@@ -1,4 +1,5 @@
 package latmod.latblocks.tile.tank;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.tile.Tank;
@@ -49,7 +50,7 @@ public class TileWaterTank extends TileTankBase
 				
 				if(te != null && !te.isInvalid() && te instanceof IFluidHandler)
 				{
-					IFluidHandler h = (IFluidHandler)te;
+					IFluidHandler h = (IFluidHandler) te;
 					
 					if(h.canFill(dir.getOpposite(), FluidRegistry.WATER))
 						h.fill(dir.getOpposite(), new FluidStack(FluidRegistry.WATER, 1000), true);
@@ -81,7 +82,7 @@ public class TileWaterTank extends TileTankBase
 		
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
 		
-		if (liquid == null)
+		if(liquid == null)
 		{
 			FluidStack available = new FluidStack(FluidRegistry.WATER, 1000);
 			
@@ -89,14 +90,13 @@ public class TileWaterTank extends TileTankBase
 			
 			liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
 			
-			if (liquid != null)
+			if(liquid != null)
 			{
-				if (!ep.capabilities.isCreativeMode)
+				if(!ep.capabilities.isCreativeMode)
 				{
-					if (is.stackSize > 1)
+					if(is.stackSize > 1)
 					{
-						if (!ep.inventory.addItemStackToInventory(filled))
-							return false;
+						if(!ep.inventory.addItemStackToInventory(filled)) return false;
 						else
 						{
 							ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));

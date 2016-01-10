@@ -28,24 +28,22 @@ public abstract class BlockGlowium extends BlockLB
 	public static final String ORE_NAME = "blockGlowium";
 	public static final int DEF_DMG = EnumMCColor.YELLOW.ID;
 	
-	public static final int[] brightColors =
-	{
-		0xFF2D2D2D, // Black
-		0xFFFF0000, // Red
-		0xFF00D615, // Green
-		0xFF9B3E00, // Brown
-		0xFF0049FF, // Blue
-		0xFFB43DFF, // Purple
-		0xFF00FFFF, // Cyan
-		0xFFCECECE, // LightGray
-		0xFF494949, // Gray
-		0xFFFF9999, // Pink
-		0xFF00F321, // Lime
-		0xFFFFD800, // Yellow
-		0xFF56B8FF, // LightBlue
-		0xFFFF22DC, // Magenta
-		0xFFFF8900, // Orange
-		0xFFFFFFFF, // White
+	public static final int[] brightColors = {0xFF2D2D2D, // Black
+			0xFFFF0000, // Red
+			0xFF00D615, // Green
+			0xFF9B3E00, // Brown
+			0xFF0049FF, // Blue
+			0xFFB43DFF, // Purple
+			0xFF00FFFF, // Cyan
+			0xFFCECECE, // LightGray
+			0xFF494949, // Gray
+			0xFFFF9999, // Pink
+			0xFF00F321, // Lime
+			0xFFFFD800, // Yellow
+			0xFF56B8FF, // LightBlue
+			0xFFFF22DC, // Magenta
+			0xFFFF8900, // Orange
+			0xFFFFFFFF, // White
 	};
 	
 	public static class BGBlock extends BlockGlowium
@@ -59,17 +57,14 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-
-			getMod().recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG",
-					'G', ItemMaterialsLB.GEM_GLOWIUM_Y);
-
-			getMod().recipes.addRecipe(ItemMaterialsLB.GEM_GLOWIUM_Y.getStack(4), "G",
-					'G', new ItemStack(this, 1, DEF_DMG));
+			
+			getMod().recipes.addRecipe(new ItemStack(this, 1, DEF_DMG), "GG", "GG", 'G', ItemMaterialsLB.GEM_GLOWIUM_Y);
+			
+			getMod().recipes.addRecipe(ItemMaterialsLB.GEM_GLOWIUM_Y.getStack(4), "G", 'G', new ItemStack(this, 1, DEF_DMG));
 			
 			LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
-
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
+			
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
 		}
 	}
 	
@@ -81,9 +76,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium[0], 4, DEF_DMG));
+			
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[0], 4, DEF_DMG));
 		}
 	}
 	
@@ -95,9 +89,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium[1], 4, DEF_DMG));
+			
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[1], 4, DEF_DMG));
 		}
 	}
 	
@@ -109,9 +102,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium[2], 4, DEF_DMG));
+			
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[2], 4, DEF_DMG));
 		}
 	}
 	
@@ -123,9 +115,8 @@ public abstract class BlockGlowium extends BlockLB
 		public void loadRecipes()
 		{
 			super.loadRecipes();
-
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG",
-					'G', new ItemStack(LatBlocksItems.b_glowium[3], 4, DEF_DMG));
+			
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[3], 4, DEF_DMG));
 		}
 	}
 	
@@ -161,9 +152,8 @@ public abstract class BlockGlowium extends BlockLB
 	
 	public void loadRecipes()
 	{
-		for(int i = 0; i < 16; i++) getMod().recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ",
-				'G', new ItemStack(this, 1, DEF_DMG),
-				'C', EnumMCColor.VALUES[i].dyeName);
+		for(int i = 0; i < 16; i++)
+			getMod().recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ", 'G', new ItemStack(this, 1, DEF_DMG), 'C', EnumMCColor.VALUES[i].dyeName);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -197,8 +187,8 @@ public abstract class BlockGlowium extends BlockLB
 	{ return true; }
 	
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-    {
+	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+	{
 		Block b1 = iba.getBlock(x, y, z);
 		if(b1 instanceof BlockGlowium) return false;
 		return b1 == Blocks.air || !b1.renderAsNormalBlock() || !b1.isOpaqueCube();
@@ -277,7 +267,7 @@ public abstract class BlockGlowium extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
 	{ return getRenderColor(iba.getBlockMetadata(x, y, z)); }
-
+	
 	public boolean hasPaint(IBlockAccess iba, int x, int y, int z, int s)
 	{ return false; }
 	

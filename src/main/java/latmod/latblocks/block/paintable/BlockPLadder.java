@@ -48,8 +48,7 @@ public class BlockPLadder extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 2), "S S", "SSS", "S S",
-				'S', ItemMaterialsLB.ROD);
+		getMod().recipes.addRecipe(new ItemStack(this, 2), "S S", "SSS", "S S", 'S', ItemMaterialsLB.ROD);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -68,8 +67,7 @@ public class BlockPLadder extends BlockPaintableSingle
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
-		if(onBlockPlaced(event.player.worldObj, event.player, event.target, -1) == -1)
-			return;
+		if(onBlockPlaced(event.player.worldObj, event.player, event.target, -1) == -1) return;
 		super.drawHighlight(boxes, event);
 	}
 	
@@ -110,11 +108,10 @@ public class BlockPLadder extends BlockPaintableSingle
 			boxes[i] = MathHelperMC.rotate90BoxV(boxes[i], m);
 			boxes[i] = boxes[i].getOffsetBoundingBox(Facing.offsetsXForSide[m] * shift, 0D, Facing.offsetsZForSide[m] * shift);
 		}
-
+		
 		LMListUtils.addAll(boxes0, boxes);
 	}
 	
 	public static class TilePLadder extends TileSinglePaintable
-	{
-	}
+	{ }
 }

@@ -47,7 +47,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	{
 		super.writeTileData(tag);
 		tag.setInteger("Fuel", fuel);
-		tag.setShort("Progress", (short)progress);
+		tag.setShort("Progress", (short) progress);
 		LMInvUtils.saveStack(tag, "Result", result);
 	}
 	
@@ -129,15 +129,14 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 			{
 				if(result != null)
 				{
-					progress = (int)MAX_PROGRESS;
+					progress = (int) MAX_PROGRESS;
 					markDirty();
 					
 					if(items[SLOT_OUTPUT] == null || (items[SLOT_OUTPUT].stackSize + result.stackSize <= items[SLOT_OUTPUT].getMaxStackSize()))
 					{
 						if(isServer())
 						{
-							if(items[SLOT_OUTPUT] == null)
-								items[SLOT_OUTPUT] = result.copy();
+							if(items[SLOT_OUTPUT] == null) items[SLOT_OUTPUT] = result.copy();
 							else items[SLOT_OUTPUT].stackSize += result.stackSize;
 							
 							result = null;
@@ -156,7 +155,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 							double py = yCoord + MathHelperLM.rand.nextFloat() * 6.0D / 16.0D;
 							double pz1 = pz + ((fd == ForgeDirection.NORTH || fd == ForgeDirection.SOUTH) ? 0D : r);
 							
-							worldObj.spawnParticle("flame", px1 , py, pz1, 0D, 0D, 0D);
+							worldObj.spawnParticle("flame", px1, py, pz1, 0D, 0D, 0D);
 						}
 					}
 				}
@@ -168,8 +167,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 					progress++;
 					fuel--;
 					
-					if(fuel == 0 && isServer())
-						markDirty();
+					if(fuel == 0 && isServer()) markDirty();
 					
 					if(progress % 3 == 0)
 					{
@@ -179,7 +177,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 						double py = yCoord + MathHelperLM.rand.nextFloat() * 6.0D / 16.0D;
 						double pz1 = zCoord + 0.5D + fd.offsetZ * 0.6D + ((fd == ForgeDirection.NORTH || fd == ForgeDirection.SOUTH) ? 0D : r);
 						
-						worldObj.spawnParticle("flame", px1 , py, pz1, 0D, 0D, 0D);
+						worldObj.spawnParticle("flame", px1, py, pz1, 0D, 0D, 0D);
 					}
 				}
 			}
@@ -193,10 +191,8 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(ITEM_TAG))
 			readTileData(is.stackTagCompound.getCompoundTag(ITEM_TAG));
 		
-		if(is.hasDisplayName())
-			customName = is.getDisplayName();
-		else
-			customName = null;
+		if(is.hasDisplayName()) customName = is.getDisplayName();
+		else customName = null;
 		
 		markDirty();
 	}
@@ -220,9 +216,9 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	
 	public int[] getAccessibleSlotsFromSide(int s)
 	{
-		if(s == 0) return new int[]{ SLOT_FUEL };
-		if(s == 1) return new int[]{ SLOT_INPUT };
-		return new int[] { SLOT_OUTPUT };
+		if(s == 0) return new int[] {SLOT_FUEL};
+		if(s == 1) return new int[] {SLOT_INPUT};
+		return new int[] {SLOT_OUTPUT};
 	}
 	
 	public boolean canInsertItem(int i, ItemStack is, int s)

@@ -118,7 +118,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		
 		if(is1.getItem() instanceof IFluidContainerItem)
 		{
-			IFluidContainerItem i = (IFluidContainerItem)is1.getItem();
+			IFluidContainerItem i = (IFluidContainerItem) is1.getItem();
 			int f = i.fill(is1, fs, true);
 			if(f == 1000) return is1;
 		}
@@ -139,11 +139,11 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
 		
-		if (liquid != null)
+		if(liquid != null)
 		{
 			int qty = fill(ForgeDirection.UNKNOWN, liquid, true);
 			
-			if (qty != 0 && !ep.capabilities.isCreativeMode)
+			if(qty != 0 && !ep.capabilities.isCreativeMode)
 			{
 				ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 				ep.inventory.markDirty();
@@ -156,20 +156,19 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		{
 			FluidStack available = tank.getFluidStack();
 			
-			if (available != null)
+			if(available != null)
 			{
 				ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, is);
 				
 				liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
 				
-				if (liquid != null)
+				if(liquid != null)
 				{
-					if (!ep.capabilities.isCreativeMode)
+					if(!ep.capabilities.isCreativeMode)
 					{
-						if (is.stackSize > 1)
+						if(is.stackSize > 1)
 						{
-							if (!ep.inventory.addItemStackToInventory(filled))
-								return false;
+							if(!ep.inventory.addItemStackToInventory(filled)) return false;
 							else
 							{
 								ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
@@ -231,7 +230,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 	
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return getFilled(is) == null; }
-
+	
 	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{
 		if(tank.isEmpty()) info.add("Tank: Empty");

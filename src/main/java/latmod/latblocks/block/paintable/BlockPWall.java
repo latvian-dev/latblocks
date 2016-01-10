@@ -28,8 +28,7 @@ public class BlockPWall extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 6), "PPP", "PPP",
-				'P', LatBlocksItems.b_paintable);
+		getMod().recipes.addRecipe(new ItemStack(this, 6), "PPP", "PPP", 'P', LatBlocksItems.b_paintable);
 	}
 	
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
@@ -130,6 +129,5 @@ public class BlockPWall extends BlockPaintableSingle
 	{ return side == ForgeDirection.UP || side == ForgeDirection.DOWN; }
 	
 	public static class TilePWall extends TileSinglePaintable
-	{
-	}
+	{ }
 }

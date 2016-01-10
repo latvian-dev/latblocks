@@ -26,7 +26,7 @@ public class LatBlocksCommon // LatBlocksClient
 	
 	public void setDefPaint(TileLM t, EntityPlayer ep, Paint[] paint)
 	{
-		IPaintable paintable = (t instanceof IPaintable) ? (IPaintable)t : null;
+		IPaintable paintable = (t instanceof IPaintable) ? (IPaintable) t : null;
 		if(paintable == null) return;
 		
 		LMPlayer player = LMWorld.getWorld(t.isServer() ? Side.SERVER : Side.CLIENT).getPlayer(ep);
@@ -46,8 +46,7 @@ public class LatBlocksCommon // LatBlocksClient
 			{
 				for(int i = 0; i < paint.length; i++)
 				{
-					if(paintable.isPaintValid(i, p[SidedDirection.FRONT.ID]))
-						paint[i] = p[SidedDirection.FRONT.ID];
+					if(paintable.isPaintValid(i, p[SidedDirection.FRONT.ID])) paint[i] = p[SidedDirection.FRONT.ID];
 				}
 			}
 		}
@@ -56,8 +55,7 @@ public class LatBlocksCommon // LatBlocksClient
 			int r3 = MathHelperMC.get3DRotation(t.getWorldObj(), t.xCoord, t.yCoord, t.zCoord, ep);
 			int r2 = 0;
 			
-			if(r3 == 0 || r3 == 1)
-				r2 = MathHelperMC.get2DRotation(ep);
+			if(r3 == 0 || r3 == 1) r2 = MathHelperMC.get2DRotation(ep);
 			
 			for(int f = 0; f < 6; f++)
 			{

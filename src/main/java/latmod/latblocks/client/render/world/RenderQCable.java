@@ -15,8 +15,7 @@ public class RenderQCable extends BlockRendererLM
 	public static final RenderQCable instance = new RenderQCable();
 	
 	public BlockCustom empty = new BlockCustom()
-	{
-	};
+	{ };
 	
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{

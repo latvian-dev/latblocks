@@ -54,7 +54,7 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 	
 	public void setBlockBoundsForItemRender()
 	{ setBlockBounds(0F, 0F, 0F, 1F, height, 1F); }
-		
+	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{
 		double hitX = mop.hitVec.xCoord - mop.blockX;

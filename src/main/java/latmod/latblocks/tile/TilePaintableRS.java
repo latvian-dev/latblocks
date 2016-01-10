@@ -26,7 +26,7 @@ public class TilePaintableRS extends TileSidedPaintable
 	{
 		super.writeTileData(tag);
 		Paint.writeToNBT(tag, "TexturesOn", paint_on);
-		tag.setByte("Power", (byte)power);
+		tag.setByte("Power", (byte) power);
 	}
 	
 	public void onUpdate()
@@ -40,8 +40,7 @@ public class TilePaintableRS extends TileSidedPaintable
 			int pP = power;
 			
 			power = 0;
-			if(worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord))
-				power = 32;
+			if(worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) power = 32;
 			else
 			{
 				int b = 0;
@@ -51,7 +50,7 @@ public class TilePaintableRS extends TileSidedPaintable
 					ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[i];
 					TileEntity te = worldObj.getTileEntity(xCoord + f.offsetX, yCoord + f.offsetY, zCoord + f.offsetZ);
 					if(te != null && !te.isInvalid() && (te instanceof TilePaintableRS || te instanceof BlockPaintableLamp.TilePaintableLamp))
-						b = Math.max(b, ((TilePaintableRS)te).power);
+						b = Math.max(b, ((TilePaintableRS) te).power);
 				}
 				
 				if(b > 0) power = b - 1;
@@ -71,8 +70,7 @@ public class TilePaintableRS extends TileSidedPaintable
 	
 	public void setPaint(int side, Paint p)
 	{
-		if(power > 0)
-			paint_on[side] = p;
+		if(power > 0) paint_on[side] = p;
 		else paint[side] = p;
 	}
 	

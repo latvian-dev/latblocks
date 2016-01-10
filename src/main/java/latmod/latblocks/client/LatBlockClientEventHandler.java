@@ -25,22 +25,21 @@ public class LatBlockClientEventHandler
 	{
 		if(!LatBlocksClient.renderHighlights.get()) return;
 		
-		if (e.currentItem != null && e.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && e.currentItem.getItem() instanceof ItemBlock)
+		if(e.currentItem != null && e.target.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK && e.currentItem.getItem() instanceof ItemBlock)
 		{
 			Block itemBlock = Block.getBlockFromItem(e.currentItem.getItem());
 			
 			if(itemBlock instanceof BlockPaintableLB)
 			{
-				BlockPaintableLB block = (BlockPaintableLB)itemBlock;
-				ItemBlockLM itemBlockLM = (ItemBlockLM)e.currentItem.getItem();
-
+				BlockPaintableLB block = (BlockPaintableLB) itemBlock;
+				ItemBlockLM itemBlockLM = (ItemBlockLM) e.currentItem.getItem();
+				
 				placementBoxes.clear();
 				block.getPlacementBoxes(placementBoxes, e);
 				
 				if(!placementBoxes.isEmpty())
 				{
-					if(!e.player.worldObj.getBlock(e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit])
-					.isReplaceable(e.player.worldObj, e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit]))
+					if(!e.player.worldObj.getBlock(e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit]).isReplaceable(e.player.worldObj, e.target.blockX + Facing.offsetsXForSide[e.target.sideHit], e.target.blockY + Facing.offsetsYForSide[e.target.sideHit], e.target.blockZ + Facing.offsetsZForSide[e.target.sideHit]))
 						return;
 					
 					GlStateManager.enableBlend();
@@ -55,7 +54,7 @@ public class LatBlockClientEventHandler
 					double d0 = e.player.lastTickPosX + (e.player.posX - e.player.lastTickPosX) * pt;
 					double d1 = e.player.lastTickPosY + (e.player.posY - e.player.lastTickPosY) * pt;
 					double d2 = e.player.lastTickPosZ + (e.player.posZ - e.player.lastTickPosZ) * pt;
-
+					
 					ArrayList<AxisAlignedBB> hl = new ArrayList<>();
 					block.drawHighlight(hl, e);
 					
@@ -69,8 +68,8 @@ public class LatBlockClientEventHandler
 						bb = bb.getOffsetBoundingBox(e.target.blockX, e.target.blockY, e.target.blockZ);
 						bb = bb.getOffsetBoundingBox(Facing.offsetsXForSide[e.target.sideHit], Facing.offsetsYForSide[e.target.sideHit], Facing.offsetsZForSide[e.target.sideHit]);
 						bb = bb.getOffsetBoundingBox(-d0, -d1, -d2);
-	 					
-	 					RenderGlobal.drawOutlinedBoundingBox(bb.expand(f1, f1, f1), -1);
+						
+						RenderGlobal.drawOutlinedBoundingBox(bb.expand(f1, f1, f1), -1);
 					}
 					
 					if(itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.player, e.currentItem))

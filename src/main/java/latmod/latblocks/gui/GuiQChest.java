@@ -36,7 +36,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		
 		xSize = 248;
 		ySize = 247;
-		chest = (TileQChest)c.inv;
+		chest = (TileQChest) c.inv;
 		
 		textBoxLabel = new TextBoxLM(this, 7, 6, 235, 18)
 		{
@@ -48,8 +48,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		
 		textBoxLabel.charLimit = 45;
 		
-		if(chest.customName != null)
-			textBoxLabel.text = chest.customName;
+		if(chest.customName != null) textBoxLabel.text = chest.customName;
 		
 		buttonSecurity = new ButtonLM(this, 217, 168, 16, 16)
 		{
@@ -108,8 +107,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			{
 				playClickSound();
 				
-				if(GuiScreen.isShiftKeyDown())
-					setItem(null);
+				if(GuiScreen.isShiftKeyDown()) setItem(null);
 				else
 				{
 					ItemStack is = gui.getHeldItem();
@@ -170,8 +168,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		buttonGlow.renderWidget();
 		buttonSetItem.renderWidget();
 		
-		if(buttonSetItem.item == null)
-			buttonSetItem.render(GuiIcons.cancel);
+		if(buttonSetItem.item == null) buttonSetItem.render(GuiIcons.cancel);
 	}
 	
 	public void drawText(List<String> l)
@@ -186,7 +183,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		{
 			NBTTagCompound data = new NBTTagCompound();
 			data.setInteger("C", c.color.color());
-			data.setByte("ID", (byte)c.ID.hashCode());
+			data.setByte("ID", (byte) c.ID.hashCode());
 			chest.clientPressButton(TileQChest.BUTTON_COL, 0, data);
 		}
 		

@@ -122,6 +122,5 @@ public class BlockGelLamp extends BlockPaintableLB
 	}
 	
 	public static class TileGelLamp extends TileSinglePaintable
-	{
-	}
+	{ }
 }

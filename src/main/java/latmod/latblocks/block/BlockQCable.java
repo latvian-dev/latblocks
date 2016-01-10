@@ -37,10 +37,7 @@ public class BlockQCable extends BlockLB
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.qNetBlocks.get())
-			getMod().recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS",
-				'S', Blocks.wooden_slab,
-				'G', ODItems.GLOWSTONE,
-				'D', ItemMaterialsLB.DUST_GLOWIUM_B);
+			getMod().recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS", 'S', Blocks.wooden_slab, 'G', ODItems.GLOWSTONE, 'D', ItemMaterialsLB.DUST_GLOWIUM_B);
 	}
 	
 	public void setBlockBoundsForItemRender()
@@ -60,19 +57,14 @@ public class BlockQCable extends BlockLB
 		boolean z0 = connects(iba, x, y, z - 1);
 		boolean z1 = connects(iba, x, y, z + 1);
 		
-		setBlockBounds(x0 ? 0F : s, y0 ? 0F : s, z0 ? 0F: s, x1 ? 1F : 1F - s, y1 ? 1F: 1F - s, z1 ? 1F : 1F - s);
+		setBlockBounds(x0 ? 0F : s, y0 ? 0F : s, z0 ? 0F : s, x1 ? 1F : 1F - s, y1 ? 1F : 1F - s, z1 ? 1F : 1F - s);
 	}
 	
 	public static boolean connects(IBlockAccess iba, int x, int y, int z)
 	{
 		Block b = iba.getBlock(x, y, z);
-		if(b == LatBlocksItems.b_qcable
-		|| b == LatBlocksItems.b_qterminal
-		|| b == LatBlocksItems.b_qchest
-		|| b == LatBlocksItems.b_qfurnace
-		|| b == LatBlocksItems.b_tank
-		|| b == LatBlocksItems.b_tank_void
-		|| b == LatBlocksItems.b_tank_water) return true;
+		if(b == LatBlocksItems.b_qcable || b == LatBlocksItems.b_qterminal || b == LatBlocksItems.b_qchest || b == LatBlocksItems.b_qfurnace || b == LatBlocksItems.b_tank || b == LatBlocksItems.b_tank_void || b == LatBlocksItems.b_tank_water)
+			return true;
 		if(!b.hasTileEntity(iba.getBlockMetadata(x, y, z))) return false;
 		return iba.getTileEntity(x, y, z) instanceof IQuartzNetTile;
 	}

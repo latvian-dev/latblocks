@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.*;
 import latmod.ftbu.tile.TileLM;
@@ -26,9 +27,7 @@ public class BlockPSlope extends BlockLB
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 4), "B  ", "BC ", "BBB",
-				'C', LatBlocksItems.b_cover,
-				'B', LatBlocksItems.b_paintable);
+		getMod().recipes.addRecipe(new ItemStack(this, 4), "B  ", "BC ", "BBB", 'C', LatBlocksItems.b_cover, 'B', LatBlocksItems.b_paintable);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -54,8 +53,8 @@ public class BlockPSlope extends BlockLB
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-    { return true; }
+	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+	{ return true; }
 	
 	public static class TilePSlope extends TileSinglePaintable
 	{

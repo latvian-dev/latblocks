@@ -16,8 +16,7 @@ public class BlockPCarpet extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 3), "PPP",
-				'P', LatBlocksItems.b_cover);
+		getMod().recipes.addRecipe(new ItemStack(this, 3), "PPP", 'P', LatBlocksItems.b_cover);
 	}
 	
 	public void onPostLoaded()
@@ -30,6 +29,5 @@ public class BlockPCarpet extends BlockPaintableSingle
 	{ return new TilePCarpet(); }
 	
 	public static class TilePCarpet extends TileSinglePaintable
-	{
-	}
+	{ }
 }

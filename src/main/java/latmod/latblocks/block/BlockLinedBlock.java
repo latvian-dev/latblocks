@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.FTBLibClient;
 import latmod.latblocks.LatBlocksItems;
@@ -19,9 +20,8 @@ public class BlockLinedBlock extends BlockGlowium
 	public void loadRecipes()
 	{
 		super.loadRecipes();
-
-		getMod().recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ",
-				'G', new ItemStack(LatBlocksItems.b_glowium[1], 1, DEF_DMG));
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ", 'G', new ItemStack(LatBlocksItems.b_glowium[1], 1, DEF_DMG));
 	}
 	
 	public void onPostLoaded()
@@ -36,8 +36,11 @@ public class BlockLinedBlock extends BlockGlowium
 		
 		icons = new IIcon[2][2][2][2];
 		
-		for(int a = 0; a <= 1; a++) for(int b = 0; b <= 1; b++) for(int c = 0; c <= 1; c++) for(int d = 0; d <= 1; d++)
-			icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glowium/lined/" + a + "" + b + "" + c + "" + d);
+		for(int a = 0; a <= 1; a++)
+			for(int b = 0; b <= 1; b++)
+				for(int c = 0; c <= 1; c++)
+					for(int d = 0; d <= 1; d++)
+						icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glowium/lined/" + a + "" + b + "" + c + "" + d);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -53,8 +56,7 @@ public class BlockLinedBlock extends BlockGlowium
 		
 		int m = iba.getBlockMetadata(x, y, z);
 		
-		if(isBlockAlone(iba, x, y, z, m))
-			return icons[0][0][0][0];
+		if(isBlockAlone(iba, x, y, z, m)) return icons[0][0][0][0];
 		
 		int a = 0;
 		int b = 0;
@@ -95,8 +97,7 @@ public class BlockLinedBlock extends BlockGlowium
 			}
 		}
 		
-		if(a == 0 && b == 0 && c == 0 && d == 0)
-			return FTBLibClient.blockNullIcon;
+		if(a == 0 && b == 0 && c == 0 && d == 0) return FTBLibClient.blockNullIcon;
 		return icons[a][b][c][d];
 	}
 	

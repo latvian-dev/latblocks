@@ -25,7 +25,7 @@ public class GuiQNet extends GuiLM
 	public GuiQNet(ContainerQNet c)
 	{
 		super(c, tex);
-		term = (TileQTerminal)c.inv;
+		term = (TileQTerminal) c.inv;
 		
 		xSize = 174;
 		ySize = 167;
@@ -75,8 +75,8 @@ public class GuiQNet extends GuiLM
 		{
 			inv.onQClicked(gui.container.player, b);
 			NBTTagCompound data = new NBTTagCompound();
-			TileEntity te = (TileEntity)inv;
-			data.setIntArray("Data", new int[] { te.xCoord, te.yCoord, te.zCoord, b });
+			TileEntity te = (TileEntity) inv;
+			data.setIntArray("Data", new int[] {te.xCoord, te.yCoord, te.zCoord, b});
 			term.clientPressButton(TileQTerminal.BUTTON_QNET, b, data);
 		}
 		

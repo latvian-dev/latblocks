@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.FTBLibClient;
 import ftb.lib.item.ODItems;
@@ -30,9 +31,7 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 8), "GGG", "GPG", "GGG",
-				'G', ODItems.GLASS,
-				'P', new ItemStack(Items.potionitem, 1, 8206));
+		getMod().recipes.addRecipe(new ItemStack(this, 8), "GGG", "GPG", "GGG", 'G', ODItems.GLASS, 'P', new ItemStack(Items.potionitem, 1, 8206));
 	}
 	
 	public void onPostLoaded()
@@ -67,8 +66,11 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 	{
 		icons = new IIcon[2][2][2][2];
 		
-		for(int a = 0; a <= 1; a++) for(int b = 0; b <= 1; b++) for(int c = 0; c <= 1; c++) for(int d = 0; d <= 1; d++)
-			icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glass/inv/" + a + "" + b + "" + c + "" + d);
+		for(int a = 0; a <= 1; a++)
+			for(int b = 0; b <= 1; b++)
+				for(int c = 0; c <= 1; c++)
+					for(int d = 0; d <= 1; d++)
+						icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glass/inv/" + a + "" + b + "" + c + "" + d);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -129,8 +131,8 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-    {
+	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+	{
 		Block b1 = iba.getBlock(x, y, z);
 		if(b1 == this) return false;
 		return b1 == Blocks.air || !b1.renderAsNormalBlock() || !b1.isOpaqueCube();

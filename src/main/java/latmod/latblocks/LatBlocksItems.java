@@ -81,15 +81,7 @@ public class LatBlocksItems
 		b_qterminal = new BlockQTerminal("terminal").register();
 		b_farmland = new BlockGlowiumFarmland("farmland").register();
 		
-		b_glowium = new BlockGlowium[]
-		{
-			new BlockGlowium.BGBlock("glowiumBlock").register(),
-			new BlockGlowium.BGTile("glowiumTile").register(),
-			new BlockGlowium.BGBrick("glowiumBrick").register(),
-			new BlockGlowium.BGBrickSmall("glowiumSmallBrick").register(),
-			new BlockGlowium.BGBrickChiseled("glowiumChiseledBrick").register(),
-			new BlockLinedBlock("lined_block").register(),
-		};
+		b_glowium = new BlockGlowium[] {new BlockGlowium.BGBlock("glowiumBlock").register(), new BlockGlowium.BGTile("glowiumTile").register(), new BlockGlowium.BGBrick("glowiumBrick").register(), new BlockGlowium.BGBrickSmall("glowiumSmallBrick").register(), new BlockGlowium.BGBrickChiseled("glowiumChiseledBrick").register(), new BlockLinedBlock("lined_block").register(),};
 		
 		b_bricks = new BlockLBBricks("bricks").register();
 		

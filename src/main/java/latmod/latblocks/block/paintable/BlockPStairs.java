@@ -25,8 +25,7 @@ public class BlockPStairs extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 4), "P  ", "PP ", "PPP",
-				'P', LatBlocksItems.b_paintable);
+		getMod().recipes.addRecipe(new ItemStack(this, 4), "P  ", "PP ", "PPP", 'P', LatBlocksItems.b_paintable);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -40,10 +39,9 @@ public class BlockPStairs extends BlockPaintableSingle
 	{
 		double hitY = mop.hitVec.yCoord - mop.blockY;
 		
-		if(!(mop.sideHit == Placement.D_DOWN || mop.sideHit == Placement.D_UP))
-			hitY = 1D - hitY;
+		if(!(mop.sideHit == Placement.D_DOWN || mop.sideHit == Placement.D_UP)) hitY = 1D - hitY;
 		
-		int l = MathHelperLM.floor((double)(ep.rotationYaw * 8F / 360F) + 0.5D) & 7;
+		int l = MathHelperLM.floor((double) (ep.rotationYaw * 8F / 360F) + 0.5D) & 7;
 		return (hitY >= 0.5D) ? (8 + l) : l;
 	}
 	
@@ -137,6 +135,5 @@ public class BlockPStairs extends BlockPaintableSingle
 	{ return true; }
 	
 	public static class TilePStairs extends TileSinglePaintable
-	{
-	}
+	{ }
 }

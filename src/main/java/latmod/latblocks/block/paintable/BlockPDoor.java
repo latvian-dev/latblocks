@@ -37,8 +37,7 @@ public class BlockPDoor extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 6), "PP", "PP", "PP",
-				'P', LatBlocksItems.b_paintable);
+		getMod().recipes.addRecipe(new ItemStack(this, 6), "PP", "PP", "PP", 'P', LatBlocksItems.b_paintable);
 	}
 	
 	public boolean isOpaqueCube()
@@ -91,7 +90,7 @@ public class BlockPDoor extends BlockPaintableSided
 	
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
-		if (!w.isRemote && w.isBlockIndirectlyGettingPowered(x, y, z))
+		if(!w.isRemote && w.isBlockIndirectlyGettingPowered(x, y, z))
 		{
 			TilePDoor t = getTile(TilePDoor.class, w, x, y, z);
 			if(t != null) t.open();
@@ -111,7 +110,7 @@ public class BlockPDoor extends BlockPaintableSided
 		public void writeTileData(NBTTagCompound tag)
 		{
 			super.writeTileData(tag);
-			tag.setShort("Timer", (short)timer);
+			tag.setShort("Timer", (short) timer);
 		}
 		
 		public void onUpdate()
@@ -133,7 +132,7 @@ public class BlockPDoor extends BlockPaintableSided
 						TileEntity te = getTile(i);
 						if(te != null && te instanceof TilePDoor)
 						{
-							TilePDoor t = (TilePDoor)te;
+							TilePDoor t = (TilePDoor) te;
 							if(t.timer == 0) t.open();
 						}
 					}

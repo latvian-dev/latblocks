@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
 import ftb.lib.item.ODItems;
@@ -31,11 +32,7 @@ public class BlockQTerminal extends BlockLB
 	{
 		if(LatBlocksConfigCrafting.qNetBlocks.get())
 		{
-			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QSQ", "QDQ",
-					'Q', Blocks.quartz_block,
-					'D', ODItems.DIAMOND,
-					'D', ItemMaterialsLB.DUST_GLOWIUM_D,
-					'S', ItemMaterialsLB.DUST_STAR);
+			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QSQ", "QDQ", 'Q', Blocks.quartz_block, 'D', ODItems.DIAMOND, 'D', ItemMaterialsLB.DUST_GLOWIUM_D, 'S', ItemMaterialsLB.DUST_STAR);
 		}
 	}
 	
@@ -62,8 +59,7 @@ public class BlockQTerminal extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{
-		if(s == iba.getBlockMetadata(x, y, z))
-			return icon_front;
+		if(s == iba.getBlockMetadata(x, y, z)) return icon_front;
 		return blockIcon;
 	}
 }

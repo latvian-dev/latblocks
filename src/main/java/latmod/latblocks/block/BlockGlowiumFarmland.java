@@ -26,12 +26,7 @@ public class BlockGlowiumFarmland extends BlockLB
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 8), "SDO", "TGT", "ODS",
-				'S', ODItems.SAND,
-				'D', Blocks.dirt,
-				'O', Blocks.soul_sand,
-				'T', ODItems.GLOWSTONE,
-				'G', ItemMaterialsLB.DUST_GLOWIUM_G);
+		getMod().recipes.addRecipe(new ItemStack(this, 8), "SDO", "TGT", "ODS", 'S', ODItems.SAND, 'D', Blocks.dirt, 'O', Blocks.soul_sand, 'T', ODItems.GLOWSTONE, 'G', ItemMaterialsLB.DUST_GLOWIUM_G);
 	}
 	
 	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)

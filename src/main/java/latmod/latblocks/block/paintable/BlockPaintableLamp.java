@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+
 import ftb.lib.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.*;
@@ -22,9 +23,7 @@ public class BlockPaintableLamp extends BlockPaintableRS
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PLP", " P ",
-				'P', LatBlocksItems.b_cover,
-				'L', Blocks.redstone_lamp);
+		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PLP", " P ", 'P', LatBlocksItems.b_cover, 'L', Blocks.redstone_lamp);
 	}
 	
 	public int getLightValue(IBlockAccess iba, int x, int y, int z)

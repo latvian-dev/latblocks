@@ -60,11 +60,10 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 		
 		if(p.block instanceof IFluidBlock)
 		{
-			Fluid f = ((IFluidBlock)p.block).getFluid();
+			Fluid f = ((IFluidBlock) p.block).getFluid();
 			if(f != null) return f.getStillIcon();
 		}
-		else if(p.block instanceof BlockLiquid || p.block instanceof BlockFluidBase)
-			return p.block.getIcon(1, p.meta);
+		else if(p.block instanceof BlockLiquid || p.block instanceof BlockFluidBase) return p.block.getIcon(1, p.meta);
 		
 		return null;
 	}

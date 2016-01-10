@@ -37,11 +37,7 @@ public class BlockQFurnace extends BlockLB
 	{
 		if(LatBlocksConfigCrafting.chest.get())
 		{
-			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
-					'Q', Blocks.quartz_block,
-					'F', Blocks.furnace,
-					'D', ODItems.DIAMOND,
-					'S', ItemMaterialsLB.DUST_GLOWIUM_D);
+			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ", 'Q', Blocks.quartz_block, 'F', Blocks.furnace, 'D', ODItems.DIAMOND, 'S', ItemMaterialsLB.DUST_GLOWIUM_D);
 		}
 	}
 	
@@ -87,13 +83,13 @@ public class BlockQFurnace extends BlockLB
 			if(tempFurn.fuel > 0)
 			{
 				double fuel = (tempFurn.fuel / TileQFurnace.MAX_PROGRESS);
-				fuel = ((int)(fuel * 10D)) / 10D;
+				fuel = ((int) (fuel * 10D)) / 10D;
 				l.add("Fuel: " + fuel + " items");
 			}
 			
 			if(tempFurn.progress > 0 && tempFurn.result != null)
 			{
-				int prog = (int)(tempFurn.progress * 100D / TileQFurnace.MAX_PROGRESS);
+				int prog = (int) (tempFurn.progress * 100D / TileQFurnace.MAX_PROGRESS);
 				l.add("Progress: " + prog + "% smelting " + tempFurn.result.getDisplayName());
 			}
 		}

@@ -20,8 +20,8 @@ public class MessageDefaultPaint extends MessageLM
 		
 		for(int i = 0; i < 6; i++)
 		{
-			a[i * 2 + 0] = (short)(Math.max(0, (p[i] == null) ? 0 : Block.getIdFromBlock(p[i].block)));
-			a[i * 2 + 1] = (short)((p[i] == null) ? 0 : p[i].meta);
+			a[i * 2 + 0] = (short) (Math.max(0, (p[i] == null) ? 0 : Block.getIdFromBlock(p[i].block)));
+			a[i * 2 + 1] = (short) ((p[i] == null) ? 0 : p[i].meta);
 		}
 		
 		for(int i = 0; i < 12; i++)

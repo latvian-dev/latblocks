@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+
 import ftb.lib.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
@@ -24,15 +25,12 @@ public class BlockPaintableGS extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PGP", " P ",
-				'P', LatBlocksItems.b_cover,
-				'G', Blocks.glowstone);
+		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PGP", " P ", 'P', LatBlocksItems.b_cover, 'G', Blocks.glowstone);
 	}
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePaintableGS(); }
 	
 	public static class TilePaintableGS extends TileSidedPaintable
-	{
-	}
+	{ }
 }

@@ -1,4 +1,5 @@
 package latmod.latblocks.block.tank;
+
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.client.render.world.RenderTank;
@@ -23,10 +24,7 @@ public class BlockWaterTank extends BlockTankBase
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
-				'W', Items.water_bucket,
-				'T', BlockTank.TANK_BASIC,
-				'E', Items.ender_pearl);
+		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW", 'W', Items.water_bucket, 'T', BlockTank.TANK_BASIC, 'E', Items.ender_pearl);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)
@@ -42,7 +40,7 @@ public class BlockWaterTank extends BlockTankBase
 	
 	public int damageDropped(int i)
 	{ return 0; }
-
+	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankItemBorderIcon(ItemStack item)
 	{ return (item.getItemDamage() == 1) ? icon_on : blockIcon; }

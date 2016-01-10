@@ -23,14 +23,14 @@ public class GuiQFurnace extends GuiLM
 	public GuiQFurnace(final ContainerQFurnace c)
 	{
 		super(c, texLoc);
-		furnace = (TileQFurnace)c.inv;
+		furnace = (TileQFurnace) c.inv;
 		
 		barFuel = new WidgetLM(this, 57, 36, texFuel.widthI(), texFuel.heightI())
 		{
 			public void addMouseOverText(List<String> l)
 			{
 				double d = (furnace.fuel / TileQFurnace.MAX_PROGRESS);
-				d = ((int)(d * 10D)) / 10D;
+				d = ((int) (d * 10D)) / 10D;
 				l.add(d + " items");
 			}
 		};
@@ -41,7 +41,7 @@ public class GuiQFurnace extends GuiLM
 			{
 				if(furnace.result != null)
 				{
-					int d = (int)(furnace.progress * 100D / TileQFurnace.MAX_PROGRESS);
+					int d = (int) (furnace.progress * 100D / TileQFurnace.MAX_PROGRESS);
 					l.add(d + "%");
 				}
 			}

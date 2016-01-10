@@ -65,7 +65,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
-		BlockGlowium bg = (BlockGlowium)b;
+		BlockGlowium bg = (BlockGlowium) b;
 		
 		renderBlocks.setCustomColor(LMColorUtils.addBrightness(b.getRenderColor(meta), -20));
 		
@@ -94,11 +94,11 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 		renderBlocks.setRenderBoundsFromBlock(b);
 		renderBlocks.setCustomColor(null);
 		
-		TilePaintableLB t = (TilePaintableLB)iba.getTileEntity(x, y, z);
+		TilePaintableLB t = (TilePaintableLB) iba.getTileEntity(x, y, z);
 		
 		if(t == null || t.isInvalid()) return false;
 		
-		currentGBlock = (BlockGlowium)b;
+		currentGBlock = (BlockGlowium) b;
 		
 		currentColor = BlockGlowium.brightColors[iba.getBlockMetadata(x, y, z)];
 		

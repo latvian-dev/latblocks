@@ -16,22 +16,34 @@ public enum Placement
 	public static final double B0 = 1D / 16D * 3D;
 	public static final double B1 = 1D - B0;
 	
-	/** Y-: 0, -1, 0 */
+	/**
+	 * Y-: 0, -1, 0
+	 */
 	public static final int D_DOWN = 0;
 	
-	/** Y+: 0, 1, 0 */
+	/**
+	 * Y+: 0, 1, 0
+	 */
 	public static final int D_UP = 1;
 	
-	/** Z-: 0, 0, -1 */
+	/**
+	 * Z-: 0, 0, -1
+	 */
 	public static final int D_NORTH = 2;
 	
-	/** Z+: 0, 0, 1 */
+	/**
+	 * Z+: 0, 0, 1
+	 */
 	public static final int D_SOUTH = 3;
 	
-	/** X-: -1, 0, 0 */
+	/**
+	 * X-: -1, 0, 0
+	 */
 	public static final int D_WEST = 4;
 	
-	/** X+: 1, 0, 0 */
+	/**
+	 * X+: 1, 0, 0
+	 */
 	public static final int D_EAST = 5;
 	
 	Placement() { }

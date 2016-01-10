@@ -39,11 +39,7 @@ public class BlockQChest extends BlockLB
 	{
 		if(LatBlocksConfigCrafting.chest.get())
 		{
-			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ",
-					'Q', Blocks.quartz_block,
-					'F', Blocks.chest,
-					'D', ODItems.DIAMOND,
-					'S', ItemMaterialsLB.DUST_GLOWIUM_D);
+			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ", 'Q', Blocks.quartz_block, 'F', Blocks.chest, 'D', ODItems.DIAMOND, 'S', ItemMaterialsLB.DUST_GLOWIUM_D);
 		}
 	}
 	

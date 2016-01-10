@@ -15,7 +15,11 @@ public class TankCraftingHandler implements IRecipe // ShapedRecipes
 	public final ItemStack item;
 	
 	public TankCraftingHandler(ItemStack out, ItemStack in, ItemStack m)
-	{ output = out; input = in; item = m; }
+	{
+		output = out;
+		input = in;
+		item = m;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public static void register(ItemStack out, ItemStack in, ItemStack m)
@@ -38,8 +42,7 @@ public class TankCraftingHandler implements IRecipe // ShapedRecipes
 				
 				if(is != null && i != 4)
 				{
-					if(LMInvUtils.itemsEquals(is, input, false, false))
-						tanks++;
+					if(LMInvUtils.itemsEquals(is, input, false, false)) tanks++;
 				}
 			}
 		}

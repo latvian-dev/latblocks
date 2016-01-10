@@ -31,8 +31,7 @@ public class BlockPFence extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 2), "SSS", "SSS",
-				'S', ItemMaterialsLB.ROD);
+		getMod().recipes.addRecipe(new ItemStack(this, 2), "SSS", "SSS", 'S', ItemMaterialsLB.ROD);
 	}
 	
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
@@ -155,6 +154,5 @@ public class BlockPFence extends BlockPaintableSingle
 	{ return side == ForgeDirection.UP || side == ForgeDirection.DOWN; }
 	
 	public static class TilePFence extends TileSinglePaintable
-	{
-	}
+	{ }
 }

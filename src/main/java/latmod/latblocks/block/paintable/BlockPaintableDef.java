@@ -1,4 +1,5 @@
 package latmod.latblocks.block.paintable;
+
 import ftb.lib.item.ODItems;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;
@@ -23,10 +24,8 @@ public class BlockPaintableDef extends BlockPaintableSided
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 16), "WWW", "WQW", "WWW",
-				'W', new ItemStack(Blocks.wool, 1, 0),
-				'Q', ODItems.QUARTZ);
-
+		getMod().recipes.addRecipe(new ItemStack(this, 16), "WWW", "WQW", "WWW", 'W', new ItemStack(Blocks.wool, 1, 0), 'Q', ODItems.QUARTZ);
+		
 		getMod().recipes.addShapelessRecipe(new ItemStack(this, 1), ORE_NAME);
 	}
 	
@@ -34,6 +33,5 @@ public class BlockPaintableDef extends BlockPaintableSided
 	{ return new TilePaintableDef(); }
 	
 	public static class TilePaintableDef extends TileSidedPaintable
-	{
-	}
+	{ }
 }

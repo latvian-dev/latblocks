@@ -43,16 +43,14 @@ public abstract class TilePaintableLB extends TileLM implements IPaintable, IWai
 		if(p.player.isSneaking())
 		{
 			for(int i = 0; i < paint.length; i++)
-				if(p.paint == null || isPaintValid(i, p.paint))
-					setPaint(i, p.paint);
+				if(p.paint == null || isPaintValid(i, p.paint)) setPaint(i, p.paint);
 			markDirty();
 			return true;
 		}
 		
 		if(p.canReplace(getPaint(p.side)))
 		{
-			if(p.paint == null || isPaintValid(p.side, p.paint))
-				setPaint(p.side, p.paint);
+			if(p.paint == null || isPaintValid(p.side, p.paint)) setPaint(p.side, p.paint);
 			markDirty();
 			return true;
 		}

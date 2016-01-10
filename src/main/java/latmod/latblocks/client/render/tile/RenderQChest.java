@@ -61,8 +61,8 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.disableLighting();
-			GlStateManager.translate( model.chestLid.rotationPointX / 16F,  model.chestLid.rotationPointY / 16F,  model.chestLid.rotationPointZ / 16F);
-			GlStateManager.rotate((float)(model.chestLid.rotateAngleX * 180D / Math.PI), 1F, 0F, 0F);
+			GlStateManager.translate(model.chestLid.rotationPointX / 16F, model.chestLid.rotationPointY / 16F, model.chestLid.rotationPointZ / 16F);
+			GlStateManager.rotate((float) (model.chestLid.rotateAngleX * 180D / Math.PI), 1F, 0F, 0F);
 			GlStateManager.translate(-model.chestLid.rotationPointX / 16F, -model.chestLid.rotationPointY / 16F, -model.chestLid.rotationPointZ / 16F);
 			GlStateManager.translate(0.5D, 0.23D, 1D / 16D - 0.001D);
 			GlStateManager.color(1F, 1F, 1F, 1F);
@@ -91,16 +91,9 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			
 			Block b = Block.getBlockFromItem(t.iconItem.getItem());
 			
-			if(b != Blocks.air
-			&& b.getBlockBoundsMinX() == 0D
-			&& b.getBlockBoundsMinY() == 0D
-			&& b.getBlockBoundsMinZ() == 0D
-			&& b.getBlockBoundsMaxX() == 1D
-			&& b.getBlockBoundsMaxY() == 1D
-			&& b.getBlockBoundsMaxZ() == 1D)
+			if(b != Blocks.air && b.getBlockBoundsMinX() == 0D && b.getBlockBoundsMinY() == 0D && b.getBlockBoundsMinZ() == 0D && b.getBlockBoundsMaxX() == 1D && b.getBlockBoundsMaxY() == 1D && b.getBlockBoundsMaxZ() == 1D)
 				GlStateManager.translate(0.5F, 0.80F, 0.105F);
-			else
-				GlStateManager.translate(0.5F, 0.85F, 0.04F);
+			else GlStateManager.translate(0.5F, 0.85F, 0.04F);
 			
 			GlStateManager.rotate(180F, 0F, 1F, 0F);
 			
@@ -142,8 +135,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		GlStateManager.enableRescaleNormal();
 		GlStateManager.translate(0D, 1D, 1D);
 		
-		if(type == ItemRenderType.ENTITY)
-			GlStateManager.translate(-0.5D, 0D, -0.5D);
+		if(type == ItemRenderType.ENTITY) GlStateManager.translate(-0.5D, 0D, -0.5D);
 		
 		GlStateManager.scale(1F, -1F, -1F);
 		
@@ -168,8 +160,8 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.disableLighting();
-			GlStateManager.translate( model.chestLid.rotationPointX / 16F,  model.chestLid.rotationPointY / 16F,  model.chestLid.rotationPointZ / 16F);
-			GlStateManager.rotate((float)(model.chestLid.rotateAngleX * 180D / Math.PI), 1F, 0F, 0F);
+			GlStateManager.translate(model.chestLid.rotationPointX / 16F, model.chestLid.rotationPointY / 16F, model.chestLid.rotationPointZ / 16F);
+			GlStateManager.rotate((float) (model.chestLid.rotateAngleX * 180D / Math.PI), 1F, 0F, 0F);
 			GlStateManager.translate(-model.chestLid.rotationPointX / 16F, -model.chestLid.rotationPointY / 16F, -model.chestLid.rotationPointZ / 16F);
 			GlStateManager.translate(0.5D, 0.23D, 1D / 16D - 0.001D);
 			GlStateManager.color(1F, 1F, 1F, 1F);
@@ -200,16 +192,9 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			{
 				Block b = Block.getBlockFromItem(iconItem.getItem());
 				
-				if(b != Blocks.air
-				&& b.getBlockBoundsMinX() == 0D
-				&& b.getBlockBoundsMinY() == 0D
-				&& b.getBlockBoundsMinZ() == 0D
-				&& b.getBlockBoundsMaxX() == 1D
-				&& b.getBlockBoundsMaxY() == 1D
-				&& b.getBlockBoundsMaxZ() == 1D)
+				if(b != Blocks.air && b.getBlockBoundsMinX() == 0D && b.getBlockBoundsMinY() == 0D && b.getBlockBoundsMinZ() == 0D && b.getBlockBoundsMaxX() == 1D && b.getBlockBoundsMaxY() == 1D && b.getBlockBoundsMaxZ() == 1D)
 					GlStateManager.translate(0.5F, 0.80F, 0.105F);
-				else
-					GlStateManager.translate(0.5F, 0.85F, 0.04F);
+				else GlStateManager.translate(0.5F, 0.85F, 0.04F);
 				
 				GlStateManager.rotate(180F, 0F, 1F, 0F);
 				

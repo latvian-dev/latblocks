@@ -28,7 +28,7 @@ public class ItemBlockLB extends ItemBlockLM
 		int bx = x + Facing.offsetsXForSide[s];
 		int by = y + Facing.offsetsYForSide[s];
 		int bz = z + Facing.offsetsZForSide[s];
-
+		
 		ArrayList<AxisAlignedBB> list = new ArrayList<>();
 		int m = b.onBlockPlaced(w, ep, mop, is.getItemDamage());
 		
@@ -40,8 +40,7 @@ public class ItemBlockLB extends ItemBlockLM
 		
 		for(AxisAlignedBB aabb : list)
 		{
-			if(!w.checkNoEntityCollision(aabb.getOffsetBoundingBox(bx, by, bz), null))
-				return false;
+			if(!w.checkNoEntityCollision(aabb.getOffsetBoundingBox(bx, by, bz), null)) return false;
 		}
 		
 		return true;

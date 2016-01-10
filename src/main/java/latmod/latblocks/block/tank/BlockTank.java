@@ -53,31 +53,19 @@ public class BlockTank extends BlockTankBase
 			if(LatBlocksConfigCrafting.endlessTank.get())
 				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.DUST_STAR.getStack());
 		}
-
-		getMod().recipes.addRecipe(new ItemStack(this, 1, 0), " S ", "SGS", " S ",
-				'G', ODItems.GLASS_PANE_ANY,
-				'S', ODItems.STICK);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 1, 1), "TTT", "TIT", "TTT",
-				'T', new ItemStack(this, 1, 0),
-				'I', ODItems.IRON);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 1, 2), "TTT", "TIT", "TTT",
-				'T', new ItemStack(this, 1, 1),
-				'I', ODItems.GOLD);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 1, 3), "TTT", "TIT", "TTT",
-				'T', new ItemStack(this, 1, 2),
-				'I', ODItems.QUARTZ);
-
-		getMod().recipes.addRecipe(new ItemStack(this, 1, 4), "TTT", "TIT", "TTT",
-				'T', new ItemStack(this, 1, 3),
-				'I', ODItems.DIAMOND);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 0), " S ", "SGS", " S ", 'G', ODItems.GLASS_PANE_ANY, 'S', ODItems.STICK);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 1), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 0), 'I', ODItems.IRON);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 2), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 1), 'I', ODItems.GOLD);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 3), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 2), 'I', ODItems.QUARTZ);
+		
+		getMod().recipes.addRecipe(new ItemStack(this, 1, 4), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 3), 'I', ODItems.DIAMOND);
 		
 		if(LatBlocksConfigCrafting.endlessTank.get())
-			getMod().recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT",
-				'T', new ItemStack(this, 1, 4),
-				'I', ItemMaterialsLB.DUST_STAR);
+			getMod().recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 4), 'I', ItemMaterialsLB.DUST_STAR);
 	}
 	
 	public int damageDropped(int i)
@@ -108,12 +96,12 @@ public class BlockTank extends BlockTankBase
 		int cap = MathHelperLM.power(8, meta);
 		
 		DecimalFormat format = new DecimalFormat("###,###,###,###,###.###");
-		l.add(format.format( ((meta == 5) ? 2000000000 : (cap * 1000)) ).replace(',', '\'') + " mB [ Mk" + (meta + 1) + " ]");
+		l.add(format.format(((meta == 5) ? 2000000000 : (cap * 1000))).replace(',', '\'') + " mB [ Mk" + (meta + 1) + " ]");
 		
 		if(GuiScreen.isShiftKeyDown())
 		{
 			l.add((cap * 4) + "x " + new ItemStack(Items.stick).getDisplayName());
-			l.add((int)Math.ceil(cap * 6D / 16D) + "x " + new ItemStack(Blocks.glass).getDisplayName());
+			l.add((int) Math.ceil(cap * 6D / 16D) + "x " + new ItemStack(Blocks.glass).getDisplayName());
 			
 			if(cap >= 8) l.add((cap / 8) + "x " + new ItemStack(Items.iron_ingot).getDisplayName());
 			if(cap >= 64) l.add((cap / 64) + "x " + new ItemStack(Items.gold_ingot).getDisplayName());
@@ -143,7 +131,7 @@ public class BlockTank extends BlockTankBase
 			else if(meta == 4) c = 4096000D;
 			else if(meta == 5) c = fs.amount;
 			
-			fs.amount = (int)MathHelperLM.map(fs.amount, 0D, c, 0D, 1000D);
+			fs.amount = (int) MathHelperLM.map(fs.amount, 0D, c, 0D, 1000D);
 			return fs;
 		}
 		

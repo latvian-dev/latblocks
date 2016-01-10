@@ -39,9 +39,9 @@ public class RenderPaintable extends BlockRendererLM
 	{
 		renderBlocks.renderAllFaces = false;
 		boxes0.clear();
-		((BlockPaintableLB)b).addItemRenderBoxes(boxes0);
+		((BlockPaintableLB) b).addItemRenderBoxes(boxes0);
 		renderBlocks.setCustomColor(null);
-		renderBlocks.setOverrideBlockTexture(((BlockPaintableLB)b).getDefaultItemIcon());
+		renderBlocks.setOverrideBlockTexture(((BlockPaintableLB) b).getDefaultItemIcon());
 		
 		GlStateManager.pushMatrix();
 		LatBlocksClient.rotateBlocks();
@@ -64,11 +64,11 @@ public class RenderPaintable extends BlockRendererLM
 		renderBlocks.setRenderBoundsFromBlock(b);
 		renderBlocks.setCustomColor(null);
 		
-		TilePaintableLB t = (TilePaintableLB)iba.getTileEntity(x, y, z);
+		TilePaintableLB t = (TilePaintableLB) iba.getTileEntity(x, y, z);
 		
 		if(t == null || t.isInvalid()) return false;
 		
-		blockP = (BlockPaintableLB)b;
+		blockP = (BlockPaintableLB) b;
 		
 		Paint[] p = new Paint[6];
 		for(int i = 0; i < 6; i++)

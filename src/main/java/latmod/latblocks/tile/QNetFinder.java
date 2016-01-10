@@ -31,7 +31,7 @@ public class QNetFinder
 			TileEntity te = w.getTileEntity(c.posX, c.posY, c.posZ);
 			if(te != null && te instanceof IQuartzNetTile)
 			{
-				l.add((IQuartzNetTile)te);
+				l.add((IQuartzNetTile) te);
 				if(maxNetSize > 0 && l.size() == maxNetSize) return;
 			}
 			
@@ -42,8 +42,7 @@ public class QNetFinder
 				int z1 = c.posZ + Facing.offsetsZForSide[i];
 				
 				Block b = w.getBlock(x1, y1, z1);
-				if(b == LatBlocksItems.b_qcable)
-					addToList(l, w, new ChunkCoordinates(x1, y1, z1), maxNetSize, false);
+				if(b == LatBlocksItems.b_qcable) addToList(l, w, new ChunkCoordinates(x1, y1, z1), maxNetSize, false);
 			}
 			
 			return;
@@ -64,9 +63,8 @@ public class QNetFinder
 		else
 		{
 			TileEntity te = w.getTileEntity(c.posX, c.posY, c.posZ);
-			if(te != null && te instanceof IQuartzNetTile)
-				l.add((IQuartzNetTile)te);
-				//if(maxNetSize > 0 && l.size() == maxNetSize) return;
+			if(te != null && te instanceof IQuartzNetTile) l.add((IQuartzNetTile) te);
+			//if(maxNetSize > 0 && l.size() == maxNetSize) return;
 		}
 	}
 }

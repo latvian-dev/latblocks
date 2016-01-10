@@ -24,7 +24,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 	{
 		if(ep == null) return false;
 		ItemStack is = ep.inventory.armorInventory[3];
-		return is != null && is.getItem() instanceof ILBGlasses && ((ILBGlasses)is.getItem()).areLBGlassesActive(is, ep);
+		return is != null && is.getItem() instanceof ILBGlasses && ((ILBGlasses) is.getItem()).areLBGlassesActive(is, ep);
 	}
 	
 	public static void spawnInvParticles(World w, double x, double y, double z, int q)
@@ -51,7 +51,10 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 	}
 	
 	public ItemGlasses register()
-	{ LatBlocks.mod.addItem(this); return this; }
+	{
+		LatBlocks.mod.addItem(this);
+		return this;
+	}
 	
 	public String getUnlocalizedName(ItemStack is)
 	{ return LatBlocks.mod.getItemName(itemName); }
@@ -59,17 +62,14 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.goggles.get())
-			LatBlocks.mod.recipes.addRecipe(new ItemStack(this), "CCC", "LIL",
-				'C', Items.leather,
-				'L', ItemMaterialsLB.LENS,
-				'I', ODItems.IRON);
+			LatBlocks.mod.recipes.addRecipe(new ItemStack(this), "CCC", "LIL", 'C', Items.leather, 'L', ItemMaterialsLB.LENS, 'I', ODItems.IRON);
 	}
 	
 	public boolean isValidArmor(ItemStack is, int i, Entity e)
 	{ return i == 0; }
 	
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-    { return LatBlocks.mod.assets + "textures/items/glasses_armor.png"; }
+	{ return LatBlocks.mod.assets + "textures/items/glasses_armor.png"; }
 	
 	public String getItemID()
 	{ return itemName; }

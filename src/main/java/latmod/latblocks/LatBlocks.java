@@ -1,4 +1,5 @@
 package latmod.latblocks;
+
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
 import latmod.ftbu.util.LMMod;

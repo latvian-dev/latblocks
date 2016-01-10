@@ -57,7 +57,7 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		renderBlocks.renderAllFaces = true;
 		renderBlocks.setCustomColor(null);
 		
-		TileTankBase t = (TileTankBase)iba.getTileEntity(x, y, z);
+		TileTankBase t = (TileTankBase) iba.getTileEntity(x, y, z);
 		if(t == null || t.isInvalid()) return false;
 		
 		renderBlocks.setOverrideBlockTexture(t.getTankBorderIcon());
@@ -91,7 +91,7 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		renderBlocks.renderAllFaces = true;
 		renderBlocks.setCustomColor(null);
 		
-		BlockTankBase tb = (BlockTankBase)Block.getBlockFromItem(item.getItem());
+		BlockTankBase tb = (BlockTankBase) Block.getBlockFromItem(item.getItem());
 		Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
 		
 		double p = 1D / 16D;

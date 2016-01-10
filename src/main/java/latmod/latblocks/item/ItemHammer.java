@@ -36,10 +36,7 @@ public class ItemHammer extends ItemLB implements ICreativeSafeItem
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.hammer.get() > 0)
-			getMod().recipes.addRecipe(new ItemStack(this), "OGO", " I ", " I ",
-				'I', ODItems.IRON,
-				'O', ODItems.OBSIDIAN,
-				'G', (LatBlocksConfigCrafting.hammer.get() == 1 ? ItemMaterialsLB.GEM_GLOWIUM_D : ODItems.DIAMOND));
+			getMod().recipes.addRecipe(new ItemStack(this), "OGO", " I ", " I ", 'I', ODItems.IRON, 'O', ODItems.OBSIDIAN, 'G', (LatBlocksConfigCrafting.hammer.get() == 1 ? ItemMaterialsLB.GEM_GLOWIUM_D : ODItems.DIAMOND));
 	}
 	
 	public int getDamage(ItemStack is)

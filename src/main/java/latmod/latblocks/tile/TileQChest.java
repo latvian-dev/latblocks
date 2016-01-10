@@ -1,4 +1,5 @@
 package latmod.latblocks.tile;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.FTBLib;
 import ftb.lib.api.gui.IGuiTile;
@@ -81,7 +82,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public void writeTileClientData(NBTTagCompound tag)
 	{
 		super.writeTileClientData(tag);
-		if(playersUsing > 0) tag.setByte("PlayersUsing", (byte)playersUsing);
+		if(playersUsing > 0) tag.setByte("PlayersUsing", (byte) playersUsing);
 	}
 	
 	public void onUpdate()
@@ -104,7 +105,11 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
 		if(!isServer()) return true;
-		else if(!security.canInteract(ep)) { printOwner(ep); return true; }
+		else if(!security.canInteract(ep))
+		{
+			printOwner(ep);
+			return true;
+		}
 		else if(!ep.isSneaking()) FTBLib.openGui(ep, this, null);
 		else if(LMInvUtils.isWrench(is))
 		{
@@ -168,12 +173,11 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		playersUsing++;
 		if(isServer()) markDirty();
 	}
-
+	
 	public void closeInventory()
 	{
 		playersUsing--;
-		if(playersUsing < 0)
-			playersUsing = 0;
+		if(playersUsing < 0) playersUsing = 0;
 		if(isServer()) markDirty();
 	}
 	
@@ -204,7 +208,10 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	{
 		if(!isServer()) return;
 		if(!security.canInteract(ep))
-		{ printOwner(ep); return; }
+		{
+			printOwner(ep);
+			return;
+		}
 		FTBLib.openGui(ep, this, null);
 	}
 	
@@ -219,8 +226,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 			}
 			else printOwner(ep);
 		}
-		else if(button.equals(BUTTON_GLOW))
-			textGlows = !textGlows;
+		else if(button.equals(BUTTON_GLOW)) textGlows = !textGlows;
 		else if(button.equals(BUTTON_COL))
 		{
 			int col = data.getInteger("C");
@@ -228,7 +234,6 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 			if(i == 0) colorChest = col;
 			else colorText = col;
 		}
-		else if(button.equals(BUTTON_SET_ITEM))
-			iconItem = (data == null) ? null : ItemStack.loadItemStackFromNBT(data);
+		else if(button.equals(BUTTON_SET_ITEM)) iconItem = (data == null) ? null : ItemStack.loadItemStackFromNBT(data);
 	}
 }

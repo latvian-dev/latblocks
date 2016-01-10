@@ -1,4 +1,5 @@
 package latmod.latblocks.gui;
+
 import ftb.lib.gui.ContainerLM;
 import ftb.lib.item.SlotLM;
 import latmod.latblocks.tile.TileQFurnace;
@@ -22,34 +23,33 @@ public class ContainerQFurnace extends ContainerLM
 	public ItemStack transferStackInSlot(EntityPlayer ep, int i)
 	{
 		ItemStack is = null;
-		Slot slot = (Slot)inventorySlots.get(i);
+		Slot slot = (Slot) inventorySlots.get(i);
 		
-		if (slot != null && slot.getHasStack())
+		if(slot != null && slot.getHasStack())
 		{
 			ItemStack is1 = slot.getStack();
 			is = is1.copy();
 			
-			if (i == 2)
+			if(i == 2)
 			{
-				if (!mergeItemStack(is1, 3, 39, true)) return null;
+				if(!mergeItemStack(is1, 3, 39, true)) return null;
 				slot.onSlotChange(is1, is);
 			}
-			else if (i != 1 && i != 0)
+			else if(i != 1 && i != 0)
 			{
-				if (FurnaceRecipes.smelting().getSmeltingResult(is1) != null)
-				{ if (!mergeItemStack(is1, 0, 1, false)) return null; }
-				else if (TileEntityFurnace.isItemFuel(is1))
-				{ if (!mergeItemStack(is1, 1, 2, false)) return null; }
-				else if (i >= 3 && i < 30)
-				{ if (!mergeItemStack(is1, 30, 39, false)) return null; }
-				else if (i >= 30 && i < 39 && !mergeItemStack(is1, 3, 30, false))
-					return null;
+				if(FurnaceRecipes.smelting().getSmeltingResult(is1) != null)
+				{ if(!mergeItemStack(is1, 0, 1, false)) return null; }
+				else if(TileEntityFurnace.isItemFuel(is1))
+				{ if(!mergeItemStack(is1, 1, 2, false)) return null; }
+				else if(i >= 3 && i < 30)
+				{ if(!mergeItemStack(is1, 30, 39, false)) return null; }
+				else if(i >= 30 && i < 39 && !mergeItemStack(is1, 3, 30, false)) return null;
 			}
-			else if (!mergeItemStack(is1, 3, 39, false)) return null;
+			else if(!mergeItemStack(is1, 3, 39, false)) return null;
 			
-			if (is1.stackSize == 0) slot.putStack((ItemStack)null);
+			if(is1.stackSize == 0) slot.putStack((ItemStack) null);
 			else slot.onSlotChanged();
-			if (is1.stackSize == is.stackSize) return null;
+			if(is1.stackSize == is.stackSize) return null;
 			slot.onPickupFromSlot(ep, is1);
 		}
 		

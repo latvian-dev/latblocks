@@ -30,9 +30,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this), "PSP", "PSP",
-				'P', LatBlocksItems.b_paintable,
-				'S', ItemMaterialsLB.ROD);
+		getMod().recipes.addRecipe(new ItemStack(this), "PSP", "PSP", 'P', LatBlocksItems.b_paintable, 'S', ItemMaterialsLB.ROD);
 	}
 	
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
@@ -52,8 +50,16 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		
 		double d = 0.01D;
 		
-		if(m % 2 == 0) { x0 = -d; x1 = 1D + d; }
-		else { z0 = -d; z1 = 1D + d; }
+		if(m % 2 == 0)
+		{
+			x0 = -d;
+			x1 = 1D + d;
+		}
+		else
+		{
+			z0 = -d;
+			z1 = 1D + d;
+		}
 		
 		double h = 1.5D;
 		if(LatBlocksConfigGeneral.fencesIgnorePlayers.get() && e instanceof EntityPlayer) h = 1D;
@@ -106,8 +112,16 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		
 		double d = 0.01D;
 		
-		if(m % 2 == 0) { x0 = -d; x1 = 1D + d; }
-		else { z0 = -d; z1 = 1D + d; }
+		if(m % 2 == 0)
+		{
+			x0 = -d;
+			x1 = 1D + d;
+		}
+		else
+		{
+			z0 = -d;
+			z1 = 1D + d;
+		}
 		
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1D, z1));
 	}
@@ -157,7 +171,10 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	}
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
-	{ setOpen(w, x, y, z, !isOpen(w.getBlockMetadata(x, y, z))); return true; }
+	{
+		setOpen(w, x, y, z, !isOpen(w.getBlockMetadata(x, y, z)));
+		return true;
+	}
 	
 	public boolean isOpen(int meta)
 	{ return meta > 1; }
@@ -184,7 +201,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
-		if (!w.isRemote)
+		if(!w.isRemote)
 		{
 			boolean flag = w.isBlockIndirectlyGettingPowered(x, y, z);
 			if(flag || b.canProvidePower()) setOpen(w, x, y, z, flag);
@@ -192,6 +209,5 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	}
 	
 	public static class TilePFenceGate extends TileSinglePaintable
-	{
-	}
+	{ }
 }

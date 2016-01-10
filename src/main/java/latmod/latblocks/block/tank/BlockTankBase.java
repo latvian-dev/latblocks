@@ -1,4 +1,5 @@
 package latmod.latblocks.block.tank;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.client.FTBLibClient;
 import latmod.ftbu.api.paint.*;
@@ -50,8 +51,8 @@ public abstract class BlockTankBase extends BlockLB implements ICustomPaintBlock
 	{ return FTBLibClient.blockNullIcon; }
 	
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
-    { return true; }
+	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
+	{ return true; }
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
@@ -63,7 +64,7 @@ public abstract class BlockTankBase extends BlockLB implements ICustomPaintBlock
 		TileEntity te = w.getTileEntity(x, y, z);
 		if(te != null && te instanceof TileTankBase)
 		{
-			TileTankBase t = (TileTankBase)te;
+			TileTankBase t = (TileTankBase) te;
 			if(t != null && t.tank.hasFluid())
 			{
 				Block b = t.tank.getFluid().getBlock();

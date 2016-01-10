@@ -18,12 +18,10 @@ public class BlockPCover extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 16), "PP", "PP",
-				'P', LatBlocksItems.b_paintable);
-
-		getMod().recipes.addRecipe(new ItemStack(LatBlocksItems.b_paintable), "PP", "PP",
-				'P', this);
-
+		getMod().recipes.addRecipe(new ItemStack(this, 16), "PP", "PP", 'P', LatBlocksItems.b_paintable);
+		
+		getMod().recipes.addRecipe(new ItemStack(LatBlocksItems.b_paintable), "PP", "PP", 'P', this);
+		
 		getMod().recipes.addShapelessRecipe(new ItemStack(this), ORE_NAME);
 	}
 	
@@ -40,6 +38,5 @@ public class BlockPCover extends BlockPaintableSingle
 	{ setBlockBounds(0.5F - height / 2F, 0F, 0F, 0.5F + height / 2F, 1F, 1F); }
 	
 	public static class TilePCover extends TileSinglePaintable
-	{
-	}
+	{ }
 }

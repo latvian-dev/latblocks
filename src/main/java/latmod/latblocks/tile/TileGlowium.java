@@ -37,7 +37,6 @@ public class TileGlowium extends TileSidedPaintable
 		
 		if(hasGlasses && paint[data.side] != null)
 			info.add((new ItemStack(getBlockType(), 1, getBlockMetadata())).getDisplayName() + " [" + EnumMCColor.VALUES[blockMetadata].toString() + "]");
-		else if(hasGlasses)
-			info.add(EnumMCColor.VALUES[blockMetadata].toString());
+		else if(hasGlasses) info.add(EnumMCColor.VALUES[blockMetadata].toString());
 	}
 }

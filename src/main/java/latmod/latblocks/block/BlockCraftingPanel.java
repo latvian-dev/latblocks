@@ -1,4 +1,5 @@
 package latmod.latblocks.block;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.FTBLib;
 import ftb.lib.api.gui.IGuiTile;
@@ -46,11 +47,14 @@ public class BlockCraftingPanel extends BlockLB
 		blockIcon = ir.registerIcon(getMod().assets + "crafting_panel");
 		icon_side = ir.registerIcon(getMod().assets + "crafting_panel_side");
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
-	{ if(s == 3 || s == 2) return blockIcon; return icon_side; }
-
+	{
+		if(s == 3 || s == 2) return blockIcon;
+		return icon_side;
+	}
+	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{
@@ -58,7 +62,7 @@ public class BlockCraftingPanel extends BlockLB
 		if(s == m || Facing.oppositeSide[s] == m) return blockIcon;
 		return icon_side;
 	}
-
+	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{ return super.onBlockActivated(w, x, y, z, ep, s, x1, y1, z1); }
 	
@@ -128,7 +132,10 @@ public class BlockCraftingPanel extends BlockLB
 	public static class TileCraftingPanel extends TileLM implements IGuiTile
 	{
 		public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
-		{ if(isServer()) FTBLib.openGui(ep, this, null); return true; }
+		{
+			if(isServer()) FTBLib.openGui(ep, this, null);
+			return true;
+		}
 		
 		public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 		{

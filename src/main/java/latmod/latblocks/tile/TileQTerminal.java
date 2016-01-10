@@ -26,11 +26,14 @@ public class TileQTerminal extends TileLM implements IGuiTile
 	
 	public void writeTileData(NBTTagCompound tag)
 	{
-		if(sorting > 0) tag.setByte("Sorting", (byte)sorting);
+		if(sorting > 0) tag.setByte("Sorting", (byte) sorting);
 	}
 	
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
-	{ if(isServer()) FTBLib.openGui(ep, this, null); return true; }
+	{
+		if(isServer()) FTBLib.openGui(ep, this, null);
+		return true;
+	}
 	
 	public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 	{ return new ContainerQNet(ep, this); }
@@ -45,8 +48,7 @@ public class TileQTerminal extends TileLM implements IGuiTile
 		{
 			int[] ai = data.getIntArray("Data");
 			TileEntity te = worldObj.getTileEntity(ai[0], ai[1], ai[2]);
-			if(te != null && te instanceof IQuartzNetTile)
-				((IQuartzNetTile)te).onQClicked(ep, ai[3]);
+			if(te != null && te instanceof IQuartzNetTile) ((IQuartzNetTile) te).onQClicked(ep, ai[3]);
 		}
 	}
 }

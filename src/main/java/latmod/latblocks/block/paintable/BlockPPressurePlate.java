@@ -28,8 +28,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 2), "PP",
-				'P', LatBlocksItems.b_cover);
+		getMod().recipes.addRecipe(new ItemStack(this, 2), "PP", 'P', LatBlocksItems.b_cover);
 	}
 	
 	public void onPostLoaded()
@@ -80,7 +79,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
-		if (!World.doesBlockHaveSolidTopSurface(w, x, y - 1, z) && !BlockFence.func_149825_a(w.getBlock(x, y - 1, z)))
+		if(!World.doesBlockHaveSolidTopSurface(w, x, y - 1, z) && !BlockFence.func_149825_a(w.getBlock(x, y - 1, z)))
 		{
 			dropBlockAsItem(w, x, y, z, w.getBlockMetadata(x, y, z), 0);
 			w.setBlockToAir(x, y, z);
@@ -88,16 +87,19 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	}
 	
 	public int isProvidingWeakPower(IBlockAccess iba, int x, int y, int z, int s)
-	{ return ((TilePPressurePlate)iba.getTileEntity(x, y, z)).isPressed ? 15 : 0; }
+	{ return ((TilePPressurePlate) iba.getTileEntity(x, y, z)).isPressed ? 15 : 0; }
 	
 	public int isProvidingStrongPower(IBlockAccess iba, int x, int y, int z, int s)
-	{ return ((TilePPressurePlate)iba.getTileEntity(x, y, z)).isPressed ? 15 : 0; }
+	{ return ((TilePPressurePlate) iba.getTileEntity(x, y, z)).isPressed ? 15 : 0; }
 	
 	public boolean canProvidePower()
 	{ return true; }
 	
 	private static AxisAlignedBB getBox(int x, int y, int z)
-	{ double p = 1D / 16D; return AxisAlignedBB.getBoundingBox(x + p, y, z + p, x + 1D - p, y + p, z + 1D - p); }
+	{
+		double p = 1D / 16D;
+		return AxisAlignedBB.getBoundingBox(x + p, y, z + p, x + 1D - p, y + p, z + 1D - p);
+	}
 	
 	public static class TilePPressurePlate extends TileSinglePaintable
 	{
@@ -153,21 +155,21 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		{
 			Class<? extends Entity> c = null;
 			
-				 if(plateType == 0) c = Entity.class;
+			if(plateType == 0) c = Entity.class;
 			else if(plateType == 1) c = EntityLivingBase.class;
 			else if(plateType == 2) c = EntityPlayer.class;
 			
 			List list = worldObj.getEntitiesWithinAABB(c, getBox(xCoord, yCoord, zCoord));
 			
-			if (list != null && !list.isEmpty())
+			if(list != null && !list.isEmpty())
 			{
 				for(int i = 0; i < list.size(); i++)
 				{
-					Entity e = (Entity)list.get(i);
+					Entity e = (Entity) list.get(i);
 					
 					if(!e.doesEntityNotTriggerPressurePlate())
 					{
-						if(plateType == 2 && e instanceof EntityPlayer && !security.canInteract((EntityPlayer)e))
+						if(plateType == 2 && e instanceof EntityPlayer && !security.canInteract((EntityPlayer) e))
 							continue;
 						
 						return true;

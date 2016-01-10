@@ -1,4 +1,5 @@
 package latmod.latblocks.gui;
+
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.SidedDirection;
 import ftb.lib.gui.GuiLM;
@@ -105,7 +106,8 @@ public class GuiDefaultPaint extends GuiLM
 				Block b = Block.getBlockFromItem(is.getItem());
 				if(b == Blocks.air) return;
 				int m = is.getItemDamage();
-				if(b.hasTileEntity(m) || b instanceof ICustomPaintBlock || b instanceof INoPaintBlock || b.getRenderType() != 0) return;
+				if(b.hasTileEntity(m) || b instanceof ICustomPaintBlock || b instanceof INoPaintBlock || b.getRenderType() != 0)
+					return;
 			}
 			
 			super.setItem(is);

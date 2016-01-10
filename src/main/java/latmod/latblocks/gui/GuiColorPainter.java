@@ -37,7 +37,7 @@ public class GuiColorPainter extends GuiLM
 				public void onButtonPressed(int b)
 				{
 					NBTTagCompound tag = new NBTTagCompound();
-					tag.setByte("Dmg", (byte)id);
+					tag.setByte("Dmg", (byte) id);
 					new MessageClientItemAction(ItemColorPainter.ACTION, tag).sendToServer();
 					container.player.closeScreen();
 				}

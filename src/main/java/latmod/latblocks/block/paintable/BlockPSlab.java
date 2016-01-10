@@ -16,9 +16,8 @@ public class BlockPSlab extends BlockPaintableSingle
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this, 6), "PPP",
-				'P', LatBlocksItems.b_paintable);
-
+		getMod().recipes.addRecipe(new ItemStack(this, 6), "PPP", 'P', LatBlocksItems.b_paintable);
+		
 		getMod().recipes.addShapelessRecipe(new ItemStack(LatBlocksItems.b_paintable), this, this);
 	}
 	
@@ -26,6 +25,5 @@ public class BlockPSlab extends BlockPaintableSingle
 	{ return new TilePSlab(); }
 	
 	public static class TilePSlab extends TileSinglePaintable
-	{
-	}
+	{ }
 }

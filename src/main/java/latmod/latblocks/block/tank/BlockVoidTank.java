@@ -1,4 +1,5 @@
 package latmod.latblocks.block.tank;
+
 import cpw.mods.fml.relauncher.*;
 import latmod.ftbu.tile.TileLM;
 import latmod.latblocks.tile.tank.TileVoidTank;
@@ -19,10 +20,7 @@ public class BlockVoidTank extends BlockTankBase
 	
 	public void loadRecipes()
 	{
-		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW",
-				'W', Items.water_bucket,
-				'T', BlockTank.TANK_BASIC,
-				'E', Blocks.obsidian);
+		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW", 'W', Items.water_bucket, 'T', BlockTank.TANK_BASIC, 'E', Blocks.obsidian);
 	}
 	
 	public TileLM createNewTileEntity(World w, int m)

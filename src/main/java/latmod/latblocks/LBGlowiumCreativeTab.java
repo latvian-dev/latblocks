@@ -18,8 +18,9 @@ public class LBGlowiumCreativeTab extends CreativeTabs
 	{
 		allBlocks.clear();
 		
-		for(int j = 0; j < 16; j++) for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
-			allBlocks.add(new ItemStack(LatBlocksItems.b_glowium[i], 1, j));
+		for(int j = 0; j < 16; j++)
+			for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
+				allBlocks.add(new ItemStack(LatBlocksItems.b_glowium[i], 1, j));
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -33,5 +34,5 @@ public class LBGlowiumCreativeTab extends CreativeTabs
 	
 	@SideOnly(Side.CLIENT)
 	public ItemStack getIconItemStack()
-	{ return allBlocks.get((int)((LMUtils.millis() / 1000L) % allBlocks.size())); }
+	{ return allBlocks.get((int) ((LMUtils.millis() / 1000L) % allBlocks.size())); }
 }

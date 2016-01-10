@@ -36,9 +36,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		
 		for(int i = 0; i < 16; i++)
 		{
-			getMod().recipes.addShapelessRecipe(new ItemStack(Blocks.wool, 1, BlockColored.func_150032_b(i)),
-					new ItemStack(this, 1, i),
-					new ItemStack(Blocks.wool, 1, ODItems.ANY));
+			getMod().recipes.addShapelessRecipe(new ItemStack(Blocks.wool, 1, BlockColored.func_150032_b(i)), new ItemStack(this, 1, i), new ItemStack(Blocks.wool, 1, ODItems.ANY));
 		}
 	}
 	
@@ -52,7 +50,11 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	{ return false; }
 	
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
-	{ if(!w.isRemote && ep.isSneaking()) LatBlocksGuiHandler.instance.openGui(ep, LatBlocksGuiHandler.COLOR_PAINTER, null); return is; }
+	{
+		if(!w.isRemote && ep.isSneaking())
+			LatBlocksGuiHandler.instance.openGui(ep, LatBlocksGuiHandler.COLOR_PAINTER, null);
+		return is;
+	}
 	
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{
@@ -65,7 +67,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	{
 		if(el instanceof EntitySheep)
 		{
-			EntitySheep es = (EntitySheep)el;
+			EntitySheep es = (EntitySheep) el;
 			int i = BlockColored.func_150032_b(is.getItemDamage());
 			
 			if(!es.getSheared() && es.getFleeceColor() != i)
@@ -82,8 +84,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 	
 	public ItemStack onClientAction(ItemStack is, EntityPlayer ep, String action, NBTTagCompound data)
 	{
-		if(action.equals(ACTION))
-			is.setItemDamage(data.getByte("Dmg"));
+		if(action.equals(ACTION)) is.setItemDamage(data.getByte("Dmg"));
 		return is;
 	}
 	

@@ -37,14 +37,13 @@ public class TileVoidTank extends TileTankBase
 	
 	public void onUpdate()
 	{
-		if(!isServer() && tick % 20 == 0)
-		for(int i = 0; i < 10; i++)
+		if(!isServer() && tick % 20 == 0) for(int i = 0; i < 10; i++)
 		{
 			double s = 0.25D;
 			double x = xCoord + s + MathHelperLM.rand.nextFloat() * (1D - s * 2D);
 			double y = yCoord + s + MathHelperLM.rand.nextFloat() * (1D - s * 2D);
 			double z = zCoord + s + MathHelperLM.rand.nextFloat() * (1D - s * 2D);
-			int[] col = { 0xAA000000, 0xAA666666, 0xAA3300FF };
+			int[] col = {0xAA000000, 0xAA666666, 0xAA3300FF};
 			FTBLibMod.proxy.spawnDust(worldObj, x, y, z, col[MathHelperLM.rand.nextInt(col.length)]);
 		}
 	}
@@ -53,7 +52,7 @@ public class TileVoidTank extends TileTankBase
 	{
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
 		
-		if (liquid != null)
+		if(liquid != null)
 		{
 			ep.inventory.setInventorySlotContents(ep.inventory.currentItem, LMInvUtils.reduceItem(is));
 			ep.inventory.markDirty();

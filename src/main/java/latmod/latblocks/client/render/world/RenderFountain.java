@@ -99,7 +99,10 @@ public class RenderFountain extends BlockRendererLM
 	
 	private static AxisAlignedBB cb(double x, double y1, double z, double w, double y2, double d)
 	{
-		x += 0.5D; z += 0.5D; w /= 2D; d /= 2D;
+		x += 0.5D;
+		z += 0.5D;
+		w /= 2D;
+		d /= 2D;
 		return AxisAlignedBB.getBoundingBox(x - w, y1, z - d, x + w, y2, z + d);
 	}
 	
@@ -177,7 +180,7 @@ public class RenderFountain extends BlockRendererLM
 		renderBlocks.currentSide = -1;
 		renderBlocks.setCustomColor(null);
 		
-		tile = (TileFountain)iba.getTileEntity(x, y, z);
+		tile = (TileFountain) iba.getTileEntity(x, y, z);
 		if(tile == null) return false;
 		
 		Paint[] paint = PaintableRenderer.to6(tile.paint[0]);
