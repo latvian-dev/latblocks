@@ -8,7 +8,7 @@ import ftb.lib.gui.GuiLM;
 import ftb.lib.gui.widgets.*;
 import ftb.lib.item.LMInvUtils;
 import latmod.ftbu.util.client.LMGuiButtons;
-import latmod.latblocks.*;
+import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 import latmod.lib.LMColorUtils;
 import net.minecraft.client.gui.GuiScreen;
@@ -79,6 +79,8 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			}
 		};
 		
+		buttonColChest.title = LatBlocks.mod.translateClient("chest_color");
+		
 		buttonColText = new ButtonLM(this, 15, 192, 16, 16)
 		{
 			public void onButtonPressed(int b)
@@ -88,8 +90,13 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			}
 			
 			public void addMouseOverText(List<String> l)
-			{ l.add(LMColorUtils.getHex(chest.colorText)); }
+			{
+				l.add(title);
+				l.add(LMColorUtils.getHex(chest.colorText));
+			}
 		};
+		
+		buttonColText.title = LatBlocks.mod.translateClient("text_color");
 		
 		buttonGlow = new ItemButtonLM(this, 15, 216, 16, 16)
 		{
@@ -100,6 +107,8 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 				refreshWidgets();
 			}
 		};
+		
+		buttonGlow.title = LatBlocks.mod.translateClient("text_glow");
 		
 		buttonSetItem = new ItemButtonLM(this, 217, 192, 16, 16)
 		{
@@ -117,6 +126,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			
 			public void addMouseOverText(List<String> l)
 			{
+				l.add(title);
 				if(item != null) l.add(item.getDisplayName());
 			}
 			
@@ -138,13 +148,12 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			}
 		};
 		
+		buttonSetItem.title = LatBlocks.mod.translateClient("chest_icon");
 		buttonSetItem.setItem(chest.iconItem);
 	}
 	
 	public void addWidgets()
 	{
-		buttonColChest.title = LatBlocksItems.b_qchest.getLocalizedName();
-		buttonColText.title = "ABC";
 		buttonGlow.setItem(new ItemStack(chest.textGlows ? Items.glowstone_dust : Items.gunpowder));
 		
 		mainPanel.add(textBoxLabel);

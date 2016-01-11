@@ -40,8 +40,8 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public TileQChest()
 	{
 		super(INV_W * INV_H);
-		colorChest = 0xB5B5B5;
-		colorText = 0x222222;
+		colorChest = 0xFFFFFFFF;
+		colorText = 0xFF222222;
 		customName = "Unnamed";
 	}
 	
@@ -51,8 +51,8 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public void readTileData(NBTTagCompound tag)
 	{
 		super.readTileData(tag);
-		colorChest = tag.hasKey("CColor") ? tag.getInteger("CColor") : 0xFFFFFFFF;
-		colorText = tag.hasKey("TColor") ? tag.getInteger("TColor") : 0xFFFFFFFF;
+		colorChest = 0xFF000000 | (tag.hasKey("CColor") ? tag.getInteger("CColor") : 0xFFFFFFFF);
+		colorText = 0xFF000000 | (tag.hasKey("TColor") ? tag.getInteger("TColor") : 0xFFFFFFFF);
 		textGlows = tag.getBoolean("Glows");
 		iconItem = tag.hasKey("Icon") ? ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Icon")) : null;
 	}
@@ -229,7 +229,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		else if(button.equals(BUTTON_GLOW)) textGlows = !textGlows;
 		else if(button.equals(BUTTON_COL))
 		{
-			int col = data.getInteger("C");
+			int col = 0xFF000000 | data.getInteger("C");
 			int i = data.getByte("ID");
 			if(i == 0) colorChest = col;
 			else colorText = col;

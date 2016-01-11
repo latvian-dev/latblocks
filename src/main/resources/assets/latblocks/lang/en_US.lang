@@ -88,3 +88,8 @@ client_config.latblocks.render_highlights=Render Highlights
 client_config.latblocks.blocks_glow=Painted Blocks Glow
 client_config.latblocks.fluids_flowing=Painted Fluids Flowing
 client_config.latblocks.def_paint=Default Paint
+
+latblocks:chest_color=Chest Color
+latblocks:text_color=Text Color
+latblocks:text_glow=Glownig Text
+latblocks:chest_icon=Chest Icon
