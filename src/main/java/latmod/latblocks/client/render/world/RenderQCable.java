@@ -1,8 +1,7 @@
 package latmod.latblocks.client.render.world;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.GlStateManager;
-import latmod.ftbu.util.client.*;
+import ftb.lib.api.client.GlStateManager;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockQCable;
 import net.minecraft.block.Block;

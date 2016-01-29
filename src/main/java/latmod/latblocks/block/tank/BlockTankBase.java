@@ -1,8 +1,8 @@
 package latmod.latblocks.block.tank;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.FTBLibClient;
-import latmod.ftbu.api.paint.*;
+import ftb.lib.api.client.FTBLibClient;
+import latmod.latblocks.api.*;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileTankBase;

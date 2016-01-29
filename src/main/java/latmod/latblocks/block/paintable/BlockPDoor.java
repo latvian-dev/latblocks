@@ -1,9 +1,9 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.item.ODItems;
-import latmod.ftbu.api.paint.IPainterItem;
+import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.api.IPainterItem;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;
 import latmod.lib.MathHelperLM;
@@ -78,7 +78,7 @@ public class BlockPDoor extends BlockPaintableSided
 		
 		if(!w.isRemote)
 		{
-			TilePDoor t = getTile(TilePDoor.class, w, x, y, z);
+			TilePDoor t = (TilePDoor) getTile(w, x, y, z);
 			if(t != null) t.open();
 		}
 		
@@ -92,7 +92,7 @@ public class BlockPDoor extends BlockPaintableSided
 	{
 		if(!w.isRemote && w.isBlockIndirectlyGettingPowered(x, y, z))
 		{
-			TilePDoor t = getTile(TilePDoor.class, w, x, y, z);
+			TilePDoor t = (TilePDoor) getTile(w, x, y, z);
 			if(t != null) t.open();
 		}
 	}
@@ -122,14 +122,14 @@ public class BlockPDoor extends BlockPaintableSided
 				if(timer == 0)
 				{
 					markDirty();
-					setMeta(0);
+					worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 3);
 					worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", MathHelperLM.rand.nextFloat() * 0.05F, MathHelperLM.rand.nextFloat() * 0.2F + 0.9F);
 				}
 				else if(timer == 37)
 				{
 					for(int i = 0; i < 6; i++)
 					{
-						TileEntity te = getTile(i);
+						TileEntity te = worldObj.getTileEntity(xCoord + Facing.offsetsXForSide[i], yCoord + Facing.offsetsYForSide[i], zCoord + Facing.offsetsZForSide[i]);
 						if(te != null && te instanceof TilePDoor)
 						{
 							TilePDoor t = (TilePDoor) te;
@@ -145,7 +145,7 @@ public class BlockPDoor extends BlockPaintableSided
 			if(timer == 0 && isServer())
 			{
 				timer = 40;
-				setMeta(1);
+				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
 				markDirty();
 				worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.fizz", MathHelperLM.rand.nextFloat() * 0.2F, MathHelperLM.rand.nextFloat() * 0.2F + 0.9F);
 				//worldObj.playAuxSFXAtEntity(null, 1003, xCoord, yCoord, zCoord, 0);

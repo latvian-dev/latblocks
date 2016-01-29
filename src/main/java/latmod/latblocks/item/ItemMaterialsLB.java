@@ -1,10 +1,8 @@
 package latmod.latblocks.item;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.EnumMCColor;
-import ftb.lib.item.ODItems;
-import latmod.ftbu.item.*;
-import latmod.ftbu.util.LMMod;
+import ftb.lib.*;
+import ftb.lib.api.item.*;
 import latmod.latblocks.*;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import net.minecraft.creativetab.CreativeTabs;

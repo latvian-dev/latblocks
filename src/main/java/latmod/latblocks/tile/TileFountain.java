@@ -1,11 +1,10 @@
 package latmod.latblocks.tile;
 
-import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.api.paint.*;
-import latmod.ftbu.api.tile.IWailaTile;
-import latmod.ftbu.tile.*;
-import latmod.ftbu.waila.WailaDataAccessor;
+import ftb.lib.api.item.LMInvUtils;
+import ftb.lib.api.tile.*;
+import ftb.lib.api.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
+import latmod.latblocks.api.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;

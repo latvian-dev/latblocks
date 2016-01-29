@@ -2,10 +2,9 @@ package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.*;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockLB;
-import latmod.latblocks.client.render.world.RenderPSlope;
 import latmod.latblocks.tile.TileSinglePaintable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,9 +32,9 @@ public class BlockPSlope extends BlockLB
 	public TileLM createNewTileEntity(World w, int m)
 	{ return new TilePSlope(); }
 	
-	@SideOnly(Side.CLIENT)
-	public int getRenderType()
-	{ return RenderPSlope.instance.getRenderId(); }
+	//@SideOnly(Side.CLIENT)
+	//public int getRenderType()
+	//{ return RenderPSlope.instance.getRenderId(); }
 	
 	public boolean isOpaqueCube()
 	{ return false; }
@@ -48,7 +47,7 @@ public class BlockPSlope extends BlockLB
 	
 	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
 	{
-		TilePSlope t = getTile(TilePSlope.class, iba, x, y, z);
+		TilePSlope t = (TilePSlope) getTile(iba, x, y, z);
 		return (t == null) ? true : t.isSolid(side.ordinal());
 	}
 	

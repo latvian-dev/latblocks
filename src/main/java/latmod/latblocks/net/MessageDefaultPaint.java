@@ -1,10 +1,10 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
-import ftb.lib.api.*;
-import latmod.ftbu.api.paint.Paint;
-import latmod.ftbu.world.*;
+import ftb.lib.api.net.*;
+import ftb.utils.world.*;
 import latmod.latblocks.LatBlocksGuiHandler;
+import latmod.latblocks.api.Paint;
 import latmod.lib.*;
 import net.minecraft.block.Block;
 

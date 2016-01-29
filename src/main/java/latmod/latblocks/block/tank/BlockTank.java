@@ -1,8 +1,8 @@
 package latmod.latblocks.block.tank;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.item.ODItems;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.item.ODItems;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.config.*;
 import latmod.latblocks.item.ItemMaterialsLB;
@@ -10,9 +10,10 @@ import latmod.latblocks.tile.tank.TileTank;
 import latmod.lib.MathHelperLM;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -36,8 +37,14 @@ public class BlockTank extends BlockTankBase
 	
 	public void onPostLoaded()
 	{
-		addAllDamages(6);
 		TANK_BASIC = new ItemStack(this, 1, 0);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item item, CreativeTabs c, List l)
+	{
+		for(int i = 0; i < 6; i++)
+			l.add(new ItemStack(item, 1, i));
 	}
 	
 	public void loadRecipes()
@@ -83,7 +90,7 @@ public class BlockTank extends BlockTankBase
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public void addInfo(ItemStack is, EntityPlayer ep, List<String> l)
+	public void addInformation(ItemStack is, EntityPlayer ep, List l, boolean adv)
 	{
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Fluid"))
 		{

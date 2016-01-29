@@ -2,14 +2,13 @@ package latmod.latblocks.client;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EventBusHelper;
+import ftb.lib.api.client.*;
 import ftb.lib.api.config.ClientConfigRegistry;
 import ftb.lib.api.gui.LMGuiHandlerRegistry;
-import ftb.lib.client.GlStateManager;
-import latmod.ftbu.api.paint.Paint;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.*;
+import latmod.latblocks.api.Paint;
 import latmod.latblocks.client.render.tile.*;
-import latmod.latblocks.client.render.world.*;
 import latmod.latblocks.net.MessageOpenDefPaintGui;
 import latmod.latblocks.tile.*;
 import latmod.latblocks.tile.tank.TileTankBase;
@@ -40,9 +39,10 @@ public class LatBlocksClient extends LatBlocksCommon
 		EventBusHelper.register(LatBlockClientEventHandler.instance);
 		
 		// TESR //
-		RenderQChest.instance.register(TileQChest.class);
-		RenderTankTile.instance.register(TileTankBase.class);
+		FTBLibClient.addTileRenderer(TileQChest.class, RenderQChest.instance);
+		FTBLibClient.addTileRenderer(TileTankBase.class, RenderTankTile.instance);
 		
+		/*
 		// ISBRH //
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
@@ -56,6 +56,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank);
 		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_water);
 		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_void);
+		*/
 	}
 	
 	public void postInit()

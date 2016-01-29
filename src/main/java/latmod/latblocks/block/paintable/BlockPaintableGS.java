@@ -1,6 +1,6 @@
 package latmod.latblocks.block.paintable;
 
-import ftb.lib.item.ODItems;
+import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
 import latmod.latblocks.tile.*;

@@ -2,10 +2,10 @@ package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EnumMCColor;
-import ftb.lib.item.*;
-import latmod.ftbu.api.paint.Paint;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.item.*;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.*;
+import latmod.latblocks.api.Paint;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileGlowium;
@@ -139,13 +139,11 @@ public abstract class BlockGlowium extends BlockLB
 	
 	public void onPostLoaded()
 	{
-		blocksAdded.add(new ItemStack(this, 1, DEF_DMG));
 		ODItems.add(ORE_NAME, new ItemStack(this, 1, ODItems.ANY));
 	}
 	
-	@SuppressWarnings("all")
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item j, CreativeTabs c, List l)
+	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
 		l.add(new ItemStack(this, 1, DEF_DMG));
 	}
@@ -239,12 +237,12 @@ public abstract class BlockGlowium extends BlockLB
 				
 				if(b != null)
 				{
-					TileGlowium t = getTile(TileGlowium.class, w, x, y, z);
+					TileGlowium t = (TileGlowium) getTile(w, x, y, z);
 					Paint[] prevPaint = t.paint.clone();
 					
 					w.setBlock(x, y, z, b, meta, 3);
 					
-					t = getTile(TileGlowium.class, w, x, y, z);
+					t = (TileGlowium) getTile(w, x, y, z);
 					
 					if(t != null)
 					{

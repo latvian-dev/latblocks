@@ -1,8 +1,8 @@
 package latmod.latblocks.tile;
 
 import ftb.lib.EnumMCColor;
-import latmod.ftbu.api.paint.Paint;
-import latmod.ftbu.waila.WailaDataAccessor;
+import ftb.lib.api.waila.WailaDataAccessor;
+import latmod.latblocks.api.Paint;
 import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.item.ItemStack;

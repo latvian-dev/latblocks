@@ -2,9 +2,9 @@ package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
-import ftb.lib.client.FTBLibClient;
-import ftb.lib.item.ODItems;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.client.FTBLibClient;
+import ftb.lib.api.item.ODItems;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQChest;
@@ -91,7 +91,7 @@ public class BlockQChest extends BlockLB
 			
 			l.add("Slots Used: " + slotsUsed + " / " + tempTile.items.length);
 			l.add("Items in chest: " + items);
-			l.add("Title: " + tempTile.customName);
+			l.add("Title: " + tempTile.getName());
 			l.add("Chest Color: " + LMColorUtils.getHex(tempTile.colorChest));
 			l.add("Text Color: " + LMColorUtils.getHex(tempTile.colorText));
 		}

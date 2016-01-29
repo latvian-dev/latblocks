@@ -1,6 +1,6 @@
 package latmod.latblocks.block.paintable;
 
-import ftb.lib.item.ODItems;
+import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.tile.*;
 import net.minecraft.init.Blocks;
@@ -28,7 +28,7 @@ public class BlockPaintableLamp extends BlockPaintableRS
 	
 	public int getLightValue(IBlockAccess iba, int x, int y, int z)
 	{
-		TilePaintableLamp t = getTile(TilePaintableLamp.class, iba, x, y, z);
+		TilePaintableLamp t = (TilePaintableLamp) getTile(iba, x, y, z);
 		return (t != null && t.power > 0) ? 15 : 0;
 	}
 	

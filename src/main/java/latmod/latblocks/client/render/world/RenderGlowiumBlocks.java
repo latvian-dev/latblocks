@@ -1,9 +1,8 @@
 package latmod.latblocks.client.render.world;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.*;
-import latmod.ftbu.api.paint.*;
-import latmod.ftbu.util.client.*;
+import ftb.lib.api.client.*;
+import latmod.latblocks.api.*;
 import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TilePaintableLB;

@@ -1,10 +1,10 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.*;
-import ftb.lib.gui.GuiLM;
-import ftb.lib.gui.widgets.ItemButtonLM;
-import latmod.latblocks.LatBlocks;
+import ftb.lib.TextureCoords;
+import ftb.lib.api.client.GlStateManager;
+import ftb.lib.api.gui.GuiContainerLM;
+import ftb.lib.api.gui.widgets.ItemButtonLM;
 import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.tile.*;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,9 +14,9 @@ import net.minecraft.util.ResourceLocation;
 import java.util.*;
 
 @SideOnly(Side.CLIENT)
-public class GuiQNet extends GuiLM
+public class GuiQNet extends GuiContainerLM
 {
-	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest_net.png");
+	public static final ResourceLocation tex = new ResourceLocation("latblocks", "textures/gui/qchest_net.png");
 	public static final TextureCoords tex_color = new TextureCoords(tex, 174, 0, 16, 16);
 	
 	public final TileQTerminal term;
@@ -24,7 +24,7 @@ public class GuiQNet extends GuiLM
 	
 	public GuiQNet(ContainerQNet c)
 	{
-		super(c, tex);
+		super(null, c, tex);
 		term = (TileQTerminal) c.inv;
 		
 		xSize = 174;
@@ -73,7 +73,7 @@ public class GuiQNet extends GuiLM
 		
 		public void onButtonPressed(int b)
 		{
-			inv.onQClicked(gui.container.player, b);
+			inv.onQClicked(((GuiQNet) gui).container.player, b);
 			NBTTagCompound data = new NBTTagCompound();
 			TileEntity te = (TileEntity) inv;
 			data.setIntArray("Data", new int[] {te.xCoord, te.yCoord, te.zCoord, b});

@@ -1,13 +1,11 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.api.client.*;
 import ftb.lib.api.gui.*;
 import ftb.lib.api.gui.callback.*;
-import ftb.lib.client.*;
-import ftb.lib.gui.GuiLM;
-import ftb.lib.gui.widgets.*;
-import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.util.client.LMGuiButtons;
+import ftb.lib.api.gui.widgets.*;
+import ftb.lib.api.item.LMInvUtils;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 import latmod.lib.LMColorUtils;
@@ -23,7 +21,7 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 {
-	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/gui/qchest.png");
+	public static final ResourceLocation tex = new ResourceLocation("latblocks", "textures/gui/qchest.png");
 	
 	public final TileQChest chest;
 	public final TextBoxLM textBoxLabel;
@@ -32,30 +30,33 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 	
 	public GuiQChest(ContainerQChest c)
 	{
-		super(c, tex);
+		super(null, tex);
 		
-		xSize = 248;
-		ySize = 247;
+		mainPanel.width = 248;
+		mainPanel.height = 247;
 		chest = (TileQChest) c.inv;
 		
 		textBoxLabel = new TextBoxLM(this, 7, 6, 235, 18)
 		{
 			public void textChanged()
 			{
-				chest.clientCustomName(textBoxLabel.text);
+				chest.clientCustomName(textBoxLabel.getText());
 			}
 		};
 		
 		textBoxLabel.charLimit = 45;
+		textBoxLabel.textRenderX = 11;
+		textBoxLabel.textRenderY = 11;
+		textBoxLabel.textColor = 0xFFCECECE;
 		
-		if(chest.customName != null) textBoxLabel.text = chest.customName;
+		if(chest.hasCustomInventoryName()) textBoxLabel.setText(chest.getName());
 		
 		buttonSecurity = new ButtonLM(this, 217, 168, 16, 16)
 		{
 			public void onButtonPressed(int b)
 			{
-				playClickSound();
-				chest.clientPressButton(LMGuiButtons.SECURITY, b);
+				FTBLibClient.playClickSound();
+				chest.clientPressButton("security", b);
 			}
 			
 			public void addMouseOverText(List<String> l)
@@ -68,7 +69,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		{
 			public void onButtonPressed(int b)
 			{
-				playClickSound();
+				FTBLibClient.playClickSound();
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorChest, 0, false);
 			}
 			
@@ -79,13 +80,13 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			}
 		};
 		
-		buttonColChest.title = LatBlocks.mod.translateClient("chest_color");
+		buttonColChest.title = LatBlocks.mod.translate("chest_color");
 		
 		buttonColText = new ButtonLM(this, 15, 192, 16, 16)
 		{
 			public void onButtonPressed(int b)
 			{
-				playClickSound();
+				FTBLibClient.playClickSound();
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorText, 1, false);
 			}
 			
@@ -96,30 +97,30 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			}
 		};
 		
-		buttonColText.title = LatBlocks.mod.translateClient("text_color");
+		buttonColText.title = LatBlocks.mod.translate("text_color");
 		
 		buttonGlow = new ItemButtonLM(this, 15, 216, 16, 16)
 		{
 			public void onButtonPressed(int b)
 			{
-				playClickSound();
+				FTBLibClient.playClickSound();
 				chest.clientPressButton(TileQChest.BUTTON_GLOW, b);
 				refreshWidgets();
 			}
 		};
 		
-		buttonGlow.title = LatBlocks.mod.translateClient("text_glow");
+		buttonGlow.title = LatBlocks.mod.translate("text_glow");
 		
 		buttonSetItem = new ItemButtonLM(this, 217, 192, 16, 16)
 		{
 			public void onButtonPressed(int b)
 			{
-				playClickSound();
+				FTBLibClient.playClickSound();
 				
 				if(GuiScreen.isShiftKeyDown()) setItem(null);
 				else
 				{
-					ItemStack is = gui.getHeldItem();
+					ItemStack is = FTBLibClient.mc.thePlayer.inventory.getItemStack();
 					if(is != null) setItem(is);
 				}
 			}
@@ -148,7 +149,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 			}
 		};
 		
-		buttonSetItem.title = LatBlocks.mod.translateClient("chest_icon");
+		buttonSetItem.title = LatBlocks.mod.translate("chest_icon");
 		buttonSetItem.setItem(chest.iconItem);
 	}
 	
@@ -182,7 +183,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 	
 	public void drawText(List<String> l)
 	{
-		textBoxLabel.render(11, 11, 0xCECECE);
+		textBoxLabel.renderWidget();
 		super.drawText(l);
 	}
 	

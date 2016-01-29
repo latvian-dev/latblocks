@@ -1,10 +1,10 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.FTBLibClient;
-import ftb.lib.item.ODItems;
-import latmod.ftbu.api.paint.*;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.client.FTBLibClient;
+import ftb.lib.api.item.ODItems;
+import ftb.lib.api.tile.TileLM;
+import latmod.latblocks.api.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

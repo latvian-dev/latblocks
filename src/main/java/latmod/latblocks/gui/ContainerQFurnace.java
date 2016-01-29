@@ -1,7 +1,7 @@
 package latmod.latblocks.gui;
 
-import ftb.lib.gui.ContainerLM;
-import ftb.lib.item.SlotLM;
+import ftb.lib.api.gui.ContainerLM;
+import ftb.lib.api.item.SlotLM;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.*;

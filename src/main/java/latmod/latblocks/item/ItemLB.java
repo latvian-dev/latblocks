@@ -1,8 +1,8 @@
 package latmod.latblocks.item;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.item.ItemLM;
-import latmod.ftbu.util.LMMod;
+import ftb.lib.LMMod;
+import ftb.lib.api.item.ItemLM;
 import latmod.latblocks.LatBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 

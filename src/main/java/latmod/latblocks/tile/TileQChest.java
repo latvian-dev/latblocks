@@ -1,15 +1,10 @@
 package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.FTBLib;
-import ftb.lib.api.gui.IGuiTile;
-import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.api.tile.ISecureTile;
-import latmod.ftbu.tile.TileInvLM;
-import latmod.ftbu.util.LMSecurityLevel;
-import latmod.ftbu.util.client.LMGuiButtons;
+import ftb.lib.*;
+import ftb.lib.api.item.LMInvUtils;
+import ftb.lib.api.tile.*;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.gui.*;
 import latmod.lib.MathHelperLM;
 import net.minecraft.client.gui.GuiScreen;
@@ -18,7 +13,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile, IQuartzNetTile
+public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, ISecureTile//FIXME:, IQuartzNetTile
 {
 	public static final int INV_W = 13;
 	public static final int INV_H = 7;
@@ -42,7 +37,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		super(INV_W * INV_H);
 		colorChest = 0xFFFFFFFF;
 		colorText = 0xFF222222;
-		customName = "Unnamed";
+		setName("Unnamed");
 	}
 	
 	public boolean rerenderBlock()
@@ -217,7 +212,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	
 	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayerMP ep)
 	{
-		if(button.equals(LMGuiButtons.SECURITY))
+		if(button.equals("security"))
 		{
 			if(ep != null && security.isOwner(ep))
 			{

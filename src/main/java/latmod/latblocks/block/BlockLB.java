@@ -1,11 +1,10 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.api.paint.*;
-import latmod.ftbu.block.BlockLM;
-import latmod.ftbu.item.ItemBlockLM;
-import latmod.ftbu.util.LMMod;
+import ftb.lib.LMMod;
+import ftb.lib.api.block.*;
 import latmod.latblocks.LatBlocks;
+import latmod.latblocks.api.*;
 import latmod.latblocks.client.LatBlocksClient;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;

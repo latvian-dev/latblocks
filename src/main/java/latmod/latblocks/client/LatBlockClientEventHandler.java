@@ -2,9 +2,9 @@ package latmod.latblocks.client;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.GlStateManager;
-import latmod.ftbu.item.ItemBlockLM;
-import latmod.latblocks.block.BlockPaintableLB;
+import ftb.lib.api.block.ItemBlockLM;
+import ftb.lib.api.client.GlStateManager;
+import latmod.latblocks.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.item.ItemBlock;
@@ -46,7 +46,7 @@ public class LatBlockClientEventHandler
 					GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 					GlStateManager.color(1F, 1F, 1F, 0.5F);
 					GL11.glLineWidth(3F);
-					GlStateManager.disableTexture();
+					GlStateManager.disableTexture2D();
 					GlStateManager.depthMask(false);
 					float f1 = 0.002F;
 					double pt = e.partialTicks;
@@ -72,7 +72,7 @@ public class LatBlockClientEventHandler
 						RenderGlobal.drawOutlinedBoundingBox(bb.expand(f1, f1, f1), -1);
 					}
 					
-					if(itemBlockLM.canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.player, e.currentItem))
+					if(((ItemBlockLB) itemBlockLM).canPlace(e.player.worldObj, e.target.blockX, e.target.blockY, e.target.blockZ, e.target.sideHit, e.player, e.currentItem))
 					{
 						for(int i = 0; i < placementBoxes.size(); i++)
 						{
@@ -90,7 +90,7 @@ public class LatBlockClientEventHandler
 					}
 					
 					GlStateManager.depthMask(true);
-					GlStateManager.enableTexture();
+					GlStateManager.enableTexture2D();
 					GlStateManager.enableBlend();
 					
 					if(!hl.isEmpty()) e.setCanceled(true);

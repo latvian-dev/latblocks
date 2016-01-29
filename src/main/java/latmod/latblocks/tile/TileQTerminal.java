@@ -2,8 +2,7 @@ package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.FTBLib;
-import ftb.lib.api.gui.IGuiTile;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.tile.*;
 import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.gui.*;
 import net.minecraft.client.gui.GuiScreen;

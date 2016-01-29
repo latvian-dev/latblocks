@@ -2,8 +2,8 @@ package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
-import ftb.lib.item.ODItems;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.item.ODItems;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQTerminal;

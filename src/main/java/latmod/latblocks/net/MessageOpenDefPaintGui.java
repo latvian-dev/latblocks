@@ -1,7 +1,7 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
-import ftb.lib.api.*;
+import ftb.lib.api.net.*;
 import latmod.latblocks.LatBlocksGuiHandler;
 
 public class MessageOpenDefPaintGui extends MessageLM

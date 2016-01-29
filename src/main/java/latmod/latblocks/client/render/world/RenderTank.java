@@ -1,8 +1,7 @@
 package latmod.latblocks.client.render.world;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.GlStateManager;
-import latmod.ftbu.util.client.BlockRendererLM;
+import ftb.lib.api.client.GlStateManager;
 import latmod.latblocks.block.tank.BlockTankBase;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.tank.TileTankBase;

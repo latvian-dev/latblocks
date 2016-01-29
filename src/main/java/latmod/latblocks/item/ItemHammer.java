@@ -1,8 +1,7 @@
 package latmod.latblocks.item;
 
 import com.google.common.collect.Multimap;
-import ftb.lib.item.*;
-import latmod.ftbu.api.item.ICreativeSafeItem;
+import ftb.lib.api.item.*;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.lib.LMListUtils;
 import net.minecraft.block.Block;
@@ -15,7 +14,7 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-public class ItemHammer extends ItemLB implements ICreativeSafeItem
+public class ItemHammer extends ItemLB
 {
 	public ItemHammer(String s)
 	{

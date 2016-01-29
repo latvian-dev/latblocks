@@ -1,12 +1,11 @@
 package latmod.latblocks.tile.tank;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.api.paint.IPainterItem;
-import latmod.ftbu.api.tile.IWailaTile;
-import latmod.ftbu.tile.Tank;
-import latmod.ftbu.waila.WailaDataAccessor;
+import ftb.lib.api.item.LMInvUtils;
+import ftb.lib.api.tile.*;
+import ftb.lib.api.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.api.IPainterItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,31 +1,33 @@
 package latmod.latblocks.client.render.tile;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.*;
-import latmod.ftbu.util.client.TileRenderer;
-import latmod.latblocks.LatBlocks;
+import ftb.lib.api.client.*;
 import latmod.latblocks.block.BlockQChest;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 @SideOnly(Side.CLIENT)
-public class RenderQChest extends TileRenderer<TileQChest> implements IItemRenderer // BlockQChest
+public class RenderQChest extends TileEntitySpecialRenderer implements IItemRenderer // BlockQChest
 {
 	public static final RenderQChest instance = new RenderQChest();
-	public static final ResourceLocation tex = LatBlocks.mod.getLocation("textures/blocks/chest_model.png");
-	public static final ResourceLocation tex_color = LatBlocks.mod.getLocation("textures/blocks/chest_model_color.png");
+	public static final ResourceLocation tex = new ResourceLocation("latblocks", "textures/blocks/chest_model.png");
+	public static final ResourceLocation tex_color = new ResourceLocation("latblocks", "textures/blocks/chest_model_color.png");
 	public final ModelChest model = new ModelChest();
 	public final RenderItem itemRender = new RenderItem();
 	
-	public void renderTile(TileQChest t, double x, double y, double z, float pt)
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float pt)
 	{
+		if(te == null || te.isInvalid()) return;
+		TileQChest t = (TileQChest) te;
 		GlStateManager.pushMatrix();
 		GlStateManager.enableRescaleNormal();
 		GlStateManager.translate(x, y + 1D, z + 1D);
@@ -42,22 +44,22 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		GlStateManager.rotate(rotYaw, 0F, 1F, 0F);
 		GlStateManager.translate(-0.5F, -0.5F, -0.5F);
 		
-		FontRenderer font = func_147498_b();
+		FontRenderer font = FTBLibClient.mc.fontRenderer;
 		
 		model.chestLid.rotateAngleX = -t.getLidAngle(pt);
 		
 		FTBLibClient.setGLColor(t.colorChest, 255);
-		bindTexture(tex_color);
+		FTBLibClient.setTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
 		GlStateManager.color(1F, 1F, 1F, 1F);
-		bindTexture(tex);
+		FTBLibClient.setTexture(tex);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
 		
 		GlStateManager.disableRescaleNormal();
 		
-		if(t.customName != null)
+		if(t.hasCustomInventoryName())
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.disableLighting();
@@ -69,13 +71,13 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			
 			if(t.textGlows) FTBLibClient.pushMaxBrightness();
 			
-			int ss = font.getStringWidth(t.customName);
+			int ss = font.getStringWidth(t.getName());
 			double d = 1D / Math.max((ss + 30), 64);
 			GlStateManager.scale(d, d, d);
 			
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(0D, 0D, -0.1D);
-			font.drawString(t.customName, -ss / 2, 0, t.colorText);
+			font.drawString(t.getName(), -ss / 2, 0, t.colorText);
 			GlStateManager.popMatrix();
 			
 			if(t.textGlows) FTBLibClient.popMaxBrightness();
@@ -99,7 +101,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			
 			float iS = 0.8F;
 			GlStateManager.scale(-iS, -iS, iS);
-			FTBLibClient.renderItem(FTBLibClient.mc.theWorld, t.iconItem, true, true);
+			FTBLibClient.renderItem(FTBLibClient.mc.theWorld, t.iconItem);
 			GlStateManager.popMatrix();
 		}
 		
@@ -126,7 +128,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 			colorChest = BlockQChest.tempTile.colorChest;
 			colorText = BlockQChest.tempTile.colorText;
 			iconItem = BlockQChest.tempTile.iconItem;
-			customName = BlockQChest.tempTile.customName;
+			customName = BlockQChest.tempTile.getName();
 			textGlows = BlockQChest.tempTile.textGlows;
 		}
 		
@@ -146,11 +148,11 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		model.chestLid.rotateAngleX = 0F;
 		
 		FTBLibClient.setGLColor(colorChest, 255);
-		bindTexture(tex_color);
+		FTBLibClient.setTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
 		GlStateManager.color(1F, 1F, 1F, 1F);
-		bindTexture(tex);
+		FTBLibClient.setTexture(tex);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
 		
@@ -200,7 +202,7 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 				
 				float iS = 0.8F;
 				GlStateManager.scale(-iS, -iS, iS);
-				FTBLibClient.renderItem(FTBLibClient.mc.theWorld, iconItem, true, true);
+				FTBLibClient.renderItem(FTBLibClient.mc.theWorld, iconItem);
 			}
 			catch(Exception e)
 			{
@@ -211,11 +213,5 @@ public class RenderQChest extends TileRenderer<TileQChest> implements IItemRende
 		
 		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
-	}
-	
-	public FontRenderer func_147498_b()
-	{
-		FontRenderer f = super.func_147498_b();
-		return (f == null) ? FTBLibClient.mc.fontRenderer : f;
 	}
 }

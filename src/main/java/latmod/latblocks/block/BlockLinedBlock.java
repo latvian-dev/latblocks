@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.FTBLibClient;
+import ftb.lib.api.client.FTBLibClient;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;

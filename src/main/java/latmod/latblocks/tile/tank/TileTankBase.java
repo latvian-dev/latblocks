@@ -1,15 +1,14 @@
 package latmod.latblocks.tile.tank;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.tile.*;
-import latmod.latblocks.api.IQuartzNetTile;
+import ftb.lib.api.tile.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 
-public abstract class TileTankBase extends TileLM implements IFluidHandler, IQuartzNetTile
+public abstract class TileTankBase extends TileLM implements IFluidHandler//FIXME, IQuartzNetTile
 {
 	public Tank tank;
 	

@@ -1,7 +1,7 @@
 package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.item.ODItems;
+import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
 import latmod.latblocks.tile.*;
@@ -66,7 +66,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
-		TilePPressurePlate t = getTile(TilePPressurePlate.class, iba, x, y, z);
+		TilePPressurePlate t = (TilePPressurePlate) getTile(iba, x, y, z);
 		double p = 1D / 16D;
 		boxes.add(AxisAlignedBB.getBoundingBox(p, 0D, p, 1D - p, (t != null && t.isPressed) ? p / 2D : p, 1D - p));
 	}

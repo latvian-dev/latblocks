@@ -1,13 +1,16 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.tile.TileLM;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
+
+import java.util.List;
 
 public class BlockLBBricks extends BlockLB
 {
@@ -25,10 +28,11 @@ public class BlockLBBricks extends BlockLB
 	public TileLM createNewTileEntity(World w, int m)
 	{ return null; }
 	
-	public void onPostLoaded()
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
 		for(int i = 0; i < names.length; i++)
-			blocksAdded.add(new ItemStack(this, 1, i));
+			l.add(new ItemStack(this, 1, i));
 	}
 	
 	public void loadRecipes()

@@ -1,6 +1,6 @@
 package latmod.latblocks.gui;
 
-import ftb.lib.gui.ContainerLM;
+import ftb.lib.api.gui.ContainerLM;
 import latmod.latblocks.tile.TileQTerminal;
 import net.minecraft.entity.player.EntityPlayer;
 

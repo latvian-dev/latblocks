@@ -2,9 +2,8 @@ package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
-import latmod.ftbu.api.paint.*;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.client.render.world.RenderPaintable;
+import latmod.latblocks.api.*;
 import latmod.latblocks.item.ItemGlasses;
 import latmod.latblocks.tile.TilePaintableLB;
 import latmod.lib.MathHelperLM;
@@ -45,9 +44,9 @@ public abstract class BlockPaintableLB extends BlockLB
 		getMod().addTile(createNewTileEntity(null, 0).getClass(), blockName);
 	}
 	
-	@SideOnly(Side.CLIENT)
-	public int getRenderType()
-	{ return RenderPaintable.instance.getRenderId(); }
+	//@SideOnly(Side.CLIENT)
+	//public int getRenderType()
+	//{ return RenderPaintable.instance.getRenderId(); }
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return m; }
@@ -78,11 +77,6 @@ public abstract class BlockPaintableLB extends BlockLB
 	
 	public boolean canHarvestBlock(EntityPlayer ep, int meta)
 	{ return true; }
-	
-	public final int getPlacedMeta(EntityPlayer ep, MovingObjectPosition mop)
-	{
-		return 0;
-	}
 	
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)

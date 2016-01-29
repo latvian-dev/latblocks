@@ -2,12 +2,12 @@ package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.SidedDirection;
-import ftb.lib.gui.GuiLM;
-import ftb.lib.gui.widgets.ItemButtonLM;
-import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.api.paint.*;
-import latmod.ftbu.world.*;
-import latmod.latblocks.*;
+import ftb.lib.api.gui.GuiLM;
+import ftb.lib.api.gui.widgets.ItemButtonLM;
+import ftb.lib.api.item.LMInvUtils;
+import ftb.utils.world.*;
+import latmod.latblocks.LatBlocksGuiHandler;
+import latmod.latblocks.api.*;
 import latmod.latblocks.net.MessageDefaultPaint;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -18,16 +18,13 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class GuiDefaultPaint extends GuiLM
 {
-	public static final ResourceLocation texLoc = LatBlocks.mod.getLocation("textures/gui/defPaint.png");
-	
 	public final PaintButton[] buttons;
 	
 	public GuiDefaultPaint(ContainerDefaultPaint c)
 	{
-		super(c, texLoc);
-		xSize = 176;
-		ySize = 166;
-		hideNEI = false;
+		super(null, new ResourceLocation("latblocks", "textures/gui/defPaint.png"));
+		mainPanel.width = 176;
+		mainPanel.height = 166;
 		
 		buttons = new PaintButton[6];
 		buttons[SidedDirection.FRONT.ID] = new PaintButton(this, 62, 35);

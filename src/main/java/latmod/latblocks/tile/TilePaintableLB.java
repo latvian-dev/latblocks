@@ -1,10 +1,9 @@
 package latmod.latblocks.tile;
 
-import latmod.ftbu.api.paint.*;
-import latmod.ftbu.api.tile.IWailaTile;
-import latmod.ftbu.tile.TileLM;
-import latmod.ftbu.waila.WailaDataAccessor;
+import ftb.lib.api.tile.*;
+import ftb.lib.api.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
+import latmod.latblocks.api.*;
 import latmod.latblocks.item.ItemGlasses;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -1,14 +1,10 @@
 package latmod.latblocks.block;
 
-import ftb.lib.MathHelperMC;
-import latmod.ftbu.item.ItemBlockLM;
+import ftb.lib.api.block.ItemBlockLM;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
 import net.minecraft.world.World;
-
-import java.util.ArrayList;
 
 public class ItemBlockLB extends ItemBlockLM
 {
@@ -17,6 +13,12 @@ public class ItemBlockLB extends ItemBlockLM
 		super(b);
 	}
 	
+	public boolean canPlace(World worldObj, int blockX, int blockY, int blockZ, int sideHit, EntityPlayer player, ItemStack currentItem)
+	{
+		return true;
+	}
+	
+	/*
 	public boolean canPlace(World w, int x, int y, int z, int s, EntityPlayer ep, ItemStack is)
 	{
 		BlockLB b = (BlockLB) Block.getBlockFromItem(is.getItem());
@@ -45,4 +47,5 @@ public class ItemBlockLB extends ItemBlockLM
 		
 		return true;
 	}
+	*/
 }

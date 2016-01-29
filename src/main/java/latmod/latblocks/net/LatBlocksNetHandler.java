@@ -1,12 +1,11 @@
 package latmod.latblocks.net;
 
 import cpw.mods.fml.relauncher.Side;
-import ftb.lib.api.LMNetworkWrapper;
-import latmod.latblocks.LatBlocks;
+import ftb.lib.api.net.LMNetworkWrapper;
 
 public class LatBlocksNetHandler
 {
-	static final LMNetworkWrapper NET = LMNetworkWrapper.newWrapper(LatBlocks.mod.modID);
+	static final LMNetworkWrapper NET = LMNetworkWrapper.newWrapper("LatBlocks");
 	
 	public static void init()
 	{

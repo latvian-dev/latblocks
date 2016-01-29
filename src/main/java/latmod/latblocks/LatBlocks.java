@@ -2,7 +2,7 @@ package latmod.latblocks;
 
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
-import latmod.ftbu.util.LMMod;
+import ftb.lib.LMMod;
 import latmod.latblocks.config.LatBlocksConfig;
 import latmod.latblocks.net.LatBlocksNetHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,7 +19,6 @@ public class LatBlocks
 	@SidedProxy(clientSide = "latmod.latblocks.client.LatBlocksClient", serverSide = "latmod.latblocks.LatBlocksCommon")
 	public static LatBlocksCommon proxy;
 	
-	@LMMod.Instance(MOD_ID)
 	public static LMMod mod;
 	public static CreativeTabs tab;
 	public static LBGlowiumCreativeTab tabGlowium;
@@ -27,7 +26,7 @@ public class LatBlocks
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
-		LMMod.init(this);
+		mod = LMMod.create(MOD_ID);
 		LatBlocksConfig.load();
 		LatBlocksItems.init();
 		mod.onPostLoaded();

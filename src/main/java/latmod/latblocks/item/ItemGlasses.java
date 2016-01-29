@@ -1,9 +1,8 @@
 package latmod.latblocks.item;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.item.ODItems;
+import ftb.lib.api.item.*;
 import ftb.lib.mod.FTBLibMod;
-import latmod.ftbu.api.item.IItemLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.api.ILBGlasses;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
@@ -64,6 +63,9 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 		if(LatBlocksConfigCrafting.goggles.get())
 			LatBlocks.mod.recipes.addRecipe(new ItemStack(this), "CCC", "LIL", 'C', Items.leather, 'L', ItemMaterialsLB.LENS, 'I', ODItems.IRON);
 	}
+	
+	public Item getItem()
+	{ return this; }
 	
 	public boolean isValidArmor(ItemStack is, int i, Entity e)
 	{ return i == 0; }

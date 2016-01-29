@@ -1,7 +1,7 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.item.*;
+import ftb.lib.api.item.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
 import net.minecraft.block.Block;

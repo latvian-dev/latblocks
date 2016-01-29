@@ -1,9 +1,9 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import latmod.ftbu.api.paint.*;
-import latmod.ftbu.tile.TileLM;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
+import latmod.latblocks.api.*;
 import latmod.latblocks.block.tank.BlockTank;
 import latmod.latblocks.client.render.world.RenderFountain;
 import latmod.latblocks.tile.TileFountain;

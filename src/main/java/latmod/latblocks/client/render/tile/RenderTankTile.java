@@ -1,27 +1,31 @@
 package latmod.latblocks.client.render.tile;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.client.*;
-import latmod.ftbu.util.client.TileRenderer;
-import latmod.ftbu.util.client.model.CubeRenderer;
+import ftb.lib.api.client.*;
+import ftb.lib.api.client.model.CubeRenderer;
 import latmod.latblocks.tile.tank.TileTankBase;
 import latmod.lib.MathHelperLM;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderTankTile extends TileRenderer<TileTankBase>
+public class RenderTankTile extends TileEntitySpecialRenderer
 {
 	public static final RenderTankTile instance = new RenderTankTile();
 	public static final CubeRenderer fluidRenderer = new CubeRenderer();
 	
-	public void renderTile(TileTankBase t, double x, double y, double z, float pt)
+	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float pt)
 	{
+		if(te == null || te.isInvalid()) return;
+		TileTankBase t = (TileTankBase) te;
+		
 		Fluid f = t.getTankRenderFluid();
 		
 		if(f != null)
@@ -54,7 +58,7 @@ public class RenderTankTile extends TileRenderer<TileTankBase>
 				double h1 = MathHelperLM.map(fluid_height, 0D, 1D, op, 1D - op);
 				
 				fluidRenderer.setSize(op, op, op, 1D - op, h1, 1D - op);
-				fluidRenderer.setUVFromIcon(icon_fluid);
+				fluidRenderer.setUV(icon_fluid.getMinU(), icon_fluid.getMinV(), icon_fluid.getMaxU(), icon_fluid.getMaxV());
 				fluidRenderer.renderAll();
 				
 				/*

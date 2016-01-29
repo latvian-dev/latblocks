@@ -1,8 +1,7 @@
 package latmod.latblocks.item;
 
 import ftb.lib.EnumMCColor;
-import ftb.lib.api.gui.IClientActionItem;
-import ftb.lib.item.ODItems;
+import ftb.lib.api.item.*;
 import latmod.latblocks.LatBlocksGuiHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityLivingBase;

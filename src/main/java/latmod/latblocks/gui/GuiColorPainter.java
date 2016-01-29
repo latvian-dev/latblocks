@@ -1,12 +1,11 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.EnumMCColor;
-import ftb.lib.client.*;
-import ftb.lib.gui.*;
-import ftb.lib.gui.widgets.ButtonLM;
+import ftb.lib.*;
+import ftb.lib.api.client.*;
+import ftb.lib.api.gui.GuiLM;
+import ftb.lib.api.gui.widgets.ButtonLM;
 import ftb.lib.mod.net.MessageClientItemAction;
-import latmod.latblocks.LatBlocks;
 import latmod.latblocks.item.ItemColorPainter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,16 +14,16 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class GuiColorPainter extends GuiLM
 {
-	public static final ResourceLocation texLoc = LatBlocks.mod.getLocation("textures/gui/colorPainter.png");
+	public static final ResourceLocation texLoc = new ResourceLocation("latblocks", "textures/gui/colorPainter.png");
 	public static final TextureCoords colTex = new TextureCoords(texLoc, 156, 0, 16, 16);
 	
 	public final ButtonLM buttons[] = new ButtonLM[16];
 	
 	public GuiColorPainter(EntityPlayer ep)
 	{
-		super(new ContainerEmpty(ep, null), texLoc);
-		xSize = 156;
-		ySize = 80;
+		super(null, texLoc);
+		mainPanel.width = 156;
+		mainPanel.width = 80;
 		
 		for(int i = 0; i < 16; i++)
 		{
@@ -39,7 +38,7 @@ public class GuiColorPainter extends GuiLM
 					NBTTagCompound tag = new NBTTagCompound();
 					tag.setByte("Dmg", (byte) id);
 					new MessageClientItemAction(ItemColorPainter.ACTION, tag).sendToServer();
-					container.player.closeScreen();
+					gui.close(null);
 				}
 			};
 			

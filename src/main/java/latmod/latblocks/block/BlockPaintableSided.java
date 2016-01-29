@@ -44,7 +44,7 @@ public abstract class BlockPaintableSided extends BlockPaintableLB
 	{
 		float f = getExplosionResistance(e);
 		
-		TileSidedPaintable t = getTile(TileSidedPaintable.class, w, x, y, z);
+		TileSidedPaintable t = (TileSidedPaintable) getTile(w, x, y, z);
 		
 		if(t != null)
 		{

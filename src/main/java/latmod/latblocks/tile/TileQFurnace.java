@@ -2,11 +2,9 @@ package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.FTBLib;
-import ftb.lib.api.gui.IGuiTile;
-import ftb.lib.item.LMInvUtils;
-import latmod.ftbu.tile.TileInvLM;
+import ftb.lib.api.item.LMInvUtils;
+import ftb.lib.api.tile.*;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.gui.*;
 import latmod.lib.MathHelperLM;
 import net.minecraft.client.gui.GuiScreen;
@@ -18,7 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory, IQuartzNetTile // TileEntityFurnace
+public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory//FIXME:, IQuartzNetTile // TileEntityFurnace
 {
 	public static final String ITEM_TAG = "Furnace";
 	public static final int MAX_ITEMS = 3;
@@ -63,14 +61,14 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 				dropItems = false;
 				ItemStack drop = new ItemStack(LatBlocksItems.b_qfurnace, 1, 0);
 				
-				if(fuel > 0 || result != null || customName != null || LMInvUtils.getFirstFilledIndex(this, null, -1) != -1)
+				if(fuel > 0 || result != null || hasCustomInventoryName() || LMInvUtils.getFirstFilledIndex(this, null, -1) != -1)
 				{
 					NBTTagCompound tag = new NBTTagCompound();
 					writeTileData(tag);
 					tag.removeTag("CustomName");
 					drop.setTagCompound(new NBTTagCompound());
 					drop.stackTagCompound.setTag(ITEM_TAG, tag);
-					if(customName != null && !customName.trim().isEmpty()) drop.setStackDisplayName(customName);
+					if(hasCustomInventoryName()) drop.setStackDisplayName(getName());
 				}
 				
 				LMInvUtils.dropItem(worldObj, xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, drop, 10);
@@ -81,13 +79,14 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 			{
 				if(side == 0 || side == 1)
 				{
-					getMeta();
-					if(blockMetadata == 2) setMeta(5);
-					else if(blockMetadata == 3) setMeta(4);
-					else if(blockMetadata == 4) setMeta(2);
-					else if(blockMetadata == 5) setMeta(3);
+					blockMetadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+					if(blockMetadata == 2) blockMetadata = 5;
+					else if(blockMetadata == 3) blockMetadata = 4;
+					else if(blockMetadata == 4) blockMetadata = 2;
+					else if(blockMetadata == 5) blockMetadata = 3;
 				}
-				else setMeta(side);
+				else blockMetadata = side;
+				worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, side, 3);
 				markDirty();
 			}
 		}
@@ -191,8 +190,8 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(ITEM_TAG))
 			readTileData(is.stackTagCompound.getCompoundTag(ITEM_TAG));
 		
-		if(is.hasDisplayName()) customName = is.getDisplayName();
-		else customName = null;
+		if(is.hasDisplayName()) setName(is.getDisplayName());
+		else setName("");
 		
 		markDirty();
 	}
