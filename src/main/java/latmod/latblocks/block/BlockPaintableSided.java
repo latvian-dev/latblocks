@@ -13,11 +13,6 @@ public abstract class BlockPaintableSided extends BlockPaintableLB
 	public BlockPaintableSided(String s)
 	{ super(s); }
 	
-	public void registerTiles()
-	{
-		getMod().addTile(createNewTileEntity(null, 0).getClass(), blockName);
-	}
-	
 	public int getLightOpacity()
 	{ return 0; }
 	

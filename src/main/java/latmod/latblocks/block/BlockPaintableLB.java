@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.api.*;
+import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;
 import latmod.latblocks.tile.TilePaintableLB;
 import latmod.lib.MathHelperLM;
@@ -28,7 +29,6 @@ public abstract class BlockPaintableLB extends BlockLB
 		setBlockTextureName("paintable");
 		isBlockContainer = true;
 		hasSpecialPlacement = true;
-		registerTiles();
 	}
 	
 	public abstract TilePaintableLB createNewTileEntity(World w, int m);
@@ -39,21 +39,21 @@ public abstract class BlockPaintableLB extends BlockLB
 	public int damageDropped(int i)
 	{ return 0; }
 	
-	public void registerTiles()
+	public void onPostLoaded()
 	{
 		getMod().addTile(createNewTileEntity(null, 0).getClass(), blockName);
 	}
 	
-	//@SideOnly(Side.CLIENT)
-	//public int getRenderType()
-	//{ return RenderPaintable.instance.getRenderId(); }
+	@SideOnly(Side.CLIENT)
+	public int getRenderType()
+	{ return RenderPaintable.instance.getRenderId(); }
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return m; }
 	
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
-		ArrayList<AxisAlignedBB> boxes = new ArrayList<AxisAlignedBB>();
+		ArrayList<AxisAlignedBB> boxes = new ArrayList<>();
 		addBoxes(boxes, iba, x, y, z, -1);
 		
 		minX = minY = minZ = 1D;

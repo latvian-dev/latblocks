@@ -134,7 +134,7 @@ public abstract class BlockGlowium extends BlockLB
 		setResistance(10F);
 	}
 	
-	public String getUnlocalizedName(int m)
+	public String getUnlocalizedName()
 	{ return getMod().getBlockName("glowium." + name); }
 	
 	public void onPostLoaded()

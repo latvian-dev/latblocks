@@ -9,6 +9,7 @@ import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.*;
 import latmod.latblocks.api.Paint;
 import latmod.latblocks.client.render.tile.*;
+import latmod.latblocks.client.render.world.*;
 import latmod.latblocks.net.MessageOpenDefPaintGui;
 import latmod.latblocks.tile.*;
 import latmod.latblocks.tile.tank.TileTankBase;
@@ -42,7 +43,6 @@ public class LatBlocksClient extends LatBlocksCommon
 		FTBLibClient.addTileRenderer(TileQChest.class, RenderQChest.instance);
 		FTBLibClient.addTileRenderer(TileTankBase.class, RenderTankTile.instance);
 		
-		/*
 		// ISBRH //
 		RenderFountain.instance.register();
 		RenderPaintable.instance.register();
@@ -52,11 +52,10 @@ public class LatBlocksClient extends LatBlocksCommon
 		RenderQCable.instance.register();
 		
 		// IIR //
-		RenderQChest.instance.registerItemRenderer(LatBlocksItems.b_qchest);
-		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank);
-		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_water);
-		RenderTank.instance.registerItemRenderer(LatBlocksItems.b_tank_void);
-		*/
+		FTBLibClient.addItemRenderer(LatBlocksItems.b_qchest, RenderQChest.instance);
+		FTBLibClient.addItemRenderer(LatBlocksItems.b_tank, RenderTank.instance);
+		FTBLibClient.addItemRenderer(LatBlocksItems.b_tank_water, RenderTank.instance);
+		FTBLibClient.addItemRenderer(LatBlocksItems.b_tank_void, RenderTank.instance);
 	}
 	
 	public void postInit()
