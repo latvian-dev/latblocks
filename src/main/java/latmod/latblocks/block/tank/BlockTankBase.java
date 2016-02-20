@@ -6,7 +6,7 @@ import latmod.latblocks.api.*;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileTankBase;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
-public abstract class BlockTankBase extends BlockLB implements ICustomPaintBlock
+public abstract class BlockTankBase extends BlockLB implements ICustomPaintBlock, ITileEntityProvider
 {
 	public BlockTankBase(String s)
 	{

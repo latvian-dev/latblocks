@@ -2,7 +2,6 @@ package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.item.ODItems;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.client.render.world.RenderQCable;
@@ -14,7 +13,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.*;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockQCable extends BlockLB
 {
@@ -30,9 +29,6 @@ public class BlockQCable extends BlockLB
 		setBlockBoundsForItemRender();
 		setHardness(0.6F);
 	}
-	
-	public TileLM createNewTileEntity(World w, int m)
-	{ return null; }
 	
 	public void loadRecipes()
 	{

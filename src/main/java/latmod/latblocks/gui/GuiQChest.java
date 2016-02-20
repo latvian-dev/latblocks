@@ -10,7 +10,6 @@ import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
 import latmod.lib.LMColorUtils;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
+public class GuiQChest extends GuiContainerLM implements IColorCallback, IClientActionGui
 {
 	public static final ResourceLocation tex = new ResourceLocation("latblocks", "textures/gui/qchest.png");
 	
@@ -30,7 +29,7 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 	
 	public GuiQChest(ContainerQChest c)
 	{
-		super(null, tex);
+		super(c, tex);
 		
 		mainPanel.width = 248;
 		mainPanel.height = 247;
@@ -45,8 +44,8 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		};
 		
 		textBoxLabel.charLimit = 45;
-		textBoxLabel.textRenderX = 11;
-		textBoxLabel.textRenderY = 11;
+		textBoxLabel.textRenderX = 5;
+		textBoxLabel.textRenderY = 5;
 		textBoxLabel.textColor = 0xFFCECECE;
 		
 		if(chest.hasCustomInventoryName()) textBoxLabel.setText(chest.getName());
@@ -199,19 +198,6 @@ public class GuiQChest extends GuiLM implements IColorCallback, IClientActionGui
 		
 		mc.displayGuiScreen(this);
 		refreshWidgets();
-	}
-	
-	public boolean handleDragNDrop(GuiContainer g, int x, int y, ItemStack is, int b)
-	{
-		if(is != null && buttonSetItem.mouseOver())
-		{
-			ItemStack is1 = LMInvUtils.singleCopy(is);
-			is.stackSize = 0;
-			buttonSetItem.setItem(is1);
-			return true;
-		}
-		
-		return false;
 	}
 	
 	public void onClientDataChanged()

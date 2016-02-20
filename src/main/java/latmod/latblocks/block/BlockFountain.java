@@ -1,22 +1,23 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.api.*;
 import latmod.latblocks.block.tank.BlockTank;
 import latmod.latblocks.client.render.world.RenderFountain;
 import latmod.latblocks.tile.TileFountain;
 import latmod.lib.MathHelperLM;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class BlockFountain extends BlockLB
+public class BlockFountain extends BlockLB implements ITileEntityProvider
 {
 	public BlockFountain(String s)
 	{
@@ -32,7 +33,7 @@ public class BlockFountain extends BlockLB
 		getMod().recipes.addRecipe(new ItemStack(this), " H ", "PGP", " P ", 'H', Blocks.hopper, 'G', BlockTank.TANK_BASIC, 'P', LatBlocksItems.b_paintable);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TileEntity createNewTileEntity(World w, int m)
 	{ return new TileFountain(); }
 	
 	@SideOnly(Side.CLIENT)

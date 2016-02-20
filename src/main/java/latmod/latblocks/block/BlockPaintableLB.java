@@ -8,6 +8,7 @@ import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;
 import latmod.latblocks.tile.TilePaintableLB;
 import latmod.lib.MathHelperLM;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
@@ -20,7 +21,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.*;
 
-public abstract class BlockPaintableLB extends BlockLB
+public abstract class BlockPaintableLB extends BlockLB implements ITileEntityProvider
 {
 	public BlockPaintableLB(String s)
 	{

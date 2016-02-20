@@ -3,21 +3,22 @@ package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
 import ftb.lib.api.item.ODItems;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
 import java.util.List;
 
-public class BlockQFurnace extends BlockLB
+public class BlockQFurnace extends BlockLB implements ITileEntityProvider
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon iconOn, iconOff;
@@ -41,7 +42,7 @@ public class BlockQFurnace extends BlockLB
 		}
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TileEntity createNewTileEntity(World w, int m)
 	{ return new TileQFurnace(); }
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)

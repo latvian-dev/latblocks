@@ -24,11 +24,11 @@ public class GuiQNet extends GuiContainerLM
 	
 	public GuiQNet(ContainerQNet c)
 	{
-		super(null, c, tex);
+		super(c, tex);
 		term = (TileQTerminal) c.inv;
 		
-		xSize = 174;
-		ySize = 167;
+		mainPanel.width = 174;
+		mainPanel.height = 167;
 		
 		qinvs = new ArrayList<>();
 	}

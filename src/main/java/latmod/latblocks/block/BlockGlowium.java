@@ -3,7 +3,6 @@ package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.EnumMCColor;
 import ftb.lib.api.item.*;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.*;
 import latmod.latblocks.api.Paint;
 import latmod.latblocks.client.render.world.RenderGlowiumBlocks;
@@ -17,13 +16,14 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
-public abstract class BlockGlowium extends BlockLB
+public abstract class BlockGlowium extends BlockLB implements ITileEntityProvider
 {
 	public static final String ORE_NAME = "blockGlowium";
 	public static final int DEF_DMG = EnumMCColor.YELLOW.ID;
@@ -154,7 +154,7 @@ public abstract class BlockGlowium extends BlockLB
 			getMod().recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ", 'G', new ItemStack(this, 1, DEF_DMG), 'C', EnumMCColor.VALUES[i].dyeName);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TileEntity createNewTileEntity(World w, int m)
 	{ return new TileGlowium(); }
 	
 	public int damageDropped(int m)

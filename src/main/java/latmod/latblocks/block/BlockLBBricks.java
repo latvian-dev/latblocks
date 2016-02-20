@@ -38,15 +38,10 @@ public class BlockLBBricks extends BlockLB
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB", 'B', new ItemStack(this, 1, 5));
-		
 		getMod().recipes.addRecipe(new ItemStack(this, 4, 1), "BB", "BB", 'B', Blocks.lapis_block);
-		
 		getMod().recipes.addRecipe(new ItemStack(this, 4, 2), "BB", "BB", 'B', Blocks.gravel);
-		
 		getMod().recipes.addRecipe(new ItemStack(this, 4, 3), "BB", "BB", 'B', Blocks.stonebrick);
-		
 		getMod().recipes.addRecipe(new ItemStack(this, 4, 4), "BB", "BB", 'B', Blocks.glowstone);
-		
 		getMod().recipes.addRecipe(new ItemStack(this, 4, 5), "BB", "BB", 'B', new ItemStack(this, 1, 2));
 	}
 	

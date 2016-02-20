@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.*;
 import ftb.lib.FTBLib;
 import ftb.lib.api.tile.*;
 import latmod.latblocks.LatBlocksItems;
-import net.minecraft.block.Block;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiCrafting;
@@ -14,11 +14,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockCraftingPanel extends BlockLB
+public class BlockCraftingPanel extends BlockLB implements ITileEntityProvider
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon icon_side;
@@ -32,7 +33,7 @@ public class BlockCraftingPanel extends BlockLB
 		getMod().addTile(TileCraftingPanel.class, s);
 	}
 	
-	public TileLM createNewTileEntity(World w, int i)
+	public TileEntity createNewTileEntity(World w, int i)
 	{ return new TileCraftingPanel(); }
 	
 	public void loadRecipes()

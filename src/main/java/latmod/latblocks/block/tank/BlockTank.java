@@ -2,7 +2,6 @@ package latmod.latblocks.block.tank;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.item.ODItems;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.config.*;
 import latmod.latblocks.item.ItemMaterialsLB;
@@ -14,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
 import net.minecraft.item.*;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -78,7 +78,7 @@ public class BlockTank extends BlockTankBase
 	public int damageDropped(int i)
 	{ return i; }
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TileEntity createNewTileEntity(World w, int m)
 	{ return new TileTank(m); }
 	
 	@SideOnly(Side.CLIENT)

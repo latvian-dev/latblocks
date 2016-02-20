@@ -4,22 +4,23 @@ import cpw.mods.fml.relauncher.*;
 import ftb.lib.MathHelperMC;
 import ftb.lib.api.client.FTBLibClient;
 import ftb.lib.api.item.ODItems;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQChest;
 import latmod.lib.LMColorUtils;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
 import java.util.List;
 
-public class BlockQChest extends BlockLB
+public class BlockQChest extends BlockLB implements ITileEntityProvider
 {
 	public static final TileQChest tempTile = new TileQChest();
 	
@@ -32,8 +33,11 @@ public class BlockQChest extends BlockLB
 		getMod().addTile(TileQChest.class, s);
 	}
 	
-	public TileLM createNewTileEntity(World world, int m)
+	public TileEntity createNewTileEntity(World world, int m)
 	{ return new TileQChest(); }
+	
+	public int getRenderType()
+	{ return -1; }
 	
 	public void loadRecipes()
 	{

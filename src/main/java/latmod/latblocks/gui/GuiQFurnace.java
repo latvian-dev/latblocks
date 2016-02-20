@@ -3,7 +3,7 @@ package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.TextureCoords;
 import ftb.lib.api.client.FTBLibClient;
-import ftb.lib.api.gui.GuiLM;
+import ftb.lib.api.gui.*;
 import ftb.lib.api.gui.widgets.WidgetLM;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.util.ResourceLocation;
@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class GuiQFurnace extends GuiLM
+public class GuiQFurnace extends GuiContainerLM
 {
 	public static final ResourceLocation texLoc = new ResourceLocation("latblocks", "textures/gui/qfurnace.png");
 	public static final TextureCoords texFuel = new TextureCoords(texLoc, 176, 0, 14, 14);
@@ -22,7 +22,7 @@ public class GuiQFurnace extends GuiLM
 	
 	public GuiQFurnace(final ContainerQFurnace c)
 	{
-		super(null, texLoc);
+		super(c, texLoc);
 		furnace = (TileQFurnace) c.inv;
 		
 		barFuel = new WidgetLM(this, 57, 36, texFuel.widthI(), texFuel.heightI())
@@ -63,7 +63,7 @@ public class GuiQFurnace extends GuiLM
 		{
 			FTBLibClient.setTexture(texture);
 			double d = furnace.progress / TileQFurnace.MAX_PROGRESS;
-			drawTexturedRectD(mainPanel.getAX() + barProgress.posX, mainPanel.getAY() + barProgress.posY, zLevel, texProgress.width * d, texProgress.height, texProgress.minU, texProgress.minV, texProgress.minU + (texProgress.maxU - texProgress.minU) * d, texProgress.maxV);
+			GuiLM.drawTexturedRectD(mainPanel.getAX() + barProgress.posX, mainPanel.getAY() + barProgress.posY, zLevel, texProgress.width * d, texProgress.height, texProgress.minU, texProgress.minV, texProgress.minU + (texProgress.maxU - texProgress.minU) * d, texProgress.maxV);
 		}
 	}
 }

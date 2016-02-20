@@ -1,12 +1,12 @@
 package latmod.latblocks.block.tank;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.client.render.world.RenderTank;
 import latmod.latblocks.tile.tank.TileWaterTank;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -27,7 +27,7 @@ public class BlockWaterTank extends BlockTankBase
 		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW", 'W', Items.water_bucket, 'T', BlockTank.TANK_BASIC, 'E', Items.ender_pearl);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public TileEntity createNewTileEntity(World w, int m)
 	{ return new TileWaterTank(); }
 	
 	@SideOnly(Side.CLIENT)
