@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.*;
 import ftb.lib.LMNBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -92,6 +93,9 @@ public class Paint implements Cloneable
 	
 	public Paint clone()
 	{ return new Paint(block, meta); }
+	
+	public ItemStack getItemStack()
+	{ return new ItemStack(block, 1, meta); }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess real, IBlockAccess fake, int x, int y, int z, int side)

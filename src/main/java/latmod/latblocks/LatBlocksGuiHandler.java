@@ -15,8 +15,6 @@ public class LatBlocksGuiHandler extends LMGuiHandler
 	public static final int COLOR_PAINTER = 1;
 	public static final int DEF_PAINT = 2;
 	
-	public static final String DEF_PAINT_TAG = "LB_DefPaint";
-	
 	public LatBlocksGuiHandler(String s)
 	{ super(s); }
 	

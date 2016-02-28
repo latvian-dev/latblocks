@@ -2,10 +2,9 @@ package latmod.latblocks.net;
 
 import cpw.mods.fml.common.network.simpleimpl.*;
 import ftb.lib.api.net.*;
-import ftb.utils.world.*;
-import latmod.latblocks.LatBlocksGuiHandler;
+import latmod.latblocks.LatBlockEventHandler;
 import latmod.latblocks.api.Paint;
-import latmod.lib.*;
+import latmod.lib.ByteCount;
 import net.minecraft.block.Block;
 
 public class MessageDefaultPaint extends MessageLM
@@ -38,9 +37,13 @@ public class MessageDefaultPaint extends MessageLM
 		for(int i = 0; i < a.length; i++)
 			a[i] = io.readShort();
 		
-		LMPlayerServer p = LMWorldServer.inst.getPlayer(ctx.getServerHandler().playerEntity);
-		p.getPrivateData().setIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG, Converter.toInts(a));
-		p.sendUpdate();
+		LatBlockEventHandler.LatBlockProperties props = LatBlockEventHandler.LatBlockProperties.get(ctx.getServerHandler().playerEntity);
+		
+		for(int i = 0; i < 6; i++)
+		{
+			props.paint[i] = (a[i * 2 + 0] == 0) ? null : new Paint(Block.getBlockById(a[i * 2 + 0]), a[i * 2 + 1]);
+		}
+		
 		return null;
 	}
 }

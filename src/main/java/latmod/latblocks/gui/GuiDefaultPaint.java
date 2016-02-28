@@ -5,8 +5,7 @@ import ftb.lib.SidedDirection;
 import ftb.lib.api.gui.GuiLM;
 import ftb.lib.api.gui.widgets.ItemButtonLM;
 import ftb.lib.api.item.LMInvUtils;
-import ftb.utils.world.*;
-import latmod.latblocks.LatBlocksGuiHandler;
+import latmod.latblocks.LatBlockEventHandler;
 import latmod.latblocks.api.*;
 import latmod.latblocks.net.MessageDefaultPaint;
 import net.minecraft.block.Block;
@@ -34,16 +33,12 @@ public class GuiDefaultPaint extends GuiLM
 		buttons[SidedDirection.LEFT.ID] = new PaintButton(this, 39, 35);
 		buttons[SidedDirection.RIGHT.ID] = new PaintButton(this, 85, 35);
 		
-		LMPlayerClient p = LMWorldClient.inst.getPlayer(c.player);
+		LatBlockEventHandler.LatBlockProperties props = (LatBlockEventHandler.LatBlockProperties) c.player.getExtendedProperties("LatBlocks");
 		
-		int[] ai = p.getPrivateData().getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
-		if(ai.length == 12)
+		if(props != null)
 		{
 			for(int i = 0; i < 6; i++)
-			{
-				Block b = Block.getBlockById(ai[i * 2 + 0]);
-				if(b != Blocks.air) buttons[i].setItem(new ItemStack(b, 1, ai[i * 2 + 1]));
-			}
+				buttons[i].setItem((props.paint[i] == null) ? null : props.paint[i].getItemStack());
 		}
 	}
 	

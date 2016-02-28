@@ -2,7 +2,7 @@ package latmod.latblocks;
 
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
-import ftb.lib.LMMod;
+import ftb.lib.*;
 import latmod.latblocks.config.LatBlocksConfig;
 import latmod.latblocks.net.LatBlocksNetHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -33,6 +33,7 @@ public class LatBlocks
 		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.b_fountain));
 		tabGlowium = new LBGlowiumCreativeTab();
 		LatBlocksNetHandler.init();
+		EventBusHelper.register(new LatBlockEventHandler());
 		proxy.preInit();
 	}
 	

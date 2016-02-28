@@ -1,14 +1,10 @@
 package latmod.latblocks;
 
-import cpw.mods.fml.relauncher.Side;
 import ftb.lib.*;
 import ftb.lib.api.tile.TileLM;
-import ftb.utils.world.*;
 import latmod.latblocks.api.*;
 import latmod.latblocks.tile.TileFountain;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 
 public class LatBlocksCommon // LatBlocksClient
 {
@@ -29,24 +25,16 @@ public class LatBlocksCommon // LatBlocksClient
 		IPaintable paintable = (t instanceof IPaintable) ? (IPaintable) t : null;
 		if(paintable == null) return;
 		
-		LMPlayer player = LMWorld.getWorld(t.isServer() ? Side.SERVER : Side.CLIENT).getPlayer(ep);
-		Paint[] p = new Paint[6];
-		int[] ai = player.getPrivateData().getIntArray(LatBlocksGuiHandler.DEF_PAINT_TAG);
-		if(ai.length != 12) return;
-		
-		for(int i = 0; i < 6; i++)
-		{
-			Block b = Block.getBlockById(ai[i * 2 + 0]);
-			if(b != Blocks.air) p[i] = new Paint(b, ai[i * 2 + 1]);
-		}
+		LatBlockEventHandler.LatBlockProperties props = LatBlockEventHandler.LatBlockProperties.get(ep);
 		
 		if(paint.length != 6)
 		{
-			if(p[SidedDirection.FRONT.ID] != null)
+			if(props.paint[SidedDirection.FRONT.ID] != null)
 			{
 				for(int i = 0; i < paint.length; i++)
 				{
-					if(paintable.isPaintValid(i, p[SidedDirection.FRONT.ID])) paint[i] = p[SidedDirection.FRONT.ID];
+					if(paintable.isPaintValid(i, props.paint[SidedDirection.FRONT.ID]))
+						paint[i] = props.paint[SidedDirection.FRONT.ID];
 				}
 			}
 		}
@@ -61,8 +49,8 @@ public class LatBlocksCommon // LatBlocksClient
 			{
 				SidedDirection sd = SidedDirection.get(f, r3, r2);
 				
-				if(sd != SidedDirection.NONE && p[sd.ID] != null && paintable.isPaintValid(f, p[sd.ID]))
-					paint[f] = p[sd.ID].clone();
+				if(sd != SidedDirection.NONE && props.paint[sd.ID] != null && paintable.isPaintValid(f, props.paint[sd.ID]))
+					paint[f] = props.paint[sd.ID].clone();
 			}
 		}
 		
