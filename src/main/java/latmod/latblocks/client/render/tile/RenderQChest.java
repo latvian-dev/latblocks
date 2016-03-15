@@ -48,7 +48,7 @@ public class RenderQChest extends TileEntitySpecialRenderer implements IItemRend
 		
 		model.chestLid.rotateAngleX = -t.getLidAngle(pt);
 		
-		FTBLibClient.setGLColor(t.colorChest, 255);
+		FTBLibClient.setGLColor(t.colorChest.color(), 255);
 		FTBLibClient.setTexture(tex_color);
 		model.chestBelow.render(0.0625F);
 		model.chestLid.render(0.0625F);
@@ -77,7 +77,7 @@ public class RenderQChest extends TileEntitySpecialRenderer implements IItemRend
 			
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(0D, 0D, -0.1D);
-			font.drawString(t.getName(), -ss / 2, 0, t.colorText);
+			font.drawString(t.getName(), -ss / 2, 0, t.colorText.color());
 			GlStateManager.popMatrix();
 			
 			if(t.textGlows) FTBLibClient.popMaxBrightness();
@@ -125,8 +125,8 @@ public class RenderQChest extends TileEntitySpecialRenderer implements IItemRend
 		if(is.hasTagCompound() && is.stackTagCompound.hasKey(TileQChest.ITEM_TAG))
 		{
 			BlockQChest.tempTile.readTileData(is.stackTagCompound.getCompoundTag(TileQChest.ITEM_TAG));
-			colorChest = BlockQChest.tempTile.colorChest;
-			colorText = BlockQChest.tempTile.colorText;
+			colorChest = BlockQChest.tempTile.colorChest.color();
+			colorText = BlockQChest.tempTile.colorText.color();
 			iconItem = BlockQChest.tempTile.iconItem;
 			customName = BlockQChest.tempTile.getName();
 			textGlows = BlockQChest.tempTile.textGlows;

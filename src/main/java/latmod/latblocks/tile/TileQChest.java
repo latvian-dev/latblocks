@@ -6,7 +6,7 @@ import ftb.lib.api.item.LMInvUtils;
 import ftb.lib.api.tile.*;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.gui.*;
-import latmod.lib.MathHelperLM;
+import latmod.lib.*;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
@@ -24,7 +24,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public static final String BUTTON_SET_ITEM = "qchest.item";
 	public static final float MAX_ANGLE = 2F;
 	
-	public int colorChest, colorText;
+	public LMColor.RGB colorChest, colorText;
 	public boolean textGlows;
 	public ItemStack iconItem;
 	
@@ -35,8 +35,11 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public TileQChest()
 	{
 		super(INV_W * INV_H);
-		colorChest = 0xFFFFFFFF;
-		colorText = 0xFF222222;
+		colorChest = new LMColor.RGB();
+		colorChest.setRGBA(0xFFFFFFFF);
+		
+		colorText = new LMColor.RGB();
+		colorText.setRGBA(0xFF222222);
 		setName("Unnamed");
 	}
 	
@@ -46,8 +49,8 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public void readTileData(NBTTagCompound tag)
 	{
 		super.readTileData(tag);
-		colorChest = 0xFF000000 | (tag.hasKey("CColor") ? tag.getInteger("CColor") : 0xFFFFFFFF);
-		colorText = 0xFF000000 | (tag.hasKey("TColor") ? tag.getInteger("TColor") : 0xFFFFFFFF);
+		colorChest.setRGBA(tag.getInteger("CColor"));
+		colorText.setRGBA(tag.getInteger("TColor"));
 		textGlows = tag.getBoolean("Glows");
 		iconItem = tag.hasKey("Icon") ? ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Icon")) : null;
 	}
@@ -55,8 +58,8 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public void writeTileData(NBTTagCompound tag)
 	{
 		super.writeTileData(tag);
-		tag.setInteger("CColor", colorChest);
-		tag.setInteger("TColor", colorText);
+		tag.setInteger("CColor", colorChest.color());
+		tag.setInteger("TColor", colorText.color());
 		tag.setBoolean("Glows", textGlows);
 		
 		if(iconItem != null)
@@ -137,6 +140,8 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
 		super.onPlacedBy(ep, is);
+		
+		FTBLib.dev_logger.info("Placed by " + ep.getDisplayName() + " @ " + (worldObj.isRemote ? Side.CLIENT : Side.SERVER));
 		
 		//if(isServer())
 		{
@@ -226,8 +231,8 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		{
 			int col = 0xFF000000 | data.getInteger("C");
 			int i = data.getByte("ID");
-			if(i == 0) colorChest = col;
-			else colorText = col;
+			if(i == 0) colorChest.setRGBA(col);
+			else colorText.setRGBA(col);
 		}
 		else if(button.equals(BUTTON_SET_ITEM)) iconItem = (data == null) ? null : ItemStack.loadItemStackFromNBT(data);
 	}

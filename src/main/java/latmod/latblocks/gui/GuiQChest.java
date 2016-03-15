@@ -8,7 +8,6 @@ import ftb.lib.api.gui.widgets.*;
 import ftb.lib.api.item.LMInvUtils;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.tile.TileQChest;
-import latmod.lib.LMColorUtils;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -75,7 +74,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			public void addMouseOverText(List<String> l)
 			{
 				l.add(title);
-				l.add(LMColorUtils.getHex(chest.colorChest));
+				l.add(chest.colorChest.toString());
 			}
 		};
 		
@@ -92,7 +91,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			public void addMouseOverText(List<String> l)
 			{
 				l.add(title);
-				l.add(LMColorUtils.getHex(chest.colorText));
+				l.add(chest.colorText.toString());
 			}
 		};
 		
@@ -168,9 +167,9 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 	{
 		super.drawBackground();
 		buttonSecurity.render(chest.security.level.getIcon());
-		FTBLibClient.setGLColor(chest.colorChest, 250);
+		FTBLibClient.setGLColor(chest.colorChest.color(), 250);
 		buttonColChest.render(GuiIcons.color_blank);
-		FTBLibClient.setGLColor(chest.colorText, 250);
+		FTBLibClient.setGLColor(chest.colorText.color(), 250);
 		buttonColText.render(GuiIcons.color_blank);
 		GlStateManager.color(1F, 1F, 1F, 1F);
 		
