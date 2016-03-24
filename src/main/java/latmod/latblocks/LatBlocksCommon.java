@@ -50,7 +50,7 @@ public class LatBlocksCommon // LatBlocksClient
 				SidedDirection sd = SidedDirection.get(f, r3, r2);
 				
 				if(sd != SidedDirection.NONE && props.paint[sd.ID] != null && paintable.isPaintValid(f, props.paint[sd.ID]))
-					paint[f] = props.paint[sd.ID].clone();
+					paint[f] = props.paint[sd.ID].copy();
 			}
 		}
 		

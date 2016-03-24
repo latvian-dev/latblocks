@@ -91,7 +91,7 @@ public class Paint implements Cloneable
 		if(l.tagCount() > 0) tag.setTag(s, l);
 	}
 	
-	public Paint clone()
+	public Paint copy()
 	{ return new Paint(block, meta); }
 	
 	public ItemStack getItemStack()
