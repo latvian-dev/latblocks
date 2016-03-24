@@ -32,7 +32,7 @@ public class BlockLinedBlock extends BlockGlowium
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(getMod().assets + "paintable");
+		blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":paintable");
 		
 		icons = new IIcon[2][2][2][2];
 		
@@ -40,7 +40,7 @@ public class BlockLinedBlock extends BlockGlowium
 			for(int b = 0; b <= 1; b++)
 				for(int c = 0; c <= 1; c++)
 					for(int d = 0; d <= 1; d++)
-						icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glowium/lined/" + a + "" + b + "" + c + "" + d);
+						icons[a][b][c][d] = ir.registerIcon(getMod().lowerCaseModID + ":glowium/lined/" + a + "" + b + "" + c + "" + d);
 	}
 	
 	@SideOnly(Side.CLIENT)

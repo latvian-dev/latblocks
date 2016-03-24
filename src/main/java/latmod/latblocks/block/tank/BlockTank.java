@@ -86,7 +86,7 @@ public class BlockTank extends BlockTankBase
 	{
 		icons = new IIcon[6];
 		for(int i = 0; i < icons.length; i++)
-			icons[i] = ir.registerIcon(getMod().assets + "tank/outside_" + i);
+			icons[i] = ir.registerIcon(getMod().lowerCaseModID + ":tank/outside_" + i);
 	}
 	
 	@SideOnly(Side.CLIENT)

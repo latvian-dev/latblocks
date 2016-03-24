@@ -54,9 +54,9 @@ public class BlockQFurnace extends BlockLB implements ITileEntityProvider
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(getMod().assets + "furn_side");
-		iconOn = ir.registerIcon(getMod().assets + "furn_on");
-		iconOff = ir.registerIcon(getMod().assets + "furn_off");
+		blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":furn_side");
+		iconOn = ir.registerIcon(getMod().lowerCaseModID + ":furn_on");
+		iconOff = ir.registerIcon(getMod().lowerCaseModID + ":furn_off");
 	}
 	
 	@SideOnly(Side.CLIENT)

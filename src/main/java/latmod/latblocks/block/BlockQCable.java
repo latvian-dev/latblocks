@@ -68,8 +68,8 @@ public class BlockQCable extends BlockLB
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(getMod().assets + "cable");
-		icon_glow = ir.registerIcon(getMod().assets + "cable_glow");
+		blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":cable");
+		icon_glow = ir.registerIcon(getMod().lowerCaseModID + ":cable_glow");
 	}
 	
 	public boolean renderAsNormalBlock()

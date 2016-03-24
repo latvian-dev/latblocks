@@ -1,84 +1,84 @@
-itemGroup.latblocks:tab=LatBlocks
-itemGroup.latblocks:tab.glowium=LatBlocks Glowium
+itemGroup.latblocks.tab=LatBlocks
+itemGroup.latblocks.tab.glowium=LatBlocks Glowium
 
 ### Blocks ###
 
-latblocks:tile.glowium.block.name=Glowium Block
-latblocks:tile.glowium.tile.name=Glowium Tile
-latblocks:tile.glowium.brick.name=Glowium Brick
-latblocks:tile.glowium.small.name=Small Glowium Brick
-latblocks:tile.glowium.chiseled.name=Chiseled Glowium Brick
-latblocks:tile.glowium.lined.name=Lined Glowium Block
+latblocks.tile.glowium.block.name=Glowium Block
+latblocks.tile.glowium.tile.name=Glowium Tile
+latblocks.tile.glowium.brick.name=Glowium Brick
+latblocks.tile.glowium.small.name=Small Glowium Brick
+latblocks.tile.glowium.chiseled.name=Chiseled Glowium Brick
+latblocks.tile.glowium.lined.name=Lined Glowium Block
 
-latblocks:tile.brick.gravel_brick.name=Gravel Brick
-latblocks:tile.brick.lapis_brick.name=Lapis Brick
-latblocks:tile.brick.tiny_gravel.name=Tiny Gravel Block
-latblocks:tile.brick.tiny_stonebrick.name=Tiny Stone Bricks Block
-latblocks:tile.brick.tiny_glowstone.name=Tiny Glowstone Block
-latblocks:tile.brick.gravel_tile.name=Gravel Tile
+latblocks.tile.brick.gravel_brick.name=Gravel Brick
+latblocks.tile.brick.lapis_brick.name=Lapis Brick
+latblocks.tile.brick.tiny_gravel.name=Tiny Gravel Block
+latblocks.tile.brick.tiny_stonebrick.name=Tiny Stone Bricks Block
+latblocks.tile.brick.tiny_glowstone.name=Tiny Glowstone Block
+latblocks.tile.brick.gravel_tile.name=Gravel Tile
 
-latblocks:tile.paintable.name=Paintable Block
-latblocks:tile.paintableRS.name=Dual Paintable Block
-latblocks:tile.paintableGS.name=Glowing Paintable Block
-latblocks:tile.paintableLamp.name=Paintable Lamp
-latblocks:tile.cover.name=Paintable Cover
-latblocks:tile.fountain.name=Paintable Fountain
-latblocks:tile.carpet.name=Paintable Carpet
-latblocks:tile.slab.name=Paintable Slab
-latblocks:tile.stairs.name=Paintable Stairs
-latblocks:tile.fence.name=Paintable Fence
-latblocks:tile.fenceGate.name=Paintable Fence Gate
-latblocks:tile.wall.name=Paintable Wall
-latblocks:tile.door.name=Paintable Door
-latblocks:tile.slope.name=Paintable Slope
-latblocks:tile.ladder.name=Paintable Ladder
-latblocks:tile.pressurePlate.name=Paintable Pressure Plate
+latblocks.tile.paintable.name=Paintable Block
+latblocks.tile.paintableRS.name=Dual Paintable Block
+latblocks.tile.paintableGS.name=Glowing Paintable Block
+latblocks.tile.paintableLamp.name=Paintable Lamp
+latblocks.tile.cover.name=Paintable Cover
+latblocks.tile.fountain.name=Paintable Fountain
+latblocks.tile.carpet.name=Paintable Carpet
+latblocks.tile.slab.name=Paintable Slab
+latblocks.tile.stairs.name=Paintable Stairs
+latblocks.tile.fence.name=Paintable Fence
+latblocks.tile.fenceGate.name=Paintable Fence Gate
+latblocks.tile.wall.name=Paintable Wall
+latblocks.tile.door.name=Paintable Door
+latblocks.tile.slope.name=Paintable Slope
+latblocks.tile.ladder.name=Paintable Ladder
+latblocks.tile.pressurePlate.name=Paintable Pressure Plate
 
-latblocks:tile.quartzChest.name=Quartz Chest
-latblocks:tile.quartzFurnace.name=Quartz Furnace
-latblocks:tile.tankWater.name=Water Tank
-latblocks:tile.tankVoid.name=Void Tank
-latblocks:tile.gelLamp.name=Paintable Gel Lamp
-latblocks:tile.tank.name=LatTank
-latblocks:tile.glass.name=Invisible Glass
-latblocks:tile.craftingPanel.name=Crafting Panel
-latblocks:tile.cable.name=QNet Cable
-latblocks:tile.terminal.name=QNet Terminal
-latblocks:tile.farmland.name=Green Glowium Farmland
+latblocks.tile.quartzChest.name=Quartz Chest
+latblocks.tile.quartzFurnace.name=Quartz Furnace
+latblocks.tile.tankWater.name=Water Tank
+latblocks.tile.tankVoid.name=Void Tank
+latblocks.tile.gelLamp.name=Paintable Gel Lamp
+latblocks.tile.tank.name=LatTank
+latblocks.tile.glass.name=Invisible Glass
+latblocks.tile.craftingPanel.name=Crafting Panel
+latblocks.tile.cable.name=QNet Cable
+latblocks.tile.terminal.name=QNet Terminal
+latblocks.tile.farmland.name=Green Glowium Farmland
 
 # To be implemented #
 
-latblocks:tile.smoker.name=Paintable Smoker
-latblocks:tile.filterHopper.name=Filter Hopper
-latblocks:tile.fluidHopper.name=Fluid Hopper
-latblocks:tile.buffer.name=Buffer
+latblocks.tile.smoker.name=Paintable Smoker
+latblocks.tile.filterHopper.name=Filter Hopper
+latblocks.tile.fluidHopper.name=Fluid Hopper
+latblocks.tile.buffer.name=Buffer
 
 ### Items ###
 
-latblocks:item.gem_yellow.name=Glowium
-latblocks:item.gem_red.name=Red Glowium
-latblocks:item.gem_green.name=Green Glowium
-latblocks:item.gem_blue.name=Blue Glowium
-latblocks:item.gem_dark.name=Dark Glowium
-latblocks:item.dust_yellow.name=Glowium Dust
-latblocks:item.dust_red.name=Red Glowium Dust
-latblocks:item.dust_green.name=Green Glowium Dust
-latblocks:item.dust_blue.name=Blue Glowium Dust
-latblocks:item.dust_dark.name=Dark Glowium Dust
-latblocks:item.lens.name=Glass Lens
-latblocks:item.rod.name=Paintable Block Rod
-latblocks:item.dust_star.name=Star Dust
-latblocks:item.paint_roller_rod.name=Block Painter Rod
-latblocks:item.paint_roller_basic.name=Paint Roller
-latblocks:item.paint_roller_dmd.name=Diamond Paint Roller
-latblocks:item.paint_roller_color.name=Color Roller
+latblocks.item.gem_yellow.name=Glowium
+latblocks.item.gem_red.name=Red Glowium
+latblocks.item.gem_green.name=Green Glowium
+latblocks.item.gem_blue.name=Blue Glowium
+latblocks.item.gem_dark.name=Dark Glowium
+latblocks.item.dust_yellow.name=Glowium Dust
+latblocks.item.dust_red.name=Red Glowium Dust
+latblocks.item.dust_green.name=Green Glowium Dust
+latblocks.item.dust_blue.name=Blue Glowium Dust
+latblocks.item.dust_dark.name=Dark Glowium Dust
+latblocks.item.lens.name=Glass Lens
+latblocks.item.rod.name=Paintable Block Rod
+latblocks.item.dust_star.name=Star Dust
+latblocks.item.paint_roller_rod.name=Block Painter Rod
+latblocks.item.paint_roller_basic.name=Paint Roller
+latblocks.item.paint_roller_dmd.name=Diamond Paint Roller
+latblocks.item.paint_roller_color.name=Color Roller
 
-latblocks:item.blockPainter.name=Block Painter
-latblocks:item.blockPainterDmd.name=Diamond Block Painter
-latblocks:item.colorPainter.name=Color Painter
-latblocks:item.hammer.name=LatBlocks Hammer
-latblocks:item.glasses.name=LatBlocks Goggles
-latblocks:item.ebag.name=Ender Bag
+latblocks.item.blockPainter.name=Block Painter
+latblocks.item.blockPainterDmd.name=Diamond Block Painter
+latblocks.item.colorPainter.name=Color Painter
+latblocks.item.hammer.name=LatBlocks Hammer
+latblocks.item.glasses.name=LatBlocks Goggles
+latblocks.item.ebag.name=Ender Bag
 
 ### ClientConfig ###
 
@@ -89,7 +89,7 @@ client_config.latblocks.blocks_glow=Painted Blocks Glow
 client_config.latblocks.fluids_flowing=Painted Fluids Flowing
 client_config.latblocks.def_paint=Default Paint
 
-latblocks:chest_color=Chest Color
-latblocks:text_color=Text Color
-latblocks:text_glow=Glownig Text
-latblocks:chest_icon=Chest Icon
+latblocks.chest_color=Chest Color
+latblocks.text_color=Text Color
+latblocks.text_glow=Glownig Text
+latblocks.chest_icon=Chest Icon

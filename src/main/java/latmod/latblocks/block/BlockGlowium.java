@@ -167,8 +167,8 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(getMod().assets + "glowium/" + name);
-		icon_glow = ir.registerIcon(getMod().assets + "glowium/" + name + "_glow");
+		blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":glowium/" + name);
+		icon_glow = ir.registerIcon(getMod().lowerCaseModID + ":glowium/" + name + "_glow");
 	}
 	
 	@SideOnly(Side.CLIENT)

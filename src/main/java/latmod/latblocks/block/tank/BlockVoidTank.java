@@ -28,7 +28,7 @@ public class BlockVoidTank extends BlockTankBase
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
-	{ blockIcon = ir.registerIcon(getMod().assets + "tank/outside_void"); }
+	{ blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":tank/outside_void"); }
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankItemBorderIcon(ItemStack item)

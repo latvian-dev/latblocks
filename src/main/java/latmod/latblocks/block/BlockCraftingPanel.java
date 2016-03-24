@@ -44,8 +44,8 @@ public class BlockCraftingPanel extends BlockLB implements ITileEntityProvider
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(getMod().assets + "crafting_panel");
-		icon_side = ir.registerIcon(getMod().assets + "crafting_panel_side");
+		blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":crafting_panel");
+		icon_side = ir.registerIcon(getMod().lowerCaseModID + ":crafting_panel_side");
 	}
 	
 	@SideOnly(Side.CLIENT)

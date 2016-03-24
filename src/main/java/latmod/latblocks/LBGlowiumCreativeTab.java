@@ -12,7 +12,7 @@ public class LBGlowiumCreativeTab extends CreativeTabs
 	private final ArrayList<ItemStack> allBlocks = new ArrayList<>();
 	
 	public LBGlowiumCreativeTab()
-	{ super(LatBlocks.mod.assets + "tab.glowium"); }
+	{ super(LatBlocks.mod.lowerCaseModID + ":tab.glowium"); }
 	
 	public void init()
 	{

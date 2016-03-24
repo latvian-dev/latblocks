@@ -70,7 +70,7 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 			for(int b = 0; b <= 1; b++)
 				for(int c = 0; c <= 1; c++)
 					for(int d = 0; d <= 1; d++)
-						icons[a][b][c][d] = ir.registerIcon(getMod().assets + "glass/inv/" + a + "" + b + "" + c + "" + d);
+						icons[a][b][c][d] = ir.registerIcon(getMod().lowerCaseModID + ":glass/inv/" + a + "" + b + "" + c + "" + d);
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -53,7 +53,7 @@ public class BlockLBBricks extends BlockLB
 	{
 		icons = new IIcon[names.length];
 		for(int i = 0; i < names.length; i++)
-			icons[i] = ir.registerIcon(getMod().assets + "bricks/" + names[i]);
+			icons[i] = ir.registerIcon(getMod().lowerCaseModID + ":bricks/" + names[i]);
 	}
 	
 	@SideOnly(Side.CLIENT)

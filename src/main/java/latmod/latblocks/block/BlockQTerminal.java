@@ -49,8 +49,8 @@ public class BlockQTerminal extends BlockLB implements ITileEntityProvider
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(getMod().assets + "terminal_side");
-		icon_front = ir.registerIcon(getMod().assets + "terminal_front");
+		blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":terminal_side");
+		icon_front = ir.registerIcon(getMod().lowerCaseModID + ":terminal_front");
 	}
 	
 	@SideOnly(Side.CLIENT)

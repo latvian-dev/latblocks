@@ -33,9 +33,9 @@ public class BlockWaterTank extends BlockTankBase
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(getMod().assets + "tank/outside_water_off");
-		icon_on = ir.registerIcon(getMod().assets + "tank/outside_water_on");
-		RenderTank.icon_inside = ir.registerIcon(getMod().assets + "tank/inside");
+		blockIcon = ir.registerIcon(getMod().lowerCaseModID + ":tank/outside_water_off");
+		icon_on = ir.registerIcon(getMod().lowerCaseModID + ":tank/outside_water_on");
+		RenderTank.icon_inside = ir.registerIcon(getMod().lowerCaseModID + ":tank/inside");
 	}
 	
 	public int damageDropped(int i)

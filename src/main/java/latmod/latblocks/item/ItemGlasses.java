@@ -71,7 +71,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 	{ return i == 0; }
 	
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-	{ return LatBlocks.mod.assets + "textures/items/glasses_armor.png"; }
+	{ return LatBlocks.mod.lowerCaseModID + ":textures/items/glasses_armor.png"; }
 	
 	public String getItemID()
 	{ return itemName; }
@@ -84,7 +84,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 	public void registerIcons(IIconRegister ir)
 	{
 		super.registerIcons(ir);
-		itemIcon = ir.registerIcon(LatBlocks.mod.assets + itemName);
+		itemIcon = ir.registerIcon(LatBlocks.mod.lowerCaseModID + ":" + itemName);
 	}
 	
 	public boolean areLBGlassesActive(ItemStack is, EntityPlayer ep)
