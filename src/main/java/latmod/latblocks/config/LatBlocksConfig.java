@@ -2,7 +2,7 @@ package latmod.latblocks.config;
 
 import ftb.lib.FTBLib;
 import ftb.lib.api.config.ConfigRegistry;
-import latmod.lib.config.ConfigFile;
+import ftb.lib.api.config.old.ConfigFile;
 
 import java.io.File;
 

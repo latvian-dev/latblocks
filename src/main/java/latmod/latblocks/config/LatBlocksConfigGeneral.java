@@ -1,6 +1,6 @@
 package latmod.latblocks.config;
 
-import latmod.lib.config.*;
+import ftb.lib.api.config.old.*;
 
 public class LatBlocksConfigGeneral
 {
