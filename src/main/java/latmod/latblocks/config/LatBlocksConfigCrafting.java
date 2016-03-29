@@ -1,11 +1,12 @@
 package latmod.latblocks.config;
 
-import ftb.lib.api.config.old.*;
+import ftb.lib.api.config.*;
+import latmod.lib.annotations.NumberBounds;
 
 public class LatBlocksConfigCrafting
 {
-	@MinValue(0)
-	@MaxValue(2)
+	//TODO: Enum
+	@NumberBounds(min = 0, max = 2)
 	public static final ConfigEntryInt hammer = new ConfigEntryInt("hammer", 1);
 	
 	public static final ConfigEntryBool goggles = new ConfigEntryBool("goggles", true);

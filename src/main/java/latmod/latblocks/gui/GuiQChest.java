@@ -59,7 +59,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			
 			public void addMouseOverText(List<String> l)
 			{
-				l.add(chest.security.level.getText());
+				l.add(chest.security.level.lang.format());
 			}
 		};
 		
