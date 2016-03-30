@@ -28,7 +28,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	public static final ConfigEntryBool renderHighlights = new ConfigEntryBool("render_highlights", true);
 	public static final ConfigEntryBool blocksGlow = new ConfigEntryBool("blocks_glow", true);
 	public static final ConfigEntryBool fluidsFlowing = new ConfigEntryBool("fluids_flowing", false);
-	public static final ConfigEntryBlank defaultPaint = new ConfigEntryBlank("def_paint")
+	public static final ConfigEntryCustom defaultPaint = new ConfigEntryCustom("def_paint")
 	{
 		public void onClicked()
 		{ new MessageOpenDefPaintGui().sendToServer(); }
