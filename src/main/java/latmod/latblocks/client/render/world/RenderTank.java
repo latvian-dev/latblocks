@@ -83,7 +83,7 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 	{ return true; }
 	
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
-	{ return helper != ItemRendererHelper.ENTITY_ROTATION || !LatBlocksClient.rotateBlocks.get(); }
+	{ return helper != ItemRendererHelper.ENTITY_ROTATION || !LatBlocksClient.rotateBlocks.getAsBoolean(); }
 	
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{

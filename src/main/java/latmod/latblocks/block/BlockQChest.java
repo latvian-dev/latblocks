@@ -40,7 +40,7 @@ public class BlockQChest extends BlockLB implements ITileEntityProvider
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfigCrafting.chest.get())
+		if(LatBlocksConfigCrafting.chest.getAsBoolean())
 		{
 			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ", 'Q', Blocks.quartz_block, 'F', Blocks.chest, 'D', ODItems.DIAMOND, 'S', ItemMaterialsLB.DUST_GLOWIUM_D);
 		}

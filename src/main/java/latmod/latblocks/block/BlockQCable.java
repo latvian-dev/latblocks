@@ -32,7 +32,7 @@ public class BlockQCable extends BlockLB
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfigCrafting.qNetBlocks.get())
+		if(LatBlocksConfigCrafting.qNetBlocks.getAsBoolean())
 			getMod().recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS", 'S', Blocks.wooden_slab, 'G', ODItems.GLOWSTONE, 'D', ItemMaterialsLB.DUST_GLOWIUM_B);
 	}
 	

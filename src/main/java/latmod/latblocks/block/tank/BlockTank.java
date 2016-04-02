@@ -49,7 +49,7 @@ public class BlockTank extends BlockTankBase
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfigGeneral.tankCraftingHandler.get())
+		if(LatBlocksConfigGeneral.tankCraftingHandler.getAsBoolean())
 		{
 			RecipeSorter.register("latblocks:tanks", TankCraftingHandler.class, RecipeSorter.Category.SHAPED, "before:minecraft:shaped");
 			TankCraftingHandler.register(new ItemStack(this, 1, 1), new ItemStack(this, 1, 0), new ItemStack(Items.iron_ingot));
@@ -57,7 +57,7 @@ public class BlockTank extends BlockTankBase
 			TankCraftingHandler.register(new ItemStack(this, 1, 3), new ItemStack(this, 1, 2), new ItemStack(Items.quartz));
 			TankCraftingHandler.register(new ItemStack(this, 1, 4), new ItemStack(this, 1, 3), new ItemStack(Items.diamond));
 			
-			if(LatBlocksConfigCrafting.endlessTank.get())
+			if(LatBlocksConfigCrafting.endlessTank.getAsBoolean())
 				TankCraftingHandler.register(new ItemStack(this, 1, 5), new ItemStack(this, 1, 4), ItemMaterialsLB.DUST_STAR.getStack());
 		}
 		
@@ -71,7 +71,7 @@ public class BlockTank extends BlockTankBase
 		
 		getMod().recipes.addRecipe(new ItemStack(this, 1, 4), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 3), 'I', ODItems.DIAMOND);
 		
-		if(LatBlocksConfigCrafting.endlessTank.get())
+		if(LatBlocksConfigCrafting.endlessTank.getAsBoolean())
 			getMod().recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 4), 'I', ItemMaterialsLB.DUST_STAR);
 	}
 	

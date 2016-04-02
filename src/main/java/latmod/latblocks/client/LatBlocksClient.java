@@ -103,5 +103,5 @@ public class LatBlocksClient extends LatBlocksCommon
 	}
 	
 	public static void rotateBlocks()
-	{ if(rotateBlocks.get()) GlStateManager.rotate((float) (Minecraft.getSystemTime() * 0.053D), 0F, 1F, 0F); }
+	{ if(rotateBlocks.getAsBoolean()) GlStateManager.rotate((float) (Minecraft.getSystemTime() * 0.053D), 0F, 1F, 0F); }
 }

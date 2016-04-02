@@ -62,7 +62,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		}
 		
 		double h = 1.5D;
-		if(LatBlocksConfigGeneral.fencesIgnorePlayers.get() && e instanceof EntityPlayer) h = 1D;
+		if(LatBlocksConfigGeneral.fencesIgnorePlayers.getAsBoolean() && e instanceof EntityPlayer) h = 1D;
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1));
 	}
 	

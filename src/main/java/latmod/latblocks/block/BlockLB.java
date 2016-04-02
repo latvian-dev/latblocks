@@ -55,7 +55,7 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 	@SideOnly(Side.CLIENT)
 	public IIcon getCustomPaintIcon(int side, Paint p)
 	{
-		if(LatBlocksClient.fluidsFlowing.get()) return null;
+		if(LatBlocksClient.fluidsFlowing.getAsBoolean()) return null;
 		
 		if(p.block instanceof IFluidBlock)
 		{

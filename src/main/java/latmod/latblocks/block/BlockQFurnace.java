@@ -36,7 +36,7 @@ public class BlockQFurnace extends BlockLB implements ITileEntityProvider
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfigCrafting.chest.get())
+		if(LatBlocksConfigCrafting.furnace.getAsBoolean())
 		{
 			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ", 'Q', Blocks.quartz_block, 'F', Blocks.furnace, 'D', ODItems.DIAMOND, 'S', ItemMaterialsLB.DUST_GLOWIUM_D);
 		}

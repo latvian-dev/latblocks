@@ -139,7 +139,7 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 			{
 				LatBlocksItems.i_hammer.addRecipe(getStack(8), Items.nether_star, ODItems.GLOWSTONE);
 				
-				if(LatBlocksConfigCrafting.easyStartDust.get())
+				if(LatBlocksConfigCrafting.easyStartDust.getAsBoolean())
 					LatBlocksItems.i_hammer.addRecipe(getStack(8), ODItems.DIAMOND, ODItems.DIAMOND, ODItems.DIAMOND, ODItems.GLOWSTONE);
 			}
 		});

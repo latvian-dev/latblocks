@@ -1,13 +1,13 @@
 package latmod.latblocks.api;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.LMNBTUtils;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.Constants;
 
 import java.util.Arrays;
 
@@ -34,7 +34,7 @@ public class Paint implements Cloneable
 		
 		if(l != null) for(int i = 0; i < l.tagCount(); i++)
 		{
-			if(l.func_150303_d() == LMNBTUtils.MAP)
+			if(l.func_150303_d() == Constants.NBT.TAG_COMPOUND)
 			{
 				NBTTagCompound tag1 = l.getCompoundTagAt(i);
 				int id = tag1.getByte("ID");

@@ -31,7 +31,7 @@ public class BlockQTerminal extends BlockLB implements ITileEntityProvider
 	
 	public void loadRecipes()
 	{
-		if(LatBlocksConfigCrafting.qNetBlocks.get())
+		if(LatBlocksConfigCrafting.qNetBlocks.getAsBoolean())
 		{
 			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QSQ", "QDQ", 'Q', Blocks.quartz_block, 'D', ODItems.DIAMOND, 'D', ItemMaterialsLB.DUST_GLOWIUM_D, 'S', ItemMaterialsLB.DUST_STAR);
 		}
