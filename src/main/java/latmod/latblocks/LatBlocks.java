@@ -3,9 +3,9 @@ package latmod.latblocks;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.*;
 import ftb.lib.*;
+import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.config.LatBlocksConfig;
 import latmod.latblocks.net.LatBlocksNetHandler;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
 @Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:FTBU")
@@ -20,27 +20,33 @@ public class LatBlocks
 	public static LatBlocksCommon proxy;
 	
 	public static LMMod mod;
-	public static CreativeTabs tab;
-	public static LBGlowiumCreativeTab tabGlowium;
+	public static CreativeTabLM tab;
+	public static CreativeTabLM tabGlowium;
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent e)
 	{
 		mod = LMMod.create(MOD_ID);
+		tab = new CreativeTabLM("latblocks").setMod(mod);
+		tabGlowium = new CreativeTabLM("latblocks.glowium").setMod(mod).setTimer(1000L);
+		
 		LatBlocksConfig.load();
 		LatBlocksItems.init();
 		mod.onPostLoaded();
-		tab = mod.createTab("tab", new ItemStack(LatBlocksItems.b_fountain));
-		tabGlowium = new LBGlowiumCreativeTab();
 		LatBlocksNetHandler.init();
 		EventBusHelper.register(new LatBlockEventHandler());
 		proxy.preInit();
+		
+		tab.addIcon(new ItemStack(LatBlocksItems.b_fountain));
+		
+		for(int j = 0; j < 16; j++)
+			for(BlockGlowium b : LatBlocksItems.b_glowium)
+				tabGlowium.addIcon(new ItemStack(b, 1, j));
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e)
 	{
-		tabGlowium.init();
 		mod.loadRecipes();
 		proxy.postInit();
 	}

@@ -1,14 +1,13 @@
 package latmod.latblocks.block;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.tile.TileLM;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.*;
+import net.minecraft.world.IBlockAccess;
 
 import java.util.List;
 
@@ -22,11 +21,7 @@ public class BlockLBBricks extends BlockLB
 	public BlockLBBricks(String s)
 	{
 		super(s, Material.rock);
-		isBlockContainer = false;
 	}
-	
-	public TileLM createNewTileEntity(World w, int m)
-	{ return null; }
 	
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs c, List l)

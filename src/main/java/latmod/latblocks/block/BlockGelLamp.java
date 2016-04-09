@@ -3,12 +3,13 @@ package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.item.*;
 import latmod.latblocks.item.ItemMaterialsLB;
-import latmod.latblocks.tile.*;
+import latmod.latblocks.tile.TileSinglePaintable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
@@ -24,7 +25,6 @@ public class BlockGelLamp extends BlockPaintableLB
 		setLightLevel(1F);
 		setHardness(0.1F);
 		setBlockTextureName("lamp");
-		isBlockContainer = true;
 		hasSpecialPlacement = true;
 	}
 	
@@ -33,7 +33,10 @@ public class BlockGelLamp extends BlockPaintableLB
 		getMod().recipes.addShapelessRecipe(new ItemStack(this, 8), ItemMaterialsLB.DUST_GLOWIUM_Y, ODItems.SLIMEBALL);
 	}
 	
-	public TilePaintableLB createNewTileEntity(World w, int i)
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileGelLamp(); }
 	
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)

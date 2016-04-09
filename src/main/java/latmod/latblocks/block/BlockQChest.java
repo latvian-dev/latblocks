@@ -7,7 +7,6 @@ import ftb.lib.api.item.ODItems;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQChest;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +18,7 @@ import net.minecraft.world.*;
 
 import java.util.List;
 
-public class BlockQChest extends BlockLB implements ITileEntityProvider
+public class BlockQChest extends BlockLB
 {
 	public static final TileQChest tempTile = new TileQChest();
 	
@@ -28,11 +27,13 @@ public class BlockQChest extends BlockLB implements ITileEntityProvider
 		super(s, Material.wood);
 		float f = 1F / 16F;
 		setBlockBounds(f, 0F, f, 1F - f, 0.875F, 1F - f);
-		isBlockContainer = true;
 		getMod().addTile(TileQChest.class, s);
 	}
 	
-	public TileEntity createNewTileEntity(World world, int m)
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileQChest(); }
 	
 	public int getRenderType()

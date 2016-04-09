@@ -1,7 +1,6 @@
 package latmod.latblocks.block;
 
 import ftb.lib.api.item.ODItems;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.item.ItemMaterialsLB;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -15,14 +14,10 @@ public class BlockGlowiumFarmland extends BlockLB
 	public BlockGlowiumFarmland(String s)
 	{
 		super(s, Material.ground);
-		isBlockContainer = false;
 		setHardness(0.5F);
 		setLightLevel(12F / 16F);
 		setStepSound(soundTypeGravel);
 	}
-	
-	public TileLM createNewTileEntity(World w, int m)
-	{ return null; }
 	
 	public void loadRecipes()
 	{

@@ -11,13 +11,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.*;
+
 @SideOnly(Side.CLIENT)
 public class GuiColorPainter extends GuiLM
 {
 	public static final ResourceLocation texLoc = new ResourceLocation("latblocks", "textures/gui/colorPainter.png");
 	public static final TextureCoords colTex = new TextureCoords(texLoc, 156, 0, 16, 16);
 	
-	public final ButtonLM buttons[] = new ButtonLM[16];
+	public final Map<EnumMCColor, ButtonLM> buttons;
 	
 	public GuiColorPainter(EntityPlayer ep)
 	{
@@ -25,13 +27,15 @@ public class GuiColorPainter extends GuiLM
 		mainPanel.width = 156;
 		mainPanel.width = 80;
 		
+		buttons = new EnumMap<>(EnumMCColor.class);
+		
 		for(int i = 0; i < 16; i++)
 		{
 			final int id = i;
 			int x = (i % 8) * 18 + 7;
 			int y = (i / 8) * 18 + 6;
 			
-			buttons[id] = new ButtonLM(this, x, y, 16, 16)
+			buttons.put(EnumMCColor.VALUES[id], new ButtonLM(this, x, y, 16, 16)
 			{
 				public void onButtonPressed(int b)
 				{
@@ -40,25 +44,25 @@ public class GuiColorPainter extends GuiLM
 					new MessageClientItemAction(ItemColorPainter.ACTION, tag).sendToServer();
 					gui.close(null);
 				}
-			};
+			});
 			
-			buttons[id].title = EnumMCColor.VALUES[id].toString();
+			buttons.get(EnumMCColor.VALUES[id]).title = EnumMCColor.VALUES[id].lang.format();
 		}
 	}
 	
 	public void addWidgets()
 	{
-		mainPanel.addAll(buttons);
+		mainPanel.addAll(buttons.values());
 	}
 	
 	public void drawBackground()
 	{
 		super.drawBackground();
 		
-		for(int i = 0; i < buttons.length; i++)
+		for(Map.Entry<EnumMCColor, ButtonLM> e : buttons.entrySet())
 		{
-			FTBLibClient.setGLColor(EnumMCColor.VALUES[i].color, 255);
-			buttons[i].render(colTex);
+			FTBLibClient.setGLColor(e.getKey().color, 255);
+			e.getValue().render(colTex);
 		}
 		
 		GlStateManager.color(1F, 1F, 1F, 1F);

@@ -3,7 +3,6 @@ package latmod.latblocks.block;
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.client.FTBLibClient;
 import ftb.lib.api.item.ODItems;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.api.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.*;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
@@ -25,7 +24,6 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 		super(s, Material.glass);
 		setHardness(0.2F);
 		setBlockTextureName("invGlass");
-		isBlockContainer = false;
 		setStepSound(soundTypeGlass);
 	}
 	
@@ -40,9 +38,6 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 		
 		ODItems.add(ODItems.GLASS, new ItemStack(this, 1, ODItems.ANY));
 	}
-	
-	public TileLM createNewTileEntity(World w, int m)
-	{ return null; }
 	
 	public boolean canHarvestBlock(EntityPlayer ep, int m)
 	{ return true; }

@@ -2,7 +2,6 @@ package latmod.latblocks.block.paintable;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.*;
-import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockLB;
 import latmod.latblocks.tile.TileSinglePaintable;
@@ -10,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.*;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -20,7 +20,6 @@ public class BlockPSlope extends BlockLB
 		super(s, Material.rock);
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
-		isBlockContainer = true;
 		getMod().addTile(TilePSlope.class, s);
 	}
 	
@@ -29,7 +28,10 @@ public class BlockPSlope extends BlockLB
 		getMod().recipes.addRecipe(new ItemStack(this, 4), "B  ", "BC ", "BBB", 'C', LatBlocksItems.b_cover, 'B', LatBlocksItems.b_paintable);
 	}
 	
-	public TileLM createNewTileEntity(World w, int m)
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TilePSlope(); }
 	
 	//@SideOnly(Side.CLIENT)

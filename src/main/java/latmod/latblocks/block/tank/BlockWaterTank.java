@@ -17,18 +17,24 @@ public class BlockWaterTank extends BlockTankBase
 	public IIcon icon_on;
 	
 	public BlockWaterTank(String s)
+	{ super(s); }
+	
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
+	{ return new TileWaterTank(); }
+	
+	public void onPostLoaded()
 	{
-		super(s);
-		getMod().addTile(TileWaterTank.class, s);
+		super.onPostLoaded();
+		getMod().addTile(TileWaterTank.class, blockName);
 	}
 	
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW", 'W', Items.water_bucket, 'T', BlockTank.TANK_BASIC, 'E', Items.ender_pearl);
 	}
-	
-	public TileEntity createNewTileEntity(World w, int m)
-	{ return new TileWaterTank(); }
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)

@@ -1,10 +1,13 @@
 package latmod.latblocks;
 
 import ftb.lib.LMMod;
+import ftb.lib.api.item.IItemLM;
 import latmod.latblocks.block.*;
 import latmod.latblocks.block.paintable.*;
 import latmod.latblocks.block.tank.*;
 import latmod.latblocks.item.*;
+
+import java.util.*;
 
 public class LatBlocksItems
 {
@@ -38,7 +41,7 @@ public class LatBlocksItems
 	public static BlockQTerminal b_qterminal;
 	public static BlockGlowiumFarmland b_farmland;
 	
-	public static BlockGlowium[] b_glowium;
+	public static List<BlockGlowium> b_glowium;
 	public static BlockLBBricks b_bricks;
 	
 	public static ItemMaterialsLB i_mat;
@@ -83,7 +86,14 @@ public class LatBlocksItems
 		m.addItem(b_qterminal = new BlockQTerminal("terminal"));
 		m.addItem(b_farmland = new BlockGlowiumFarmland("farmland"));
 		
-		m.addItem(b_glowium = new BlockGlowium[] {new BlockGlowium.BGBlock("glowiumBlock"), new BlockGlowium.BGTile("glowiumTile"), new BlockGlowium.BGBrick("glowiumBrick"), new BlockGlowium.BGBrickSmall("glowiumSmallBrick"), new BlockGlowium.BGBrickChiseled("glowiumChiseledBrick"), new BlockLinedBlock("lined_block")});
+		b_glowium = new ArrayList<>();
+		b_glowium.add(new BlockGlowium.BGBlock("glowiumBlock"));
+		b_glowium.add(new BlockGlowium.BGTile("glowiumTile"));
+		b_glowium.add(new BlockGlowium.BGBrick("glowiumBrick"));
+		b_glowium.add(new BlockGlowium.BGBrickSmall("glowiumSmallBrick"));
+		b_glowium.add(new BlockGlowium.BGBrickChiseled("glowiumChiseledBrick"));
+		b_glowium.add(new BlockLinedBlock("lined_block"));
+		for(IItemLM i : b_glowium) m.addItem(i);
 		
 		m.addItem(b_bricks = new BlockLBBricks("bricks"));
 		

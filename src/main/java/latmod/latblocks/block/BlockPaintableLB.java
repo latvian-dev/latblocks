@@ -8,7 +8,6 @@ import latmod.latblocks.client.render.world.RenderPaintable;
 import latmod.latblocks.item.ItemGlasses;
 import latmod.latblocks.tile.TilePaintableLB;
 import latmod.lib.MathHelperLM;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
@@ -21,18 +20,15 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.*;
 
-public abstract class BlockPaintableLB extends BlockLB implements ITileEntityProvider
+public abstract class BlockPaintableLB extends BlockLB
 {
 	public BlockPaintableLB(String s)
 	{
 		super(s, Material.rock);
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
-		isBlockContainer = true;
 		hasSpecialPlacement = true;
 	}
-	
-	public abstract TilePaintableLB createNewTileEntity(World w, int m);
 	
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
 	{ addBoxes(boxes, w, x, y, z, m); }
@@ -42,7 +38,10 @@ public abstract class BlockPaintableLB extends BlockLB implements ITileEntityPro
 	
 	public void onPostLoaded()
 	{
-		getMod().addTile(createNewTileEntity(null, 0).getClass(), blockName);
+		if(hasTileEntity(0))
+		{
+			getMod().addTile(createTileEntity(null, 0).getClass(), blockName);
+		}
 	}
 	
 	@SideOnly(Side.CLIENT)

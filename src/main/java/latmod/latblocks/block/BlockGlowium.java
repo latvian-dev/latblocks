@@ -23,7 +23,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
-public abstract class BlockGlowium extends BlockLB implements ITileEntityProvider
+public abstract class BlockGlowium extends BlockLB
 {
 	public static final String ORE_NAME = "blockGlowium";
 	public static final int DEF_DMG = EnumMCColor.YELLOW.ID;
@@ -64,7 +64,7 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 			
 			LatBlocksItems.i_hammer.addRecipe(new ItemStack(this, 1, DEF_DMG), ORE_NAME);
 			
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[4], 4, DEF_DMG));
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium.get(4), 4, DEF_DMG));
 		}
 	}
 	
@@ -77,7 +77,7 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 		{
 			super.loadRecipes();
 			
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[0], 4, DEF_DMG));
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium.get(0), 4, DEF_DMG));
 		}
 	}
 	
@@ -90,7 +90,7 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 		{
 			super.loadRecipes();
 			
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[1], 4, DEF_DMG));
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium.get(1), 4, DEF_DMG));
 		}
 	}
 	
@@ -103,7 +103,7 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 		{
 			super.loadRecipes();
 			
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[2], 4, DEF_DMG));
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium.get(2), 4, DEF_DMG));
 		}
 	}
 	
@@ -116,7 +116,7 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 		{
 			super.loadRecipes();
 			
-			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium[3], 4, DEF_DMG));
+			getMod().recipes.addRecipe(new ItemStack(this, 4, DEF_DMG), "GG", "GG", 'G', new ItemStack(LatBlocksItems.b_glowium.get(3), 4, DEF_DMG));
 		}
 	}
 	
@@ -129,9 +129,9 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 	{
 		super(s, Material.rock);
 		name = s1;
-		isBlockContainer = true;
 		setHardness(1.5F);
 		setResistance(10F);
+		setCreativeTab(LatBlocks.tabGlowium);
 	}
 	
 	public String getUnlocalizedName()
@@ -145,7 +145,8 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
-		l.add(new ItemStack(this, 1, DEF_DMG));
+		for(int i = 0; i < 16; i++)
+			l.add(new ItemStack(item, 1, i));
 	}
 	
 	public void loadRecipes()
@@ -154,15 +155,14 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 			getMod().recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ", 'G', new ItemStack(this, 1, DEF_DMG), 'C', EnumMCColor.VALUES[i].dyeName);
 	}
 	
-	public TileEntity createNewTileEntity(World w, int m)
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileGlowium(); }
 	
 	public int damageDropped(int m)
 	{ return m; }
-	
-	@SideOnly(Side.CLIENT)
-	public CreativeTabs getCreativeTabToDisplayOn()
-	{ return LatBlocks.tabGlowium; }
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
@@ -216,21 +216,21 @@ public abstract class BlockGlowium extends BlockLB implements ITileEntityProvide
 				
 				if(ep.isSneaking())
 				{
-					for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
+					for(int i = 0; i < LatBlocksItems.b_glowium.size(); i++)
 					{
-						if(this == LatBlocksItems.b_glowium[i])
-							b = LatBlocksItems.b_glowium[(i + 1) % LatBlocksItems.b_glowium.length];
+						if(this == LatBlocksItems.b_glowium.get(i))
+							b = LatBlocksItems.b_glowium.get((i + 1) % LatBlocksItems.b_glowium.size());
 					}
 				}
 				else
 				{
-					for(int i = 0; i < LatBlocksItems.b_glowium.length; i++)
+					for(int i = 0; i < LatBlocksItems.b_glowium.size(); i++)
 					{
-						if(this == LatBlocksItems.b_glowium[i])
+						if(this == LatBlocksItems.b_glowium.get(i))
 						{
 							int j = i - 1;
-							if(j < 0) j = LatBlocksItems.b_glowium.length - 1;
-							b = LatBlocksItems.b_glowium[j];
+							if(j < 0) j = LatBlocksItems.b_glowium.size() - 1;
+							b = LatBlocksItems.b_glowium.get(j);
 						}
 					}
 				}

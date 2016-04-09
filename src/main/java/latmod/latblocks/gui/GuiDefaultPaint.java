@@ -1,7 +1,6 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
-import ftb.lib.SidedDirection;
 import ftb.lib.api.gui.GuiLM;
 import ftb.lib.api.gui.widgets.ItemButtonLM;
 import ftb.lib.api.item.LMInvUtils;
@@ -9,15 +8,16 @@ import latmod.latblocks.LatBlockEventHandler;
 import latmod.latblocks.api.*;
 import latmod.latblocks.net.MessageDefaultPaint;
 import net.minecraft.block.Block;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.*;
+
 @SideOnly(Side.CLIENT)
 public class GuiDefaultPaint extends GuiLM
 {
-	public final PaintButton[] buttons;
+	public final List<PaintButton> buttons;
 	
 	public GuiDefaultPaint(ContainerDefaultPaint c)
 	{
@@ -25,20 +25,22 @@ public class GuiDefaultPaint extends GuiLM
 		mainPanel.width = 176;
 		mainPanel.height = 166;
 		
-		buttons = new PaintButton[6];
-		buttons[SidedDirection.FRONT.ID] = new PaintButton(this, 62, 35);
-		buttons[SidedDirection.BACK.ID] = new PaintButton(this, 112, 35);
-		buttons[SidedDirection.TOP.ID] = new PaintButton(this, 62, 12);
-		buttons[SidedDirection.BOTTOM.ID] = new PaintButton(this, 62, 58);
-		buttons[SidedDirection.LEFT.ID] = new PaintButton(this, 39, 35);
-		buttons[SidedDirection.RIGHT.ID] = new PaintButton(this, 85, 35);
+		buttons = new ArrayList<>();
+		buttons.add(new PaintButton(this, 62, 35)); // FRONT
+		buttons.add(new PaintButton(this, 112, 35)); // BACK
+		buttons.add(new PaintButton(this, 62, 12)); // TOP
+		buttons.add(new PaintButton(this, 62, 58)); // BOTTOM
+		buttons.add(new PaintButton(this, 39, 35)); // LEFT
+		buttons.add(new PaintButton(this, 85, 35)); // RIGHT
 		
-		LatBlockEventHandler.LatBlockProperties props = (LatBlockEventHandler.LatBlockProperties) c.player.getExtendedProperties("LatBlocks");
+		LatBlockEventHandler.LatBlockProperties props = LatBlockEventHandler.LatBlockProperties.get(c.player);
 		
 		if(props != null)
 		{
 			for(int i = 0; i < 6; i++)
-				buttons[i].setItem((props.paint[i] == null) ? null : props.paint[i].getItemStack());
+			{
+				buttons.get(i).setItem((props.paint[i] == null) ? null : props.paint[i].getItemStack());
+			}
 		}
 	}
 	
@@ -50,43 +52,26 @@ public class GuiDefaultPaint extends GuiLM
 	public void drawBackground()
 	{
 		super.drawBackground();
-		for(int i = 0; i < buttons.length; i++)
-			buttons[i].renderWidget();
+		
+		for(PaintButton b : buttons)
+			b.renderWidget();
 	}
 	
-	public boolean handleDragNDrop(GuiContainer g, int x, int y, ItemStack is, int b)
+	public class PaintButton extends ItemButtonLM
 	{
-		for(int i = 0; i < buttons.length; i++)
-		{
-			if(buttons[i].mouseOver())
-			{
-				buttons[i].setItem(LMInvUtils.singleCopy(is));
-				is.stackSize = 0;
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public static class PaintButton extends ItemButtonLM
-	{
-		public final GuiDefaultPaint gui;
-		
 		public PaintButton(GuiDefaultPaint g, int x, int y)
 		{
 			super(g, x, y, 16, 16);
-			gui = g;
 		}
 		
 		public void onButtonPressed(int b)
 		{
-			ItemStack is = LMInvUtils.singleCopy(gui.getHeldItem());
+			ItemStack is = LMInvUtils.singleCopy(getHeldItem());
 			
 			if(isShiftKeyDown())
 			{
-				for(int i = 0; i < gui.buttons.length; i++)
-					gui.buttons[i].setItem(is);
+				for(PaintButton button : buttons)
+					button.setItem(is);
 			}
 			else setItem(is);
 		}
@@ -110,7 +95,7 @@ public class GuiDefaultPaint extends GuiLM
 			
 			for(int i = 0; i < 6; i++)
 			{
-				ItemStack is1 = gui.buttons[i].item;
+				ItemStack is1 = buttons.get(i).item;
 				if(is1 != null) paint[i] = new Paint(Block.getBlockFromItem(is1.getItem()), is1.getItemDamage());
 			}
 			

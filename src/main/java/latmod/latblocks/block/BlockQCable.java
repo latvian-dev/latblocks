@@ -25,7 +25,6 @@ public class BlockQCable extends BlockLB
 	public BlockQCable(String s)
 	{
 		super(s, Material.wood);
-		isBlockContainer = false;
 		setBlockBoundsForItemRender();
 		setHardness(0.6F);
 	}

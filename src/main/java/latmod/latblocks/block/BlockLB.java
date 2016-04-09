@@ -8,7 +8,6 @@ import latmod.latblocks.api.*;
 import latmod.latblocks.client.LatBlocksClient;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -21,14 +20,13 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 	public boolean hasSpecialPlacement = false;
 	
 	public BlockLB(String s, Material m)
-	{ super(s, m); }
+	{
+		super(s, m);
+		setCreativeTab(LatBlocks.tab);
+	}
 	
 	public LMMod getMod()
 	{ return LatBlocks.mod; }
-	
-	@SideOnly(Side.CLIENT)
-	public CreativeTabs getCreativeTabToDisplayOn()
-	{ return LatBlocks.tab; }
 	
 	public Class<? extends ItemBlockLM> getItemBlock()
 	{ return ItemBlockLB.class; }

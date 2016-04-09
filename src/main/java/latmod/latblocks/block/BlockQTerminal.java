@@ -6,7 +6,6 @@ import ftb.lib.api.item.ODItems;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQTerminal;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class BlockQTerminal extends BlockLB implements ITileEntityProvider
+public class BlockQTerminal extends BlockLB
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon icon_front;
@@ -25,9 +24,14 @@ public class BlockQTerminal extends BlockLB implements ITileEntityProvider
 	{
 		super(s, Material.rock);
 		setHardness(1.2F);
-		isBlockContainer = true;
 		getMod().addTile(TileQTerminal.class, s);
 	}
+	
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
+	{ return new TileQTerminal(); }
 	
 	public void loadRecipes()
 	{
@@ -36,9 +40,6 @@ public class BlockQTerminal extends BlockLB implements ITileEntityProvider
 			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QSQ", "QDQ", 'Q', Blocks.quartz_block, 'D', ODItems.DIAMOND, 'D', ItemMaterialsLB.DUST_GLOWIUM_D, 'S', ItemMaterialsLB.DUST_STAR);
 		}
 	}
-	
-	public TileEntity createNewTileEntity(World w, int m)
-	{ return new TileQTerminal(); }
 	
 	public int damageDropped(int i)
 	{ return 0; }

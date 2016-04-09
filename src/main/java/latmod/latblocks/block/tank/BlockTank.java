@@ -2,7 +2,6 @@ package latmod.latblocks.block.tank;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.api.item.ODItems;
-import latmod.latblocks.LatBlocks;
 import latmod.latblocks.config.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;
@@ -30,13 +29,18 @@ public class BlockTank extends BlockTankBase
 	public IIcon[] icons;
 	
 	public BlockTank(String s)
-	{
-		super(s);
-		LatBlocks.mod.addTile(TileTank.class, s);
-	}
+	{ super(s); }
+	
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
+	{ return new TileTank(metadata); }
 	
 	public void onPostLoaded()
 	{
+		super.onPostLoaded();
+		getMod().addTile(TileTank.class, blockName);
 		TANK_BASIC = new ItemStack(this, 1, 0);
 	}
 	
@@ -77,9 +81,6 @@ public class BlockTank extends BlockTankBase
 	
 	public int damageDropped(int i)
 	{ return i; }
-	
-	public TileEntity createNewTileEntity(World w, int m)
-	{ return new TileTank(m); }
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)

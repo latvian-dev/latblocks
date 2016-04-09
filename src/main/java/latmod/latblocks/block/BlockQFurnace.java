@@ -6,7 +6,6 @@ import ftb.lib.api.item.ODItems;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.TileQFurnace;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +17,7 @@ import net.minecraft.world.*;
 
 import java.util.List;
 
-public class BlockQFurnace extends BlockLB implements ITileEntityProvider
+public class BlockQFurnace extends BlockLB
 {
 	@SideOnly(Side.CLIENT)
 	public IIcon iconOn, iconOff;
@@ -30,9 +29,14 @@ public class BlockQFurnace extends BlockLB implements ITileEntityProvider
 		super(s, Material.rock);
 		setHardness(1.2F);
 		setBlockTextureName("furnSide");
-		isBlockContainer = true;
 		getMod().addTile(TileQFurnace.class, s);
 	}
+	
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
+	{ return new TileQFurnace(); }
 	
 	public void loadRecipes()
 	{
@@ -41,9 +45,6 @@ public class BlockQFurnace extends BlockLB implements ITileEntityProvider
 			getMod().recipes.addRecipe(new ItemStack(this), "QDQ", "QFQ", "QSQ", 'Q', Blocks.quartz_block, 'F', Blocks.furnace, 'D', ODItems.DIAMOND, 'S', ItemMaterialsLB.DUST_GLOWIUM_D);
 		}
 	}
-	
-	public TileEntity createNewTileEntity(World w, int m)
-	{ return new TileQFurnace(); }
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return MathHelperMC.get2DRotation(ep); }

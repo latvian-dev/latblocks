@@ -21,7 +21,7 @@ public class BlockLinedBlock extends BlockGlowium
 	{
 		super.loadRecipes();
 		
-		getMod().recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ", 'G', new ItemStack(LatBlocksItems.b_glowium[1], 1, DEF_DMG));
+		getMod().recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ", 'G', new ItemStack(LatBlocksItems.b_glowium.get(1), 1, DEF_DMG));
 	}
 	
 	public void onPostLoaded()

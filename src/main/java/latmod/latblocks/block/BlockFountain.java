@@ -7,7 +7,6 @@ import latmod.latblocks.block.tank.BlockTank;
 import latmod.latblocks.client.render.world.RenderFountain;
 import latmod.latblocks.tile.TileFountain;
 import latmod.lib.MathHelperLM;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.*;
@@ -17,14 +16,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public class BlockFountain extends BlockLB implements ITileEntityProvider
+public class BlockFountain extends BlockLB
 {
 	public BlockFountain(String s)
 	{
 		super(s, Material.rock);
 		setHardness(1.5F);
 		setBlockTextureName("paintable");
-		isBlockContainer = true;
 		getMod().addTile(TileFountain.class, s);
 	}
 	
@@ -33,7 +31,10 @@ public class BlockFountain extends BlockLB implements ITileEntityProvider
 		getMod().recipes.addRecipe(new ItemStack(this), " H ", "PGP", " P ", 'H', Blocks.hopper, 'G', BlockTank.TANK_BASIC, 'P', LatBlocksItems.b_paintable);
 	}
 	
-	public TileEntity createNewTileEntity(World w, int m)
+	public boolean hasTileEntity(int meta)
+	{ return true; }
+	
+	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileFountain(); }
 	
 	@SideOnly(Side.CLIENT)

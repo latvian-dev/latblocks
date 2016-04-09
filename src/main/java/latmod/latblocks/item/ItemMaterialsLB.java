@@ -1,11 +1,9 @@
 package latmod.latblocks.item;
 
-import cpw.mods.fml.relauncher.*;
 import ftb.lib.*;
 import ftb.lib.api.item.*;
 import latmod.latblocks.*;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
 
@@ -33,14 +31,13 @@ public class ItemMaterialsLB extends ItemMaterialsLM
 	public static MaterialItem PAINT_ROLLER_COLOR;
 	
 	public ItemMaterialsLB(String s)
-	{ super(s); }
+	{
+		super(s);
+		setCreativeTab(LatBlocks.tab);
+	}
 	
 	public LMMod getMod()
 	{ return LatBlocks.mod; }
-	
-	@SideOnly(Side.CLIENT)
-	public CreativeTabs getCreativeTab()
-	{ return LatBlocks.tab; }
 	
 	public void onPostLoaded() // LastID = 16
 	{
