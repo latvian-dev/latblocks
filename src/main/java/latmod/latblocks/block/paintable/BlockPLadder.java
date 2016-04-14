@@ -5,7 +5,6 @@ import ftb.lib.MathHelperMC;
 import latmod.latblocks.block.*;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.*;
-import latmod.lib.LMListUtils;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,7 +12,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 
-import java.util.List;
+import java.util.*;
 
 public class BlockPLadder extends BlockPaintableSingle
 {
@@ -54,7 +53,7 @@ public class BlockPLadder extends BlockPaintableSingle
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
-		LMListUtils.addAll(boxes, ladder_boxes);
+		Collections.addAll(boxes, ladder_boxes);
 	}
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
@@ -109,7 +108,7 @@ public class BlockPLadder extends BlockPaintableSingle
 			boxes[i] = boxes[i].getOffsetBoundingBox(Facing.offsetsXForSide[m] * shift, 0D, Facing.offsetsZForSide[m] * shift);
 		}
 		
-		LMListUtils.addAll(boxes0, boxes);
+		Collections.addAll(boxes0, boxes);
 	}
 	
 	public static class TilePLadder extends TileSinglePaintable

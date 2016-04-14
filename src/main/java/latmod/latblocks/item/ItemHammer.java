@@ -3,7 +3,6 @@ package latmod.latblocks.item;
 import com.google.common.collect.Multimap;
 import ftb.lib.api.item.*;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
-import latmod.lib.LMListUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -12,7 +11,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class ItemHammer extends ItemLB
 {
@@ -52,10 +51,10 @@ public class ItemHammer extends ItemLB
 	
 	public void addRecipe(ItemStack out, Object in, Object... extra)
 	{
-		ArrayList<Object> l = new ArrayList<>();
+		List<Object> l = new ArrayList<>();
 		l.add(new ItemStack(this, 1, ODItems.ANY));
 		l.add(in);
-		LMListUtils.addAll(l, extra);
+		Collections.addAll(l, extra);
 		getMod().recipes.addShapelessRecipe(out, l.toArray());
 	}
 	

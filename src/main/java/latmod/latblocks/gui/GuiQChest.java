@@ -6,7 +6,7 @@ import ftb.lib.api.gui.*;
 import ftb.lib.api.gui.callback.*;
 import ftb.lib.api.gui.widgets.*;
 import ftb.lib.api.item.LMInvUtils;
-import latmod.latblocks.LatBlocks;
+import latmod.latblocks.LatBlocksLang;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.init.Items;
@@ -78,7 +78,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			}
 		};
 		
-		buttonColChest.title = LatBlocks.mod.translate("chest_color");
+		buttonColChest.title = LatBlocksLang.chest_color.format();
 		
 		buttonColText = new ButtonLM(this, 15, 192, 16, 16)
 		{
@@ -95,7 +95,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			}
 		};
 		
-		buttonColText.title = LatBlocks.mod.translate("text_color");
+		buttonColText.title = LatBlocksLang.text_color.format();
 		
 		buttonGlow = new ItemButtonLM(this, 15, 216, 16, 16)
 		{
@@ -107,7 +107,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			}
 		};
 		
-		buttonGlow.title = LatBlocks.mod.translate("text_glow");
+		buttonGlow.title = LatBlocksLang.text_glow.format();
 		
 		buttonSetItem = new ItemButtonLM(this, 217, 192, 16, 16)
 		{
@@ -147,7 +147,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			}
 		};
 		
-		buttonSetItem.title = LatBlocks.mod.translate("chest_icon");
+		buttonSetItem.title = LatBlocksLang.chest_icon.format();
 		buttonSetItem.setItem(chest.iconItem);
 	}
 	
