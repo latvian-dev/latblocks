@@ -4,10 +4,12 @@ import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.api.IQuartzNetTile;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QNetFinder
 {

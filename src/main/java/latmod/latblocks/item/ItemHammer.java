@@ -1,7 +1,8 @@
 package latmod.latblocks.item;
 
 import com.google.common.collect.Multimap;
-import ftb.lib.api.item.*;
+import ftb.lib.api.item.ODItems;
+import ftb.lib.api.item.Tool;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,7 +12,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ItemHammer extends ItemLB
 {

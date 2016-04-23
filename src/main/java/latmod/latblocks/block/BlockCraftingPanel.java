@@ -1,8 +1,10 @@
 package latmod.latblocks.block;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.FTBLib;
-import ftb.lib.api.tile.*;
+import ftb.lib.api.tile.IGuiTile;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.LatBlocksItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -11,12 +13,17 @@ import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ContainerWorkbench;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Facing;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockCraftingPanel extends BlockLB

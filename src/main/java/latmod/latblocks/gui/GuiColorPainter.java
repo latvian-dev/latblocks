@@ -1,9 +1,12 @@
 package latmod.latblocks.gui;
 
-import cpw.mods.fml.relauncher.*;
-import ftb.lib.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ftb.lib.EnumMCColor;
+import ftb.lib.TextureCoords;
 import ftb.lib.api.MouseButton;
-import ftb.lib.api.client.*;
+import ftb.lib.api.client.FTBLibClient;
+import ftb.lib.api.client.GlStateManager;
 import ftb.lib.api.gui.GuiLM;
 import ftb.lib.api.gui.widgets.ButtonLM;
 import ftb.lib.mod.net.MessageClientItemAction;
@@ -12,7 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.*;
+import java.util.EnumMap;
+import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class GuiColorPainter extends GuiLM

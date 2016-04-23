@@ -1,7 +1,9 @@
 package latmod.latblocks.item;
 
-import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.item.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ftb.lib.api.item.IItemLM;
+import ftb.lib.api.item.ODItems;
 import ftb.lib.mod.FTBLibMod;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.api.ILBGlasses;
@@ -11,7 +13,9 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses

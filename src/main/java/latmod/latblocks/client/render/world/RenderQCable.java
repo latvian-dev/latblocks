@@ -1,6 +1,7 @@
 package latmod.latblocks.client.render.world;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.client.GlStateManager;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockQCable;

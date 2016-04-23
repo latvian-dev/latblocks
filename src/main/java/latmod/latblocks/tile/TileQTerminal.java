@@ -1,13 +1,17 @@
 package latmod.latblocks.tile;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.FTBLib;
 import ftb.lib.api.MouseButton;
-import ftb.lib.api.tile.*;
+import ftb.lib.api.tile.IGuiTile;
+import ftb.lib.api.tile.TileLM;
 import latmod.latblocks.api.IQuartzNetTile;
-import latmod.latblocks.gui.*;
+import latmod.latblocks.gui.ContainerQNet;
+import latmod.latblocks.gui.GuiQNet;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,19 +1,23 @@
 package latmod.latblocks.gui;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.MouseButton;
 import ftb.lib.api.gui.GuiLM;
 import ftb.lib.api.gui.widgets.ItemButtonLM;
 import ftb.lib.api.item.LMInvUtils;
 import latmod.latblocks.LatBlockEventHandler;
-import latmod.latblocks.api.*;
+import latmod.latblocks.api.ICustomPaintBlock;
+import latmod.latblocks.api.INoPaintBlock;
+import latmod.latblocks.api.Paint;
 import latmod.latblocks.net.MessageDefaultPaint;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiDefaultPaint extends GuiLM

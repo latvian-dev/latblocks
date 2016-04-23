@@ -1,8 +1,12 @@
 package latmod.latblocks;
 
-import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.gui.*;
-import latmod.latblocks.gui.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ftb.lib.api.gui.ContainerEmpty;
+import ftb.lib.api.gui.LMGuiHandler;
+import latmod.latblocks.gui.ContainerDefaultPaint;
+import latmod.latblocks.gui.GuiColorPainter;
+import latmod.latblocks.gui.GuiDefaultPaint;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

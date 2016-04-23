@@ -1,6 +1,7 @@
 package latmod.latblocks.item;
 
-import latmod.latblocks.api.*;
+import latmod.latblocks.api.IPainterItem;
+import latmod.latblocks.api.PaintItemHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

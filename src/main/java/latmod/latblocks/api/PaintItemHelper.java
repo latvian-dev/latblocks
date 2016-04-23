@@ -1,6 +1,7 @@
 package latmod.latblocks.api;
 
-import ftb.lib.*;
+import ftb.lib.FTBLib;
+import ftb.lib.MathHelperMC;
 import ftb.lib.api.item.LMInvUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

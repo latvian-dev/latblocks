@@ -1,14 +1,18 @@
 package latmod.latblocks.client;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.block.ItemBlockLM;
 import ftb.lib.api.client.GlStateManager;
-import latmod.latblocks.block.*;
+import latmod.latblocks.block.BlockPaintableLB;
+import latmod.latblocks.block.ItemBlockLB;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Facing;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import org.lwjgl.opengl.GL11;
 

@@ -1,16 +1,24 @@
 package latmod.latblocks.tile;
 
-import cpw.mods.fml.relauncher.*;
-import ftb.lib.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ftb.lib.FTBLib;
+import ftb.lib.PrivacyLevel;
 import ftb.lib.api.MouseButton;
 import ftb.lib.api.item.LMInvUtils;
-import ftb.lib.api.tile.*;
+import ftb.lib.api.tile.IGuiTile;
+import ftb.lib.api.tile.ISecureTile;
+import ftb.lib.api.tile.TileInvLM;
 import latmod.latblocks.LatBlocksItems;
-import latmod.latblocks.gui.*;
-import latmod.lib.*;
+import latmod.latblocks.gui.ContainerQChest;
+import latmod.latblocks.gui.GuiQChest;
+import latmod.lib.LMColor;
+import latmod.lib.MathHelperLM;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 

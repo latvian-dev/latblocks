@@ -1,19 +1,26 @@
 package latmod.latblocks.block;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.LMMod;
-import ftb.lib.api.block.*;
+import ftb.lib.api.block.BlockLM;
+import ftb.lib.api.block.ItemBlockLM;
 import latmod.latblocks.LatBlocks;
-import latmod.latblocks.api.*;
+import latmod.latblocks.api.ICustomPaintBlockIcon;
+import latmod.latblocks.api.Paint;
 import latmod.latblocks.client.LatBlocksClient;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.IFluidBlock;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 {

@@ -1,15 +1,18 @@
 package latmod.latblocks.block.paintable;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSided;
-import latmod.latblocks.tile.*;
+import latmod.latblocks.tile.TilePaintableLB;
+import latmod.latblocks.tile.TilePaintableRS;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.*;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 public class BlockPaintableRS extends BlockPaintableSided
 {

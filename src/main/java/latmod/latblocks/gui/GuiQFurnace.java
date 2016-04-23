@@ -1,9 +1,11 @@
 package latmod.latblocks.gui;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.TextureCoords;
 import ftb.lib.api.client.FTBLibClient;
-import ftb.lib.api.gui.*;
+import ftb.lib.api.gui.GuiContainerLM;
+import ftb.lib.api.gui.GuiLM;
 import ftb.lib.api.gui.widgets.WidgetLM;
 import latmod.latblocks.tile.TileQFurnace;
 import net.minecraft.util.ResourceLocation;

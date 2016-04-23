@@ -2,12 +2,45 @@ package latmod.latblocks;
 
 import ftb.lib.LMMod;
 import ftb.lib.api.item.IItemLM;
-import latmod.latblocks.block.*;
-import latmod.latblocks.block.paintable.*;
-import latmod.latblocks.block.tank.*;
-import latmod.latblocks.item.*;
+import latmod.latblocks.block.BlockCraftingPanel;
+import latmod.latblocks.block.BlockFountain;
+import latmod.latblocks.block.BlockGelLamp;
+import latmod.latblocks.block.BlockGlass;
+import latmod.latblocks.block.BlockGlowium;
+import latmod.latblocks.block.BlockGlowiumFarmland;
+import latmod.latblocks.block.BlockLBBricks;
+import latmod.latblocks.block.BlockLinedBlock;
+import latmod.latblocks.block.BlockQCable;
+import latmod.latblocks.block.BlockQChest;
+import latmod.latblocks.block.BlockQFurnace;
+import latmod.latblocks.block.BlockQTerminal;
+import latmod.latblocks.block.paintable.BlockPCarpet;
+import latmod.latblocks.block.paintable.BlockPCover;
+import latmod.latblocks.block.paintable.BlockPDoor;
+import latmod.latblocks.block.paintable.BlockPFence;
+import latmod.latblocks.block.paintable.BlockPFenceGate;
+import latmod.latblocks.block.paintable.BlockPLadder;
+import latmod.latblocks.block.paintable.BlockPPressurePlate;
+import latmod.latblocks.block.paintable.BlockPSlab;
+import latmod.latblocks.block.paintable.BlockPStairs;
+import latmod.latblocks.block.paintable.BlockPWall;
+import latmod.latblocks.block.paintable.BlockPaintableDef;
+import latmod.latblocks.block.paintable.BlockPaintableGS;
+import latmod.latblocks.block.paintable.BlockPaintableLamp;
+import latmod.latblocks.block.paintable.BlockPaintableRS;
+import latmod.latblocks.block.tank.BlockTank;
+import latmod.latblocks.block.tank.BlockVoidTank;
+import latmod.latblocks.block.tank.BlockWaterTank;
+import latmod.latblocks.item.ItemBlockPainter;
+import latmod.latblocks.item.ItemBlockPainterDmd;
+import latmod.latblocks.item.ItemColorPainter;
+import latmod.latblocks.item.ItemEnderBag;
+import latmod.latblocks.item.ItemGlasses;
+import latmod.latblocks.item.ItemHammer;
+import latmod.latblocks.item.ItemMaterialsLB;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LatBlocksItems
 {

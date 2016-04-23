@@ -1,18 +1,25 @@
 package latmod.latblocks.block.paintable;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.MathHelperMC;
-import latmod.latblocks.block.*;
+import latmod.latblocks.block.BlockPaintableSingle;
+import latmod.latblocks.block.Placement;
 import latmod.latblocks.item.ItemMaterialsLB;
-import latmod.latblocks.tile.*;
+import latmod.latblocks.tile.TilePaintableLB;
+import latmod.latblocks.tile.TileSinglePaintable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Facing;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 public class BlockPLadder extends BlockPaintableSingle
 {

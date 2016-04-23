@@ -1,7 +1,9 @@
 package latmod.latblocks.net;
 
-import cpw.mods.fml.common.network.simpleimpl.*;
-import ftb.lib.api.net.*;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import ftb.lib.api.net.LMNetworkWrapper;
+import ftb.lib.api.net.MessageLM;
 import latmod.latblocks.LatBlockEventHandler;
 import latmod.latblocks.api.Paint;
 import latmod.lib.ByteCount;

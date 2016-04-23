@@ -1,8 +1,10 @@
 package latmod.latblocks;
 
-import ftb.lib.*;
+import ftb.lib.MathHelperMC;
+import ftb.lib.SidedDirection;
 import ftb.lib.api.tile.TileLM;
-import latmod.latblocks.api.*;
+import latmod.latblocks.api.IPaintable;
+import latmod.latblocks.api.Paint;
 import latmod.latblocks.tile.TileFountain;
 import net.minecraft.entity.player.EntityPlayer;
 

@@ -1,15 +1,18 @@
 package latmod.latblocks.client.render.world;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.client.GlStateManager;
-import latmod.latblocks.api.*;
+import latmod.latblocks.api.Paint;
+import latmod.latblocks.api.PaintableRenderer;
 import latmod.latblocks.block.BlockPaintableLB;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TilePaintableLB;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import java.util.ArrayList;

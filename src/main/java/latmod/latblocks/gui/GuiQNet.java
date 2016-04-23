@@ -1,18 +1,22 @@
 package latmod.latblocks.gui;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.TextureCoords;
 import ftb.lib.api.MouseButton;
 import ftb.lib.api.client.GlStateManager;
 import ftb.lib.api.gui.GuiContainerLM;
 import ftb.lib.api.gui.widgets.ItemButtonLM;
 import latmod.latblocks.api.IQuartzNetTile;
-import latmod.latblocks.tile.*;
+import latmod.latblocks.tile.QNetFinder;
+import latmod.latblocks.tile.TileQTerminal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiQNet extends GuiContainerLM

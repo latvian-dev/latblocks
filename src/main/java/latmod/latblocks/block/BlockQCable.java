@@ -1,6 +1,7 @@
 package latmod.latblocks.block;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.api.IQuartzNetTile;

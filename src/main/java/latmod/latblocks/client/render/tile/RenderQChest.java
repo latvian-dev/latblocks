@@ -1,7 +1,9 @@
 package latmod.latblocks.client.render.tile;
 
-import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.client.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ftb.lib.api.client.FTBLibClient;
+import ftb.lib.api.client.GlStateManager;
 import latmod.latblocks.block.BlockQChest;
 import latmod.latblocks.tile.TileQChest;
 import net.minecraft.block.Block;

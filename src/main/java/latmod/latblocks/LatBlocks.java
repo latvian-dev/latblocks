@@ -1,8 +1,12 @@
 package latmod.latblocks;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.event.*;
-import ftb.lib.*;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import ftb.lib.CreativeTabLM;
+import ftb.lib.EventBusHelper;
+import ftb.lib.LMMod;
 import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.config.LatBlocksConfig;
 import latmod.latblocks.net.LatBlocksNetHandler;

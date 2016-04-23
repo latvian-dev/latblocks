@@ -1,17 +1,27 @@
 package latmod.latblocks.tile;
 
 import ftb.lib.api.item.LMInvUtils;
-import ftb.lib.api.tile.*;
+import ftb.lib.api.tile.IWailaTile;
+import ftb.lib.api.tile.Tank;
+import ftb.lib.api.tile.TileInvLM;
 import ftb.lib.api.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocks;
-import latmod.latblocks.api.*;
+import latmod.latblocks.api.IPaintable;
+import latmod.latblocks.api.IPainterItem;
+import latmod.latblocks.api.Paint;
+import latmod.latblocks.api.PaintData;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.IFluidHandler;
 
 import java.util.List;
 

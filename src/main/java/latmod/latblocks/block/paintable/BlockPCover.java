@@ -3,7 +3,8 @@ package latmod.latblocks.block.paintable;
 import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.block.BlockPaintableSingle;
-import latmod.latblocks.tile.*;
+import latmod.latblocks.tile.TilePaintableLB;
+import latmod.latblocks.tile.TileSinglePaintable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

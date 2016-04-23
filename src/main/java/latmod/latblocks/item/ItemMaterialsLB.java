@@ -1,10 +1,15 @@
 package latmod.latblocks.item;
 
-import ftb.lib.*;
-import ftb.lib.api.item.*;
-import latmod.latblocks.*;
+import ftb.lib.EnumMCColor;
+import ftb.lib.LMMod;
+import ftb.lib.api.item.ItemMaterialsLM;
+import ftb.lib.api.item.MaterialItem;
+import ftb.lib.api.item.ODItems;
+import latmod.latblocks.LatBlocks;
+import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.config.LatBlocksConfigCrafting;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class ItemMaterialsLB extends ItemMaterialsLM

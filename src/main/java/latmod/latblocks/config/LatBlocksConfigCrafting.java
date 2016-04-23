@@ -1,6 +1,7 @@
 package latmod.latblocks.config;
 
-import ftb.lib.api.config.*;
+import ftb.lib.api.config.ConfigEntryBool;
+import ftb.lib.api.config.ConfigEntryInt;
 import latmod.lib.annotations.NumberBounds;
 
 public class LatBlocksConfigCrafting

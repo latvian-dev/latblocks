@@ -1,8 +1,10 @@
 package latmod.latblocks.tile.tank;
 
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.item.LMInvUtils;
-import ftb.lib.api.tile.*;
+import ftb.lib.api.tile.IWailaTile;
+import ftb.lib.api.tile.Tank;
 import ftb.lib.api.waila.WailaDataAccessor;
 import latmod.latblocks.LatBlocksItems;
 import latmod.latblocks.api.IPainterItem;
@@ -11,7 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidContainerItem;
 
 import java.util.List;
 

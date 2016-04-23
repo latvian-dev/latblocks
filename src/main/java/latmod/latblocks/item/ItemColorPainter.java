@@ -1,9 +1,11 @@
 package latmod.latblocks.item;
 
 import ftb.lib.EnumMCColor;
-import ftb.lib.api.item.*;
+import ftb.lib.api.item.IClientActionItem;
+import ftb.lib.api.item.ODItems;
 import latmod.latblocks.LatBlocksGuiHandler;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockColored;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;

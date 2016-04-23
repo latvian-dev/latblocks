@@ -1,15 +1,20 @@
 package latmod.latblocks.client.render.world;
 
-import cpw.mods.fml.relauncher.*;
-import ftb.lib.api.client.*;
-import latmod.latblocks.api.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import ftb.lib.api.client.FTBLibClient;
+import ftb.lib.api.client.GlStateManager;
+import latmod.latblocks.api.Paint;
+import latmod.latblocks.api.PaintableRenderer;
 import latmod.latblocks.block.BlockGlowium;
 import latmod.latblocks.client.LatBlocksClient;
 import latmod.latblocks.tile.TilePaintableLB;
 import latmod.lib.LMColorUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Facing;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 @SideOnly(Side.CLIENT)
