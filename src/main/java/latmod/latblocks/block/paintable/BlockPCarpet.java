@@ -14,11 +14,13 @@ public class BlockPCarpet extends BlockPaintableSingle
 		super(s, 1F / 16F);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 3), "PPP", 'P', LatBlocksItems.b_cover);
 	}
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();

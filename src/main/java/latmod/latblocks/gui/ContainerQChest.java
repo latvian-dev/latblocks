@@ -20,6 +20,7 @@ public class ContainerQChest extends ContainerLM
 		t.openInventory();
 	}
 	
+	@Override
 	public void onContainerClosed(EntityPlayer ep)
 	{
 		super.onContainerClosed(ep);

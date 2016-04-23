@@ -29,6 +29,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		setHasSubtypes(true);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addShapelessRecipe(new ItemStack(this, 1, 0), ItemMaterialsLB.PAINT_ROLLER_ROD, ItemMaterialsLB.PAINT_ROLLER_COLOR);
@@ -39,15 +40,19 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		}
 	}
 	
+	@Override
 	public ItemStack getContainerItem(ItemStack is)
 	{ return is == null ? null : is.copy(); }
 	
+	@Override
 	public boolean hasContainerItem(ItemStack is)
 	{ return true; }
 	
+	@Override
 	public boolean doesContainerItemLeaveCraftingGrid(ItemStack is)
 	{ return false; }
 	
+	@Override
 	public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer ep)
 	{
 		if(!w.isRemote && ep.isSneaking())
@@ -55,6 +60,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		return is;
 	}
 	
+	@Override
 	public boolean onItemUse(ItemStack is, EntityPlayer ep, World w, int x, int y, int z, int s, float x1, float y1, float z1)
 	{
 		Block b = w.getBlock(x, y, z);
@@ -62,6 +68,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		return true;
 	}
 	
+	@Override
 	public boolean itemInteractionForEntity(ItemStack is, EntityPlayer ep, EntityLivingBase el)
 	{
 		if(el instanceof EntitySheep)
@@ -81,6 +88,7 @@ public class ItemColorPainter extends ItemLB implements IClientActionItem
 		return false;
 	}
 	
+	@Override
 	public ItemStack onClientAction(ItemStack is, EntityPlayer ep, String action, NBTTagCompound data)
 	{
 		if(action.equals(ACTION)) is.setItemDamage(data.getByte("Dmg"));

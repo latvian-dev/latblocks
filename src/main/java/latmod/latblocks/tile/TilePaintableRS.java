@@ -12,9 +12,11 @@ public class TilePaintableRS extends TileSidedPaintable
 	public final Paint[] paint_on = new Paint[6];
 	public int power = 0;
 	
+	@Override
 	public boolean rerenderBlock()
 	{ return true; }
 	
+	@Override
 	public void readTileData(NBTTagCompound tag)
 	{
 		super.readTileData(tag);
@@ -22,6 +24,7 @@ public class TilePaintableRS extends TileSidedPaintable
 		power = tag.getByte("Power");
 	}
 	
+	@Override
 	public void writeTileData(NBTTagCompound tag)
 	{
 		super.writeTileData(tag);
@@ -29,10 +32,12 @@ public class TilePaintableRS extends TileSidedPaintable
 		tag.setByte("Power", (byte) power);
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 	}
 	
+	@Override
 	public void onNeighborBlockChange(Block block)
 	{
 		if(isServer())
@@ -65,9 +70,11 @@ public class TilePaintableRS extends TileSidedPaintable
 		}
 	}
 	
+	@Override
 	public Paint getPaint(int side)
 	{ return (power > 0) ? paint_on[side] : paint[side]; }
 	
+	@Override
 	public void setPaint(int side, Paint p)
 	{
 		if(power > 0) paint_on[side] = p;

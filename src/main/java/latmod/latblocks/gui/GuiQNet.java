@@ -33,6 +33,7 @@ public class GuiQNet extends GuiContainerLM
 		qinvs = new ArrayList<>();
 	}
 	
+	@Override
 	public void addWidgets()
 	{
 		qinvs.clear();
@@ -45,6 +46,7 @@ public class GuiQNet extends GuiContainerLM
 		qinvs.sort(null);
 	}
 	
+	@Override
 	public void drawBackground()
 	{
 		super.drawBackground();
@@ -71,6 +73,7 @@ public class GuiQNet extends GuiContainerLM
 			title = item.getDisplayName();
 		}
 		
+		@Override
 		public void onButtonPressed(int b)
 		{
 			inv.onQClicked(((GuiQNet) gui).container.player, b);
@@ -80,6 +83,7 @@ public class GuiQNet extends GuiContainerLM
 			term.clientPressButton(TileQTerminal.BUTTON_QNET, b, data);
 		}
 		
+		@Override
 		public int compareTo(ButtonQInv o)
 		{ return title.compareToIgnoreCase(o.title); }
 	}

@@ -25,39 +25,49 @@ public abstract class BlockTankBase extends BlockLB implements ICustomPaintBlock
 		setBlockTextureName("tank/inside");
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderTank.instance.getRenderId(); }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
 	{ return true; }
 	
+	@Override
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{ return FTBLibClient.blockNullIcon; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
 	{ return true; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
 	}
 	
+	@Override
 	public Paint getCustomPaint(World w, int x, int y, int z)
 	{
 		TileEntity te = w.getTileEntity(x, y, z);

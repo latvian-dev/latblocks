@@ -18,23 +18,29 @@ public class TileVoidTank extends TileTankBase
 	{
 		tank = new Tank("Tank", 1D)
 		{
+			@Override
 			public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
 			{ return (resource == null) ? 0 : resource.amount; }
 			
+			@Override
 			public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
 			{ return null; }
 			
+			@Override
 			public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 			{ return null; }
 			
+			@Override
 			public boolean canFill(ForgeDirection from, Fluid fluid)
 			{ return true; }
 			
+			@Override
 			public boolean canDrain(ForgeDirection from, Fluid fluid)
 			{ return false; }
 		};
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		if(!isServer() && tick % 20 == 0) for(int i = 0; i < 10; i++)
@@ -48,6 +54,7 @@ public class TileVoidTank extends TileTankBase
 		}
 	}
 	
+	@Override
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
 		FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(is);
@@ -64,14 +71,17 @@ public class TileVoidTank extends TileTankBase
 		return false;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankBorderIcon()
 	{ return LatBlocksItems.b_tank_void.getBlockIcon(); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Fluid getTankRenderFluid()
 	{ return null; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public double getTankFluidHeight()
 	{ return 0D; }

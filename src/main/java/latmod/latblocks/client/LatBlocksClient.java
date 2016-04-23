@@ -34,6 +34,7 @@ public class LatBlocksClient extends LatBlocksCommon
 		{ new MessageOpenDefPaintGui().sendToServer(); }
 	};
 	
+	@Override
 	public void preInit()
 	{
 		EventBusHelper.register(LatBlockClientEventHandler.instance);
@@ -57,12 +58,14 @@ public class LatBlocksClient extends LatBlocksCommon
 		FTBLibClient.addItemRenderer(LatBlocksItems.b_tank_void, RenderTank.instance);
 	}
 	
+	@Override
 	public void postInit()
 	{
 		ClientConfigRegistry.add(clientConfig.addAll(LatBlocksClient.class, null, false));
 		LMGuiHandlerRegistry.add(LatBlocksGuiHandler.instance);
 	}
 	
+	@Override
 	public void spawnFountainParticle(TileFountain t)
 	{
 		double x = t.xCoord + 0.5D;
@@ -91,12 +94,14 @@ public class LatBlocksClient extends LatBlocksCommon
 			
 			Minecraft.getMinecraft().effectRenderer.addEffect(new EntityBlockDustFX(t.getWorldObj(), x, y + MathHelperLM.rand.nextFloat() * 0.3D, z, mx, my, mz, block, 0)
 			{
+				@Override
 				public int getBrightnessForRender(float f)
 				{ return brightness; }
 			});
 		}
 	}
 	
+	@Override
 	public void setDefPaint(TileLM t, EntityPlayer ep, Paint[] paint)
 	{
 		super.setDefPaint(t, ep, paint);

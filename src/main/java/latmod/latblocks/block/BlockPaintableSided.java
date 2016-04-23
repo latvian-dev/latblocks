@@ -13,28 +13,35 @@ public abstract class BlockPaintableSided extends BlockPaintableLB
 	public BlockPaintableSided(String s)
 	{ super(s); }
 	
+	@Override
 	public int getLightOpacity()
 	{ return 0; }
 	
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new BlockPaintableDef.TilePaintableDef(); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderPaintable.instance.getRenderId(); }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return true; }
 	
+	@Override
 	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
 	{ return true; }
 	
+	@Override
 	public boolean isNormalCube(IBlockAccess world, int x, int y, int z)
 	{ return true; }
 	
+	@Override
 	public float getExplosionResistance(Entity e, World w, int x, int y, int z, double ex, double ey, double ez)
 	{
 		float f = getExplosionResistance(e);

@@ -27,12 +27,15 @@ public class BlockQTerminal extends BlockLB
 		getMod().addTile(TileQTerminal.class, s);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileQTerminal(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.qNetBlocks.getAsBoolean())
@@ -41,12 +44,14 @@ public class BlockQTerminal extends BlockLB
 		}
 	}
 	
+	@Override
 	public int damageDropped(int i)
 	{ return 0; }
 	
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return MathHelperMC.get3DRotation(w, mop.blockX, mop.blockY, mop.blockZ, ep); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -54,10 +59,12 @@ public class BlockQTerminal extends BlockLB
 		icon_front = ir.registerIcon(getMod().lowerCaseModID + ":terminal_front");
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{ return (s == 3) ? icon_front : blockIcon; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{

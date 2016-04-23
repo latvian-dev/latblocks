@@ -32,12 +32,15 @@ public class BlockQFurnace extends BlockLB
 		getMod().addTile(TileQFurnace.class, s);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileQFurnace(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.furnace.getAsBoolean())
@@ -49,9 +52,11 @@ public class BlockQFurnace extends BlockLB
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return MathHelperMC.get2DRotation(ep); }
 	
+	@Override
 	public int damageDropped(int i)
 	{ return 0; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -60,10 +65,12 @@ public class BlockQFurnace extends BlockLB
 		iconOff = ir.registerIcon(getMod().lowerCaseModID + ":furn_off");
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{ return (s == 3) ? ((m == 100) ? iconOn : iconOff) : blockIcon; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{

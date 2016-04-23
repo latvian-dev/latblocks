@@ -28,17 +28,21 @@ public class BlockGelLamp extends BlockPaintableLB
 		hasSpecialPlacement = true;
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addShapelessRecipe(new ItemStack(this, 8), ItemMaterialsLB.DUST_GLOWIUM_Y, ODItems.SLIMEBALL);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileGelLamp(); }
 	
+	@Override
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{
 		if(LMInvUtils.isWrench(ep.inventory.getCurrentItem()))
@@ -52,22 +56,28 @@ public class BlockGelLamp extends BlockPaintableLB
 		return false;
 	}
 	
+	@Override
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e) {}
 	
+	@Override
 	public boolean canPlaceBlockOnSide(World w, int x, int y, int z, int s)
 	{ return true; }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
+	@Override
 	public void setBlockBoundsForItemRender()
 	{
 		float f = 1F / 16F * 1F;
@@ -76,6 +86,7 @@ public class BlockGelLamp extends BlockPaintableLB
 		setBlockBounds(f, 0F, f, 1F - f, h, 1F - f);
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
@@ -107,12 +118,15 @@ public class BlockGelLamp extends BlockPaintableLB
 			boxes.add(AxisAlignedBB.getBoundingBox(f, f, 1D - h, 1D - f, 1D - f, 1D));
 	}
 	
+	@Override
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return ForgeDirection.VALID_DIRECTIONS[mop.sideHit].getOpposite().ordinal(); }
 	
+	@Override
 	public int damageDropped(int i)
 	{ return 0; }
 	
+	@Override
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
 		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[w.getBlockMetadata(x, y, z) % 6];

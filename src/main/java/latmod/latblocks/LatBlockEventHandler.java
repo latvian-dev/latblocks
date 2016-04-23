@@ -26,16 +26,19 @@ public class LatBlockEventHandler
 	{
 		public final Paint[] paint = new Paint[6];
 		
+		@Override
 		public void init(Entity entity, World world)
 		{
 			FTBLib.dev_logger.info("Inited @ " + world);
 		}
 		
+		@Override
 		public void saveNBTData(NBTTagCompound compound)
 		{
 			Paint.writeToNBT(compound, "Paint", paint);
 		}
 		
+		@Override
 		public void loadNBTData(NBTTagCompound compound)
 		{
 			Paint.readFromNBT(compound, "Paint", paint);

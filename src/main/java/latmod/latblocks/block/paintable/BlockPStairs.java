@@ -23,11 +23,13 @@ public class BlockPStairs extends BlockPaintableSingle
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePStairs(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 4), "P  ", "PP ", "PPP", 'P', LatBlocksItems.b_paintable);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
@@ -35,6 +37,7 @@ public class BlockPStairs extends BlockPaintableSingle
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0.5D, 0D, 1D, 1D, 0.5D));
 	}
 	
+	@Override
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{
 		double hitY = mop.hitVec.yCoord - mop.blockY;
@@ -45,11 +48,13 @@ public class BlockPStairs extends BlockPaintableSingle
 		return (hitY >= 0.5D) ? (8 + l) : l;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
@@ -90,6 +95,7 @@ public class BlockPStairs extends BlockPaintableSingle
 		if(addSE) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
@@ -131,6 +137,7 @@ public class BlockPStairs extends BlockPaintableSingle
 		if(addSE) boxes.add(AxisAlignedBB.getBoundingBox(0.5D, h, 0.5D, 1.0D, h1, 1.0D));
 	}
 	
+	@Override
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }
 	

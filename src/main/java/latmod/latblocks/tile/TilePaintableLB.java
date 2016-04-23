@@ -18,25 +18,30 @@ public abstract class TilePaintableLB extends TileLM implements IPaintable, IWai
 	public TilePaintableLB(int i)
 	{ paint = new Paint[i]; }
 	
+	@Override
 	public void readTileData(NBTTagCompound tag)
 	{
 		Paint.readFromNBT(tag, "Texture", paint);
 	}
 	
+	@Override
 	public void writeTileData(NBTTagCompound tag)
 	{
 		Paint.writeToNBT(tag, "Texture", paint);
 	}
 	
+	@Override
 	public boolean rerenderBlock()
 	{ return true; }
 	
 	public abstract Paint getPaint(int side);
 	public abstract void setPaint(int side, Paint p);
 	
+	@Override
 	public boolean isPaintValid(int side, Paint p)
 	{ return true; }
 	
+	@Override
 	public final boolean setPaint(PaintData p)
 	{
 		if(p.player.isSneaking())
@@ -57,18 +62,21 @@ public abstract class TilePaintableLB extends TileLM implements IPaintable, IWai
 		return false;
 	}
 	
+	@Override
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
 		super.onPlacedBy(ep, is);
 		LatBlocks.proxy.setDefPaint(this, ep, paint);
 	}
 	
+	@Override
 	public ItemStack getWailaStack(WailaDataAccessor data)
 	{
 		Paint p = getPaint(data.side);
 		return (p == null) ? null : new ItemStack(p.block, 1, p.meta);
 	}
 	
+	@Override
 	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{
 		if(ItemGlasses.hasPlayer(data.player) && getWailaStack(data) != null)

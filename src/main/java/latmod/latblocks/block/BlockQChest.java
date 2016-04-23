@@ -30,15 +30,19 @@ public class BlockQChest extends BlockLB
 		getMod().addTile(TileQChest.class, s);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileQChest(); }
 	
+	@Override
 	public int getRenderType()
 	{ return -1; }
 	
+	@Override
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.chest.getAsBoolean())
@@ -50,24 +54,30 @@ public class BlockQChest extends BlockLB
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return MathHelperMC.get2DRotation(ep); }
 	
+	@Override
 	public int damageDropped(int i)
 	{ return 0; }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{ return Blocks.quartz_block.getIcon(s, 0); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{ return FTBLibClient.blockNullIcon; }

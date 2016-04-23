@@ -14,6 +14,7 @@ public class BlockPSlab extends BlockPaintableSingle
 		setHardness(1.5F);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 6), "PPP", 'P', LatBlocksItems.b_paintable);

@@ -29,11 +29,13 @@ public class BlockPFence extends BlockPaintableSingle
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePFence(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 2), "SSS", "SSS", 'S', ItemMaterialsLB.ROD);
 	}
 	
+	@Override
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
 	{
 		double p = 1D / 4D;
@@ -57,6 +59,7 @@ public class BlockPFence extends BlockPaintableSingle
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
@@ -81,11 +84,13 @@ public class BlockPFence extends BlockPaintableSingle
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, h2n, z0, 1D, h2p, z1));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
@@ -123,6 +128,7 @@ public class BlockPFence extends BlockPaintableSingle
 		}
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		double p = 1D / 4D;
@@ -150,6 +156,7 @@ public class BlockPFence extends BlockPaintableSingle
 		return b == this || b == Blocks.fence_gate || b == LatBlocksItems.b_fence_gate || (b.getMaterial().isOpaque());
 	}
 	
+	@Override
 	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side)
 	{ return side == ForgeDirection.UP || side == ForgeDirection.DOWN; }
 	

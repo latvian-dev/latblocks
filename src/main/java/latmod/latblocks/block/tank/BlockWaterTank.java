@@ -19,23 +19,28 @@ public class BlockWaterTank extends BlockTankBase
 	public BlockWaterTank(String s)
 	{ super(s); }
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileWaterTank(); }
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
 		getMod().addTile(TileWaterTank.class, blockName);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this), "WEW", "ETE", "WEW", 'W', Items.water_bucket, 'T', BlockTank.TANK_BASIC, 'E', Items.ender_pearl);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -44,13 +49,16 @@ public class BlockWaterTank extends BlockTankBase
 		RenderTank.icon_inside = ir.registerIcon(getMod().lowerCaseModID + ":tank/inside");
 	}
 	
+	@Override
 	public int damageDropped(int i)
 	{ return 0; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankItemBorderIcon(ItemStack item)
 	{ return (item.getItemDamage() == 1) ? icon_on : blockIcon; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public FluidStack getTankItemFluid(ItemStack item)
 	{ return TileWaterTank.WATER_1000; }

@@ -23,14 +23,17 @@ public class BlockPSlope extends BlockLB
 		getMod().addTile(TilePSlope.class, s);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 4), "B  ", "BC ", "BBB", 'C', LatBlocksItems.b_cover, 'B', LatBlocksItems.b_paintable);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TilePSlope(); }
 	
@@ -38,21 +41,26 @@ public class BlockPSlope extends BlockLB
 	//public int getRenderType()
 	//{ return RenderPSlope.instance.getRenderId(); }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }
 	
+	@Override
 	public boolean isSideSolid(IBlockAccess iba, int x, int y, int z, ForgeDirection side)
 	{
 		TilePSlope t = (TilePSlope) getTile(iba, x, y, z);
-		return (t == null) ? true : t.isSolid(side.ordinal());
+		return (t == null) || t.isSolid(side.ordinal());
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
 	{ return true; }
@@ -62,6 +70,7 @@ public class BlockPSlope extends BlockLB
 		public byte yaw = 0;
 		public byte pitch = -1;
 		
+		@Override
 		public void readTileData(NBTTagCompound tag)
 		{
 			super.readTileData(tag);
@@ -69,6 +78,7 @@ public class BlockPSlope extends BlockLB
 			pitch = tag.getByte("Pitch");
 		}
 		
+		@Override
 		public void writeTileData(NBTTagCompound tag)
 		{
 			super.writeTileData(tag);
@@ -76,6 +86,7 @@ public class BlockPSlope extends BlockLB
 			tag.setByte("Pitch", pitch);
 		}
 		
+		@Override
 		public void onPlacedBy(EntityPlayer ep, ItemStack is)
 		{
 			super.onPlacedBy(ep, is);

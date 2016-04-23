@@ -18,6 +18,7 @@ public class RenderPSlope extends BlockRendererLM
 	{
 	}
 	
+	@Override
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.renderAllFaces = false;
@@ -41,6 +42,7 @@ public class RenderPSlope extends BlockRendererLM
 		GlStateManager.popMatrix();
 	}
 	
+	@Override
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.setInst(iba);
@@ -50,11 +52,11 @@ public class RenderPSlope extends BlockRendererLM
 		
 		BlockPSlope.TilePSlope t = (BlockPSlope.TilePSlope) iba.getTileEntity(x, y, z);
 		
-		if(t == null) return false;
+		return t != null;
 		
-		return true;
 	}
 	
+	@Override
 	public boolean shouldRender3DInInventory(int renderID)
 	{ return true; }
 }

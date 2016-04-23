@@ -25,6 +25,7 @@ public class TankCraftingHandler implements IRecipe // ShapedRecipes
 	public static void register(ItemStack out, ItemStack in, ItemStack m)
 	{ CraftingManager.getInstance().getRecipeList().add(new TankCraftingHandler(out, in, m)); }
 	
+	@Override
 	public boolean matches(InventoryCrafting inv, World w)
 	{
 		boolean hasItem = false;
@@ -50,6 +51,7 @@ public class TankCraftingHandler implements IRecipe // ShapedRecipes
 		return hasItem && tanks == 8;
 	}
 	
+	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv)
 	{
 		ItemStack out = getRecipeOutput();
@@ -83,9 +85,11 @@ public class TankCraftingHandler implements IRecipe // ShapedRecipes
 		return out;
 	}
 	
+	@Override
 	public int getRecipeSize()
 	{ return 9; }
 	
+	@Override
 	public ItemStack getRecipeOutput()
 	{ return output.copy(); }
 }

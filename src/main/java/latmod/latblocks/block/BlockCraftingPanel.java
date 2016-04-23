@@ -32,17 +32,21 @@ public class BlockCraftingPanel extends BlockLB
 		getMod().addTile(TileCraftingPanel.class, s);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileCraftingPanel(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		LatBlocksItems.i_hammer.addRecipe(new ItemStack(this), Blocks.crafting_table);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -50,6 +54,7 @@ public class BlockCraftingPanel extends BlockLB
 		icon_side = ir.registerIcon(getMod().lowerCaseModID + ":crafting_panel_side");
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{
@@ -57,6 +62,7 @@ public class BlockCraftingPanel extends BlockLB
 		return icon_side;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{
@@ -65,27 +71,34 @@ public class BlockCraftingPanel extends BlockLB
 		return icon_side;
 	}
 	
+	@Override
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{ return super.onBlockActivated(w, x, y, z, ep, s, x1, y1, z1); }
 	
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
 	{ return null; }
 	
+	@Override
 	public boolean canPlaceBlockOnSide(World w, int x, int y, int z, int s)
 	{ return true; }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	public void setBlockBoundsForItemRender()
 	{
 		float f = 1F / 8F;
 		setBlockBounds(f, f, 0.5F - 1F / 16F, 1F - f, 1F - f, 0.5F + 1F / 16F);
 	}
 	
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
 		int m = iba.getBlockMetadata(x, y, z);
@@ -117,9 +130,11 @@ public class BlockCraftingPanel extends BlockLB
 		return Facing.oppositeSide[mop.sideHit];
 	}
 	
+	@Override
 	public int damageDropped(int i)
 	{ return 0; }
 	
+	@Override
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
 		ForgeDirection f = ForgeDirection.VALID_DIRECTIONS[w.getBlockMetadata(x, y, z)];
@@ -133,21 +148,25 @@ public class BlockCraftingPanel extends BlockLB
 	
 	public static class TileCraftingPanel extends TileLM implements IGuiTile
 	{
+		@Override
 		public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 		{
 			if(isServer()) FTBLib.openGui(ep, this, null);
 			return true;
 		}
 		
+		@Override
 		public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 		{
 			return new ContainerWorkbench(ep.inventory, worldObj, xCoord, yCoord, zCoord)
 			{
+				@Override
 				public boolean canInteractWith(EntityPlayer ep)
 				{ return true; }
 			};
 		}
 		
+		@Override
 		@SideOnly(Side.CLIENT)
 		public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
 		{ return new GuiCrafting(ep.inventory, worldObj, xCoord, yCoord, zCoord); }

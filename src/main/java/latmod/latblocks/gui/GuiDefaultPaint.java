@@ -44,11 +44,13 @@ public class GuiDefaultPaint extends GuiLM
 		}
 	}
 	
+	@Override
 	public void addWidgets()
 	{
 		mainPanel.addAll(buttons);
 	}
 	
+	@Override
 	public void drawBackground()
 	{
 		super.drawBackground();
@@ -64,6 +66,7 @@ public class GuiDefaultPaint extends GuiLM
 			super(g, x, y, 16, 16);
 		}
 		
+		@Override
 		public void onButtonPressed(int b)
 		{
 			ItemStack is = LMInvUtils.singleCopy(getHeldItem());
@@ -76,6 +79,7 @@ public class GuiDefaultPaint extends GuiLM
 			else setItem(is);
 		}
 		
+		@Override
 		public void setItem(ItemStack is)
 		{
 			if(is != null)

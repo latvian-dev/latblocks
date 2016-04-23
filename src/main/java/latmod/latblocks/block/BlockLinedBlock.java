@@ -17,6 +17,7 @@ public class BlockLinedBlock extends BlockGlowium
 	public BlockLinedBlock(String s)
 	{ super(s, "lined"); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		super.loadRecipes();
@@ -24,11 +25,13 @@ public class BlockLinedBlock extends BlockGlowium
 		getMod().recipes.addRecipe(new ItemStack(this, 5, DEF_DMG), " G ", "GGG", " G ", 'G', new ItemStack(LatBlocksItems.b_glowium.get(1), 1, DEF_DMG));
 	}
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -43,10 +46,12 @@ public class BlockLinedBlock extends BlockGlowium
 						icons[a][b][c][d] = ir.registerIcon(getMod().lowerCaseModID + ":glowium/lined/" + a + "" + b + "" + c + "" + d);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getGlowItemIcon()
 	{ return icons[1][1][1][1]; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getGlowIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{

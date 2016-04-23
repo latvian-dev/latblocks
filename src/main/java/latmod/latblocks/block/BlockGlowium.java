@@ -54,6 +54,7 @@ public abstract class BlockGlowium extends BlockLB
 			getMod().addTile(TileGlowium.class, "glowium");
 		}
 		
+		@Override
 		public void loadRecipes()
 		{
 			super.loadRecipes();
@@ -73,6 +74,7 @@ public abstract class BlockGlowium extends BlockLB
 		public BGTile(String s)
 		{ super(s, "tile"); }
 		
+		@Override
 		public void loadRecipes()
 		{
 			super.loadRecipes();
@@ -86,6 +88,7 @@ public abstract class BlockGlowium extends BlockLB
 		public BGBrick(String s)
 		{ super(s, "brick"); }
 		
+		@Override
 		public void loadRecipes()
 		{
 			super.loadRecipes();
@@ -99,6 +102,7 @@ public abstract class BlockGlowium extends BlockLB
 		public BGBrickSmall(String s)
 		{ super(s, "small"); }
 		
+		@Override
 		public void loadRecipes()
 		{
 			super.loadRecipes();
@@ -112,6 +116,7 @@ public abstract class BlockGlowium extends BlockLB
 		public BGBrickChiseled(String s)
 		{ super(s, "chiseled"); }
 		
+		@Override
 		public void loadRecipes()
 		{
 			super.loadRecipes();
@@ -134,14 +139,17 @@ public abstract class BlockGlowium extends BlockLB
 		setCreativeTab(LatBlocks.tabGlowium);
 	}
 	
+	@Override
 	public String getUnlocalizedName()
 	{ return getMod().getBlockName("glowium." + name); }
 	
+	@Override
 	public void onPostLoaded()
 	{
 		ODItems.add(ORE_NAME, new ItemStack(this, 1, ODItems.ANY));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
@@ -149,21 +157,26 @@ public abstract class BlockGlowium extends BlockLB
 			l.add(new ItemStack(item, 1, i));
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		for(int i = 0; i < 16; i++)
 			getMod().recipes.addRecipe(new ItemStack(this, 4, i), " G ", "GCG", " G ", 'G', new ItemStack(this, 1, DEF_DMG), 'C', EnumMCColor.VALUES[i].dyeName);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileGlowium(); }
 	
+	@Override
 	public int damageDropped(int m)
 	{ return m; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -171,19 +184,24 @@ public abstract class BlockGlowium extends BlockLB
 		icon_glow = ir.registerIcon(getMod().lowerCaseModID + ":glowium/" + name + "_glow");
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderGlowiumBlocks.instance.getRenderId(); }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }
 	
+	@Override
 	public boolean isSideSolid(IBlockAccess world, int x, int y, int z, ForgeDirection side)
 	{ return true; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
 	{
@@ -192,6 +210,7 @@ public abstract class BlockGlowium extends BlockLB
 		return b1 == Blocks.air || !b1.renderAsNormalBlock() || !b1.isOpaqueCube();
 	}
 	
+	@Override
 	public boolean recolourBlock(World w, int x, int y, int z, ForgeDirection side, int col)
 	{
 		int meta = BlockColored.func_150031_c(col);
@@ -205,6 +224,7 @@ public abstract class BlockGlowium extends BlockLB
 		return false;
 	}
 	
+	@Override
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{
 		if(LMInvUtils.isWrench(ep.getHeldItem()))
@@ -258,10 +278,12 @@ public abstract class BlockGlowium extends BlockLB
 		return false;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(int m)
 	{ return brightColors[m]; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
 	{ return getRenderColor(iba.getBlockMetadata(x, y, z)); }
@@ -280,9 +302,11 @@ public abstract class BlockGlowium extends BlockLB
 	public IIcon getGlowIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{ return icon_glow; }
 	
+	@Override
 	public boolean canCreatureSpawn(EnumCreatureType t, IBlockAccess iba, int x, int y, int z)
 	{ return t.getPeacefulCreature(); }
 	
+	@Override
 	public MapColor getMapColor(int m)
 	{ return MapColor.getMapColorForBlockColored(BlockColored.func_150032_b(m)); }
 }

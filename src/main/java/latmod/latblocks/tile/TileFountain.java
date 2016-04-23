@@ -28,14 +28,17 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		
 		tank = new Tank("Tank", 1D)
 		{
+			@Override
 			public boolean canFill(ForgeDirection from, Fluid fluid)
 			{ return fluid != null && fluid.getBlock() != null; }
 		};
 	}
 	
+	@Override
 	public boolean rerenderBlock()
 	{ return true; }
 	
+	@Override
 	public void readTileData(NBTTagCompound tag)
 	{
 		super.readTileData(tag);
@@ -44,6 +47,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		redstonePowered = tag.getBoolean("RSIn");
 	}
 	
+	@Override
 	public void writeTileData(NBTTagCompound tag)
 	{
 		super.writeTileData(tag);
@@ -52,12 +56,14 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		tag.setBoolean("RSIn", redstonePowered);
 	}
 	
+	@Override
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
 		super.onPlacedBy(ep, is);
 		LatBlocks.proxy.setDefPaint(this, ep, paint);
 	}
 	
+	@Override
 	public boolean setPaint(PaintData p)
 	{
 		if(p.canReplace(paint[0]))
@@ -70,9 +76,11 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		return false;
 	}
 	
+	@Override
 	public boolean isPaintValid(int side, Paint p)
 	{ return true; }
 	
+	@Override
 	public void onNeighborBlockChange(Block b)
 	{
 		if(isServer())
@@ -82,6 +90,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		}
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		if(isServer() && tick % 20 == 0)
@@ -125,6 +134,7 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		return FluidContainerRegistry.fillFluidContainer(fs, is1);
 	}
 	
+	@Override
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
 		if(is == null)
@@ -194,42 +204,55 @@ public class TileFountain extends TileInvLM implements IPaintable, IFluidHandler
 		return false;
 	}
 	
+	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
 	{ return tank.fill(from, resource, doFill); }
 	
+	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
 	{ return tank.drain(from, resource, doDrain); }
 	
+	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 	{ return tank.drain(from, maxDrain, doDrain); }
 	
+	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid)
 	{ return tank.canFill(from, fluid); }
 	
+	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid)
 	{ return tank.canDrain(from, fluid); }
 	
+	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from)
 	{ return tank.getTankInfo(from); }
 	
+	@Override
 	public String getInventoryName()
 	{ return "Fountain"; }
 	
+	@Override
 	public boolean hasCustomInventoryName()
 	{ return false; }
 	
+	@Override
 	public boolean isItemValidForSlot(int i, ItemStack is)
 	{ return true; }
 	
+	@Override
 	public int[] getAccessibleSlotsFromSide(int i)
 	{ return ALL_SLOTS; }
 	
+	@Override
 	public boolean canInsertItem(int i, ItemStack is, int s)
 	{ return getFilled(is) != null; }
 	
+	@Override
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return getFilled(is) == null; }
 	
+	@Override
 	public void addWailaBody(WailaDataAccessor data, List<String> info)
 	{
 		if(tank.isEmpty()) info.add("Tank: Empty");

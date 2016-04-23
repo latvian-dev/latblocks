@@ -26,51 +26,62 @@ public class BlockPDoor extends BlockPaintableSided
 		setBlockTextureName("paintable_door");
 	}
 	
+	@Override
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePDoor(); }
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
 		ODItems.add(BlockPaintableDef.ORE_NAME, new ItemStack(this));
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 6), "PP", "PP", "PP", 'P', LatBlocksItems.b_paintable);
 	}
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getPlacementBoxes(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
+	@Override
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return 0; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		if(m == 0) boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));
 	}
 	
+	@Override
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{
 		if(ep.getHeldItem() != null && (ep.getHeldItem().getItem() instanceof IPainterItem || ep.getHeldItem().getItem() == getItem()))
@@ -88,6 +99,7 @@ public class BlockPDoor extends BlockPaintableSided
 	public boolean isOpen(int meta)
 	{ return meta > 1; }
 	
+	@Override
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
 		if(!w.isRemote && w.isBlockIndirectlyGettingPowered(x, y, z))
@@ -101,18 +113,21 @@ public class BlockPDoor extends BlockPaintableSided
 	{
 		public int timer = 0;
 		
+		@Override
 		public void readTileData(NBTTagCompound tag)
 		{
 			super.readTileData(tag);
 			timer = tag.getShort("Timer");
 		}
 		
+		@Override
 		public void writeTileData(NBTTagCompound tag)
 		{
 			super.writeTileData(tag);
 			tag.setShort("Timer", (short) timer);
 		}
 		
+		@Override
 		public void onUpdate()
 		{
 			if(timer > 0 && isServer())

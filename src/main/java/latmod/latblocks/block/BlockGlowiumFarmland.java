@@ -19,14 +19,17 @@ public class BlockGlowiumFarmland extends BlockLB
 		setStepSound(soundTypeGravel);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 8), "SDO", "TGT", "ODS", 'S', ODItems.SAND, 'D', Blocks.dirt, 'O', Blocks.soul_sand, 'T', ODItems.GLOWSTONE, 'G', ItemMaterialsLB.DUST_GLOWIUM_G);
 	}
 	
+	@Override
 	public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable)
 	{ return true; }
 	
+	@Override
 	public boolean isFertile(World world, int x, int y, int z)
 	{ return true; }
 }

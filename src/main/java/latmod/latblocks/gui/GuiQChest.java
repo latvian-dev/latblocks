@@ -36,6 +36,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		
 		textBoxLabel = new TextBoxLM(this, 7, 6, 235, 18)
 		{
+			@Override
 			public void textChanged()
 			{
 				chest.clientCustomName(textBoxLabel.getText());
@@ -51,12 +52,14 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		
 		buttonSecurity = new ButtonLM(this, 217, 168, 16, 16)
 		{
+			@Override
 			public void onButtonPressed(int b)
 			{
 				FTBLibClient.playClickSound();
 				chest.clientPressButton("security", b);
 			}
 			
+			@Override
 			public void addMouseOverText(List<String> l)
 			{
 				l.add(chest.security.level.lang.format());
@@ -65,12 +68,14 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		
 		buttonColChest = new ButtonLM(this, 15, 168, 16, 16)
 		{
+			@Override
 			public void onButtonPressed(int b)
 			{
 				FTBLibClient.playClickSound();
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorChest, 0, false);
 			}
 			
+			@Override
 			public void addMouseOverText(List<String> l)
 			{
 				l.add(title);
@@ -82,12 +87,14 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		
 		buttonColText = new ButtonLM(this, 15, 192, 16, 16)
 		{
+			@Override
 			public void onButtonPressed(int b)
 			{
 				FTBLibClient.playClickSound();
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorText, 1, false);
 			}
 			
+			@Override
 			public void addMouseOverText(List<String> l)
 			{
 				l.add(title);
@@ -99,6 +106,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		
 		buttonGlow = new ItemButtonLM(this, 15, 216, 16, 16)
 		{
+			@Override
 			public void onButtonPressed(int b)
 			{
 				FTBLibClient.playClickSound();
@@ -111,6 +119,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		
 		buttonSetItem = new ItemButtonLM(this, 217, 192, 16, 16)
 		{
+			@Override
 			public void onButtonPressed(int b)
 			{
 				FTBLibClient.playClickSound();
@@ -123,12 +132,14 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 				}
 			}
 			
+			@Override
 			public void addMouseOverText(List<String> l)
 			{
 				l.add(title);
 				if(item != null) l.add(item.getDisplayName());
 			}
 			
+			@Override
 			public void setItem(ItemStack is)
 			{
 				chest.iconItem = LMInvUtils.singleCopy(is);
@@ -151,6 +162,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		buttonSetItem.setItem(chest.iconItem);
 	}
 	
+	@Override
 	public void addWidgets()
 	{
 		buttonGlow.setItem(new ItemStack(chest.textGlows ? Items.glowstone_dust : Items.gunpowder));
@@ -163,6 +175,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		mainPanel.add(buttonSetItem);
 	}
 	
+	@Override
 	public void drawBackground()
 	{
 		super.drawBackground();
@@ -179,12 +192,14 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		if(buttonSetItem.item == null) buttonSetItem.render(GuiIcons.cancel);
 	}
 	
+	@Override
 	public void drawText(List<String> l)
 	{
 		textBoxLabel.renderWidget();
 		super.drawText(l);
 	}
 	
+	@Override
 	public void onColorSelected(ColorSelected c)
 	{
 		if(c.set)
@@ -199,6 +214,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		refreshWidgets();
 	}
 	
+	@Override
 	public void onClientDataChanged()
 	{
 		refreshWidgets();

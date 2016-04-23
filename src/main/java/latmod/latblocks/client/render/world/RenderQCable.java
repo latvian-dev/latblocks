@@ -16,6 +16,7 @@ public class RenderQCable extends BlockRendererLM
 	public BlockCustom empty = new BlockCustom()
 	{ };
 	
+	@Override
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		GlStateManager.color(1F, 1F, 1F, 1F);
@@ -31,6 +32,7 @@ public class RenderQCable extends BlockRendererLM
 		GlStateManager.popMatrix();
 	}
 	
+	@Override
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int renderID, RenderBlocks renderer0)
 	{
 		renderBlocks.setInst(iba);

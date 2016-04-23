@@ -18,12 +18,15 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		height = h;
 	}
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
@@ -52,9 +55,11 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		}
 	}
 	
+	@Override
 	public void setBlockBoundsForItemRender()
 	{ setBlockBounds(0F, 0F, 0F, 1F, height, 1F); }
 	
+	@Override
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{
 		double hitX = mop.hitVec.xCoord - mop.blockX;
@@ -95,6 +100,7 @@ public abstract class BlockPaintableSingle extends BlockPaintableLB
 		return -1;
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);

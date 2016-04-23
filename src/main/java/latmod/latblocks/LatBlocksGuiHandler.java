@@ -18,6 +18,7 @@ public class LatBlocksGuiHandler extends LMGuiHandler
 	public LatBlocksGuiHandler(String s)
 	{ super(s); }
 	
+	@Override
 	public Container getContainer(EntityPlayer ep, int id, NBTTagCompound data)
 	{
 		if(id == COLOR_PAINTER) return new ContainerEmpty(ep, null);
@@ -28,6 +29,7 @@ public class LatBlocksGuiHandler extends LMGuiHandler
 		return null;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public GuiScreen getGui(EntityPlayer ep, int id, NBTTagCompound data)
 	{

@@ -23,6 +23,7 @@ public class BlockLBBricks extends BlockLB
 		super(s, Material.rock);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
@@ -30,6 +31,7 @@ public class BlockLBBricks extends BlockLB
 			l.add(new ItemStack(this, 1, i));
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 4, 0), "BB", "BB", 'B', new ItemStack(this, 1, 5));
@@ -43,6 +45,7 @@ public class BlockLBBricks extends BlockLB
 	public String getUnlocalizedName(int i)
 	{ return getMod().getBlockName("brick." + names[i]); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -51,10 +54,12 @@ public class BlockLBBricks extends BlockLB
 			icons[i] = ir.registerIcon(getMod().lowerCaseModID + ":bricks/" + names[i]);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{ return icons[m]; }
 	
+	@Override
 	public int getLightValue(IBlockAccess iba, int x, int y, int z)
 	{
 		if(iba.getBlockMetadata(x, y, z) == 4) return 15;

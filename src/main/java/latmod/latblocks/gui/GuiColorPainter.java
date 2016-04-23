@@ -37,6 +37,7 @@ public class GuiColorPainter extends GuiLM
 			
 			buttons.put(EnumMCColor.VALUES[id], new ButtonLM(this, x, y, 16, 16)
 			{
+				@Override
 				public void onButtonPressed(int b)
 				{
 					NBTTagCompound tag = new NBTTagCompound();
@@ -50,11 +51,13 @@ public class GuiColorPainter extends GuiLM
 		}
 	}
 	
+	@Override
 	public void addWidgets()
 	{
 		mainPanel.addAll(buttons.values());
 	}
 	
+	@Override
 	public void drawBackground()
 	{
 		super.drawBackground();

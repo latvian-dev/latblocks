@@ -23,6 +23,7 @@ public class BlockRendererLM implements ISimpleBlockRenderingHandler
 	private final int renderID = FTBLibClient.getNewBlockRenderID();
 	public RenderBlocksCustom renderBlocks = new RenderBlocksCustom();
 	
+	@Override
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
@@ -30,14 +31,17 @@ public class BlockRendererLM implements ISimpleBlockRenderingHandler
 		renderBlocks.renderBlockAsItem(b, 0, 1F);
 	}
 	
+	@Override
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
 		return false;
 	}
 	
+	@Override
 	public boolean shouldRender3DInInventory(int modelId)
 	{ return true; }
 	
+	@Override
 	public final int getRenderId()
 	{ return renderID; }
 	
@@ -51,18 +55,23 @@ public class BlockRendererLM implements ISimpleBlockRenderingHandler
 		public BlockCustom()
 		{ super(Material.glass); }
 		
+		@Override
 		public boolean isOpaqueCube()
 		{ return false; }
 		
+		@Override
 		public boolean renderAsNormalBlock()
 		{ return false; }
 		
+		@Override
 		public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
 		{ return RenderBlocksCustom.inst.currentSide == -1 || s == RenderBlocksCustom.inst.currentSide; }
 		
+		@Override
 		public int getLightValue()
 		{ return 0; }
 		
+		@Override
 		public int getMixedBrightnessForBlock(IBlockAccess iba, int x, int y, int z)
 		{
 			int i = getLightValue();
@@ -104,6 +113,7 @@ public class BlockRendererLM implements ISimpleBlockRenderingHandler
 				setCustomColor(LMColorUtils.getRed(col) / 255F, LMColorUtils.getGreen(col) / 255F, LMColorUtils.getBlue(col) / 255F);
 		}
 		
+		@Override
 		public boolean renderStandardBlock(Block block, int x, int y, int z)
 		{
 			float r = customColRed;
@@ -134,6 +144,7 @@ public class BlockRendererLM implements ISimpleBlockRenderingHandler
 			return Minecraft.isAmbientOcclusionEnabled() && block.getLightValue() == 0 ? (partialRenderBounds ? renderStandardBlockWithAmbientOcclusionPartial(block, x, y, z, r, g, b) : renderStandardBlockWithAmbientOcclusion(block, x, y, z, r, g, b)) : renderStandardBlockWithColorMultiplier(block, x, y, z, r, g, b);
 		}
 		
+		@Override
 		public void renderBlockSandFalling(Block b, World w, int x, int y, int z, int m)
 		{
 			super.renderBlockSandFalling(b, w, x, y, z, m);
@@ -169,6 +180,7 @@ public class BlockRendererLM implements ISimpleBlockRenderingHandler
 			if(tileEntity) tessellator.draw();
 		}
 		
+		@Override
 		public void renderBlockAsItem(Block block, int metadata, float f)
 		{
 			Tessellator tessellator = Tessellator.instance;
@@ -214,6 +226,7 @@ public class BlockRendererLM implements ISimpleBlockRenderingHandler
 		public void updateColor()
 		{ Tessellator.instance.setColorOpaque_F(customColRed, customColGreen, customColBlue); }
 		
+		@Override
 		public void setRenderBounds(double minX, double minY, double minZ, double maxX, double maxY, double maxZ)
 		{
 			if(clampBounds)

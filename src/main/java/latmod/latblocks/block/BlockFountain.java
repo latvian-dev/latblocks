@@ -26,34 +26,43 @@ public class BlockFountain extends BlockLB
 		getMod().addTile(TileFountain.class, s);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this), " H ", "PGP", " P ", 'H', Blocks.hopper, 'G', BlockTank.TANK_BASIC, 'P', LatBlocksItems.b_paintable);
 	}
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileFountain(); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderFountain.instance.getRenderId(); }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	public boolean isNormalCube(IBlockAccess iba, int x, int y, int z)
 	{ return true; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
 	{ return true; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addHitEffects(World w, MovingObjectPosition mop, EffectRenderer er)
 	{
@@ -77,6 +86,7 @@ public class BlockFountain extends BlockLB
 		return true;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addDestroyEffects(World w, int x, int y, int z, int meta, EffectRenderer er)
 	{

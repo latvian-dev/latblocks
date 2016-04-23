@@ -23,9 +23,11 @@ public class RenderPaintable extends BlockRendererLM
 	
 	public BlockCustom base = new BlockCustom()
 	{
+		@Override
 		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 		{ return blockP.getDefaultWorldIcon(iba, x, y, z, s); }
 		
+		@Override
 		public int getLightValue()
 		{
 			if(LatBlocksClient.blocksGlow.getAsBoolean() && PaintableRenderer.currentPaint != null)
@@ -34,6 +36,7 @@ public class RenderPaintable extends BlockRendererLM
 		}
 	};
 	
+	@Override
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.renderAllFaces = false;
@@ -56,6 +59,7 @@ public class RenderPaintable extends BlockRendererLM
 		GlStateManager.popMatrix();
 	}
 	
+	@Override
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.renderAllFaces = true;

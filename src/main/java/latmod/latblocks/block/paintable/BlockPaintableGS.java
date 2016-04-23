@@ -17,17 +17,20 @@ public class BlockPaintableGS extends BlockPaintableSided
 		setLightLevel(1F);
 	}
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
 		ODItems.add(BlockPaintableDef.ORE_NAME, new ItemStack(this));
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PGP", " P ", 'P', LatBlocksItems.b_cover, 'G', Blocks.glowstone);
 	}
 	
+	@Override
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePaintableGS(); }
 	

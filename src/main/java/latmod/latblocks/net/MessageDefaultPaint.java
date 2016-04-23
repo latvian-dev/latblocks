@@ -27,9 +27,11 @@ public class MessageDefaultPaint extends MessageLM
 			io.writeShort(a[i]);
 	}
 	
+	@Override
 	public LMNetworkWrapper getWrapper()
 	{ return LatBlocksNetHandler.NET; }
 	
+	@Override
 	public IMessage onMessage(MessageContext ctx)
 	{
 		short a[] = new short[12];

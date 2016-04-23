@@ -43,9 +43,11 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		setName("Unnamed");
 	}
 	
+	@Override
 	public boolean rerenderBlock()
 	{ return true; }
 	
+	@Override
 	public void readTileData(NBTTagCompound tag)
 	{
 		super.readTileData(tag);
@@ -55,6 +57,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		iconItem = tag.hasKey("Icon") ? ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Icon")) : null;
 	}
 	
+	@Override
 	public void writeTileData(NBTTagCompound tag)
 	{
 		super.writeTileData(tag);
@@ -70,6 +73,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		}
 	}
 	
+	@Override
 	public void readTileClientData(NBTTagCompound tag)
 	{
 		super.readTileClientData(tag);
@@ -77,12 +81,14 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		if(playersUsing < 0) playersUsing = 0;
 	}
 	
+	@Override
 	public void writeTileClientData(NBTTagCompound tag)
 	{
 		super.writeTileClientData(tag);
 		if(playersUsing > 0) tag.setByte("PlayersUsing", (byte) playersUsing);
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		prevLidAngle = lidAngle;
@@ -100,6 +106,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 			worldObj.playSoundEffect(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D, "random.chestclosed", 0.5F, worldObj.rand.nextFloat() * 0.1F + 0.9F);
 	}
 	
+	@Override
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
 		if(!isServer()) return true;
@@ -126,17 +133,21 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		return true;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public double getMaxRenderDistanceSquared()
 	{ return 128D * 128D; }
 	
+	@Override
 	public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 	{ return new ContainerQChest(ep, this); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
 	{ return new GuiQChest(new ContainerQChest(ep, this)); }
 	
+	@Override
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
 		super.onPlacedBy(ep, is);
@@ -153,27 +164,34 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		}
 	}
 	
+	@Override
 	public int[] getAccessibleSlotsFromSide(int s)
 	{ return security.level.isPublic() ? ALL_SLOTS : NO_SLOTS; }
 	
+	@Override
 	public boolean canInsertItem(int i, ItemStack is, int s)
 	{ return security.level.isPublic(); }
 	
+	@Override
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return security.level.isPublic(); }
 	
+	@Override
 	public boolean canPlayerInteract(EntityPlayer ep, boolean breakBlock)
 	{ return security.canInteract(ep); }
 	
+	@Override
 	public void onPlayerNotOwner(EntityPlayer ep, boolean breakBlock)
 	{ printOwner(ep); }
 	
+	@Override
 	public void openInventory()
 	{
 		playersUsing++;
 		if(isServer()) markDirty();
 	}
 	
+	@Override
 	public void closeInventory()
 	{
 		playersUsing--;
@@ -215,6 +233,7 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 		FTBLib.openGui(ep, this, null);
 	}
 	
+	@Override
 	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayerMP ep)
 	{
 		if(button.equals("security"))

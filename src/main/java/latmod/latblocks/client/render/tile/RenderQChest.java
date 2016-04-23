@@ -24,6 +24,7 @@ public class RenderQChest extends TileEntitySpecialRenderer implements IItemRend
 	public final ModelChest model = new ModelChest();
 	public final RenderItem itemRender = new RenderItem();
 	
+	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float pt)
 	{
 		if(te == null || te.isInvalid()) return;
@@ -108,12 +109,15 @@ public class RenderQChest extends TileEntitySpecialRenderer implements IItemRend
 		GlStateManager.popMatrix();
 	}
 	
+	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{ return true; }
 	
+	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{ return true; }
 	
+	@Override
 	public void renderItem(ItemRenderType type, ItemStack is, Object... data)
 	{
 		int colorChest = 0xFFFFFFFF;

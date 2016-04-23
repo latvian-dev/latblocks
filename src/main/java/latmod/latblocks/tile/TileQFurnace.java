@@ -33,6 +33,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public TileQFurnace()
 	{ super(MAX_ITEMS); }
 	
+	@Override
 	public void readTileData(NBTTagCompound tag)
 	{
 		super.readTileData(tag);
@@ -41,6 +42,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		result = LMInvUtils.loadStack(tag, "Result");
 	}
 	
+	@Override
 	public void writeTileData(NBTTagCompound tag)
 	{
 		super.writeTileData(tag);
@@ -49,9 +51,11 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		LMInvUtils.saveStack(tag, "Result", result);
 	}
 	
+	@Override
 	public boolean rerenderBlock()
 	{ return true; }
 	
+	@Override
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
 		if(isServer() && security.canInteract(ep) && LMInvUtils.isWrench(is))
@@ -94,6 +98,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		return true;
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		if(fuel == 0 && isServer() && items[SLOT_FUEL] != null)
@@ -183,6 +188,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		}
 	}
 	
+	@Override
 	public void onPlacedBy(EntityPlayer ep, ItemStack is)
 	{
 		super.onPlacedBy(ep, is);
@@ -199,13 +205,16 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 	public boolean isLit()
 	{ return result != null && fuel > 0; }
 	
+	@Override
 	public Container getContainer(EntityPlayer ep, NBTTagCompound data)
 	{ return new ContainerQFurnace(ep, this); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public GuiScreen getGui(EntityPlayer ep, NBTTagCompound data)
 	{ return new GuiQFurnace(new ContainerQFurnace(ep, this)); }
 	
+	@Override
 	public boolean isItemValidForSlot(int i, ItemStack is)
 	{
 		if(i == SLOT_FUEL) return TileEntityFurnace.getItemBurnTime(is) > 0;
@@ -213,6 +222,7 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		return true;
 	}
 	
+	@Override
 	public int[] getAccessibleSlotsFromSide(int s)
 	{
 		if(s == 0) return new int[] {SLOT_FUEL};
@@ -220,9 +230,11 @@ public class TileQFurnace extends TileInvLM implements IGuiTile, ISidedInventory
 		return new int[] {SLOT_OUTPUT};
 	}
 	
+	@Override
 	public boolean canInsertItem(int i, ItemStack is, int s)
 	{ return true; }
 	
+	@Override
 	public boolean canExtractItem(int i, ItemStack is, int s)
 	{ return true; }
 	

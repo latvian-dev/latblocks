@@ -28,11 +28,13 @@ public class BlockPFenceGate extends BlockPaintableSingle
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePFenceGate(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this), "PSP", "PSP", 'P', LatBlocksItems.b_paintable, 'S', ItemMaterialsLB.ROD);
 	}
 	
+	@Override
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
 	{
 		if(m == -1) m = w.getBlockMetadata(x, y, z);
@@ -66,6 +68,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
@@ -89,14 +92,17 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, hn, z0, x1, hp, z1));
 	}
 	
+	@Override
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return (MathHelperLM.floor(ep.rotationYaw * 4D / 360D + 0.5D) & 3) % 2; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
@@ -126,6 +132,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, 1D, z1));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
@@ -170,6 +177,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		}
 	}
 	
+	@Override
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{
 		setOpen(w, x, y, z, !isOpen(w.getBlockMetadata(x, y, z)));
@@ -199,6 +207,7 @@ public class BlockPFenceGate extends BlockPaintableSingle
 		if(!w.isRemote) w.playAuxSFXAtEntity(null, 1003, x, y, z, 0);
 	}
 	
+	@Override
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
 		if(!w.isRemote)

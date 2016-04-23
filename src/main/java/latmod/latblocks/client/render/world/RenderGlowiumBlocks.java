@@ -35,12 +35,15 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 	
 	public BlockCustom base = new BlockCustom()
 	{
+		@Override
 		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 		{ return currentGBlock.getBlockIcon(); }
 		
+		@Override
 		public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
 		{ return currentColor; }
 		
+		@Override
 		public int getLightValue()
 		{
 			if(LatBlocksClient.blocksGlow.getAsBoolean() && PaintableRenderer.currentPaint != null)
@@ -51,16 +54,20 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 	
 	public BlockCustom glow = new BlockCustom()
 	{
+		@Override
 		public int getLightValue()
 		{ return 15; }
 		
+		@Override
 		public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 		{ return currentGBlock.getGlowIcon(iba, x, y, z, s); }
 		
+		@Override
 		public int colorMultiplier(IBlockAccess iba, int x, int y, int z)
 		{ return currentColor; }
 	};
 	
+	@Override
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.setRenderBounds(0D, 0D, 0D, 1D, 1D, 1D);
@@ -87,6 +94,7 @@ public class RenderGlowiumBlocks extends BlockRendererLM // RenderPaintable
 		GlStateManager.popMatrix();
 	}
 	
+	@Override
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.setInst(iba);

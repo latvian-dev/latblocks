@@ -26,19 +26,23 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePPressurePlate(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 2), "PP", 'P', LatBlocksItems.b_cover);
 	}
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
 		ODItems.add(BlockPCover.ORE_NAME, new ItemStack(this));
 	}
 	
+	@Override
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e) {}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
@@ -46,23 +50,28 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0.5D - f1, 0D, 1D, 0.5F + f1, 1D));
 	}
 	
+	@Override
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return 0; }
 	
+	@Override
 	public int damageDropped(int m)
 	{ return 0; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
 		boxes.add(getBox(0, 0, 0));
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		boxes.add(getBox(0, 0, 0));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
@@ -71,12 +80,15 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		boxes.add(AxisAlignedBB.getBoundingBox(p, 0D, p, 1D - p, (t != null && t.isPressed) ? p / 2D : p, 1D - p));
 	}
 	
+	@Override
 	public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer ep, int s, float x1, float y1, float z1)
 	{ return false; }
 	
+	@Override
 	public boolean canPlaceBlockAt(World w, int x, int y, int z)
 	{ return World.doesBlockHaveSolidTopSurface(w, x, y - 1, z) || BlockFence.func_149825_a(w.getBlock(x, y - 1, z)); }
 	
+	@Override
 	public void onNeighborBlockChange(World w, int x, int y, int z, Block b)
 	{
 		if(!World.doesBlockHaveSolidTopSurface(w, x, y - 1, z) && !BlockFence.func_149825_a(w.getBlock(x, y - 1, z)))
@@ -86,12 +98,15 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		}
 	}
 	
+	@Override
 	public int isProvidingWeakPower(IBlockAccess iba, int x, int y, int z, int s)
 	{ return ((TilePPressurePlate) iba.getTileEntity(x, y, z)).isPressed ? 15 : 0; }
 	
+	@Override
 	public int isProvidingStrongPower(IBlockAccess iba, int x, int y, int z, int s)
 	{ return ((TilePPressurePlate) iba.getTileEntity(x, y, z)).isPressed ? 15 : 0; }
 	
+	@Override
 	public boolean canProvidePower()
 	{ return true; }
 	
@@ -108,6 +123,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 		public boolean isPressed = false;
 		private short cooldown = 0;
 		
+		@Override
 		public void readTileData(NBTTagCompound tag)
 		{
 			super.readTileData(tag);
@@ -118,6 +134,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			security.readFromNBT(tag, "Security");
 		}
 		
+		@Override
 		public void writeTileData(NBTTagCompound tag)
 		{
 			super.writeTileData(tag);
@@ -128,6 +145,7 @@ public class BlockPPressurePlate extends BlockPaintableSingle // BlockPressurePl
 			security.writeToNBT(tag, "Security");
 		}
 		
+		@Override
 		public void onUpdate()
 		{
 			if(!isServer()) return;

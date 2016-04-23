@@ -15,23 +15,27 @@ public class BlockPaintableLamp extends BlockPaintableRS
 		setBlockTextureName("paintable_lamp");
 	}
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
 		ODItems.add(BlockPaintableDef.ORE_NAME, new ItemStack(this));
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this), " P ", "PLP", " P ", 'P', LatBlocksItems.b_cover, 'L', Blocks.redstone_lamp);
 	}
 	
+	@Override
 	public int getLightValue(IBlockAccess iba, int x, int y, int z)
 	{
 		TilePaintableLamp t = (TilePaintableLamp) getTile(iba, x, y, z);
 		return (t != null && t.power > 0) ? 15 : 0;
 	}
 	
+	@Override
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePaintableLamp(); }
 	
@@ -39,6 +43,7 @@ public class BlockPaintableLamp extends BlockPaintableRS
 	{
 		private boolean prevLit = false;
 		
+		@Override
 		public void onUpdate()
 		{
 			if(prevLit != power > 0)

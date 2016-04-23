@@ -46,10 +46,12 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		boxes[11] = AxisAlignedBB.getBoundingBox(1D - p, 1D - p, p, 1D, 1D, 1D - p);
 	}
 	
+	@Override
 	public void renderInventoryBlock(Block b, int meta, int modelID, RenderBlocks rb)
 	{
 	}
 	
+	@Override
 	public boolean renderWorldBlock(IBlockAccess iba, int x, int y, int z, Block b, int modelID, RenderBlocks rb)
 	{
 		renderBlocks.setInst(iba);
@@ -76,15 +78,19 @@ public class RenderTank extends BlockRendererLM implements IItemRenderer
 		return true;
 	}
 	
+	@Override
 	public boolean shouldRender3DInInventory(int renderID)
 	{ return true; }
 	
+	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{ return true; }
 	
+	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{ return helper != ItemRendererHelper.ENTITY_ROTATION || !LatBlocksClient.rotateBlocks.getAsBoolean(); }
 	
+	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 		renderBlocks.renderAllFaces = true;

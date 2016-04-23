@@ -45,17 +45,20 @@ public class BlockPLadder extends BlockPaintableSingle
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePLadder(); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 2), "S S", "SSS", "S S", 'S', ItemMaterialsLB.ROD);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addItemRenderBoxes(List<AxisAlignedBB> boxes)
 	{
 		Collections.addAll(boxes, ladder_boxes);
 	}
 	
+	@Override
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{
 		int i = super.onBlockPlaced(w, ep, mop, m);
@@ -63,6 +66,7 @@ public class BlockPLadder extends BlockPaintableSingle
 		return i;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawHighlight(List<AxisAlignedBB> boxes, DrawBlockHighlightEvent event)
 	{
@@ -70,6 +74,7 @@ public class BlockPLadder extends BlockPaintableSingle
 		super.drawHighlight(boxes, event);
 	}
 	
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
 		int m = iba.getBlockMetadata(x, y, z);
@@ -82,6 +87,7 @@ public class BlockPLadder extends BlockPaintableSingle
 		else if(m == Placement.D_EAST) setBlockBounds(1F - height, 0F, 0F, 1F, 1F, 1F);
 	}
 	
+	@Override
 	public void addBoxes(List<AxisAlignedBB> boxes, IBlockAccess iba, int x, int y, int z, int m)
 	{
 		super.addBoxes(boxes, iba, x, y, z, m);
@@ -90,9 +96,11 @@ public class BlockPLadder extends BlockPaintableSingle
 		//boxes.add(AxisAlignedBB.getBoundingBox(0.0D, h, 0.5D, 0.5D, h1, 1.0D))
 	}
 	
+	@Override
 	public boolean isLadder(IBlockAccess iba, int x, int y, int z, EntityLivingBase e)
 	{ return true; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addRenderBoxes(List<AxisAlignedBB> boxes0, IBlockAccess iba, int x, int y, int z, int m)
 	{

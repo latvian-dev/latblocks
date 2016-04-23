@@ -31,12 +31,15 @@ public class BlockTank extends BlockTankBase
 	public BlockTank(String s)
 	{ super(s); }
 	
+	@Override
 	public boolean hasTileEntity(int meta)
 	{ return true; }
 	
+	@Override
 	public TileEntity createTileEntity(World world, int metadata)
 	{ return new TileTank(metadata); }
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
@@ -44,6 +47,7 @@ public class BlockTank extends BlockTankBase
 		TANK_BASIC = new ItemStack(this, 1, 0);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
@@ -51,6 +55,7 @@ public class BlockTank extends BlockTankBase
 			l.add(new ItemStack(item, 1, i));
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigGeneral.tankCraftingHandler.getAsBoolean())
@@ -79,9 +84,11 @@ public class BlockTank extends BlockTankBase
 			getMod().recipes.addRecipe(new ItemStack(this, 1, 5), "TTT", "TIT", "TTT", 'T', new ItemStack(this, 1, 4), 'I', ItemMaterialsLB.DUST_STAR);
 	}
 	
+	@Override
 	public int damageDropped(int i)
 	{ return i; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -90,6 +97,7 @@ public class BlockTank extends BlockTankBase
 			icons[i] = ir.registerIcon(getMod().lowerCaseModID + ":tank/outside_" + i);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack is, EntityPlayer ep, List l, boolean adv)
 	{
@@ -119,10 +127,12 @@ public class BlockTank extends BlockTankBase
 		}
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankItemBorderIcon(ItemStack item)
 	{ return icons[item.getItemDamage()]; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public FluidStack getTankItemFluid(ItemStack item)
 	{

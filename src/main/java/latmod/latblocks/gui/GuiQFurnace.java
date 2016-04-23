@@ -27,6 +27,7 @@ public class GuiQFurnace extends GuiContainerLM
 		
 		barFuel = new WidgetLM(this, 57, 36, texFuel.widthI(), texFuel.heightI())
 		{
+			@Override
 			public void addMouseOverText(List<String> l)
 			{
 				double d = (furnace.fuel / TileQFurnace.MAX_PROGRESS);
@@ -37,6 +38,7 @@ public class GuiQFurnace extends GuiContainerLM
 		
 		barProgress = new WidgetLM(this, 80, 35, texProgress.widthI(), texProgress.heightI())
 		{
+			@Override
 			public void addMouseOverText(List<String> l)
 			{
 				if(furnace.result != null)
@@ -48,12 +50,14 @@ public class GuiQFurnace extends GuiContainerLM
 		};
 	}
 	
+	@Override
 	public void addWidgets()
 	{
 		mainPanel.add(barFuel);
 		mainPanel.add(barProgress);
 	}
 	
+	@Override
 	public void drawBackground()
 	{
 		super.drawBackground();

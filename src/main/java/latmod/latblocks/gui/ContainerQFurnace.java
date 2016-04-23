@@ -20,6 +20,7 @@ public class ContainerQFurnace extends ContainerLM
 		addPlayerSlots(84);
 	}
 	
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer ep, int i)
 	{
 		ItemStack is = null;
@@ -47,7 +48,7 @@ public class ContainerQFurnace extends ContainerLM
 			}
 			else if(!mergeItemStack(is1, 3, 39, false)) return null;
 			
-			if(is1.stackSize == 0) slot.putStack((ItemStack) null);
+			if(is1.stackSize == 0) slot.putStack(null);
 			else slot.onSlotChanged();
 			if(is1.stackSize == is.stackSize) return null;
 			slot.onPickupFromSlot(ep, is1);

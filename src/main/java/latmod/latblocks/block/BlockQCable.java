@@ -29,18 +29,21 @@ public class BlockQCable extends BlockLB
 		setHardness(0.6F);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.qNetBlocks.getAsBoolean())
 			getMod().recipes.addRecipe(new ItemStack(this, 8), "SSS", "GDG", "SSS", 'S', Blocks.wooden_slab, 'G', ODItems.GLOWSTONE, 'D', ItemMaterialsLB.DUST_GLOWIUM_B);
 	}
 	
+	@Override
 	public void setBlockBoundsForItemRender()
 	{
 		float s = border;
 		setBlockBounds(0F, s, s, 1F, 1F - s, 1F - s);
 	}
 	
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
 		float s = border - (1F / 32F);// - 1 / 16F;
@@ -64,6 +67,7 @@ public class BlockQCable extends BlockLB
 		return iba.getTileEntity(x, y, z) instanceof IQuartzNetTile;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -71,12 +75,15 @@ public class BlockQCable extends BlockLB
 		icon_glow = ir.registerIcon(getMod().lowerCaseModID + ":cable_glow");
 	}
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderQCable.instance.getRenderId(); }

@@ -27,11 +27,13 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 		setStepSound(soundTypeGlass);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 8), "GGG", "GPG", "GGG", 'G', ODItems.GLASS, 'P', new ItemStack(Items.potionitem, 1, 8206));
 	}
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
@@ -39,23 +41,29 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 		ODItems.add(ODItems.GLASS, new ItemStack(this, 1, ODItems.ANY));
 	}
 	
+	@Override
 	public boolean canHarvestBlock(EntityPlayer ep, int m)
 	{ return true; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getCustomPaintIcon(int side, Paint p)
 	{ return FTBLibClient.blockNullIcon; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderBlockPass()
 	{ return 1; }
 	
+	@Override
 	public boolean isOpaqueCube()
 	{ return false; }
 	
+	@Override
 	public boolean renderAsNormalBlock()
 	{ return false; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
@@ -68,10 +76,12 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 						icons[a][b][c][d] = ir.registerIcon(getMod().lowerCaseModID + ":glass/inv/" + a + "" + b + "" + c + "" + d);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int s, int m)
 	{ return icons[0][0][0][0]; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{
@@ -125,6 +135,7 @@ public class BlockGlass extends BlockLB implements ICustomPaintBlockIcon
 		return icons[a][b][c][d];
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int s)
 	{

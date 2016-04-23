@@ -25,9 +25,11 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 		setCreativeTab(LatBlocks.tab);
 	}
 	
+	@Override
 	public LMMod getMod()
 	{ return LatBlocks.mod; }
 	
+	@Override
 	public Class<? extends ItemBlockLM> getItemBlock()
 	{ return ItemBlockLB.class; }
 	
@@ -50,6 +52,7 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 		if(bb != null) boxes.add(bb.getOffsetBoundingBox(-x, -y, -z));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getCustomPaintIcon(int side, Paint p)
 	{

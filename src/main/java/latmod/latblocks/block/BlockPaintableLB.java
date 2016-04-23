@@ -30,12 +30,15 @@ public abstract class BlockPaintableLB extends BlockLB
 		hasSpecialPlacement = true;
 	}
 	
+	@Override
 	public void addCollisionBoxes(World w, int x, int y, int z, int m, List<AxisAlignedBB> boxes, Entity e)
 	{ addBoxes(boxes, w, x, y, z, m); }
 	
+	@Override
 	public int damageDropped(int i)
 	{ return 0; }
 	
+	@Override
 	public void onPostLoaded()
 	{
 		if(hasTileEntity(0))
@@ -44,6 +47,7 @@ public abstract class BlockPaintableLB extends BlockLB
 		}
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{ return RenderPaintable.instance.getRenderId(); }
@@ -51,6 +55,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public int onBlockPlaced(World w, EntityPlayer ep, MovingObjectPosition mop, int m)
 	{ return m; }
 	
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess iba, int x, int y, int z)
 	{
 		ArrayList<AxisAlignedBB> boxes = new ArrayList<>();
@@ -72,9 +77,11 @@ public abstract class BlockPaintableLB extends BlockLB
 		}
 	}
 	
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z)
 	{ return super.getCollisionBoundingBoxFromPool(w, x, y, z); }
 	
+	@Override
 	public boolean canHarvestBlock(EntityPlayer ep, int meta)
 	{ return true; }
 	
@@ -87,6 +94,7 @@ public abstract class BlockPaintableLB extends BlockLB
 		boxes.add(AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D));
 	}
 	
+	@Override
 	public void setBlockBoundsForItemRender()
 	{ setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F); }
 	
@@ -111,6 +119,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	{
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z)
 	{
@@ -122,6 +131,7 @@ public abstract class BlockPaintableLB extends BlockLB
 		return AxisAlignedBB.getBoundingBox(0D, 0D, 0D, 1D, 1D, 1D);
 	}
 	
+	@Override
 	public MovingObjectPosition collisionRayTrace(World w, int x, int y, int z, Vec3 start, Vec3 end)
 	{
 		ArrayList<AxisAlignedBB> boxes = new ArrayList<>();
@@ -137,10 +147,12 @@ public abstract class BlockPaintableLB extends BlockLB
 	public IIcon getDefaultItemIcon()
 	{ return blockIcon; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess iba, int x, int y, int z, int s)
 	{ return blockIcon; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public final void randomDisplayTick(World w, int x, int y, int z, Random r)
 	{
@@ -163,6 +175,7 @@ public abstract class BlockPaintableLB extends BlockLB
 		}
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addHitEffects(World w, MovingObjectPosition mop, EffectRenderer er)
 	{
@@ -186,6 +199,7 @@ public abstract class BlockPaintableLB extends BlockLB
 		return true;
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean addDestroyEffects(World w, int x, int y, int z, int meta, EffectRenderer er)
 	{

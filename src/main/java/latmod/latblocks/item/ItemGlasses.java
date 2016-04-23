@@ -55,31 +55,39 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 		return this;
 	}
 	
+	@Override
 	public String getUnlocalizedName(ItemStack is)
 	{ return LatBlocks.mod.getItemName(itemName); }
 	
+	@Override
 	public void loadRecipes()
 	{
 		if(LatBlocksConfigCrafting.goggles.getAsBoolean())
 			LatBlocks.mod.recipes.addRecipe(new ItemStack(this), "CCC", "LIL", 'C', Items.leather, 'L', ItemMaterialsLB.LENS, 'I', ODItems.IRON);
 	}
 	
+	@Override
 	public Item getItem()
 	{ return this; }
 	
+	@Override
 	public boolean isValidArmor(ItemStack is, int i, Entity e)
 	{ return i == 0; }
 	
+	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{ return LatBlocks.mod.lowerCaseModID + ":textures/items/glasses_armor.png"; }
 	
+	@Override
 	public String getItemID()
 	{ return itemName; }
 	
+	@Override
 	public void onPostLoaded()
 	{
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister ir)
 	{
@@ -87,6 +95,7 @@ public class ItemGlasses extends ItemArmor implements IItemLM, ILBGlasses
 		itemIcon = ir.registerIcon(LatBlocks.mod.lowerCaseModID + ":" + itemName);
 	}
 	
+	@Override
 	public boolean areLBGlassesActive(ItemStack is, EntityPlayer ep)
 	{ return true; }
 }

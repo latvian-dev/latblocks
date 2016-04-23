@@ -19,18 +19,23 @@ public class TileWaterTank extends TileTankBase
 	{
 		tank = new Tank("Tank", 1D)
 		{
+			@Override
 			public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
 			{ return 0; }
 			
+			@Override
 			public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
 			{ return resource.copy(); }
 			
+			@Override
 			public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
 			{ return new FluidStack(FluidRegistry.WATER, maxDrain); }
 			
+			@Override
 			public boolean canFill(ForgeDirection from, Fluid fluid)
 			{ return false; }
 			
+			@Override
 			public boolean canDrain(ForgeDirection from, Fluid fluid)
 			{ return true; }
 		};
@@ -38,6 +43,7 @@ public class TileWaterTank extends TileTankBase
 		tank.fluidTank.setFluid(new FluidStack(FluidRegistry.WATER, tank.getCapacity()));
 	}
 	
+	@Override
 	public void onUpdate()
 	{
 		if(isServer() && tick % 10 == 0 && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 1)
@@ -66,6 +72,7 @@ public class TileWaterTank extends TileTankBase
 	}
 	
 	
+	@Override
 	public boolean onRightClick(EntityPlayer ep, ItemStack is, int side, float x, float y, float z)
 	{
 		if(is == null && ep.isSneaking())
@@ -122,14 +129,17 @@ public class TileWaterTank extends TileTankBase
 		return !(is == null || is.getItem() instanceof ItemBlock);
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getTankBorderIcon()
 	{ return blockMetadata == 1 ? LatBlocksItems.b_tank_water.icon_on : LatBlocksItems.b_tank_water.getBlockIcon(); }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Fluid getTankRenderFluid()
 	{ return FluidRegistry.WATER; }
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public double getTankFluidHeight()
 	{ return 1D; }

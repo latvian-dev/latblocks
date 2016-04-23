@@ -16,6 +16,7 @@ public class BlockPCover extends BlockPaintableSingle
 		super(s, 1F / 8F);
 	}
 	
+	@Override
 	public void loadRecipes()
 	{
 		getMod().recipes.addRecipe(new ItemStack(this, 16), "PP", "PP", 'P', LatBlocksItems.b_paintable);
@@ -25,6 +26,7 @@ public class BlockPCover extends BlockPaintableSingle
 		getMod().recipes.addShapelessRecipe(new ItemStack(this), ORE_NAME);
 	}
 	
+	@Override
 	public void onPostLoaded()
 	{
 		super.onPostLoaded();
@@ -34,6 +36,7 @@ public class BlockPCover extends BlockPaintableSingle
 	public TilePaintableLB createNewTileEntity(World w, int m)
 	{ return new TilePCover(); }
 	
+	@Override
 	public void setBlockBoundsForItemRender()
 	{ setBlockBounds(0.5F - height / 2F, 0F, 0F, 0.5F + height / 2F, 1F, 1F); }
 	
