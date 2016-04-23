@@ -1,6 +1,7 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.api.MouseButton;
 import ftb.lib.api.client.*;
 import ftb.lib.api.gui.*;
 import ftb.lib.api.gui.callback.*;
@@ -53,10 +54,10 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		buttonSecurity = new ButtonLM(this, 217, 168, 16, 16)
 		{
 			@Override
-			public void onButtonPressed(int b)
+			public void onClicked(MouseButton button)
 			{
 				FTBLibClient.playClickSound();
-				chest.clientPressButton("security", b);
+				chest.clientPressButton("security", button, null);
 			}
 			
 			@Override
@@ -69,7 +70,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		buttonColChest = new ButtonLM(this, 15, 168, 16, 16)
 		{
 			@Override
-			public void onButtonPressed(int b)
+			public void onClicked(MouseButton button)
 			{
 				FTBLibClient.playClickSound();
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorChest, 0, false);
@@ -88,7 +89,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		buttonColText = new ButtonLM(this, 15, 192, 16, 16)
 		{
 			@Override
-			public void onButtonPressed(int b)
+			public void onClicked(MouseButton button)
 			{
 				FTBLibClient.playClickSound();
 				LMGuis.displayColorSelector(GuiQChest.this, chest.colorText, 1, false);
@@ -107,10 +108,10 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		buttonGlow = new ItemButtonLM(this, 15, 216, 16, 16)
 		{
 			@Override
-			public void onButtonPressed(int b)
+			public void onClicked(MouseButton button)
 			{
 				FTBLibClient.playClickSound();
-				chest.clientPressButton(TileQChest.BUTTON_GLOW, b);
+				chest.clientPressButton(TileQChest.BUTTON_GLOW, button, null);
 				refreshWidgets();
 			}
 		};
@@ -120,7 +121,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 		buttonSetItem = new ItemButtonLM(this, 217, 192, 16, 16)
 		{
 			@Override
-			public void onButtonPressed(int b)
+			public void onClicked(MouseButton button)
 			{
 				FTBLibClient.playClickSound();
 				
@@ -149,11 +150,11 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 				{
 					NBTTagCompound data = new NBTTagCompound();
 					chest.iconItem.writeToNBT(data);
-					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, 0, data);
+					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, MouseButton.LEFT, data);
 				}
 				else
 				{
-					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, 0, null);
+					chest.clientPressButton(TileQChest.BUTTON_SET_ITEM, MouseButton.LEFT, null);
 				}
 			}
 		};
@@ -207,7 +208,7 @@ public class GuiQChest extends GuiContainerLM implements IColorCallback, IClient
 			NBTTagCompound data = new NBTTagCompound();
 			data.setInteger("C", c.color.color());
 			data.setByte("ID", (byte) c.ID.hashCode());
-			chest.clientPressButton(TileQChest.BUTTON_COL, 0, data);
+			chest.clientPressButton(TileQChest.BUTTON_COL, MouseButton.LEFT, data);
 		}
 		
 		mc.displayGuiScreen(this);

@@ -1,6 +1,7 @@
 package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
+import ftb.lib.api.MouseButton;
 import ftb.lib.api.gui.GuiLM;
 import ftb.lib.api.gui.widgets.ItemButtonLM;
 import ftb.lib.api.item.LMInvUtils;
@@ -67,14 +68,14 @@ public class GuiDefaultPaint extends GuiLM
 		}
 		
 		@Override
-		public void onButtonPressed(int b)
+		public void onClicked(MouseButton button)
 		{
 			ItemStack is = LMInvUtils.singleCopy(getHeldItem());
 			
 			if(isShiftKeyDown())
 			{
-				for(PaintButton button : buttons)
-					button.setItem(is);
+				for(PaintButton b : buttons)
+					b.setItem(is);
 			}
 			else setItem(is);
 		}

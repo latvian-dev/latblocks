@@ -2,6 +2,7 @@ package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.*;
+import ftb.lib.api.MouseButton;
 import ftb.lib.api.client.*;
 import ftb.lib.api.gui.GuiLM;
 import ftb.lib.api.gui.widgets.ButtonLM;
@@ -38,7 +39,7 @@ public class GuiColorPainter extends GuiLM
 			buttons.put(EnumMCColor.VALUES[id], new ButtonLM(this, x, y, 16, 16)
 			{
 				@Override
-				public void onButtonPressed(int b)
+				public void onClicked(MouseButton button)
 				{
 					NBTTagCompound tag = new NBTTagCompound();
 					tag.setByte("Dmg", (byte) id);

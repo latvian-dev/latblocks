@@ -2,6 +2,7 @@ package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.FTBLib;
+import ftb.lib.api.MouseButton;
 import ftb.lib.api.tile.*;
 import latmod.latblocks.api.IQuartzNetTile;
 import latmod.latblocks.gui.*;
@@ -47,13 +48,13 @@ public class TileQTerminal extends TileLM implements IGuiTile
 	{ return new GuiQNet(new ContainerQNet(ep, this)); }
 	
 	@Override
-	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayerMP ep)
+	public void handleButton(String button, MouseButton mouseButton, NBTTagCompound data, EntityPlayerMP ep)
 	{
 		if(button.equals(BUTTON_QNET))
 		{
 			int[] ai = data.getIntArray("Data");
 			TileEntity te = worldObj.getTileEntity(ai[0], ai[1], ai[2]);
-			if(te != null && te instanceof IQuartzNetTile) ((IQuartzNetTile) te).onQClicked(ep, ai[3]);
+			if(te != null && te instanceof IQuartzNetTile) ((IQuartzNetTile) te).onQClicked(ep, mouseButton);
 		}
 	}
 }

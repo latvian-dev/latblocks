@@ -2,6 +2,7 @@ package latmod.latblocks.tile;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.*;
+import ftb.lib.api.MouseButton;
 import ftb.lib.api.item.LMInvUtils;
 import ftb.lib.api.tile.*;
 import latmod.latblocks.LatBlocksItems;
@@ -234,13 +235,13 @@ public class TileQChest extends TileInvLM implements IGuiTile, ISidedInventory, 
 	}
 	
 	@Override
-	public void handleButton(String button, int mouseButton, NBTTagCompound data, EntityPlayerMP ep)
+	public void handleButton(String button, MouseButton mouseButton, NBTTagCompound data, EntityPlayerMP ep)
 	{
 		if(button.equals("security"))
 		{
 			if(ep != null && security.isOwner(ep))
 			{
-				security.level = (mouseButton == 0) ? security.level.next(PrivacyLevel.VALUES_3) : security.level.prev(PrivacyLevel.VALUES_3);
+				security.level = mouseButton.isLeft() ? security.level.next(PrivacyLevel.VALUES_3) : security.level.prev(PrivacyLevel.VALUES_3);
 				notifyNeighbors();
 			}
 			else printOwner(ep);

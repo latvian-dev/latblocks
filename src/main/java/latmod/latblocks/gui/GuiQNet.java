@@ -2,6 +2,7 @@ package latmod.latblocks.gui;
 
 import cpw.mods.fml.relauncher.*;
 import ftb.lib.TextureCoords;
+import ftb.lib.api.MouseButton;
 import ftb.lib.api.client.GlStateManager;
 import ftb.lib.api.gui.GuiContainerLM;
 import ftb.lib.api.gui.widgets.ItemButtonLM;
@@ -43,7 +44,7 @@ public class GuiQNet extends GuiContainerLM
 			qinvs.add(new ButtonQInv(this, inv));
 		
 		mainPanel.addAll(qinvs);
-		qinvs.sort(null);
+		Collections.sort(qinvs);
 	}
 	
 	@Override
@@ -74,13 +75,13 @@ public class GuiQNet extends GuiContainerLM
 		}
 		
 		@Override
-		public void onButtonPressed(int b)
+		public void onClicked(MouseButton button)
 		{
-			inv.onQClicked(((GuiQNet) gui).container.player, b);
+			inv.onQClicked(((GuiQNet) gui).container.player, button);
 			NBTTagCompound data = new NBTTagCompound();
 			TileEntity te = (TileEntity) inv;
-			data.setIntArray("Data", new int[] {te.xCoord, te.yCoord, te.zCoord, b});
-			term.clientPressButton(TileQTerminal.BUTTON_QNET, b, data);
+			data.setIntArray("Data", new int[] {te.xCoord, te.yCoord, te.zCoord});
+			term.clientPressButton(TileQTerminal.BUTTON_QNET, button, data);
 		}
 		
 		@Override
