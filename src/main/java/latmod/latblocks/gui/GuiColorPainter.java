@@ -30,7 +30,7 @@ public class GuiColorPainter extends GuiLM
 	{
 		super(null, texLoc);
 		mainPanel.width = 156;
-		mainPanel.width = 80;
+		mainPanel.height = 80;
 		
 		buttons = new EnumMap<>(EnumMCColor.class);
 		
