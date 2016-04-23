@@ -3,7 +3,7 @@ package latmod.latblocks.gui;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.api.MouseButton;
-import ftb.lib.api.gui.GuiLM;
+import ftb.lib.api.gui.GuiContainerLM;
 import ftb.lib.api.gui.widgets.ItemButtonLM;
 import ftb.lib.api.item.LMInvUtils;
 import latmod.latblocks.LatBlockEventHandler;
@@ -20,13 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class GuiDefaultPaint extends GuiLM
+public class GuiDefaultPaint extends GuiContainerLM
 {
 	public final List<PaintButton> buttons;
 	
 	public GuiDefaultPaint(ContainerDefaultPaint c)
 	{
-		super(null, new ResourceLocation("latblocks", "textures/gui/defPaint.png"));
+		super(c, new ResourceLocation("latblocks", "textures/gui/def_paint.png"));
 		mainPanel.width = 176;
 		mainPanel.height = 166;
 		
@@ -98,7 +98,7 @@ public class GuiDefaultPaint extends GuiLM
 			
 			super.setItem(is);
 			
-			title = (is == null) ? "-" : is.getDisplayName();
+			title = (is == null) ? null : is.getDisplayName();
 			
 			Paint[] paint = new Paint[6];
 			

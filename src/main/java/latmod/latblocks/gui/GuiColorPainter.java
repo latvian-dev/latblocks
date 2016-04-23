@@ -21,7 +21,7 @@ import java.util.Map;
 @SideOnly(Side.CLIENT)
 public class GuiColorPainter extends GuiLM
 {
-	public static final ResourceLocation texLoc = new ResourceLocation("latblocks", "textures/gui/colorPainter.png");
+	public static final ResourceLocation texLoc = new ResourceLocation("latblocks", "textures/gui/color_painter.png");
 	public static final TextureCoords colTex = new TextureCoords(texLoc, 156, 0, 16, 16);
 	
 	public final Map<EnumMCColor, ButtonLM> buttons;

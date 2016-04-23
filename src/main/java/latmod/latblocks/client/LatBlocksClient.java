@@ -3,6 +3,7 @@ package latmod.latblocks.client;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.EventBusHelper;
+import ftb.lib.api.MouseButton;
 import ftb.lib.api.client.FTBLibClient;
 import ftb.lib.api.client.GlStateManager;
 import ftb.lib.api.config.ClientConfigRegistry;
@@ -42,9 +43,11 @@ public class LatBlocksClient extends LatBlocksCommon
 	public static final ConfigEntryBool renderHighlights = new ConfigEntryBool("render_highlights", true);
 	public static final ConfigEntryBool blocksGlow = new ConfigEntryBool("blocks_glow", true);
 	public static final ConfigEntryBool fluidsFlowing = new ConfigEntryBool("fluids_flowing", false);
+	
 	public static final ConfigEntryCustom defaultPaint = new ConfigEntryCustom("def_paint")
 	{
-		public void onClicked()
+		@Override
+		public void onClicked(MouseButton button)
 		{ new MessageOpenDefPaintGui().sendToServer(); }
 	};
 	

@@ -162,6 +162,14 @@ public abstract class BlockPaintableLB extends BlockLB
 	{ return blockIcon; }
 	
 	@Override
+	public boolean canPlaceBlockOnSide(World w, int x, int y, int z, int s)
+	{ return true; }
+	
+	@Override
+	public boolean isOpaqueCube()
+	{ return false; }
+	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public final void randomDisplayTick(World w, int x, int y, int z, Random r)
 	{
@@ -213,6 +221,7 @@ public abstract class BlockPaintableLB extends BlockLB
 	public boolean addDestroyEffects(World w, int x, int y, int z, int meta, EffectRenderer er)
 	{
 		TilePaintableLB cb = (TilePaintableLB) w.getTileEntity(x, y, z);
+		if(cb == null) return false;
 		
 		int side = 1;
 		
@@ -232,7 +241,9 @@ public abstract class BlockPaintableLB extends BlockLB
 		byte b0 = 4;
 		
 		for(int x1 = 0; x1 < b0; ++x1)
+		{
 			for(int y1 = 0; y1 < b0; ++y1)
+			{
 				for(int z1 = 0; z1 < b0; ++z1)
 				{
 					double d0 = x + (x1 + 0.5D) / b0;
@@ -243,6 +254,8 @@ public abstract class BlockPaintableLB extends BlockLB
 					fx.setParticleIcon(tex);
 					er.addEffect(fx);
 				}
+			}
+		}
 		
 		return true;
 	}
