@@ -13,14 +13,9 @@ public class ItemBlockLB extends ItemBlockLM
 		super(b);
 	}
 	
-	public boolean canPlace(World worldObj, int blockX, int blockY, int blockZ, int sideHit, EntityPlayer player, ItemStack currentItem)
-	{
-		return true;
-	}
-	
-	/*
 	public boolean canPlace(World w, int x, int y, int z, int s, EntityPlayer ep, ItemStack is)
 	{
+		/*
 		BlockLB b = (BlockLB) Block.getBlockFromItem(is.getItem());
 		if(!b.hasSpecialPlacement) return super.canPlace(w, x, y, z, s, ep, is);
 		
@@ -44,8 +39,8 @@ public class ItemBlockLB extends ItemBlockLM
 		{
 			if(!w.checkNoEntityCollision(aabb.getOffsetBoundingBox(bx, by, bz), null)) return false;
 		}
+		*/
 		
 		return true;
 	}
-	*/
 }

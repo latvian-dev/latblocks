@@ -1,7 +1,10 @@
 package latmod.latblocks;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ftb.lib.FTBLib;
+import ftb.lib.api.EventFTBSync;
 import latmod.latblocks.api.Paint;
+import latmod.latblocks.config.LatBlocksConfigGeneral;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +17,28 @@ import net.minecraftforge.event.entity.EntityEvent;
  */
 public class LatBlockEventHandler
 {
+	@SubscribeEvent
+	public void syncData(EventFTBSync e)
+	{
+		if(e.world.side.isServer())
+		{
+			NBTTagCompound tag = new NBTTagCompound();
+			
+			tag.setBoolean("FIP", LatBlocksConfigGeneral.fences_ignore_players.getAsBoolean());
+			tag.setBoolean("TCH", LatBlocksConfigGeneral.tank_crafting_handler.getAsBoolean());
+			
+			e.syncData.setTag("LatBlocks", tag);
+		}
+		else
+		{
+			NBTTagCompound tag = e.syncData.getCompoundTag("LatBlocks");
+			
+			LatBlocksConfigGeneral.fences_ignore_players.set(tag.getBoolean("FIP"));
+			LatBlocksConfigGeneral.tank_crafting_handler.set(tag.getBoolean("TCH"));
+		}
+	}
+	
+	@SubscribeEvent
 	public void onPlayerPropertiesEvent(EntityEvent.EntityConstructing e)
 	{
 		if(e.entity instanceof EntityPlayer)

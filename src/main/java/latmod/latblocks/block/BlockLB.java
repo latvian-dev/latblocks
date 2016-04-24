@@ -4,7 +4,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ftb.lib.LMMod;
 import ftb.lib.api.block.BlockLM;
-import ftb.lib.api.block.ItemBlockLM;
 import latmod.latblocks.LatBlocks;
 import latmod.latblocks.api.ICustomPaintBlockIcon;
 import latmod.latblocks.api.Paint;
@@ -12,6 +11,7 @@ import latmod.latblocks.client.LatBlocksClient;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -37,7 +37,7 @@ public abstract class BlockLB extends BlockLM implements ICustomPaintBlockIcon
 	{ return LatBlocks.mod; }
 	
 	@Override
-	public Class<? extends ItemBlockLM> getItemBlock()
+	public Class<? extends ItemBlock> getItemBlock()
 	{ return ItemBlockLB.class; }
 	
 	@SuppressWarnings("all")

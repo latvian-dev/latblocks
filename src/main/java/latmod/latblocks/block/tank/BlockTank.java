@@ -8,13 +8,12 @@ import latmod.latblocks.config.LatBlocksConfigGeneral;
 import latmod.latblocks.item.ItemMaterialsLB;
 import latmod.latblocks.tile.tank.TileTank;
 import latmod.lib.MathHelperLM;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -22,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.RecipeSorter;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class BlockTank extends BlockTankBase
@@ -34,6 +32,10 @@ public class BlockTank extends BlockTankBase
 	
 	public BlockTank(String s)
 	{ super(s); }
+	
+	@Override
+	public Class<? extends ItemBlock> getItemBlock()
+	{ return ItemBlockTank.class; }
 	
 	@Override
 	public boolean hasTileEntity(int meta)
@@ -62,7 +64,7 @@ public class BlockTank extends BlockTankBase
 	@Override
 	public void loadRecipes()
 	{
-		if(LatBlocksConfigGeneral.tankCraftingHandler.getAsBoolean())
+		if(LatBlocksConfigGeneral.tank_crafting_handler.getAsBoolean())
 		{
 			RecipeSorter.register("latblocks:tanks", TankCraftingHandler.class, RecipeSorter.Category.SHAPED, "before:minecraft:shaped");
 			TankCraftingHandler.register(new ItemStack(this, 1, 1), new ItemStack(this, 1, 0), new ItemStack(Items.iron_ingot));
@@ -99,36 +101,6 @@ public class BlockTank extends BlockTankBase
 		icons = new IIcon[6];
 		for(int i = 0; i < icons.length; i++)
 			icons[i] = ir.registerIcon(getMod().lowerCaseModID + ":tank/outside_" + i);
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack is, EntityPlayer ep, List l, boolean adv)
-	{
-		if(is.hasTagCompound() && is.stackTagCompound.hasKey("Fluid"))
-		{
-			FluidStack fs = FluidStack.loadFluidStackFromNBT(is.stackTagCompound.getCompoundTag("Fluid"));
-			l.add("Stored: " + fs.amount + "mB of " + fs.getLocalizedName());
-		}
-		
-		int meta = is.getItemDamage();
-		
-		int cap = MathHelperLM.power(8, meta);
-		
-		DecimalFormat format = new DecimalFormat("###,###,###,###,###.###");
-		l.add(format.format(((meta == 5) ? 2000000000 : (cap * 1000))).replace(',', '\'') + " mB [ Mk" + (meta + 1) + " ]");
-		
-		if(GuiScreen.isShiftKeyDown())
-		{
-			l.add((cap * 4) + "x " + new ItemStack(Items.stick).getDisplayName());
-			l.add((int) Math.ceil(cap * 6D / 16D) + "x " + new ItemStack(Blocks.glass).getDisplayName());
-			
-			if(cap >= 8) l.add((cap / 8) + "x " + new ItemStack(Items.iron_ingot).getDisplayName());
-			if(cap >= 64) l.add((cap / 64) + "x " + new ItemStack(Items.gold_ingot).getDisplayName());
-			if(cap >= 512) l.add((cap / 512) + "x " + new ItemStack(Items.quartz).getDisplayName());
-			if(cap >= 4096) l.add((cap / 4096) + "x " + new ItemStack(Items.diamond).getDisplayName());
-			if(meta == 5) l.add("1x " + ItemMaterialsLB.DUST_STAR.getStack().getDisplayName());
-		}
 	}
 	
 	@Override

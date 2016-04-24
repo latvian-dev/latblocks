@@ -58,7 +58,7 @@ public class BlockPFence extends BlockPaintableSingle
 		if(canConnect(w, x, y, z + 1)) z1 = 1D + d;
 		
 		double h = 1.5D;
-		if(LatBlocksConfigGeneral.fencesIgnorePlayers.getAsBoolean() && e instanceof EntityPlayer) h = 1D;
+		if(LatBlocksConfigGeneral.fences_ignore_players.getAsBoolean() && e instanceof EntityPlayer) h = 1D;
 		boxes.add(AxisAlignedBB.getBoundingBox(x0, 0D, z0, x1, h, z1));
 	}
 	
