@@ -113,17 +113,12 @@ public class BlockPLadder extends BlockPaintableSingle
 	{
 		if(m == -1) m = iba.getBlockMetadata(x, y, z);
 		
-		AxisAlignedBB[] boxes = ladder_boxes.clone();
-		
 		double shift = 0.5D - 1D / 16D;
 		
-		for(int i = 0; i < boxes.length; i++)
+		for(int i = 0; i < ladder_boxes.length; i++)
 		{
-			boxes[i] = MathHelperMC.rotate90BoxV(boxes[i], m);
-			boxes[i] = boxes[i].getOffsetBoundingBox(Facing.offsetsXForSide[m] * shift, 0D, Facing.offsetsZForSide[m] * shift);
+			boxes0.add(MathHelperMC.rotate90BoxV(ladder_boxes[i], m).getOffsetBoundingBox(Facing.offsetsXForSide[m] * shift, 0D, Facing.offsetsZForSide[m] * shift));
 		}
-		
-		Collections.addAll(boxes0, boxes);
 	}
 	
 	public static class TilePLadder extends TileSinglePaintable

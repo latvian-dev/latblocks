@@ -58,7 +58,9 @@ public class BlockTank extends BlockTankBase
 	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
 		for(int i = 0; i < 6; i++)
+		{
 			l.add(new ItemStack(item, 1, i));
+		}
 	}
 	
 	@Override

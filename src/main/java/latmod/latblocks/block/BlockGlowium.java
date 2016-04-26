@@ -161,7 +161,9 @@ public abstract class BlockGlowium extends BlockLB
 	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
 		for(int i = 0; i < 16; i++)
+		{
 			l.add(new ItemStack(item, 1, i));
+		}
 	}
 	
 	@Override

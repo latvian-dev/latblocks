@@ -30,7 +30,9 @@ public class BlockLBBricks extends BlockLB
 	public void getSubBlocks(Item item, CreativeTabs c, List l)
 	{
 		for(int i = 0; i < names.length; i++)
+		{
 			l.add(new ItemStack(this, 1, i));
+		}
 	}
 	
 	@Override
