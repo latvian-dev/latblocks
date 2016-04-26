@@ -3,13 +3,13 @@ package latmod.latblocks.net;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import ftb.lib.api.net.LMNetworkWrapper;
-import ftb.lib.api.net.MessageLM;
+import ftb.lib.api.net.MessageLM_IO;
 import latmod.latblocks.LatBlockEventHandler;
 import latmod.latblocks.api.Paint;
 import latmod.lib.ByteCount;
 import net.minecraft.block.Block;
 
-public class MessageDefaultPaint extends MessageLM
+public class MessageDefaultPaint extends MessageLM_IO
 {
 	public MessageDefaultPaint() { super(ByteCount.BYTE); }
 	
