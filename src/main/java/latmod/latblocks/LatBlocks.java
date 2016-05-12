@@ -1,57 +1,27 @@
 package latmod.latblocks;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import ftb.lib.CreativeTabLM;
-import ftb.lib.EventBusHelper;
-import ftb.lib.LMMod;
-import latmod.latblocks.block.BlockGlowium;
-import latmod.latblocks.config.LatBlocksConfig;
-import latmod.latblocks.net.LatBlocksNetHandler;
-import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@", dependencies = "required-after:FTBU")
+/**
+ * Created by LatvianModder on 12.05.2016.
+ */
+@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "2.0.0")
 public class LatBlocks
 {
-	protected static final String MOD_ID = "LatBlocks";
+	public static final String MOD_ID = "latblocks";
 	
-	@Mod.Instance(LatBlocks.MOD_ID)
+	@Mod.Instance(MOD_ID)
 	public static LatBlocks inst;
 	
-	@SidedProxy(clientSide = "latmod.latblocks.client.LatBlocksClient", serverSide = "latmod.latblocks.LatBlocksCommon")
-	public static LatBlocksCommon proxy;
-	
-	public static LMMod mod;
-	public static CreativeTabLM tab;
-	public static CreativeTabLM tabGlowium;
-	
 	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent e)
+	public void preInit(FMLPreInitializationEvent event)
 	{
-		mod = LMMod.create(MOD_ID);
-		tab = new CreativeTabLM("latblocks").setMod(mod);
-		tabGlowium = new CreativeTabLM("latblocks.glowium").setMod(mod).setTimer(1000L);
-		
-		LatBlocksConfig.load();
-		LatBlocksItems.init();
-		mod.onPostLoaded();
-		LatBlocksNetHandler.init();
-		EventBusHelper.register(new LatBlockEventHandler());
-		proxy.preInit();
-		
-		tab.addIcon(new ItemStack(LatBlocksItems.b_fountain));
-		
-		for(int j = 0; j < 16; j++)
-			for(BlockGlowium b : LatBlocksItems.b_glowium)
-				tabGlowium.addIcon(new ItemStack(b, 1, j));
 	}
 	
 	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent e)
+	public void postInit(FMLPostInitializationEvent event)
 	{
-		mod.loadRecipes();
-		proxy.postInit();
 	}
 }
