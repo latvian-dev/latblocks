@@ -1,6 +1,11 @@
 package latmod.latblocks;
 
+import ftb.lib.CreativeTabLM;
+import ftb.lib.LMMod;
+import latmod.latblocks.block.LBBlocks;
+import latmod.latblocks.item.LBItems;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -15,13 +20,28 @@ public class LatBlocks
 	@Mod.Instance(MOD_ID)
 	public static LatBlocks inst;
 	
+	@SidedProxy(serverSide = "latmod.latblocks.LatBlocksCommon", clientSide = "latmod.latblocks.client.LatBlocksClient")
+	public static LatBlocksCommon proxy;
+	
+	public static LMMod mod;
+	public static CreativeTabLM tab, tabGlowium;
+	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		mod = LMMod.create(MOD_ID);
+		tab = new CreativeTabLM("latblocks");
+		tabGlowium = new CreativeTabLM("latblocks.glowium");
+		
+		LBBlocks.init();
+		LBItems.init();
+		
+		proxy.preInit();
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		proxy.postInit();
 	}
 }
