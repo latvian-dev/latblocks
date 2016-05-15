@@ -1,7 +1,7 @@
 package latmod.latblocks;
 
-import ftb.lib.CreativeTabLM;
-import ftb.lib.LMMod;
+import com.feed_the_beast.ftbl.util.CreativeTabLM;
+import com.feed_the_beast.ftbl.util.LMMod;
 import latmod.latblocks.block.LBBlocks;
 import latmod.latblocks.item.LBItems;
 import net.minecraftforge.fml.common.Mod;
