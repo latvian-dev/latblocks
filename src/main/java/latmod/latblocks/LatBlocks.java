@@ -37,11 +37,13 @@ public class LatBlocks
 		LBItems.init();
 		
 		proxy.preInit();
+		mod.onPostLoaded();
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		proxy.postInit();
+		mod.loadRecipes();
 	}
 }
