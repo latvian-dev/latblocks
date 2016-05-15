@@ -1,0 +1,87 @@
+package latmod.latblocks.item;
+
+import com.feed_the_beast.ftbl.FTBLibCapabilities;
+import com.feed_the_beast.ftbl.api.paint.PaintHelper;
+import com.feed_the_beast.ftbl.api.paint.PainterItemStorage;
+import com.feed_the_beast.ftbl.util.MathHelperMC;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+
+/**
+ * Created by LatvianModder on 16.05.2016.
+ */
+public class ItemPainter extends ItemLB
+{
+	public final boolean infinite;
+	
+	public ItemPainter(boolean i)
+	{
+		super();
+		infinite = i;
+		setMaxStackSize(1);
+		
+		if(!infinite)
+		{
+			setMaxDamage(250);
+		}
+	}
+	
+	@Override
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
+	{ return new PainterCap(); }
+	
+	@Override
+	public EnumActionResult onItemUse(ItemStack is, EntityPlayer ep, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{ return PaintHelper.onItemUse(is, ep, MathHelperMC.rayTrace(pos, facing, hitX, hitY, hitZ)); }
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack is, World w, EntityPlayer ep, EnumHand hand)
+	{ return PaintHelper.onItemRightClick(is, ep); }
+	
+	private class PainterCap implements ICapabilitySerializable<NBTTagInt>
+	{
+		private PainterItemStorage cap;
+		
+		public PainterCap()
+		{
+			cap = new PainterItemStorage()
+			{
+				@Override
+				public void damagePainter(ItemStack is, EntityPlayer player)
+				{
+					if(!infinite)
+					{
+						super.damagePainter(is, player);
+					}
+				}
+			};
+		}
+		
+		@Override
+		public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+		{ return capability == FTBLibCapabilities.PAINTER_ITEM_CAPABILITY; }
+		
+		@Override
+		public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+		{ return (capability == FTBLibCapabilities.PAINTER_ITEM_CAPABILITY) ? (T) cap : null; }
+		
+		@Override
+		public NBTTagInt serializeNBT()
+		{ return cap.serializeNBT(); }
+		
+		@Override
+		public void deserializeNBT(NBTTagInt nbt)
+		{ cap.deserializeNBT(nbt); }
+	}
+}

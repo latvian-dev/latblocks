@@ -14,9 +14,12 @@ import net.minecraft.world.World;
  */
 public class BlockPaintable extends BlockLB
 {
-	public BlockPaintable()
+	public final boolean singlePaint;
+	
+	public BlockPaintable(boolean sp)
 	{
 		super(Material.WOOD);
+		singlePaint = sp;
 	}
 	
 	@Override
@@ -29,5 +32,5 @@ public class BlockPaintable extends BlockLB
 	
 	@Override
 	public TileEntity createTileEntity(World w, IBlockState state)
-	{ return new TilePaintable(); }
+	{ return new TilePaintable(singlePaint); }
 }
