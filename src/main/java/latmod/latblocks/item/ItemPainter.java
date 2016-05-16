@@ -4,6 +4,8 @@ import com.feed_the_beast.ftbl.FTBLibCapabilities;
 import com.feed_the_beast.ftbl.api.paint.PaintHelper;
 import com.feed_the_beast.ftbl.api.paint.PainterItemStorage;
 import com.feed_the_beast.ftbl.util.MathHelperMC;
+import latmod.latblocks.LatBlocks;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,11 +14,15 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by LatvianModder on 16.05.2016.
@@ -40,6 +46,13 @@ public class ItemPainter extends ItemLB
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
 	{ return new PainterCap(); }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void loadModels()
+	{
+		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(new ResourceLocation(LatBlocks.MOD_ID, "painter"), "variant=" + getRegistryName().getResourcePath()));
+	}
 	
 	@Override
 	public EnumActionResult onItemUse(ItemStack is, EntityPlayer ep, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

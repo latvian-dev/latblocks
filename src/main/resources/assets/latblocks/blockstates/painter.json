@@ -1,0 +1,26 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "variant": {
+      "painter": {
+        "textures": {
+          "layer0": "latblocks:items/painter"
+        }
+      },
+      "painter_dmd": {
+        "textures": {
+          "layer0": "latblocks:items/painter_dmd"
+        }
+      },
+      "painter_col": {
+        "textures": {
+          "layer0": "latblocks:items/painter_col"
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,6 @@ import latmod.latblocks.tile.TilePaintable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -14,12 +13,9 @@ import net.minecraft.world.World;
  */
 public class BlockPaintable extends BlockLB
 {
-	public final boolean singlePaint;
-	
-	public BlockPaintable(boolean sp)
+	public BlockPaintable()
 	{
 		super(Material.WOOD);
-		singlePaint = sp;
 	}
 	
 	@Override
@@ -31,6 +27,6 @@ public class BlockPaintable extends BlockLB
 	{ return true; }
 	
 	@Override
-	public TileEntity createTileEntity(World w, IBlockState state)
-	{ return new TilePaintable(singlePaint); }
+	public TilePaintable createTileEntity(World w, IBlockState state)
+	{ return null; }
 }

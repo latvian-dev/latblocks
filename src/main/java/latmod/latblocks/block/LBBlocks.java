@@ -7,7 +7,8 @@ import latmod.latblocks.LatBlocks;
  */
 public class LBBlocks
 {
-	public static final BlockPaintableDef PAINTABLE = LatBlocks.mod.register("paintable", new BlockPaintableDef());
+	public static final BlockPaintableBlock PAINTABLE_BLOCK = LatBlocks.mod.register("paintable", new BlockPaintableBlock());
+	public static final BlockPaintableSlab PAINTABLE_SLAB = LatBlocks.mod.register("paintable_slab", new BlockPaintableSlab());
 	
 	public static void init() { }
 }

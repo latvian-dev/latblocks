@@ -73,9 +73,9 @@ latblocks.item.paint_roller_basic.name=Paint Roller
 latblocks.item.paint_roller_dmd.name=Diamond Paint Roller
 latblocks.item.paint_roller_color.name=Color Roller
 
-latblocks.item.blockPainter.name=Block Painter
-latblocks.item.blockPainterDmd.name=Diamond Block Painter
-latblocks.item.colorPainter.name=Color Painter
+latblocks.item.painter.name=Block Painter
+latblocks.item.painter_dmd.name=Diamond Block Painter
+latblocks.item.painter_col.name=Color Painter
 latblocks.item.hammer.name=LatBlocks Hammer
 latblocks.item.glasses.name=LatBlocks Goggles
 latblocks.item.ebag.name=Ender Bag
