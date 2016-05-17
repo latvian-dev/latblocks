@@ -13,6 +13,7 @@ public class LatBlocksClient extends LatBlocksCommon
 	@Override
 	public void preInit()
 	{
+		//ModelLoaderRegistry.registerLoader(new PaintableBlockModelLoader());
 	}
 	
 	@Override
