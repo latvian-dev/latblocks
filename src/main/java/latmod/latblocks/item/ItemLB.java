@@ -9,13 +9,13 @@ import latmod.latblocks.LatBlocks;
  */
 public class ItemLB extends ItemLM
 {
-	public ItemLB()
-	{
-		super();
-		setCreativeTab(LatBlocks.tab);
-	}
-	
-	@Override
-	public LMMod getMod()
-	{ return LatBlocks.mod; }
+    public ItemLB()
+    {
+        super();
+        setCreativeTab(LatBlocks.tab);
+    }
+    
+    @Override
+    public LMMod getMod()
+    { return LatBlocks.mod; }
 }

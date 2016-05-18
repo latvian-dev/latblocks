@@ -10,14 +10,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class LatBlocksClient extends LatBlocksCommon
 {
-	@Override
-	public void preInit()
-	{
-		//ModelLoaderRegistry.registerLoader(new PaintableBlockModelLoader());
-	}
-	
-	@Override
-	public void postInit()
-	{
-	}
+    @Override
+    public void preInit()
+    {
+        //ModelLoaderRegistry.registerLoader(new PaintableBlockModelLoader());
+    }
+    
+    @Override
+    public void postInit()
+    {
+    }
 }

@@ -10,13 +10,13 @@ import net.minecraft.block.material.Material;
  */
 public class BlockLB extends BlockLM
 {
-	public BlockLB(Material m)
-	{
-		super(m);
-		setCreativeTab(LatBlocks.tab);
-	}
-	
-	@Override
-	public LMMod getMod()
-	{ return LatBlocks.mod; }
+    public BlockLB(Material m)
+    {
+        super(m);
+        setCreativeTab(LatBlocks.tab);
+    }
+    
+    @Override
+    public LMMod getMod()
+    { return LatBlocks.mod; }
 }
