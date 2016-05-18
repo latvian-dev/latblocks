@@ -1,6 +1,6 @@
 package latmod.latblocks.tile;
 
-import com.feed_the_beast.ftbl.FTBLibCapabilities;
+import com.feed_the_beast.ftbl.api.FTBLibCapabilities;
 import com.feed_the_beast.ftbl.api.paint.IPaintable;
 import com.feed_the_beast.ftbl.api.paint.SidedPaintStorage;
 import com.feed_the_beast.ftbl.api.paint.SinglePaintStorage;
