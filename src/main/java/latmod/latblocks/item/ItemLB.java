@@ -14,7 +14,7 @@ public class ItemLB extends ItemLM
         super();
         setCreativeTab(LatBlocks.tab);
     }
-    
+
     @Override
     public LMMod getMod()
     { return LatBlocks.mod; }

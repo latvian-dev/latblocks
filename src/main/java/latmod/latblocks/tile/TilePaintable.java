@@ -25,26 +25,26 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
         {
             super(new SidedPaintStorage());
         }
-        
+
         @Override
         public void writeTileData(NBTTagCompound tag)
         {
             int[] ai = new int[6];
-            
+
             for(EnumFacing f : EnumFacing.VALUES)
             {
                 IBlockState p = paintable.getPaint(f);
                 ai[f.ordinal()] = p == null ? 0 : Block.getStateId(p);
             }
-            
+
             tag.setIntArray("Paint", ai);
         }
-        
+
         @Override
         public void readTileData(NBTTagCompound tag)
         {
             int[] ai = tag.getIntArray("Paint");
-            
+
             for(EnumFacing f : EnumFacing.VALUES)
             {
                 int i = ai[f.ordinal()];
@@ -52,21 +52,21 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
             }
         }
     }
-    
+
     public static class Single extends TilePaintable
     {
         public Single()
         {
             super(new SinglePaintStorage());
         }
-        
+
         @Override
         public void writeTileData(NBTTagCompound tag)
         {
             IBlockState p = paintable.getPaint(EnumFacing.UP);
             tag.setInteger("Paint", p == null ? 0 : Block.getStateId(p));
         }
-        
+
         @Override
         public void readTileData(NBTTagCompound tag)
         {
@@ -74,14 +74,14 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
             paintable.setPaint(EnumFacing.UP, p == 0 ? null : Block.getStateById(p));
         }
     }
-    
+
     public final IPaintable paintable;
-    
+
     public TilePaintable(IPaintable p)
     {
         paintable = p;
     }
-    
+
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing side)
     {
@@ -89,10 +89,10 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
         {
             return true;
         }
-        
+
         return super.hasCapability(capability, side);
     }
-    
+
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing side)
     {
@@ -100,20 +100,20 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
         {
             return (T) paintable;
         }
-        
+
         return super.getCapability(capability, side);
     }
-    
+
     @Override
     public ItemStack getWailaStack(WailaDataAccessor data)
     {
         IBlockState p = paintable.getPaint(data.side);
-        
+
         if(p != null)
         {
             return new ItemStack(p.getBlock(), 1, p.getBlock().getMetaFromState(p));
         }
-        
+
         return null;
     }
 }

@@ -15,7 +15,7 @@ public class BlockLB extends BlockLM
         super(m);
         setCreativeTab(LatBlocks.tab);
     }
-    
+
     @Override
     public LMMod getMod()
     { return LatBlocks.mod; }

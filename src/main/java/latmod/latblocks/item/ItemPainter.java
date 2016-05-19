@@ -29,43 +29,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class ItemPainter extends ItemLB
 {
-    public final boolean infinite;
-    
-    public ItemPainter(boolean i)
-    {
-        super();
-        infinite = i;
-        setMaxStackSize(1);
-        
-        if(!infinite)
-        {
-            setMaxDamage(250);
-        }
-    }
-    
-    @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
-    { return new PainterCap(); }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void loadModels()
-    {
-        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(new ResourceLocation(LatBlocks.MOD_ID, "painter"), "variant=" + getRegistryName().getResourcePath()));
-    }
-    
-    @Override
-    public EnumActionResult onItemUse(ItemStack is, EntityPlayer ep, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    { return PaintHelper.onItemUse(is, ep, MathHelperMC.rayTrace(pos, facing, hitX, hitY, hitZ)); }
-    
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack is, World w, EntityPlayer ep, EnumHand hand)
-    { return PaintHelper.onItemRightClick(is, ep); }
-    
     private class PainterCap implements ICapabilitySerializable<NBTTagInt>
     {
         private PainterItemStorage cap;
-        
+
         public PainterCap()
         {
             cap = new PainterItemStorage()
@@ -80,21 +47,53 @@ public class ItemPainter extends ItemLB
                 }
             };
         }
-        
+
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing)
         { return capability == FTBLibCapabilities.PAINTER_ITEM_CAPABILITY; }
-        
+
         @Override
         public <T> T getCapability(Capability<T> capability, EnumFacing facing)
         { return (capability == FTBLibCapabilities.PAINTER_ITEM_CAPABILITY) ? (T) cap : null; }
-        
+
         @Override
         public NBTTagInt serializeNBT()
         { return cap.serializeNBT(); }
-        
+
         @Override
         public void deserializeNBT(NBTTagInt nbt)
         { cap.deserializeNBT(nbt); }
     }
+    public final boolean infinite;
+
+    public ItemPainter(boolean i)
+    {
+        super();
+        infinite = i;
+        setMaxStackSize(1);
+
+        if(!infinite)
+        {
+            setMaxDamage(250);
+        }
+    }
+
+    @Override
+    public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
+    { return new PainterCap(); }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void loadModels()
+    {
+        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(new ResourceLocation(LatBlocks.MOD_ID, "painter"), "variant=" + getRegistryName().getResourcePath()));
+    }
+
+    @Override
+    public EnumActionResult onItemUse(ItemStack is, EntityPlayer ep, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    { return PaintHelper.onItemUse(is, ep, MathHelperMC.rayTrace(pos, facing, hitX, hitY, hitZ)); }
+
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack is, World w, EntityPlayer ep, EnumHand hand)
+    { return PaintHelper.onItemRightClick(is, ep); }
 }

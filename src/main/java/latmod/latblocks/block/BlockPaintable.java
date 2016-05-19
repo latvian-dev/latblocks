@@ -17,15 +17,15 @@ public class BlockPaintable extends BlockLB
     {
         super(Material.WOOD);
     }
-    
+
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
     { return true; }
-    
+
     @Override
     public boolean hasTileEntity(IBlockState state)
     { return true; }
-    
+
     @Override
     public TilePaintable createTileEntity(World w, IBlockState state)
     { return null; }

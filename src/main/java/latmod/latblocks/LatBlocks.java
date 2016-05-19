@@ -16,30 +16,30 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class LatBlocks
 {
     public static final String MOD_ID = "latblocks";
-    
+
     @Mod.Instance(MOD_ID)
     public static LatBlocks inst;
-    
+
     @SidedProxy(serverSide = "latmod.latblocks.LatBlocksCommon", clientSide = "latmod.latblocks.client.LatBlocksClient")
     public static LatBlocksCommon proxy;
-    
+
     public static LMMod mod;
     public static CreativeTabLM tab, tabGlowium;
-    
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         mod = LMMod.create(MOD_ID);
         tab = new CreativeTabLM("latblocks");
         tabGlowium = new CreativeTabLM("latblocks.glowium");
-        
+
         LBBlocks.init();
         LBItems.init();
-        
+
         proxy.preInit();
         mod.onPostLoaded();
     }
-    
+
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {

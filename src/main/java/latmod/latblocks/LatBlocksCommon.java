@@ -8,7 +8,7 @@ public class LatBlocksCommon
     public void preInit()
     {
     }
-    
+
     public void postInit()
     {
     }
