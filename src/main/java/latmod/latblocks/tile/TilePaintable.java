@@ -1,29 +1,37 @@
 package latmod.latblocks.tile;
 
 import com.feed_the_beast.ftbl.api.FTBLibCapabilities;
-import com.feed_the_beast.ftbl.api.paint.IPaintable;
-import com.feed_the_beast.ftbl.api.paint.SidedPaintStorage;
-import com.feed_the_beast.ftbl.api.paint.SinglePaintStorage;
-import com.feed_the_beast.ftbl.api.tile.IWailaTile;
+import com.feed_the_beast.ftbl.api.paint.PaintStorage;
+import com.feed_the_beast.ftbl.api.tile.IInfoTile;
+import com.feed_the_beast.ftbl.api.tile.TileInfoDataAccessor;
 import com.feed_the_beast.ftbl.api.tile.TileLM;
-import com.feed_the_beast.ftbl.api.waila.WailaDataAccessor;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by LatvianModder on 15.05.2016.
  */
-public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
+public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTile.Stack
 {
     public static class Sided extends TilePaintable
     {
+        private final Map<EnumFacing, PaintStorage> paint;
+
         public Sided()
         {
-            super(new SidedPaintStorage());
+            paint = new EnumMap<>(EnumFacing.class);
+
+            for(EnumFacing f : EnumFacing.VALUES)
+            {
+                paint.put(f, new PaintStorage());
+            }
         }
 
         @Override
@@ -33,8 +41,7 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
 
             for(EnumFacing f : EnumFacing.VALUES)
             {
-                IBlockState p = paintable.getPaint(f);
-                ai[f.ordinal()] = p == null ? 0 : Block.getStateId(p);
+                ai[f.ordinal()] = paint.get(f).getPaintID();
             }
 
             tag.setIntArray("Paint", ai);
@@ -47,45 +54,59 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
 
             for(EnumFacing f : EnumFacing.VALUES)
             {
-                int i = ai[f.ordinal()];
-                paintable.setPaint(f, i == 0 ? null : Block.getStateById(i));
+                paint.get(f).setFromID(ai[f.ordinal()]);
             }
+        }
+
+        @Override
+        public <T> T getCapability(Capability<T> capability, EnumFacing side)
+        {
+            if(capability == FTBLibCapabilities.PAINTABLE_TILE)
+            {
+                return (T) paint.get(side);
+            }
+
+            return super.getCapability(capability, side);
         }
     }
 
     public static class Single extends TilePaintable
     {
+        private final PaintStorage paint;
+
         public Single()
         {
-            super(new SinglePaintStorage());
+            paint = new PaintStorage();
         }
 
         @Override
         public void writeTileData(NBTTagCompound tag)
         {
-            IBlockState p = paintable.getPaint(EnumFacing.UP);
-            tag.setInteger("Paint", p == null ? 0 : Block.getStateId(p));
+            tag.setInteger("Paint", paint.getPaintID());
         }
 
         @Override
         public void readTileData(NBTTagCompound tag)
         {
-            int p = tag.getInteger("Paint");
-            paintable.setPaint(EnumFacing.UP, p == 0 ? null : Block.getStateById(p));
+            paint.setFromID(tag.getInteger("Paint"));
         }
-    }
 
-    public final IPaintable paintable;
+        @Override
+        public <T> T getCapability(Capability<T> capability, EnumFacing side)
+        {
+            if(capability == FTBLibCapabilities.PAINTABLE_TILE)
+            {
+                return (T) paint;
+            }
 
-    public TilePaintable(IPaintable p)
-    {
-        paintable = p;
+            return super.getCapability(capability, side);
+        }
     }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing side)
     {
-        if(capability == FTBLibCapabilities.PAINTABLE_TILE_CAPABILITY)
+        if(capability == FTBLibCapabilities.PAINTABLE_TILE)
         {
             return true;
         }
@@ -94,20 +115,20 @@ public abstract class TilePaintable extends TileLM implements IWailaTile.Stack
     }
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing side)
+    public void getInfo(TileInfoDataAccessor info, List<String> list, boolean adv)
     {
-        if(capability == FTBLibCapabilities.PAINTABLE_TILE_CAPABILITY)
-        {
-            return (T) paintable;
-        }
+        ItemStack is = getInfoItem(info);
 
-        return super.getCapability(capability, side);
+        if(is != null)
+        {
+            list.add(is.getDisplayName());
+        }
     }
 
     @Override
-    public ItemStack getWailaStack(WailaDataAccessor data)
+    public ItemStack getInfoItem(TileInfoDataAccessor info)
     {
-        IBlockState p = paintable.getPaint(data.side);
+        IBlockState p = getCapability(FTBLibCapabilities.PAINTABLE_TILE, info.hit.sideHit).getPaint();
 
         if(p != null)
         {

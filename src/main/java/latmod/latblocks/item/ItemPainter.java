@@ -50,11 +50,11 @@ public class ItemPainter extends ItemLB
 
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-        { return capability == FTBLibCapabilities.PAINTER_ITEM_CAPABILITY; }
+        { return capability == FTBLibCapabilities.PAINTER_ITEM; }
 
         @Override
         public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-        { return (capability == FTBLibCapabilities.PAINTER_ITEM_CAPABILITY) ? (T) cap : null; }
+        { return (capability == FTBLibCapabilities.PAINTER_ITEM) ? (T) cap : null; }
 
         @Override
         public NBTTagInt serializeNBT()
