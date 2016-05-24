@@ -14,7 +14,9 @@ public class BlockPaintableBlock extends BlockPaintable
 {
     @Override
     public TilePaintable createTileEntity(World w, IBlockState state)
-    { return new TilePaintable.Sided(); }
+    {
+        return new TilePaintable.Sided();
+    }
 
     @Override
     public void loadTiles()

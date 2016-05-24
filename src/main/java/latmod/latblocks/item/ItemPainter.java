@@ -50,25 +50,33 @@ public class ItemPainter extends ItemLB
 
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-        { return capability == FTBLibCapabilities.PAINTER_ITEM; }
+        {
+            return capability == FTBLibCapabilities.PAINTER_ITEM;
+        }
 
         @Override
         public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-        { return (capability == FTBLibCapabilities.PAINTER_ITEM) ? (T) cap : null; }
+        {
+            return (capability == FTBLibCapabilities.PAINTER_ITEM) ? (T) cap : null;
+        }
 
         @Override
         public NBTTagInt serializeNBT()
-        { return cap.serializeNBT(); }
+        {
+            return cap.serializeNBT();
+        }
 
         @Override
         public void deserializeNBT(NBTTagInt nbt)
-        { cap.deserializeNBT(nbt); }
+        {
+            cap.deserializeNBT(nbt);
+        }
     }
+
     public final boolean infinite;
 
     public ItemPainter(boolean i)
     {
-        super();
         infinite = i;
         setMaxStackSize(1);
 
@@ -80,7 +88,9 @@ public class ItemPainter extends ItemLB
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
-    { return new PainterCap(); }
+    {
+        return new PainterCap();
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -91,9 +101,13 @@ public class ItemPainter extends ItemLB
 
     @Override
     public EnumActionResult onItemUse(ItemStack is, EntityPlayer ep, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    { return PaintHelper.onItemUse(is, ep, MathHelperMC.rayTrace(pos, facing, hitX, hitY, hitZ)); }
+    {
+        return PaintHelper.onItemUse(is, ep, MathHelperMC.rayTrace(pos, facing, hitX, hitY, hitZ));
+    }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack is, World w, EntityPlayer ep, EnumHand hand)
-    { return PaintHelper.onItemRightClick(is, ep); }
+    {
+        return PaintHelper.onItemRightClick(is, ep);
+    }
 }

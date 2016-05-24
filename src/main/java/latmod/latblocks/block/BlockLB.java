@@ -18,5 +18,7 @@ public class BlockLB extends BlockLM
 
     @Override
     public LMMod getMod()
-    { return LatBlocks.mod; }
+    {
+        return LatBlocks.mod;
+    }
 }

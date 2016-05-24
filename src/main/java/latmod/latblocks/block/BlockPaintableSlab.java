@@ -1,6 +1,5 @@
 package latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.util.BlockStateSerializer;
 import com.feed_the_beast.ftbl.util.MathHelperMC;
 import latmod.latblocks.tile.TilePaintable;
 import net.minecraft.block.BlockDirectional;
@@ -25,55 +24,81 @@ public class BlockPaintableSlab extends BlockPaintable
     public BlockPaintableSlab(double height)
     {
         setLightOpacity(255);
+        setDefaultState(blockState.getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.DOWN));
         translucent = true;
         BOXES = MathHelperMC.getRotatedBoxes(new AxisAlignedBB(0D, 0D, 0D, 1D, height, 1D));
     }
 
     @Override
     public TilePaintable createTileEntity(World w, IBlockState state)
-    { return new TilePaintable.Single(); }
+    {
+        return new TilePaintable.Single();
+    }
 
     @Override
     public int damageDropped(IBlockState state)
-    { return 0; }
+    {
+        return 0;
+    }
 
     @Override
+    @Deprecated
     public boolean isOpaqueCube(IBlockState state)
-    { return false; }
+    {
+        return false;
+    }
 
     @Override
+    @Deprecated
     public boolean isFullCube(IBlockState state)
-    { return false; }
+    {
+        return false;
+    }
 
     @Override
     protected BlockStateContainer createBlockState()
-    { return new BlockStateContainer(this, BlockDirectional.FACING); }
+    {
+        return new BlockStateContainer(this, BlockDirectional.FACING);
+    }
 
     @Override
+    @Deprecated
     public IBlockState getStateFromMeta(int meta)
-    { return getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.VALUES[meta]); }
+    {
+        return getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.VALUES[meta]);
+    }
 
     @Override
     public int getMetaFromState(IBlockState state)
-    { return state.getValue(BlockDirectional.FACING).ordinal(); }
+    {
+        return state.getValue(BlockDirectional.FACING).ordinal();
+    }
 
     @Override
-    public String getModelState()
-    { return BlockStateSerializer.getString(BlockDirectional.FACING, EnumFacing.DOWN); }
-
-    @Override
+    @Deprecated
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    { return BOXES[state.getValue(BlockDirectional.FACING).ordinal()]; }
+    {
+        return BOXES[state.getValue(BlockDirectional.FACING).ordinal()];
+    }
 
     @Override
+    @Deprecated
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    { return getDefaultState().withProperty(BlockDirectional.FACING, facing.getOpposite()); }
+    {
+        return getDefaultState().withProperty(BlockDirectional.FACING, facing.getOpposite());
+    }
 
     @Override
+    @Deprecated
     public IBlockState withRotation(IBlockState state, Rotation rot)
-    { return state.withProperty(BlockDirectional.FACING, rot.rotate(state.getValue(BlockDirectional.FACING))); }
+    {
+        return state.withProperty(BlockDirectional.FACING, rot.rotate(state.getValue(BlockDirectional.FACING)));
+    }
 
     @Override
+    @Deprecated
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
-    { return state.withRotation(mirrorIn.toRotation(state.getValue(BlockDirectional.FACING))); }
+    {
+        return state.withRotation(mirrorIn.toRotation(state.getValue(BlockDirectional.FACING)));
+    }
 }

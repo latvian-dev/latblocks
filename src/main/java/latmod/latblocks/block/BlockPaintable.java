@@ -20,13 +20,19 @@ public class BlockPaintable extends BlockLB
 
     @Override
     public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
-    { return true; }
+    {
+        return true;
+    }
 
     @Override
     public boolean hasTileEntity(IBlockState state)
-    { return true; }
+    {
+        return true;
+    }
 
     @Override
     public TilePaintable createTileEntity(World w, IBlockState state)
-    { return null; }
+    {
+        return null;
+    }
 }
