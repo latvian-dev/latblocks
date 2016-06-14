@@ -8,6 +8,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by LatvianModder on 15.05.2016.
  */
@@ -19,7 +21,7 @@ public class BlockPaintable extends BlockLB
     }
 
     @Override
-    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
+    public boolean canHarvestBlock(IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EntityPlayer player)
     {
         return true;
     }
@@ -30,8 +32,9 @@ public class BlockPaintable extends BlockLB
         return true;
     }
 
+    @Nonnull
     @Override
-    public TilePaintable createTileEntity(World w, IBlockState state)
+    public TilePaintable createTileEntity(@Nonnull World w, @Nonnull IBlockState state)
     {
         return null;
     }

@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
+import javax.annotation.Nonnull;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,7 @@ public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTi
         }
 
         @Override
-        public void writeTileData(NBTTagCompound tag)
+        public void writeTileData(@Nonnull NBTTagCompound tag)
         {
             int[] ai = new int[6];
 
@@ -48,7 +49,7 @@ public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTi
         }
 
         @Override
-        public void readTileData(NBTTagCompound tag)
+        public void readTileData(@Nonnull NBTTagCompound tag)
         {
             int[] ai = tag.getIntArray("Paint");
 
@@ -58,8 +59,9 @@ public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTi
             }
         }
 
+        @Nonnull
         @Override
-        public <T> T getCapability(Capability<T> capability, EnumFacing side)
+        public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing side)
         {
             if(capability == FTBLibCapabilities.PAINTABLE_TILE)
             {
@@ -80,19 +82,20 @@ public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTi
         }
 
         @Override
-        public void writeTileData(NBTTagCompound tag)
+        public void writeTileData(@Nonnull NBTTagCompound tag)
         {
             tag.setInteger("Paint", paint.getPaintID());
         }
 
         @Override
-        public void readTileData(NBTTagCompound tag)
+        public void readTileData(@Nonnull NBTTagCompound tag)
         {
             paint.setFromID(tag.getInteger("Paint"));
         }
 
+        @Nonnull
         @Override
-        public <T> T getCapability(Capability<T> capability, EnumFacing side)
+        public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing side)
         {
             if(capability == FTBLibCapabilities.PAINTABLE_TILE)
             {
@@ -104,7 +107,7 @@ public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTi
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing side)
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing side)
     {
         if(capability == FTBLibCapabilities.PAINTABLE_TILE)
         {

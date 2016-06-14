@@ -7,13 +7,16 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 /**
  * Created by LatvianModder on 15.05.2016.
  */
 public class BlockPaintableBlock extends BlockPaintable
 {
+    @Nonnull
     @Override
-    public TilePaintable createTileEntity(World w, IBlockState state)
+    public TilePaintable createTileEntity(@Nonnull World w, @Nonnull IBlockState state)
     {
         return new TilePaintable.Sided();
     }
