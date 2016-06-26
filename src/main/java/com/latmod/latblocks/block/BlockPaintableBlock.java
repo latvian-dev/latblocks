@@ -1,8 +1,8 @@
-package latmod.latblocks.block;
+package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.util.FTBLib;
-import latmod.latblocks.LatBlocks;
-import latmod.latblocks.tile.TilePaintable;
+import com.latmod.latblocks.LatBlocks;
+import com.latmod.latblocks.tile.TilePaintable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;

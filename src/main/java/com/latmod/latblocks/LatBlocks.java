@@ -1,9 +1,9 @@
-package latmod.latblocks;
+package com.latmod.latblocks;
 
 import com.feed_the_beast.ftbl.util.CreativeTabLM;
 import com.feed_the_beast.ftbl.util.LMMod;
-import latmod.latblocks.block.LBBlocks;
-import latmod.latblocks.item.LBItems;
+import com.latmod.latblocks.block.LBBlocks;
+import com.latmod.latblocks.item.LBItems;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

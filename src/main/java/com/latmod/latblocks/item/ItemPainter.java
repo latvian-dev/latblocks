@@ -1,10 +1,10 @@
-package latmod.latblocks.item;
+package com.latmod.latblocks.item;
 
 import com.feed_the_beast.ftbl.api.FTBLibCapabilities;
 import com.feed_the_beast.ftbl.api.paint.PaintHelper;
 import com.feed_the_beast.ftbl.api.paint.PainterItemStorage;
 import com.feed_the_beast.ftbl.util.MathHelperMC;
-import latmod.latblocks.LatBlocks;
+import com.latmod.latblocks.LatBlocks;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

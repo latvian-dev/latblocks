@@ -1,4 +1,4 @@
-package latmod.latblocks.tile;
+package com.latmod.latblocks.tile;
 
 import com.feed_the_beast.ftbl.api.FTBLibCapabilities;
 import com.feed_the_beast.ftbl.api.paint.PaintStorage;

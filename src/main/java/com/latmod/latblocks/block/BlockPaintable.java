@@ -1,6 +1,6 @@
-package latmod.latblocks.block;
+package com.latmod.latblocks.block;
 
-import latmod.latblocks.tile.TilePaintable;
+import com.latmod.latblocks.tile.TilePaintable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,4 +1,4 @@
-package latmod.latblocks;
+package com.latmod.latblocks;
 
 /**
  * Created by LatvianModder on 15.05.2016.

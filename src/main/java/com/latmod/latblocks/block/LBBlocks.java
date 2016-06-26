@@ -1,6 +1,6 @@
-package latmod.latblocks.block;
+package com.latmod.latblocks.block;
 
-import latmod.latblocks.LatBlocks;
+import com.latmod.latblocks.LatBlocks;
 
 /**
  * Created by LatvianModder on 15.05.2016.

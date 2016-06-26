@@ -1,7 +1,7 @@
-package latmod.latblocks.block;
+package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.util.MathHelperMC;
-import latmod.latblocks.tile.TilePaintable;
+import com.latmod.latblocks.tile.TilePaintable;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;

@@ -1,6 +1,6 @@
-package latmod.latblocks.client;
+package com.latmod.latblocks.client;
 
-import latmod.latblocks.LatBlocksCommon;
+import com.latmod.latblocks.LatBlocksCommon;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
