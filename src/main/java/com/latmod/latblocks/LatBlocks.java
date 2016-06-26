@@ -20,7 +20,7 @@ public class LatBlocks
     @Mod.Instance(MOD_ID)
     public static LatBlocks inst;
 
-    @SidedProxy(serverSide = "latmod.latblocks.LatBlocksCommon", clientSide = "latmod.latblocks.client.LatBlocksClient")
+    @SidedProxy(serverSide = "com.latmod.latblocks.LatBlocksCommon", clientSide = "com.latmod.latblocks.client.LatBlocksClient")
     public static LatBlocksCommon proxy;
 
     public static LMMod mod;
