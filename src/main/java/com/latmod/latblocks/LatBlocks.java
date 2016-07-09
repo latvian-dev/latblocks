@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 /**
  * Created by LatvianModder on 12.05.2016.
  */
-@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "2.0.0")
+@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@")
 public class LatBlocks
 {
     public static final String MOD_ID = "latblocks";

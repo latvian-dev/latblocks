@@ -1,83 +1,59 @@
-def version_mod = "1.12.0";
+def version_mod = "2.0.0";
 
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-apply plugin: 'forge'
-
-version = version_mc + "-" + version_mod
+version = "1.9.4-" + version_mod
 group = "com.latmod.latblocks"
 archivesBaseName = "LatBlocks"
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 minecraft {
-    version = version_mc + "-" + version_forge
-    runDir = mcp_run_dir
-
+    version = "1.9.4-12.17.0.1987"
+    runDir = "run"
+    mappings = "snapshot_20160518"
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     replace "@VERSION@", version_mod
     replaceIn "LatBlocks.java"
 }
 
 dependencies {
-    compile fileTree(dir: project_dir + "DevMods/", include: '*.jar')
-    compile files(project_dir + "/Exported/FTBLib-" + version_mc + "-" + version_mods + "-dev.jar")
-    compile files(project_dir + "/Exported/FTBUtilities-" + version_mc + "-" + version_mods + "-dev.jar")
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 sourceSets {
     main {
         java {
-            srcDir project_dir + archivesBaseName + "/src/main/java"
+            srcDir 'src/main/java'
         }
         resources {
-            srcDir project_dir + archivesBaseName + "/src/main/resources"
+            srcDir 'src/main/resources'
         }
     }
 }
 
-tasks.withType(Jar) {
-    destinationDir = file(project_dir + "/Exported/")
+processResources {
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
 }
-
-processResources
-        {
-            inputs.property "version", project.version
-            inputs.property "mcversion", project.minecraft.version
-
-            from(sourceSets.main.resources.srcDirs) {
-                include 'mcmod.info'
-                expand 'version': project.version, 'mcversion': project.minecraft.version
-            }
-
-            from(sourceSets.main.resources.srcDirs) {
-                exclude 'mcmod.info'
-            }
-        }
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.java
-    classifier = 'src'
-}
-
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    classifier = 'dev'
-}
-
-build.dependsOn deobfJar
-build.dependsOn sourceJar
