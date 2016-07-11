@@ -1,118 +1,121 @@
 package com.latmod.latblocks.item;
 
-import com.feed_the_beast.ftbl.api.FTBLibCapabilities;
-import com.feed_the_beast.ftbl.api.paint.PaintHelper;
-import com.feed_the_beast.ftbl.api.paint.PainterItemStorage;
-import com.feed_the_beast.ftbl.util.MathHelperMC;
-import com.latmod.latblocks.LatBlocks;
+import com.feed_the_beast.ftbl.api.ForgeWorldMP;
+import com.feed_the_beast.ftbl.api.item.ODItems;
+import com.latmod.latblocks.capabilities.Bag;
+import com.latmod.latblocks.capabilities.IBag;
+import com.latmod.latblocks.capabilities.LBCapabilities;
+import com.latmod.latblocks.gui.LBGuiHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 /**
  * Created by LatvianModder on 16.05.2016.
  */
 public class ItemBag extends ItemLB
 {
-    private class PainterCap implements ICapabilitySerializable<NBTTagInt>
+    public ItemBag()
     {
-        private PainterItemStorage cap;
-
-        public PainterCap()
-        {
-            cap = new PainterItemStorage()
-            {
-                @Override
-                public void damagePainter(ItemStack is, EntityPlayer player)
-                {
-                    if(!infinite)
-                    {
-                        super.damagePainter(is, player);
-                    }
-                }
-            };
-        }
-
-        @Override
-        public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-        {
-            return capability == FTBLibCapabilities.PAINTER_ITEM;
-        }
-
-        @Override
-        public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-        {
-            return (capability == FTBLibCapabilities.PAINTER_ITEM) ? (T) cap : null;
-        }
-
-        @Override
-        public NBTTagInt serializeNBT()
-        {
-            return cap.serializeNBT();
-        }
-
-        @Override
-        public void deserializeNBT(NBTTagInt nbt)
-        {
-            cap.deserializeNBT(nbt);
-        }
-    }
-
-    public final boolean infinite;
-
-    public ItemBag(boolean i)
-    {
-        infinite = i;
         setMaxStackSize(1);
-
-        if(!infinite)
-        {
-            setMaxDamage(250);
-        }
+        setHasSubtypes(true);
+        setMaxDamage(0);
     }
 
     @Nonnull
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt)
     {
-        return new PainterCap();
+        return new Bag(getMetadata(stack) + 1);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void loadModels()
     {
-        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(new ResourceLocation(LatBlocks.MOD_ID, "painter"), "variant=" + getRegistryName().getResourcePath()));
+        for(int i = 0; i < 5; i++)
+        {
+            ModelLoader.setCustomModelResourceLocation(this, i, new ModelResourceLocation(getRegistryName(), "inventory"));
+        }
     }
 
-    @Nonnull
     @Override
-    public EnumActionResult onItemUse(ItemStack is, EntityPlayer ep, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public int getEntityLifespan(ItemStack itemStack, World world)
     {
-        return PaintHelper.onItemUse(is, ep, MathHelperMC.rayTrace(pos, facing, hitX, hitY, hitZ));
+        return 10000000;
+    }
+
+    @Override
+    public boolean onEntityItemUpdate(EntityItem entityItem)
+    {
+        return false;
+    }
+
+    @Override
+    public void loadRecipes()
+    {
+        getMod().recipes.addRecipe(new ItemStack(this, 1, 0),
+                "DSD", "WCW", "WQW",
+                'W', ODItems.WOOL,
+                'S', ODItems.STRING,
+                'C', ODItems.CHEST_WOOD,
+                'D', ODItems.DIAMOND,
+                'Q', ODItems.QUARTZ_BLOCK);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(@Nonnull Item item, CreativeTabs c, List<ItemStack> l)
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            l.add(new ItemStack(item, 1, i));
+        }
     }
 
     @Nonnull
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack is, World w, EntityPlayer ep, EnumHand hand)
     {
-        return PaintHelper.onItemRightClick(is, ep);
+        if(!w.isRemote)
+        {
+            IBag bag = is.getCapability(LBCapabilities.BAG, null);
+
+            if(bag != null)
+            {
+                if(bag.getOwner() == null)
+                {
+                    bag.setOwner(ep.getGameProfile().getId());
+                }
+
+                if(bag.getPrivacyLevel().canInteract(ForgeWorldMP.inst.getPlayer(bag.getOwner()), ForgeWorldMP.inst.getPlayer(ep)))
+                {
+                    LBGuiHandler.INSTANCE.openGui(ep, hand == EnumHand.MAIN_HAND ? 0 : 1, null);
+                }
+            }
+        }
+
+        return new ActionResult<>(EnumActionResult.SUCCESS, is);
+    }
+
+    @Override
+    public void addInformation(ItemStack is, EntityPlayer ep, List<String> l, boolean b)
+    {
+        l.add("Tier " + (is.getMetadata() + 1));
     }
 }

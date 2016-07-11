@@ -74,6 +74,7 @@ latblocks.item.paint_roller_basic.name=Paint Roller
 latblocks.item.paint_roller_dmd.name=Diamond Paint Roller
 latblocks.item.paint_roller_color.name=Color Roller
 
+latblocks.item.bag.name=Quartz Bag
 latblocks.item.painter.name=Block Painter
 latblocks.item.painter_dmd.name=Diamond Block Painter
 latblocks.item.painter_col.name=Color Painter

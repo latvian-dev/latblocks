@@ -1,9 +1,14 @@
 package com.latmod.latblocks;
 
+import com.feed_the_beast.ftbl.api.client.gui.LMGuiHandlerRegistry;
 import com.feed_the_beast.ftbl.util.CreativeTabLM;
 import com.feed_the_beast.ftbl.util.LMMod;
 import com.latmod.latblocks.block.LBBlocks;
+import com.latmod.latblocks.capabilities.LBCapabilities;
+import com.latmod.latblocks.gui.LBGuiHandler;
 import com.latmod.latblocks.item.LBItems;
+import com.latmod.latblocks.net.LBNetHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -33,8 +38,12 @@ public class LatBlocks
         tab = new CreativeTabLM("latblocks");
         tabGlowium = new CreativeTabLM("latblocks.glowium");
 
+        LBCapabilities.init();
         LBBlocks.init();
         LBItems.init();
+        LBNetHandler.init();
+
+        MinecraftForge.EVENT_BUS.register(new LBEventHandler());
 
         proxy.preInit();
         mod.onPostLoaded();
@@ -45,5 +54,7 @@ public class LatBlocks
     {
         proxy.postInit();
         mod.loadRecipes();
+
+        LMGuiHandlerRegistry.add(LBGuiHandler.INSTANCE);
     }
 }

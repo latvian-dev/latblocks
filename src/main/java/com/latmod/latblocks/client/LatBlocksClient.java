@@ -1,6 +1,8 @@
 package com.latmod.latblocks.client;
 
+import com.feed_the_beast.ftbl.api.client.FTBLibClient;
 import com.latmod.latblocks.LatBlocksCommon;
+import com.latmod.latblocks.item.LBItems;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -19,5 +21,6 @@ public class LatBlocksClient extends LatBlocksCommon
     @Override
     public void postInit()
     {
+        FTBLibClient.mc().getItemColors().registerItemColorHandler(new ItemBagColorHandler(), LBItems.BAG);
     }
 }
