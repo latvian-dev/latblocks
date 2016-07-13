@@ -3,7 +3,6 @@ package com.latmod.latblocks.gui;
 import com.feed_the_beast.ftbl.api.client.gui.ContainerLM;
 import com.latmod.latblocks.capabilities.IBag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumHand;
 import net.minecraftforge.items.SlotItemHandler;
 
 /**
@@ -12,13 +11,11 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ContainerBag extends ContainerLM
 {
     public final IBag bag;
-    public final EnumHand hand;
 
-    public ContainerBag(EntityPlayer ep, IBag b, EnumHand h)
+    public ContainerBag(EntityPlayer ep, IBag b)
     {
         super(ep, b.getInventoryFromTab(b.getCurrentTab()));
         bag = b;
-        hand = h;
 
         for(int y = 0; y < 5; y++)
         {

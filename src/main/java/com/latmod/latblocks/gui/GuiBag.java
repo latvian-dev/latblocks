@@ -32,7 +32,6 @@ import java.util.List;
 public class GuiBag extends GuiLM
 {
     public static final ResourceLocation TEXTURE = new ResourceLocation(LatBlocks.MOD_ID, "textures/gui/bag.png");
-    public static final TextureCoords BACKGROUND = new TextureCoords(TEXTURE, 0, 0, 174, 220, 256, 256);
     public static final TextureCoords TAB_ON = new TextureCoords(TEXTURE, 174, 0, 32, 10, 256, 256);
     public static final TextureCoords TAB_OFF = new TextureCoords(TEXTURE, 174, 10, 32, 10, 256, 256);
 
@@ -82,7 +81,7 @@ public class GuiBag extends GuiLM
             @Override
             public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton b)
             {
-                FTBLibClient.playClickSound();
+                GuiLM.playClickSound();
 
                 LMColor.RGB col = new LMColor.RGB();
                 col.setRGBA(container.bag.getColor());
@@ -104,7 +103,7 @@ public class GuiBag extends GuiLM
             @Override
             public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton button)
             {
-                FTBLibClient.playClickSound();
+                GuiLM.playClickSound();
 
                 MessageChangePrivacy m = new MessageChangePrivacy();
 
@@ -141,7 +140,7 @@ public class GuiBag extends GuiLM
             {
                 MessageChangeDisplayName m = new MessageChangeDisplayName();
                 m.name = getText();
-                
+
                 if(!m.name.isEmpty())
                 {
                     m.sendToServer();
@@ -162,7 +161,9 @@ public class GuiBag extends GuiLM
     @Override
     public void drawBackground()
     {
-        render(BACKGROUND);
+        FTBLibClient.setTexture(TEXTURE);
+        GuiScreen.drawModalRectWithCustomSizedTexture((int) getAX(), (int) getAY(), 0F, 0F, (int) width, (int) height, 256F, 256F);
+
         buttonColor.render(GuiIcons.color_rgb);
         buttonPrivacy.render(container.bag.getPrivacyLevel().getIcon());
     }

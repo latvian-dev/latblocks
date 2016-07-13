@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by LatvianModder on 15.05.2016.
  */
-public class BlockPaintable extends BlockLB
+public abstract class BlockPaintable extends BlockLB
 {
     public BlockPaintable()
     {
@@ -27,15 +27,12 @@ public class BlockPaintable extends BlockLB
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state)
+    public final boolean hasTileEntity(IBlockState state)
     {
         return true;
     }
 
     @Nonnull
     @Override
-    public TilePaintable createTileEntity(@Nonnull World w, @Nonnull IBlockState state)
-    {
-        return null;
-    }
+    public abstract TilePaintable createTileEntity(@Nonnull World w, @Nonnull IBlockState state);
 }

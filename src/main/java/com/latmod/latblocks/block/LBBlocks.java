@@ -12,6 +12,7 @@ public class LBBlocks
     public static final BlockPaintableSlab PAINTABLE_PANEL = LatBlocks.mod.register("panel", new BlockPaintableSlab(4D / 16D));
     public static final BlockPaintableSlab PAINTABLE_COVER = LatBlocks.mod.register("cover", new BlockPaintableSlab(2D / 16D));
     public static final BlockPaintableSlab PAINTABLE_CARPET = LatBlocks.mod.register("carpet", new BlockPaintableSlab(1D / 16D));
+    public static final BlockMultifurnace MULTIFURNACE = LatBlocks.mod.register("multifurnace", new BlockMultifurnace());
 
     public static void init()
     {

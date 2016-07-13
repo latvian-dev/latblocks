@@ -23,6 +23,8 @@ public class LBGuiHandler extends LMGuiHandler
 {
     public static final LMGuiHandler INSTANCE = new LBGuiHandler();
 
+    public static final int BAG = 0;
+
     private LBGuiHandler()
     {
         super(LatBlocks.MOD_ID);
@@ -31,13 +33,18 @@ public class LBGuiHandler extends LMGuiHandler
     @Override
     public Container getContainer(@Nonnull EntityPlayer ep, int id, @Nullable NBTTagCompound data)
     {
-        if(id == 0 || id == 1)
+        switch(id)
         {
-            ItemStack is = ep.getHeldItem(id == 0 ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND);
-
-            if(is != null && is.hasCapability(LBCapabilities.BAG, null))
+            case BAG:
             {
-                return new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null), id == 0 ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND);
+                ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
+
+                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
+                {
+                    return new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null));
+                }
+
+                break;
             }
         }
 
@@ -48,13 +55,18 @@ public class LBGuiHandler extends LMGuiHandler
     @SideOnly(Side.CLIENT)
     public GuiScreen getGui(@Nonnull EntityPlayer ep, int id, @Nullable NBTTagCompound data)
     {
-        if(id == 0 || id == 1)
+        switch(id)
         {
-            ItemStack is = ep.getHeldItem(id == 0 ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND);
-
-            if(is != null && is.getItem() == LBItems.BAG && is.hasCapability(LBCapabilities.BAG, null))
+            case BAG:
             {
-                return new GuiBag(new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null), id == 0 ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND)).getWrapper();
+                ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
+
+                if(is != null && is.getItem() == LBItems.BAG && is.hasCapability(LBCapabilities.BAG, null))
+                {
+                    return new GuiBag(new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null))).getWrapper();
+                }
+
+                break;
             }
         }
 

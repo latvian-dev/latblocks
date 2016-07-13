@@ -7,6 +7,7 @@ import com.latmod.latblocks.gui.ContainerBag;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 
 /**
  * Created by LatvianModder on 11.07.2016.
@@ -38,7 +39,7 @@ public class MessageChangeDisplayName extends MessageToServer<MessageChangeDispl
     {
         if(mp.openContainer instanceof ContainerBag)
         {
-            ItemStack is = mp.getHeldItem(((ContainerBag) mp.openContainer).hand);
+            ItemStack is = mp.getHeldItem(EnumHand.MAIN_HAND);
 
             if(is != null && is.hasCapability(LBCapabilities.BAG, null))
             {
