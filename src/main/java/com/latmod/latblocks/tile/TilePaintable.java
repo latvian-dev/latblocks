@@ -2,24 +2,19 @@ package com.latmod.latblocks.tile;
 
 import com.feed_the_beast.ftbl.api.FTBLibCapabilities;
 import com.feed_the_beast.ftbl.api.paint.PaintStorage;
-import com.feed_the_beast.ftbl.api.tile.IInfoTile;
-import com.feed_the_beast.ftbl.api.tile.TileInfoDataAccessor;
 import com.feed_the_beast.ftbl.api.tile.TileLM;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
 import javax.annotation.Nonnull;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by LatvianModder on 15.05.2016.
  */
-public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTile.Stack
+public abstract class TilePaintable extends TileLM
 {
     public static class Sided extends TilePaintable
     {
@@ -115,29 +110,5 @@ public abstract class TilePaintable extends TileLM implements IInfoTile, IInfoTi
         }
 
         return super.hasCapability(capability, side);
-    }
-
-    @Override
-    public void getInfo(TileInfoDataAccessor info, List<String> list, boolean adv)
-    {
-        ItemStack is = getInfoItem(info);
-
-        if(is != null)
-        {
-            list.add(is.getDisplayName());
-        }
-    }
-
-    @Override
-    public ItemStack getInfoItem(TileInfoDataAccessor info)
-    {
-        IBlockState p = getCapability(FTBLibCapabilities.PAINTABLE_TILE, info.hit.sideHit).getPaint();
-
-        if(p != null)
-        {
-            return new ItemStack(p.getBlock(), 1, p.getBlock().getMetaFromState(p));
-        }
-
-        return null;
     }
 }
