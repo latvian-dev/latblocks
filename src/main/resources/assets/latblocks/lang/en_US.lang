@@ -76,13 +76,18 @@ latblocks.item.paint_roller_basic.name=Paint Roller
 latblocks.item.paint_roller_dmd.name=Diamond Paint Roller
 latblocks.item.paint_roller_color.name=Color Roller
 
-latblocks.item.bag.name=Quartz Bag
+latblocks.item.bag_1.name=Quartz Bag
+latblocks.item.bag_2.name=Quartz Bag [II]
+latblocks.item.bag_3.name=Quartz Bag [III]
+latblocks.item.bag_4.name=Quartz Bag [IV]
+latblocks.item.bag_5.name=Quartz Bag [V]
+latblocks.item.ender_bag.name=Ender Bag
+
 latblocks.item.painter.name=Block Painter
 latblocks.item.painter_dmd.name=Diamond Block Painter
 latblocks.item.painter_col.name=Color Painter
 latblocks.item.hammer.name=LatBlocks Hammer
 latblocks.item.glasses.name=LatBlocks Goggles
-latblocks.item.ebag.name=Ender Bag
 
 ### ClientConfig ###
 

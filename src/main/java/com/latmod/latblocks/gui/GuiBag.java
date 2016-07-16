@@ -49,6 +49,8 @@ public class GuiBag extends GuiLM
         @Override
         public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton b)
         {
+            playClickSound();
+            mc.playerController.sendEnchantPacket(container.windowId, tabIndex);
         }
 
         @Override

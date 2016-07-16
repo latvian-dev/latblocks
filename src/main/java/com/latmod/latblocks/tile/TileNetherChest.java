@@ -43,13 +43,16 @@ public class TileNetherChest extends TileEntity
         {
             items.clear();
 
-            for(int i = 0; i < nbt.tagCount(); i++)
+            if(nbt != null && nbt.tagCount() > 0)
             {
-                ItemStack is = ItemStack.loadItemStackFromNBT(nbt.getCompoundTagAt(i));
-
-                if(is != null)
+                for(int i = 0; i < nbt.tagCount(); i++)
                 {
-                    items.add(is);
+                    ItemStack is = ItemStack.loadItemStackFromNBT(nbt.getCompoundTagAt(i));
+
+                    if(is != null)
+                    {
+                        items.add(is);
+                    }
                 }
             }
         }

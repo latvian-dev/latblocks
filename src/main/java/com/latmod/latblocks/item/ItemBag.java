@@ -36,6 +36,7 @@ public class ItemBag extends ItemLB
     {
         tier = t;
         setMaxDamage(0);
+        setMaxStackSize(1);
     }
 
     @Nonnull
