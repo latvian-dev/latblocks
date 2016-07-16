@@ -4,6 +4,7 @@ import com.feed_the_beast.ftbl.api.net.LMNetworkWrapper;
 import com.feed_the_beast.ftbl.api.net.MessageToServer;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.gui.ContainerBag;
+import com.latmod.latblocks.gui.LBGuiHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -35,17 +36,16 @@ public class MessageChangeDisplayName extends MessageToServer<MessageChangeDispl
     }
 
     @Override
-    public void onMessage(MessageChangeDisplayName m, EntityPlayerMP mp)
+    public void onMessage(MessageChangeDisplayName m, EntityPlayerMP ep)
     {
-        if(mp.openContainer instanceof ContainerBag)
+        if(ep.openContainer instanceof ContainerBag)
         {
-            ItemStack is = mp.getHeldItem(EnumHand.MAIN_HAND);
+            ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
 
             if(is != null && is.hasCapability(LBCapabilities.BAG, null))
             {
                 is.setStackDisplayName(m.name);
-                //new MessageUpdateHeldItem(mp, ((ContainerBag) mp.openContainer).hand).sendTo(mp);
-                mp.openContainer.detectAndSendChanges();
+                LBGuiHandler.INSTANCE.openGui(ep, LBGuiHandler.BAG, null);
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.latmod.latblocks.capabilities;
 
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
+import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.lib.util.LMUtils;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -46,6 +47,8 @@ public class LBCapabilities
 
             tag.setTag("Inv", invTag);
 
+            //FTBLib.dev_logger.info("TX bag: " + instance.getTabCount() + ": " + tag);
+
             return tag;
         }
 
@@ -73,6 +76,8 @@ public class LBCapabilities
                     }
                 }
             }
+
+            FTBLib.dev_logger.info("RX bag: " + instance.getTabCount() + ": " + tag);
         }
     };
 

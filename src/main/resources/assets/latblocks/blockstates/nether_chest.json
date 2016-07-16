@@ -1,0 +1,10 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "latblocks:nether_chest",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "normal": [{}]
+  }
+}

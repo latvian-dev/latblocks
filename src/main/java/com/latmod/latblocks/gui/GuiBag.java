@@ -32,8 +32,8 @@ import java.util.List;
 public class GuiBag extends GuiLM
 {
     public static final ResourceLocation TEXTURE = new ResourceLocation(LatBlocks.MOD_ID, "textures/gui/bag.png");
-    public static final TextureCoords TAB_ON = new TextureCoords(TEXTURE, 174, 0, 32, 10, 256, 256);
-    public static final TextureCoords TAB_OFF = new TextureCoords(TEXTURE, 174, 10, 32, 10, 256, 256);
+    public static final TextureCoords TAB_OFF = new TextureCoords(TEXTURE, 174, 0, 32, 10, 256, 256);
+    public static final TextureCoords TAB_ON = new TextureCoords(TEXTURE, 174, 10, 32, 10, 256, 256);
 
     public class TabButton extends ButtonLM
     {

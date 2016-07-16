@@ -1,6 +1,6 @@
 package com.latmod.latblocks;
 
-import com.latmod.latblocks.item.LBItems;
+import com.latmod.latblocks.item.ItemBag;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,13 +15,18 @@ public class LBEventHandler
     @SubscribeEvent
     public void onAnvilEvent(AnvilUpdateEvent e)
     {
-        if(e.getLeft() != null && e.getRight() != null && e.getLeft().getItem() == LBItems.BAG && e.getLeft().getMetadata() < 4 && e.getRight().getItem() == Items.DIAMOND && e.getRight().stackSize >= 3)
+        if(e.getLeft() != null && e.getRight() != null && e.getLeft().getItem() instanceof ItemBag)
         {
-            e.setMaterialCost(3);
-            e.setCost(3);
-            NBTTagCompound tag = new NBTTagCompound();
-            e.getLeft().writeToNBT(tag);
-            e.setOutput(new ItemStack(LBItems.BAG, 1, e.getLeft().getMetadata() + 1, tag.getCompoundTag("ForgeCaps")));
+            ItemBag bag = (ItemBag) e.getLeft().getItem();
+
+            if(bag.nextTierBag != null && e.getRight().getItem() == Items.DIAMOND && e.getRight().stackSize >= 3)
+            {
+                e.setMaterialCost(3);
+                e.setCost(3);
+                NBTTagCompound tag = new NBTTagCompound();
+                e.getLeft().writeToNBT(tag);
+                e.setOutput(new ItemStack(bag.nextTierBag, 1, 0, tag.getCompoundTag("ForgeCaps")));
+            }
         }
     }
 }

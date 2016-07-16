@@ -46,6 +46,8 @@ latblocks.tile.craftingPanel.name=Crafting Panel
 latblocks.tile.cable.name=QNet Cable
 latblocks.tile.terminal.name=QNet Terminal
 latblocks.tile.farmland.name=Green Glowium Farmland
+latblocks.tile.quartz_chest.name=Multifurnace
+latblocks.tile.nether_chest.name=Nether Chest
 
 # To be implemented #
 

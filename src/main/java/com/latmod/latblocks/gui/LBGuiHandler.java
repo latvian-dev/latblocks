@@ -3,7 +3,7 @@ package com.latmod.latblocks.gui;
 import com.feed_the_beast.ftbl.api.client.gui.LMGuiHandler;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
-import com.latmod.latblocks.item.LBItems;
+import com.latmod.latblocks.item.ItemBag;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -61,7 +61,7 @@ public class LBGuiHandler extends LMGuiHandler
             {
                 ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
 
-                if(is != null && is.getItem() == LBItems.BAG && is.hasCapability(LBCapabilities.BAG, null))
+                if(is != null && is.getItem() instanceof ItemBag && is.hasCapability(LBCapabilities.BAG, null))
                 {
                     return new GuiBag(new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null))).getWrapper();
                 }

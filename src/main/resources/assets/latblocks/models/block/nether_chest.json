@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "latblocks:blocks/nether_chest_side",
+    "up": "latblocks:blocks/nether_chest_top",
+    "down": "latblocks:blocks/nether_chest_top",
+    "east": "latblocks:blocks/nether_chest_side",
+    "west": "latblocks:blocks/nether_chest_side",
+    "north": "latblocks:blocks/nether_chest_side",
+    "south": "latblocks:blocks/nether_chest_side"
+  }
+}
