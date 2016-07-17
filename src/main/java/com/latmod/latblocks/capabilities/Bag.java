@@ -130,20 +130,20 @@ public class Bag implements IBag, ICapabilitySerializable<NBTTagCompound>
 
     @Nullable
     @Override
-    public IItemHandler getInventoryFromTab(byte tab)
+    public IItemHandler getInventoryFromTab(int tab)
     {
         return invMap[tab];
     }
 
     @Override
-    public byte getCurrentTab()
+    public int getCurrentTab()
     {
         return currentTab;
     }
 
     @Override
-    public void setCurrentTab(byte tab)
+    public void setCurrentTab(int tab)
     {
-        currentTab = tab;
+        currentTab = (byte) tab;
     }
 }

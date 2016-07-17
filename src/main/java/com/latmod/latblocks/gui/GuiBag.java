@@ -14,7 +14,6 @@ import com.feed_the_beast.ftbl.util.TextureCoords;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.net.MessageChangeColor;
 import com.latmod.latblocks.net.MessageChangeDisplayName;
-import com.latmod.latblocks.net.MessageChangePrivacy;
 import com.latmod.lib.LMColor;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
@@ -93,6 +92,7 @@ public class GuiBag extends GuiLM
                     MessageChangeColor m = new MessageChangeColor();
                     m.color = obj.hashCode();
                     m.sendToServer();
+                    container.bag.setColor(m.color);
                     mc.displayGuiScreen(GuiBag.this.getWrapper());
                 });
             }
@@ -106,23 +106,7 @@ public class GuiBag extends GuiLM
             public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton button)
             {
                 GuiLM.playClickSound();
-
-                MessageChangePrivacy m = new MessageChangePrivacy();
-
-                if(button.isLeft())
-                {
-                    m.level = (container.bag.getPrivacyLevel().ordinal() + 1) % EnumPrivacyLevel.VALUES.length;
-                }
-                else
-                {
-                    m.level = container.bag.getPrivacyLevel().ordinal() - 1;
-                    if(m.level < 0)
-                    {
-                        m.level = EnumPrivacyLevel.VALUES.length - 1;
-                    }
-                }
-
-                m.sendToServer();
+                mc.playerController.sendEnchantPacket(container.windowId, button.isLeft() ? 10 : 11);
             }
 
             @Override

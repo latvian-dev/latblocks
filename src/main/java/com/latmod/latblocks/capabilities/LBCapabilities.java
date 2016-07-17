@@ -23,7 +23,7 @@ public class LBCapabilities
         {
             NBTTagCompound tag = new NBTTagCompound();
 
-            tag.setByte("Tab", instance.getCurrentTab());
+            tag.setByte("Tab", (byte) instance.getCurrentTab());
             tag.setInteger("Color", instance.getColor());
             tag.setByte("Privacy", (byte) instance.getPrivacyLevel().ordinal());
 
@@ -56,7 +56,7 @@ public class LBCapabilities
         {
             NBTTagCompound tag = (NBTTagCompound) nbt;
 
-            instance.setCurrentTab(tag.getByte("Tab"));
+            instance.setCurrentTab(tag.getByte("Tab") & 0xFF);
             instance.setColor(tag.getInteger("Color"));
             instance.setOwner(tag.hasKey("Owner") ? LMUtils.fromString(tag.getString("Owner")) : null);
             instance.setPrivacyLevel(EnumPrivacyLevel.VALUES[tag.getByte("Privacy")]);

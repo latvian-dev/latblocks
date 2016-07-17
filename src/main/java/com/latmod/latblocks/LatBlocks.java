@@ -1,6 +1,6 @@
 package com.latmod.latblocks;
 
-import com.feed_the_beast.ftbl.api.client.gui.LMGuiHandlerRegistry;
+import com.feed_the_beast.ftbl.api.client.gui.GuiHandlerRegistry;
 import com.feed_the_beast.ftbl.util.CreativeTabLM;
 import com.feed_the_beast.ftbl.util.LMMod;
 import com.latmod.latblocks.block.LBBlocks;
@@ -55,6 +55,6 @@ public class LatBlocks
         proxy.postInit();
         mod.loadRecipes();
 
-        LMGuiHandlerRegistry.add(LBGuiHandler.INSTANCE);
+        GuiHandlerRegistry.add(LBGuiHandler.INSTANCE);
     }
 }

@@ -1,10 +1,16 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.client.gui.ContainerLM;
+import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.latmod.latblocks.capabilities.IBag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IContainerListener;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+
+import javax.annotation.Nullable;
 
 /**
  * Created by LatvianModder on 11.07.2016.
@@ -12,51 +18,109 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ContainerBag extends ContainerLM
 {
     public final IBag bag;
+    private int lastTab = -1, lastPrivacyLevel = -1;
 
     public ContainerBag(EntityPlayer ep, IBag b)
     {
-        super(ep, b.getInventoryFromTab(b.getCurrentTab()));
+        super(ep);
         bag = b;
 
         for(int y = 0; y < 5; y++)
         {
             for(int x = 0; x < 9; x++)
             {
-                addSlotToContainer(new SlotItemHandler(itemHandler, x + y * 9, 7 + x * 18, 39 + y * 18));
+                addSlotToContainer(new SlotItemHandler(null, x + y * 9, 7 + x * 18, 39 + y * 18)
+                {
+                    public IItemHandler getItemHandler()
+                    {
+                        return ContainerBag.this.getItemHandler();
+                    }
+                });
             }
         }
 
         addPlayerSlots(7, 138, true);
     }
 
+    @Override
+    public void detectAndSendChanges()
+    {
+        super.detectAndSendChanges();
+
+        int newTab = bag.getCurrentTab();
+        int newPrivacyLevel = bag.getPrivacyLevel().ordinal();
+
+        for(IContainerListener l : listeners)
+        {
+            if(lastTab != newTab)
+            {
+                l.sendProgressBarUpdate(this, 0, newTab);
+            }
+
+            if(lastPrivacyLevel != newPrivacyLevel)
+            {
+                l.sendProgressBarUpdate(this, 1, newPrivacyLevel);
+            }
+        }
+
+        lastTab = newTab;
+        lastPrivacyLevel = newPrivacyLevel;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void updateProgressBar(int id, int data)
+    {
+        switch(id)
+        {
+            case 0:
+                bag.setCurrentTab(data);
+                break;
+            case 1:
+                bag.setPrivacyLevel(EnumPrivacyLevel.VALUES[data]);
+                break;
+        }
+    }
+
+    @Override
     public boolean enchantItem(EntityPlayer ep, int id)
     {
         if(!ep.worldObj.isRemote)
         {
-            if(id >= 0 && id < bag.getTabCount())
+            if(id == 10 || id == 11)
             {
-                IItemHandler inv = bag.getInventoryFromTab((byte) id);
+                int level;
 
-                if(inv != null)
+                if(id == 10)
                 {
-                    bag.setCurrentTab((byte) id);
-                    itemHandler = inv;
-
-                    for(int y = 0; y < 5; y++)
-                    {
-                        for(int x = 0; x < 9; x++)
-                        {
-                            inventorySlots.set(x + y * 9, new SlotItemHandler(itemHandler, x + y * 9, 7 + x * 18, 39 + y * 18));
-                        }
-                    }
-
-                    detectAndSendChanges();
+                    level = (bag.getPrivacyLevel().ordinal() + 1) % EnumPrivacyLevel.VALUES.length;
                 }
+                else
+                {
+                    level = bag.getPrivacyLevel().ordinal() - 1;
+                    if(level < 0)
+                    {
+                        level = EnumPrivacyLevel.VALUES.length - 1;
+                    }
+                }
+
+                bag.setPrivacyLevel(EnumPrivacyLevel.VALUES[level]);
+            }
+            else if(id >= 0 && id < bag.getTabCount())
+            {
+                bag.setCurrentTab((byte) id);
             }
 
             return true;
         }
 
         return false;
+    }
+
+    @Nullable
+    @Override
+    public IItemHandler getItemHandler()
+    {
+        return bag.getInventoryFromTab(bag.getCurrentTab());
     }
 }

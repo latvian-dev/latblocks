@@ -29,9 +29,9 @@ public interface IBag
     int getTabCount();
 
     @Nullable
-    IItemHandler getInventoryFromTab(byte tab);
+    IItemHandler getInventoryFromTab(int tab);
 
-    byte getCurrentTab();
+    int getCurrentTab();
 
-    void setCurrentTab(byte tab);
+    void setCurrentTab(int tab);
 }
