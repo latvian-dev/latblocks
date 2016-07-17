@@ -57,29 +57,34 @@ public class ContainerNetherChest extends ContainerLM
                 if(index >= 0 && index < tile.items.size())
                 {
                     tile.items.remove(index);
+                    onSlotChanged();
                 }
             }
             else
             {
                 if(index >= 0 && index < tile.items.size())
                 {
+                    tile.items.set(index, stack);
+                    onSlotChanged();
                 }
                 else
                 {
+                    tile.items.add(stack);
+                    onSlotChanged();
                 }
             }
-
-            onSlotChanged();
         }
 
         @Override
         public void onSlotChanged()
         {
+            tile.markDirty();
         }
 
         @Override
-        public void onSlotChange(ItemStack p_75220_1_, ItemStack p_75220_2_)
+        public void onSlotChange(ItemStack is1, ItemStack is2)
         {
+            onSlotChanged();
         }
 
         @Override
@@ -97,7 +102,17 @@ public class ContainerNetherChest extends ContainerLM
         @Override
         public ItemStack decrStackSize(int amount)
         {
-            return tile.extractItem(getItemIndex(), amount, false);
+            int index = getItemIndex();
+
+            if(index >= 0 && index < tile.items.size() && amount == 1)
+            {
+                ItemStack is = tile.items.get(index);
+                tile.items.remove(index);
+                tile.markDirty();
+                return is;
+            }
+
+            return null;
         }
 
         @Override

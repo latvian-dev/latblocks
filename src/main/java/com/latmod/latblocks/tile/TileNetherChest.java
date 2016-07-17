@@ -1,9 +1,9 @@
 package com.latmod.latblocks.tile;
 
+import com.feed_the_beast.ftbl.api.tile.TileLM;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by PC on 16.07.2016.
  */
-public class TileNetherChest extends TileEntity implements IItemHandlerModifiable
+public class TileNetherChest extends TileLM implements IItemHandlerModifiable
 {
     public final List<ItemStack> items;
     public short currentPage = 0;
@@ -55,13 +55,11 @@ public class TileNetherChest extends TileEntity implements IItemHandlerModifiabl
     }
 
     @Override
-    public void readFromNBT(@Nonnull NBTTagCompound compound)
+    public void readTileData(@Nonnull NBTTagCompound tag)
     {
-        super.readFromNBT(compound);
-
         items.clear();
 
-        NBTTagList nbt = (NBTTagList) compound.getTag("Inv");
+        NBTTagList nbt = (NBTTagList) tag.getTag("Inv");
 
         if(nbt != null && nbt.tagCount() > 0)
         {
@@ -76,15 +74,12 @@ public class TileNetherChest extends TileEntity implements IItemHandlerModifiabl
             }
         }
 
-        currentPage = compound.getShort("Page");
+        currentPage = tag.getShort("Page");
     }
 
-    @Nonnull
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    public void writeTileData(@Nonnull NBTTagCompound tag)
     {
-        NBTTagCompound tag = super.writeToNBT(compound);
-
         NBTTagList list = new NBTTagList();
 
         for(ItemStack is : items)
@@ -95,9 +90,7 @@ public class TileNetherChest extends TileEntity implements IItemHandlerModifiabl
         }
 
         tag.setTag("Inv", list);
-
         tag.setShort("Page", currentPage);
-        return tag;
     }
 
     @Override
@@ -108,6 +101,7 @@ public class TileNetherChest extends TileEntity implements IItemHandlerModifiabl
             if(stack != null && stack.stackSize == 1 && !stack.isStackable())
             {
                 items.add(stack);
+                markDirty();
             }
         }
         else
@@ -115,12 +109,20 @@ public class TileNetherChest extends TileEntity implements IItemHandlerModifiabl
             if(stack == null || stack.stackSize <= 0)
             {
                 items.remove(slot - 1);
+                markDirty();
             }
             else
             {
                 items.set(slot - 1, stack);
+                markDirty();
             }
         }
+    }
+
+    @Override
+    public void markDirty()
+    {
+        sendDirtyUpdate();
     }
 
     @Override
@@ -143,6 +145,7 @@ public class TileNetherChest extends TileEntity implements IItemHandlerModifiabl
             if(!simulate)
             {
                 items.add(stack);
+                markDirty();
             }
 
             return null;
@@ -164,6 +167,7 @@ public class TileNetherChest extends TileEntity implements IItemHandlerModifiabl
         if(!simulate)
         {
             items.remove(slot - 1);
+            markDirty();
         }
 
         return is;

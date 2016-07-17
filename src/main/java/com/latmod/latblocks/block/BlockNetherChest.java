@@ -66,6 +66,7 @@ public class BlockNetherChest extends BlockLB
 
             if(te instanceof TileNetherChest)
             {
+                te.markDirty();
                 LBGuiHandler.INSTANCE.openGui(ep, LBGuiHandler.NETHER_CHEST, GuiHandler.getTileData(te));
             }
         }
