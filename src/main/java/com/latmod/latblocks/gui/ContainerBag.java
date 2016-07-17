@@ -29,7 +29,7 @@ public class ContainerBag extends ContainerLM
         {
             for(int x = 0; x < 9; x++)
             {
-                addSlotToContainer(new SlotItemHandler(null, x + y * 9, 7 + x * 18, 39 + y * 18)
+                addSlotToContainer(new SlotItemHandler(null, x + y * 9, 7 + x * 18, 29 + y * 18)
                 {
                     public IItemHandler getItemHandler()
                     {
@@ -39,7 +39,7 @@ public class ContainerBag extends ContainerLM
             }
         }
 
-        addPlayerSlots(7, 138, true);
+        addPlayerSlots(7, 128, true);
     }
 
     @Override

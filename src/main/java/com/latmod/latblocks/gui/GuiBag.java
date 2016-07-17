@@ -7,13 +7,11 @@ import com.feed_the_beast.ftbl.api.client.gui.GuiIcons;
 import com.feed_the_beast.ftbl.api.client.gui.GuiLM;
 import com.feed_the_beast.ftbl.api.client.gui.GuiLang;
 import com.feed_the_beast.ftbl.api.client.gui.widgets.ButtonLM;
-import com.feed_the_beast.ftbl.api.client.gui.widgets.TextBoxLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.gui.GuiSelectColor;
 import com.feed_the_beast.ftbl.util.TextureCoords;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.net.MessageChangeColor;
-import com.latmod.latblocks.net.MessageChangeDisplayName;
 import com.latmod.lib.LMColor;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
@@ -31,8 +29,8 @@ import java.util.List;
 public class GuiBag extends GuiLM
 {
     public static final ResourceLocation TEXTURE = new ResourceLocation(LatBlocks.MOD_ID, "textures/gui/bag.png");
-    public static final TextureCoords TAB_OFF = new TextureCoords(TEXTURE, 174, 0, 32, 10, 256, 256);
-    public static final TextureCoords TAB_ON = new TextureCoords(TEXTURE, 174, 10, 32, 10, 256, 256);
+    public static final TextureCoords TAB_OFF = new TextureCoords(TEXTURE, 174, 0, 21, 16, 256, 256);
+    public static final TextureCoords TAB_ON = new TextureCoords(TEXTURE, 174, 16, 21, 16, 256, 256);
 
     public class TabButton extends ButtonLM
     {
@@ -40,7 +38,7 @@ public class GuiBag extends GuiLM
 
         public TabButton(double x, double y, byte i)
         {
-            super(x, y, 32, 10);
+            super(x, y, 21, 16);
             tabIndex = i;
             title = "#" + (i + 1);
         }
@@ -62,19 +60,18 @@ public class GuiBag extends GuiLM
     public final ContainerBag container;
     public final List<TabButton> tabButtons;
     public final ButtonLM buttonColor, buttonPrivacy;
-    public final TextBoxLM textBox;
 
     public GuiBag(ContainerBag c)
     {
         container = c;
         width = 174D;
-        height = 220D;
+        height = 210D;
 
         tabButtons = new ArrayList<>();
 
         for(byte t = 0; t < container.bag.getTabCount(); t++)
         {
-            tabButtons.add(new TabButton(5 + 33 * t, 26, t));
+            tabButtons.add(new TabButton(7 + 25 * t, 7, t));
         }
 
         buttonColor = new ButtonLM(133, 7, 16, 16)
@@ -118,21 +115,6 @@ public class GuiBag extends GuiLM
         };
 
         buttonPrivacy.title = EnumPrivacyLevel.enumLangKey.translate();
-
-        textBox = new TextBoxLM(7, 7, 124, 16)
-        {
-            @Override
-            public void returnPressed()
-            {
-                MessageChangeDisplayName m = new MessageChangeDisplayName();
-                m.name = getText();
-
-                if(!m.name.isEmpty())
-                {
-                    m.sendToServer();
-                }
-            }
-        };
     }
 
     @Override
@@ -141,7 +123,6 @@ public class GuiBag extends GuiLM
         addAll(tabButtons);
         add(buttonColor);
         add(buttonPrivacy);
-        add(textBox);
     }
 
     @Override

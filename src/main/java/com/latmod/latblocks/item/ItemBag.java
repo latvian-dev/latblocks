@@ -84,7 +84,7 @@ public class ItemBag extends ItemLB
     @Override
     public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack is, World w, EntityPlayer ep, EnumHand hand)
     {
-        if(!w.isRemote && hand == EnumHand.MAIN_HAND)
+        if(!w.isRemote)
         {
             IBag bag = is.getCapability(LBCapabilities.BAG, null);
 
@@ -97,7 +97,7 @@ public class ItemBag extends ItemLB
 
                 if(bag.getPrivacyLevel().canInteract(ForgeWorldMP.inst.getPlayer(bag.getOwner()), ForgeWorldMP.inst.getPlayer(ep)))
                 {
-                    LBGuiHandler.INSTANCE.openGui(ep, LBGuiHandler.BAG, null);
+                    LBGuiHandler.INSTANCE.openGui(ep, hand == EnumHand.MAIN_HAND ? LBGuiHandler.BAG_MAIN_HAND : LBGuiHandler.BAG_OFF_HAND, null);
                 }
             }
         }

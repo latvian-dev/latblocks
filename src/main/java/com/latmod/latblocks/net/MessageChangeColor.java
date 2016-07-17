@@ -3,7 +3,6 @@ package com.latmod.latblocks.net;
 import com.feed_the_beast.ftbl.api.net.LMNetworkWrapper;
 import com.feed_the_beast.ftbl.api.net.MessageToServer;
 import com.latmod.latblocks.gui.ContainerBag;
-import com.latmod.latblocks.gui.LBGuiHandler;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -38,7 +37,6 @@ public class MessageChangeColor extends MessageToServer<MessageChangeColor>
         if(ep.openContainer instanceof ContainerBag)
         {
             ((ContainerBag) ep.openContainer).bag.setColor(m.color);
-            LBGuiHandler.INSTANCE.openGui(ep, LBGuiHandler.BAG, null);
         }
     }
 }

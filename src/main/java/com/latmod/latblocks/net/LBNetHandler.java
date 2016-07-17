@@ -12,7 +12,6 @@ public class LBNetHandler
 
     public static void init()
     {
-        NET.register(1, new MessageChangeDisplayName());
-        NET.register(2, new MessageChangeColor());
+        NET.register(1, new MessageChangeColor());
     }
 }

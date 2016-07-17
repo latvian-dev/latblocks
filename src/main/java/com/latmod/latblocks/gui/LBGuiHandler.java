@@ -25,8 +25,9 @@ public class LBGuiHandler extends GuiHandler
 {
     public static final GuiHandler INSTANCE = new LBGuiHandler();
 
-    public static final int BAG = 0;
-    public static final int NETHER_CHEST = 1;
+    public static final int BAG_MAIN_HAND = 0;
+    public static final int BAG_OFF_HAND = 1;
+    public static final int NETHER_CHEST = 2;
 
     private LBGuiHandler()
     {
@@ -38,9 +39,20 @@ public class LBGuiHandler extends GuiHandler
     {
         switch(id)
         {
-            case BAG:
+            case BAG_MAIN_HAND:
             {
                 ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
+
+                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
+                {
+                    return new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null));
+                }
+
+                break;
+            }
+            case BAG_OFF_HAND:
+            {
+                ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
 
                 if(is != null && is.hasCapability(LBCapabilities.BAG, null))
                 {
@@ -71,9 +83,20 @@ public class LBGuiHandler extends GuiHandler
     {
         switch(id)
         {
-            case BAG:
+            case BAG_MAIN_HAND:
             {
                 ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
+
+                if(is != null && is.getItem() instanceof ItemBag && is.hasCapability(LBCapabilities.BAG, null))
+                {
+                    return new GuiBag(new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null))).getWrapper();
+                }
+
+                break;
+            }
+            case BAG_OFF_HAND:
+            {
+                ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
 
                 if(is != null && is.getItem() instanceof ItemBag && is.hasCapability(LBCapabilities.BAG, null))
                 {
