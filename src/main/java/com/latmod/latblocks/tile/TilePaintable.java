@@ -1,7 +1,7 @@
 package com.latmod.latblocks.tile;
 
 import com.feed_the_beast.ftbl.api.FTBLibCapabilities;
-import com.feed_the_beast.ftbl.api.paint.PaintStorage;
+import com.feed_the_beast.ftbl.api.paint.Paintable;
 import com.feed_the_beast.ftbl.api.tile.TileLM;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -18,7 +18,7 @@ public abstract class TilePaintable extends TileLM
 {
     public static class Sided extends TilePaintable
     {
-        private final Map<EnumFacing, PaintStorage> paint;
+        private final Map<EnumFacing, Paintable> paint;
 
         public Sided()
         {
@@ -26,7 +26,7 @@ public abstract class TilePaintable extends TileLM
 
             for(EnumFacing f : EnumFacing.VALUES)
             {
-                paint.put(f, new PaintStorage());
+                paint.put(f, new Paintable());
             }
         }
 
@@ -69,11 +69,11 @@ public abstract class TilePaintable extends TileLM
 
     public static class Single extends TilePaintable
     {
-        private final PaintStorage paint;
+        private final Paintable paint;
 
         public Single()
         {
-            paint = new PaintStorage();
+            paint = new Paintable();
         }
 
         @Override
