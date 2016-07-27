@@ -1,6 +1,7 @@
 package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.item.LMInvUtils;
 import com.feed_the_beast.ftbl.api.item.ODItems;
 import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.latblocks.gui.LBGuiHandler;
@@ -18,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Created by LatvianModder on 13.07.2016.
@@ -58,19 +60,35 @@ public class BlockNetherChest extends BlockLB
     }
 
     @Override
-    public boolean onBlockActivated(World w, BlockPos pos, IBlockState state, EntityPlayer ep, EnumHand hand, ItemStack item, EnumFacing s, float x1, float y1, float z1)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if(!w.isRemote)
+        if(!worldIn.isRemote)
         {
-            TileEntity te = w.getTileEntity(pos);
+            TileEntity te = worldIn.getTileEntity(pos);
 
             if(te instanceof TileNetherChest)
             {
                 te.markDirty();
-                LBGuiHandler.INSTANCE.openGui(ep, LBGuiHandler.NETHER_CHEST, GuiHandler.getTileData(te));
+                LBGuiHandler.INSTANCE.openGui(playerIn, LBGuiHandler.NETHER_CHEST, GuiHandler.getTileData(te));
             }
         }
 
         return true;
+    }
+
+    @Override
+    public void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state)
+    {
+        if(!worldIn.isRemote)
+        {
+            TileEntity te = worldIn.getTileEntity(pos);
+
+            if(te instanceof TileNetherChest)
+            {
+                LMInvUtils.dropAllItems(worldIn, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, ((TileNetherChest) te).items);
+            }
+        }
+
+        super.breakBlock(worldIn, pos, state);
     }
 }
