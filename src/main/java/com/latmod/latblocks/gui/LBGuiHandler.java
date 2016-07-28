@@ -1,9 +1,7 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
-import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
-import com.latmod.latblocks.item.ItemBag;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,16 +21,9 @@ import javax.annotation.Nullable;
  */
 public class LBGuiHandler extends GuiHandler
 {
-    public static final GuiHandler INSTANCE = new LBGuiHandler();
-
     public static final int BAG_MAIN_HAND = 0;
     public static final int BAG_OFF_HAND = 1;
     public static final int NETHER_CHEST = 2;
-
-    private LBGuiHandler()
-    {
-        super(LatBlocks.MOD_ID);
-    }
 
     @Override
     public Container getContainer(@Nonnull EntityPlayer ep, int id, @Nullable NBTTagCompound data)
@@ -45,7 +36,7 @@ public class LBGuiHandler extends GuiHandler
 
                 if(is != null && is.hasCapability(LBCapabilities.BAG, null))
                 {
-                    return new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null));
+                    return new ContainerBag(ep, EnumHand.MAIN_HAND);
                 }
 
                 break;
@@ -56,7 +47,7 @@ public class LBGuiHandler extends GuiHandler
 
                 if(is != null && is.hasCapability(LBCapabilities.BAG, null))
                 {
-                    return new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null));
+                    return new ContainerBag(ep, EnumHand.OFF_HAND);
                 }
 
                 break;
@@ -87,9 +78,9 @@ public class LBGuiHandler extends GuiHandler
             {
                 ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
 
-                if(is != null && is.getItem() instanceof ItemBag && is.hasCapability(LBCapabilities.BAG, null))
+                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
                 {
-                    return new GuiBag(new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null))).getWrapper();
+                    return new GuiBag(new ContainerBag(ep, EnumHand.MAIN_HAND)).getWrapper();
                 }
 
                 break;
@@ -98,9 +89,9 @@ public class LBGuiHandler extends GuiHandler
             {
                 ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
 
-                if(is != null && is.getItem() instanceof ItemBag && is.hasCapability(LBCapabilities.BAG, null))
+                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
                 {
-                    return new GuiBag(new ContainerBag(ep, is.getCapability(LBCapabilities.BAG, null))).getWrapper();
+                    return new GuiBag(new ContainerBag(ep, EnumHand.OFF_HAND)).getWrapper();
                 }
 
                 break;

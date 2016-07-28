@@ -89,7 +89,7 @@ public class GuiBag extends GuiLM
                     MessageChangeColor m = new MessageChangeColor();
                     m.color = obj.hashCode();
                     m.sendToServer();
-                    container.bag.setColor(m.color);
+                    //container.bag.setColor(m.color);
                     mc.displayGuiScreen(GuiBag.this.getWrapper());
                 });
             }

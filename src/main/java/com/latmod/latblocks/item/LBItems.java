@@ -13,8 +13,7 @@ public class LBItems
     public static final ItemBag BAG_4 = LatBlocks.mod.register("bag_4", new ItemBag(4));
     public static final ItemBag BAG_5 = LatBlocks.mod.register("bag_5", new ItemBag(5));
     public static final ItemEnderBag ENDER_BAG = LatBlocks.mod.register("ender_bag", new ItemEnderBag());
-    public static final ItemPainter PAINTER = LatBlocks.mod.register("painter", new ItemPainter(false));
-    public static final ItemPainter PAINTER_DMD = LatBlocks.mod.register("painter_dmd", new ItemPainter(true));
+    public static final ItemHammer HAMMMER = LatBlocks.mod.register("hammer", new ItemHammer());
 
     public static void init()
     {

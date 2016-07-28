@@ -73,6 +73,18 @@ public class GuiNetherChest extends GuiLM
         GuiScreen.drawModalRectWithCustomSizedTexture(ax, ay, 0F, 0F, (int) width, (int) height, 256F, 256F);
         drawCenteredString(font, Integer.toString(container.tile.currentPage + 1), ax + 159, ay + 37, 0xFFFFFFFF);
         drawCenteredString(font, Integer.toString(container.getMaxPages()), ax + 159, ay + 66, 0xFFFFFFFF);
+
+        if(dmouseWheel != 0 && isMouseOver(this))
+        {
+            if(dmouseWheel > 0)
+            {
+                mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 0));
+            }
+            else
+            {
+                mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 1));
+            }
+        }
     }
 
     @Override

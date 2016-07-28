@@ -3,8 +3,11 @@ package com.latmod.latblocks.gui;
 import com.feed_the_beast.ftbl.api.client.gui.ContainerLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.latmod.latblocks.capabilities.IBag;
+import com.latmod.latblocks.capabilities.LBCapabilities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IContainerListener;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
@@ -17,13 +20,15 @@ import javax.annotation.Nullable;
  */
 public class ContainerBag extends ContainerLM
 {
-    public final IBag bag;
+    public final EnumHand hand;
+    public IBag bag;
     private int lastTab = -1, lastPrivacyLevel = -1;
 
-    public ContainerBag(EntityPlayer ep, IBag b)
+    public ContainerBag(EntityPlayer ep, EnumHand h)
     {
         super(ep);
-        bag = b;
+        hand = h;
+        bag = ep.getHeldItem(hand).getCapability(LBCapabilities.BAG, null);
 
         for(int y = 0; y < 5; y++)
         {
@@ -40,6 +45,16 @@ public class ContainerBag extends ContainerLM
         }
 
         addPlayerSlots(7, 128, true);
+    }
+
+    public void putStackInSlot(int slotID, ItemStack stack)
+    {
+        if(slotID == 0)
+        {
+            bag = player.getHeldItem(hand).getCapability(LBCapabilities.BAG, null);
+        }
+
+        super.putStackInSlot(slotID, stack);
     }
 
     @Override

@@ -145,23 +145,30 @@ public class ContainerNetherChest extends ContainerLM
     {
         if(!ep.worldObj.isRemote)
         {
+            int ppage = tile.currentPage;
+
             if(id == 0)
             {
-                if(tile.currentPage > 0)
-                {
-                    tile.currentPage--;
-                }
+                tile.currentPage--;
             }
             else if(id == 1)
             {
-                if(tile.currentPage < getMaxPages() - 1)
-                {
-                    tile.currentPage++;
-                }
+                tile.currentPage++;
             }
 
-            tile.markDirty();
-            return true;
+            int max = getMaxPages();
+            tile.currentPage %= max;
+
+            if(tile.currentPage < 0)
+            {
+                tile.currentPage += max;
+            }
+
+            if(tile.currentPage != ppage)
+            {
+                tile.markDirty();
+                return true;
+            }
         }
 
         return false;
@@ -177,6 +184,12 @@ public class ContainerNetherChest extends ContainerLM
     public IItemHandler getItemHandler()
     {
         return tile;
+    }
+
+    @Override
+    protected int getNonPlayerSlots()
+    {
+        return 40;
     }
 
     @Override

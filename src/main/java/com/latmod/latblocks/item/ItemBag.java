@@ -1,6 +1,7 @@
 package com.latmod.latblocks.item;
 
 import com.feed_the_beast.ftbl.api.ForgeWorldMP;
+import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
 import com.feed_the_beast.ftbl.api.item.ODItems;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.Bag;
@@ -97,7 +98,7 @@ public class ItemBag extends ItemLB
 
                 if(bag.getPrivacyLevel().canInteract(ForgeWorldMP.inst.getPlayer(bag.getOwner()), ForgeWorldMP.inst.getPlayer(ep)))
                 {
-                    LBGuiHandler.INSTANCE.openGui(ep, hand == EnumHand.MAIN_HAND ? LBGuiHandler.BAG_MAIN_HAND : LBGuiHandler.BAG_OFF_HAND, null);
+                    GuiHandler.openGui(LatBlocks.MOD_ID, ep, hand == EnumHand.MAIN_HAND ? LBGuiHandler.BAG_MAIN_HAND : LBGuiHandler.BAG_OFF_HAND, null);
                 }
             }
         }

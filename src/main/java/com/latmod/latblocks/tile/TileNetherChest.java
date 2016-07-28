@@ -1,6 +1,8 @@
 package com.latmod.latblocks.tile;
 
 import com.feed_the_beast.ftbl.api.tile.TileLM;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -171,5 +173,17 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
         }
 
         return is;
+    }
+
+    @Override
+    public void onPlacedBy(@Nonnull EntityPlayer ep, @Nonnull ItemStack is, @Nonnull IBlockState state)
+    {
+        super.onPlacedBy(ep, is, state);
+
+        if(is.hasTagCompound() && is.getTagCompound().hasKey("NetherChestData"))
+        {
+            readTileData(is.getTagCompound().getCompoundTag("NetherChestData"));
+            markDirty();
+        }
     }
 }
