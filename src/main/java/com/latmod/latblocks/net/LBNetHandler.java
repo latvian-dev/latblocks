@@ -8,7 +8,7 @@ import com.latmod.latblocks.LatBlocks;
  */
 public class LBNetHandler
 {
-    public static final LMNetworkWrapper NET = LMNetworkWrapper.newWrapper(LatBlocks.MOD_ID);
+    static final LMNetworkWrapper NET = LMNetworkWrapper.newWrapper(LatBlocks.MOD_ID);
 
     public static void init()
     {

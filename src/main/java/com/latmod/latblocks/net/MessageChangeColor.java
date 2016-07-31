@@ -32,11 +32,11 @@ public class MessageChangeColor extends MessageToServer<MessageChangeColor>
     }
 
     @Override
-    public void onMessage(MessageChangeColor m, EntityPlayerMP ep)
+    public void onMessage(MessageChangeColor m, EntityPlayerMP player)
     {
-        if(ep.openContainer instanceof ContainerBag)
+        if(player.openContainer instanceof ContainerBag)
         {
-            ((ContainerBag) ep.openContainer).bag.setColor(m.color);
+            ((ContainerBag) player.openContainer).bag.setColor(m.color);
         }
     }
 }
