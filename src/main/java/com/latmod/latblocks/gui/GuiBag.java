@@ -36,7 +36,7 @@ public class GuiBag extends GuiLM
     {
         public byte tabIndex;
 
-        public TabButton(double x, double y, byte i)
+        public TabButton(int x, int y, byte i)
         {
             super(x, y, 21, 16);
             tabIndex = i;
@@ -63,9 +63,8 @@ public class GuiBag extends GuiLM
 
     public GuiBag(ContainerBag c)
     {
+        super(174, 210);
         container = c;
-        width = 174D;
-        height = 210D;
 
         tabButtons = new ArrayList<>();
 
@@ -129,7 +128,7 @@ public class GuiBag extends GuiLM
     public void drawBackground()
     {
         FTBLibClient.setTexture(TEXTURE);
-        GuiScreen.drawModalRectWithCustomSizedTexture((int) getAX(), (int) getAY(), 0F, 0F, (int) width, (int) height, 256F, 256F);
+        GuiScreen.drawModalRectWithCustomSizedTexture(getAX(), getAY(), 0F, 0F, width, height, 256F, 256F);
 
         buttonColor.render(GuiIcons.color_rgb);
         buttonPrivacy.render(container.bag.getPrivacyLevel().getIcon());

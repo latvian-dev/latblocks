@@ -28,9 +28,8 @@ public class GuiNetherChest extends GuiLM
 
     public GuiNetherChest(ContainerNetherChest c)
     {
+        super(174, 188);
         container = c;
-        width = 174D;
-        height = 188D;
 
         buttonPrevPage = new ButtonLM(151, 7, 16, 16)
         {
@@ -68,9 +67,9 @@ public class GuiNetherChest extends GuiLM
     public void drawBackground()
     {
         FTBLibClient.setTexture(TEXTURE);
-        int ax = (int) getAX();
-        int ay = (int) getAY();
-        GuiScreen.drawModalRectWithCustomSizedTexture(ax, ay, 0F, 0F, (int) width, (int) height, 256F, 256F);
+        int ax = getAX();
+        int ay = getAY();
+        GuiScreen.drawModalRectWithCustomSizedTexture(ax, ay, 0F, 0F, width, height, 256F, 256F);
         drawCenteredString(font, Integer.toString(container.tile.currentPage + 1), ax + 159, ay + 37, 0xFFFFFFFF);
         drawCenteredString(font, Integer.toString(container.getMaxPages()), ax + 159, ay + 66, 0xFFFFFFFF);
 
