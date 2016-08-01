@@ -67,9 +67,16 @@ public class BlockMultifurnace extends BlockLB
         return this.getDefaultState().withProperty(BlockHorizontal.FACING, enumfacing);
     }
 
+    @Override
     public int getMetaFromState(IBlockState state)
     {
         return state.getValue(BlockHorizontal.FACING).getIndex();
+    }
+
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return 0;
     }
 
     @Nonnull

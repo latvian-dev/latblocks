@@ -1,13 +1,8 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minecraft:furnace",
-    "transform": "forge:default-block",
-    "textures": {
-      "top": "blocks/furnace_top",
-      "front": "blocks/furnace_front_off",
-      "side": "latblocks:blocks/multifurnace/side"
-    }
+    "model": "latblocks:multifurnace",
+    "transform": "forge:default-block"
   },
   "variants": {
     "facing": {
