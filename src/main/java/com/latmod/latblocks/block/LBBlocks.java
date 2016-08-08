@@ -7,8 +7,8 @@ import com.latmod.latblocks.LatBlocks;
  */
 public class LBBlocks
 {
-    public static final BlockMultifurnace MULTIFURNACE = LatBlocks.mod.register("multifurnace", new BlockMultifurnace());
     public static final BlockNetherChest NETHER_CHEST = LatBlocks.mod.register("nether_chest", new BlockNetherChest());
+    public static final BlockCraftingPanel CRAFTING_PANEL = LatBlocks.mod.register("crafting_panel", new BlockCraftingPanel());
 
     public static void init()
     {

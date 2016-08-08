@@ -5,10 +5,6 @@ package com.latmod.latblocks;
  */
 public class LatBlocksCommon
 {
-    public void preInit()
-    {
-    }
-
     public void postInit()
     {
     }

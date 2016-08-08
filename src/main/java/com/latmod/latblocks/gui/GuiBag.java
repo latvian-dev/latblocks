@@ -53,7 +53,7 @@ public class GuiBag extends GuiLM
         @Override
         public void renderWidget(GuiLM gui)
         {
-            render(tabIndex == container.bag.getCurrentTab() ? TAB_ON : TAB_OFF);
+            render(tabIndex == container.bag.currentTab ? TAB_ON : TAB_OFF);
         }
     }
 
@@ -68,7 +68,7 @@ public class GuiBag extends GuiLM
 
         tabButtons = new ArrayList<>();
 
-        for(byte t = 0; t < container.bag.getTabCount(); t++)
+        for(byte t = 0; t < container.bag.inv.size(); t++)
         {
             tabButtons.add(new TabButton(7 + 25 * t, 7, t));
         }
@@ -109,7 +109,7 @@ public class GuiBag extends GuiLM
             public void addMouseOverText(GuiLM gui, List<String> l)
             {
                 l.add(title);
-                l.add(container.bag.getPrivacyLevel().langKey.translate());
+                l.add(container.bag.privacyLevel.langKey.translate());
             }
         };
 
@@ -131,7 +131,7 @@ public class GuiBag extends GuiLM
         GuiScreen.drawModalRectWithCustomSizedTexture(getAX(), getAY(), 0F, 0F, width, height, 256F, 256F);
 
         buttonColor.render(GuiIcons.color_rgb);
-        buttonPrivacy.render(container.bag.getPrivacyLevel().getIcon());
+        buttonPrivacy.render(container.bag.privacyLevel.getIcon());
     }
 
     @Override

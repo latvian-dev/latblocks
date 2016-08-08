@@ -13,14 +13,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class LatBlocksClient extends LatBlocksCommon
 {
     @Override
-    public void preInit()
-    {
-        //ModelLoaderRegistry.registerLoader(new PaintableBlockModelLoader());
-    }
-
-    @Override
     public void postInit()
     {
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemBagColorHandler(), LBItems.BAG_1, LBItems.BAG_2, LBItems.BAG_3, LBItems.BAG_4, LBItems.BAG_5);
+        Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemBagColorHandler(), LBItems.BAG);
     }
 }

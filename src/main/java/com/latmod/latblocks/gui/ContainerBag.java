@@ -2,7 +2,7 @@ package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.client.gui.ContainerLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
-import com.latmod.latblocks.capabilities.IBag;
+import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IContainerListener;
@@ -21,8 +21,9 @@ import javax.annotation.Nullable;
 public class ContainerBag extends ContainerLM
 {
     public final EnumHand hand;
-    public IBag bag;
-    private int lastTab = -1, lastPrivacyLevel = -1;
+    public Bag bag;
+    private int lastTab = -1;
+    private int lastPrivacyLevel = -1;
 
     public ContainerBag(EntityPlayer ep, EnumHand h)
     {
@@ -62,8 +63,8 @@ public class ContainerBag extends ContainerLM
     {
         super.detectAndSendChanges();
 
-        int newTab = bag.getCurrentTab();
-        int newPrivacyLevel = bag.getPrivacyLevel().ordinal();
+        int newTab = bag.currentTab;
+        int newPrivacyLevel = bag.privacyLevel.ordinal();
 
         for(IContainerListener l : listeners)
         {
@@ -89,10 +90,10 @@ public class ContainerBag extends ContainerLM
         switch(id)
         {
             case 0:
-                bag.setCurrentTab(data);
+                bag.currentTab = data;
                 break;
             case 1:
-                bag.setPrivacyLevel(EnumPrivacyLevel.VALUES[data]);
+                bag.privacyLevel = EnumPrivacyLevel.VALUES[data];
                 break;
         }
     }
@@ -108,22 +109,22 @@ public class ContainerBag extends ContainerLM
 
                 if(id == 10)
                 {
-                    level = (bag.getPrivacyLevel().ordinal() + 1) % EnumPrivacyLevel.VALUES.length;
+                    level = (bag.privacyLevel.ordinal() + 1) % EnumPrivacyLevel.VALUES.length;
                 }
                 else
                 {
-                    level = bag.getPrivacyLevel().ordinal() - 1;
+                    level = bag.privacyLevel.ordinal() - 1;
                     if(level < 0)
                     {
                         level = EnumPrivacyLevel.VALUES.length - 1;
                     }
                 }
 
-                bag.setPrivacyLevel(EnumPrivacyLevel.VALUES[level]);
+                bag.privacyLevel = EnumPrivacyLevel.VALUES[level];
             }
-            else if(id >= 0 && id < bag.getTabCount())
+            else if(id >= 0 && id < bag.inv.size())
             {
-                bag.setCurrentTab((byte) id);
+                bag.currentTab = id;
             }
 
             return true;
@@ -136,6 +137,6 @@ public class ContainerBag extends ContainerLM
     @Override
     public IItemHandler getItemHandler()
     {
-        return bag.getInventoryFromTab(bag.getCurrentTab());
+        return bag.inv.get(bag.currentTab);
     }
 }

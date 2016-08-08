@@ -1,149 +1,134 @@
 package com.latmod.latblocks.capabilities;
 
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
+import com.latmod.lib.util.LMUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * Created by LatvianModder on 11.07.2016.
  */
-public class Bag implements IBag, ICapabilitySerializable<NBTTagCompound>
+public class Bag implements INBTSerializable<NBTTagCompound>
 {
-    private final IItemHandler[] invMap;
-    private UUID owner;
-    private EnumPrivacyLevel privacyLevel;
-    private int color;
-    private byte currentTab;
-
-    public Bag(int t)
+    public static class BagItemStackHandler extends ItemStackHandler
     {
-        invMap = new IItemHandler[t];
-
-        for(int i = 0; i < invMap.length; i++)
+        public BagItemStackHandler()
         {
-            invMap[i] = new ItemStackHandler(9 * 5)
-            {
-                @Override
-                public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
-                {
-                    if(stack != null && stack.stackSize > 0 && stack.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null))
-                    {
-                        return null;
-                    }
-
-                    return super.insertItem(slot, stack, simulate);
-                }
-            };
+            super(45);
         }
 
+        public static boolean isItemValid(ItemStack stack)
+        {
+            return stack == null || !stack.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+        }
+
+        @Override
+        public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
+        {
+            if(!isItemValid(stack))
+            {
+                return null;
+            }
+
+            return super.insertItem(slot, stack, simulate);
+        }
+    }
+
+    public final List<BagItemStackHandler> inv;
+    public UUID owner;
+    public EnumPrivacyLevel privacyLevel;
+    public int currentTab;
+    private int color;
+
+    public Bag()
+    {
+        inv = new ArrayList<>();
+        inv.add(new BagItemStackHandler());
         privacyLevel = EnumPrivacyLevel.TEAM;
         color = 0xFFFFFFFF;
         currentTab = 0;
     }
 
-    @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-    {
-        return capability == LBCapabilities.BAG || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-    }
-
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-    {
-        if(capability == LBCapabilities.BAG)
-        {
-            return (T) this;
-        }
-        else if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-        {
-            return (T) invMap[getCurrentTab()];
-        }
-
-        return null;
-    }
-
-    @Override
-    public NBTTagCompound serializeNBT()
-    {
-        return (NBTTagCompound) LBCapabilities.BAG_STORAGE.writeNBT(LBCapabilities.BAG, this, null);
-    }
-
-    @Override
-    public void deserializeNBT(NBTTagCompound nbt)
-    {
-        LBCapabilities.BAG_STORAGE.readNBT(LBCapabilities.BAG, this, null, nbt);
-    }
-
-    @Override
     public int getColor()
     {
         return color;
     }
 
-    @Override
     public void setColor(int c)
     {
         color = 0xFF000000 | c;
     }
 
-    @Override
-    @Nullable
-    public UUID getOwner()
+    public boolean upgrade(boolean simulate)
     {
-        return owner;
+        if(inv.size() < 5)
+        {
+            if(!simulate)
+            {
+                inv.add(new BagItemStackHandler());
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public void setOwner(@Nullable UUID id)
+    public NBTTagCompound serializeNBT()
     {
-        owner = id;
-    }
+        NBTTagCompound tag = new NBTTagCompound();
 
-    @Nonnull
-    @Override
-    public EnumPrivacyLevel getPrivacyLevel()
-    {
-        return privacyLevel;
-    }
+        tag.setByte("Tab", (byte) currentTab);
+        tag.setInteger("Color", getColor());
+        tag.setByte("Privacy", (byte) privacyLevel.ordinal());
 
-    @Override
-    public void setPrivacyLevel(@Nonnull EnumPrivacyLevel level)
-    {
-        privacyLevel = level;
-    }
+        if(owner != null)
+        {
+            tag.setString("Owner", LMUtils.fromUUID(owner));
+        }
 
-    @Override
-    public int getTabCount()
-    {
-        return invMap.length;
-    }
+        NBTTagList invList = new NBTTagList();
 
-    @Nullable
-    @Override
-    public IItemHandler getInventoryFromTab(int tab)
-    {
-        return invMap[tab];
+        for(BagItemStackHandler i : inv)
+        {
+            invList.appendTag(i.serializeNBT());
+        }
+
+        tag.setTag("InvTabs", invList);
+        return tag;
     }
 
     @Override
-    public int getCurrentTab()
+    public void deserializeNBT(NBTTagCompound nbt)
     {
-        return currentTab;
-    }
+        currentTab = nbt.getByte("Tab") & 0xFF;
+        setColor(nbt.getInteger("Color"));
+        owner = nbt.hasKey("Owner") ? LMUtils.fromString(nbt.getString("Owner")) : null;
+        privacyLevel = EnumPrivacyLevel.VALUES[nbt.getByte("Privacy")];
+        inv.clear();
 
-    @Override
-    public void setCurrentTab(int tab)
-    {
-        currentTab = (byte) tab;
+        NBTTagList invList = nbt.getTagList("InvTabs", Constants.NBT.TAG_COMPOUND);
+
+        for(int i = 0; i < invList.tagCount(); i++)
+        {
+            BagItemStackHandler inv1 = new BagItemStackHandler();
+            inv1.deserializeNBT(invList.getCompoundTagAt(i));
+            inv.add(inv1);
+        }
+
+        if(inv.isEmpty())
+        {
+            inv.add(new BagItemStackHandler());
+        }
     }
 }

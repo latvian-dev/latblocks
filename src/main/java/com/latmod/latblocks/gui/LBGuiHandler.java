@@ -2,6 +2,7 @@ package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
 import com.latmod.latblocks.capabilities.LBCapabilities;
+import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +25,7 @@ public class LBGuiHandler extends GuiHandler
     public static final int BAG_MAIN_HAND = 0;
     public static final int BAG_OFF_HAND = 1;
     public static final int NETHER_CHEST = 2;
+    public static final int CRAFTING_PANEL = 3;
 
     @Override
     public Container getContainer(@Nonnull EntityPlayer ep, int id, @Nullable NBTTagCompound data)
@@ -59,6 +61,17 @@ public class LBGuiHandler extends GuiHandler
                 if(te instanceof TileNetherChest)
                 {
                     return new ContainerNetherChest(ep, (TileNetherChest) te);
+                }
+
+                break;
+            }
+            case CRAFTING_PANEL:
+            {
+                TileEntity te = getTileEntity(ep.worldObj, data);
+
+                if(te instanceof TileCraftingPanel)
+                {
+                    return new ContainerCraftingPanel(ep, ((TileCraftingPanel) te));
                 }
 
                 break;
@@ -103,6 +116,17 @@ public class LBGuiHandler extends GuiHandler
                 if(te instanceof TileNetherChest)
                 {
                     return new GuiNetherChest(new ContainerNetherChest(ep, (TileNetherChest) te)).getWrapper();
+                }
+
+                break;
+            }
+            case CRAFTING_PANEL:
+            {
+                TileEntity te = getTileEntity(ep.worldObj, data);
+
+                if(te instanceof TileCraftingPanel)
+                {
+                    return new GuiCraftingPanel(new ContainerCraftingPanel(ep, ((TileCraftingPanel) te))).getWrapper();
                 }
 
                 break;

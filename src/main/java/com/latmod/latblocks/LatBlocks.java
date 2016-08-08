@@ -8,6 +8,7 @@ import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.gui.LBGuiHandler;
 import com.latmod.latblocks.item.LBItems;
 import com.latmod.latblocks.net.LBNetHandler;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -29,14 +30,13 @@ public class LatBlocks
     public static LatBlocksCommon proxy;
 
     public static LMMod mod;
-    public static CreativeTabLM tab, tabGlowium;
+    public static CreativeTabLM tab;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         mod = LMMod.create(MOD_ID);
         tab = new CreativeTabLM("latblocks");
-        tabGlowium = new CreativeTabLM("latblocks.glowium");
 
         LBCapabilities.init();
         LBBlocks.init();
@@ -45,7 +45,8 @@ public class LatBlocks
 
         MinecraftForge.EVENT_BUS.register(new LBEventHandler());
 
-        proxy.preInit();
+        tab.addIcon(new ItemStack(LBBlocks.NETHER_CHEST));
+
         mod.onPostLoaded();
     }
 
