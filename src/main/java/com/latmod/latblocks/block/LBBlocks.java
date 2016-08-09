@@ -29,8 +29,8 @@ public class LBBlocks
     @SideOnly(Side.CLIENT)
     public static void initModels()
     {
-        NETHER_CHEST.addDefaultModel();
-        CRAFTING_PANEL.addDefaultModel();
+        NETHER_CHEST.registerDefaultModel();
+        CRAFTING_PANEL.registerDefaultModel();
     }
 
     public static void loadRecipes()

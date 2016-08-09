@@ -1,11 +1,12 @@
 package com.latmod.latblocks.tile;
 
 import com.feed_the_beast.ftbl.api.tile.TileInvLM;
+import net.minecraft.util.ITickable;
 
 /**
  * Created by LatvianModder on 05.08.2016.
  */
-public class TileCraftingPanel extends TileInvLM
+public class TileCraftingPanel extends TileInvLM implements ITickable
 {
     public TileCraftingPanel()
     {
@@ -13,8 +14,8 @@ public class TileCraftingPanel extends TileInvLM
     }
 
     @Override
-    public void markDirty()
+    public void update()
     {
-        sendDirtyUpdate();
+        checkIfDirty();
     }
 }
