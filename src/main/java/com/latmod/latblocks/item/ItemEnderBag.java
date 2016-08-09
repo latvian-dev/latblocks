@@ -1,6 +1,5 @@
 package com.latmod.latblocks.item;
 
-import com.feed_the_beast.ftbl.api.item.ODItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -19,16 +18,6 @@ public class ItemEnderBag extends ItemLB
     {
         setMaxDamage(0);
         setMaxStackSize(1);
-    }
-
-    @Override
-    public void loadRecipes()
-    {
-        getMod().recipes.addRecipe(new ItemStack(this, 1, 0),
-                "LSL", "LCL", "LLL",
-                'L', ODItems.LEATHER,
-                'S', ODItems.STRING,
-                'C', "chestEnder");
     }
 
     @Nonnull

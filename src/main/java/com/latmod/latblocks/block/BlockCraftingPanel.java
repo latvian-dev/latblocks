@@ -1,7 +1,6 @@
 package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
-import com.feed_the_beast.ftbl.util.FTBLib;
 import com.feed_the_beast.ftbl.util.MathHelperMC;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.gui.LBGuiHandler;
@@ -14,7 +13,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -39,18 +37,6 @@ public class BlockCraftingPanel extends BlockLB
     {
         super(Material.ROCK);
         setDefaultState(blockState.getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
-    }
-
-    @Override
-    public void loadRecipes()
-    {
-        getMod().recipes.addRecipe(new ItemStack(this, 2), "C", "C", 'C', Blocks.CRAFTING_TABLE);
-    }
-
-    @Override
-    public void loadTiles()
-    {
-        FTBLib.addTile(TileCraftingPanel.class, getRegistryName());
     }
 
     @Override

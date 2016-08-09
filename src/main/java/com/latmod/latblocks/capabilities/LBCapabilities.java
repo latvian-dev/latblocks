@@ -30,13 +30,13 @@ public class LBCapabilities
     @CapabilityInject(Bag.class)
     public static Capability<Bag> BAG = null;
 
-    private static boolean inited = false;
+    private static boolean enabled = false;
 
-    public static void init()
+    public static void enable()
     {
-        if(!inited)
+        if(!enabled)
         {
-            inited = true;
+            enabled = true;
             CapabilityManager.INSTANCE.register(Bag.class, BAG_STORAGE, Bag::new);
         }
     }

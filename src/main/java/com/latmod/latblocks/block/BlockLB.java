@@ -1,7 +1,6 @@
 package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.api.block.BlockLM;
-import com.feed_the_beast.ftbl.util.LMMod;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.block.material.Material;
 
@@ -14,11 +13,5 @@ public class BlockLB extends BlockLM
     {
         super(m);
         setCreativeTab(LatBlocks.tab);
-    }
-
-    @Override
-    public LMMod getMod()
-    {
-        return LatBlocks.mod;
     }
 }

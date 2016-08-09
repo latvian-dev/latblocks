@@ -1,6 +1,7 @@
 package com.latmod.latblocks.client;
 
 import com.latmod.latblocks.LatBlocksCommon;
+import com.latmod.latblocks.block.LBBlocks;
 import com.latmod.latblocks.item.LBItems;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
@@ -12,6 +13,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class LatBlocksClient extends LatBlocksCommon
 {
+    @Override
+    public void preInit()
+    {
+        LBBlocks.initModels();
+        LBItems.initModels();
+    }
+
     @Override
     public void postInit()
     {
