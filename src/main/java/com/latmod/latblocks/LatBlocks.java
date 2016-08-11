@@ -1,6 +1,6 @@
 package com.latmod.latblocks;
 
-import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.gui.GuiHandler;
 import com.feed_the_beast.ftbl.util.CreativeTabLM;
 import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.latblocks.block.LBBlocks;

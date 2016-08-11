@@ -1,6 +1,6 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.gui.GuiHandler;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.latblocks.tile.TileNetherChest;

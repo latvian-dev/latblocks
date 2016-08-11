@@ -1,7 +1,7 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.client.gui.GuiContainerWrapper;
-import com.feed_the_beast.ftbl.api.client.gui.GuiLM;
+import com.feed_the_beast.ftbl.api.gui.GuiContainerWrapper;
+import com.feed_the_beast.ftbl.api.gui.GuiLM;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;

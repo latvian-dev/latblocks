@@ -1,11 +1,11 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.MouseButton;
 import com.feed_the_beast.ftbl.api.client.FTBLibClient;
-import com.feed_the_beast.ftbl.api.client.gui.GuiContainerWrapper;
-import com.feed_the_beast.ftbl.api.client.gui.GuiLM;
-import com.feed_the_beast.ftbl.api.client.gui.GuiLang;
-import com.feed_the_beast.ftbl.api.client.gui.widgets.ButtonLM;
+import com.feed_the_beast.ftbl.api.gui.GuiContainerWrapper;
+import com.feed_the_beast.ftbl.api.gui.GuiLM;
+import com.feed_the_beast.ftbl.api.gui.GuiLang;
+import com.feed_the_beast.ftbl.api.gui.IMouseButton;
+import com.feed_the_beast.ftbl.api.gui.widgets.ButtonLM;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.network.play.client.CPacketEnchantItem;
@@ -34,7 +34,7 @@ public class GuiNetherChest extends GuiLM
         buttonPrevPage = new ButtonLM(151, 7, 16, 16)
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton button)
+            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
             {
                 playClickSound();
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 0));
@@ -46,7 +46,7 @@ public class GuiNetherChest extends GuiLM
         buttonNextPage = new ButtonLM(151, 79, 16, 16)
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton button)
+            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
             {
                 playClickSound();
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 1));

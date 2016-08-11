@@ -1,6 +1,6 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.client.gui.ContainerLM;
+import com.feed_the_beast.ftbl.api.gui.ContainerLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;

@@ -1,12 +1,12 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.MouseButton;
 import com.feed_the_beast.ftbl.api.client.FTBLibClient;
-import com.feed_the_beast.ftbl.api.client.gui.GuiContainerWrapper;
-import com.feed_the_beast.ftbl.api.client.gui.GuiIcons;
-import com.feed_the_beast.ftbl.api.client.gui.GuiLM;
-import com.feed_the_beast.ftbl.api.client.gui.GuiLang;
-import com.feed_the_beast.ftbl.api.client.gui.widgets.ButtonLM;
+import com.feed_the_beast.ftbl.api.gui.GuiContainerWrapper;
+import com.feed_the_beast.ftbl.api.gui.GuiIcons;
+import com.feed_the_beast.ftbl.api.gui.GuiLM;
+import com.feed_the_beast.ftbl.api.gui.GuiLang;
+import com.feed_the_beast.ftbl.api.gui.IMouseButton;
+import com.feed_the_beast.ftbl.api.gui.widgets.ButtonLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.gui.GuiSelectColor;
 import com.latmod.latblocks.LatBlocks;
@@ -44,7 +44,7 @@ public class GuiBag extends GuiLM
         }
 
         @Override
-        public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton b)
+        public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton b)
         {
             playClickSound();
             mc.playerController.sendEnchantPacket(container.windowId, tabIndex);
@@ -76,7 +76,7 @@ public class GuiBag extends GuiLM
         buttonColor = new ButtonLM(133, 7, 16, 16)
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton b)
+            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton b)
             {
                 GuiLM.playClickSound();
 
@@ -99,7 +99,7 @@ public class GuiBag extends GuiLM
         buttonPrivacy = new ButtonLM(151, 7, 16, 16)
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull MouseButton button)
+            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
             {
                 GuiLM.playClickSound();
                 mc.playerController.sendEnchantPacket(container.windowId, button.isLeft() ? 10 : 11);
