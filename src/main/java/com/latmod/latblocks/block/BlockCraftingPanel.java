@@ -1,10 +1,10 @@
 package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.api.client.gui.GuiHandler;
-import com.feed_the_beast.ftbl.util.MathHelperMC;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.gui.LBGuiHandler;
 import com.latmod.latblocks.tile.TileCraftingPanel;
+import com.latmod.lib.math.MathHelperLM;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
  */
 public class BlockCraftingPanel extends BlockLB
 {
-    public static final AxisAlignedBB[] BOXES = MathHelperMC.getRotatedBoxes(new AxisAlignedBB(3D / 16D, 0D, 3D / 16D, 13D / 16D, 1D / 13D, 13D / 16D));
+    public static final AxisAlignedBB[] BOXES = MathHelperLM.getRotatedBoxes(new AxisAlignedBB(3D / 16D, 0D, 3D / 16D, 13D / 16D, 1D / 13D, 13D / 16D));
     public static final PropertyEnum<EnumFacing> FACING = PropertyDirection.create("facing", EnumFacing.class);
 
     public BlockCraftingPanel()

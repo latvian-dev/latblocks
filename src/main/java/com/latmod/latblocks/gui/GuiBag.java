@@ -9,10 +9,10 @@ import com.feed_the_beast.ftbl.api.client.gui.GuiLang;
 import com.feed_the_beast.ftbl.api.client.gui.widgets.ButtonLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.gui.GuiSelectColor;
-import com.feed_the_beast.ftbl.util.TextureCoords;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.net.MessageChangeColor;
 import com.latmod.lib.LMColor;
+import com.latmod.lib.TextureCoords;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -29,8 +29,8 @@ import java.util.List;
 public class GuiBag extends GuiLM
 {
     public static final ResourceLocation TEXTURE = new ResourceLocation(LatBlocks.MOD_ID, "textures/gui/bag.png");
-    public static final TextureCoords TAB_OFF = new TextureCoords(TEXTURE, 174, 0, 21, 16, 256, 256);
-    public static final TextureCoords TAB_ON = new TextureCoords(TEXTURE, 174, 16, 21, 16, 256, 256);
+    public static final TextureCoords TAB_OFF = TextureCoords.fromCoords(TEXTURE, 174, 0, 21, 16, 256, 256);
+    public static final TextureCoords TAB_ON = TextureCoords.fromCoords(TEXTURE, 174, 16, 21, 16, 256, 256);
 
     public class TabButton extends ButtonLM
     {
