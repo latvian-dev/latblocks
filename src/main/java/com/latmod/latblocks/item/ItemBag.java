@@ -1,8 +1,6 @@
 package com.latmod.latblocks.item;
 
 import com.feed_the_beast.ftbl.api.FTBLibAPI;
-import com.feed_the_beast.ftbl.api.gui.GuiHandler;
-import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.gui.LBGuiHandler;
@@ -104,9 +102,9 @@ public class ItemBag extends ItemLB
                 bag.owner = ep.getGameProfile().getId();
             }
 
-            if(FTBLibAPI.INSTANCE.getWorld().getPlayer(ep).canInteract(FTBLibAPI.INSTANCE.getWorld().getPlayer(bag.owner), bag.privacyLevel))
+            if(FTBLibAPI.get().getWorld().getPlayer(ep).canInteract(FTBLibAPI.get().getWorld().getPlayer(bag.owner), bag.privacyLevel))
             {
-                GuiHandler.openGui(LatBlocks.MOD_ID, ep, hand == EnumHand.MAIN_HAND ? LBGuiHandler.BAG_MAIN_HAND : LBGuiHandler.BAG_OFF_HAND, null);
+                FTBLibAPI.get().openGui(hand == EnumHand.MAIN_HAND ? LBGuiHandler.BAG_MAIN_HAND : LBGuiHandler.BAG_OFF_HAND, ep, null);
             }
         }
 

@@ -1,6 +1,8 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.FTBLibAPI;
+import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
+import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.latblocks.tile.TileNetherChest;
@@ -11,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -20,119 +24,85 @@ import javax.annotation.Nullable;
 /**
  * Created by LatvianModder on 11.07.2016.
  */
-public class LBGuiHandler extends GuiHandler
+public class LBGuiHandler
 {
-    public static final int BAG_MAIN_HAND = 0;
-    public static final int BAG_OFF_HAND = 1;
-    public static final int NETHER_CHEST = 2;
-    public static final int CRAFTING_PANEL = 3;
+    public static final ResourceLocation BAG_MAIN_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_main");
+    public static final ResourceLocation BAG_OFF_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_off");
+    public static final ResourceLocation NETHER_CHEST = new ResourceLocation(LatBlocks.MOD_ID, "nether_chest");
+    public static final ResourceLocation CRAFTING_PANEL = new ResourceLocation(LatBlocks.MOD_ID, "crafting_panel");
 
-    @Override
-    public Container getContainer(@Nonnull EntityPlayer ep, int id, @Nullable NBTTagCompound data)
+    public static void init()
     {
-        switch(id)
+        FTBLibAPI.get().getRegistries().guis().register(BAG_MAIN_HAND, new IGuiHandler()
         {
-            case BAG_MAIN_HAND:
+            @Override
+            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
             {
                 ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
-
-                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
-                {
-                    return new ContainerBag(ep, EnumHand.MAIN_HAND);
-                }
-
-                break;
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(ep, EnumHand.MAIN_HAND) : null;
             }
-            case BAG_OFF_HAND:
-            {
-                ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
 
-                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
-                {
-                    return new ContainerBag(ep, EnumHand.OFF_HAND);
-                }
-
-                break;
-            }
-            case NETHER_CHEST:
-            {
-                TileEntity te = getTileEntity(ep.worldObj, data);
-
-                if(te instanceof TileNetherChest)
-                {
-                    return new ContainerNetherChest(ep, (TileNetherChest) te);
-                }
-
-                break;
-            }
-            case CRAFTING_PANEL:
-            {
-                TileEntity te = getTileEntity(ep.worldObj, data);
-
-                if(te instanceof TileCraftingPanel)
-                {
-                    return new ContainerCraftingPanel(ep, ((TileCraftingPanel) te));
-                }
-
-                break;
-            }
-        }
-
-        return null;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public GuiScreen getGui(@Nonnull EntityPlayer ep, int id, @Nullable NBTTagCompound data)
-    {
-        switch(id)
-        {
-            case BAG_MAIN_HAND:
+            @Override
+            @SideOnly(Side.CLIENT)
+            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
             {
                 ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
-
-                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
-                {
-                    return new GuiBag(new ContainerBag(ep, EnumHand.MAIN_HAND)).getWrapper();
-                }
-
-                break;
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(ep, EnumHand.MAIN_HAND)).getWrapper() : null;
             }
-            case BAG_OFF_HAND:
+        });
+
+        FTBLibAPI.get().getRegistries().guis().register(BAG_OFF_HAND, new IGuiHandler()
+        {
+            @Override
+            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
             {
                 ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
-
-                if(is != null && is.hasCapability(LBCapabilities.BAG, null))
-                {
-                    return new GuiBag(new ContainerBag(ep, EnumHand.OFF_HAND)).getWrapper();
-                }
-
-                break;
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(ep, EnumHand.OFF_HAND) : null;
             }
-            case NETHER_CHEST:
+
+            @Override
+            @SideOnly(Side.CLIENT)
+            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
             {
-                TileEntity te = getTileEntity(ep.worldObj, data);
-
-                if(te instanceof TileNetherChest)
-                {
-                    return new GuiNetherChest(new ContainerNetherChest(ep, (TileNetherChest) te)).getWrapper();
-                }
-
-                break;
+                ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(ep, EnumHand.OFF_HAND)).getWrapper() : null;
             }
-            case CRAFTING_PANEL:
+        });
+
+        FTBLibAPI.get().getRegistries().guis().register(NETHER_CHEST, new IGuiHandler()
+        {
+            @Override
+            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
             {
-                TileEntity te = getTileEntity(ep.worldObj, data);
-
-                if(te instanceof TileCraftingPanel)
-                {
-                    return new GuiCraftingPanel(new ContainerCraftingPanel(ep, ((TileCraftingPanel) te))).getWrapper();
-                }
-
-                break;
+                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileNetherChest) ? new ContainerNetherChest(ep, (TileNetherChest) te) : null;
             }
-        }
 
-        return null;
+            @Override
+            @SideOnly(Side.CLIENT)
+            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            {
+                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileNetherChest) ? new GuiNetherChest(new ContainerNetherChest(ep, (TileNetherChest) te)).getWrapper() : null;
+            }
+        });
+
+        FTBLibAPI.get().getRegistries().guis().register(CRAFTING_PANEL, new IGuiHandler()
+        {
+            @Override
+            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            {
+                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileCraftingPanel) ? new ContainerCraftingPanel(ep, (TileCraftingPanel) te) : null;
+            }
+
+            @Override
+            @SideOnly(Side.CLIENT)
+            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            {
+                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileCraftingPanel) ? new GuiCraftingPanel(new ContainerCraftingPanel(ep, (TileCraftingPanel) te)).getWrapper() : null;
+            }
+        });
     }
 }

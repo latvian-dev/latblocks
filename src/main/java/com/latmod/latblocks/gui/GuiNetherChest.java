@@ -31,7 +31,7 @@ public class GuiNetherChest extends GuiLM
         super(174, 188);
         container = c;
 
-        buttonPrevPage = new ButtonLM(151, 7, 16, 16)
+        buttonPrevPage = new ButtonLM(151, 7, 16, 16, GuiLang.button_prev_page.translate())
         {
             @Override
             public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
@@ -41,9 +41,7 @@ public class GuiNetherChest extends GuiLM
             }
         };
 
-        buttonPrevPage.title = GuiLang.button_prev_page.translate();
-
-        buttonNextPage = new ButtonLM(151, 79, 16, 16)
+        buttonNextPage = new ButtonLM(151, 79, 16, 16, GuiLang.button_next_page.translate())
         {
             @Override
             public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
@@ -52,8 +50,6 @@ public class GuiNetherChest extends GuiLM
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 1));
             }
         };
-
-        buttonNextPage.title = GuiLang.button_next_page.translate();
     }
 
     @Override

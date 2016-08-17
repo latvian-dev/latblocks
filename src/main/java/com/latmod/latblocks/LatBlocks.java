@@ -1,6 +1,5 @@
 package com.latmod.latblocks;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHandler;
 import com.feed_the_beast.ftbl.util.CreativeTabLM;
 import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.latblocks.block.LBBlocks;
@@ -42,26 +41,21 @@ public class LatBlocks
     public void preInit(FMLPreInitializationEvent event)
     {
         tab = new CreativeTabLM("latblocks");
-
         LBCapabilities.enable();
         LBBlocks.init();
         LBItems.init();
         LBNetHandler.init();
         proxy.preInit();
-
         MinecraftForge.EVENT_BUS.register(new LBEventHandler());
-
         tab.addIcon(new ItemStack(LBBlocks.NETHER_CHEST));
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        GuiHandler.REGISTRY.register(MOD_ID, new LBGuiHandler());
-
+        LBGuiHandler.init();
         LBItems.loadRecipes();
         LBBlocks.loadRecipes();
-
         proxy.postInit();
     }
 }

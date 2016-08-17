@@ -38,9 +38,8 @@ public class GuiBag extends GuiLM
 
         public TabButton(int x, int y, byte i)
         {
-            super(x, y, 21, 16);
+            super(x, y, 21, 16, "#" + (i + 1));
             tabIndex = i;
-            title = "#" + (i + 1);
         }
 
         @Override
@@ -73,7 +72,7 @@ public class GuiBag extends GuiLM
             tabButtons.add(new TabButton(7 + 25 * t, 7, t));
         }
 
-        buttonColor = new ButtonLM(133, 7, 16, 16)
+        buttonColor = new ButtonLM(133, 7, 16, 16, GuiLang.label_color.translate())
         {
             @Override
             public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton b)
@@ -94,9 +93,7 @@ public class GuiBag extends GuiLM
             }
         };
 
-        buttonColor.title = GuiLang.label_color.translate();
-
-        buttonPrivacy = new ButtonLM(151, 7, 16, 16)
+        buttonPrivacy = new ButtonLM(151, 7, 16, 16, EnumPrivacyLevel.enumLangKey.translate())
         {
             @Override
             public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
@@ -106,14 +103,12 @@ public class GuiBag extends GuiLM
             }
 
             @Override
-            public void addMouseOverText(GuiLM gui, List<String> l)
+            public void addMouseOverText(@Nonnull GuiLM gui, @Nonnull List<String> l)
             {
-                l.add(title);
+                l.add(getTitle());
                 l.add(container.bag.privacyLevel.langKey.translate());
             }
         };
-
-        buttonPrivacy.title = EnumPrivacyLevel.enumLangKey.translate();
     }
 
     @Override

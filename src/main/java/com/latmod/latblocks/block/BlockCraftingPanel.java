@@ -1,7 +1,6 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHandler;
-import com.latmod.latblocks.LatBlocks;
+import com.feed_the_beast.ftbl.api.FTBLibAPI;
 import com.latmod.latblocks.gui.LBGuiHandler;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.lib.math.MathHelperLM;
@@ -14,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -135,7 +135,11 @@ public class BlockCraftingPanel extends BlockLB
             if(te instanceof TileCraftingPanel)
             {
                 te.markDirty();
-                GuiHandler.openGui(LatBlocks.MOD_ID, playerIn, LBGuiHandler.CRAFTING_PANEL, GuiHandler.getTileData(te));
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setInteger("X", pos.getX());
+                tag.setInteger("Y", pos.getY());
+                tag.setInteger("Z", pos.getZ());
+                FTBLibAPI.get().openGui(LBGuiHandler.CRAFTING_PANEL, playerIn, tag);
             }
         }
 

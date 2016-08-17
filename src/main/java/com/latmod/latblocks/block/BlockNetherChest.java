@@ -1,7 +1,6 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHandler;
-import com.latmod.latblocks.LatBlocks;
+import com.feed_the_beast.ftbl.api.FTBLibAPI;
 import com.latmod.latblocks.gui.LBGuiHandler;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.block.material.Material;
@@ -53,7 +52,11 @@ public class BlockNetherChest extends BlockLB
             if(te instanceof TileNetherChest)
             {
                 te.markDirty();
-                GuiHandler.openGui(LatBlocks.MOD_ID, playerIn, LBGuiHandler.NETHER_CHEST, GuiHandler.getTileData(te));
+                NBTTagCompound tag = new NBTTagCompound();
+                tag.setInteger("X", pos.getX());
+                tag.setInteger("Y", pos.getY());
+                tag.setInteger("Z", pos.getZ());
+                FTBLibAPI.get().openGui(LBGuiHandler.NETHER_CHEST, playerIn, tag);
             }
         }
 
