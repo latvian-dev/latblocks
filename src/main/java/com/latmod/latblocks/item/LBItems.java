@@ -1,7 +1,8 @@
 package com.latmod.latblocks.item;
 
 import com.feed_the_beast.ftbl.api.item.ODItems;
-import com.feed_the_beast.ftbl.api.recipes.LMRecipes;
+import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
+import com.feed_the_beast.ftbl.api.recipes.IRecipes;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,22 +27,30 @@ public class LBItems
         ENDER_BAG.addDefaultModel();
     }
 
-    public static void loadRecipes()
+    public static class Recipes implements IRecipeHandler
     {
-        LMRecipes.INSTANCE.addRecipe(new ItemStack(BAG, 1, 0),
-                "DSD",
-                "WCW",
-                "WQW",
-                'W', ODItems.WOOL,
-                'S', ODItems.STRING,
-                'C', ODItems.CHEST_WOOD,
-                'D', ODItems.DIAMOND,
-                'Q', ODItems.QUARTZ_BLOCK);
+        @Override
+        public boolean isActive()
+        {
+            return true;
+        }
 
-        LMRecipes.INSTANCE.addRecipe(new ItemStack(ENDER_BAG, 1, 0),
-                "LSL", "LCL", "LLL",
-                'L', ODItems.LEATHER,
-                'S', ODItems.STRING,
-                'C', "chestEnder");
+        @Override
+        public void loadRecipes(IRecipes recipes)
+        {
+            recipes.addRecipe(new ItemStack(BAG, 1, 0),
+                    "DSD", "WCW", "WQW",
+                    'W', ODItems.WOOL,
+                    'S', ODItems.STRING,
+                    'C', ODItems.CHEST_WOOD,
+                    'D', ODItems.DIAMOND,
+                    'Q', ODItems.QUARTZ_BLOCK);
+
+            recipes.addRecipe(new ItemStack(ENDER_BAG, 1, 0),
+                    "LSL", "LCL", "LLL",
+                    'L', ODItems.LEATHER,
+                    'S', ODItems.STRING,
+                    'C', "chestEnder");
+        }
     }
 }

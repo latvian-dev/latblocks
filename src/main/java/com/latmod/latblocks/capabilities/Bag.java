@@ -1,7 +1,7 @@
 package com.latmod.latblocks.capabilities;
 
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
-import com.latmod.lib.util.LMUtils;
+import com.latmod.lib.util.LMStringUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -94,7 +94,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
 
         if(owner != null)
         {
-            tag.setString("Owner", LMUtils.fromUUID(owner));
+            tag.setString("Owner", LMStringUtils.fromUUID(owner));
         }
 
         NBTTagList invList = new NBTTagList();
@@ -113,7 +113,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
     {
         currentTab = nbt.getByte("Tab") & 0xFF;
         setColor(nbt.getInteger("Color"));
-        owner = nbt.hasKey("Owner") ? LMUtils.fromString(nbt.getString("Owner")) : null;
+        owner = nbt.hasKey("Owner") ? LMStringUtils.fromString(nbt.getString("Owner")) : null;
         privacyLevel = EnumPrivacyLevel.VALUES[nbt.getByte("Privacy")];
         inv.clear();
 

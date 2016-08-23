@@ -106,7 +106,7 @@ public class GuiBag extends GuiLM
             public void addMouseOverText(@Nonnull GuiLM gui, @Nonnull List<String> l)
             {
                 l.add(getTitle());
-                l.add(container.bag.privacyLevel.langKey.translate());
+                l.add(container.bag.privacyLevel.getLangKey().translate());
             }
         };
     }

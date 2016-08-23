@@ -1,7 +1,8 @@
 package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.api.item.ODItems;
-import com.feed_the_beast.ftbl.api.recipes.LMRecipes;
+import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
+import com.feed_the_beast.ftbl.api.recipes.IRecipes;
 import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileCraftingPanel;
@@ -33,19 +34,26 @@ public class LBBlocks
         CRAFTING_PANEL.registerDefaultModel();
     }
 
-    public static void loadRecipes()
+    public static class Recipes implements IRecipeHandler
     {
-        LMRecipes.INSTANCE.addRecipe(new ItemStack(NETHER_CHEST),
-                "NQN",
-                "NCN",
-                "NQN",
-                'N', Blocks.NETHER_BRICK,
-                'Q', ODItems.QUARTZ_BLOCK,
-                'C', Items.END_CRYSTAL);
+        @Override
+        public boolean isActive()
+        {
+            return true;
+        }
 
-        LMRecipes.INSTANCE.addRecipe(new ItemStack(CRAFTING_PANEL, 2),
-                "C",
-                "C",
-                'C', Blocks.CRAFTING_TABLE);
+        @Override
+        public void loadRecipes(IRecipes recipes)
+        {
+            recipes.addRecipe(new ItemStack(NETHER_CHEST),
+                    "NQN", "NCN", "NQN",
+                    'N', Blocks.NETHER_BRICK,
+                    'Q', ODItems.QUARTZ_BLOCK,
+                    'C', Items.END_CRYSTAL);
+
+            recipes.addRecipe(new ItemStack(CRAFTING_PANEL, 2),
+                    "C", "C",
+                    'C', Blocks.CRAFTING_TABLE);
+        }
     }
 }

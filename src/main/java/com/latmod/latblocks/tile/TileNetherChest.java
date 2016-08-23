@@ -36,12 +36,8 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing side)
     {
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-        {
-            return true;
-        }
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, side);
 
-        return super.hasCapability(capability, side);
     }
 
     @Nonnull

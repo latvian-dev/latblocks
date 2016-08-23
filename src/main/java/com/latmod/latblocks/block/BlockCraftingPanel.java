@@ -35,7 +35,7 @@ public class BlockCraftingPanel extends BlockLB
 
     public BlockCraftingPanel()
     {
-        super(Material.ROCK);
+        super(Material.WOOD);
         setDefaultState(blockState.getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
     }
 
