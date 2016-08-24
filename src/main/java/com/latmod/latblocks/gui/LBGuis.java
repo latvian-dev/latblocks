@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 /**
  * Created by LatvianModder on 11.07.2016.
  */
-public class LBGuiHandler
+public class LBGuis
 {
     public static final ResourceLocation BAG_MAIN_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_main");
     public static final ResourceLocation BAG_OFF_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_off");

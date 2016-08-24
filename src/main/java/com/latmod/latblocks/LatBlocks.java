@@ -5,7 +5,7 @@ import com.feed_the_beast.ftbl.util.CreativeTabLM;
 import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.latblocks.block.LBBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
-import com.latmod.latblocks.gui.LBGuiHandler;
+import com.latmod.latblocks.gui.LBGuis;
 import com.latmod.latblocks.item.LBItems;
 import com.latmod.latblocks.net.LBNetHandler;
 import net.minecraft.item.ItemStack;
@@ -46,7 +46,7 @@ public class LatBlocks
         LBBlocks.init();
         LBItems.init();
         LBNetHandler.init();
-        LBGuiHandler.init();
+        LBGuis.init();
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register(new LBEventHandler());
         tab.addIcon(new ItemStack(LBBlocks.NETHER_CHEST));

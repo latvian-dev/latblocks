@@ -53,31 +53,9 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     }
 
     @Override
-    public void readTileData(@Nonnull NBTTagCompound tag)
+    public void writeTileData(@Nonnull NBTTagCompound nbt)
     {
-        items.clear();
-
-        NBTTagList nbt = (NBTTagList) tag.getTag("Inv");
-
-        if(nbt != null && nbt.tagCount() > 0)
-        {
-            for(int i = 0; i < nbt.tagCount(); i++)
-            {
-                ItemStack is = ItemStack.loadItemStackFromNBT(nbt.getCompoundTagAt(i));
-
-                if(is != null)
-                {
-                    items.add(is);
-                }
-            }
-        }
-
-        currentPage = tag.getShort("Page");
-    }
-
-    @Override
-    public void writeTileData(@Nonnull NBTTagCompound tag)
-    {
+        super.writeTileData(nbt);
         NBTTagList list = new NBTTagList();
 
         for(ItemStack is : items)
@@ -87,8 +65,73 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
             list.appendTag(tag1);
         }
 
-        tag.setTag("Inv", list);
-        tag.setShort("Page", currentPage);
+        nbt.setTag("Inv", list);
+        nbt.setShort("Page", currentPage);
+    }
+
+    @Override
+    public void readTileData(@Nonnull NBTTagCompound nbt)
+    {
+        super.readTileData(nbt);
+        items.clear();
+
+        NBTTagList list = (NBTTagList) nbt.getTag("Inv");
+
+        if(list != null && list.tagCount() > 0)
+        {
+            for(int i = 0; i < list.tagCount(); i++)
+            {
+                ItemStack is = ItemStack.loadItemStackFromNBT(list.getCompoundTagAt(i));
+
+                if(is != null)
+                {
+                    items.add(is);
+                }
+            }
+        }
+
+        currentPage = nbt.getShort("Page");
+    }
+
+    @Override
+    public void writeTileClientData(@Nonnull NBTTagCompound nbt)
+    {
+        super.writeTileClientData(nbt);
+        NBTTagList list = new NBTTagList();
+
+        for(ItemStack is : items)
+        {
+            NBTTagCompound tag1 = new NBTTagCompound();
+            is.writeToNBT(tag1);
+            list.appendTag(tag1);
+        }
+
+        nbt.setTag("I", list);
+        nbt.setShort("P", currentPage);
+    }
+
+    @Override
+    public void readTileClientData(@Nonnull NBTTagCompound nbt)
+    {
+        super.readTileClientData(nbt);
+        items.clear();
+
+        NBTTagList list = (NBTTagList) nbt.getTag("I");
+
+        if(list != null && list.tagCount() > 0)
+        {
+            for(int i = 0; i < list.tagCount(); i++)
+            {
+                ItemStack is = ItemStack.loadItemStackFromNBT(list.getCompoundTagAt(i));
+
+                if(is != null)
+                {
+                    items.add(is);
+                }
+            }
+        }
+
+        currentPage = nbt.getShort("P");
     }
 
     @Override

@@ -23,8 +23,8 @@ public class LBItems
     @SideOnly(Side.CLIENT)
     public static void initModels()
     {
-        BAG.addDefaultModel();
-        ENDER_BAG.addDefaultModel();
+        BAG.registerDefaultModel();
+        ENDER_BAG.registerDefaultModel();
     }
 
     public static class Recipes implements IRecipeHandler

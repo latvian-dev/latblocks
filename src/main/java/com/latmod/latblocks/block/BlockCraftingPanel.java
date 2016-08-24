@@ -1,7 +1,7 @@
 package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.api.FTBLibAPI;
-import com.latmod.latblocks.gui.LBGuiHandler;
+import com.latmod.latblocks.gui.LBGuis;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.lib.math.MathHelperLM;
 import net.minecraft.block.BlockDirectional;
@@ -139,7 +139,7 @@ public class BlockCraftingPanel extends BlockLB
                 tag.setInteger("X", pos.getX());
                 tag.setInteger("Y", pos.getY());
                 tag.setInteger("Z", pos.getZ());
-                FTBLibAPI.get().openGui(LBGuiHandler.CRAFTING_PANEL, playerIn, tag);
+                FTBLibAPI.get().openGui(LBGuis.CRAFTING_PANEL, playerIn, tag);
             }
         }
 
