@@ -141,6 +141,7 @@ public class ContainerNetherChest extends ContainerLM
         addPlayerSlots(7, 106, false);
     }
 
+    @Override
     public boolean enchantItem(EntityPlayer ep, int id)
     {
         if(!ep.worldObj.isRemote)

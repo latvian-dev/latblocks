@@ -18,12 +18,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Created by LatvianModder on 11.07.2016.
  */
+@ParametersAreNonnullByDefault
 public class LBGuis
 {
     public static final ResourceLocation BAG_MAIN_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_main");
@@ -36,72 +37,80 @@ public class LBGuis
         FTBLibAPI.get().getRegistries().guis().register(BAG_MAIN_HAND, new IGuiHandler()
         {
             @Override
-            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            @Nullable
+            public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
-                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(ep, EnumHand.MAIN_HAND) : null;
+                ItemStack is = player.getHeldItem(EnumHand.MAIN_HAND);
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(player, EnumHand.MAIN_HAND) : null;
             }
 
             @Override
+            @Nullable
             @SideOnly(Side.CLIENT)
-            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                ItemStack is = ep.getHeldItem(EnumHand.MAIN_HAND);
-                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(ep, EnumHand.MAIN_HAND)).getWrapper() : null;
+                ItemStack is = player.getHeldItem(EnumHand.MAIN_HAND);
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(player, EnumHand.MAIN_HAND)).getWrapper() : null;
             }
         });
 
         FTBLibAPI.get().getRegistries().guis().register(BAG_OFF_HAND, new IGuiHandler()
         {
             @Override
-            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            @Nullable
+            public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
-                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(ep, EnumHand.OFF_HAND) : null;
+                ItemStack is = player.getHeldItem(EnumHand.OFF_HAND);
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(player, EnumHand.OFF_HAND) : null;
             }
 
             @Override
+            @Nullable
             @SideOnly(Side.CLIENT)
-            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                ItemStack is = ep.getHeldItem(EnumHand.OFF_HAND);
-                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(ep, EnumHand.OFF_HAND)).getWrapper() : null;
+                ItemStack is = player.getHeldItem(EnumHand.OFF_HAND);
+                return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(player, EnumHand.OFF_HAND)).getWrapper() : null;
             }
         });
 
         FTBLibAPI.get().getRegistries().guis().register(NETHER_CHEST, new IGuiHandler()
         {
             @Override
-            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            @Nullable
+            public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
-                return (te instanceof TileNetherChest) ? new ContainerNetherChest(ep, (TileNetherChest) te) : null;
+                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileNetherChest) ? new ContainerNetherChest(player, (TileNetherChest) te) : null;
             }
 
             @Override
+            @Nullable
             @SideOnly(Side.CLIENT)
-            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
-                return (te instanceof TileNetherChest) ? new GuiNetherChest(new ContainerNetherChest(ep, (TileNetherChest) te)).getWrapper() : null;
+                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileNetherChest) ? new GuiNetherChest(new ContainerNetherChest(player, (TileNetherChest) te)).getWrapper() : null;
             }
         });
 
         FTBLibAPI.get().getRegistries().guis().register(CRAFTING_PANEL, new IGuiHandler()
         {
             @Override
-            public Container getContainer(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            @Nullable
+            public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
-                return (te instanceof TileCraftingPanel) ? new ContainerCraftingPanel(ep, (TileCraftingPanel) te) : null;
+                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileCraftingPanel) ? new ContainerCraftingPanel(player, (TileCraftingPanel) te) : null;
             }
 
             @Override
+            @Nullable
             @SideOnly(Side.CLIENT)
-            public GuiScreen getGui(@Nonnull EntityPlayer ep, @Nullable NBTTagCompound data)
+            public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = ep.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
-                return (te instanceof TileCraftingPanel) ? new GuiCraftingPanel(new ContainerCraftingPanel(ep, (TileCraftingPanel) te)).getWrapper() : null;
+                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                return (te instanceof TileCraftingPanel) ? new GuiCraftingPanel(new ContainerCraftingPanel(player, (TileCraftingPanel) te)).getWrapper() : null;
             }
         });
     }

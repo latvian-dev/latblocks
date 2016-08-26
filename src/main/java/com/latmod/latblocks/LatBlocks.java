@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 /**
  * Created by LatvianModder on 12.05.2016.
  */
-@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks", version = "@VERSION@")
+@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks 2", version = "@VERSION@")
 public class LatBlocks
 {
     public static final String MOD_ID = "latblocks";

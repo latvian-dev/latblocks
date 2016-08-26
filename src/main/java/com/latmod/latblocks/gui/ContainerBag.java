@@ -37,6 +37,7 @@ public class ContainerBag extends ContainerLM
             {
                 addSlotToContainer(new SlotItemHandler(null, x + y * 9, 7 + x * 18, 29 + y * 18)
                 {
+                    @Override
                     public IItemHandler getItemHandler()
                     {
                         return ContainerBag.this.getItemHandler();
@@ -48,6 +49,7 @@ public class ContainerBag extends ContainerLM
         addPlayerSlots(7, 128, true);
     }
 
+    @Override
     public void putStackInSlot(int slotID, ItemStack stack)
     {
         if(slotID == 0)
