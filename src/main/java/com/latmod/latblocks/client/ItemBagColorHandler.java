@@ -6,8 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-
 /**
  * Created by LatvianModder on 11.07.2016.
  */
@@ -15,7 +13,7 @@ import javax.annotation.Nonnull;
 public class ItemBagColorHandler implements IItemColor
 {
     @Override
-    public int getColorFromItemstack(@Nonnull ItemStack stack, int tintIndex)
+    public int getColorFromItemstack(ItemStack stack, int tintIndex)
     {
         if(stack.hasCapability(LBCapabilities.BAG, null))
         {

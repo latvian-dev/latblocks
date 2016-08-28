@@ -6,8 +6,6 @@ import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.lib.math.MathHelperLM;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,7 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -30,8 +27,7 @@ import javax.annotation.Nullable;
  */
 public class BlockCraftingPanel extends BlockLB
 {
-    public static final AxisAlignedBB[] BOXES = MathHelperLM.getRotatedBoxes(new AxisAlignedBB(3D / 16D, 0D, 3D / 16D, 13D / 16D, 1D / 13D, 13D / 16D));
-    public static final PropertyEnum<EnumFacing> FACING = PropertyDirection.create("facing", EnumFacing.class);
+    private static final AxisAlignedBB[] BOXES = MathHelperLM.getRotatedBoxes(new AxisAlignedBB(3D / 16D, 0D, 3D / 16D, 13D / 16D, 1D / 13D, 13D / 16D));
 
     public BlockCraftingPanel()
     {
@@ -45,9 +41,8 @@ public class BlockCraftingPanel extends BlockLB
         return true;
     }
 
-    @Nonnull
     @Override
-    public TileEntity createTileEntity(@Nonnull World w, @Nonnull IBlockState state)
+    public TileEntity createTileEntity(World w, IBlockState state)
     {
         return new TileCraftingPanel();
     }
@@ -59,25 +54,23 @@ public class BlockCraftingPanel extends BlockLB
         return false;
     }
 
-    @Nonnull
     @Override
     @Deprecated
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(FACING, EnumFacing.VALUES[meta % 6]);
+        return getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.VALUES[meta % 6]);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(FACING).ordinal();
+        return state.getValue(BlockDirectional.FACING).ordinal();
     }
 
-    @Nonnull
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING);
+        return new BlockStateContainer(this, BlockDirectional.FACING);
     }
 
     @Override
@@ -86,20 +79,18 @@ public class BlockCraftingPanel extends BlockLB
         return 0;
     }
 
-    @Nonnull
     @Override
     @Deprecated
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return getDefaultState().withProperty(FACING, facing.getOpposite());
+        return getDefaultState().withProperty(BlockDirectional.FACING, facing.getOpposite());
     }
 
-    @Nonnull
     @Override
     @Deprecated
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return BOXES[state.getValue(FACING).ordinal()];
+        return BOXES[state.getValue(BlockDirectional.FACING).ordinal()];
     }
 
     @Override
@@ -110,7 +101,7 @@ public class BlockCraftingPanel extends BlockLB
     }
 
     @Override
-    public void breakBlock(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state)
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         if(!worldIn.isRemote)
         {

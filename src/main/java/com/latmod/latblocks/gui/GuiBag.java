@@ -18,7 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class GuiBag extends GuiLM
         }
 
         @Override
-        public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton b)
+        public void onClicked(GuiLM gui, IMouseButton b)
         {
             playClickSound();
             mc.playerController.sendEnchantPacket(container.windowId, tabIndex);
@@ -72,10 +71,10 @@ public class GuiBag extends GuiLM
             tabButtons.add(new TabButton(7 + 25 * t, 7, t));
         }
 
-        buttonColor = new ButtonLM(133, 7, 16, 16, GuiLang.label_color.translate())
+        buttonColor = new ButtonLM(133, 7, 16, 16, GuiLang.LABEL_COLOR.translate())
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton b)
+            public void onClicked(GuiLM gui, IMouseButton b)
             {
                 GuiLM.playClickSound();
 
@@ -84,9 +83,7 @@ public class GuiBag extends GuiLM
 
                 GuiSelectColor.display(null, col, (id, obj) ->
                 {
-                    MessageChangeColor m = new MessageChangeColor();
-                    m.color = obj.hashCode();
-                    m.sendToServer();
+                    new MessageChangeColor(obj.hashCode()).sendToServer();
                     //container.bag.setColor(m.color);
                     mc.displayGuiScreen(GuiBag.this.getWrapper());
                 });
@@ -96,16 +93,16 @@ public class GuiBag extends GuiLM
         buttonPrivacy = new ButtonLM(151, 7, 16, 16, EnumPrivacyLevel.enumLangKey.translate())
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
+            public void onClicked(GuiLM gui, IMouseButton button)
             {
                 GuiLM.playClickSound();
                 mc.playerController.sendEnchantPacket(container.windowId, button.isLeft() ? 10 : 11);
             }
 
             @Override
-            public void addMouseOverText(@Nonnull GuiLM gui, @Nonnull List<String> l)
+            public void addMouseOverText(GuiLM gui, List<String> l)
             {
-                l.add(getTitle());
+                l.add(getTitle(gui));
                 l.add(container.bag.privacyLevel.getLangKey().translate());
             }
         };
@@ -125,7 +122,7 @@ public class GuiBag extends GuiLM
         FTBLibClient.setTexture(TEXTURE);
         GuiScreen.drawModalRectWithCustomSizedTexture(getAX(), getAY(), 0F, 0F, width, height, 256F, 256F);
 
-        buttonColor.render(GuiIcons.color_rgb);
+        buttonColor.render(GuiIcons.COLOR_RGB);
         buttonPrivacy.render(container.bag.privacyLevel.getIcon());
     }
 

@@ -15,7 +15,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class BlockNetherChest extends BlockLB
     }
 
     @Override
-    public TileEntity createTileEntity(@Nonnull World world, @Nonnull IBlockState state)
+    public TileEntity createTileEntity(World world, IBlockState state)
     {
         return new TileNetherChest();
     }
@@ -64,7 +63,7 @@ public class BlockNetherChest extends BlockLB
     }
 
     @Override
-    public void harvestBlock(@Nonnull World worldIn, EntityPlayer player, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack)
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack)
     {
         if(te instanceof TileNetherChest)
         {
@@ -83,9 +82,8 @@ public class BlockNetherChest extends BlockLB
         }
     }
 
-    @Nonnull
     @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune)
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         List<ItemStack> ret = new ArrayList<>();
         ItemStack itemstack = new ItemStack(this, 1, 0);

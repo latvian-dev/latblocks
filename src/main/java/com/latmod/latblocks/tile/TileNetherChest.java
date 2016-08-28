@@ -11,7 +11,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,21 +27,20 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
         items = new ArrayList<>();
     }
 
-    public static boolean isValidItem(@Nonnull ItemStack is)
+    public static boolean isValidItem(ItemStack is)
     {
         return is.stackSize == 1 && !is.isStackable();
     }
 
     @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nonnull EnumFacing side)
+    public boolean hasCapability(Capability<?> capability, EnumFacing side)
     {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, side);
 
     }
 
-    @Nonnull
     @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nonnull EnumFacing side)
+    public <T> T getCapability(Capability<T> capability, EnumFacing side)
     {
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
         {
@@ -53,7 +51,7 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     }
 
     @Override
-    public void writeTileData(@Nonnull NBTTagCompound nbt)
+    public void writeTileData(NBTTagCompound nbt)
     {
         super.writeTileData(nbt);
         NBTTagList list = new NBTTagList();
@@ -70,7 +68,7 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     }
 
     @Override
-    public void readTileData(@Nonnull NBTTagCompound nbt)
+    public void readTileData(NBTTagCompound nbt)
     {
         super.readTileData(nbt);
         items.clear();
@@ -94,7 +92,7 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     }
 
     @Override
-    public void writeTileClientData(@Nonnull NBTTagCompound nbt)
+    public void writeTileClientData(NBTTagCompound nbt)
     {
         super.writeTileClientData(nbt);
         NBTTagList list = new NBTTagList();
@@ -111,7 +109,7 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     }
 
     @Override
-    public void readTileClientData(@Nonnull NBTTagCompound nbt)
+    public void readTileClientData(NBTTagCompound nbt)
     {
         super.readTileClientData(nbt);
         items.clear();
@@ -215,7 +213,7 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     }
 
     @Override
-    public void onPlacedBy(@Nonnull EntityLivingBase el, @Nonnull ItemStack is, @Nonnull IBlockState state)
+    public void onPlacedBy(EntityLivingBase el, ItemStack is, IBlockState state)
     {
         super.onPlacedBy(el, is, state);
 

@@ -7,8 +7,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-
 /**
  * Created by LatvianModder on 16.05.2016.
  */
@@ -20,9 +18,8 @@ public class ItemEnderBag extends ItemLB
         setMaxStackSize(1);
     }
 
-    @Nonnull
     @Override
-    public ActionResult<ItemStack> onItemRightClick(@Nonnull ItemStack is, World w, EntityPlayer ep, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack is, World w, EntityPlayer ep, EnumHand hand)
     {
         if(!w.isRemote)
         {

@@ -13,8 +13,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-
 /**
  * Created by LatvianModder on 11.07.2016.
  */
@@ -31,20 +29,20 @@ public class GuiNetherChest extends GuiLM
         super(174, 188);
         container = c;
 
-        buttonPrevPage = new ButtonLM(151, 7, 16, 16, GuiLang.button_prev_page.translate())
+        buttonPrevPage = new ButtonLM(151, 7, 16, 16, GuiLang.BUTTON_PREV_PAGE.translate())
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
+            public void onClicked(GuiLM gui, IMouseButton button)
             {
                 playClickSound();
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 0));
             }
         };
 
-        buttonNextPage = new ButtonLM(151, 79, 16, 16, GuiLang.button_next_page.translate())
+        buttonNextPage = new ButtonLM(151, 79, 16, 16, GuiLang.BUTTON_NEXT_PAGE.translate())
         {
             @Override
-            public void onClicked(@Nonnull GuiLM gui, @Nonnull IMouseButton button)
+            public void onClicked(GuiLM gui, IMouseButton button)
             {
                 playClickSound();
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 1));

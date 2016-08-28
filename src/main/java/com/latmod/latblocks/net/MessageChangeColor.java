@@ -11,7 +11,16 @@ import net.minecraft.entity.player.EntityPlayerMP;
  */
 public class MessageChangeColor extends MessageToServer<MessageChangeColor>
 {
-    public int color;
+    private int color;
+
+    public MessageChangeColor()
+    {
+    }
+
+    public MessageChangeColor(int c)
+    {
+        color = c;
+    }
 
     @Override
     public LMNetworkWrapper getWrapper()
