@@ -99,7 +99,7 @@ public class ItemBag extends ItemLB
                 bag.owner = ep.getGameProfile().getId();
             }
 
-            if(FTBLibAPI.get().getWorld().getPlayer(ep).canInteract(FTBLibAPI.get().getWorld().getPlayer(bag.owner), bag.privacyLevel))
+            if(FTBLibAPI.get().getUniverse().getPlayer(ep).canInteract(FTBLibAPI.get().getUniverse().getPlayer(bag.owner), bag.privacyLevel))
             {
                 FTBLibAPI.get().openGui(hand == EnumHand.MAIN_HAND ? LBGuis.BAG_MAIN_HAND : LBGuis.BAG_OFF_HAND, ep, null);
             }
