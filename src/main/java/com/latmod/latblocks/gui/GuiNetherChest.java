@@ -2,8 +2,10 @@ package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.client.FTBLibClient;
 import com.feed_the_beast.ftbl.api.gui.GuiContainerWrapper;
+import com.feed_the_beast.ftbl.api.gui.GuiHelper;
 import com.feed_the_beast.ftbl.api.gui.GuiLM;
 import com.feed_the_beast.ftbl.api.gui.GuiLang;
+import com.feed_the_beast.ftbl.api.gui.IGui;
 import com.feed_the_beast.ftbl.api.gui.IMouseButton;
 import com.feed_the_beast.ftbl.api.gui.widgets.ButtonLM;
 import com.latmod.latblocks.LatBlocks;
@@ -32,9 +34,9 @@ public class GuiNetherChest extends GuiLM
         buttonPrevPage = new ButtonLM(151, 7, 16, 16, GuiLang.BUTTON_PREV_PAGE.translate())
         {
             @Override
-            public void onClicked(GuiLM gui, IMouseButton button)
+            public void onClicked(IGui gui, IMouseButton button)
             {
-                playClickSound();
+                GuiHelper.playClickSound();
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 0));
             }
         };
@@ -42,9 +44,9 @@ public class GuiNetherChest extends GuiLM
         buttonNextPage = new ButtonLM(151, 79, 16, 16, GuiLang.BUTTON_NEXT_PAGE.translate())
         {
             @Override
-            public void onClicked(GuiLM gui, IMouseButton button)
+            public void onClicked(IGui gui, IMouseButton button)
             {
-                playClickSound();
+                GuiHelper.playClickSound();
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 1));
             }
         };
@@ -63,13 +65,13 @@ public class GuiNetherChest extends GuiLM
         FTBLibClient.setTexture(TEXTURE);
         int ax = getAX();
         int ay = getAY();
-        GuiScreen.drawModalRectWithCustomSizedTexture(ax, ay, 0F, 0F, width, height, 256F, 256F);
-        drawCenteredString(font, Integer.toString(container.tile.currentPage + 1), ax + 159, ay + 37, 0xFFFFFFFF);
-        drawCenteredString(font, Integer.toString(container.getMaxPages()), ax + 159, ay + 66, 0xFFFFFFFF);
+        GuiScreen.drawModalRectWithCustomSizedTexture(ax, ay, 0F, 0F, getWidth(), getHeight(), 256F, 256F);
+        GuiHelper.drawCenteredString(getFont(), Integer.toString(container.tile.currentPage + 1), ax + 159, ay + 37, 0xFFFFFFFF);
+        GuiHelper.drawCenteredString(getFont(), Integer.toString(container.getMaxPages()), ax + 159, ay + 66, 0xFFFFFFFF);
 
-        if(dmouseWheel != 0 && isMouseOver(this))
+        if(getMouseWheel() != 0 && isMouseOver(this))
         {
-            if(dmouseWheel > 0)
+            if(getMouseWheel() > 0)
             {
                 mc.thePlayer.connection.sendPacket(new CPacketEnchantItem(container.windowId, 0));
             }

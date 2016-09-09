@@ -1,8 +1,8 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.gui.ContainerLM;
-import com.feed_the_beast.ftbl.api.item.LMInvUtils;
 import com.latmod.latblocks.tile.TileNetherChest;
+import com.latmod.lib.util.LMInvUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;

@@ -1,13 +1,13 @@
 package com.latmod.latblocks;
 
 import com.feed_the_beast.ftbl.api.FTBLibAPI;
-import com.feed_the_beast.ftbl.util.CreativeTabLM;
-import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.latblocks.block.LBBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.gui.LBGuis;
 import com.latmod.latblocks.item.LBItems;
 import com.latmod.latblocks.net.LBNetHandler;
+import com.latmod.lib.CreativeTabLM;
+import com.latmod.lib.util.LMUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,7 +35,7 @@ public class LatBlocks
 
     public static <K extends IForgeRegistryEntry<?>> K register(String id, K obj)
     {
-        return FTBLib.register(new ResourceLocation(MOD_ID, id), obj);
+        return LMUtils.register(new ResourceLocation(MOD_ID, id), obj);
     }
 
     @Mod.EventHandler

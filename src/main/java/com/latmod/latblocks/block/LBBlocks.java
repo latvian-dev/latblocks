@@ -3,10 +3,10 @@ package com.latmod.latblocks.block;
 import com.feed_the_beast.ftbl.api.item.ODItems;
 import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
 import com.feed_the_beast.ftbl.api.recipes.IRecipes;
-import com.feed_the_beast.ftbl.util.FTBLib;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.latblocks.tile.TileNetherChest;
+import com.latmod.lib.util.LMUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,8 +23,8 @@ public class LBBlocks
 
     public static void init()
     {
-        FTBLib.addTile(TileNetherChest.class, NETHER_CHEST.getRegistryName());
-        FTBLib.addTile(TileCraftingPanel.class, CRAFTING_PANEL.getRegistryName());
+        LMUtils.addTile(TileNetherChest.class, NETHER_CHEST.getRegistryName());
+        LMUtils.addTile(TileCraftingPanel.class, CRAFTING_PANEL.getRegistryName());
     }
 
     @SideOnly(Side.CLIENT)

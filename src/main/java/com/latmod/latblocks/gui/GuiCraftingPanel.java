@@ -35,8 +35,8 @@ public class GuiCraftingPanel extends GuiLM
     {
         int ax = getAX();
         int ay = getAY();
-        font.drawString(I18n.format("container.crafting"), ax + 28, ay + 6, 4210752);
-        font.drawString(I18n.format("container.inventory"), ax + 8, ay + height - 94, 4210752);
+        getFont().drawString(I18n.format("container.crafting"), ax + 28, ay + 6, 4210752);
+        getFont().drawString(I18n.format("container.inventory"), ax + 8, ay + getHeight() - 94, 4210752);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class GuiCraftingPanel extends GuiLM
     {
         GlStateManager.color(1F, 1F, 1F, 1F);
         mc.getTextureManager().bindTexture(TEXTURE);
-        GuiScreen.drawModalRectWithCustomSizedTexture(getAX(), getAY(), 0F, 0F, width, height, 256F, 256F);
+        GuiScreen.drawModalRectWithCustomSizedTexture(getAX(), getAY(), 0F, 0F, getWidth(), getHeight(), 256F, 256F);
     }
 
     @Override

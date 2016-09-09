@@ -1,6 +1,7 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.FTBLibAPI;
+import com.feed_the_beast.ftbl.api.gui.GuiHelper;
 import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
@@ -14,9 +15,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -46,7 +44,6 @@ public class LBGuis
 
             @Override
             @Nullable
-            @SideOnly(Side.CLIENT)
             public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
                 ItemStack is = player.getHeldItem(EnumHand.MAIN_HAND);
@@ -66,7 +63,6 @@ public class LBGuis
 
             @Override
             @Nullable
-            @SideOnly(Side.CLIENT)
             public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
                 ItemStack is = player.getHeldItem(EnumHand.OFF_HAND);
@@ -80,16 +76,15 @@ public class LBGuis
             @Nullable
             public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                TileEntity te = GuiHelper.getTile(player, data);
                 return (te instanceof TileNetherChest) ? new ContainerNetherChest(player, (TileNetherChest) te) : null;
             }
 
             @Override
             @Nullable
-            @SideOnly(Side.CLIENT)
             public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                TileEntity te = GuiHelper.getTile(player, data);
                 return (te instanceof TileNetherChest) ? new GuiNetherChest(new ContainerNetherChest(player, (TileNetherChest) te)).getWrapper() : null;
             }
         });
@@ -100,16 +95,15 @@ public class LBGuis
             @Nullable
             public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                TileEntity te = GuiHelper.getTile(player, data);
                 return (te instanceof TileCraftingPanel) ? new ContainerCraftingPanel(player, (TileCraftingPanel) te) : null;
             }
 
             @Override
             @Nullable
-            @SideOnly(Side.CLIENT)
             public GuiScreen getGui(EntityPlayer player, @Nullable NBTTagCompound data)
             {
-                TileEntity te = player.worldObj.getTileEntity(new BlockPos(data.getInteger("X"), data.getInteger("Y"), data.getInteger("Z")));
+                TileEntity te = GuiHelper.getTile(player, data);
                 return (te instanceof TileCraftingPanel) ? new GuiCraftingPanel(new ContainerCraftingPanel(player, (TileCraftingPanel) te)).getWrapper() : null;
             }
         });

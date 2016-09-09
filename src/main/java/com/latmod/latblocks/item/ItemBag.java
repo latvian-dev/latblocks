@@ -6,6 +6,7 @@ import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.gui.LBGuis;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -101,7 +102,7 @@ public class ItemBag extends ItemLB
 
             if(FTBLibAPI.get().getUniverse().getPlayer(ep).canInteract(FTBLibAPI.get().getUniverse().getPlayer(bag.owner), bag.privacyLevel))
             {
-                FTBLibAPI.get().openGui(hand == EnumHand.MAIN_HAND ? LBGuis.BAG_MAIN_HAND : LBGuis.BAG_OFF_HAND, ep, null);
+                FTBLibAPI.get().openGui(hand == EnumHand.MAIN_HAND ? LBGuis.BAG_MAIN_HAND : LBGuis.BAG_OFF_HAND, (EntityPlayerMP) ep, null);
             }
         }
 

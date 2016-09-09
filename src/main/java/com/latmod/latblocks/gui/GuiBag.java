@@ -2,9 +2,11 @@ package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.client.FTBLibClient;
 import com.feed_the_beast.ftbl.api.gui.GuiContainerWrapper;
+import com.feed_the_beast.ftbl.api.gui.GuiHelper;
 import com.feed_the_beast.ftbl.api.gui.GuiIcons;
 import com.feed_the_beast.ftbl.api.gui.GuiLM;
 import com.feed_the_beast.ftbl.api.gui.GuiLang;
+import com.feed_the_beast.ftbl.api.gui.IGui;
 import com.feed_the_beast.ftbl.api.gui.IMouseButton;
 import com.feed_the_beast.ftbl.api.gui.widgets.ButtonLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
@@ -42,14 +44,14 @@ public class GuiBag extends GuiLM
         }
 
         @Override
-        public void onClicked(GuiLM gui, IMouseButton b)
+        public void onClicked(IGui gui, IMouseButton b)
         {
-            playClickSound();
+            GuiHelper.playClickSound();
             mc.playerController.sendEnchantPacket(container.windowId, tabIndex);
         }
 
         @Override
-        public void renderWidget(GuiLM gui)
+        public void renderWidget(IGui gui)
         {
             render(tabIndex == container.bag.currentTab ? TAB_ON : TAB_OFF);
         }
@@ -74,9 +76,9 @@ public class GuiBag extends GuiLM
         buttonColor = new ButtonLM(133, 7, 16, 16, GuiLang.LABEL_COLOR.translate())
         {
             @Override
-            public void onClicked(GuiLM gui, IMouseButton b)
+            public void onClicked(IGui gui, IMouseButton b)
             {
-                GuiLM.playClickSound();
+                GuiHelper.playClickSound();
 
                 LMColor.RGB col = new LMColor.RGB();
                 col.setRGBA(container.bag.getColor());
@@ -93,14 +95,14 @@ public class GuiBag extends GuiLM
         buttonPrivacy = new ButtonLM(151, 7, 16, 16, EnumPrivacyLevel.enumLangKey.translate())
         {
             @Override
-            public void onClicked(GuiLM gui, IMouseButton button)
+            public void onClicked(IGui gui, IMouseButton button)
             {
-                GuiLM.playClickSound();
+                GuiHelper.playClickSound();
                 mc.playerController.sendEnchantPacket(container.windowId, button.isLeft() ? 10 : 11);
             }
 
             @Override
-            public void addMouseOverText(GuiLM gui, List<String> l)
+            public void addMouseOverText(IGui gui, List<String> l)
             {
                 l.add(getTitle(gui));
                 l.add(container.bag.privacyLevel.getLangKey().translate());
@@ -120,7 +122,7 @@ public class GuiBag extends GuiLM
     public void drawBackground()
     {
         FTBLibClient.setTexture(TEXTURE);
-        GuiScreen.drawModalRectWithCustomSizedTexture(getAX(), getAY(), 0F, 0F, width, height, 256F, 256F);
+        GuiScreen.drawModalRectWithCustomSizedTexture(getAX(), getAY(), 0F, 0F, getWidth(), getHeight(), 256F, 256F);
 
         buttonColor.render(GuiIcons.COLOR_RGB);
         buttonPrivacy.render(container.bag.privacyLevel.getIcon());
