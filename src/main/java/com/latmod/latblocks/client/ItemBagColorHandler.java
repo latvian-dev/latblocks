@@ -1,5 +1,6 @@
 package com.latmod.latblocks.client;
 
+import com.feed_the_beast.ftbl.client.FTBLibColors;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
@@ -17,7 +18,7 @@ public class ItemBagColorHandler implements IItemColor
     {
         if(stack.hasCapability(LBCapabilities.BAG, null))
         {
-            return stack.getCapability(LBCapabilities.BAG, null).getColor();
+            return 0xFF | FTBLibColors.get(stack.getCapability(LBCapabilities.BAG, null).getColorID());
         }
 
         return 0xFFFFFFFF;

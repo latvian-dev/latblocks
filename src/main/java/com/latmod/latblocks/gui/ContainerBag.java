@@ -105,11 +105,12 @@ public class ContainerBag extends ContainerLM
     {
         if(!ep.worldObj.isRemote)
         {
-            if(id == 10 || id == 11)
+            id = id & 0xFF;
+            if(id == 210 || id == 211)
             {
                 int level;
 
-                if(id == 10)
+                if(id == 210)
                 {
                     level = (bag.privacyLevel.ordinal() + 1) % EnumPrivacyLevel.VALUES.length;
                 }
@@ -124,9 +125,13 @@ public class ContainerBag extends ContainerLM
 
                 bag.privacyLevel = EnumPrivacyLevel.VALUES[level];
             }
-            else if(id >= 0 && id < bag.inv.size())
+            else if(id >= 200 && id < 200 + bag.inv.size())
             {
-                bag.currentTab = id;
+                bag.currentTab = id - 200;
+            }
+            else
+            {
+                bag.setColorID((byte) id);
             }
 
             return true;

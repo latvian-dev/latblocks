@@ -12,8 +12,6 @@ import com.feed_the_beast.ftbl.api.gui.widgets.ButtonLM;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.gui.GuiSelectColor;
 import com.latmod.latblocks.LatBlocks;
-import com.latmod.latblocks.net.MessageChangeColor;
-import com.latmod.lib.LMColor;
 import com.latmod.lib.TextureCoords;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
@@ -47,7 +45,7 @@ public class GuiBag extends GuiLM
         public void onClicked(IGui gui, IMouseButton b)
         {
             GuiHelper.playClickSound();
-            mc.playerController.sendEnchantPacket(container.windowId, tabIndex);
+            mc.playerController.sendEnchantPacket(container.windowId, 200 + tabIndex);
         }
 
         @Override
@@ -80,15 +78,11 @@ public class GuiBag extends GuiLM
             {
                 GuiHelper.playClickSound();
 
-                LMColor.RGB col = new LMColor.RGB();
-                col.setRGBA(container.bag.getColor());
-
-                GuiSelectColor.display(null, col, (id, obj) ->
+                new GuiSelectColor(null, container.bag.getColorID(), (id, obj) ->
                 {
-                    new MessageChangeColor(obj.hashCode()).sendToServer();
-                    //container.bag.setColor(m.color);
-                    mc.displayGuiScreen(GuiBag.this.getWrapper());
-                });
+                    mc.playerController.sendEnchantPacket(container.windowId, obj.hashCode());
+                    GuiBag.this.openGui();
+                }).openGui();
             }
         };
 
@@ -98,7 +92,7 @@ public class GuiBag extends GuiLM
             public void onClicked(IGui gui, IMouseButton button)
             {
                 GuiHelper.playClickSound();
-                mc.playerController.sendEnchantPacket(container.windowId, button.isLeft() ? 10 : 11);
+                mc.playerController.sendEnchantPacket(container.windowId, button.isLeft() ? 210 : 211);
             }
 
             @Override
