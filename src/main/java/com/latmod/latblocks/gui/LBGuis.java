@@ -17,12 +17,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Created by LatvianModder on 11.07.2016.
  */
-@ParametersAreNonnullByDefault
 public class LBGuis
 {
     public static final ResourceLocation BAG_MAIN_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_main");
