@@ -1,6 +1,6 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.FTBLibAPI;
+import com.feed_the_beast.ftbl.api.IFTBLibRegistries;
 import com.feed_the_beast.ftbl.api.gui.GuiHelper;
 import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
 import com.latmod.latblocks.LatBlocks;
@@ -28,9 +28,9 @@ public class LBGuis
     public static final ResourceLocation NETHER_CHEST = new ResourceLocation(LatBlocks.MOD_ID, "nether_chest");
     public static final ResourceLocation CRAFTING_PANEL = new ResourceLocation(LatBlocks.MOD_ID, "crafting_panel");
 
-    public static void init()
+    public static void init(IFTBLibRegistries reg)
     {
-        FTBLibAPI.get().getRegistries().guis().register(BAG_MAIN_HAND, new IGuiHandler()
+        reg.guis().register(BAG_MAIN_HAND, new IGuiHandler()
         {
             @Override
             @Nullable
@@ -49,7 +49,7 @@ public class LBGuis
             }
         });
 
-        FTBLibAPI.get().getRegistries().guis().register(BAG_OFF_HAND, new IGuiHandler()
+        reg.guis().register(BAG_OFF_HAND, new IGuiHandler()
         {
             @Override
             @Nullable
@@ -68,7 +68,7 @@ public class LBGuis
             }
         });
 
-        FTBLibAPI.get().getRegistries().guis().register(NETHER_CHEST, new IGuiHandler()
+        reg.guis().register(NETHER_CHEST, new IGuiHandler()
         {
             @Override
             @Nullable
@@ -87,7 +87,7 @@ public class LBGuis
             }
         });
 
-        FTBLibAPI.get().getRegistries().guis().register(CRAFTING_PANEL, new IGuiHandler()
+        reg.guis().register(CRAFTING_PANEL, new IGuiHandler()
         {
             @Override
             @Nullable

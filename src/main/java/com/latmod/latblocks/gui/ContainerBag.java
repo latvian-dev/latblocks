@@ -92,7 +92,7 @@ public class ContainerBag extends ContainerLM
         switch(id)
         {
             case 0:
-                bag.currentTab = data;
+                bag.currentTab = (byte) data;
                 break;
             case 1:
                 bag.privacyLevel = EnumPrivacyLevel.VALUES[data];
@@ -127,11 +127,7 @@ public class ContainerBag extends ContainerLM
             }
             else if(id >= 200 && id < 200 + bag.inv.size())
             {
-                bag.currentTab = id - 200;
-            }
-            else
-            {
-                bag.setColorID((byte) id);
+                bag.currentTab = (byte) (id - 200);
             }
 
             return true;

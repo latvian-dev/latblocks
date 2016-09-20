@@ -1,7 +1,7 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.FTBLibAPI;
 import com.feed_the_beast.ftbl.api.gui.GuiHelper;
+import com.latmod.latblocks.FTBLibIntegration;
 import com.latmod.latblocks.gui.LBGuis;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.lib.math.MathHelperLM;
@@ -127,7 +127,7 @@ public class BlockCraftingPanel extends BlockLB
             if(te instanceof TileCraftingPanel)
             {
                 te.markDirty();
-                FTBLibAPI.get().openGui(LBGuis.CRAFTING_PANEL, (EntityPlayerMP) playerIn, GuiHelper.getPosData(te));
+                FTBLibIntegration.API.openGui(LBGuis.CRAFTING_PANEL, (EntityPlayerMP) playerIn, GuiHelper.getPosData(te));
             }
         }
 

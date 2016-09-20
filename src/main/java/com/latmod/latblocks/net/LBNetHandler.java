@@ -12,5 +12,6 @@ public class LBNetHandler
 
     public static void init()
     {
+        NET.register(1, new MessageChangeBagColor());
     }
 }

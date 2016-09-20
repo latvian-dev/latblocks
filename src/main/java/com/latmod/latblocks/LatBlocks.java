@@ -1,9 +1,7 @@
 package com.latmod.latblocks;
 
-import com.feed_the_beast.ftbl.api.FTBLibAPI;
 import com.latmod.latblocks.block.LBBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
-import com.latmod.latblocks.gui.LBGuis;
 import com.latmod.latblocks.item.LBItems;
 import com.latmod.latblocks.net.LBNetHandler;
 import com.latmod.lib.CreativeTabLM;
@@ -46,13 +44,9 @@ public class LatBlocks
         LBBlocks.init();
         LBItems.init();
         LBNetHandler.init();
-        LBGuis.init();
         proxy.preInit();
         MinecraftForge.EVENT_BUS.register(new LBEventHandler());
         tab.addIcon(new ItemStack(LBBlocks.NETHER_CHEST));
-
-        FTBLibAPI.get().getRegistries().recipeHandlers().register(new ResourceLocation(MOD_ID, "blocks"), new LBBlocks.Recipes());
-        FTBLibAPI.get().getRegistries().recipeHandlers().register(new ResourceLocation(MOD_ID, "items"), new LBItems.Recipes());
     }
 
     @Mod.EventHandler

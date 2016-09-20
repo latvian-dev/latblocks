@@ -46,7 +46,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
     public final List<BagItemStackHandler> inv;
     public UUID owner;
     public EnumPrivacyLevel privacyLevel;
-    public int currentTab;
+    public byte currentTab;
     private byte color;
 
     public Bag()
@@ -54,7 +54,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
         inv = new ArrayList<>();
         inv.add(new BagItemStackHandler());
         privacyLevel = EnumPrivacyLevel.TEAM;
-        color = 0xFFFFFFFF;
+        color = 0;
         currentTab = 0;
     }
 
@@ -88,7 +88,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
     {
         NBTTagCompound tag = new NBTTagCompound();
 
-        tag.setByte("Tab", (byte) currentTab);
+        tag.setByte("Tab", currentTab);
         tag.setByte("Color", getColorID());
         tag.setByte("Privacy", (byte) privacyLevel.ordinal());
 
@@ -111,7 +111,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
     @Override
     public void deserializeNBT(NBTTagCompound nbt)
     {
-        currentTab = nbt.getByte("Tab") & 0xFF;
+        currentTab = nbt.getByte("Tab");
         setColorID(nbt.getByte("Color"));
         owner = nbt.hasKey("Owner") ? LMStringUtils.fromString(nbt.getString("Owner")) : null;
         privacyLevel = EnumPrivacyLevel.VALUES[nbt.getByte("Privacy")];

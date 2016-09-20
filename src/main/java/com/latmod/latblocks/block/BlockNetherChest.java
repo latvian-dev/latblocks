@@ -1,7 +1,7 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.FTBLibAPI;
 import com.feed_the_beast.ftbl.api.gui.GuiHelper;
+import com.latmod.latblocks.FTBLibIntegration;
 import com.latmod.latblocks.gui.LBGuis;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.block.material.Material;
@@ -53,7 +53,7 @@ public class BlockNetherChest extends BlockLB
             if(te instanceof TileNetherChest)
             {
                 te.markDirty();
-                FTBLibAPI.get().openGui(LBGuis.NETHER_CHEST, (EntityPlayerMP) playerIn, GuiHelper.getPosData(te));
+                FTBLibIntegration.API.openGui(LBGuis.NETHER_CHEST, (EntityPlayerMP) playerIn, GuiHelper.getPosData(te));
             }
         }
 
