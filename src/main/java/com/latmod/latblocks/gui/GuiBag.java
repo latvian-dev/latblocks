@@ -13,7 +13,7 @@ import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.gui.GuiSelectColor;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.net.MessageChangeBagColor;
-import com.latmod.lib.TextureCoords;
+import com.latmod.lib.client.TextureCoords;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
