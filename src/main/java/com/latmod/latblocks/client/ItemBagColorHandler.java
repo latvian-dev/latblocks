@@ -18,7 +18,7 @@ public class ItemBagColorHandler implements IItemColor
     {
         if(stack.hasCapability(LBCapabilities.BAG, null))
         {
-            byte colID = stack.getCapability(LBCapabilities.BAG, null).getColorID();
+            byte colID = stack.getCapability(LBCapabilities.BAG, null).colorID;
 
             if(colID != 0)
             {

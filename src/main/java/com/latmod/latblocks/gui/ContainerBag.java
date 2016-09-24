@@ -85,12 +85,13 @@ public class ContainerBag extends ContainerLM
     public Bag bag;
     private int lastTab = -1;
     private int lastPrivacyLevel = -1;
+    private byte lastColor = 0;
 
     public ContainerBag(EntityPlayer ep, EnumHand h)
     {
         super(ep);
         hand = h;
-        bag = ep.getHeldItem(hand).getCapability(LBCapabilities.BAG, null);
+        refreshBag();
 
         for(int y = 0; y < 5; y++)
         {
@@ -115,10 +116,15 @@ public class ContainerBag extends ContainerLM
     {
         if(slotID == 0)
         {
-            bag = player.getHeldItem(hand).getCapability(LBCapabilities.BAG, null);
+            refreshBag();
         }
 
         super.putStackInSlot(slotID, stack);
+    }
+
+    public void refreshBag()
+    {
+        bag = player.getHeldItem(hand).getCapability(LBCapabilities.BAG, null);
     }
 
     @Override
@@ -128,6 +134,7 @@ public class ContainerBag extends ContainerLM
 
         int newTab = bag.currentTab;
         int newPrivacyLevel = bag.privacyLevel.ordinal();
+        byte newColor = bag.colorID;
 
         for(IContainerListener l : listeners)
         {
@@ -140,16 +147,24 @@ public class ContainerBag extends ContainerLM
             {
                 l.sendProgressBarUpdate(this, 1, newPrivacyLevel);
             }
+
+            if(lastColor != newColor)
+            {
+                l.sendProgressBarUpdate(this, 2, newColor);
+            }
         }
 
         lastTab = newTab;
         lastPrivacyLevel = newPrivacyLevel;
+        lastColor = newColor;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void updateProgressBar(int id, int data)
     {
+        refreshBag();
+
         switch(id)
         {
             case 0:
@@ -157,6 +172,9 @@ public class ContainerBag extends ContainerLM
                 break;
             case 1:
                 bag.privacyLevel = EnumPrivacyLevel.VALUES[data];
+                break;
+            case 2:
+                bag.colorID = (byte) data;
                 break;
         }
     }

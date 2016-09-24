@@ -79,11 +79,11 @@ public class GuiBag extends GuiLM
             {
                 GuiHelper.playClickSound();
 
-                new GuiSelectColor(null, (id, obj) ->
+                GuiSelectColor.display(null, container.bag.colorID, (id, value) ->
                 {
-                    new MessageChangeBagColor((byte) obj.hashCode()).sendToServer();
+                    new MessageChangeBagColor(value).sendToServer();
                     GuiBag.this.openGui();
-                }).openGui();
+                });
             }
         };
 

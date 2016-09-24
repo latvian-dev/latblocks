@@ -26,17 +26,12 @@ public class Bag implements INBTSerializable<NBTTagCompound>
             super(45);
         }
 
-        public static boolean isItemValid(ItemStack stack)
-        {
-            return stack == null || !stack.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        }
-
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
         {
-            if(!isItemValid(stack))
+            if(stack != null && stack.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null))
             {
-                return null;
+                return stack;
             }
 
             return super.insertItem(slot, stack, simulate);
@@ -47,25 +42,15 @@ public class Bag implements INBTSerializable<NBTTagCompound>
     public UUID owner;
     public EnumPrivacyLevel privacyLevel;
     public byte currentTab;
-    private byte color;
+    public byte colorID;
 
     public Bag()
     {
         inv = new ArrayList<>();
         inv.add(new BagItemStackHandler());
         privacyLevel = EnumPrivacyLevel.TEAM;
-        color = 0;
+        colorID = 0;
         currentTab = 0;
-    }
-
-    public byte getColorID()
-    {
-        return color;
-    }
-
-    public void setColorID(byte id)
-    {
-        color = id;
     }
 
     public boolean upgrade(boolean simulate)
@@ -89,7 +74,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
         NBTTagCompound tag = new NBTTagCompound();
 
         tag.setByte("Tab", currentTab);
-        tag.setByte("Color", getColorID());
+        tag.setByte("Color", colorID);
         tag.setByte("Privacy", (byte) privacyLevel.ordinal());
 
         if(owner != null)
@@ -112,7 +97,7 @@ public class Bag implements INBTSerializable<NBTTagCompound>
     public void deserializeNBT(NBTTagCompound nbt)
     {
         currentTab = nbt.getByte("Tab");
-        setColorID(nbt.getByte("Color"));
+        colorID = nbt.getByte("Color");
         owner = nbt.hasKey("Owner") ? LMStringUtils.fromString(nbt.getString("Owner")) : null;
         privacyLevel = EnumPrivacyLevel.VALUES[nbt.getByte("Privacy")];
         inv.clear();

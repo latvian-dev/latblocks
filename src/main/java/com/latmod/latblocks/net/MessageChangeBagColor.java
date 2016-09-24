@@ -45,7 +45,7 @@ public class MessageChangeBagColor extends MessageToServer<MessageChangeBagColor
     {
         if(player.openContainer instanceof ContainerBag)
         {
-            ((ContainerBag) player.openContainer).bag.setColorID(m.colorID);
+            ((ContainerBag) player.openContainer).bag.colorID = m.colorID;
             player.openContainer.detectAndSendChanges();
         }
     }
