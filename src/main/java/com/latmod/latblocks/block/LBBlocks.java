@@ -10,6 +10,7 @@ import com.latmod.lib.util.LMUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -18,11 +19,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class LBBlocks
 {
-    public static final BlockNetherChest NETHER_CHEST = LatBlocks.register("nether_chest", new BlockNetherChest());
-    public static final BlockCraftingPanel CRAFTING_PANEL = LatBlocks.register("crafting_panel", new BlockCraftingPanel());
+    public static final BlockNetherChest NETHER_CHEST = new BlockNetherChest();
+    public static final BlockCraftingPanel CRAFTING_PANEL = new BlockCraftingPanel();
 
     public static void init()
     {
+        LatBlocks.register("nether_chest", NETHER_CHEST);
+        LatBlocks.register("crafting_panel", CRAFTING_PANEL);
+
         LMUtils.addTile(TileNetherChest.class, NETHER_CHEST.getRegistryName());
         LMUtils.addTile(TileCraftingPanel.class, CRAFTING_PANEL.getRegistryName());
     }
@@ -34,8 +38,14 @@ public class LBBlocks
         CRAFTING_PANEL.registerDefaultModel();
     }
 
-    public static class Recipes implements IRecipeHandler
+    public static final IRecipeHandler RECIPES = new IRecipeHandler()
     {
+        @Override
+        public ResourceLocation getID()
+        {
+            return new ResourceLocation(LatBlocks.MOD_ID, "blocks");
+        }
+
         @Override
         public boolean isActive()
         {
@@ -55,5 +65,5 @@ public class LBBlocks
                     "C", "C",
                     'C', Blocks.CRAFTING_TABLE);
         }
-    }
+    };
 }

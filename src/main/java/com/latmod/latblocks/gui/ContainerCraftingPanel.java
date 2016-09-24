@@ -1,9 +1,14 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.gui.ContainerLM;
+import com.feed_the_beast.ftbl.api.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.gui.GuiHelper;
+import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
+import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.lib.util.LMInvUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
@@ -11,6 +16,9 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -21,6 +29,34 @@ import javax.annotation.Nullable;
  */
 public class ContainerCraftingPanel extends ContainerLM
 {
+    public static final ResourceLocation ID = new ResourceLocation(LatBlocks.MOD_ID, "crafting_panel");
+
+    @GuiHandler
+    public static final IGuiHandler HANDLER = new IGuiHandler()
+    {
+        @Override
+        public ResourceLocation getID()
+        {
+            return ID;
+        }
+
+        @Override
+        @Nullable
+        public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
+        {
+            TileEntity te = GuiHelper.getTile(player, data);
+            return (te instanceof TileCraftingPanel) ? new ContainerCraftingPanel(player, (TileCraftingPanel) te) : null;
+        }
+
+        @Override
+        @Nullable
+        public Object getGui(EntityPlayer player, @Nullable NBTTagCompound data)
+        {
+            TileEntity te = GuiHelper.getTile(player, data);
+            return (te instanceof TileCraftingPanel) ? new GuiCraftingPanel(new ContainerCraftingPanel(player, (TileCraftingPanel) te)) : null;
+        }
+    };
+
     private class InventoryCraftingCP extends InventoryCrafting
     {
         private InventoryCraftingCP()

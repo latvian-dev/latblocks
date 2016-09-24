@@ -1,13 +1,19 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.gui.ContainerLM;
+import com.feed_the_beast.ftbl.api.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
+import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
@@ -20,6 +26,61 @@ import javax.annotation.Nullable;
  */
 public class ContainerBag extends ContainerLM
 {
+    public static final ResourceLocation BAG_MAIN_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_main");
+    public static final ResourceLocation BAG_OFF_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_off");
+
+    @GuiHandler
+    public static final IGuiHandler MAIN_HAND_HANDLER = new IGuiHandler()
+    {
+        @Override
+        public ResourceLocation getID()
+        {
+            return BAG_MAIN_HAND;
+        }
+
+        @Override
+        @Nullable
+        public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
+        {
+            ItemStack is = player.getHeldItem(EnumHand.MAIN_HAND);
+            return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(player, EnumHand.MAIN_HAND) : null;
+        }
+
+        @Override
+        @Nullable
+        public Object getGui(EntityPlayer player, @Nullable NBTTagCompound data)
+        {
+            ItemStack is = player.getHeldItem(EnumHand.MAIN_HAND);
+            return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(player, EnumHand.MAIN_HAND)) : null;
+        }
+    };
+
+    @GuiHandler
+    public static final IGuiHandler OFF_HAND_HANDLER = new IGuiHandler()
+    {
+        @Override
+        public ResourceLocation getID()
+        {
+            return BAG_OFF_HAND;
+        }
+
+        @Override
+        @Nullable
+        public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
+        {
+            ItemStack is = player.getHeldItem(EnumHand.OFF_HAND);
+            return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new ContainerBag(player, EnumHand.OFF_HAND) : null;
+        }
+
+        @Override
+        @Nullable
+        public Object getGui(EntityPlayer player, @Nullable NBTTagCompound data)
+        {
+            ItemStack is = player.getHeldItem(EnumHand.OFF_HAND);
+            return (is != null && is.hasCapability(LBCapabilities.BAG, null)) ? new GuiBag(new ContainerBag(player, EnumHand.OFF_HAND)) : null;
+        }
+    };
+
     public final EnumHand hand;
     public Bag bag;
     private int lastTab = -1;

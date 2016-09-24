@@ -3,8 +3,10 @@ package com.latmod.latblocks.item;
 import com.feed_the_beast.ftbl.api.item.ODItems;
 import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
 import com.feed_the_beast.ftbl.api.recipes.IRecipes;
+import com.feed_the_beast.ftbl.api.recipes.RecipeHandler;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -13,11 +15,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class LBItems
 {
-    public static final ItemBag BAG = LatBlocks.register("bag", new ItemBag());
-    public static final ItemEnderBag ENDER_BAG = LatBlocks.register("ender_bag", new ItemEnderBag());
+    public static final ItemBag BAG = new ItemBag();
+    public static final ItemEnderBag ENDER_BAG = new ItemEnderBag();
 
     public static void init()
     {
+        LatBlocks.register("bag", BAG);
+        LatBlocks.register("ender_bag", ENDER_BAG);
     }
 
     @SideOnly(Side.CLIENT)
@@ -27,8 +31,15 @@ public class LBItems
         ENDER_BAG.registerDefaultModel();
     }
 
-    public static class Recipes implements IRecipeHandler
+    @RecipeHandler
+    public static final IRecipeHandler RECIPES = new IRecipeHandler()
     {
+        @Override
+        public ResourceLocation getID()
+        {
+            return new ResourceLocation(LatBlocks.MOD_ID, "items");
+        }
+
         @Override
         public boolean isActive()
         {
@@ -52,5 +63,5 @@ public class LBItems
                     'S', ODItems.STRING,
                     'C', "chestEnder");
         }
-    }
+    };
 }
