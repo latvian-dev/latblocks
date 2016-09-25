@@ -2,6 +2,7 @@ package com.latmod.latblocks.block;
 
 import com.feed_the_beast.ftbl.api.item.ODItems;
 import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
+import com.feed_the_beast.ftbl.api.recipes.RecipeHandler;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.latblocks.tile.TileNetherChest;
@@ -36,6 +37,7 @@ public class LBBlocks
         CRAFTING_PANEL.registerDefaultModel();
     }
 
+    @RecipeHandler
     public static final IRecipeHandler RECIPES = recipes ->
     {
         recipes.addRecipe(new ItemStack(NETHER_CHEST),
