@@ -2,11 +2,9 @@ package com.latmod.latblocks.item;
 
 import com.feed_the_beast.ftbl.api.item.ODItems;
 import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
-import com.feed_the_beast.ftbl.api.recipes.IRecipes;
 import com.feed_the_beast.ftbl.api.recipes.RecipeHandler;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,36 +30,20 @@ public class LBItems
     }
 
     @RecipeHandler
-    public static final IRecipeHandler RECIPES = new IRecipeHandler()
+    public static final IRecipeHandler RECIPES = recipes ->
     {
-        @Override
-        public ResourceLocation getID()
-        {
-            return new ResourceLocation(LatBlocks.MOD_ID, "items");
-        }
+        recipes.addRecipe(new ItemStack(BAG, 1, 0),
+                "DSD", "WCW", "WQW",
+                'W', ODItems.WOOL,
+                'S', ODItems.STRING,
+                'C', ODItems.CHEST_WOOD,
+                'D', ODItems.DIAMOND,
+                'Q', ODItems.QUARTZ_BLOCK);
 
-        @Override
-        public boolean isActive()
-        {
-            return true;
-        }
-
-        @Override
-        public void loadRecipes(IRecipes recipes)
-        {
-            recipes.addRecipe(new ItemStack(BAG, 1, 0),
-                    "DSD", "WCW", "WQW",
-                    'W', ODItems.WOOL,
-                    'S', ODItems.STRING,
-                    'C', ODItems.CHEST_WOOD,
-                    'D', ODItems.DIAMOND,
-                    'Q', ODItems.QUARTZ_BLOCK);
-
-            recipes.addRecipe(new ItemStack(ENDER_BAG, 1, 0),
-                    "LSL", "LCL", "LLL",
-                    'L', ODItems.LEATHER,
-                    'S', ODItems.STRING,
-                    'C', "chestEnder");
-        }
+        recipes.addRecipe(new ItemStack(ENDER_BAG, 1, 0),
+                "LSL", "LCL", "LLL",
+                'L', ODItems.LEATHER,
+                'S', ODItems.STRING,
+                'C', "chestEnder");
     };
 }
