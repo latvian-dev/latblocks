@@ -20,7 +20,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nullable;
 
@@ -92,7 +91,7 @@ public class ContainerCraftingPanel extends ContainerLM
 
             if(itemstack != null)
             {
-                ContainerCraftingPanel.this.onCraftMatrixChanged(this);
+                onCraftMatrixChanged(this);
             }
 
             return itemstack;
@@ -102,7 +101,7 @@ public class ContainerCraftingPanel extends ContainerLM
         public void setInventorySlotContents(int index, @Nullable ItemStack stack)
         {
             tile.itemHandler.setStackInSlot(index, stack);
-            ContainerCraftingPanel.this.onCraftMatrixChanged(this);
+            onCraftMatrixChanged(this);
         }
 
         @Override
@@ -131,12 +130,11 @@ public class ContainerCraftingPanel extends ContainerLM
         {
             for(int x = 0; x < 3; x++)
             {
-                addSlotToContainer(new SlotItemHandler(tile.itemHandler, x + y * 3, 30 + x * 18, 17 + y * 18));
+                addSlotToContainer(new Slot(craftMatrix, x + y * 3, 30 + x * 18, 17 + y * 18));
             }
         }
 
         addPlayerSlots(8, 84, false);
-
         onCraftMatrixChanged(craftMatrix);
     }
 
