@@ -24,12 +24,12 @@ public class LatBlocks
     public static final String MOD_ID = "latblocks";
 
     @Mod.Instance(MOD_ID)
-    public static LatBlocks inst;
+    public static LatBlocks INST;
 
     @SidedProxy(serverSide = "com.latmod.latblocks.LatBlocksCommon", clientSide = "com.latmod.latblocks.client.LatBlocksClient")
     public static LatBlocksCommon proxy;
 
-    public static CreativeTabLM tab;
+    public CreativeTabLM tab;
 
     public static <K extends IForgeRegistryEntry<?>> void register(String id, K obj)
     {

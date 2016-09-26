@@ -46,8 +46,9 @@ public class LBBlocks
                 'Q', ODItems.QUARTZ_BLOCK,
                 'C', Items.END_CRYSTAL);
 
-        recipes.addRecipe(new ItemStack(CRAFTING_PANEL, 2),
-                "C", "C",
-                'C', Blocks.CRAFTING_TABLE);
+        recipes.addRecipe(new ItemStack(CRAFTING_PANEL, 4),
+                " T ", "TCT", " T ",
+                'T', Blocks.CRAFTING_TABLE,
+                'C', ODItems.CHEST_WOOD);
     };
 }

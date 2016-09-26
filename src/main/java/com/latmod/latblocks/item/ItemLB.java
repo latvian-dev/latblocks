@@ -9,8 +9,9 @@ import net.minecraft.creativetab.CreativeTabs;
  */
 public class ItemLB extends ItemLM
 {
+    @Override
     public CreativeTabs getCreativeTab()
     {
-        return LatBlocks.tab;
+        return LatBlocks.INST.tab;
     }
 }
