@@ -1,7 +1,7 @@
 package com.latmod.latblocks.client;
 
+import com.feed_the_beast.ftbl.lib.util.LMColorUtils;
 import com.latmod.latblocks.capabilities.LBCapabilities;
-import com.latmod.lib.util.LMColorUtils;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

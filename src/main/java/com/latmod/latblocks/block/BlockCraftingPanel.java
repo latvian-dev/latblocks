@@ -1,10 +1,10 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHelper;
+import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
+import com.feed_the_beast.ftbl.lib.math.MathHelperLM;
 import com.latmod.latblocks.FTBLibIntegration;
 import com.latmod.latblocks.gui.ContainerCraftingPanel;
 import com.latmod.latblocks.tile.TileCraftingPanel;
-import com.latmod.lib.math.MathHelperLM;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;

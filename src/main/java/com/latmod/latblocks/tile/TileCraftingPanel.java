@@ -1,6 +1,6 @@
 package com.latmod.latblocks.tile;
 
-import com.feed_the_beast.ftbl.api.tile.TileInvLM;
+import com.feed_the_beast.ftbl.lib.tile.TileInvLM;
 import net.minecraft.util.ITickable;
 
 /**

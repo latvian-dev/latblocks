@@ -1,6 +1,6 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHelper;
+import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
 import com.latmod.latblocks.FTBLibIntegration;
 import com.latmod.latblocks.gui.ContainerNetherChest;
 import com.latmod.latblocks.tile.TileNetherChest;

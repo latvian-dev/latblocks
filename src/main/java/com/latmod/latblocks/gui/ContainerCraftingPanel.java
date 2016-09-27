@@ -1,12 +1,12 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.gui.ContainerLM;
 import com.feed_the_beast.ftbl.api.gui.GuiHandler;
-import com.feed_the_beast.ftbl.api.gui.GuiHelper;
 import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
+import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
+import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
+import com.feed_the_beast.ftbl.lib.util.LMInvUtils;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileCraftingPanel;
-import com.latmod.lib.util.LMInvUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;

@@ -1,6 +1,6 @@
 package com.latmod.latblocks;
 
-import com.feed_the_beast.ftbl.api.item.ODItems;
+import com.feed_the_beast.ftbl.lib.item.ODItems;
 import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import net.minecraft.item.ItemStack;

@@ -1,11 +1,11 @@
 package com.latmod.latblocks;
 
+import com.feed_the_beast.ftbl.lib.CreativeTabLM;
+import com.feed_the_beast.ftbl.lib.util.LMUtils;
 import com.latmod.latblocks.block.LBBlocks;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import com.latmod.latblocks.item.LBItems;
 import com.latmod.latblocks.net.LBNetHandler;
-import com.latmod.lib.CreativeTabLM;
-import com.latmod.lib.util.LMUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;

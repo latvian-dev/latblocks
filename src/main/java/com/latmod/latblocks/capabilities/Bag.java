@@ -1,7 +1,7 @@
 package com.latmod.latblocks.capabilities;
 
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
-import com.latmod.lib.util.LMStringUtils;
+import com.feed_the_beast.ftbl.lib.util.LMStringUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;

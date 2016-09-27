@@ -1,13 +1,13 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.client.FTBLibClient;
-import com.feed_the_beast.ftbl.api.gui.GuiContainerWrapper;
-import com.feed_the_beast.ftbl.api.gui.GuiHelper;
-import com.feed_the_beast.ftbl.api.gui.GuiLM;
-import com.feed_the_beast.ftbl.api.gui.GuiLang;
 import com.feed_the_beast.ftbl.api.gui.IGui;
 import com.feed_the_beast.ftbl.api.gui.IMouseButton;
-import com.feed_the_beast.ftbl.api.gui.widgets.ButtonLM;
+import com.feed_the_beast.ftbl.lib.gui.ButtonLM;
+import com.feed_the_beast.ftbl.lib.gui.GuiContainerWrapper;
+import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
+import com.feed_the_beast.ftbl.lib.gui.GuiLM;
+import com.feed_the_beast.ftbl.lib.gui.GuiLang;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.network.play.client.CPacketEnchantItem;

@@ -1,9 +1,9 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.gui.ContainerLM;
 import com.feed_the_beast.ftbl.api.gui.GuiHandler;
 import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
+import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;

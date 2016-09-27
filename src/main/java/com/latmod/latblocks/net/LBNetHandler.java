@@ -1,6 +1,6 @@
 package com.latmod.latblocks.net;
 
-import com.feed_the_beast.ftbl.api.net.LMNetworkWrapper;
+import com.feed_the_beast.ftbl.lib.net.LMNetworkWrapper;
 import com.latmod.latblocks.LatBlocks;
 
 /**

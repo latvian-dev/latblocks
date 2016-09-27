@@ -1,6 +1,6 @@
 package com.latmod.latblocks.tile;
 
-import com.feed_the_beast.ftbl.api.tile.TileLM;
+import com.feed_the_beast.ftbl.lib.tile.TileLM;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;

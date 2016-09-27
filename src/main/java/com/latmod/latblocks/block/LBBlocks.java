@@ -1,12 +1,12 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.item.ODItems;
 import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
 import com.feed_the_beast.ftbl.api.recipes.RecipeHandler;
+import com.feed_the_beast.ftbl.lib.item.ODItems;
+import com.feed_the_beast.ftbl.lib.util.LMUtils;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import com.latmod.latblocks.tile.TileNetherChest;
-import com.latmod.lib.util.LMUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

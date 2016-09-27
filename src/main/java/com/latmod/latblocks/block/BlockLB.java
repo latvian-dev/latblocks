@@ -1,6 +1,6 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.api.block.BlockLM;
+import com.feed_the_beast.ftbl.lib.block.BlockLM;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
