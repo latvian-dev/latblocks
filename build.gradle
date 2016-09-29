@@ -14,7 +14,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.9.4-" + version_mod
+version = "1.10.2-" + version_mod
 group = "com.latmod.latblocks"
 archivesBaseName = "LatBlocks"
 
@@ -27,7 +27,6 @@ minecraft {
     version = "1.10.2-12.18.1.2092"
     runDir = "run"
     mappings = "snapshot_20160518"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     replace "@VERSION@", version_mod
     replaceIn "LatBlocks.java"
 }

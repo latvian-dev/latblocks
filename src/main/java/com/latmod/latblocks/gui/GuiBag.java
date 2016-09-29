@@ -4,7 +4,6 @@ import com.feed_the_beast.ftbl.api.client.FTBLibClient;
 import com.feed_the_beast.ftbl.api.gui.IGui;
 import com.feed_the_beast.ftbl.api.gui.IMouseButton;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
-import com.feed_the_beast.ftbl.gui.GuiSelectColor;
 import com.feed_the_beast.ftbl.lib.client.TextureCoords;
 import com.feed_the_beast.ftbl.lib.gui.ButtonLM;
 import com.feed_the_beast.ftbl.lib.gui.GuiContainerWrapper;
@@ -12,6 +11,7 @@ import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
 import com.feed_the_beast.ftbl.lib.gui.GuiIcons;
 import com.feed_the_beast.ftbl.lib.gui.GuiLM;
 import com.feed_the_beast.ftbl.lib.gui.GuiLang;
+import com.latmod.latblocks.FTBLibIntegration;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.net.MessageChangeBagColor;
 import net.minecraft.client.gui.GuiScreen;
@@ -79,7 +79,7 @@ public class GuiBag extends GuiLM
             {
                 GuiHelper.playClickSound();
 
-                GuiSelectColor.display(null, container.bag.colorID, (id, value) ->
+                FTBLibIntegration.API.selectors().selectColor(null, container.bag.colorID, (id, value) ->
                 {
                     new MessageChangeBagColor(value).sendToServer();
                     GuiBag.this.openGui();
