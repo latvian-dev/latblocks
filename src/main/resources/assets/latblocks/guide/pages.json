@@ -1,0 +1,6 @@
+[
+  {"id": "quartz_bag", "icon_item": "latblocks:bag", "lang": "latblocks.item.bag.name"},
+  {"id": "ender_bag", "icon_item": "latblocks:ender_bag", "lang": "latblocks.item.ender_bag.name"},
+  {"id": "nether_chest", "icon_item": "latblocks:nether_chest", "lang": "latblocks.tile.nether_chest.name"},
+  {"id": "crafting_panel", "icon_item": "latblocks:crafting_panel", "lang": "latblocks.tile.crafting_panel.name"}
+]

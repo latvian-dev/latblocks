@@ -1,6 +1,6 @@
 itemGroup.latblocks=LatBlocks
 
-### Blocks ###
+# Blocks
 
 latblocks.tile.nether_chest.name=Nether Chest
 latblocks.tile.crafting_panel.name=Crafting Panel
@@ -17,13 +17,11 @@ latblocks.tile.filter_hopper.name=Filter Hopper
 latblocks.tile.fluid_hopper.name=Fluid Hopper
 latblocks.tile.buffer.name=Buffer
 
-### Items ###
+# Items
 
 latblocks.item.bag.name=Quartz Bag
 latblocks.item.ender_bag.name=Ender Bag
 
-latblocks.item.gem_yellow.name=Glowium
-latblocks.item.dust_yellow.name=Glowium Dust
-latblocks.item.lens.name=Glass Lens
-latblocks.item.dust_star.name=Star Dust
-latblocks.item.glasses.name=LatBlocks Goggles
+# Guide
+
+latblocks.guide=LatBlocks by LatvianModder
