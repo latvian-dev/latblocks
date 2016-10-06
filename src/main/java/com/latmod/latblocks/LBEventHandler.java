@@ -1,6 +1,5 @@
 package com.latmod.latblocks;
 
-import com.feed_the_beast.ftbl.lib.item.ODItems;
 import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import net.minecraft.item.ItemStack;
@@ -15,19 +14,20 @@ public class LBEventHandler
     @SubscribeEvent
     public void onAnvilEvent(AnvilUpdateEvent e)
     {
-        if(e.getLeft().hasCapability(LBCapabilities.BAG, null) && ODItems.itemHasOre(e.getRight(), ODItems.DIAMOND) && e.getRight().stackSize >= 3)
+        if(e.getLeft().hasCapability(LBCapabilities.BAG, null))
         {
             Bag bag = e.getLeft().getCapability(LBCapabilities.BAG, null);
+            ItemStack rightItem = LatBlocksConfig.BAG_ITEMS.containsItem(e.getRight(), 2);
 
-            if(bag.upgrade(true))
+            if(rightItem != null && bag.upgrade(true))
             {
                 ItemStack out = e.getLeft().copy();
 
                 bag = out.getCapability(LBCapabilities.BAG, null);
                 bag.upgrade(false);
 
-                e.setMaterialCost(3);
-                e.setCost(3);
+                e.setMaterialCost(rightItem.stackSize);
+                e.setCost(LatBlocksConfig.BAG_LEVEL_COST.getByte());
                 e.setOutput(out);
             }
         }
