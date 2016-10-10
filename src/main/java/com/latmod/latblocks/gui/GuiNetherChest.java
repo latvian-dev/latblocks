@@ -67,7 +67,7 @@ public class GuiNetherChest extends GuiLM
         int ay = getAY();
         GuiScreen.drawModalRectWithCustomSizedTexture(ax, ay, 0F, 0F, getWidth(), getHeight(), 256F, 256F);
         GuiHelper.drawCenteredString(getFont(), Integer.toString(container.tile.currentPage + 1), ax + 159, ay + 37, 0xFFFFFFFF);
-        GuiHelper.drawCenteredString(getFont(), Integer.toString(container.getMaxPages()), ax + 159, ay + 66, 0xFFFFFFFF);
+        GuiHelper.drawCenteredString(getFont(), Integer.toString(container.tile.maxPages), ax + 159, ay + 66, 0xFFFFFFFF);
 
         if(getMouseWheel() != 0 && isMouseOver(this))
         {

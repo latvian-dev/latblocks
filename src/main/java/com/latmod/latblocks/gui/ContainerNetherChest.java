@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
@@ -67,7 +66,7 @@ public class ContainerNetherChest extends ContainerLM
 
         public int getItemIndex()
         {
-            return tile.currentPage * 40 + getSlotIndex();
+            return tile.currentPage * TileNetherChest.SLOTS + getSlotIndex();
         }
 
         @Override
@@ -79,42 +78,20 @@ public class ContainerNetherChest extends ContainerLM
         @Override
         public ItemStack getStack()
         {
-            int index = getItemIndex();
-            return (index >= 0 && index < tile.items.size()) ? tile.items.get(index) : null;
+            return tile.getItemStack(getItemIndex());
         }
 
         @Override
-        public void putStack(ItemStack stack)
+        public void putStack(@Nullable ItemStack stack)
         {
-            int index = getItemIndex();
-
-            if(stack == null || stack.stackSize <= 0)
-            {
-                if(index >= 0 && index < tile.items.size())
-                {
-                    tile.items.remove(index);
-                    onSlotChanged();
-                }
-            }
-            else
-            {
-                if(index >= 0 && index < tile.items.size())
-                {
-                    tile.items.set(index, stack);
-                    onSlotChanged();
-                }
-                else
-                {
-                    tile.items.add(stack);
-                    onSlotChanged();
-                }
-            }
+            tile.setItemStack(getItemIndex(), stack);
+            onSlotChanged();
         }
 
         @Override
         public void onSlotChanged()
         {
-            tile.markDirty();
+            //tile.markDirty();
         }
 
         @Override
@@ -138,17 +115,7 @@ public class ContainerNetherChest extends ContainerLM
         @Override
         public ItemStack decrStackSize(int amount)
         {
-            int index = getItemIndex();
-
-            if(index >= 0 && index < tile.items.size() && amount == 1)
-            {
-                ItemStack is = tile.items.get(index);
-                tile.items.remove(index);
-                tile.markDirty();
-                return is;
-            }
-
-            return null;
+            return amount == 1 ? tile.setItemStack(getItemIndex(), null) : null;
         }
 
         @Override
@@ -159,18 +126,19 @@ public class ContainerNetherChest extends ContainerLM
     }
 
     public final TileNetherChest tile;
-    private int lastPage = -1;
+    private short lastPage = -1;
+    private short maxPages = -1;
 
     public ContainerNetherChest(EntityPlayer ep, TileNetherChest c)
     {
         super(ep);
         tile = c;
 
-        for(int y = 0; y < 5; y++)
+        for(int y = 0; y < TileNetherChest.HEIGHT; y++)
         {
-            for(int x = 0; x < 8; x++)
+            for(int x = 0; x < TileNetherChest.WIDTH; x++)
             {
-                addSlotToContainer(new SlotNetherChest(tile, x + y * 8, 7 + x * 18, 7 + y * 18));
+                addSlotToContainer(new SlotNetherChest(tile, x + y * TileNetherChest.WIDTH, 7 + x * 18, 7 + y * 18));
             }
         }
 
@@ -182,8 +150,6 @@ public class ContainerNetherChest extends ContainerLM
     {
         if(!ep.worldObj.isRemote)
         {
-            int ppage = tile.currentPage;
-
             if(id == 0)
             {
                 tile.currentPage--;
@@ -193,27 +159,18 @@ public class ContainerNetherChest extends ContainerLM
                 tile.currentPage++;
             }
 
-            int max = getMaxPages();
-            tile.currentPage %= max;
+            tile.currentPage %= tile.maxPages;
 
-            if(tile.currentPage < 0)
+            while(tile.currentPage < 0)
             {
-                tile.currentPage += max;
+                tile.currentPage += tile.maxPages;
             }
 
-            if(tile.currentPage != ppage)
-            {
-                tile.markDirty();
-                return true;
-            }
+            detectAndSendChanges();
+            return true;
         }
 
         return false;
-    }
-
-    public int getMaxPages()
-    {
-        return MathHelper.ceiling_float_int((tile.items.size() + 1F) / 40F);
     }
 
     @Nullable
@@ -226,7 +183,7 @@ public class ContainerNetherChest extends ContainerLM
     @Override
     protected int getNonPlayerSlots()
     {
-        return 40;
+        return TileNetherChest.SLOTS;
     }
 
     @Override
@@ -234,15 +191,23 @@ public class ContainerNetherChest extends ContainerLM
     {
         super.detectAndSendChanges();
 
+        tile.updateMaxPages();
+
         for(IContainerListener l : listeners)
         {
             if(lastPage != tile.currentPage)
             {
                 l.sendProgressBarUpdate(this, 0, tile.currentPage);
             }
+
+            if(maxPages != tile.maxPages)
+            {
+                l.sendProgressBarUpdate(this, 1, tile.maxPages);
+            }
         }
 
         lastPage = tile.currentPage;
+        maxPages = tile.maxPages;
     }
 
     @SideOnly(Side.CLIENT)
@@ -253,6 +218,8 @@ public class ContainerNetherChest extends ContainerLM
         {
             case 0:
                 tile.currentPage = (short) data;
+            case 1:
+                tile.maxPages = (short) data;
         }
     }
 }

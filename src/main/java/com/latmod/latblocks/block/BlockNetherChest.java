@@ -6,6 +6,7 @@ import com.latmod.latblocks.gui.ContainerNetherChest;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -61,6 +62,26 @@ public class BlockNetherChest extends BlockLB
     }
 
     @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+
+        if(hasTileEntity(state) && placer instanceof EntityPlayer)
+        {
+            TileEntity te = worldIn.getTileEntity(pos);
+
+            if(te instanceof TileNetherChest)
+            {
+                if(stack.hasTagCompound() && stack.getTagCompound().hasKey(TileNetherChest.ITEM_NBT_KEY))
+                {
+                    ((TileNetherChest) te).readTileData(stack.getTagCompound().getCompoundTag(TileNetherChest.ITEM_NBT_KEY));
+                    te.markDirty();
+                }
+            }
+        }
+    }
+
+    @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack)
     {
         if(te instanceof TileNetherChest)
@@ -70,7 +91,7 @@ public class BlockNetherChest extends BlockLB
             itemstack.setTagCompound(new NBTTagCompound());
             NBTTagCompound tag = new NBTTagCompound();
             ((TileNetherChest) te).writeTileData(tag);
-            itemstack.getTagCompound().setTag("NetherChestData", tag);
+            itemstack.getTagCompound().setTag(TileNetherChest.ITEM_NBT_KEY, tag);
 
             spawnAsEntity(worldIn, pos, itemstack);
         }
@@ -93,7 +114,7 @@ public class BlockNetherChest extends BlockLB
             itemstack.setTagCompound(new NBTTagCompound());
             NBTTagCompound tag = new NBTTagCompound();
             ((TileNetherChest) te).writeTileData(tag);
-            itemstack.getTagCompound().setTag("NetherChestData", tag);
+            itemstack.getTagCompound().setTag(TileNetherChest.ITEM_NBT_KEY, tag);
         }
 
         ret.add(itemstack);

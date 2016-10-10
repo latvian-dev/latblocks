@@ -1,16 +1,17 @@
 package com.latmod.latblocks.tile;
 
 import com.feed_the_beast.ftbl.lib.tile.TileLM;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +20,15 @@ import java.util.List;
  */
 public class TileNetherChest extends TileLM implements IItemHandlerModifiable
 {
-    public final List<ItemStack> items;
-    public short currentPage = 0;
+    public static final int WIDTH = 8;
+    public static final int HEIGHT = 5;
+    public static final int SLOTS = WIDTH * HEIGHT;
+    public static final String ITEM_NBT_KEY = "NetherChestData";
+    public static final int MAX_ITEMS = 32000;
 
-    public TileNetherChest()
-    {
-        items = new ArrayList<>();
-    }
+    private final List<ItemStack> items = new ArrayList<>();
+    public short currentPage = 0;
+    public short maxPages = 0;
 
     public static boolean isValidItem(ItemStack is)
     {
@@ -53,7 +56,6 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     @Override
     public void writeTileData(NBTTagCompound nbt)
     {
-        super.writeTileData(nbt);
         NBTTagList list = new NBTTagList();
 
         for(ItemStack is : items)
@@ -70,98 +72,43 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     @Override
     public void readTileData(NBTTagCompound nbt)
     {
-        super.readTileData(nbt);
         items.clear();
 
-        NBTTagList list = (NBTTagList) nbt.getTag("Inv");
+        NBTTagList list = nbt.getTagList("Inv", Constants.NBT.TAG_COMPOUND);
 
-        if(list != null && list.tagCount() > 0)
+        for(int i = 0; i < list.tagCount(); i++)
         {
-            for(int i = 0; i < list.tagCount(); i++)
-            {
-                ItemStack is = ItemStack.loadItemStackFromNBT(list.getCompoundTagAt(i));
+            ItemStack is = ItemStack.loadItemStackFromNBT(list.getCompoundTagAt(i));
 
-                if(is != null)
-                {
-                    items.add(is);
-                }
+            if(is != null)
+            {
+                items.add(is);
             }
         }
 
         currentPage = nbt.getShort("Page");
+        updateMaxPages();
     }
 
     @Override
     public void writeTileClientData(NBTTagCompound nbt)
     {
-        super.writeTileClientData(nbt);
-        NBTTagList list = new NBTTagList();
-
-        for(ItemStack is : items)
-        {
-            NBTTagCompound tag1 = new NBTTagCompound();
-            is.writeToNBT(tag1);
-            list.appendTag(tag1);
-        }
-
-        nbt.setTag("I", list);
-        nbt.setShort("P", currentPage);
+        writeTileData(nbt);
     }
 
     @Override
     public void readTileClientData(NBTTagCompound nbt)
     {
-        super.readTileClientData(nbt);
-        items.clear();
-
-        NBTTagList list = (NBTTagList) nbt.getTag("I");
-
-        if(list != null && list.tagCount() > 0)
-        {
-            for(int i = 0; i < list.tagCount(); i++)
-            {
-                ItemStack is = ItemStack.loadItemStackFromNBT(list.getCompoundTagAt(i));
-
-                if(is != null)
-                {
-                    items.add(is);
-                }
-            }
-        }
-
-        currentPage = nbt.getShort("P");
+        readTileData(nbt);
     }
 
     @Override
     public void setStackInSlot(int slot, ItemStack stack)
     {
-        if(slot == 0)
+        if(slot != 0)
         {
-            if(stack != null && stack.stackSize == 1 && !stack.isStackable())
-            {
-                items.add(stack);
-                markDirty();
-            }
+            setItemStack(slot - 1, stack);
         }
-        else
-        {
-            if(stack == null || stack.stackSize <= 0)
-            {
-                items.remove(slot - 1);
-                markDirty();
-            }
-            else
-            {
-                items.set(slot - 1, stack);
-                markDirty();
-            }
-        }
-    }
-
-    @Override
-    public void markDirty()
-    {
-        sendDirtyUpdate();
     }
 
     @Override
@@ -179,12 +126,15 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
     @Override
     public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
     {
-        if(stack != null && isValidItem(stack))
+        if(stack == null || stack.stackSize == 0)
+        {
+            return null;
+        }
+        else if(items.size() < MAX_ITEMS && isValidItem(stack))
         {
             if(!simulate)
             {
-                items.add(stack);
-                markDirty();
+                setItemStack(-1, stack);
             }
 
             return null;
@@ -205,22 +155,51 @@ public class TileNetherChest extends TileLM implements IItemHandlerModifiable
 
         if(!simulate)
         {
-            items.remove(slot - 1);
-            markDirty();
+            setItemStack(slot - 1, null);
         }
 
         return is;
     }
 
-    @Override
-    public void onPlacedBy(EntityLivingBase el, ItemStack is, IBlockState state)
+    @Nullable
+    public ItemStack setItemStack(int slot, @Nullable ItemStack stack)
     {
-        super.onPlacedBy(el, is, state);
+        ItemStack is;
 
-        if(is.hasTagCompound() && is.getTagCompound().hasKey("NetherChestData"))
+        if(slot < 0 || slot >= items.size())
         {
-            readTileData(is.getTagCompound().getCompoundTag("NetherChestData"));
-            markDirty();
+            if(stack != null && stack.stackSize == 1)
+            {
+                items.add(stack);
+            }
+
+            is = null;
         }
+        else
+        {
+            if(stack == null || stack.stackSize < 1)
+            {
+                is = items.remove(slot);
+            }
+            else
+            {
+                is = items.set(slot, stack);
+            }
+        }
+
+        updateMaxPages();
+        markDirty();
+        return is;
+    }
+
+    @Nullable
+    public ItemStack getItemStack(int slot)
+    {
+        return (slot < 0 || slot >= items.size()) ? null : items.get(slot);
+    }
+
+    public void updateMaxPages()
+    {
+        maxPages = (short) MathHelper.ceiling_float_int((items.size() + 1F) / (float) SLOTS);
     }
 }
