@@ -1,7 +1,7 @@
 package com.latmod.latblocks.item;
 
+import com.feed_the_beast.ftbl.api.RegistryObject;
 import com.feed_the_beast.ftbl.api.recipes.IRecipeHandler;
-import com.feed_the_beast.ftbl.api.recipes.RecipeHandler;
 import com.feed_the_beast.ftbl.lib.item.ODItems;
 import com.latmod.latblocks.LatBlocks;
 import net.minecraft.item.ItemStack;
@@ -29,7 +29,7 @@ public class LBItems
         ENDER_BAG.registerDefaultModel();
     }
 
-    @RecipeHandler
+    @RegistryObject
     public static final IRecipeHandler RECIPES = recipes ->
     {
         recipes.addRecipe(new ItemStack(BAG, 1, 0),

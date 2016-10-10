@@ -1,6 +1,6 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.RegistryObject;
 import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
@@ -29,7 +29,7 @@ public class ContainerBag extends ContainerLM
     public static final ResourceLocation BAG_MAIN_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_main");
     public static final ResourceLocation BAG_OFF_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_off");
 
-    @GuiHandler
+    @RegistryObject
     public static final IGuiHandler MAIN_HAND_HANDLER = new IGuiHandler()
     {
         @Override
@@ -55,7 +55,7 @@ public class ContainerBag extends ContainerLM
         }
     };
 
-    @GuiHandler
+    @RegistryObject
     public static final IGuiHandler OFF_HAND_HANDLER = new IGuiHandler()
     {
         @Override

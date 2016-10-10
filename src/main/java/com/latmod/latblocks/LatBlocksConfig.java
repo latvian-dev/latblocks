@@ -1,6 +1,6 @@
 package com.latmod.latblocks;
 
-import com.feed_the_beast.ftbl.api.config.ConfigFileProvider;
+import com.feed_the_beast.ftbl.api.RegistryObject;
 import com.feed_the_beast.ftbl.api.config.ConfigValue;
 import com.feed_the_beast.ftbl.api.config.IConfigFileProvider;
 import com.feed_the_beast.ftbl.lib.config.PropertyByte;
@@ -17,7 +17,7 @@ import java.util.Arrays;
  */
 public class LatBlocksConfig
 {
-    @ConfigFileProvider(LatBlocks.MOD_ID)
+    @RegistryObject(LatBlocks.MOD_ID)
     public static final IConfigFileProvider FILE = () -> new File(LMUtils.folderConfig, "LatBlocks.json");
 
     @ConfigValue(id = "bag.level_cost", file = LatBlocks.MOD_ID)

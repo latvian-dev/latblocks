@@ -1,6 +1,6 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.gui.GuiHandler;
+import com.feed_the_beast.ftbl.api.RegistryObject;
 import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
 import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
 import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
@@ -30,7 +30,7 @@ public class ContainerCraftingPanel extends ContainerLM
 {
     public static final ResourceLocation ID = new ResourceLocation(LatBlocks.MOD_ID, "crafting_panel");
 
-    @GuiHandler
+    @RegistryObject
     public static final IGuiHandler HANDLER = new IGuiHandler()
     {
         @Override
