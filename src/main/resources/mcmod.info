@@ -1,20 +1,14 @@
-[
-{
+[{
   "modid": "latblocks",
-  "name": "LatBlocks",
+  "name": "LatBlocks 2",
   "description": "",
   "version": "${version}",
   "url": "http://minecraft.curseforge.com/projects/latblocks",
   "updateUrl": "",
-  "authorList": [
-    "LatvianModder"
-  ],
+  "authorList": ["LatvianModder"],
   "credits": "",
   "logoFile": "assets/latblocks/textures/logo.png",
-  "screenshots": [
-  ],
+  "screenshots": [],
   "parent":"",
-  "dependencies": [
-  ]
-}
-]
+  "dependencies": []
+}]

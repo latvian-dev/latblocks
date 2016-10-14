@@ -1,20 +1,17 @@
 package com.latmod.latblocks.block;
 
-import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
-import com.latmod.latblocks.FTBLibIntegration;
-import com.latmod.latblocks.gui.ContainerNetherChest;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -49,6 +46,9 @@ public class BlockNetherChest extends BlockLB
     {
         if(!worldIn.isRemote)
         {
+            playerIn.addChatMessage(new TextComponentString("NetherChest GUI is disabled for now!"));
+            
+            /*
             TileEntity te = worldIn.getTileEntity(pos);
 
             if(te instanceof TileNetherChest)
@@ -56,6 +56,7 @@ public class BlockNetherChest extends BlockLB
                 te.markDirty();
                 FTBLibIntegration.API.openGui(ContainerNetherChest.ID, (EntityPlayerMP) playerIn, GuiHelper.getPosData(te));
             }
+            */
         }
 
         return true;

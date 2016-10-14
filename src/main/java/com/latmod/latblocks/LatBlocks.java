@@ -18,7 +18,13 @@ import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 /**
  * Created by LatvianModder on 12.05.2016.
  */
-@Mod(modid = LatBlocks.MOD_ID, name = "LatBlocks 2", version = "@VERSION@", dependencies = "required-after:ftbl")
+@Mod(
+        modid = LatBlocks.MOD_ID,
+        name = LatBlocks.MOD_ID,
+        version = "0.0.0",
+        useMetadata = true,
+        dependencies = "required-after:ftbl"
+)
 public class LatBlocks
 {
     public static final String MOD_ID = "latblocks";
@@ -27,7 +33,7 @@ public class LatBlocks
     public static LatBlocks INST;
 
     @SidedProxy(serverSide = "com.latmod.latblocks.LatBlocksCommon", clientSide = "com.latmod.latblocks.client.LatBlocksClient")
-    public static LatBlocksCommon proxy;
+    public static LatBlocksCommon PROXY;
 
     public CreativeTabLM tab;
 
@@ -44,7 +50,7 @@ public class LatBlocks
         LBBlocks.init();
         LBItems.init();
         LBNetHandler.init();
-        proxy.preInit();
+        PROXY.preInit();
         MinecraftForge.EVENT_BUS.register(new LBEventHandler());
         tab.addIcon(new ItemStack(LBBlocks.NETHER_CHEST));
     }
@@ -52,6 +58,6 @@ public class LatBlocks
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        proxy.postInit();
+        PROXY.postInit();
     }
 }
