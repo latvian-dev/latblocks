@@ -87,7 +87,7 @@ public class GuiBag extends GuiLM
             }
         };
 
-        buttonPrivacy = new ButtonLM(151, 7, 16, 16, EnumPrivacyLevel.enumLangKey.translate())
+        buttonPrivacy = new ButtonLM(151, 7, 16, 16, EnumPrivacyLevel.ENUM_LANG_KEY.translate())
         {
             @Override
             public void onClicked(IGui gui, IMouseButton button)
