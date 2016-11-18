@@ -47,14 +47,14 @@ public class BlockNetherChest extends BlockLB
         if(!worldIn.isRemote)
         {
             playerIn.addChatMessage(new TextComponentString("NetherChest GUI is disabled for now!"));
-            
+
             /*
             TileEntity te = worldIn.getTileEntity(pos);
 
             if(te instanceof TileNetherChest)
             {
                 te.markDirty();
-                FTBLibIntegration.API.openGui(ContainerNetherChest.ID, (EntityPlayerMP) playerIn, GuiHelper.getPosData(te));
+                FTBLibIntegration.API.openGui(ContainerNetherChest.ID, (EntityPlayerMP) playerIn, pos, null);
             }
             */
         }

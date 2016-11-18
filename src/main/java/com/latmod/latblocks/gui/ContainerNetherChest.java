@@ -1,19 +1,13 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.api.RegistryObject;
-import com.feed_the_beast.ftbl.api.gui.IGuiHandler;
 import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
-import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
 import com.feed_the_beast.ftbl.lib.util.LMInvUtils;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,32 +21,6 @@ import javax.annotation.Nullable;
 public class ContainerNetherChest extends ContainerLM
 {
     public static final ResourceLocation ID = new ResourceLocation(LatBlocks.MOD_ID, "nether_chest");
-
-    @RegistryObject
-    public static final IGuiHandler HANDLER = new IGuiHandler()
-    {
-        @Override
-        public ResourceLocation getID()
-        {
-            return ID;
-        }
-
-        @Override
-        @Nullable
-        public Container getContainer(EntityPlayer player, @Nullable NBTTagCompound data)
-        {
-            TileEntity te = GuiHelper.getTile(player, data);
-            return (te instanceof TileNetherChest) ? new ContainerNetherChest(player, (TileNetherChest) te) : null;
-        }
-
-        @Override
-        @Nullable
-        public Object getGui(EntityPlayer player, @Nullable NBTTagCompound data)
-        {
-            TileEntity te = GuiHelper.getTile(player, data);
-            return (te instanceof TileNetherChest) ? new GuiNetherChest(new ContainerNetherChest(player, (TileNetherChest) te)) : null;
-        }
-    };
 
     private static class SlotNetherChest extends Slot
     {

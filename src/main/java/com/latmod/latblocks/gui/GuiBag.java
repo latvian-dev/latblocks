@@ -5,13 +5,14 @@ import com.feed_the_beast.ftbl.api.gui.IGui;
 import com.feed_the_beast.ftbl.api.gui.IMouseButton;
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
 import com.feed_the_beast.ftbl.lib.client.TextureCoords;
+import com.feed_the_beast.ftbl.lib.config.PropertyColor;
 import com.feed_the_beast.ftbl.lib.gui.ButtonLM;
 import com.feed_the_beast.ftbl.lib.gui.GuiContainerWrapper;
 import com.feed_the_beast.ftbl.lib.gui.GuiHelper;
 import com.feed_the_beast.ftbl.lib.gui.GuiIcons;
 import com.feed_the_beast.ftbl.lib.gui.GuiLM;
 import com.feed_the_beast.ftbl.lib.gui.GuiLang;
-import com.feed_the_beast.ftbl.lib.gui.selectors.GuiSelectors;
+import com.feed_the_beast.ftbl.lib.gui.misc.GuiSelectors;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.net.MessageChangeBagColor;
 import net.minecraft.client.gui.GuiScreen;
@@ -28,15 +29,15 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class GuiBag extends GuiLM
 {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(LatBlocks.MOD_ID, "textures/gui/bag.png");
-    public static final TextureCoords TAB_OFF = TextureCoords.fromCoords(TEXTURE, 174, 0, 21, 16, 256, 256);
-    public static final TextureCoords TAB_ON = TextureCoords.fromCoords(TEXTURE, 174, 16, 21, 16, 256, 256);
+    private static final ResourceLocation TEXTURE = new ResourceLocation(LatBlocks.MOD_ID, "textures/gui/bag.png");
+    private static final TextureCoords TAB_OFF = TextureCoords.fromCoords(TEXTURE, 174, 0, 21, 16, 256, 256);
+    private static final TextureCoords TAB_ON = TextureCoords.fromCoords(TEXTURE, 174, 16, 21, 16, 256, 256);
 
-    public class TabButton extends ButtonLM
+    private class TabButton extends ButtonLM
     {
-        public byte tabIndex;
+        private byte tabIndex;
 
-        public TabButton(int x, int y, byte i)
+        private TabButton(int x, int y, byte i)
         {
             super(x, y, 21, 16, "#" + (i + 1));
             tabIndex = i;
@@ -56,9 +57,9 @@ public class GuiBag extends GuiLM
         }
     }
 
-    public final ContainerBag container;
-    public final List<TabButton> tabButtons;
-    public final ButtonLM buttonColor, buttonPrivacy;
+    private final ContainerBag container;
+    private final List<TabButton> tabButtons;
+    private final ButtonLM buttonColor, buttonPrivacy;
 
     public GuiBag(ContainerBag c)
     {
@@ -79,9 +80,13 @@ public class GuiBag extends GuiLM
             {
                 GuiHelper.playClickSound();
 
-                GuiSelectors.selectColor(null, container.bag.colorID, (id, value) ->
+                GuiSelectors.selectColor(new PropertyColor(container.bag.colorID), (value, set) ->
                 {
-                    new MessageChangeBagColor(value).sendToServer();
+                    if(set)
+                    {
+                        new MessageChangeBagColor((byte) value.getInt()).sendToServer();
+                    }
+
                     GuiBag.this.openGui();
                 });
             }

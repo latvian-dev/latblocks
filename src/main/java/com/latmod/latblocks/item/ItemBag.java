@@ -13,6 +13,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -102,7 +103,7 @@ public class ItemBag extends ItemLB
 
             if(FTBLibIntegration.API.getUniverse().getPlayer(ep).canInteract(FTBLibIntegration.API.getUniverse().getPlayer(bag.owner), bag.privacyLevel))
             {
-                FTBLibIntegration.API.openGui(hand == EnumHand.MAIN_HAND ? ContainerBag.BAG_MAIN_HAND : ContainerBag.BAG_OFF_HAND, (EntityPlayerMP) ep, null);
+                FTBLibIntegration.API.openGui(hand == EnumHand.MAIN_HAND ? ContainerBag.BAG_MAIN_HAND : ContainerBag.BAG_OFF_HAND, (EntityPlayerMP) ep, BlockPos.ORIGIN, null);
             }
         }
 
