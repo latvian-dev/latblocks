@@ -1,11 +1,12 @@
 package com.latmod.latblocks.gui;
 
 import com.feed_the_beast.ftbl.api.security.EnumPrivacyLevel;
-import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
+import com.feed_the_beast.ftbl.lib.util.LMInvUtils;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.capabilities.Bag;
 import com.latmod.latblocks.capabilities.LBCapabilities;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -20,11 +21,12 @@ import javax.annotation.Nullable;
 /**
  * Created by LatvianModder on 11.07.2016.
  */
-public class ContainerBag extends ContainerLM
+public class ContainerBag extends Container
 {
     public static final ResourceLocation BAG_MAIN_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_main");
     public static final ResourceLocation BAG_OFF_HAND = new ResourceLocation(LatBlocks.MOD_ID, "bag_off");
 
+    public EntityPlayer player;
     public final EnumHand hand;
     public Bag bag;
     private int lastTab = -1;
@@ -33,7 +35,7 @@ public class ContainerBag extends ContainerLM
 
     public ContainerBag(EntityPlayer ep, EnumHand h)
     {
-        super(ep);
+        player = ep;
         hand = h;
         refreshBag();
 
@@ -46,13 +48,26 @@ public class ContainerBag extends ContainerLM
                     @Override
                     public IItemHandler getItemHandler()
                     {
-                        return ContainerBag.this.getItemHandler();
+                        return bag.inv.get(bag.currentTab);
                     }
                 });
             }
         }
 
-        addPlayerSlots(7, 128, true);
+        LMInvUtils.addPlayerSlots(this, player, 7, 128, true);
+    }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer ep)
+    {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    {
+        return LMInvUtils.transferStackInSlot(this, index, Bag.BagItemStackHandler.SIZE);
     }
 
     @Override
@@ -157,12 +172,5 @@ public class ContainerBag extends ContainerLM
         }
 
         return false;
-    }
-
-    @Nullable
-    @Override
-    public IItemHandler getItemHandler()
-    {
-        return bag.inv.get(bag.currentTab);
     }
 }

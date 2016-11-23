@@ -1,24 +1,23 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
 import com.feed_the_beast.ftbl.lib.util.LMInvUtils;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileNetherChest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
 /**
  * Created by LatvianModder on 11.07.2016.
  */
-public class ContainerNetherChest extends ContainerLM
+public class ContainerNetherChest extends Container
 {
     public static final ResourceLocation ID = new ResourceLocation(LatBlocks.MOD_ID, "nether_chest");
 
@@ -99,7 +98,6 @@ public class ContainerNetherChest extends ContainerLM
 
     public ContainerNetherChest(EntityPlayer ep, TileNetherChest c)
     {
-        super(ep);
         tile = c;
 
         for(int y = 0; y < TileNetherChest.HEIGHT; y++)
@@ -110,7 +108,20 @@ public class ContainerNetherChest extends ContainerLM
             }
         }
 
-        addPlayerSlots(7, 106, false);
+        LMInvUtils.addPlayerSlots(this, ep, 7, 106, false);
+    }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer ep)
+    {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+    {
+        return LMInvUtils.transferStackInSlot(this, index, TileNetherChest.SLOTS);
     }
 
     @Override
@@ -139,19 +150,6 @@ public class ContainerNetherChest extends ContainerLM
         }
 
         return false;
-    }
-
-    @Nullable
-    @Override
-    public IItemHandler getItemHandler()
-    {
-        return tile;
-    }
-
-    @Override
-    protected int getNonPlayerSlots()
-    {
-        return TileNetherChest.SLOTS;
     }
 
     @Override

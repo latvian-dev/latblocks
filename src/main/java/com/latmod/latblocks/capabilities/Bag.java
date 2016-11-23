@@ -21,9 +21,11 @@ public class Bag implements INBTSerializable<NBTTagCompound>
 {
     public static class BagItemStackHandler extends ItemStackHandler
     {
+        public static final int SIZE = 45;
+
         public BagItemStackHandler()
         {
-            super(45);
+            super(SIZE);
         }
 
         @Override

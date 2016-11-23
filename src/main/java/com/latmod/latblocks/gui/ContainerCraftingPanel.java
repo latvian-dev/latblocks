@@ -1,10 +1,10 @@
 package com.latmod.latblocks.gui;
 
-import com.feed_the_beast.ftbl.lib.gui.ContainerLM;
 import com.feed_the_beast.ftbl.lib.util.LMInvUtils;
 import com.latmod.latblocks.LatBlocks;
 import com.latmod.latblocks.tile.TileCraftingPanel;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
@@ -13,14 +13,13 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
 /**
  * Created by LatvianModder on 05.08.2016.
  */
-public class ContainerCraftingPanel extends ContainerLM
+public class ContainerCraftingPanel extends Container
 {
     public static final ResourceLocation ID = new ResourceLocation(LatBlocks.MOD_ID, "crafting_panel");
 
@@ -86,7 +85,6 @@ public class ContainerCraftingPanel extends ContainerLM
 
     public ContainerCraftingPanel(EntityPlayer ep, TileCraftingPanel t)
     {
-        super(ep);
         tile = t;
 
         craftMatrix = new InventoryCraftingCP();
@@ -102,15 +100,14 @@ public class ContainerCraftingPanel extends ContainerLM
             }
         }
 
-        addPlayerSlots(8, 84, false);
+        LMInvUtils.addPlayerSlots(this, ep, 8, 84, false);
         onCraftMatrixChanged(craftMatrix);
     }
 
-    @Nullable
     @Override
-    public IItemHandler getItemHandler()
+    public boolean canInteractWith(EntityPlayer ep)
     {
-        return tile.itemHandler;
+        return true;
     }
 
     @Override
