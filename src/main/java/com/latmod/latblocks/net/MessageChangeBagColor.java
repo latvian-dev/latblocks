@@ -4,7 +4,7 @@ import com.feed_the_beast.ftbl.lib.net.LMNetworkWrapper;
 import com.feed_the_beast.ftbl.lib.net.MessageToServer;
 import com.latmod.latblocks.gui.ContainerBag;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * Created by LatvianModder on 20.09.2016.
@@ -41,7 +41,7 @@ public class MessageChangeBagColor extends MessageToServer<MessageChangeBagColor
     }
 
     @Override
-    public void onMessage(MessageChangeBagColor m, EntityPlayerMP player)
+    public void onMessage(MessageChangeBagColor m, EntityPlayer player)
     {
         if(player.openContainer instanceof ContainerBag)
         {
